@@ -73,7 +73,7 @@ class HRModel:
             cal_probs = self.calibrator.predict_proba(raw_probs.reshape(-1, 1))[:, 1]
             print(f"  Cal probs: mean={cal_probs.mean():.3f}, min={cal_probs.min():.3f}, max={cal_probs.max():.3f}")
             return cal_probs
-  raw_probs = 1.0 / (1.0 + np.exp(-(10.405107 * raw_probs + (-7.876511))))
+        raw_probs = 1.0 / (1.0 + np.exp(-(10.405107 * raw_probs + (-7.876511))))
         return raw_probs
 
 def fetch_odds(api_key):
