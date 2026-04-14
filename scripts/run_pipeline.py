@@ -179,9 +179,17 @@ def load_profiles():
         for _, r in pd.read_parquet(DATA_DIR / "pitcher_same_side_weapon.parquet").iterrows():
             same_side[int(r['pitcher'])] = r.to_dict()
 
+    # Player handedness cache (bat_side, pitch_hand)
+    handedness = {}
+    hand_path = DATA_DIR / "player_handedness.json"
+    if hand_path.exists():
+        raw = json.load(open(hand_path))
+        handedness = {int(k): v for k, v in raw.items()}
+
     return {'batter': batter_map, 'p_hr': p_hr_map, 'p_exp': p_exp, 'p_mix_old': p_mix_map,
             'pitch_prof': pitch_prof, 'bp_vuln': bp_vuln, 'bvp': batter_bvp,
-            'splits': splits, 'rolling': pitcher_rolling, 'same_side': same_side}
+            'splits': splits, 'rolling': pitcher_rolling, 'same_side': same_side,
+            'handedness': handedness}
 
 
 def match_pitcher(name, *lookups):
@@ -275,12 +283,34 @@ def generate_picks(date_str, api_key):
             if pitcher_name == 'TBD': continue
             p_data = match_pitcher(pitcher_name, prof['p_hr'], prof['p_exp'], prof['p_mix_old'])
             p_pitch = match_pitcher(pitcher_name, prof['pitch_prof'])
-            p_roll = {}; p_ss = {}
-            for pid_key, pd_val in prof['rolling'].items():
+
+            # Find pitcher ID for V6 feature lookups
+            pitcher_id = None
+            for pid_key in prof['rolling']:
                 pp_name = prof['pitch_prof'].get(pid_key, {}).get('pitcher_name', '')
                 if pp_name and pitcher_name.split()[-1].lower() in pp_name.lower():
-                    p_roll = pd_val; p_ss = prof['same_side'].get(pid_key, {}); break
+                    pitcher_id = pid_key; break
+
+            p_roll = prof['rolling'].get(pitcher_id, {}) if pitcher_id else {}
+            p_ss = prof['same_side'].get(pitcher_id, {}) if pitcher_id else {}
             bp_data = prof['bp_vuln'].get(opp_team, {})
+
+            # Pitcher handedness
+            p_hand = ''
+            if pitcher_id:
+                p_hand = prof['handedness'].get(pitcher_id, {}).get('pitch_hand', '')
+            if not p_hand:
+                # Fallback: look up via MLB API
+                try:
+                    for g_data in games:
+                        for sk in ['away', 'home']:
+                            pp = g_data['teams'][sk].get('probablePitcher', {})
+                            if pp.get('fullName') == pitcher_name:
+                                pid_api = pp.get('id')
+                                if pid_api:
+                                    p_hand = prof['handedness'].get(pid_api, {}).get('pitch_hand', '')
+                                    if not pitcher_id: pitcher_id = pid_api
+                except: pass
 
             for i, b in enumerate(lineups.get(side, [])[:9]):
                 bp = batter_map.get(b['id'])
@@ -289,7 +319,28 @@ def generate_picks(date_str, api_key):
                     if len(parts) >= 2: bp = batter_map.get(f"{parts[-1]}, {' '.join(parts[:-1])}")
                 if not bp: continue
                 lpos = i + 1; bid = b['id']
+
+                # Batter handedness + platoon
+                b_hand = prof['handedness'].get(bid, {}).get('bat_side', '')
+                if b_hand and p_hand:
+                    platoon = 1 if b_hand != p_hand else 0
+                    # Switch hitters: treat as platoon advantage
+                    if b_hand == 'S':
+                        platoon = 1
+                else:
+                    platoon = 0
+
+                # Splits lookup (batter HR rate vs this pitcher hand)
+                split_hr = None
+                if b_hand and p_hand:
+                    stand = b_hand if b_hand != 'S' else ('L' if p_hand == 'R' else 'R')
+                    sp_data = prof['splits'].get((bid, stand, p_hand), {})
+                    split_hr = sp_data.get('split_hr_rate')
+
+                # BvP and same-side weapon
                 bvp_d = prof['bvp'].get(bid, {})
+                p_ss_whiff = p_ss.get('p_same_side_whiff') if platoon == 0 else None
+                p_ss_hr = p_ss.get('p_same_side_hr') if platoon == 0 else None
 
                 rows.append({
                     'batter_name': b['name'], 'game': f"{at} @ {ht}",
@@ -316,7 +367,7 @@ def generate_picks(date_str, api_key):
                     'wx_humidity_real': wx.get('wx_humidity_real'), 'wx_dome_real': wx.get('wx_dome_real'),
                     'wx_temp': wx.get('wx_temp_real', 75), 'wx_wind': wx.get('wx_wind_speed', 8),
                     'wx_humidity': wx.get('wx_humidity_real', 55), 'wx_dome': wx.get('wx_dome_real', 0),
-                    'platoon': 0, 'n_pa': 4,
+                    'platoon': platoon, 'n_pa': 4,
                     'p_fastball_pct': p_data.get('p_fastball_pct'), 'p_sinker_pct': p_data.get('p_sinker_pct'),
                     'p_breaking_pct': p_data.get('p_breaking_pct'), 'p_offspeed_pct': p_data.get('p_offspeed_pct'),
                     'p_hr_danger_score': p_data.get('p_hr_danger_score'),
@@ -329,8 +380,9 @@ def generate_picks(date_str, api_key):
                     'bvp_hr_FC': bvp_d.get('bvp_hr_rate_FC'),
                     'bvp_ev_FF': bvp_d.get('bvp_avg_ev_FF'), 'bvp_ev_SL': bvp_d.get('bvp_avg_ev_SL'),
                     'bvp_ev_CH': bvp_d.get('bvp_avg_ev_CH'),
-                    'split_hr_rate': None, 'p_same_side_whiff': p_ss.get('p_same_side_whiff'),
-                    'p_same_side_hr': p_ss.get('p_same_side_hr'),
+                    'split_hr_rate': split_hr,
+                    'p_same_side_whiff': p_ss_whiff,
+                    'p_same_side_hr': p_ss_hr,
                     **{f'{bk}_pct': p_pitch.get(f'{bk}_pct') for bk in PITCH_BUCKETS},
                     **{f'{bk}_hr_rate': p_pitch.get(f'{bk}_hr_rate') for bk in PITCH_BUCKETS},
                     'bp_vuln_adj': bp_data.get('bp_vulnerability'), 'bp_weighted_hr_rate': bp_data.get('weighted_hr_rate'),
