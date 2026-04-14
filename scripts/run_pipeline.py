@@ -46,17 +46,21 @@ PITCH_BUCKETS = ['FF', 'SI', 'FC', 'SL', 'ST', 'CU', 'CH', 'FS']
 
 
 class HRModel:
-    # Platt scaling calibrator coefficients (logistic regression on raw XGBoost probs)
-    # P(HR) = 1 / (1 + exp(-(coef * raw_prob + intercept)))
-    CAL_COEF = 10.405107
-    CAL_INTERCEPT = -7.876511
-
     def __init__(self):
         v = MODEL_VERSION
         self.model = pickle.load(open(MODEL_DIR / f"hr_model_{v}.pkl", "rb"))
         self.meta = json.load(open(MODEL_DIR / f"hr_meta_{v}.json"))
         self.medians = json.load(open(MODEL_DIR / f"hr_medians_{v}.json"))
         self.features = self.meta['features']
+        # Load Platt scaling calibrator if available
+        cal_path = MODEL_DIR / f"hr_calibrator_{v}.pkl"
+        print(f"  Calibrator path: {cal_path} (exists: {cal_path.exists()})")
+        if cal_path.exists():
+            self.calibrator = pickle.load(open(cal_path, "rb"))
+            print(f"  Calibrator loaded: {type(self.calibrator)}")
+        else:
+            self.calibrator = None
+            print("  WARNING: No calibrator found, using raw probabilities!")
 
     def predict(self, df):
         X = df[self.features].copy()
@@ -64,12 +68,12 @@ class HRModel:
             X[c] = pd.to_numeric(X[c], errors='coerce')
             X[c] = X[c].fillna(self.medians.get(c, 0))
         raw_probs = self.model.predict_proba(X)[:, 1]
-        # Apply Platt scaling calibration
-        logits = self.CAL_COEF * raw_probs + self.CAL_INTERCEPT
-        cal_probs = 1.0 / (1.0 + np.exp(-logits))
-        print(f"  Raw: mean={raw_probs.mean():.3f} range=[{raw_probs.min():.3f},{raw_probs.max():.3f}]")
-        print(f"  Cal: mean={cal_probs.mean():.3f} range=[{cal_probs.min():.3f},{cal_probs.max():.3f}]")
-        return cal_probs
+        print(f"  Raw probs: mean={raw_probs.mean():.3f}, min={raw_probs.min():.3f}, max={raw_probs.max():.3f}")
+        if self.calibrator is not None:
+            cal_probs = self.calibrator.predict_proba(raw_probs.reshape(-1, 1))[:, 1]
+            print(f"  Cal probs: mean={cal_probs.mean():.3f}, min={cal_probs.min():.3f}, max={cal_probs.max():.3f}")
+            return cal_probs
+        return raw_probs
 
 
 def fetch_odds(api_key):
