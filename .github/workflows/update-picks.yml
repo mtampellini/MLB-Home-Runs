@@ -1,0 +1,37 @@
+name: Update HR Picks
+
+on:
+  schedule:
+    # Every hour from 11am-8pm ET (3pm-12am UTC)
+    - cron: '0 15,16,17,18,19,20,21,22,23,0 * * *'
+  workflow_dispatch: # Manual trigger button
+
+jobs:
+  update-picks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy xgboost pybaseball requests scikit-learn
+
+      - name: Run HR pipeline
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          cd scripts
+          python publish_picks.py --api-key $ODDS_API_KEY
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "HR Bot"
+          git config user.email "bot@hr-picks.app"
+          git add -A
+          git diff --staged --quiet || git commit -m "picks update $(date -u +%Y-%m-%d_%H:%M)"
+          git push
