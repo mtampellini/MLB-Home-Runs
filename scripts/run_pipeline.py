@@ -26,7 +26,7 @@ ODDS_HISTORY.mkdir(exist_ok=True)
 
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 MIN_ROI = 25.0
-MODEL_VERSION = "v4"
+MODEL_VERSION = "v6"
 
 TEAM_MAP = {"ARI": "AZ", "ATH": "OAK", "WSN": "WSH"}
 INDOOR = {"TB", "TOR", "TEX", "HOU", "MIA", "AZ", "SEA", "MIL", "MIN"}
@@ -52,13 +52,20 @@ class HRModel:
         self.meta = json.load(open(MODEL_DIR / f"hr_meta_{v}.json"))
         self.medians = json.load(open(MODEL_DIR / f"hr_medians_{v}.json"))
         self.features = self.meta['features']
+        # Load Platt scaling calibrator if available
+        cal_path = MODEL_DIR / f"hr_calibrator_{v}.pkl"
+        self.calibrator = pickle.load(open(cal_path, "rb")) if cal_path.exists() else None
 
     def predict(self, df):
         X = df[self.features].copy()
         for c in X.columns:
             X[c] = pd.to_numeric(X[c], errors='coerce')
             X[c] = X[c].fillna(self.medians.get(c, 0))
-        return self.model.predict_proba(X)[:, 1]
+        raw_probs = self.model.predict_proba(X)[:, 1]
+        # Apply calibration if available
+        if self.calibrator is not None:
+            return self.calibrator.predict_proba(raw_probs.reshape(-1, 1))[:, 1]
+        return raw_probs
 
 
 def fetch_odds(api_key):
