@@ -2,6 +2,7 @@ name: HR Picks Daily
 
 on:
   schedule:
+    # Run at 4pm and 6pm ET (8pm and 10pm UTC) during MLB season
     - cron: '0 20 * * *'
     - cron: '0 22 * * *'
   workflow_dispatch:
@@ -17,9 +18,13 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install pandas numpy xgboost requests scikit-learn pyarrow
+        run: pip install pandas numpy xgboost requests scikit-learn pyarrow pybaseball
 
-      - name: Run pipeline
+      - name: Refresh Statcast data (last 7 days)
+        run: python scripts/refresh_data.py --days 7
+        continue-on-error: true
+
+      - name: Run V6 pipeline
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python scripts/run_pipeline.py

@@ -273,6 +273,41 @@ function Methodology({ config }) {
   )
 }
 
+function RefreshButton() {
+  const [status, setStatus] = useState(null)
+
+  const trigger = async () => {
+    setStatus('running')
+    try {
+      const r = await fetch('/api/trigger', { method: 'POST' })
+      const data = await r.json()
+      if (data.success) {
+        setStatus('success')
+        setTimeout(() => setStatus(null), 5000)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus(null), 5000)
+      }
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus(null), 5000)
+    }
+  }
+
+  const label = status === 'running' ? 'Running...' : status === 'success' ? 'Triggered' : status === 'error' ? 'Error' : 'Refresh Picks'
+  const bg = status === 'success' ? 'rgba(34,197,94,0.15)' : status === 'error' ? 'rgba(239,68,68,0.15)' : 'rgba(59,130,246,0.1)'
+  const color = status === 'success' ? ACCENT : status === 'error' ? ACCENT_RED : BLUE
+
+  return (
+    <button onClick={trigger} disabled={status === 'running'} style={{
+      background: bg, border: `1px solid ${color}33`, borderRadius: 6,
+      color, padding: '6px 14px', fontSize: 11, fontWeight: 600,
+      fontFamily: MONO, cursor: status === 'running' ? 'wait' : 'pointer',
+      letterSpacing: 0.3, opacity: status === 'running' ? 0.6 : 1,
+    }}>{label}</button>
+  )
+}
+
 export default function Home() {
   const { dates, cumulative, config } = picksData
   const sortedDates = Object.keys(dates).sort().reverse()
@@ -293,7 +328,7 @@ export default function Home() {
         maxWidth: 1000, margin: '0 auto',
       }}>
         <div style={{ marginBottom: 24 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 28, fontWeight: 800, color: BRIGHT, letterSpacing: -1 }}>HR Picks</span>
             {pendingCount > 0 && (
               <span style={{
@@ -302,9 +337,10 @@ export default function Home() {
                 fontFamily: MONO,
               }}>{pendingCount} PENDING</span>
             )}
+            <RefreshButton />
           </div>
           <div style={{ fontSize: 11, color: MUTED, fontFamily: MONO }}>
-            Model v4 | Walk-forward validated | 5/5 months profitable | Min ROI: {config.min_roi_threshold}%
+            Model V6 | Walk-forward validated | 5/5 months profitable | Min ROI: {config.min_roi_threshold}%
           </div>
         </div>
 
