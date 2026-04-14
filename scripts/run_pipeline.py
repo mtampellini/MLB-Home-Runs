@@ -344,9 +344,13 @@ def generate_picks(date_str, api_key):
         else:
             last = name.split()[-1].lower() if ' ' in name else name.lower()
             for oname, odata in live_odds.items():
-                if last == oname.split()[-1].split('(')[0].strip().split()[-1].lower():
-                    df.at[idx, 'book_odds'] = odata['odds']
-                    df.at[idx, 'book_name'] = odata['book']; break
+                try:
+                    olast = oname.split()[-1].lower()
+                    if last == olast:
+                        df.at[idx, 'book_odds'] = odata['odds']
+                        df.at[idx, 'book_name'] = odata['book']; break
+                except:
+                    continue
 
     df['implied_prob'] = df['book_odds'].apply(lambda x: 100 / (x + 100) if pd.notna(x) and x > 0 else None)
     df['projected_roi'] = df.apply(
