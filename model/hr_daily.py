@@ -35,7 +35,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # CONFIG
 # ══════════════════════════════════════════════════════════
 DEFAULT_TOP_N = 25
-DEFAULT_MIN_ROI = 5.0   # Minimum projected ROI to flag as BET
+DEFAULT_MIN_ROI = 25.0  # Minimum projected ROI to flag as BET
 MIN_MODEL_PROB = 0.12   # Don't even score batters below this
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 

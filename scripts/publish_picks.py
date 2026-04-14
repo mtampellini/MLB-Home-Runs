@@ -25,7 +25,7 @@ APP_DIR = SCRIPT_DIR.parent
 MODEL_DIR = APP_DIR.parent / "f5_model"  # Adjust if needed
 PICKS_FILE = APP_DIR / "src" / "data" / "picks.json"
 
-MIN_ROI = 10.0  # Minimum projected ROI to qualify as a pick
+MIN_ROI = 25.0  # Minimum projected ROI to qualify as a pick
 
 
 def run_model(date_str, api_key):

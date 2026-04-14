@@ -136,40 +136,8 @@ function DaySection({ date, data }) {
   )
 }
 
-function HowItWorks({ config }) {
+function Methodology({ config }) {
   const [open, setOpen] = useState(false)
-
-  const definitions = [
-    {
-      term: 'Model %',
-      desc: "The model's predicted probability that this batter hits a home run tonight. Calculated by feeding 39 features into an XGBoost model trained on 23,000+ real batter-game outcomes. Inputs include Statcast hitting metrics (barrel rate, exit velo, xSLG, bat speed), pitcher vulnerability data (HR/FB rate, pitch mix, xwOBA allowed), park factor, weather, platoon advantage, and lineup position.",
-    },
-    {
-      term: 'Odds',
-      desc: 'The best available American odds between FanDuel and DraftKings for that player to hit a HR. For example, +500 means a $1 bet returns $5 profit if it hits. The implied probability from +500 odds is 1 / (1 + 5.00) = 16.7%, which represents what the sportsbook thinks the HR chance is (with their margin built in).',
-    },
-    {
-      term: 'Book',
-      desc: 'Which sportsbook is offering the best price. The system compares FanDuel and DraftKings, then shows only the higher payout. Always verify the line on that book before placing the bet since odds can shift.',
-    },
-    {
-      term: 'Proj ROI',
-      desc: 'Projected return on investment if you bet this type of spot repeatedly. Formula: (Model% / Implied%) - 1, shown as a percentage. Example: if the model says 30% and the odds imply 17%, Proj ROI = (0.30 / 0.17 - 1) = +76%. Only picks above ' + config.min_roi_threshold + '% make the board.',
-    },
-    {
-      term: 'Hit HR?',
-      desc: 'Result tracking. Shows PENDING before the game, then YES (with payout in units) or NO (-1u) after. One unit = one flat bet. A hit at +500 odds returns +5.0u profit.',
-    },
-  ]
-
-  const processSteps = [
-    'Pull live HR prop odds from FanDuel and DraftKings via API',
-    "Match each batter to their Statcast profile and the opposing pitcher's vulnerability metrics",
-    'Run the matchup through the model to get a HR probability',
-    "Compare model probability against the book's implied probability",
-    'Flag picks where projected ROI exceeds ' + config.min_roi_threshold + '%',
-    'Best price between FD and DK is selected automatically',
-  ]
 
   return (
     <div style={{
@@ -184,47 +152,121 @@ function HowItWorks({ config }) {
           justifyContent: 'space-between', fontFamily: SANS,
         }}
       >
-        <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: -0.3 }}>How It Works</span>
+        <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: -0.3 }}>Methodology &amp; Column Reference</span>
         <span style={{ fontSize: 18, color: MUTED, transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>&#9662;</span>
       </button>
 
       {open && (
-        <div style={{ padding: '0 18px 18px' }}>
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: MUTED, textTransform: 'uppercase', letterSpacing: 1, fontFamily: MONO, marginBottom: 10 }}>
-              Process
-            </div>
-            {processSteps.map((step, i) => (
-              <div key={i} style={{ display: 'flex', gap: 10, marginBottom: 8, fontSize: 12, color: TEXT, lineHeight: 1.5 }}>
-                <span style={{ color: MUTED, fontFamily: MONO, fontSize: 11, flexShrink: 0 }}>{i + 1}.</span>
-                <span>{step}</span>
-              </div>
+        <div style={{ padding: '0 18px 22px' }}>
+
+          {/* TABLE OF CONTENTS */}
+          <div style={{
+            display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20,
+            paddingBottom: 16, borderBottom: `1px solid ${BORDER}`,
+          }}>
+            {['Overview', 'Columns', 'Model', 'Odds Source', 'Updates', 'Betting Guide'].map(s => (
+              <a key={s} href={`#section-${s.toLowerCase().replace(/ /g, '-')}`} style={{
+                fontSize: 11, fontFamily: MONO, color: BLUE, textDecoration: 'none',
+                padding: '4px 10px', borderRadius: 4, background: 'rgba(59,130,246,0.08)',
+                border: `1px solid rgba(59,130,246,0.15)`,
+              }}>{s}</a>
             ))}
           </div>
 
-          <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 16 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: MUTED, textTransform: 'uppercase', letterSpacing: 1, fontFamily: MONO, marginBottom: 12 }}>
-              Column Definitions
-            </div>
-            {definitions.map((d, i) => (
-              <div key={i} style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: BRIGHT, fontFamily: MONO, marginBottom: 3 }}>{d.term}</div>
-                <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.6 }}>{d.desc}</div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 14, marginTop: 6 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: MUTED, textTransform: 'uppercase', letterSpacing: 1, fontFamily: MONO, marginBottom: 8 }}>
-              Model Details
-            </div>
+          {/* OVERVIEW */}
+          <div id="section-overview" style={{ marginBottom: 24 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>Overview</div>
             <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7 }}>
-              XGBoost classifier trained on 23,728 batter-game samples. 39 features spanning Statcast hitting metrics,
-              pitcher vulnerability profiles, pitch mix analysis, park factors, weather, and lineup context.
-              Walk-forward validated across May through September 2025 with all 5 months profitable.
-              Backtest ROI of +48.4% on the top tier at average odds of +500.
+              This app identifies MLB home run prop bets where the model believes a batter{"'"}s true HR probability
+              is meaningfully higher than what the sportsbook odds imply. It compares a machine learning projection
+              against FanDuel and DraftKings prices, then surfaces only the picks where the projected return on
+              investment exceeds {config.min_roi_threshold}%. The goal is to find spots where the book is underpricing
+              a batter{"'"}s HR likelihood based on matchup context the odds may not fully reflect.
             </div>
           </div>
+
+          {/* COLUMNS */}
+          <div id="section-columns" style={{ marginBottom: 24 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 12 }}>Column Definitions</div>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+              <tbody>
+                {[
+                  ['Batter', 'The hitter being evaluated for a HR prop bet.'],
+                  ['Game', 'The matchup, formatted as Away @ Home.'],
+                  ['vs Pitcher', 'The opposing starting pitcher. Pitcher vulnerability is a major model input since HR rates vary significantly by who is on the mound.'],
+                  ['Model', "The model's predicted probability that this batter hits a HR in this game. Ranges from roughly 5% for weak matchups to 30%+ for elite power hitters facing HR-prone pitchers in hitter-friendly parks. The league average HR rate per plate appearance is around 3%, but these are filtered to batters with real HR upside."],
+                  ['Odds', 'The best available American odds between FanDuel and DraftKings. Example: +500 means a $1 bet pays $5 profit if it hits. The implied probability from +500 is 1 / (1 + 5.00) = 16.7%. That represents what the book thinks the HR chance is, with their margin built in.'],
+                  ['Book', 'Which sportsbook is offering the better price. The system compares FanDuel and DraftKings for each batter and shows only the higher payout. Always verify the line on that book before betting since odds can move.'],
+                  ['Proj ROI', 'Projected return on investment if you bet this type of spot repeatedly. Formula: (Model% / Implied%) - 1, shown as a percentage. Example: Model says 30%, odds imply 17%, so Proj ROI = (0.30 / 0.17 - 1) = +76%. Only picks above ' + config.min_roi_threshold + '% make the board. Green = 40%+, yellow = 25-39%.'],
+                  ['Hit HR?', 'Result tracking. Shows PENDING before the game, then YES (with payout in units) or NO (-1u) after results are graded. One unit = one flat bet.'],
+                ].map(([term, desc], i) => (
+                  <tr key={i} style={{ borderBottom: `1px solid ${BORDER}` }}>
+                    <td style={{ padding: '10px 10px 10px 0', fontWeight: 700, color: BRIGHT, fontFamily: MONO, fontSize: 11, whiteSpace: 'nowrap', verticalAlign: 'top', width: 90 }}>{term}</td>
+                    <td style={{ padding: '10px 0', color: TEXT, lineHeight: 1.6 }}>{desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* MODEL */}
+          <div id="section-model" style={{ marginBottom: 24 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>Model Details</div>
+            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7, marginBottom: 12 }}>
+              XGBoost binary classifier trained on 23,728 real batter-game outcomes from the 2022-2025 MLB seasons.
+              The model uses 39 features across five categories:
+            </div>
+            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.8, paddingLeft: 12 }}>
+              <span style={{ color: BRIGHT, fontWeight: 600 }}>Batter Statcast (12 features):</span> xSLG, xwOBA, barrel rate, max exit velo, average exit velo, hard-hit rate, bat speed, squared-up rate, K%, BB%, chase rate, whiff rate.<br/>
+              <span style={{ color: BRIGHT, fontWeight: 600 }}>Pitcher Vulnerability (12 features):</span> xwOBA allowed, xSLG allowed, xERA, HR/PA rate, HR/FB rate, fly ball rate, ground ball rate, average exit velo allowed, barrel rate allowed, hard-hit rate allowed, fastball velo, HR danger score.<br/>
+              <span style={{ color: BRIGHT, fontWeight: 600 }}>Pitch Mix (4 features):</span> Fastball%, sinker%, breaking%, offspeed%. Used to identify pitchers whose arsenals are more susceptible to the long ball.<br/>
+              <span style={{ color: BRIGHT, fontWeight: 600 }}>Park &amp; Weather (5 features):</span> Park HR factor, altitude, temperature, wind speed, humidity, dome indicator.<br/>
+              <span style={{ color: BRIGHT, fontWeight: 600 }}>Context (6 features):</span> Platoon advantage (L/R matchup), plate appearances (sample size proxy), max times through the order, lineup position, PA count.
+            </div>
+            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7, marginTop: 12 }}>
+              Walk-forward validated across May through September 2025. All five months were individually profitable.
+              Backtest ROI of +48.4% on the top tier at average odds of +500. CV AUC of 0.689, meaning the model
+              separates HR hitters from non-HR hitters meaningfully better than chance.
+            </div>
+          </div>
+
+          {/* ODDS SOURCE */}
+          <div id="section-odds-source" style={{ marginBottom: 24 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>Odds Source</div>
+            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7 }}>
+              HR prop odds are pulled exclusively from <span style={{ color: BRIGHT, fontWeight: 600 }}>FanDuel</span> and <span style={{ color: BRIGHT, fontWeight: 600 }}>DraftKings</span> via
+              The Odds API. For each batter, the system compares the price on both books and selects the higher
+              payout. The Book column tells you where the best price came from so you know which app to open.
+              No other sportsbooks are used. Odds reflect the snapshot at the time the pipeline last ran.
+            </div>
+          </div>
+
+          {/* UPDATES */}
+          <div id="section-updates" style={{ marginBottom: 24 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>How It Updates</div>
+            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7 }}>
+              The pipeline runs on demand via a GitHub Actions workflow. When triggered, it pulls the latest FD/DK
+              odds, runs the model against every available HR prop, filters to picks with {config.min_roi_threshold}%+ projected ROI,
+              and pushes the updated data to this site. Vercel auto-deploys within 30 seconds of each push.
+              FanDuel and DraftKings typically post HR props after lineups are confirmed, usually between 11am and 2pm ET.
+              Running the pipeline after 1pm ET generally gets the fullest set of lines. Results are graded the
+              following day.
+            </div>
+          </div>
+
+          {/* BETTING GUIDE */}
+          <div id="section-betting-guide">
+            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>Betting Guide</div>
+            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7 }}>
+              Flat betting is recommended: $1 (or whatever your unit is) on every pick the system surfaces. Do not
+              size up on higher-conviction plays. The edge comes from volume and consistency, not from swinging big
+              on individual bets. HR props are inherently high-variance since even the best matchups only hit roughly 25-30%
+              of the time. Over a full month of betting, the model targets around 20 picks per day with a combined
+              ROI of approximately 30%+. Losing days are expected and normal. The math works over hundreds of bets, not dozens.
+              Always verify the current odds on FanDuel or DraftKings before placing a bet since lines move.
+            </div>
+          </div>
+
         </div>
       )}
     </div>
@@ -291,7 +333,7 @@ export default function Home() {
           />
         </div>
 
-        <HowItWorks config={config} />
+        <Methodology config={config} />
 
         {sortedDates.map(d => (
           <DaySection key={d} date={d} data={dates[d]} />

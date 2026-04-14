@@ -24,7 +24,7 @@ DATA_DIR = REPO_ROOT / "model" / "data"
 PICKS_FILE = REPO_ROOT / "src" / "data" / "picks.json"
 
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
-MIN_ROI = 10.0
+MIN_ROI = 25.0
 
 TEAM_MAP = {"ARI": "AZ", "ATH": "OAK", "WSN": "WSH"}
 INDOOR = {"TB", "TOR", "TEX", "HOU", "MIA", "AZ", "SEA", "MIL"}
