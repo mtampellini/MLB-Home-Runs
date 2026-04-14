@@ -89,8 +89,9 @@ def fetch_hr_odds(api_key):
                 params={
                     "apiKey": api_key,
                     "regions": "us",
-                    "markets": "batter_home_runs",
+                    "markets": "batter_home_runs,batter_home_runs_alternate",
                     "oddsFormat": "american",
+                    "bookmakers": "fanduel,draftkings",
                 },
                 timeout=10,
             )
@@ -102,12 +103,8 @@ def fetch_hr_odds(api_key):
                 book_key = book['key']
                 book_name = book['title']
 
-                # Skip anything that isn't FanDuel or DraftKings
-                if book_key not in ALLOWED:
-                    continue
-
                 for market in book.get('markets', []):
-                    if market['key'] != 'batter_home_runs':
+                    if market['key'] not in ('batter_home_runs', 'batter_home_runs_alternate'):
                         continue
                     for outcome in market.get('outcomes', []):
                         if outcome.get('name') == 'Over' and outcome.get('point', 0) == 0.5:

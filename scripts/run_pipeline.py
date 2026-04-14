@@ -76,15 +76,13 @@ def fetch_odds(api_key):
         away, home = ev.get('away_team', ''), ev.get('home_team', '')
         try:
             er = requests.get(f"{ODDS_API_BASE}/sports/baseball_mlb/events/{eid}/odds",
-                params={"apiKey": api_key, "regions": "us", "markets": "batter_home_runs", "oddsFormat": "american"},
+                params={"apiKey": api_key, "regions": "us", "markets": "batter_home_runs,batter_home_runs_alternate", "oddsFormat": "american", "bookmakers": "fanduel,draftkings"},
                 timeout=10)
             if er.status_code != 200:
                 continue
             for book in er.json().get('bookmakers', []):
-                if book['key'] not in ALLOWED:
-                    continue
                 for mkt in book.get('markets', []):
-                    if mkt['key'] != 'batter_home_runs':
+                    if mkt['key'] not in ('batter_home_runs', 'batter_home_runs_alternate'):
                         continue
                     for out in mkt['outcomes']:
                         if out.get('name') == 'Over' and out.get('point') == 0.5:
