@@ -54,7 +54,13 @@ class HRModel:
         self.features = self.meta['features']
         # Load Platt scaling calibrator if available
         cal_path = MODEL_DIR / f"hr_calibrator_{v}.pkl"
-        self.calibrator = pickle.load(open(cal_path, "rb")) if cal_path.exists() else None
+        print(f"  Calibrator path: {cal_path} (exists: {cal_path.exists()})")
+        if cal_path.exists():
+            self.calibrator = pickle.load(open(cal_path, "rb"))
+            print(f"  Calibrator loaded: {type(self.calibrator)}")
+        else:
+            self.calibrator = None
+            print("  WARNING: No calibrator found, using raw probabilities!")
 
     def predict(self, df):
         X = df[self.features].copy()
@@ -62,9 +68,11 @@ class HRModel:
             X[c] = pd.to_numeric(X[c], errors='coerce')
             X[c] = X[c].fillna(self.medians.get(c, 0))
         raw_probs = self.model.predict_proba(X)[:, 1]
-        # Apply calibration if available
+        print(f"  Raw probs: mean={raw_probs.mean():.3f}, min={raw_probs.min():.3f}, max={raw_probs.max():.3f}")
         if self.calibrator is not None:
-            return self.calibrator.predict_proba(raw_probs.reshape(-1, 1))[:, 1]
+            cal_probs = self.calibrator.predict_proba(raw_probs.reshape(-1, 1))[:, 1]
+            print(f"  Cal probs: mean={cal_probs.mean():.3f}, min={cal_probs.min():.3f}, max={cal_probs.max():.3f}")
+            return cal_probs
         return raw_probs
 
 
