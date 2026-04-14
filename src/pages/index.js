@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useState } from 'react'
 import picksData from '../data/picks.json'
 
 const ACCENT = '#22c55e'
@@ -37,7 +38,7 @@ function PickRow({ pick }) {
   const payout = pick.book_odds / 100
 
   return (
-    <tr style={{ borderBottom: `1px solid #111827` }}>
+    <tr style={{ borderBottom: '1px solid #111827' }}>
       <td style={{ padding: '10px 8px', fontWeight: 600, color: BRIGHT, whiteSpace: 'nowrap' }}>{pick.batter}</td>
       <td style={{ padding: '10px 6px', color: TEXT, whiteSpace: 'nowrap' }}>{pick.game}</td>
       <td style={{ padding: '10px 6px', color: TEXT, whiteSpace: 'nowrap' }}>{pick.vs_pitcher}</td>
@@ -47,11 +48,10 @@ function PickRow({ pick }) {
         padding: '10px 6px', textAlign: 'center', fontSize: 10, fontWeight: 600,
         fontFamily: MONO, color: MUTED,
       }}>{pick.book || '---'}</td>
-      <td style={{ padding: '10px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 12 }}>{(pick.edge * 100).toFixed(1)}pp</td>
       <td style={{
         padding: '10px 6px', textAlign: 'right', fontWeight: 700, fontSize: 12,
         fontFamily: MONO,
-        color: pick.projected_roi >= 20 ? ACCENT : (pick.projected_roi >= 10 ? YELLOW : TEXT),
+        color: pick.projected_roi >= 40 ? ACCENT : (pick.projected_roi >= 25 ? YELLOW : TEXT),
       }}>+{pick.projected_roi.toFixed(1)}%</td>
       <td style={{ padding: '10px 10px', textAlign: 'center', fontWeight: 700, fontSize: 12 }}>
         {!isSettled ? (
@@ -106,7 +106,7 @@ function DaySection({ date, data }) {
         )}
       </div>
       <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, minWidth: 820 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, minWidth: 720 }}>
           <thead>
             <tr style={{ borderBottom: `2px solid ${BORDER}` }}>
               {[
@@ -116,7 +116,6 @@ function DaySection({ date, data }) {
                 { label: 'Model', align: 'right' },
                 { label: 'Odds', align: 'right' },
                 { label: 'Book', align: 'center' },
-                { label: 'Edge', align: 'right' },
                 { label: 'Proj ROI', align: 'right' },
                 { label: 'Hit HR?', align: 'center' },
               ].map(h => (
@@ -133,6 +132,101 @@ function DaySection({ date, data }) {
           </tbody>
         </table>
       </div>
+    </div>
+  )
+}
+
+function HowItWorks({ config }) {
+  const [open, setOpen] = useState(false)
+
+  const definitions = [
+    {
+      term: 'Model %',
+      desc: "The model's predicted probability that this batter hits a home run tonight. Calculated by feeding 39 features into an XGBoost model trained on 23,000+ real batter-game outcomes. Inputs include Statcast hitting metrics (barrel rate, exit velo, xSLG, bat speed), pitcher vulnerability data (HR/FB rate, pitch mix, xwOBA allowed), park factor, weather, platoon advantage, and lineup position.",
+    },
+    {
+      term: 'Odds',
+      desc: 'The best available American odds between FanDuel and DraftKings for that player to hit a HR. For example, +500 means a $1 bet returns $5 profit if it hits. The implied probability from +500 odds is 1 / (1 + 5.00) = 16.7%, which represents what the sportsbook thinks the HR chance is (with their margin built in).',
+    },
+    {
+      term: 'Book',
+      desc: 'Which sportsbook is offering the best price. The system compares FanDuel and DraftKings, then shows only the higher payout. Always verify the line on that book before placing the bet since odds can shift.',
+    },
+    {
+      term: 'Proj ROI',
+      desc: 'Projected return on investment if you bet this type of spot repeatedly. Formula: (Model% / Implied%) - 1, shown as a percentage. Example: if the model says 30% and the odds imply 17%, Proj ROI = (0.30 / 0.17 - 1) = +76%. Only picks above ' + config.min_roi_threshold + '% make the board.',
+    },
+    {
+      term: 'Hit HR?',
+      desc: 'Result tracking. Shows PENDING before the game, then YES (with payout in units) or NO (-1u) after. One unit = one flat bet. A hit at +500 odds returns +5.0u profit.',
+    },
+  ]
+
+  const processSteps = [
+    'Pull live HR prop odds from FanDuel and DraftKings via API',
+    "Match each batter to their Statcast profile and the opposing pitcher's vulnerability metrics",
+    'Run the matchup through the model to get a HR probability',
+    "Compare model probability against the book's implied probability",
+    'Flag picks where projected ROI exceeds ' + config.min_roi_threshold + '%',
+    'Best price between FD and DK is selected automatically',
+  ]
+
+  return (
+    <div style={{
+      marginBottom: 28, background: CARD_BG, border: `1px solid ${BORDER}`,
+      borderRadius: 10, overflow: 'hidden',
+    }}>
+      <button
+        onClick={() => setOpen(!open)}
+        style={{
+          width: '100%', padding: '14px 18px', background: 'none', border: 'none',
+          color: BRIGHT, cursor: 'pointer', display: 'flex', alignItems: 'center',
+          justifyContent: 'space-between', fontFamily: SANS,
+        }}
+      >
+        <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: -0.3 }}>How It Works</span>
+        <span style={{ fontSize: 18, color: MUTED, transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>&#9662;</span>
+      </button>
+
+      {open && (
+        <div style={{ padding: '0 18px 18px' }}>
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: MUTED, textTransform: 'uppercase', letterSpacing: 1, fontFamily: MONO, marginBottom: 10 }}>
+              Process
+            </div>
+            {processSteps.map((step, i) => (
+              <div key={i} style={{ display: 'flex', gap: 10, marginBottom: 8, fontSize: 12, color: TEXT, lineHeight: 1.5 }}>
+                <span style={{ color: MUTED, fontFamily: MONO, fontSize: 11, flexShrink: 0 }}>{i + 1}.</span>
+                <span>{step}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 16 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: MUTED, textTransform: 'uppercase', letterSpacing: 1, fontFamily: MONO, marginBottom: 12 }}>
+              Column Definitions
+            </div>
+            {definitions.map((d, i) => (
+              <div key={i} style={{ marginBottom: 14 }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: BRIGHT, fontFamily: MONO, marginBottom: 3 }}>{d.term}</div>
+                <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.6 }}>{d.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 14, marginTop: 6 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: MUTED, textTransform: 'uppercase', letterSpacing: 1, fontFamily: MONO, marginBottom: 8 }}>
+              Model Details
+            </div>
+            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7 }}>
+              XGBoost classifier trained on 23,728 batter-game samples. 39 features spanning Statcast hitting metrics,
+              pitcher vulnerability profiles, pitch mix analysis, park factors, weather, and lineup context.
+              Walk-forward validated across May through September 2025 with all 5 months profitable.
+              Backtest ROI of +48.4% on the top tier at average odds of +500.
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -197,6 +291,8 @@ export default function Home() {
           />
         </div>
 
+        <HowItWorks config={config} />
+
         {sortedDates.map(d => (
           <DaySection key={d} date={d} data={dates[d]} />
         ))}
@@ -205,9 +301,8 @@ export default function Home() {
           marginTop: 32, padding: '14px 0', borderTop: `1px solid ${BORDER}`,
           fontSize: 10, color: MUTED, lineHeight: 1.7, fontFamily: MONO,
         }}>
-          Picks qualified by projected ROI (&ge; {config.min_roi_threshold}%), not arbitrary top N.<br />
-          Backtest: +48.4% ROI over 5 months walk-forward (1,019 bets, 5/5 months profitable).<br />
-          Odds from FanDuel / DraftKings preferred. BetRivers / BetOnline as fallback.<br />
+          Odds sourced exclusively from FanDuel and DraftKings. Best price selected automatically.<br />
+          Backtest: +48.4% ROI over 5 months walk-forward (5/5 months profitable).<br />
           Always verify current odds before placing bets. Lines move.
         </div>
       </div>
