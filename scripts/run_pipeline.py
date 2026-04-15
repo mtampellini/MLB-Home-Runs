@@ -69,10 +69,10 @@ class HRModel:
             X[c] = X[c].fillna(self.medians.get(c, 0))
         raw_probs = self.model.predict_proba(X)[:, 1]
         print(f"  Raw probs: mean={raw_probs.mean():.3f}, min={raw_probs.min():.3f}, max={raw_probs.max():.3f}")
-        # calibration
-        cal_probs = 1.0 / (1.0 + np.exp(-(10.405107 * raw_probs + (-7.876511))))
 
-        return cal_probs
+
+
+        return raw_probs
         raw_probs = 1.0 / (1.0 + np.exp(-(10.405107 * raw_probs + (-7.876511))))
         return raw_probs
 
