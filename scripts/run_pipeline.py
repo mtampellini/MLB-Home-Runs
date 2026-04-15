@@ -26,7 +26,7 @@ ODDS_HISTORY.mkdir(exist_ok=True)
 
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 MIN_ROI = 25.0
-MODEL_VERSION = "v6"
+MODEL_VERSION = "v4"
 
 TEAM_MAP = {"ARI": "AZ", "ATH": "OAK", "WSN": "WSH"}
 INDOOR = {"TB", "TOR", "TEX", "HOU", "MIA", "AZ", "SEA", "MIL", "MIN"}
