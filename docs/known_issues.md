@@ -39,7 +39,82 @@ as a primary signal. Instead, the *change* between the two is surfaced
 as `trend_signal` in picks.json (informational only, not scored). See
 `backend/src/features/breakout.py::compute_recent_form_flags`.
 
-## 4. Variant B vs production breakout — name mismatch (resolved 2026-05-06)
+## 4. Leadoff hitters may be inflated by PA-count effect
+
+Per-game P(HR ≥ 1) is computed as `1 - (1 - per_PA_rate)^pa_per_game`. The
+`pa_per_game` table favors leadoff (4.6) over the bottom of the order (3.6),
+which compounds positively with the per-PA rate.
+
+In the 2026-05-06 smoke run, Drake Baldwin showed up at #5 (32.4%) despite a
+moderate blended rate (0.044) — significantly amplified by his #1 lineup spot
+(4.6 PA per game). A solid #6-#9 hitter with a higher per-PA rate may rank
+below him simply because they get fewer at-bats.
+
+That's not necessarily wrong — leadoff hitters DO get more chances per game.
+But it's a known compounding effect worth tracking.
+
+**Status:** kept as-is in V7 baseline. The `pa_per_game` table is empirically
+defensible.
+**Revisit when:** after 30 days of paper-trade results, segment picks by
+`lineup_spot`. If leadoff picks underperform their model probability vs the
+rest of the slate, add a position-based adjustment (e.g., dampen leadoff
+lift, or use a more conservative `pa_per_game` value for spots 1-2).
+
+## 4b. Primary picks capped at top 10 by EV/day (paper-trade safety)
+
+Pre-game smoke runs surfaced 21 picks/day above 25% EV. Most look like real
+elite-hitter spots; some are likely mild over-confidence on small-sample
+batters. Without 60 days of CLV data we can't tell which is which.
+
+**Decision:** primary tier (the only one displayed on the front-end and
+counted against your bankroll) is capped at the top 10 by EV. Picks at
+ev_pct >= 25% but ranked 11+ go to a SECONDARY tier (`secondary_picks.json`)
+which is settled and tracked but never displayed.
+
+Why 10:
+- Empirical research (public-domain HR-prop modeling) suggests sustainable
+  +EV pick volume is in the 5-15/day range. 10 sits in the middle.
+- Bigger than the original 8-pick gate to capture more calibration data.
+- Negligible additional risk vs 8 — the 9th and 10th pick each add ~10%
+  to bankroll exposure.
+
+**Revisit when:** 60 days of paper-trade CLV data exists. Compare per-day
+ROI / hit rate of (top 10) vs (rank 11-20). If they're indistinguishable,
+the cap is arbitrary noise and we can lift it. If primary outperforms
+secondary, the EV ranking is meaningful and the cap stays.
+
+## 5. Bullpen exposure not modeled — `pitcher_factor` applied to all PAs
+
+The matchup multiplier uses the **starting pitcher's** vs-RHB or vs-LHB
+HR/9, blended (season + 30d). It's applied to every PA the batter is
+projected for in the game (4.6 PAs at #1 down to 3.6 at #9).
+
+In reality, modern starters average 5–6 IP per start (~62% of a 9-inning
+game). The remaining ~38% of PAs come against the bullpen. With the
+current model the starter's HR-prone-ness is over-applied, and bullpen
+quality is ignored entirely.
+
+This was flagged in the early Phase-3 review when the user pushed back on
+my pitcher-factor divisor. We deferred a proper fix until we have logged
+data to validate the cleaner formulation:
+
+```
+p_game = 1 - (1 - p_per_PA_starter)^pa_vs_starter
+            × (1 - p_per_PA_bullpen)^pa_vs_bullpen
+```
+
+That requires a per-team bullpen quality estimate that V7 doesn't compute.
+
+**Status:** known bias, not currently corrected. Effect direction depends
+on whether the starter is more or less HR-prone than his team's bullpen.
+For most slates, pitcher-factor extremes (e.g. our 1.58× for Bryan Woo)
+would be diluted toward 1.0 in a properly bullpen-weighted version.
+**Revisit when:** after 30 days of CLV data. Segment picks by starter's
+pitcher_factor magnitude (say >1.4 vs <1.2). If high-pitcher-factor
+picks underperform their model probability, that's the bullpen-dilution
+signal — implement the split formula and a bullpen-quality feature.
+
+## 6. Variant B vs production breakout — name mismatch (resolved 2026-05-06)
 
 The original spec called the four breakout metrics
 `{barrel, sweet_spot, pull_air, max_ev}`. The pre-research implementation

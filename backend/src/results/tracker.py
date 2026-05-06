@@ -51,11 +51,15 @@ CALIBRATION_BUCKETS = (
 # Loading settled days + snapshots
 # ---------------------------------------------------------------------------
 
-def _list_results_files(start: Optional[_date], end: Optional[_date]) -> list[Path]:
-    files = sorted(PROCESSED_DIR.glob("results_*.json"))
+def _list_results_files(start: Optional[_date], end: Optional[_date],
+                        tier: str = "primary",
+                        processed_dir: Path = PROCESSED_DIR) -> list[Path]:
+    prefix = "results" if tier == "primary" else "shadow_results"
+    files = sorted(processed_dir.glob(f"{prefix}_*.json"))
     out: list[Path] = []
+    pat = re.compile(rf"{prefix}_(\d{{4}}-\d{{2}}-\d{{2}})\.json")
     for f in files:
-        m = re.match(r"results_(\d{4}-\d{2}-\d{2})\.json", f.name)
+        m = pat.match(f.name)
         if not m:
             continue
         d = _date.fromisoformat(m.group(1))
@@ -246,31 +250,25 @@ def _by_book_breakdown(rows: list[dict], picks_lookup: dict[str, dict]) -> dict:
 # Build tracker
 # ---------------------------------------------------------------------------
 
-def build_tracker(
-    *, start: Optional[_date] = None, end: Optional[_date] = None,
-    processed_dir: Path = PROCESSED_DIR,
-) -> TrackerOutput:
-    if processed_dir != PROCESSED_DIR:
-        # Allow tests to redirect — re-resolve module-level paths via locals.
-        results_files = sorted(processed_dir.glob("results_*.json"))
-    else:
-        results_files = _list_results_files(start, end)
+def _load_tier_rows(
+    tier: str, start: Optional[_date], end: Optional[_date],
+    processed_dir: Path,
+    snapshots_cache: dict[_date, list[dict]],
+) -> tuple[list[dict], dict[str, dict]]:
+    """Load (rows, picks_meta) for one tier (primary or shadow)."""
+    files = _list_results_files(start, end, tier=tier, processed_dir=processed_dir)
+    rows: list[dict] = []
+    picks_meta: dict[str, dict] = {}
+    picks_prefix = "picks" if tier == "primary" else "shadow_picks"
 
-    all_rows: list[dict] = []
-    picks_meta: dict[str, dict] = {}        # key=batter_id|game_pk → pick + clv
-
-    # Load snapshots once per date encountered.
-    snapshots_cache: dict[_date, list[dict]] = {}
-
-    for rf in results_files:
+    for rf in files:
         with open(rf, "r", encoding="utf-8") as f:
             payload = json.load(f)
         d = _date.fromisoformat(payload["as_of_date"])
         if start and d < start: continue
         if end and d > end: continue
 
-        # Pair with the dated picks file to get full pick context (best_book, taken price).
-        picks_file = processed_dir / f"picks_{payload['as_of_date']}.json"
+        picks_file = processed_dir / f"{picks_prefix}_{payload['as_of_date']}.json"
         picks_index: dict[str, dict] = {}
         if picks_file.exists():
             try:
@@ -286,25 +284,52 @@ def build_tracker(
         snaps_by_date = {d: snapshots_cache[d]}
 
         for r in payload.get("results", []):
-            all_rows.append(r)
+            r["_tier"] = tier
+            rows.append(r)
             key = f"{r['batter_id']}|{r.get('game_pk') or ''}"
             pick = picks_index.get(key) or {}
             taken = r.get("over_american") or pick.get("dk_odds") or pick.get("fd_odds")
             close = _closing_quote_for_pick(pick, snaps_by_date) if pick else None
             clv = _clv_pct(int(taken), int(close)) if (taken and close) else None
             picks_meta[key] = {**pick, "taken_american": taken,
-                                "closing_american": close, "clv_pct": clv}
+                                "closing_american": close, "clv_pct": clv,
+                                "_tier": tier}
 
-    summary = _summarize(all_rows, picks_meta)
-    by_book = _by_book_breakdown(all_rows, picks_meta)
+    return rows, picks_meta
+
+
+def build_tracker(
+    *, start: Optional[_date] = None, end: Optional[_date] = None,
+    processed_dir: Path = PROCESSED_DIR,
+) -> TrackerOutput:
+    snapshots_cache: dict[_date, list[dict]] = {}
+
+    primary_rows, primary_meta = _load_tier_rows("primary", start, end,
+                                                  processed_dir, snapshots_cache)
+    secondary_rows, secondary_meta = _load_tier_rows("secondary", start, end,
+                                                      processed_dir, snapshots_cache)
+    shadow_rows, shadow_meta = _load_tier_rows("shadow", start, end,
+                                                processed_dir, snapshots_cache)
+
+    # Combined picks_meta for cross-tier lookups.
+    all_meta = {**primary_meta, **secondary_meta, **shadow_meta}
+
+    # Per-tier summaries (ROI, hit rate, CLV per tier).
+    summary = _summarize(primary_rows, primary_meta)
+    summary_secondary = _summarize(secondary_rows, secondary_meta)
+    summary_shadow = _summarize(shadow_rows, shadow_meta)
+    by_book = _by_book_breakdown(primary_rows, primary_meta) # primary only — what we'd actually bet
 
     rolling_cutoff = (end or _date.today()) - timedelta(days=30)
     rolling_rows = [
-        r for r in all_rows
+        r for r in primary_rows
         if _date.fromisoformat(r.get("settled_date", "")) >= rolling_cutoff
-    ] if any("settled_date" in r for r in all_rows) else all_rows[-300:]
-    rolling = _summarize(rolling_rows, picks_meta)
-    calibration = _calibration_buckets(all_rows)
+    ] if any("settled_date" in r for r in primary_rows) else primary_rows[-300:]
+    rolling = _summarize(rolling_rows, primary_meta)
+
+    # Calibration uses COMBINED data (all three tiers) — bigger sample, faster signal.
+    calibration_rows = primary_rows + secondary_rows + shadow_rows
+    calibration = _calibration_buckets(calibration_rows)
 
     out = TrackerOutput(
         last_updated=datetime.now().astimezone(),
@@ -315,18 +340,28 @@ def build_tracker(
         calibration=calibration,
     )
 
-    # Write tracker.json
+    # Write tracker.json (now with primary + shadow split per the dual-tier design).
     out_path = processed_dir / "tracker.json"
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump({
             "last_updated": out.last_updated.isoformat(),
             "date_range": [d.isoformat() if d else None for d in out.date_range],
-            "summary": out.summary.__dict__,
+            "summary_primary": summary.__dict__,
+            "summary_secondary": summary_secondary.__dict__,
+            "summary_shadow": summary_shadow.__dict__,
+            # Calibration is on combined (all three tiers) data — bigger sample.
+            "calibration_combined": calibration,
+            "calibration_n_picks_primary": len(primary_rows),
+            "calibration_n_picks_secondary": len(secondary_rows),
+            "calibration_n_picks_shadow": len(shadow_rows),
             "by_book": out.by_book,
             "rolling_30d": out.rolling_30d.__dict__,
+            # Back-compat: keep `summary` pointing at primary so existing UI works.
+            "summary": out.summary.__dict__,
             "calibration": out.calibration,
         }, f, indent=2)
-    logger.info("wrote %s", out_path)
+    logger.info("wrote %s (primary=%d, secondary=%d, shadow=%d)",
+                out_path, len(primary_rows), len(secondary_rows), len(shadow_rows))
     return out
 
 

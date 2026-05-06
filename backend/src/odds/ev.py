@@ -75,6 +75,74 @@ def devig_consensus(quotes: list[tuple[int, int]]) -> float:
 
 
 # ---------------------------------------------------------------------------
+# Single-sided de-vig — used when the two-sided market is unavailable
+# ---------------------------------------------------------------------------
+# As of 2026-05-06, the Odds API + FD/DK don't return a `batter_home_runs`
+# (yes/no) market for MLB; only `batter_home_runs_alternate` (Over-only).
+# We can't do a clean two-sided de-vig, so we estimate fair probability from
+# the Over price alone using a price-tiered vig haircut. The estimate is
+# imperfect; see docs/known_issues.md for the calibration plan.
+
+@dataclass(frozen=True)
+class VigTiers:
+    """Estimated book hold by price tier (asymmetric — long shots vig harder).
+
+    Defaults are starting estimates from typical HR-prop hold patterns;
+    refine empirically once we have 60+ days of settled picks.
+    """
+    lt_300: float = 0.03            # < +300
+    range_300_700: float = 0.05     # +300 to +699
+    range_700_1500: float = 0.07    # +700 to +1499
+    gte_1500: float = 0.10          # >= +1500
+
+
+DEFAULT_VIG_TIERS = VigTiers()
+
+
+def vig_for_price(over_american: int, tiers: VigTiers = DEFAULT_VIG_TIERS) -> float:
+    if over_american < 300:
+        return tiers.lt_300
+    if over_american < 700:
+        return tiers.range_300_700
+    if over_american < 1500:
+        return tiers.range_700_1500
+    return tiers.gte_1500
+
+
+def single_sided_fair_prob(
+    over_american: int,
+    tiers: VigTiers = DEFAULT_VIG_TIERS,
+) -> float:
+    """Estimate fair Over probability from the Over price alone.
+
+    `fair = implied(over) × (1 - vig_at_this_price)`
+
+    Direction: under-estimates fair_prob when vig is over-estimated, and
+    over-estimates fair_prob when vig is under-estimated. NOTE: this affects
+    `edge_pct` (audit) but NOT `ev_pct` (filter), since EV math uses model
+    prob × actual payout, not market_prob_devig.
+    """
+    implied = american_to_implied_prob(over_american)
+    vig = vig_for_price(over_american, tiers)
+    return implied * (1.0 - vig)
+
+
+def single_sided_consensus(
+    over_prices: list[int],
+    tiers: VigTiers = DEFAULT_VIG_TIERS,
+) -> float:
+    """Average per-book single-sided fair probabilities.
+
+    Per-book vig haircuts respect each price's tier; the consensus is then
+    a simple mean of those per-book fair probs.
+    """
+    if not over_prices:
+        raise ValueError("no Over prices provided")
+    fairs = [single_sided_fair_prob(p, tiers) for p in over_prices]
+    return sum(fairs) / len(fairs)
+
+
+# ---------------------------------------------------------------------------
 # EV
 # ---------------------------------------------------------------------------
 

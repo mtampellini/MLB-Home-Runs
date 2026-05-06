@@ -145,6 +145,8 @@ class GameInfo:
     away_starter_hand: Optional[str]
     home_lineup_ids: list[int]          # ordered 1..9
     away_lineup_ids: list[int]
+    abstract_game_state: str = ""       # 'Preview' / 'Live' / 'Final'
+    detailed_state: str = ""            # 'Scheduled' / 'In Progress' / 'Final' / 'Postponed' / etc
 
 
 def _parse_iso(s: str) -> datetime:
@@ -180,6 +182,8 @@ def parse_schedule(schedule_payload: dict) -> list[GameInfo]:
             home_code = _team_code_from_payload(home_team)
             away_code = _team_code_from_payload(away_team)
 
+            status = g.get("status", {}) or {}
+
             games.append(GameInfo(
                 game_pk=int(g["gamePk"]),
                 game_datetime=_parse_iso(g["gameDate"]),
@@ -199,8 +203,33 @@ def parse_schedule(schedule_payload: dict) -> list[GameInfo]:
                 away_starter_hand=(away_pp.get("pitchHand") or {}).get("code") if away_pp else None,
                 home_lineup_ids=home_lineup,
                 away_lineup_ids=away_lineup,
+                abstract_game_state=str(status.get("abstractGameState", "")),
+                detailed_state=str(status.get("detailedState", "")),
             ))
     return games
+
+
+# Set of MLB Stats API detailed_state values that disqualify a game from
+# being part of today's pre-game slate. abstractGameState=Preview catches
+# the live/final cases; this catches the pre-game-but-postponed edge cases.
+EXCLUDE_DETAILED_STATES = frozenset({
+    "Postponed", "Suspended", "Cancelled", "Canceled", "Forfeit",
+})
+
+
+def is_pregame(g: GameInfo) -> bool:
+    """True iff the game is in a state we'd safely bet on.
+
+    abstractGameState='Preview' covers Scheduled / Pre-Game / Warmup / Delayed
+    Start. Anything else (Live, Final) is excluded. Postponed/Suspended games
+    can be in 'Preview' too (rescheduled), so we explicitly reject those by
+    detailed_state.
+    """
+    if g.abstract_game_state != "Preview":
+        return False
+    if g.detailed_state in EXCLUDE_DETAILED_STATES:
+        return False
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -245,9 +274,32 @@ def build_slate(
     slate: list[SlateEntry] = []
     games_with_lineups = 0
     games_skipped: list[int] = []
+    games_excluded_non_pregame: list[dict] = []  # for funnel transparency
     missing_hand: list[int] = []
+    # Track (home_team_name, away_team_name) for the games we DO use, so the
+    # Odds API client can filter events to just our slate (saves credits).
+    team_pairs_in_slate: list[tuple[str, str]] = []
 
     for g in games:
+        # PRE-GAME FILTER (root-cause fix for live-game pricing artifacts).
+        # Books reprice alt HR props as PAs are consumed; if we ran during a
+        # live game, batters with 1 PA remaining would look like long-shot
+        # values when the model still assumes 4+ PAs ahead.
+        if not is_pregame(g):
+            games_excluded_non_pregame.append({
+                "game_pk": g.game_pk,
+                "home": g.home_team_name,
+                "away": g.away_team_name,
+                "abstract_state": g.abstract_game_state,
+                "detailed_state": g.detailed_state,
+            })
+            logger.info(
+                "game %s (%s @ %s): non-pregame (state=%s/%s); excluded",
+                g.game_pk, g.away_team_name, g.home_team_name,
+                g.abstract_game_state, g.detailed_state,
+            )
+            continue
+
         if not g.home_lineup_ids or not g.away_lineup_ids:
             games_skipped.append(g.game_pk)
             logger.info(
@@ -262,6 +314,7 @@ def build_slate(
             )
             continue
         games_with_lineups += 1
+        team_pairs_in_slate.append((g.home_team_name, g.away_team_name))
 
         # Home batters face away starter, away batters face home starter.
         for ids, team_code, starter_id, starter_name, starter_hand in (
@@ -292,9 +345,13 @@ def build_slate(
 
     metadata = {
         "games_total": len(games),
+        "games_pregame": games_with_lineups + len(games_skipped),
         "games_with_lineups": games_with_lineups,
         "games_no_lineup_skipped": len(games_skipped),
+        "games_excluded_live_or_complete": len(games_excluded_non_pregame),
+        "excluded_non_pregame_games": games_excluded_non_pregame,
         "skipped_game_pks": games_skipped,
         "missing_handedness": list(dict.fromkeys(missing_hand)),
+        "team_pairs": team_pairs_in_slate,
     }
     return slate, metadata

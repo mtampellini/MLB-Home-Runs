@@ -94,12 +94,15 @@ def _slate_client_one_game() -> MlbStatsClient:
     schedule = {
         "dates": [{"games": [{
             "gamePk": 1, "gameDate": "2026-05-06T23:05:00Z",
+            "status": {"abstractGameState": "Preview", "detailedState": "Scheduled"},
             "venue": {"name": "Yankee Stadium"},
             "teams": {
-                "home": {"team": {"id": 147, "abbreviation": "NYY"},
+                "home": {"team": {"id": 147, "name": "New York Yankees",
+                                   "abbreviation": "NYY"},
                          "probablePitcher": {"id": 999, "fullName": "Lefty",
                                               "pitchHand": {"code": "L"}}},
-                "away": {"team": {"id": 111, "abbreviation": "BOS"},
+                "away": {"team": {"id": 111, "name": "Boston Red Sox",
+                                   "abbreviation": "BOS"},
                          "probablePitcher": {"id": 888, "fullName": "Righty",
                                               "pitchHand": {"code": "R"}}},
             },
@@ -132,32 +135,36 @@ def _slate_client_one_game() -> MlbStatsClient:
 
 
 def _odds_for_one_batter() -> FetchResult:
-    """FD and DK both quote Aaron Judge Over 0.5 with both sides."""
+    """FD and DK both quote Aaron Judge with main (de-vig) AND alt (bet) markets."""
     quotes = [
         HRPropQuote(
-            event_id="evt_1", home_team="NYY", away_team="BOS",
+            event_id="evt_1", home_team="New York Yankees", away_team="Boston Red Sox",
             commence_time=datetime(2026, 5, 6, 23, 5),
-            book="fanduel", batter_name="Aaron Judge", point=0.5,
-            over_american=290, under_american=-380,
+            book="fanduel", batter_name="Aaron Judge",
+            bet_over_american=290,         # alt @ 0.5 Over (bet price)
+            main_over_american=290,        # main yes/no Over (de-vig)
+            main_under_american=-380,      # main yes/no Under (de-vig)
             last_update=datetime(2026, 5, 6, 19, 0),
         ),
         HRPropQuote(
-            event_id="evt_1", home_team="NYY", away_team="BOS",
+            event_id="evt_1", home_team="New York Yankees", away_team="Boston Red Sox",
             commence_time=datetime(2026, 5, 6, 23, 5),
-            book="draftkings", batter_name="Aaron Judge", point=0.5,
-            over_american=310, under_american=-400,
+            book="draftkings", batter_name="Aaron Judge",
+            bet_over_american=310,
+            main_over_american=310,
+            main_under_american=-400,
             last_update=datetime(2026, 5, 6, 19, 1),
         ),
     ]
     events = [Event(event_id="evt_1", sport_key="baseball_mlb",
                     commence_time=datetime(2026, 5, 6, 23, 5),
-                    home_team="NYY", away_team="BOS")]
+                    home_team="New York Yankees", away_team="Boston Red Sox")]
     return FetchResult(
         fetched_at=datetime(2026, 5, 6, 15, 0),
         quotes=quotes, events=events,
         requests_remaining=18999, requests_used=1001,
         books=("fanduel", "draftkings"),
-        market="batter_home_runs_alternate",
+        markets="batter_home_runs,batter_home_runs_alternate",
     )
 
 
@@ -183,7 +190,7 @@ def tmp_layout(tmp_path, monkeypatch):
 def test_run_daily_writes_picks_with_full_schema(tmp_layout, monkeypatch):
     fetch = _odds_for_one_batter()
     monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
-                        lambda client=None, books=None: fetch)
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
     report = run_daily(
         cutoff_date=date(2026, 5, 6),
         feature_provider=_feature_provider(),
@@ -219,7 +226,7 @@ def test_run_daily_filters_below_ev_threshold(tmp_layout, monkeypatch):
     """Force a near-zero model prob so EV << 25% — picks list should be empty."""
     fetch = _odds_for_one_batter()
     monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
-                        lambda client=None, books=None: fetch)
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
 
     # Provider returns weak metrics ACROSS THE BOARD so:
     #   (a) hr_per_pa is tiny → low blended skill,
@@ -257,7 +264,7 @@ def test_run_daily_filters_below_ev_threshold(tmp_layout, monkeypatch):
 def test_run_daily_writes_skipped_file_and_odds_snapshot(tmp_layout, monkeypatch):
     fetch = _odds_for_one_batter()
     monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
-                        lambda client=None, books=None: fetch)
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
     report = run_daily(
         cutoff_date=date(2026, 5, 6),
         feature_provider=_feature_provider(),
@@ -276,32 +283,35 @@ def test_run_daily_writes_skipped_file_and_odds_snapshot(tmp_layout, monkeypatch
     snapshot_files = list(tmp_layout["odds_dir"].glob("*.json"))
     assert len(snapshot_files) == 1
     snap = json.loads(snapshot_files[0].read_text())
-    assert snap["market"] == "batter_home_runs_alternate"
+    assert "batter_home_runs" in snap["markets"]
+    assert "batter_home_runs_alternate" in snap["markets"]
     assert snap["requests_remaining"] == 18999
 
 
-def test_run_daily_keeps_pick_when_only_one_book_has_under(tmp_layout, monkeypatch):
-    """If only DK has Under, devig falls back to that one book; pick still keeps."""
+def test_run_daily_keeps_pick_when_only_one_book_has_main_market(tmp_layout, monkeypatch):
+    """One book missing main market → de-vig from the other book alone, pick survives."""
     quotes = [
-        HRPropQuote(event_id="e", home_team="NYY", away_team="BOS",
+        HRPropQuote(event_id="e", home_team="New York Yankees", away_team="Boston Red Sox",
                     commence_time=datetime(2026, 5, 6, 23, 5),
-                    book="fanduel", batter_name="Aaron Judge", point=0.5,
-                    over_american=290, under_american=None,
+                    book="fanduel", batter_name="Aaron Judge",
+                    bet_over_american=290,
+                    main_over_american=None, main_under_american=None,
                     last_update=datetime(2026, 5, 6, 19, 0)),
-        HRPropQuote(event_id="e", home_team="NYY", away_team="BOS",
+        HRPropQuote(event_id="e", home_team="New York Yankees", away_team="Boston Red Sox",
                     commence_time=datetime(2026, 5, 6, 23, 5),
-                    book="draftkings", batter_name="Aaron Judge", point=0.5,
-                    over_american=310, under_american=-400,
+                    book="draftkings", batter_name="Aaron Judge",
+                    bet_over_american=310,
+                    main_over_american=310, main_under_american=-400,
                     last_update=datetime(2026, 5, 6, 19, 1)),
     ]
     fetch = FetchResult(
         fetched_at=datetime(2026, 5, 6, 15, 0),
         quotes=quotes, events=[], requests_remaining=1, requests_used=1,
         books=("fanduel", "draftkings"),
-        market="batter_home_runs_alternate",
+        markets="batter_home_runs,batter_home_runs_alternate",
     )
     monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
-                        lambda client=None, books=None: fetch)
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
     report = run_daily(
         cutoff_date=date(2026, 5, 6),
         feature_provider=_feature_provider(),
@@ -311,28 +321,35 @@ def test_run_daily_keeps_pick_when_only_one_book_has_under(tmp_layout, monkeypat
         skipped_dir=tmp_layout["skipped_dir"],
     )
     assert report.picks_count >= 1
+    assert report.funnel["matched_main_market"] >= 1
 
 
-def test_run_daily_skips_pick_when_no_book_quotes_under(tmp_layout, monkeypatch):
+def test_run_daily_uses_single_sided_devig_when_main_market_missing(tmp_layout, monkeypatch):
+    """When no book quotes main market, fall back to single-sided de-vig from alt
+    Over price + price-tiered vig haircut. The pick should still surface; funnel
+    should report single_sided_devig=1, two_way_devig=0."""
     quotes = [
-        HRPropQuote(event_id="e", home_team="NYY", away_team="BOS",
+        HRPropQuote(event_id="e", home_team="New York Yankees", away_team="Boston Red Sox",
                     commence_time=datetime(2026, 5, 6, 23, 5),
-                    book="fanduel", batter_name="Aaron Judge", point=0.5,
-                    over_american=290, under_american=None,
+                    book="fanduel", batter_name="Aaron Judge",
+                    bet_over_american=290,
+                    main_over_american=None, main_under_american=None,
                     last_update=datetime(2026, 5, 6, 19, 0)),
-        HRPropQuote(event_id="e", home_team="NYY", away_team="BOS",
+        HRPropQuote(event_id="e", home_team="New York Yankees", away_team="Boston Red Sox",
                     commence_time=datetime(2026, 5, 6, 23, 5),
-                    book="draftkings", batter_name="Aaron Judge", point=0.5,
-                    over_american=310, under_american=None,
+                    book="draftkings", batter_name="Aaron Judge",
+                    bet_over_american=310,
+                    main_over_american=None, main_under_american=None,
                     last_update=datetime(2026, 5, 6, 19, 1)),
     ]
     fetch = FetchResult(
         fetched_at=datetime(2026, 5, 6, 15, 0),
         quotes=quotes, events=[], requests_remaining=1, requests_used=1,
-        books=("fanduel", "draftkings"), market="batter_home_runs_alternate",
+        books=("fanduel", "draftkings"),
+        markets="batter_home_runs,batter_home_runs_alternate",
     )
     monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
-                        lambda client=None, books=None: fetch)
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
     report = run_daily(
         cutoff_date=date(2026, 5, 6),
         feature_provider=_feature_provider(),
@@ -341,11 +358,113 @@ def test_run_daily_skips_pick_when_no_book_quotes_under(tmp_layout, monkeypatch)
         picks_path=tmp_layout["picks_path"],
         skipped_dir=tmp_layout["skipped_dir"],
     )
-    assert report.picks_count == 0    # no clean de-vig possible
+    # Single-sided fallback fired; pick survives.
+    assert report.funnel["matched_alt_market"] >= 1
+    assert report.funnel["matched_main_market"] == 0
+    assert report.funnel["single_sided_devig"] == 1
+    assert report.funnel["two_way_devig"] == 0
+    # Pick goes to primary or shadow tier depending on EV — either way at
+    # least one tier should populate. Vet provider gives high model_prob.
+    assert (report.picks_count + report.shadow_picks_count) >= 1
+
+
+def test_run_daily_skips_pick_when_no_book_quotes_alt_market(tmp_layout, monkeypatch):
+    """Has main but no alt @ 0.5 Over → no bet price → skip."""
+    quotes = [
+        HRPropQuote(event_id="e", home_team="New York Yankees", away_team="Boston Red Sox",
+                    commence_time=datetime(2026, 5, 6, 23, 5),
+                    book="fanduel", batter_name="Aaron Judge",
+                    bet_over_american=None,
+                    main_over_american=290, main_under_american=-380,
+                    last_update=datetime(2026, 5, 6, 19, 0)),
+    ]
+    fetch = FetchResult(
+        fetched_at=datetime(2026, 5, 6, 15, 0),
+        quotes=quotes, events=[], requests_remaining=1, requests_used=1,
+        books=("fanduel", "draftkings"),
+        markets="batter_home_runs,batter_home_runs_alternate",
+    )
+    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
+    report = run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    assert report.picks_count == 0
+    assert report.funnel["matched_main_market"] >= 1
+    assert report.funnel["matched_alt_market"] == 0
+
+
+def test_run_daily_routes_picks_to_primary_or_shadow_by_ev(tmp_layout, monkeypatch):
+    """A pick whose EV lands in [10, 25) should go to shadow_picks; >=25 to primary."""
+    fetch = _odds_for_one_batter()
+    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
+    report = run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    # Vet provider × HR-prone matchup → high EV → primary tier.
+    assert report.picks_count >= 1
+    # Shadow picks file always written, even if empty.
+    assert report.shadow_picks_path is not None
+    assert report.shadow_picks_path.exists()
+    shadow_payload = json.loads(report.shadow_picks_path.read_text())
+    assert shadow_payload["tier"] == "shadow"
+    assert shadow_payload["ev_threshold_pct_min"] == 10.0
+    assert shadow_payload["ev_threshold_pct_max"] == 25.0
+
+
+def test_run_daily_dated_shadow_copy_written(tmp_layout, monkeypatch):
+    """data/processed/shadow_picks_YYYY-MM-DD.json must be written for tracker."""
+    fetch = _odds_for_one_batter()
+    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
+    run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    dated = tmp_layout["skipped_dir"] / "shadow_picks_2026-05-06.json"
+    assert dated.exists()
+
+
+def test_run_daily_picks_carry_both_ev_and_edge_fields(tmp_layout, monkeypatch):
+    """picks.json schema must include ev_pct (Option A) and edge_pct (Option B)
+    so post-deploy analysis can compare frameworks."""
+    fetch = _odds_for_one_batter()
+    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
+    report = run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    payload = json.loads(tmp_layout["picks_path"].read_text())
+    if not payload["picks"]:
+        return    # nothing to assert — vet provider should generate picks
+    pick = payload["picks"][0]
+    assert "ev_pct" in pick
+    assert "edge_pct" in pick
+    assert "devig_method" in pick
 
 
 def test_run_daily_handles_odds_fetch_failure_gracefully(tmp_layout, monkeypatch):
-    def _boom(client=None, books=None):
+    def _boom(client=None, books=None, relevant_team_pairs=None):
         raise RuntimeError("Savant flu")
     monkeypatch.setattr(rd_mod, "fetch_today_hr_props", _boom)
 

@@ -67,6 +67,7 @@ SCHEDULE_PAYLOAD = {
             {
                 "gamePk": 12345,
                 "gameDate": "2026-05-06T23:05:00Z",
+                "status": {"abstractGameState": "Preview", "detailedState": "Scheduled"},
                 "venue": {"id": 3313, "name": "Yankee Stadium"},
                 "teams": {
                     "home": {
@@ -101,6 +102,7 @@ SCHEDULE_PAYLOAD = {
                 # Game with NO lineup posted yet — must be skipped.
                 "gamePk": 67890,
                 "gameDate": "2026-05-06T19:35:00Z",
+                "status": {"abstractGameState": "Preview", "detailedState": "Scheduled"},
                 "venue": {"id": 5, "name": "Citi Field"},
                 "teams": {
                     "home": {"team": {"id": 121, "abbreviation": "NYM"},
@@ -194,6 +196,64 @@ def test_build_slate_skips_game_without_lineup():
     assert meta["games_total"] == 2
     assert meta["games_with_lineups"] == 1
     assert meta["games_no_lineup_skipped"] == 1
+
+
+def test_build_slate_excludes_live_and_final_games():
+    """abstractGameState != 'Preview' → excluded entirely. Postponed too."""
+    schedule = {"dates": [{"games": [
+        {**SCHEDULE_PAYLOAD["dates"][0]["games"][0],   # NYY vs BOS, Preview
+         "status": {"abstractGameState": "Preview", "detailedState": "Scheduled"}},
+        # Live game — excluded.
+        {**SCHEDULE_PAYLOAD["dates"][0]["games"][0],
+         "gamePk": 99001,
+         "status": {"abstractGameState": "Live", "detailedState": "In Progress"}},
+        # Final — excluded.
+        {**SCHEDULE_PAYLOAD["dates"][0]["games"][0],
+         "gamePk": 99002,
+         "status": {"abstractGameState": "Final", "detailedState": "Final"}},
+        # Postponed (Preview but detailed_state) — excluded.
+        {**SCHEDULE_PAYLOAD["dates"][0]["games"][0],
+         "gamePk": 99003,
+         "status": {"abstractGameState": "Preview", "detailedState": "Postponed"}},
+    ]}]}
+    client = MlbStatsClient()
+    client.schedule_for_date = MagicMock(return_value=schedule)
+    all_ids = [p["id"] for p in
+               SCHEDULE_PAYLOAD["dates"][0]["games"][0]["lineups"]["homePlayers"]
+               + SCHEDULE_PAYLOAD["dates"][0]["games"][0]["lineups"]["awayPlayers"]]
+    client.fetch_people = MagicMock(return_value={
+        p["id"]: p for p in _people_payload(all_ids)["people"]
+    })
+    slate, meta = build_slate(date(2026, 5, 6), client=client)
+    # Only one game is Preview + non-postponed → only that game contributes.
+    assert meta["games_total"] == 4
+    assert meta["games_excluded_live_or_complete"] == 3
+    assert meta["games_with_lineups"] == 1
+    # Excluded list captures each non-pregame reason.
+    excluded_states = sorted(g["abstract_state"] + "/" + g["detailed_state"]
+                              for g in meta["excluded_non_pregame_games"])
+    assert excluded_states == ["Final/Final", "Live/In Progress",
+                                "Preview/Postponed"]
+
+
+def test_is_pregame_helper_decisions():
+    from src.pipeline.slate import GameInfo, is_pregame
+    base = dict(
+        game_pk=1, game_datetime=datetime(2026, 5, 6, 23, 5),
+        home_team_id=147, home_team_name="X", home_team_code="NYY",
+        away_team_id=111, away_team_name="Y", away_team_code="BOS",
+        venue_name="V", park_code="NYY",
+        home_starter_id=1, home_starter_name="A", home_starter_hand="R",
+        away_starter_id=2, away_starter_name="B", away_starter_hand="L",
+        home_lineup_ids=[], away_lineup_ids=[],
+    )
+    assert is_pregame(GameInfo(**base, abstract_game_state="Preview", detailed_state="Scheduled"))
+    assert is_pregame(GameInfo(**base, abstract_game_state="Preview", detailed_state="Pre-Game"))
+    assert is_pregame(GameInfo(**base, abstract_game_state="Preview", detailed_state="Warmup"))
+    assert not is_pregame(GameInfo(**base, abstract_game_state="Live", detailed_state="In Progress"))
+    assert not is_pregame(GameInfo(**base, abstract_game_state="Final", detailed_state="Final"))
+    assert not is_pregame(GameInfo(**base, abstract_game_state="Preview", detailed_state="Postponed"))
+    assert not is_pregame(GameInfo(**base, abstract_game_state="Preview", detailed_state="Suspended"))
 
 
 def test_build_slate_resolves_switch_hitter_against_pitcher_hand():

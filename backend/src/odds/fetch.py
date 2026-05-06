@@ -36,11 +36,21 @@ logger = logging.getLogger(__name__)
 
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 SPORT_KEY = "baseball_mlb"
-MARKET_KEY = "batter_home_runs_alternate"
+
+# Two markets, fetched together in one API call (saves request quota):
+#   - MAIN: yes/no (over/under at the implicit 0.5 line). Both sides quoted →
+#     used for de-vigging fair probability.
+#   - ALT:  alternate lines (0.5, 1.5, 2.5+). Over-only at point=0.5 →
+#     used as the bet price.
+MARKET_MAIN = "batter_home_runs"
+MARKET_ALT = "batter_home_runs_alternate"
+MARKETS_REQUEST = f"{MARKET_MAIN},{MARKET_ALT}"
+
 DEFAULT_BOOKS = ("fanduel", "draftkings")
 DEFAULT_REGIONS = "us"
-TARGET_POINT = 0.5      # we only bet the 0.5 alternate line
+TARGET_POINT = 0.5      # the alt-market line we bet
 TARGET_OVER = "Over"
+TARGET_UNDER = "Under"
 
 
 # ---------------------------------------------------------------------------
@@ -70,10 +80,19 @@ class Event:
 
 @dataclass(frozen=True)
 class HRPropQuote:
-    """One book's Over+Under quote on a single batter's 0.5 HR line.
+    """All HR-related odds for one (event, book, batter) combination.
 
-    `under_american=None` means the book didn't quote the Under (rare but
-    possible — downstream EV code falls back to single-side handling).
+    Fields fall into two groups:
+      - **bet_over_american**: the price we'd take if we bet — the alt
+        market's point=0.5 Over price.
+      - **main_over_american / main_under_american**: the main yes/no HR
+        market's both sides — used ONLY for de-vigging to a fair
+        probability. We never bet the main market; the alt has the line
+        we want.
+
+    Any of these can be None if the book didn't quote that side. Caller
+    skips picks where required fields are missing rather than
+    single-sided estimating.
     """
     event_id: str
     home_team: str
@@ -81,9 +100,9 @@ class HRPropQuote:
     commence_time: datetime
     book: str
     batter_name: str
-    point: float
-    over_american: int
-    under_american: Optional[int]
+    bet_over_american: Optional[int]      # alt @ 0.5 Over → bet price
+    main_over_american: Optional[int]     # main HR market Over → for de-vig
+    main_under_american: Optional[int]    # main HR market Under → for de-vig
     last_update: datetime
 
 
@@ -96,7 +115,7 @@ class FetchResult:
     requests_remaining: Optional[int]
     requests_used: Optional[int]
     books: tuple[str, ...]
-    market: str
+    markets: str
     raw_event_responses: list[dict] = field(default_factory=list)
     errors: list[dict] = field(default_factory=list)
 
@@ -173,9 +192,17 @@ class OddsAPIClient:
         event_id: str,
         books: Iterable[str] = DEFAULT_BOOKS,
         regions: str = DEFAULT_REGIONS,
+        markets: str = MARKETS_REQUEST,
     ) -> dict:
+        """Pull both HR markets in one API call.
+
+        NOTE on credit budget: The Odds API charges 1 credit *per market per
+        event call*. Two markets means 2 credits per event. Caller should
+        filter events to those actually in today's slate (see
+        fetch_today_hr_props) to keep usage under the free-tier 500/month cap.
+        """
         params = {
-            "markets": MARKET_KEY,
+            "markets": markets,
             "bookmakers": ",".join(books),
             "regions": regions,
             "oddsFormat": "american",
@@ -202,8 +229,18 @@ def _parse_iso(s: str) -> datetime:
     return datetime.fromisoformat(s.replace("Z", "+00:00"))
 
 
+def _batter_name(outcome: dict) -> Optional[str]:
+    return outcome.get("description") or outcome.get("name_player") or outcome.get("participant")
+
+
 def parse_event_response(payload: dict) -> list[HRPropQuote]:
-    """Extract Over+Under @ point=0.5 quotes for each (book, batter)."""
+    """Extract two markets per (book, batter):
+       - main HR market (yes/no — both Over+Under) → de-vig source
+       - alt HR market @ point=0.5 Over → bet price
+
+    Returns one HRPropQuote per (book, batter) with all three fields populated
+    where the book quoted them. Caller decides how to handle missing pieces.
+    """
     event_id = payload.get("id", "")
     home = payload.get("home_team", "")
     away = payload.get("away_team", "")
@@ -213,33 +250,50 @@ def parse_event_response(payload: dict) -> list[HRPropQuote]:
     for bk in payload.get("bookmakers", []) or []:
         book_key = bk.get("key", "")
         last_update = _parse_iso(bk["last_update"]) if "last_update" in bk else commence
-        # Collect Over and Under prices keyed by batter name.
-        over_by_name: dict[str, int] = {}
-        under_by_name: dict[str, int] = {}
+
+        # Per-batter slots populated below from the two markets.
+        bet_over: dict[str, int] = {}        # alt @ 0.5 Over
+        main_over: dict[str, int] = {}       # main HR Over
+        main_under: dict[str, int] = {}      # main HR Under
+        all_batters: set[str] = set()
+
         for market in bk.get("markets", []) or []:
-            if market.get("key") != MARKET_KEY:
-                continue
+            mkey = market.get("key")
             for o in market.get("outcomes", []) or []:
-                if o.get("point") != TARGET_POINT:
-                    continue
-                name = o.get("description") or o.get("name_player") or o.get("participant")
+                name = _batter_name(o)
                 if not name:
                     continue
                 side = o.get("name")
                 price = o.get("price")
                 if price is None:
                     continue
-                if side == TARGET_OVER:
-                    over_by_name[name] = int(price)
-                elif side == "Under":
-                    under_by_name[name] = int(price)
 
-        for batter, over_price in over_by_name.items():
+                if mkey == MARKET_MAIN:
+                    # Main yes/no market. Some API responses include point=0.5,
+                    # others omit it. Accept any (or no) point — this is the
+                    # canonical "did the batter homer" line.
+                    if side == TARGET_OVER:
+                        main_over[name] = int(price)
+                        all_batters.add(name)
+                    elif side == TARGET_UNDER:
+                        main_under[name] = int(price)
+                        all_batters.add(name)
+
+                elif mkey == MARKET_ALT:
+                    # Alternate market — only the point=0.5 Over interests us.
+                    if o.get("point") != TARGET_POINT:
+                        continue
+                    if side == TARGET_OVER:
+                        bet_over[name] = int(price)
+                        all_batters.add(name)
+
+        for batter in sorted(all_batters):
             out.append(HRPropQuote(
                 event_id=event_id, home_team=home, away_team=away,
                 commence_time=commence, book=book_key, batter_name=batter,
-                point=TARGET_POINT, over_american=over_price,
-                under_american=under_by_name.get(batter),
+                bet_over_american=bet_over.get(batter),
+                main_over_american=main_over.get(batter),
+                main_under_american=main_under.get(batter),
                 last_update=last_update,
             ))
     return out
@@ -252,18 +306,57 @@ def parse_event_response(payload: dict) -> list[HRPropQuote]:
 def fetch_today_hr_props(
     client: Optional[OddsAPIClient] = None,
     books: Iterable[str] = DEFAULT_BOOKS,
+    relevant_team_pairs: Optional[set[tuple[str, str]]] = None,
+    skip_started_clock_skew_min: int = 5,
 ) -> FetchResult:
-    """List today's events, fetch HR alternates for each, return assembled result."""
+    """List today's events, pull both HR markets per event, return assembled result.
+
+    `relevant_team_pairs`: optional set of (home_team_name, away_team_name) tuples
+    from the slate. When provided, events whose teams aren't in the set are
+    skipped — saves API credits (each event call costs 2 credits with 2 markets).
+
+    `skip_started_clock_skew_min`: events whose `commence_time` is more than
+    this many minutes in the past are skipped. Defense in depth — the slate
+    filter already excludes Live games via MLB Stats, but the Odds API may
+    still list events for which we shouldn't pull props. Set to 0 to disable.
+    """
+    from datetime import timedelta as _td
     if client is None:
         client = OddsAPIClient()
 
     fetched_at = datetime.now().astimezone()
     events = client.list_events()
+
+    # Defense-in-depth pre-game filter on commence_time. The slate already
+    # filtered by MLB Stats abstractGameState; this catches any drift.
+    started_cutoff = fetched_at - _td(minutes=skip_started_clock_skew_min)
+    before_time = len(events)
+    events_pregame = [e for e in events if e.commence_time > started_cutoff]
+    if before_time != len(events_pregame):
+        logger.info(
+            "Odds: dropped %d events whose commence_time was in the past",
+            before_time - len(events_pregame),
+        )
+
+    if relevant_team_pairs is not None:
+        before = len(events_pregame)
+        events_filtered = [
+            e for e in events_pregame
+            if (e.home_team, e.away_team) in relevant_team_pairs
+        ]
+        logger.info(
+            "Odds: filtered events by slate teams: %d → %d (saves %d × 2 credits)",
+            before, len(events_filtered), before - len(events_filtered),
+        )
+        events_to_query = events_filtered
+    else:
+        events_to_query = events_pregame
+
     quotes: list[HRPropQuote] = []
     raw: list[dict] = []
     errors: list[dict] = []
 
-    for ev in events:
+    for ev in events_to_query:
         try:
             payload = client.fetch_event_props(ev.event_id, books=books)
         except OddsAPIError as e:
@@ -279,7 +372,7 @@ def fetch_today_hr_props(
         requests_remaining=client.last_requests_remaining,
         requests_used=client.last_requests_used,
         books=tuple(books),
-        market=MARKET_KEY,
+        markets=MARKETS_REQUEST,
         raw_event_responses=raw,
         errors=errors,
     )

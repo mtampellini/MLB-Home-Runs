@@ -9,7 +9,9 @@ import math
 import pytest
 
 from src.odds.ev import (
+    DEFAULT_VIG_TIERS,
     EVResult,
+    VigTiers,
     american_payout,
     american_to_decimal,
     american_to_implied_prob,
@@ -18,6 +20,9 @@ from src.odds.ev import (
     devig_consensus,
     devig_two_way,
     ev_pct,
+    single_sided_consensus,
+    single_sided_fair_prob,
+    vig_for_price,
 )
 
 
@@ -158,6 +163,74 @@ def test_ev_invalid_market_prob_raises():
         ev_pct(model_prob=0.3, over_american=200, market_prob_devig=1.0)
     with pytest.raises(ValueError):
         ev_pct(model_prob=0.3, over_american=200, market_prob_devig=float("nan"))
+
+
+# ---------------------------------------------------------------------------
+# Single-sided de-vig (used when main two-sided market is unavailable)
+# ---------------------------------------------------------------------------
+
+def test_default_vig_tiers_match_spec():
+    """Locks in the price-tier defaults from the 2026-05-06 review gate."""
+    assert DEFAULT_VIG_TIERS == VigTiers(
+        lt_300=0.03, range_300_700=0.05,
+        range_700_1500=0.07, gte_1500=0.10,
+    )
+
+
+def test_vig_for_price_tier_boundaries():
+    # Tier boundaries at 300, 700, 1500 (inclusive on the upper side).
+    assert vig_for_price(-150) == 0.03           # chalk
+    assert vig_for_price(150) == 0.03
+    assert vig_for_price(299) == 0.03
+    assert vig_for_price(300) == 0.05
+    assert vig_for_price(500) == 0.05
+    assert vig_for_price(699) == 0.05
+    assert vig_for_price(700) == 0.07
+    assert vig_for_price(1499) == 0.07
+    assert vig_for_price(1500) == 0.10
+    assert vig_for_price(5000) == 0.10
+
+
+def test_vig_for_price_respects_custom_tiers():
+    custom = VigTiers(lt_300=0.01, range_300_700=0.02,
+                      range_700_1500=0.03, gte_1500=0.04)
+    assert vig_for_price(200, custom) == 0.01
+    assert vig_for_price(500, custom) == 0.02
+    assert vig_for_price(1000, custom) == 0.03
+    assert vig_for_price(2000, custom) == 0.04
+
+
+def test_single_sided_fair_prob_under_estimates_implied():
+    """fair_prob = implied(over) × (1 - vig) — direction: lower than implied."""
+    # +500 → implied 100/600 = 16.67%, vig at +500 = 0.05.
+    # fair = 0.1667 × 0.95 = 0.1583
+    fair = single_sided_fair_prob(500)
+    assert fair == pytest.approx(0.1667 * 0.95, abs=1e-4)
+    assert fair < american_to_implied_prob(500)   # vig stripped → lower
+
+
+def test_single_sided_fair_prob_higher_vig_for_long_shots():
+    # +1800 long shot → tier vig 0.10 (vs 0.05 at +500).
+    fair_500 = single_sided_fair_prob(500)
+    fair_1800 = single_sided_fair_prob(1800)
+    # Same multiplicative shape; long shot vig is bigger so haircut is bigger.
+    implied_500 = american_to_implied_prob(500)
+    implied_1800 = american_to_implied_prob(1800)
+    assert fair_500 / implied_500 == pytest.approx(0.95)
+    assert fair_1800 / implied_1800 == pytest.approx(0.90)
+
+
+def test_single_sided_consensus_averages_per_book():
+    # FD +290, DK +310 → individual fairs averaged.
+    fd_fair = single_sided_fair_prob(290)
+    dk_fair = single_sided_fair_prob(310)
+    consensus = single_sided_consensus([290, 310])
+    assert consensus == pytest.approx((fd_fair + dk_fair) / 2)
+
+
+def test_single_sided_consensus_empty_raises():
+    with pytest.raises(ValueError):
+        single_sided_consensus([])
 
 
 # ---------------------------------------------------------------------------

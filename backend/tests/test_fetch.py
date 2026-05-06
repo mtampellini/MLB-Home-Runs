@@ -1,12 +1,9 @@
 """Odds API parser + client tests with stubbed HTTP — no network calls.
 
 Mocks requests.Session so we exercise the parsing logic against canned
-Odds API responses, including:
-- multiple books (FD + DK)
-- multiple alternate lines per batter (we only keep 0.5)
-- missing Under price
-- rate-limit response
-- x-requests-remaining tracking
+Odds API responses with BOTH markets:
+- batter_home_runs (main yes/no, both sides) → for de-vig
+- batter_home_runs_alternate (point=0.5 Over) → for the bet price
 """
 
 from datetime import datetime
@@ -17,6 +14,7 @@ import pytest
 from src.odds.fetch import (
     DEFAULT_BOOKS,
     HRPropQuote,
+    MARKETS_REQUEST,
     OddsAPIClient,
     OddsAPIError,
     RateLimitedError,
@@ -26,7 +24,7 @@ from src.odds.fetch import (
 
 
 # ---------------------------------------------------------------------------
-# Sample Odds API payloads
+# Sample Odds API payload — both markets per book
 # ---------------------------------------------------------------------------
 
 SAMPLE_EVENT_PROPS = {
@@ -39,29 +37,50 @@ SAMPLE_EVENT_PROPS = {
         {
             "key": "fanduel",
             "last_update": "2026-05-06T19:00:00Z",
-            "markets": [{
-                "key": "batter_home_runs_alternate",
-                "outcomes": [
-                    {"name": "Over",  "description": "Aaron Judge", "point": 0.5, "price": 290},
-                    {"name": "Under", "description": "Aaron Judge", "point": 0.5, "price": -380},
-                    {"name": "Over",  "description": "Aaron Judge", "point": 1.5, "price": 1100},
-                    {"name": "Over",  "description": "Anthony Volpe", "point": 0.5, "price": 600},
-                    # Volpe's Under intentionally missing — we should still record him.
-                ],
-            }],
+            "markets": [
+                {
+                    "key": "batter_home_runs",
+                    "outcomes": [
+                        # Main yes/no — both sides quoted, used for de-vig.
+                        {"name": "Over",  "description": "Aaron Judge", "price": 290},
+                        {"name": "Under", "description": "Aaron Judge", "price": -380},
+                        {"name": "Over",  "description": "Anthony Volpe", "price": 600},
+                        {"name": "Under", "description": "Anthony Volpe", "price": -1200},
+                    ],
+                },
+                {
+                    "key": "batter_home_runs_alternate",
+                    "outcomes": [
+                        # Alt @ 0.5 Over → bet price.
+                        {"name": "Over", "description": "Aaron Judge", "point": 0.5, "price": 290},
+                        # Higher alternate lines we ignore.
+                        {"name": "Over", "description": "Aaron Judge", "point": 1.5, "price": 1100},
+                        {"name": "Over", "description": "Anthony Volpe", "point": 0.5, "price": 600},
+                    ],
+                },
+            ],
         },
         {
             "key": "draftkings",
             "last_update": "2026-05-06T19:01:00Z",
-            "markets": [{
-                "key": "batter_home_runs_alternate",
-                "outcomes": [
-                    {"name": "Over",  "description": "Aaron Judge", "point": 0.5, "price": 310},
-                    {"name": "Under", "description": "Aaron Judge", "point": 0.5, "price": -400},
-                    {"name": "Over",  "description": "Anthony Volpe", "point": 0.5, "price": 580},
-                    {"name": "Under", "description": "Anthony Volpe", "point": 0.5, "price": -800},
-                ],
-            }],
+            "markets": [
+                {
+                    "key": "batter_home_runs",
+                    "outcomes": [
+                        {"name": "Over",  "description": "Aaron Judge", "price": 310},
+                        {"name": "Under", "description": "Aaron Judge", "price": -400},
+                        {"name": "Over",  "description": "Anthony Volpe", "price": 580},
+                        {"name": "Under", "description": "Anthony Volpe", "price": -1100},
+                    ],
+                },
+                {
+                    "key": "batter_home_runs_alternate",
+                    "outcomes": [
+                        {"name": "Over", "description": "Aaron Judge", "point": 0.5, "price": 310},
+                        {"name": "Over", "description": "Anthony Volpe", "point": 0.5, "price": 580},
+                    ],
+                },
+            ],
         },
     ],
 }
@@ -81,7 +100,7 @@ SAMPLE_EVENTS_LIST = [
 
 def test_parse_event_returns_one_quote_per_book_per_batter():
     quotes = parse_event_response(SAMPLE_EVENT_PROPS)
-    # 2 batters × 2 books = 4 quotes (only point=0.5 Overs are kept)
+    # 2 batters × 2 books = 4 quotes (one per (book, batter) regardless of market count)
     assert len(quotes) == 4
     books = sorted({q.book for q in quotes})
     assert books == ["draftkings", "fanduel"]
@@ -89,23 +108,47 @@ def test_parse_event_returns_one_quote_per_book_per_batter():
     assert batters == ["Aaron Judge", "Anthony Volpe"]
 
 
-def test_parse_filters_alternate_lines_other_than_0_5():
+def test_parse_collects_main_market_for_devig():
     quotes = parse_event_response(SAMPLE_EVENT_PROPS)
-    assert all(q.point == 0.5 for q in quotes)
+    judge_dk = next(q for q in quotes
+                    if q.batter_name == "Aaron Judge" and q.book == "draftkings")
+    assert judge_dk.main_over_american == 310
+    assert judge_dk.main_under_american == -400
 
 
-def test_parse_keeps_under_price_when_present():
+def test_parse_collects_alt_market_for_bet_price():
     quotes = parse_event_response(SAMPLE_EVENT_PROPS)
-    judge_dk = next(q for q in quotes if q.batter_name == "Aaron Judge" and q.book == "draftkings")
-    assert judge_dk.over_american == 310
-    assert judge_dk.under_american == -400
+    judge_dk = next(q for q in quotes
+                    if q.batter_name == "Aaron Judge" and q.book == "draftkings")
+    assert judge_dk.bet_over_american == 310           # alt @ 0.5 Over
 
 
-def test_parse_handles_missing_under_price():
+def test_parse_filters_alt_market_to_point_0_5():
+    """Higher alternate lines (1.5, 2.5...) shouldn't pollute bet_over_american."""
     quotes = parse_event_response(SAMPLE_EVENT_PROPS)
-    volpe_fd = next(q for q in quotes if q.batter_name == "Anthony Volpe" and q.book == "fanduel")
-    assert volpe_fd.over_american == 600
-    assert volpe_fd.under_american is None  # FD didn't quote Under for Volpe
+    judge_fd = next(q for q in quotes
+                    if q.batter_name == "Aaron Judge" and q.book == "fanduel")
+    assert judge_fd.bet_over_american == 290           # 0.5 line, NOT the 1.5's +1100
+
+
+def test_parse_handles_batter_in_only_one_market():
+    """Add a batter to the alt market only — main fields should be None."""
+    payload = {**SAMPLE_EVENT_PROPS}
+    # Inject a batter that exists in alt but not in main on FanDuel.
+    fd = payload["bookmakers"][0]
+    fd_markets = [dict(m) for m in fd["markets"]]
+    fd_markets[1] = dict(fd_markets[1])
+    fd_markets[1]["outcomes"] = list(fd_markets[1]["outcomes"]) + [
+        {"name": "Over", "description": "Cedric Mullins", "point": 0.5, "price": 800},
+    ]
+    payload["bookmakers"] = [{**fd, "markets": fd_markets}, payload["bookmakers"][1]]
+    quotes = parse_event_response(payload)
+    mullins = next((q for q in quotes
+                     if q.batter_name == "Cedric Mullins" and q.book == "fanduel"), None)
+    assert mullins is not None
+    assert mullins.bet_over_american == 800
+    assert mullins.main_over_american is None
+    assert mullins.main_under_american is None
 
 
 def test_parse_attaches_event_metadata():
@@ -134,6 +177,20 @@ def _mock_response(status: int, json_body, headers: dict | None = None) -> Magic
     resp.json.return_value = json_body
     resp.text = str(json_body)
     return resp
+
+
+def test_client_requests_both_markets_in_one_call():
+    """Verify the markets= param sends the comma-joined two-market value."""
+    session = MagicMock()
+    session.get.return_value = _mock_response(200, SAMPLE_EVENT_PROPS,
+                                              headers={"x-requests-remaining": "498"})
+    client = OddsAPIClient(api_key="test", session=session)
+    client.fetch_event_props("evt_abc")
+    call_kwargs = session.get.call_args
+    params = call_kwargs.kwargs.get("params") or call_kwargs.args[1]
+    assert params["markets"] == MARKETS_REQUEST
+    assert "batter_home_runs" in params["markets"]
+    assert "batter_home_runs_alternate" in params["markets"]
 
 
 def test_client_tracks_requests_remaining_header():
@@ -179,7 +236,7 @@ def test_fetch_today_hr_props_full_flow():
         ),
         _mock_response(
             200, SAMPLE_EVENT_PROPS,
-            headers={"x-requests-remaining": "18999", "x-requests-used": "1001"},
+            headers={"x-requests-remaining": "18998", "x-requests-used": "1002"},
         ),
     ]
     client = OddsAPIClient(api_key="test", session=session)
@@ -187,10 +244,32 @@ def test_fetch_today_hr_props_full_flow():
 
     assert len(result.events) == 1
     assert len(result.quotes) == 4
-    assert result.requests_remaining == 18999
-    assert result.requests_used == 1001
-    assert result.market == "batter_home_runs_alternate"
+    assert result.requests_remaining == 18998
+    assert result.requests_used == 1002
+    assert result.markets == MARKETS_REQUEST
     assert result.books == DEFAULT_BOOKS
+
+
+def test_fetch_today_hr_props_filters_events_by_team_pairs():
+    """Only events whose (home, away) match the slate should be queried."""
+    session = MagicMock()
+    # Two events; only one is in the slate.
+    events_payload = [
+        SAMPLE_EVENTS_LIST[0],
+        {"id": "evt_xyz", "sport_key": "baseball_mlb",
+         "commence_time": "2026-05-06T20:00:00Z",
+         "home_team": "Cincinnati Reds", "away_team": "Pittsburgh Pirates"},
+    ]
+    session.get.side_effect = [
+        _mock_response(200, events_payload, headers={"x-requests-remaining": "100"}),
+        _mock_response(200, SAMPLE_EVENT_PROPS, headers={"x-requests-remaining": "98"}),
+    ]
+    client = OddsAPIClient(api_key="test", session=session)
+    relevant = {("New York Yankees", "Boston Red Sox")}
+    result = fetch_today_hr_props(client=client, relevant_team_pairs=relevant)
+    # Only one detail call made (for the matching event).
+    assert session.get.call_count == 2     # 1 list + 1 detail (NOT 2 details)
+    assert len(result.quotes) == 4         # only from the matching event
 
 
 def test_fetch_records_per_event_errors_without_failing():
@@ -205,7 +284,6 @@ def test_fetch_records_per_event_errors_without_failing():
     client = OddsAPIClient(api_key="test", session=session)
     result = fetch_today_hr_props(client=client)
 
-    # One event listed, but the props call failed → no quotes, error logged.
     assert len(result.events) == 1
     assert len(result.quotes) == 0
     assert len(result.errors) == 1
