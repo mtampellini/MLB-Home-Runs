@@ -4,21 +4,20 @@ import { useState, useMemo } from 'react'
 import fs from 'fs'
 import path from 'path'
 
-// Theme — match the home page so the two feel like one app.
-const ACCENT = '#22c55e'
-const ACCENT_RED = '#ef4444'
-const YELLOW = '#facc15'
-const ORANGE = '#fb923c'
-const BLUE = '#3b82f6'
-const PURPLE = '#a855f7'
-const BG = '#06090f'
-const CARD_BG = '#0c1220'
-const BORDER = '#1a2332'
-const MUTED = '#475569'
-const TEXT = '#94a3b8'
-const BRIGHT = '#e2e8f0'
-const MONO = 'JetBrains Mono, monospace'
-const SANS = 'DM Sans, sans-serif'
+const T = {
+  bg: '#ffffff',
+  border: '#e5e5e5',
+  borderStrong: '#d4d4d4',
+  text: '#0a0a0a',
+  textMedium: '#525252',
+  textLight: '#a3a3a3',
+  bgSubtle: '#f5f5f5',
+  accent: '#2563eb',
+  positive: '#16a34a',
+  negative: '#dc2626',
+}
+const FONT = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif'
+const TABULAR = { fontVariantNumeric: 'tabular-nums' }
 
 const CALIBRATION_MIN_PICKS = 100   // calibration view shows numbers below this; visualizes above
 
@@ -47,10 +46,7 @@ export async function getStaticProps() {
     ))
   } catch { /* no tracker yet */ }
 
-  return {
-    props: { archives, tracker },
-    // No revalidate — rebuilt on every commit which is when picks change anyway.
-  }
+  return { props: { archives, tracker } }
 }
 
 // ─── helpers ──────────────────────────────────────────────────────────
@@ -134,15 +130,25 @@ function buildCalibration(archives) {
 }
 
 // ─── components ────────────────────────────────────────────────────────
-function StatCard({ label, value, color, sub }) {
+function StatCard({ label, value, sub, tone = 'default' }) {
+  // tone: 'default' | 'positive' | 'negative' | 'muted'
+  const valueColor =
+    tone === 'positive' ? T.positive
+    : tone === 'negative' ? T.negative
+    : tone === 'muted' ? T.textLight
+    : T.text
   return (
     <div style={{
-      background: CARD_BG, border: `1px solid ${BORDER}`, borderRadius: 10,
-      padding: '14px 18px', minWidth: 130, flex: '1 1 130px',
+      border: `1px solid ${T.border}`, borderRadius: 6,
+      padding: '24px 26px', minWidth: 140, flex: '1 1 140px',
+      background: T.bg,
     }}>
-      <div style={{ fontSize: 10, color: MUTED, textTransform: 'uppercase', letterSpacing: 1.2, fontFamily: MONO }}>{label}</div>
-      <div style={{ fontSize: 26, fontWeight: 800, color: color || BRIGHT, marginTop: 2, fontFamily: SANS }}>{value}</div>
-      {sub && <div style={{ fontSize: 10, color: MUTED, marginTop: 2 }}>{sub}</div>}
+      <div style={{
+        fontSize: 32, fontWeight: 600, color: valueColor,
+        letterSpacing: -0.5, lineHeight: 1.1, ...TABULAR,
+      }}>{value}</div>
+      <div style={{ fontSize: 12, color: T.textMedium, marginTop: 10 }}>{label}</div>
+      {sub && <div style={{ fontSize: 11, color: T.textLight, marginTop: 4 }}>{sub}</div>}
     </div>
   )
 }
@@ -151,15 +157,25 @@ function PickRow({ pick, settledPick, isPersonal, onTogglePersonal }) {
   const bp = pick.best_book === 'draftkings' ? pick.dk_odds : pick.fd_odds
   const otherLabel = pick.best_book === 'draftkings' ? 'FD' : 'DK'
   const otherPrice = pick.best_book === 'draftkings' ? pick.fd_odds : pick.dk_odds
-  const tierLabel = pick.tier?.[0]?.toUpperCase() + pick.tier?.slice(1) || '—'
-  const tierColor = pick.tier === 'primary' ? ACCENT
-                  : pick.tier === 'secondary' ? BLUE
-                  : MUTED
   const settledOutcome = settledPick?.outcome
-  const settledBg = settledOutcome === 'W' ? 'rgba(34,197,94,0.10)'
-                   : settledOutcome === 'L' ? 'rgba(239,68,68,0.08)'
-                   : settledOutcome === 'VOID' ? 'rgba(168,85,247,0.08)'
-                   : null
+
+  const evPositive = pick.ev_pct >= 0
+  const edgePositive = pick.edge_pct >= 0
+
+  // Quiet meta line: team · hand · #spot · tier · stacked · low conf · unstable
+  const tierLabel =
+    pick.tier === 'primary' ? 'primary'
+    : pick.tier === 'secondary' ? 'secondary'
+    : pick.tier === 'shadow' ? 'shadow'
+    : null
+  const metaParts = []
+  metaParts.push(pick.team)
+  if (pick.batter_hand) metaParts.push(`${pick.batter_hand}H`)
+  if (pick.lineup_spot) metaParts.push(`#${pick.lineup_spot}`)
+  if (tierLabel) metaParts.push(tierLabel)
+  if (pick.stacked) metaParts.push('stacked')
+  if (pick.low_confidence) metaParts.push('low conf')
+  if (pick.unstable_recent) metaParts.push('unstable')
 
   const onShare = async (e) => {
     e.stopPropagation()
@@ -171,82 +187,108 @@ function PickRow({ pick, settledPick, isPersonal, onTogglePersonal }) {
       `EV ${pick.ev_pct >= 0 ? '+' : ''}${pick.ev_pct.toFixed(1)}%`
     )
     try { await navigator.clipboard.writeText(txt) }
-    catch { /* clipboard API failed; mobile permission etc. */ }
+    catch { /* clipboard API failed */ }
+  }
+
+  // Result cell: W green, L red, VOID gray, pending = pitcher · time in light gray.
+  const renderResult = () => {
+    if (settledOutcome === 'W') {
+      return (
+        <span style={{ color: T.positive, fontWeight: 600 }}>
+          W <span style={{ color: T.textLight, fontWeight: 500, marginLeft: 4 }}>{fmtSigned(settledPick.profit_units, 2)}u</span>
+        </span>
+      )
+    }
+    if (settledOutcome === 'L') return <span style={{ color: T.negative, fontWeight: 600 }}>L −1u</span>
+    if (settledOutcome === 'VOID') return <span style={{ color: T.textLight, fontWeight: 500 }}>VOID</span>
+    return (
+      <span style={{ color: T.textLight, fontWeight: 400, whiteSpace: 'nowrap' }}>
+        vs {pick.pitcher || '?'}
+        {pick.game_datetime && <> · {fmtGameTime(pick.game_datetime)}</>}
+      </span>
+    )
   }
 
   return (
-    <tr style={{ borderBottom: `1px solid ${BORDER}`, background: settledBg || 'transparent' }}>
-      <td style={{ padding: '8px 6px', fontFamily: MONO, fontSize: 11, color: MUTED, textAlign: 'right' }}>
-        #{pick.tier_rank ?? pick.daily_rank}
+    <tr style={{ borderBottom: `1px solid ${T.border}` }}>
+      <td style={{
+        padding: '14px 8px', textAlign: 'right', verticalAlign: 'top',
+        fontSize: 11, color: T.textLight, ...TABULAR,
+      }}>
+        {pick.tier_rank ?? pick.daily_rank}
       </td>
-      <td style={{ padding: '8px 8px', whiteSpace: 'nowrap' }}>
-        <div style={{ fontWeight: 600, color: BRIGHT, fontSize: 13 }}>{pick.batter}</div>
-        <div style={{ fontSize: 10, color: MUTED, fontFamily: MONO, marginTop: 1, display: 'flex', gap: 4, alignItems: 'center', flexWrap: 'wrap' }}>
-          <span>{pick.team}</span>
-          {pick.batter_hand && <span>· {pick.batter_hand}H</span>}
-          {pick.lineup_spot && <span>· #{pick.lineup_spot}</span>}
-          <span style={{ color: tierColor, fontWeight: 700 }}>· {tierLabel}</span>
-          {pick.stacked && (
-            <span style={{ color: YELLOW, background: 'rgba(250,204,21,0.10)', padding: '0 4px', borderRadius: 3 }}
-                  title={`Correlated: ${(pick.stacked_with || []).join(', ')}`}>⛓</span>
-          )}
-          {pick.low_confidence && <span style={{ color: ORANGE }}>LC</span>}
-          {pick.unstable_recent && <span style={{ color: ACCENT_RED }}>UR</span>}
+      <td style={{ padding: '14px 8px', verticalAlign: 'top', whiteSpace: 'nowrap' }}>
+        <div style={{ fontWeight: 600, color: T.text, fontSize: 13 }}>{pick.batter}</div>
+        <div style={{ fontSize: 11, color: T.textLight, marginTop: 4 }}
+             title={pick.stacked ? `stacked with ${(pick.stacked_with || []).join(', ')}` : undefined}>
+          {metaParts.join(' · ')}
         </div>
       </td>
-      <td style={{ padding: '8px 6px', fontSize: 11, color: TEXT, fontFamily: MONO, whiteSpace: 'nowrap' }}>
-        {pick.pitcher || '—'}
+      <td style={{
+        padding: '14px 8px', verticalAlign: 'top', whiteSpace: 'nowrap',
+        fontSize: 12, color: T.textMedium,
+      }}>{pick.pitcher || '—'}</td>
+
+      <td style={{
+        padding: '14px 8px', textAlign: 'right', verticalAlign: 'top',
+        fontSize: 13, fontWeight: 600, color: T.text, ...TABULAR,
+      }}>{(pick.model_prob * 100).toFixed(1)}%</td>
+
+      <td style={{
+        padding: '14px 8px', textAlign: 'right', verticalAlign: 'top',
+        fontSize: 12, color: T.textMedium, ...TABULAR,
+      }}>{(pick.market_prob_devig * 100).toFixed(1)}%</td>
+
+      <td style={{
+        padding: '14px 8px', textAlign: 'right', verticalAlign: 'top',
+        fontSize: 12, fontWeight: 600,
+        color: edgePositive ? T.positive : T.text, ...TABULAR,
+      }}>{edgePositive ? '+' : ''}{pick.edge_pct.toFixed(1)}pp</td>
+
+      <td style={{
+        padding: '14px 8px', textAlign: 'right', verticalAlign: 'top',
+        fontSize: 13, fontWeight: 700,
+        color: evPositive ? T.positive : T.text, ...TABULAR,
+      }}>{evPositive ? '+' : ''}{pick.ev_pct.toFixed(0)}%</td>
+
+      <td style={{
+        padding: '14px 8px', textAlign: 'right', verticalAlign: 'top', whiteSpace: 'nowrap',
+        ...TABULAR,
+      }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: T.text }}>
+          {fmtOdds(bp)} <span style={{ fontSize: 10, color: T.textLight, fontWeight: 500 }}>{pick.best_book === 'draftkings' ? 'DK' : 'FD'}</span>
+        </div>
+        <div style={{ fontSize: 10, color: T.textLight, marginTop: 4 }}>
+          {fmtOdds(otherPrice)} {otherLabel}
+        </div>
       </td>
-      <td style={{ padding: '8px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 12, fontWeight: 600, color: BRIGHT }}>
-        {(pick.model_prob * 100).toFixed(1)}%
+
+      <td style={{ padding: '14px 8px', verticalAlign: 'top', textAlign: 'left', fontSize: 12 }}>
+        {renderResult()}
       </td>
-      <td style={{ padding: '8px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 12, color: TEXT }}>
-        {(pick.market_prob_devig * 100).toFixed(1)}%
-      </td>
-      <td style={{ padding: '8px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 12,
-                  color: pick.edge_pct >= 15 ? ACCENT : (pick.edge_pct >= 10 ? YELLOW : TEXT) }}>
-        {pick.edge_pct >= 0 ? '+' : ''}{pick.edge_pct.toFixed(1)}pp
-      </td>
-      <td style={{ padding: '8px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 12,
-                  color: pick.ev_pct >= 40 ? ACCENT : (pick.ev_pct >= 25 ? YELLOW : TEXT), fontWeight: 700 }}>
-        {pick.ev_pct >= 0 ? '+' : ''}{pick.ev_pct.toFixed(0)}%
-      </td>
-      <td style={{ padding: '8px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 12, fontWeight: 700, color: BRIGHT, whiteSpace: 'nowrap' }}>
-        {fmtOdds(bp)} <span style={{ fontSize: 9, color: MUTED }}>{pick.best_book === 'draftkings' ? 'DK' : 'FD'}</span>
-        <div style={{ fontSize: 9, color: MUTED, fontWeight: 500 }}>{fmtOdds(otherPrice)} {otherLabel}</div>
-      </td>
-      <td style={{ padding: '8px 6px', textAlign: 'center', fontFamily: MONO, fontSize: 11, fontWeight: 700,
-                  color: settledOutcome === 'W' ? ACCENT
-                       : settledOutcome === 'L' ? ACCENT_RED
-                       : settledOutcome === 'VOID' ? PURPLE : MUTED }}>
-        {settledOutcome === 'W' ? `W +${fmtSigned(settledPick.profit_units, 2)}u`
-         : settledOutcome === 'L' ? 'L −1u'
-         : settledOutcome === 'VOID' ? 'VOID'
-         : (
-           <span style={{ color: MUTED, fontWeight: 500, whiteSpace: 'nowrap' }}>
-             vs {pick.pitcher || '?'}
-             {pick.game_datetime && <> · {fmtGameTime(pick.game_datetime)}</>}
-           </span>
-         )}
-      </td>
-      <td style={{ padding: '8px 6px', textAlign: 'center' }}>
+
+      <td style={{ padding: '14px 8px', verticalAlign: 'top', textAlign: 'center' }}>
         <button onClick={(e) => { e.stopPropagation(); onTogglePersonal && onTogglePersonal() }}
           style={{
-            background: isPersonal ? 'rgba(34,197,94,0.15)' : 'transparent',
-            border: `1px solid ${isPersonal ? ACCENT : BORDER}`,
-            borderRadius: 4, color: isPersonal ? ACCENT : MUTED,
-            fontSize: 10, fontFamily: MONO, fontWeight: 600,
-            padding: '3px 8px', cursor: 'pointer', whiteSpace: 'nowrap',
+            background: isPersonal ? T.text : 'transparent',
+            border: `1px solid ${isPersonal ? T.text : T.border}`,
+            borderRadius: 999,
+            color: isPersonal ? '#ffffff' : T.textMedium,
+            fontSize: 11, fontFamily: 'inherit', fontWeight: 500,
+            padding: '4px 12px', cursor: 'pointer', whiteSpace: 'nowrap',
+            letterSpacing: 0,
           }}
           title={isPersonal ? 'You bet this' : 'Click if you bet this'}>
-          {isPersonal ? '✓ BET' : 'passed'}
+          {isPersonal ? '✓ bet' : 'log bet'}
         </button>
       </td>
-      <td style={{ padding: '8px 6px', textAlign: 'center' }}>
+
+      <td style={{ padding: '14px 8px', verticalAlign: 'top', textAlign: 'center' }}>
         <button onClick={onShare} style={{
-          background: 'transparent', border: `1px solid ${BORDER}`, borderRadius: 4,
-          color: MUTED, fontSize: 10, padding: '3px 8px', cursor: 'pointer',
-        }} title="Copy pick details to clipboard">📋</button>
+          background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 4,
+          color: T.textMedium, fontSize: 11, padding: '4px 10px', cursor: 'pointer',
+          fontFamily: 'inherit',
+        }} title="Copy pick details to clipboard">share</button>
       </td>
     </tr>
   )
@@ -256,7 +298,6 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, personalBets, toggl
   const summary = summarizeArchive(archive.data)
   const data = archive.data
 
-  // Build the picks list per filter.
   const picks = useMemo(() => {
     const all = []
     if (tierFilter === 'all' || tierFilter === 'primary') all.push(...(data.primary_picks || []))
@@ -278,45 +319,61 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, personalBets, toggl
     return map
   }, [data])
 
+  // Header: clean line of date | counts | W-L | ROI. No bg color.
+  const profitTone =
+    summary.profit == null ? T.textLight
+    : summary.profit > 0 ? T.positive
+    : summary.profit < 0 ? T.negative
+    : T.textMedium
+
   return (
-    <div style={{
-      background: CARD_BG, border: `1px solid ${BORDER}`, borderRadius: 10,
-      marginBottom: 12, overflow: 'hidden',
-    }}>
+    <div style={{ borderTop: `1px solid ${T.border}` }}>
       <button onClick={onToggle} style={{
-        width: '100%', padding: '12px 16px', background: 'none', border: 'none',
-        color: BRIGHT, cursor: 'pointer', fontFamily: SANS,
+        width: '100%', padding: '18px 4px', background: 'none', border: 'none',
+        color: T.text, cursor: 'pointer', fontFamily: 'inherit',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        flexWrap: 'wrap', gap: 8,
+        flexWrap: 'wrap', gap: 12, textAlign: 'left',
       }}>
-        <div style={{ display: 'flex', gap: 12, alignItems: 'baseline', flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 16, fontWeight: 800 }}>{archive.date}</span>
-          <span style={{ fontSize: 11, fontFamily: MONO, color: MUTED }}>
-            {summary.primary_count}P · {summary.secondary_count}S · {summary.shadow_count}Sh
+        <div style={{ display: 'flex', gap: 18, alignItems: 'baseline', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 15, fontWeight: 600, color: T.text }}>{archive.date}</span>
+          <span style={{ fontSize: 12, color: T.textLight }}>
+            {summary.primary_count} primary
+            {summary.secondary_count > 0 && ` · ${summary.secondary_count} secondary`}
+            {summary.shadow_count > 0 && ` · ${summary.shadow_count} shadow`}
           </span>
           {summary.isSettled ? (
-            <span style={{ fontSize: 11, fontFamily: MONO, color: summary.profit >= 0 ? ACCENT : ACCENT_RED, fontWeight: 700 }}>
-              {summary.wins}W-{summary.losses}L
-              {summary.voids > 0 && `-${summary.voids}V`}
-              {' · '}
-              {fmtUnits(summary.profit)} ({summary.roiPct >= 0 ? '+' : ''}{summary.roiPct?.toFixed(1)}% ROI)
-            </span>
+            <>
+              <span style={{ fontSize: 12, color: T.textMedium, ...TABULAR }}>
+                {summary.wins}W–{summary.losses}L{summary.voids > 0 && `–${summary.voids}V`}
+              </span>
+              <span style={{ fontSize: 12, color: profitTone, fontWeight: 600, ...TABULAR }}>
+                {fmtUnits(summary.profit)} ({summary.roiPct >= 0 ? '+' : ''}{summary.roiPct?.toFixed(1)}%)
+              </span>
+            </>
           ) : (
-            <span style={{ fontSize: 11, fontFamily: MONO, color: BLUE,
-                            padding: '2px 8px', background: 'rgba(59,130,246,0.10)', borderRadius: 4 }}>
-              UNSETTLED
-            </span>
+            <span style={{ fontSize: 12, color: T.textLight }}>unsettled</span>
           )}
         </div>
-        <span style={{ fontSize: 14, color: MUTED, transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>▾</span>
+        <span style={{
+          fontSize: 12, color: T.textLight,
+          transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.15s',
+        }}>▾</span>
       </button>
       {expanded && (
-        <div style={{ padding: '0 8px 16px', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, minWidth: 900 }}>
+        <div style={{ padding: '0 0 24px', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, minWidth: 920 }}>
             <thead>
-              <tr style={{ borderBottom: `2px solid ${BORDER}`, color: MUTED }}>
-                {['#', 'Batter', 'Pitcher', 'Mdl', 'Mkt', 'Edge', 'EV', 'Odds', 'Result', 'Bet?', 'Share'].map(h => (
-                  <th key={h} style={{ padding: '8px 6px', fontSize: 9, fontFamily: MONO, fontWeight: 600, letterSpacing: 0.6, textAlign: 'center' }}>{h}</th>
+              <tr style={{ borderBottom: `1px solid ${T.borderStrong}` }}>
+                {[
+                  ['#', 'right'], ['Batter', 'left'], ['Pitcher', 'left'],
+                  ['Model', 'right'], ['Market', 'right'], ['Edge', 'right'],
+                  ['EV', 'right'], ['Odds', 'right'],
+                  ['Result', 'left'], ['Bet', 'center'], ['Share', 'center'],
+                ].map(([h, align]) => (
+                  <th key={h} style={{
+                    padding: '12px 8px', fontSize: 11, fontWeight: 500,
+                    color: T.textMedium, letterSpacing: 0.4, textAlign: align,
+                  }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -339,18 +396,19 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, personalBets, toggl
   )
 }
 
-function CalibrationView({ archives, total }) {
+function CalibrationView({ archives }) {
   const cal = useMemo(() => buildCalibration(archives), [archives])
   if (cal.total < CALIBRATION_MIN_PICKS) {
     return (
       <div style={{
-        background: CARD_BG, border: `1px solid ${BORDER}`, borderRadius: 10,
-        padding: 18, marginBottom: 24, color: TEXT, fontSize: 12, lineHeight: 1.6,
+        border: `1px solid ${T.border}`, borderRadius: 6,
+        padding: '24px 26px', color: T.textMedium, fontSize: 13, lineHeight: 1.6,
       }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 6 }}>Calibration</div>
-        Need 100+ settled picks across all tiers for meaningful calibration. Currently <strong style={{ color: BRIGHT }}>{cal.total}</strong>.
-        <div style={{ fontSize: 11, color: MUTED, marginTop: 8 }}>
-          Settled-pick numbers will fill in over the paper-trade phase. The chart will appear here once we cross the 100-pick threshold.
+        <div style={{ fontSize: 14, fontWeight: 600, color: T.text, marginBottom: 10 }}>Calibration</div>
+        Need {CALIBRATION_MIN_PICKS}+ settled picks across all tiers for meaningful
+        calibration. Currently <strong style={{ color: T.text, fontWeight: 600 }}>{cal.total}</strong>.
+        <div style={{ fontSize: 12, color: T.textLight, marginTop: 10 }}>
+          The chart will appear here once we cross the threshold.
         </div>
       </div>
     )
@@ -358,50 +416,56 @@ function CalibrationView({ archives, total }) {
   const maxN = Math.max(...cal.buckets.map(b => b.n || 0), 1)
   return (
     <div style={{
-      background: CARD_BG, border: `1px solid ${BORDER}`, borderRadius: 10,
-      padding: '14px 18px', marginBottom: 24,
+      border: `1px solid ${T.border}`, borderRadius: 6,
+      padding: '20px 26px',
     }}>
-      <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 6 }}>
-        Calibration ({cal.total} settled picks)
+      <div style={{ fontSize: 14, fontWeight: 600, color: T.text, marginBottom: 4 }}>
+        Calibration
       </div>
-      <div style={{ fontSize: 11, color: MUTED, marginBottom: 12 }}>
-        Predicted vs actual hit rate per model-prob bucket. Drift &gt; 2pp marked red.
+      <div style={{ fontSize: 12, color: T.textLight, marginBottom: 18 }}>
+        {cal.total} settled picks · predicted vs actual hit rate per model-prob bucket
       </div>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
         <thead>
-          <tr style={{ borderBottom: `1px solid ${BORDER}`, color: MUTED }}>
-            <th style={{ padding: '6px 8px', textAlign: 'left', fontSize: 10, fontFamily: MONO }}>Bucket</th>
-            <th style={{ padding: '6px 8px', textAlign: 'right', fontSize: 10, fontFamily: MONO }}>n</th>
-            <th style={{ padding: '6px 8px', textAlign: 'right', fontSize: 10, fontFamily: MONO }}>Expected</th>
-            <th style={{ padding: '6px 8px', textAlign: 'right', fontSize: 10, fontFamily: MONO }}>Actual</th>
-            <th style={{ padding: '6px 8px', textAlign: 'left', fontSize: 10, fontFamily: MONO, width: '40%' }}>Drift</th>
+          <tr style={{ borderBottom: `1px solid ${T.border}` }}>
+            <th style={{ padding: '10px 8px 10px 0', textAlign: 'left', fontSize: 11, color: T.textMedium, fontWeight: 500 }}>Bucket</th>
+            <th style={{ padding: '10px 8px', textAlign: 'right', fontSize: 11, color: T.textMedium, fontWeight: 500 }}>n</th>
+            <th style={{ padding: '10px 8px', textAlign: 'right', fontSize: 11, color: T.textMedium, fontWeight: 500 }}>Expected</th>
+            <th style={{ padding: '10px 8px', textAlign: 'right', fontSize: 11, color: T.textMedium, fontWeight: 500 }}>Actual</th>
+            <th style={{ padding: '10px 8px', textAlign: 'right', fontSize: 11, color: T.textMedium, fontWeight: 500 }}>Drift</th>
+            <th style={{ padding: '10px 0 10px 8px', textAlign: 'left', fontSize: 11, color: T.textMedium, fontWeight: 500, width: '30%' }}>Volume</th>
           </tr>
         </thead>
         <tbody>
           {cal.buckets.map(b => {
             const driftBad = b.drift != null && b.drift > 0.02
             return (
-              <tr key={b.lo} style={{ borderBottom: `1px solid #111827` }}>
-                <td style={{ padding: '6px 8px', color: BRIGHT, fontFamily: MONO, fontSize: 11 }}>{Math.round(b.lo*100)}-{Math.round(b.hi*100)}%</td>
-                <td style={{ padding: '6px 8px', textAlign: 'right', fontFamily: MONO, fontSize: 11, color: TEXT }}>{b.n || '—'}</td>
-                <td style={{ padding: '6px 8px', textAlign: 'right', fontFamily: MONO, fontSize: 11, color: TEXT }}>{b.expected != null ? `${(b.expected*100).toFixed(1)}%` : '—'}</td>
-                <td style={{ padding: '6px 8px', textAlign: 'right', fontFamily: MONO, fontSize: 11, color: BRIGHT, fontWeight: 600 }}>{b.actual != null ? `${(b.actual*100).toFixed(1)}%` : '—'}</td>
-                <td style={{ padding: '6px 8px' }}>
-                  {b.n > 0 ? (
-                    <div style={{ position: 'relative', height: 14, background: '#0c1422', borderRadius: 3 }}>
-                      <div style={{
-                        position: 'absolute', left: 0, top: 0, bottom: 0,
-                        width: `${(b.n / maxN) * 100}%`,
-                        background: driftBad ? 'rgba(239,68,68,0.25)' : 'rgba(34,197,94,0.20)',
-                        borderRadius: 3,
-                      }} />
-                      <span style={{ position: 'absolute', left: 6, top: 0, bottom: 0,
-                                      display: 'flex', alignItems: 'center', fontSize: 9,
-                                      fontFamily: MONO, color: driftBad ? ACCENT_RED : TEXT }}>
-                        {b.drift != null ? `±${(b.drift*100).toFixed(1)}pp` : ''}
-                      </span>
-                    </div>
-                  ) : null}
+              <tr key={b.lo} style={{ borderBottom: `1px solid ${T.border}` }}>
+                <td style={{ padding: '14px 8px 14px 0', color: T.text, fontSize: 12, ...TABULAR }}>
+                  {Math.round(b.lo*100)}–{Math.round(b.hi*100)}%
+                </td>
+                <td style={{ padding: '14px 8px', textAlign: 'right', fontSize: 12, color: T.textMedium, ...TABULAR }}>{b.n || '—'}</td>
+                <td style={{ padding: '14px 8px', textAlign: 'right', fontSize: 12, color: T.textMedium, ...TABULAR }}>
+                  {b.expected != null ? `${(b.expected*100).toFixed(1)}%` : '—'}
+                </td>
+                <td style={{ padding: '14px 8px', textAlign: 'right', fontSize: 12, color: T.text, fontWeight: 600, ...TABULAR }}>
+                  {b.actual != null ? `${(b.actual*100).toFixed(1)}%` : '—'}
+                </td>
+                <td style={{
+                  padding: '14px 8px', textAlign: 'right', fontSize: 12,
+                  color: driftBad ? T.negative : T.textMedium,
+                  fontWeight: driftBad ? 600 : 400, ...TABULAR,
+                }}>
+                  {b.drift != null ? `±${(b.drift*100).toFixed(1)}pp` : '—'}
+                </td>
+                <td style={{ padding: '14px 0 14px 8px' }}>
+                  {b.n > 0 && (
+                    <div style={{
+                      height: 6, width: `${(b.n / maxN) * 100}%`,
+                      background: T.bgSubtle, borderRadius: 2,
+                      borderRight: `2px solid ${T.borderStrong}`,
+                    }} />
+                  )}
                 </td>
               </tr>
             )
@@ -412,19 +476,45 @@ function CalibrationView({ archives, total }) {
   )
 }
 
+// Filter button — text-only, underline + bold on active.
+function FilterButton({ active, onClick, children }) {
+  return (
+    <button onClick={onClick} style={{
+      background: 'transparent', border: 'none', padding: '4px 0',
+      color: active ? T.text : T.textMedium,
+      fontWeight: active ? 600 : 400,
+      fontSize: 13, cursor: 'pointer', fontFamily: 'inherit',
+      textDecoration: active ? 'underline' : 'none',
+      textUnderlineOffset: 6, textDecorationThickness: 1.5,
+    }}>{children}</button>
+  )
+}
+function FilterRow({ label, options, value, onChange }) {
+  return (
+    <div style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 11, color: T.textLight, minWidth: 50,
+                      textTransform: 'uppercase', letterSpacing: 0.6 }}>{label}</span>
+      {options.map(([k, lbl], i) => (
+        <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 18 }}>
+          <FilterButton active={value === k} onClick={() => onChange(k)}>{lbl}</FilterButton>
+        </span>
+      ))}
+    </div>
+  )
+}
+
 // ─── page component ────────────────────────────────────────────────────
 export default function Tracker({ archives, tracker }) {
   const [tierFilter, setTierFilter] = useState('primary')
   const [dateFilter, setDateFilter] = useState('all')
   const [sortBy, setSortBy] = useState('date_desc')
   const [expanded, setExpanded] = useState(() => {
-    // Newest day expanded by default.
     const newest = archives[0]?.date
     return newest ? { [newest]: true } : {}
   })
   const [personalBets, setPersonalBets] = useState({})
 
-  // Hydrate localStorage personal bets after mount.
+  // Hydrate localStorage personal bets on mount.
   useMemo(() => {
     if (typeof window === 'undefined') return
     try {
@@ -464,14 +554,10 @@ export default function Tracker({ archives, tracker }) {
     return sorted
   }, [archives, dateFilter, sortBy])
 
-  // Top-level metrics from tracker.json (primary tier).
   const sumP = tracker?.summary_primary || tracker?.summary || {}
-  const sumS = tracker?.summary_secondary || {}
-  const sumShadow = tracker?.summary_shadow || {}
   const totalSettled = (sumP.wins || 0) + (sumP.losses || 0)
   const isFirstWeek = totalSettled === 0
 
-  // Days since deploy: first archive date → today.
   const daysSinceDeploy = (() => {
     if (archives.length === 0) return 0
     const first = new Date(archives[archives.length - 1].date)
@@ -479,7 +565,6 @@ export default function Tracker({ archives, tracker }) {
     return Math.max(0, Math.floor((today - first) / (1000 * 60 * 60 * 24)) + 1)
   })()
 
-  // Personal-bet performance subset (computed across all archives × picks user toggled).
   const personalPerf = useMemo(() => {
     let bets = 0, wins = 0, losses = 0, profit = 0
     for (const { date, data } of archives) {
@@ -508,7 +593,6 @@ export default function Tracker({ archives, tracker }) {
     return { bets, wins, losses, profit, roiPct }
   }, [archives, personalBets])
 
-  // Stacked-pick days (any day with at least one pair of correlated primary picks).
   const stackingMetric = useMemo(() => {
     let totalDays = archives.length
     let stackedDays = 0
@@ -523,166 +607,151 @@ export default function Tracker({ archives, tracker }) {
       <Head>
         <title>HR Picks — Tracker</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
       </Head>
+
+      <style jsx global>{`
+        html, body { margin: 0; padding: 0; background: ${T.bg}; }
+        a:hover { text-decoration: underline; }
+      `}</style>
+
       <div style={{
-        minHeight: '100vh', background: BG, color: TEXT,
-        fontFamily: SANS, padding: '24px 16px',
-        maxWidth: 1100, margin: '0 auto',
+        minHeight: '100vh', background: T.bg, color: T.text,
+        fontFamily: FONT, padding: '40px 24px',
+        maxWidth: 1080, margin: '0 auto',
       }}>
-        {/* Header */}
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 4 }}>
-            <Link href="/" style={{ fontSize: 28, fontWeight: 800, color: BRIGHT, letterSpacing: -1, textDecoration: 'none' }}>HR Picks</Link>
-            <span style={{ fontSize: 16, color: MUTED }}>·</span>
-            <span style={{ fontSize: 22, fontWeight: 700, color: BRIGHT }}>Tracker</span>
-            <span style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4,
-                            background: 'rgba(168,85,247,0.12)', color: PURPLE, letterSpacing: 0.6, fontFamily: MONO }}>V7</span>
+        {/* Header — minimal. Site title + Tracker label. */}
+        <div style={{ marginBottom: 36 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, flexWrap: 'wrap' }}>
+            <Link href="/" style={{
+              fontSize: 22, fontWeight: 700, color: T.text,
+              letterSpacing: -0.4, textDecoration: 'none',
+            }}>HR Picks</Link>
+            <span style={{ fontSize: 14, color: T.text, fontWeight: 500 }}>Tracker</span>
           </div>
-          <div style={{ fontSize: 11, color: MUTED, fontFamily: MONO }}>
+          <div style={{ fontSize: 12, color: T.textLight, marginTop: 8 }}>
             {archives.length} archived day{archives.length === 1 ? '' : 's'} · day {daysSinceDeploy} since deploy
           </div>
         </div>
 
-        {/* Empty state — Day 1 */}
+        {/* Day-1 banner — minimal panel, no colored fill. */}
         {isFirstWeek && (
           <div style={{
-            background: 'rgba(59,130,246,0.06)', border: `1px solid rgba(59,130,246,0.2)`,
-            borderRadius: 10, padding: 14, marginBottom: 20,
-            fontSize: 13, color: TEXT, lineHeight: 1.5,
+            border: `1px solid ${T.border}`, borderRadius: 6,
+            padding: '16px 20px', marginBottom: 28,
+            fontSize: 13, color: T.textMedium, lineHeight: 1.5,
           }}>
-            <strong style={{ color: BLUE }}>Day {daysSinceDeploy} — no settled picks yet.</strong>{' '}
-            Today's picks settle tomorrow at ~10am ET. ROI / hit rate / CLV will populate after the first settlement run.
+            <strong style={{ color: T.text, fontWeight: 600 }}>Day {daysSinceDeploy} — no settled picks yet.</strong>{' '}
+            Today's picks settle tomorrow at ~10am ET. ROI, hit rate, and CLV will populate after the first settlement run.
           </div>
         )}
 
         {/* Big metrics */}
-        <div style={{ display: 'flex', gap: 10, marginBottom: 24, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 14, marginBottom: 28, flexWrap: 'wrap' }}>
           <StatCard
-            label="Picks Settled"
+            label="Picks settled"
             value={totalSettled}
-            sub={`${sumP.wins || 0}W-${sumP.losses || 0}L · ${sumP.voids || 0} void`}
-            color={BLUE}
+            sub={`${sumP.wins || 0}W–${sumP.losses || 0}L · ${sumP.voids || 0} void`}
+            tone={totalSettled > 0 ? 'default' : 'muted'}
           />
           <StatCard
-            label="Hit Rate"
+            label="Hit rate"
             value={totalSettled > 0 ? fmtPct(sumP.hit_rate, 1) : '—'}
             sub={totalSettled > 0 ? null : 'awaiting settlement'}
-            color={totalSettled > 0 ? BRIGHT : MUTED}
+            tone={totalSettled > 0 ? 'default' : 'muted'}
           />
           <StatCard
             label="ROI"
             value={totalSettled > 0 ? `${sumP.roi_pct >= 0 ? '+' : ''}${sumP.roi_pct?.toFixed(1)}%` : '—'}
             sub={totalSettled > 0 ? `${fmtUnits(sumP.units_profit)} on ${sumP.units_staked || 0}u` : null}
-            color={totalSettled > 0 ? (sumP.roi_pct >= 0 ? ACCENT : ACCENT_RED) : MUTED}
+            tone={totalSettled > 0 ? (sumP.roi_pct >= 0 ? 'positive' : 'negative') : 'muted'}
           />
           <StatCard
             label="Avg CLV"
             value={sumP.avg_clv_pct != null ? `${sumP.avg_clv_pct >= 0 ? '+' : ''}${sumP.avg_clv_pct.toFixed(1)}%` : '—'}
             sub={sumP.n_picks_with_clv ? `${sumP.n_picks_with_clv} picks` : 'awaiting closing snaps'}
-            color={sumP.avg_clv_pct != null ? (sumP.avg_clv_pct >= 0 ? ACCENT : ACCENT_RED) : MUTED}
+            tone={sumP.avg_clv_pct != null ? (sumP.avg_clv_pct >= 0 ? 'positive' : 'negative') : 'muted'}
           />
         </div>
 
         {/* Personal-bet card */}
         {personalPerf.bets > 0 && (
-          <div style={{ display: 'flex', gap: 10, marginBottom: 24, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 14, marginBottom: 28, flexWrap: 'wrap' }}>
             <StatCard
-              label="Your Bets"
+              label="Your bets"
               value={personalPerf.bets}
-              sub={`${personalPerf.wins}W-${personalPerf.losses}L`}
-              color={YELLOW}
+              sub={`${personalPerf.wins}W–${personalPerf.losses}L`}
             />
             <StatCard
               label="Your ROI"
               value={personalPerf.roiPct != null ? `${personalPerf.roiPct >= 0 ? '+' : ''}${personalPerf.roiPct.toFixed(1)}%` : '—'}
               sub={fmtUnits(personalPerf.profit)}
-              color={personalPerf.roiPct >= 0 ? ACCENT : ACCENT_RED}
+              tone={personalPerf.roiPct >= 0 ? 'positive' : 'negative'}
             />
             <StatCard
-              label="Stacked Days"
+              label="Stacked days"
               value={`${(stackingMetric.pct * 100).toFixed(0)}%`}
               sub={`${stackingMetric.stackedDays}/${stackingMetric.totalDays} days`}
-              color={MUTED}
+              tone="muted"
             />
           </div>
         )}
 
-        {/* Filters */}
-        <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap', alignItems: 'center' }}>
-          <span style={{ fontSize: 10, fontFamily: MONO, color: MUTED, textTransform: 'uppercase', letterSpacing: 1 }}>Tier</span>
-          {[
-            ['primary', 'Primary only'],
-            ['all', 'All tiers'],
-          ].map(([k, label]) => (
-            <button key={k} onClick={() => setTierFilter(k)} style={{
-              background: tierFilter === k ? 'rgba(34,197,94,0.15)' : 'transparent',
-              border: `1px solid ${tierFilter === k ? ACCENT : BORDER}`,
-              borderRadius: 4, color: tierFilter === k ? ACCENT : TEXT,
-              fontSize: 11, fontFamily: MONO, padding: '4px 10px', cursor: 'pointer',
-            }}>{label}</button>
-          ))}
-          <span style={{ width: 12 }} />
-          <span style={{ fontSize: 10, fontFamily: MONO, color: MUTED, textTransform: 'uppercase', letterSpacing: 1 }}>Range</span>
-          {[
-            ['all', 'All time'],
-            ['30d', '30d'],
-            ['7d', '7d'],
-          ].map(([k, label]) => (
-            <button key={k} onClick={() => setDateFilter(k)} style={{
-              background: dateFilter === k ? 'rgba(59,130,246,0.15)' : 'transparent',
-              border: `1px solid ${dateFilter === k ? BLUE : BORDER}`,
-              borderRadius: 4, color: dateFilter === k ? BLUE : TEXT,
-              fontSize: 11, fontFamily: MONO, padding: '4px 10px', cursor: 'pointer',
-            }}>{label}</button>
-          ))}
-          <span style={{ width: 12 }} />
-          <span style={{ fontSize: 10, fontFamily: MONO, color: MUTED, textTransform: 'uppercase', letterSpacing: 1 }}>Sort</span>
-          {[
-            ['date_desc', 'Date (newest)'],
-            ['date_asc', 'Date (oldest)'],
-            ['roi', 'ROI'],
-            ['hit_rate', 'Hit rate'],
-            ['count', 'Pick count'],
-          ].map(([k, label]) => (
-            <button key={k} onClick={() => setSortBy(k)} style={{
-              background: sortBy === k ? 'rgba(168,85,247,0.15)' : 'transparent',
-              border: `1px solid ${sortBy === k ? PURPLE : BORDER}`,
-              borderRadius: 4, color: sortBy === k ? PURPLE : TEXT,
-              fontSize: 11, fontFamily: MONO, padding: '4px 10px', cursor: 'pointer',
-            }}>{label}</button>
-          ))}
+        {/* Filters — text-only, underline on active. */}
+        <div style={{
+          padding: '20px 0', marginBottom: 8,
+          borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}`,
+          display: 'flex', flexDirection: 'column', gap: 14,
+        }}>
+          <FilterRow label="Tier"  value={tierFilter} onChange={setTierFilter}
+            options={[['primary', 'Primary only'], ['all', 'All tiers']]} />
+          <FilterRow label="Range" value={dateFilter} onChange={setDateFilter}
+            options={[['all', 'All time'], ['30d', '30 days'], ['7d', '7 days']]} />
+          <FilterRow label="Sort"  value={sortBy} onChange={setSortBy}
+            options={[
+              ['date_desc', 'Date (newest)'],
+              ['date_asc',  'Date (oldest)'],
+              ['roi',       'ROI'],
+              ['hit_rate',  'Hit rate'],
+              ['count',     'Pick count'],
+            ]} />
         </div>
 
         {/* Day blocks */}
         {filteredArchives.length === 0 ? (
-          <div style={{ padding: 24, textAlign: 'center', color: MUTED, fontSize: 13,
-                          background: CARD_BG, border: `1px solid ${BORDER}`, borderRadius: 10 }}>
+          <div style={{
+            padding: '48px 18px', textAlign: 'center', color: T.textLight, fontSize: 13,
+            border: `1px solid ${T.border}`, borderRadius: 6, marginTop: 28,
+          }}>
             No archived days yet. The first cron run will populate this list tomorrow at 11am ET.
           </div>
         ) : (
-          filteredArchives.map(a => (
-            <DayBlock key={a.date} archive={a}
-                      expanded={!!expanded[a.date]}
-                      onToggle={() => setExpanded(p => ({ ...p, [a.date]: !p[a.date] }))}
-                      tierFilter={tierFilter}
-                      personalBets={personalBets}
-                      togglePersonal={togglePersonal} />
-          ))
+          <div style={{ marginTop: 8, marginBottom: 36 }}>
+            {filteredArchives.map(a => (
+              <DayBlock key={a.date} archive={a}
+                        expanded={!!expanded[a.date]}
+                        onToggle={() => setExpanded(p => ({ ...p, [a.date]: !p[a.date] }))}
+                        tierFilter={tierFilter}
+                        personalBets={personalBets}
+                        togglePersonal={togglePersonal} />
+            ))}
+            {/* Bottom border to close the last day block */}
+            <div style={{ borderTop: `1px solid ${T.border}` }} />
+          </div>
         )}
 
-        {/* Calibration view — placed after day blocks so high-frequency info is up top. */}
-        <div style={{ marginTop: 24 }}>
+        {/* Calibration view — placed below day blocks. */}
+        <div style={{ marginTop: 36 }}>
           <CalibrationView archives={archives} />
         </div>
 
         {/* Footer */}
         <div style={{
-          marginTop: 28, padding: '14px 0', borderTop: `1px solid ${BORDER}`,
-          fontSize: 10, color: MUTED, lineHeight: 1.7, fontFamily: MONO,
+          marginTop: 40, paddingTop: 20, borderTop: `1px solid ${T.border}`,
+          fontSize: 11, color: T.textLight, lineHeight: 1.7,
         }}>
-          Calibration computed across all settled tiers (primary + secondary + shadow). Personal-bet log stored in your browser only.<br />
-          Stacked picks (⛓) share a starting pitcher with another primary pick today — outcomes correlated.
+          Calibration computed across all settled tiers (primary + secondary + shadow).
+          Personal-bet log stored in your browser only. "stacked" picks share a starting
+          pitcher with another primary pick today — outcomes correlated.
         </div>
       </div>
     </>

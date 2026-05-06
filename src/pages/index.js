@@ -4,172 +4,164 @@ import { useState } from 'react'
 // picks.json is written at repo root by the daily_picks GitHub Action.
 import picksData from '../../picks.json'
 
-const ACCENT = '#22c55e'
-const ACCENT_RED = '#ef4444'
-const YELLOW = '#facc15'
-const ORANGE = '#fb923c'
-const BLUE = '#3b82f6'
-const PURPLE = '#a855f7'
-const BG = '#06090f'
-const CARD_BG = '#0c1220'
-const BORDER = '#1a2332'
-const MUTED = '#475569'
-const TEXT = '#94a3b8'
-const BRIGHT = '#e2e8f0'
-const MONO = 'JetBrains Mono, monospace'
-const SANS = 'DM Sans, sans-serif'
+const T = {
+  bg: '#ffffff',
+  border: '#e5e5e5',
+  borderStrong: '#d4d4d4',
+  text: '#0a0a0a',
+  textMedium: '#525252',
+  textLight: '#a3a3a3',
+  accent: '#2563eb',
+  positive: '#16a34a',
+  negative: '#dc2626',
+}
+const FONT = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif'
 
 function formatOdds(odds) {
-  if (odds == null) return '---'
+  if (odds == null) return '—'
   return odds > 0 ? `+${odds}` : `${odds}`
 }
 
 function formatGameTime(iso) {
   if (!iso) return ''
   try {
-    const d = new Date(iso)
-    return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+    return new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+      .replace(' AM', 'am').replace(' PM', 'pm')
   } catch { return '' }
 }
 
-function StatCard({ label, value, color, sub }) {
+function featureLabel(name, value) {
+  const pct = (value - 1) * 100
+  const sign = pct > 0 ? '+' : ''
+  const cleanName = name
+    .replace(/_signal$/, '')
+    .replace(/_factor$/, '')
+    .replace(/_/g, ' ')
+  return `${sign}${pct.toFixed(0)}% ${cleanName}`
+}
+
+function StatCard({ label, value, sub }) {
   return (
     <div style={{
-      background: CARD_BG, border: `1px solid ${BORDER}`, borderRadius: 10,
-      padding: '14px 18px', minWidth: 130, flex: '1 1 130px',
+      border: `1px solid ${T.border}`, borderRadius: 6,
+      padding: '24px 26px', minWidth: 140, flex: '1 1 140px',
+      background: T.bg,
     }}>
-      <div style={{ fontSize: 10, color: MUTED, textTransform: 'uppercase', letterSpacing: 1.2, fontFamily: MONO }}>{label}</div>
-      <div style={{ fontSize: 26, fontWeight: 800, color: color || BRIGHT, marginTop: 2, fontFamily: SANS }}>{value}</div>
-      {sub && <div style={{ fontSize: 10, color: MUTED, marginTop: 2 }}>{sub}</div>}
+      <div style={{
+        fontSize: 32, fontWeight: 600, color: T.text,
+        letterSpacing: -0.5, lineHeight: 1.1,
+        fontVariantNumeric: 'tabular-nums',
+      }}>{value}</div>
+      <div style={{ fontSize: 12, color: T.textMedium, marginTop: 10 }}>{label}</div>
+      {sub && <div style={{ fontSize: 11, color: T.textLight, marginTop: 4 }}>{sub}</div>}
     </div>
   )
 }
 
-// One small chip per top-3 feature contribution.
-function FeatureChip({ name, value }) {
-  // breakout_signal is encoded as 1 + bump/blended → display as +X% lift.
-  // Multiplicative factors → display as +/-X% deviation from neutral 1.0.
-  const pct = ((value - 1) * 100).toFixed(0)
-  const sign = pct > 0 ? '+' : ''
-  const color = pct > 0 ? ACCENT : (pct < 0 ? ACCENT_RED : MUTED)
-  const isBreakout = name === 'breakout_signal'
-  return (
-    <span style={{
-      display: 'inline-block',
-      fontSize: 9, fontFamily: MONO, fontWeight: 600,
-      padding: '2px 6px', borderRadius: 4,
-      background: `${color}1a`, color,
-      border: isBreakout ? `1px solid ${PURPLE}55` : `1px solid ${color}33`,
-      marginRight: 4, marginBottom: 2,
-      whiteSpace: 'nowrap',
-    }} title={`${name}: value=${value}`}>
-      {name.replace(/_/g, ' ')} {sign}{pct}%
-    </span>
-  )
-}
-
 function PickRow({ pick }) {
-  const oddsByBook = {
-    fanduel: pick.fd_odds,
-    draftkings: pick.dk_odds,
-  }
+  const oddsByBook = { fanduel: pick.fd_odds, draftkings: pick.dk_odds }
   const bestBookKey = pick.best_book
   const bestPrice = oddsByBook[bestBookKey]
   const otherPrice = bestBookKey === 'fanduel' ? pick.dk_odds : pick.fd_odds
   const otherBookLabel = bestBookKey === 'fanduel' ? 'DK' : 'FD'
   const bestBookLabel = bestBookKey === 'fanduel' ? 'FD' : 'DK'
-
-  const evColor = pick.ev_pct >= 40 ? ACCENT : (pick.ev_pct >= 25 ? YELLOW : TEXT)
+  const evPositive = pick.ev_pct >= 0
   const isHomeBatter = pick.team === pick.park
 
+  // Compose the inline metadata line under the batter name. Each entry is
+  // quiet gray text — no badges, no colored fills.
+  const metaParts = []
+  metaParts.push(`${pick.team}${isHomeBatter ? ' (home)' : ''}`)
+  if (pick.batter_hand) metaParts.push(`${pick.batter_hand}H`)
+  if (pick.lineup_spot) metaParts.push(`#${pick.lineup_spot}`)
+  if (pick.low_confidence) metaParts.push('low conf')
+  if (pick.breakout_score >= 0.10) metaParts.push('breakout')
+  if (pick.unstable_recent) metaParts.push('unstable')
+  if (pick.trend_signal != null && Math.abs(pick.trend_signal) >= 0.10) {
+    const arrow = pick.trend_signal > 0 ? '↑' : '↓'
+    metaParts.push(`${arrow}${Math.abs(Math.round(pick.trend_signal * 100))}%`)
+  }
+  if (pick.stacked) metaParts.push('stacked')
+
   return (
-    <tr style={{ borderBottom: '1px solid #111827' }}>
-      {/* Batter + team + flags */}
-      <td style={{ padding: '10px 8px', whiteSpace: 'nowrap' }}>
-        <div style={{ fontWeight: 600, color: BRIGHT }}>{pick.batter}</div>
-        <div style={{ fontSize: 10, color: MUTED, fontFamily: MONO, marginTop: 1, display: 'flex', gap: 4, alignItems: 'center' }}>
-          <span>{pick.team}{isHomeBatter ? ' (home)' : ''}</span>
-          {pick.batter_hand && <span>· {pick.batter_hand}H</span>}
-          {pick.lineup_spot && <span>· #{pick.lineup_spot}</span>}
-          {pick.low_confidence && (
-            <span style={{ color: ORANGE, background: 'rgba(251,146,60,0.12)', padding: '1px 5px', borderRadius: 3, fontSize: 9 }}>LC</span>
-          )}
-          {pick.breakout_score >= 0.10 && (
-            <span style={{ color: PURPLE, background: 'rgba(168,85,247,0.12)', padding: '1px 5px', borderRadius: 3, fontSize: 9 }}
-                  title={`breakout_score = ${pick.breakout_score}`}>BO</span>
-          )}
-          {pick.unstable_recent && (
-            <span style={{ color: ACCENT_RED, background: 'rgba(239,68,68,0.10)', padding: '1px 5px', borderRadius: 3, fontSize: 9 }}
-                  title="30d barrel rate has diverged from season baseline by >=1.5x or <=0.5x">UR</span>
-          )}
-          {pick.trend_signal != null && Math.abs(pick.trend_signal) >= 0.10 && (
-            <span style={{
-              color: pick.trend_signal > 0 ? ACCENT : ACCENT_RED,
-              background: pick.trend_signal > 0 ? 'rgba(34,197,94,0.10)' : 'rgba(239,68,68,0.08)',
-              padding: '1px 5px', borderRadius: 3, fontSize: 9,
-            }} title={`barrel trend ${pick.trend_signal > 0 ? 'up' : 'down'} ${Math.round(pick.trend_signal * 100)}% vs season`}>
-              {pick.trend_signal > 0 ? '↑' : '↓'}{Math.abs(Math.round(pick.trend_signal * 100))}%
-            </span>
-          )}
-          {pick.stacked && (
-            <span style={{
-              color: YELLOW, background: 'rgba(250,204,21,0.12)',
-              padding: '1px 5px', borderRadius: 3, fontSize: 9,
-            }} title={`Correlated with: ${(pick.stacked_with || []).join(', ')} (same starter)`}>
-              ⛓ STACK
-            </span>
-          )}
+    <tr style={{ borderBottom: `1px solid ${T.border}` }}>
+      {/* Batter */}
+      <td style={{ padding: '18px 10px', whiteSpace: 'nowrap', verticalAlign: 'top' }}>
+        <div style={{ fontWeight: 600, color: T.text, fontSize: 14 }}>{pick.batter}</div>
+        <div style={{ fontSize: 11, color: T.textLight, marginTop: 4 }}
+             title={pick.stacked ? `stacked with ${(pick.stacked_with || []).join(', ')}` : undefined}>
+          {metaParts.join(' · ')}
         </div>
       </td>
 
       {/* Park / Game time */}
-      <td style={{ padding: '10px 6px', color: TEXT, whiteSpace: 'nowrap', fontFamily: MONO, fontSize: 11 }}>
-        <div>@ {pick.park}</div>
-        <div style={{ color: MUTED, fontSize: 10 }}>{formatGameTime(pick.game_datetime)}</div>
+      <td style={{ padding: '18px 10px', verticalAlign: 'top', whiteSpace: 'nowrap', fontSize: 13, color: T.textMedium }}>
+        <div>{pick.park}</div>
+        <div style={{ color: T.textLight, fontSize: 11, marginTop: 4 }}>{formatGameTime(pick.game_datetime)}</div>
       </td>
 
       {/* Pitcher */}
-      <td style={{ padding: '10px 6px', color: TEXT, whiteSpace: 'nowrap' }}>
-        <div>{pick.pitcher || '---'}</div>
-        <div style={{ color: MUTED, fontSize: 10, fontFamily: MONO }}>{pick.pitcher_hand}HP</div>
+      <td style={{ padding: '18px 10px', verticalAlign: 'top', whiteSpace: 'nowrap', fontSize: 13, color: T.textMedium }}>
+        <div>{pick.pitcher || '—'}</div>
+        <div style={{ color: T.textLight, fontSize: 11, marginTop: 4 }}>{pick.pitcher_hand}HP</div>
       </td>
 
       {/* Line */}
-      <td style={{ padding: '10px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 11, color: TEXT }}>
+      <td style={{ padding: '18px 10px', textAlign: 'right', verticalAlign: 'top', fontSize: 13, color: T.textMedium }}>
         Over {pick.line}
       </td>
 
       {/* Model% */}
-      <td style={{ padding: '10px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 12, fontWeight: 600, color: BRIGHT }}>
-        {(pick.model_prob * 100).toFixed(1)}%
-      </td>
+      <td style={{
+        padding: '18px 10px', textAlign: 'right', verticalAlign: 'top',
+        fontSize: 14, fontWeight: 600, color: T.text,
+        fontVariantNumeric: 'tabular-nums',
+      }}>{(pick.model_prob * 100).toFixed(1)}%</td>
 
-      {/* Market% (de-vig) */}
-      <td style={{ padding: '10px 6px', textAlign: 'right', fontFamily: MONO, fontSize: 12, color: TEXT }}>
-        {(pick.market_prob_devig * 100).toFixed(1)}%
-      </td>
+      {/* Market% (de-vigged) */}
+      <td style={{
+        padding: '18px 10px', textAlign: 'right', verticalAlign: 'top',
+        fontSize: 13, color: T.textMedium,
+        fontVariantNumeric: 'tabular-nums',
+      }}>{(pick.market_prob_devig * 100).toFixed(1)}%</td>
 
-      {/* Odds — best price highlighted, other price subtle */}
-      <td style={{ padding: '10px 6px', textAlign: 'right', whiteSpace: 'nowrap' }}>
-        <div style={{ fontFamily: MONO, fontSize: 12, fontWeight: 700, color: BRIGHT }}>
-          {formatOdds(bestPrice)} <span style={{ fontSize: 9, color: MUTED, fontWeight: 600 }}>{bestBookLabel}</span>
+      {/* Odds */}
+      <td style={{
+        padding: '18px 10px', textAlign: 'right', verticalAlign: 'top', whiteSpace: 'nowrap',
+        fontVariantNumeric: 'tabular-nums',
+      }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: T.text }}>
+          {formatOdds(bestPrice)} <span style={{ fontSize: 10, color: T.textLight, fontWeight: 500 }}>{bestBookLabel}</span>
         </div>
-        <div style={{ fontFamily: MONO, fontSize: 10, color: MUTED, marginTop: 1 }}>
+        <div style={{ fontSize: 11, color: T.textLight, marginTop: 4 }}>
           {formatOdds(otherPrice)} {otherBookLabel}
         </div>
       </td>
 
-      {/* EV% */}
+      {/* EV — bold; green tone when positive, dark otherwise. No fills. */}
       <td style={{
-        padding: '10px 6px', textAlign: 'right', fontWeight: 700, fontSize: 13,
-        fontFamily: MONO, color: evColor,
-      }}>+{pick.ev_pct.toFixed(1)}%</td>
+        padding: '18px 10px', textAlign: 'right', verticalAlign: 'top',
+        fontWeight: 700, fontSize: 14,
+        color: evPositive ? T.positive : T.text,
+        fontVariantNumeric: 'tabular-nums',
+      }}>{evPositive ? '+' : ''}{pick.ev_pct.toFixed(1)}%</td>
 
-      {/* Why — top_3_features chips */}
-      <td style={{ padding: '10px 8px', minWidth: 220 }}>
-        {(pick.top_3_features || []).map((f, i) => (
-          <FeatureChip key={i} name={f.name} value={f.value} />
-        ))}
+      {/* Why — inline gray text, breakout in italic. */}
+      <td style={{
+        padding: '18px 10px', verticalAlign: 'top', minWidth: 240,
+        fontSize: 12, color: T.textMedium, lineHeight: 1.7,
+      }}>
+        {(pick.top_3_features || []).map((f, i) => {
+          const isBreakout = f.name === 'breakout_signal'
+          return (
+            <span key={i} style={{
+              marginRight: 14, whiteSpace: 'nowrap',
+              fontStyle: isBreakout ? 'italic' : 'normal',
+            }} title={`${f.name}: ${f.value}`}>
+              {featureLabel(f.name, f.value)}
+            </span>
+          )
+        })}
       </td>
     </tr>
   )
@@ -178,7 +170,11 @@ function PickRow({ pick }) {
 function PicksTable({ picks }) {
   if (!picks || picks.length === 0) {
     return (
-      <div style={{ padding: '32px 18px', textAlign: 'center', color: MUTED, fontSize: 13 }}>
+      <div style={{
+        padding: '48px 18px', textAlign: 'center',
+        color: T.textLight, fontSize: 14,
+        border: `1px solid ${T.border}`, borderRadius: 6,
+      }}>
         No picks above the EV threshold for this slate.
       </div>
     )
@@ -198,12 +194,12 @@ function PicksTable({ picks }) {
     <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, minWidth: 920 }}>
         <thead>
-          <tr style={{ borderBottom: `2px solid ${BORDER}` }}>
+          <tr style={{ borderBottom: `1px solid ${T.borderStrong}` }}>
             {cols.map(h => (
               <th key={h.label} style={{
-                padding: '8px 6px', textAlign: h.align,
-                color: MUTED, fontWeight: 600, fontSize: 9, letterSpacing: 0.8,
-                fontFamily: MONO,
+                padding: '10px 10px', textAlign: h.align,
+                color: T.textMedium, fontWeight: 500, fontSize: 11,
+                letterSpacing: 0.4,
               }}>{h.label}</th>
             ))}
           </tr>
@@ -221,78 +217,77 @@ function Methodology({ data }) {
 
   return (
     <div style={{
-      marginBottom: 28, background: CARD_BG, border: `1px solid ${BORDER}`,
-      borderRadius: 10, overflow: 'hidden',
+      marginBottom: 32, border: `1px solid ${T.border}`,
+      borderRadius: 6, overflow: 'hidden',
     }}>
       <button
         onClick={() => setOpen(!open)}
         style={{
           width: '100%', padding: '14px 18px', background: 'none', border: 'none',
-          color: BRIGHT, cursor: 'pointer', display: 'flex', alignItems: 'center',
-          justifyContent: 'space-between', fontFamily: SANS,
+          color: T.text, cursor: 'pointer', display: 'flex', alignItems: 'center',
+          justifyContent: 'space-between', fontFamily: 'inherit',
+          fontSize: 13, fontWeight: 500,
         }}
       >
-        <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: -0.3 }}>How this works (V7)</span>
-        <span style={{ fontSize: 18, color: MUTED, transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>&#9662;</span>
+        <span>How this works</span>
+        <span style={{
+          fontSize: 12, color: T.textLight,
+          transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.15s',
+        }}>▾</span>
       </button>
 
       {open && (
-        <div style={{ padding: '0 18px 22px' }}>
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>What V7 is</div>
-            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7 }}>
-              An empirical-Bayes baseline that predicts P(HR ≥ 1) per batter per game.
-              Bayesian-blends season-to-date HR/PA with last-30-day form (with a dynamic
-              prior-year prior that decays as the current season accumulates plate
-              appearances), then adjusts for matched platoon-split pitcher quality,
-              handedness-specific park HR factor, and game-time temperature + wind out to CF.
-            </div>
+        <div style={{ padding: '0 18px 22px', borderTop: `1px solid ${T.border}` }}>
+          <div style={{ marginTop: 18, marginBottom: 22, fontSize: 13, color: T.textMedium, lineHeight: 1.7 }}>
+            An empirical-Bayes baseline that predicts P(HR ≥ 1) per batter per game.
+            We Bayesian-blend season HR/PA with last-30-day form (and a prior-year
+            prior that decays as PAs accumulate), then adjust for matched-platoon
+            pitcher quality, handedness-specific park HR factor, and game-time
+            temperature + wind out to center.
           </div>
 
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>Column reference</div>
+          <div style={{ marginBottom: 22 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: T.text, marginBottom: 10 }}>Columns</div>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
               <tbody>
                 {[
-                  ['Batter', 'Hitter being projected. Inline badges: LC = low confidence (no current-season PAs, prior year drives projection). BO = breakout score ≥ 0.10 (current Statcast meaningfully better than prior year). UR = unstable_recent (30d barrel rate diverged ≥1.5x or ≤0.5x vs season — visibility-only). ↑/↓ X% = trend_signal (recent barrel rate trending up/down vs season baseline; informational, not used to score).'],
-                  ['Park', "Home park. Game time shown below in your local timezone."],
-                  ['vs Pitcher', "Opposing starter and throwing hand."],
+                  ['Batter', 'Hitter being projected. Inline tags: low conf (no current PAs), breakout (score ≥ 0.10), unstable (30d barrel rate diverged ≥1.5x or ≤0.5x vs season), ↑/↓ X% (recent barrel rate trend), stacked (shares starter with another primary pick — outcomes correlated).'],
+                  ['Park', 'Home park. Game time below in your local timezone.'],
+                  ['vs Pitcher', 'Opposing starter and throwing hand.'],
                   ['Line', "Always 'Over 0.5' — the alternate HR market we bet."],
-                  ['Model', "P(at least one HR) under the V7 baseline."],
-                  ['Market', "De-vigged Over 0.5 probability across FD + DK (consensus when both books quote both sides)."],
-                  ['Odds', "Best American price across FD/DK. Smaller line below shows the other book for comparison."],
-                  ['EV', `Expected return per $1 stake. Filtered to ≥ ${data.ev_threshold_pct ?? 25}%. Yellow = ≥25%, green = ≥40%.`],
-                  ['Why', "Top-3 contributors from the model components. Multiplicative factors show as +/-X% deviation from neutral. breakout_signal is encoded as +X% lift to the blended HR rate."],
+                  ['Model', 'P(at least one HR) under the V7 baseline.'],
+                  ['Market', 'De-vigged Over 0.5 probability across FD + DK.'],
+                  ['Odds', 'Best American price across FD/DK. Other book shown below.'],
+                  ['EV', `Expected return per $1 stake. Filtered to ≥ ${data.ev_threshold_pct ?? 25}%. Higher is better.`],
+                  ['Why', 'Top-3 model components. Multiplicative factors show as +/-X% deviation from neutral; breakout shows as +X% lift to the blended HR rate.'],
                 ].map(([term, desc], i) => (
-                  <tr key={i} style={{ borderBottom: `1px solid ${BORDER}` }}>
-                    <td style={{ padding: '10px 10px 10px 0', fontWeight: 700, color: BRIGHT, fontFamily: MONO, fontSize: 11, whiteSpace: 'nowrap', verticalAlign: 'top', width: 90 }}>{term}</td>
-                    <td style={{ padding: '10px 0', color: TEXT, lineHeight: 1.6 }}>{desc}</td>
+                  <tr key={i} style={{ borderBottom: `1px solid ${T.border}` }}>
+                    <td style={{
+                      padding: '12px 14px 12px 0', fontWeight: 600, color: T.text,
+                      fontSize: 12, whiteSpace: 'nowrap', verticalAlign: 'top', width: 90,
+                    }}>{term}</td>
+                    <td style={{ padding: '12px 0', color: T.textMedium, lineHeight: 1.6 }}>{desc}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>Validation status</div>
-            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7 }}>
-              We do <strong style={{ color: BRIGHT }}>not</strong> have stored historical
-              odds, so a real backtest isn't possible on day one. Odds are logged from
-              day one to build our own dataset; the ML training infrastructure is built
-              but stays dormant until ~60 days of logged odds. <strong style={{ color: ORANGE }}>Paper-trade
-              for at least 60 days before real money</strong>; gates require positive CLV
-              (closing line value) and predicted-vs-actual HR rate within 2pp across deciles.
-            </div>
+          <div style={{ marginBottom: 22, fontSize: 12, color: T.textMedium, lineHeight: 1.7 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: T.text, marginBottom: 8 }}>Validation</div>
+            We do not have stored historical odds, so a real backtest isn't possible
+            on day one. Odds are logged from day one to build our own dataset; the ML
+            training infrastructure stays dormant until ~60 days of logged odds.
+            Paper-trade for at least 60 days before real money; gates require positive
+            CLV and predicted-vs-actual HR rate within 2pp across deciles.
           </div>
 
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: BRIGHT, marginBottom: 8 }}>Data hygiene</div>
-            <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.7 }}>
-              No median-fill for missing Statcast features — batters with insufficient
-              track record are <em>skipped</em> and logged separately, not imputed.
-              No synthetic odds. No end-of-season aggregates leaking into training. Park
-              factors are handedness-specific and computed from real Statcast data only.
-            </div>
+          <div style={{ fontSize: 12, color: T.textMedium, lineHeight: 1.7 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: T.text, marginBottom: 8 }}>Data hygiene</div>
+            No median-fill for missing Statcast features — batters with insufficient
+            track record are skipped and logged separately, not imputed. No synthetic
+            odds. No end-of-season aggregates leaking into training. Park factors are
+            handedness-specific and computed from real Statcast data only.
           </div>
         </div>
       )}
@@ -302,79 +297,73 @@ function Methodology({ data }) {
 
 export default function Home() {
   const picks = picksData?.picks ?? []
-  const asOf = picksData?.as_of_date ?? '---'
+  const asOf = picksData?.as_of_date ?? '—'
   const generatedAt = picksData?.generated_at
-  const modelVersion = picksData?.model_version ?? '---'
+  const modelVersion = picksData?.model_version ?? '—'
   const evThreshold = picksData?.ev_threshold_pct ?? 25
   const skippedCount = picksData?.skipped_count ?? 0
-  const skippedRef = picksData?.skipped_reference
 
   const lowConfidence = picks.filter(p => p.low_confidence).length
   const breakouts = picks.filter(p => (p.breakout_score ?? 0) >= 0.10).length
 
   let generatedLocal = ''
   if (generatedAt) {
-    try {
-      generatedLocal = new Date(generatedAt).toLocaleString()
-    } catch { /* swallow */ }
+    try { generatedLocal = new Date(generatedAt).toLocaleString() } catch { /* swallow */ }
   }
 
   return (
     <>
       <Head>
-        <title>HR Picks — V7</title>
+        <title>HR Picks</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
       </Head>
 
+      <style jsx global>{`
+        html, body { margin: 0; padding: 0; background: ${T.bg}; }
+        a:hover { text-decoration: underline; }
+      `}</style>
+
       <div style={{
-        minHeight: '100vh', background: BG, color: TEXT,
-        fontFamily: SANS, padding: '24px 16px',
-        maxWidth: 1100, margin: '0 auto',
+        minHeight: '100vh', background: T.bg, color: T.text,
+        fontFamily: FONT, padding: '40px 24px',
+        maxWidth: 1080, margin: '0 auto',
       }}>
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 28, fontWeight: 800, color: BRIGHT, letterSpacing: -1 }}>HR Picks</span>
-            <span style={{
-              fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4,
-              background: 'rgba(168,85,247,0.12)', color: PURPLE, letterSpacing: 0.6,
-              fontFamily: MONO,
-            }}>V7</span>
+        {/* Header — site title + Tracker link, plain text. */}
+        <div style={{ marginBottom: 36 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 22, fontWeight: 700, color: T.text, letterSpacing: -0.4 }}>
+              HR Picks
+            </span>
             <Link href="/tracker" style={{
-              fontSize: 11, fontFamily: MONO, color: BLUE,
-              textDecoration: 'none', padding: '4px 10px', borderRadius: 4,
-              background: 'rgba(59,130,246,0.08)', border: `1px solid rgba(59,130,246,0.18)`,
-            }}>Tracker →</Link>
+              fontSize: 14, color: T.textMedium, textDecoration: 'none',
+            }}>Tracker</Link>
           </div>
-          <div style={{ fontSize: 11, color: MUTED, fontFamily: MONO }}>
+          <div style={{ fontSize: 12, color: T.textLight, marginTop: 8 }}>
             {modelVersion} · As of {asOf} · EV threshold {evThreshold}%
             {generatedLocal && ` · Generated ${generatedLocal}`}
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: 10, marginBottom: 28, flexWrap: 'wrap' }}>
+        {/* Stat row — bordered cards, white background, dark numbers. */}
+        <div style={{ display: 'flex', gap: 14, marginBottom: 36, flexWrap: 'wrap' }}>
           <StatCard
-            label="Picks Today"
-            value={`${picks.length}`}
-            color={picks.length > 0 ? BLUE : MUTED}
+            label="Picks today"
+            value={picks.length}
             sub={picks.length === 0 ? 'no picks above EV threshold' : `≥ ${evThreshold}% EV`}
           />
           <StatCard
-            label="Skipped Batters"
-            value={`${skippedCount}`}
-            color={skippedCount > 0 ? ORANGE : MUTED}
-            sub={skippedRef ? `see ${skippedRef.split('/').pop()}` : 'no skips logged'}
+            label="Skipped batters"
+            value={skippedCount}
+            sub={skippedCount > 0 ? 'see skipped log' : 'no skips logged'}
           />
           <StatCard
-            label="Low-Confidence"
-            value={`${lowConfidence}`}
-            color={lowConfidence > 0 ? ORANGE : MUTED}
+            label="Low-confidence"
+            value={lowConfidence}
             sub="prior-year only"
           />
           <StatCard
-            label="Breakout Tagged"
-            value={`${breakouts}`}
-            color={breakouts > 0 ? PURPLE : MUTED}
+            label="Breakout tagged"
+            value={breakouts}
             sub="score ≥ 0.10"
           />
         </div>
@@ -383,15 +372,14 @@ export default function Home() {
 
         <PicksTable picks={picks} />
 
+        {/* Footer */}
         <div style={{
-          marginTop: 32, padding: '14px 0', borderTop: `1px solid ${BORDER}`,
-          fontSize: 10, color: MUTED, lineHeight: 1.7, fontFamily: MONO,
+          marginTop: 48, paddingTop: 20, borderTop: `1px solid ${T.border}`,
+          fontSize: 11, color: T.textLight, lineHeight: 1.7,
         }}>
           Odds: FanDuel + DraftKings (best-of) via The Odds API. De-vigged when both
-          books quote both sides.<br />
-          V7 status: empirical-Bayes baseline. Paper-trade gate: 60+ days. ML model
-          dormant until enough logged odds.<br />
-          Always verify the current price on the listed book before placing a bet — lines move.
+          books quote both sides. Paper-trade gate: 60+ days. Always verify the
+          current price on the listed book before placing a bet — lines move.
         </div>
       </div>
     </>
