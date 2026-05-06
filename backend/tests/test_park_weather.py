@@ -115,6 +115,69 @@ def test_select_hour_floors_to_game_hour():
     assert wx.temperature_f == 70.0
 
 
+def test_get_game_weather_falls_back_to_neutral_when_open_meteo_fails(tmp_path, monkeypatch):
+    """If Open-Meteo errors out, we DON'T crash the cron — we return neutral
+    weather (70F, no wind) and keep going. A single park's API failure
+    shouldn't kill 100+ batter projections."""
+    import requests as _requests
+    from src.features import park_weather as pw_mod
+
+    def _boom(url, params=None, timeout=None):
+        raise _requests.ConnectionError("simulated DNS failure")
+
+    monkeypatch.setattr(pw_mod, "WEATHER_CACHE_DIR", tmp_path / "weather")
+    monkeypatch.setattr(pw_mod.requests, "get", _boom)
+    # Disable retry sleep so the test is fast.
+    monkeypatch.setattr(pw_mod, "OPEN_METEO_MAX_RETRIES", 1)
+    monkeypatch.setattr(pw_mod, "OPEN_METEO_BACKOFF_S", 0)
+
+    wx = pw_mod.get_game_weather(
+        "NYY", datetime(2026, 5, 6, 19, 5, tzinfo=timezone.utc),
+        use_cache=False,
+    )
+    assert wx.temperature_f == 70.0
+    assert wx.wind_speed_mph == 0.0
+    assert wx.is_indoor is False
+
+
+def test_open_meteo_retries_on_transient_failure(tmp_path, monkeypatch):
+    """First call fails, second succeeds → we use the second response."""
+    import requests as _requests
+    from unittest.mock import MagicMock
+    from src.features import park_weather as pw_mod
+
+    call_count = {"n": 0}
+    good_response = MagicMock()
+    good_response.json.return_value = {
+        "utc_offset_seconds": -14400,
+        "hourly": {
+            "time": ["2026-05-06T19:00"],
+            "temperature_2m": [78.0],
+            "wind_speed_10m": [10.0],
+            "wind_direction_10m": [180.0],
+            "precipitation": [0.0],
+        },
+    }
+    good_response.raise_for_status = lambda: None
+
+    def _flaky(url, params=None, timeout=None):
+        call_count["n"] += 1
+        if call_count["n"] == 1:
+            raise _requests.Timeout("transient")
+        return good_response
+
+    monkeypatch.setattr(pw_mod, "WEATHER_CACHE_DIR", tmp_path / "weather")
+    monkeypatch.setattr(pw_mod.requests, "get", _flaky)
+    monkeypatch.setattr(pw_mod, "OPEN_METEO_BACKOFF_S", 0)   # no test sleep
+
+    wx = pw_mod.get_game_weather(
+        "NYY", datetime(2026, 5, 6, 23, 5, tzinfo=timezone.utc),
+        use_cache=False,
+    )
+    assert call_count["n"] == 2                 # one retry
+    assert wx.temperature_f == 78.0             # second response delivered
+
+
 def test_select_hour_works_across_dst_offsets():
     """West-coast park (UTC-7 in PDT) should still map correctly."""
     payload = _meteo_payload(

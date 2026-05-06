@@ -227,15 +227,42 @@ def get_game_weather(
         with open(cache_path, "r", encoding="utf-8") as f:
             payload = json.load(f)
     else:
-        payload = _fetch_open_meteo(info["lat"], info["lon"], game_datetime.date())
-        with open(cache_path, "w", encoding="utf-8") as f:
-            json.dump(payload, f)
+        try:
+            payload = _fetch_open_meteo(info["lat"], info["lon"], game_datetime.date())
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(payload, f)
+        except Exception as e:    # noqa: BLE001
+            # Open-Meteo unreachable after retries — fall back to neutral
+            # weather rather than crashing the entire daily cron. A single
+            # park's missing weather shouldn't kill 100+ batter projections.
+            logger.error(
+                "Open-Meteo failed for park=%s; falling back to neutral weather "
+                "(70F, no wind). Error: %s: %s",
+                park_code, type(e).__name__, e,
+            )
+            return GameWeather(
+                park=park_code, game_datetime=game_datetime,
+                temperature_f=70.0, wind_speed_mph=0.0,
+                wind_direction_deg=0.0, precipitation_in=0.0,
+                is_indoor=False,
+            )
 
     return _select_hour(payload, park_code, game_datetime)
 
 
+OPEN_METEO_TIMEOUT_S = 30          # was 15 — CI runners occasionally see 15s+ TLS handshakes
+OPEN_METEO_MAX_RETRIES = 3         # bump to 3 with backoff so transient timeouts don't kill the cron
+OPEN_METEO_BACKOFF_S = 2           # 2, 4, 8 seconds between retries
+
+
 def _fetch_open_meteo(lat: float, lon: float, day: date) -> dict:
-    """Pull hourly forecast for the given day. Choose forecast vs archive by date."""
+    """Pull hourly forecast for the given day. Choose forecast vs archive by date.
+
+    Retries on timeouts / transient network errors with exponential backoff —
+    a single read-timeout used to take the entire daily cron down (CI runners
+    occasionally see slow TLS handshakes to api.open-meteo.com).
+    """
+    import time as _time
     today = date.today()
     if day >= today:
         url = OPEN_METEO_FORECAST
@@ -252,9 +279,27 @@ def _fetch_open_meteo(lat: float, lon: float, day: date) -> dict:
         "end_date": day.isoformat(),
         "timezone": "auto",
     }
-    resp = requests.get(url, params=params, timeout=15)
-    resp.raise_for_status()
-    return resp.json()
+    last_err: Exception | None = None
+    for attempt in range(1, OPEN_METEO_MAX_RETRIES + 1):
+        try:
+            resp = requests.get(url, params=params, timeout=OPEN_METEO_TIMEOUT_S)
+            resp.raise_for_status()
+            return resp.json()
+        except (requests.Timeout, requests.ConnectionError, requests.HTTPError) as e:
+            last_err = e
+            if attempt < OPEN_METEO_MAX_RETRIES:
+                sleep_s = OPEN_METEO_BACKOFF_S * (2 ** (attempt - 1))
+                logger.warning(
+                    "Open-Meteo attempt %d/%d failed (%s: %s); retrying in %ds",
+                    attempt, OPEN_METEO_MAX_RETRIES, type(e).__name__, e, sleep_s,
+                )
+                _time.sleep(sleep_s)
+            else:
+                logger.error(
+                    "Open-Meteo gave up after %d attempts; raising %s",
+                    OPEN_METEO_MAX_RETRIES, type(e).__name__,
+                )
+    raise last_err  # type: ignore[misc]
 
 
 def _select_hour(payload: dict, park_code: str, game_datetime: datetime) -> GameWeather:

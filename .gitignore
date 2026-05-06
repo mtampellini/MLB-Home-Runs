@@ -17,7 +17,11 @@ venv/
 
 # Backend caches — regeneratable, do NOT commit.
 backend/data/raw/
-backend/data/processed/
+# Use `processed/*` (not `processed/`) so a `!file` exception below can
+# unignore specific files. With a bare `processed/` rule git ignores the
+# entire directory and SILENTLY overrides any `!file` exceptions inside —
+# which is how park_factors.parquet failed to ship to CI on first deploy.
+backend/data/processed/*
 # EXCEPT: park_factors.parquet is small (~5KB) and expensive to rebuild
 # (~20 min of Statcast pulls), so we commit it explicitly.
 !backend/data/processed/park_factors.parquet
