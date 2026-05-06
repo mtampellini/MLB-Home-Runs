@@ -262,7 +262,17 @@ def _select_hour(payload: dict, park_code: str, game_datetime: datetime) -> Game
     times = hourly.get("time", [])
     if not times:
         raise ValueError(f"no hourly weather for park={park_code} day={game_datetime.date()}")
+
+    # MLB Stats API returns commence_time as UTC-aware (e.g. "...Z"). Open-Meteo
+    # with timezone=auto returns naive ISO strings in the park's *local* time.
+    # Normalize: convert target to the park's local clock via utc_offset_seconds,
+    # then strip tz so the comparison is naive↔naive.
     target = game_datetime.replace(minute=0, second=0, microsecond=0)
+    offset_s = int(payload.get("utc_offset_seconds") or 0)
+    if target.tzinfo is not None:
+        from datetime import timedelta as _td, timezone as _tz
+        target = target.astimezone(_tz(_td(seconds=offset_s))).replace(tzinfo=None)
+
     idx = _nearest_index(times, target)
     return GameWeather(
         park=park_code,
@@ -276,6 +286,7 @@ def _select_hour(payload: dict, park_code: str, game_datetime: datetime) -> Game
 
 
 def _nearest_index(iso_times: list[str], target: datetime) -> int:
+    """Both sides expected to be naive datetimes after _select_hour normalizes them."""
     parsed = [datetime.fromisoformat(t) for t in iso_times]
     return int(np.argmin([abs((p - target).total_seconds()) for p in parsed]))
 
