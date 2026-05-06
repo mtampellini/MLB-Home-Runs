@@ -56,7 +56,7 @@ PA_BY_LINEUP_SPOT: dict[int, float] = {
 @dataclass(frozen=True)
 class BaselineConfig:
     league_hr_per_pa: float = LEAGUE_HR_PER_PA_DEFAULT
-    breakout_coefficient: float = 1.0  # additive bump multiplier — tunable
+    breakout_coefficient: float = 1.0  # multiplicative-lift coefficient — tunable
     # Environment scaling — light, conservative defaults.
     temp_baseline_f: float = 70.0
     temp_per_degree: float = 0.01      # +1% per °F above baseline
@@ -67,6 +67,14 @@ class BaselineConfig:
     p_per_pa_clip: tuple[float, float] = (0.001, 0.25)
     # Conversion: pitcher HR/9 → HR/PA. ~9 IP × ~4.3 PA/IP ≈ 38 PA per 9 IP.
     pa_per_9_innings: float = 38.0
+    # Early-season pitcher-factor shrinkage. With small samples (e.g. 30-40 IP
+    # in early May), pitcher_factor is statistically noisy; we Bayesian-shrink
+    # toward 1.0 (neutral) until the pitcher accumulates enough innings to
+    # support a confident factor. Shrinkage fades linearly with IP and
+    # disappears at `pitcher_shrinkage_innings`.
+    #   weight = min(1.0, ip / pitcher_shrinkage_innings)
+    #   shrunken = raw_factor * weight + 1.0 * (1 - weight)
+    pitcher_shrinkage_innings: float = 100.0
 
 
 @dataclass(frozen=True)
@@ -98,6 +106,7 @@ def predict(
     pa_per_game: Optional[float] = None,
     lineup_spot: Optional[int] = None,
     config: BaselineConfig = BaselineConfig(),
+    pitcher_season_ip: float = float("nan"),
 ) -> BaselinePrediction:
     """Empirical-Bayes P(HR ≥ 1) for one batter–pitcher–park–weather combo."""
     # 1. Start from the Bayesian-blended batter rate.
@@ -122,10 +131,20 @@ def predict(
     # 3. Pitcher factor — convert HR/9 to HR/PA on the matched platoon split.
     if _is_nan(pitcher_hr_per_9) or pitcher_hand_split_pa < 50:
         # Sparse split: fall back to neutral pitcher (factor=1.0).
-        pitcher_factor = 1.0
+        pitcher_factor_raw = 1.0
     else:
         pitcher_hr_per_pa = pitcher_hr_per_9 / config.pa_per_9_innings
-        pitcher_factor = pitcher_hr_per_pa / config.league_hr_per_pa
+        pitcher_factor_raw = pitcher_hr_per_pa / config.league_hr_per_pa
+
+    # Bayesian shrinkage on pitcher_factor by season IP. Early-season factors
+    # built on 30-40 IP are statistically noisy; shrink toward 1.0 until the
+    # pitcher accumulates enough innings to support a confident estimate.
+    if _is_nan(pitcher_season_ip) or config.pitcher_shrinkage_innings <= 0:
+        pitcher_factor = pitcher_factor_raw
+        shrinkage_weight = 1.0
+    else:
+        shrinkage_weight = min(1.0, max(0.0, pitcher_season_ip / config.pitcher_shrinkage_innings))
+        pitcher_factor = pitcher_factor_raw * shrinkage_weight + 1.0 * (1.0 - shrinkage_weight)
 
     # 4. Park.
     pf = 1.0 if _is_nan(park_hr_factor) else float(park_hr_factor)

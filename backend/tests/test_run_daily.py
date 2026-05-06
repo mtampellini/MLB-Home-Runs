@@ -399,6 +399,45 @@ def test_run_daily_skips_pick_when_no_book_quotes_alt_market(tmp_layout, monkeyp
     assert report.funnel["matched_alt_market"] == 0
 
 
+def test_primary_excludes_picks_above_max_price(tmp_layout, monkeypatch):
+    """A pick with EV>=25 but best_price > +900 → SECONDARY, not primary."""
+    quotes = [
+        # Long-shot Over (price > +900) with both books quoting alt only.
+        HRPropQuote(event_id="e", home_team="New York Yankees", away_team="Boston Red Sox",
+                    commence_time=datetime(2026, 5, 6, 23, 5),
+                    book="fanduel", batter_name="Aaron Judge",
+                    bet_over_american=1500,
+                    main_over_american=None, main_under_american=None,
+                    last_update=datetime(2026, 5, 6, 19, 0)),
+        HRPropQuote(event_id="e", home_team="New York Yankees", away_team="Boston Red Sox",
+                    commence_time=datetime(2026, 5, 6, 23, 5),
+                    book="draftkings", batter_name="Aaron Judge",
+                    bet_over_american=1400,
+                    main_over_american=None, main_under_american=None,
+                    last_update=datetime(2026, 5, 6, 19, 1)),
+    ]
+    fetch = FetchResult(
+        fetched_at=datetime(2026, 5, 6, 15, 0),
+        quotes=quotes, events=[], requests_remaining=1, requests_used=1,
+        books=("fanduel", "draftkings"),
+        markets="batter_home_runs,batter_home_runs_alternate",
+    )
+    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
+                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
+    report = run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    # Vet provider × +1500 long shot has high EV, but price > +900 → secondary.
+    assert report.picks_count == 0, "long-shot price should NOT enter primary"
+    assert report.secondary_picks_count >= 1, "long-shot should be in secondary"
+    assert report.funnel.get("above_price_cap_pushed_to_secondary", 0) >= 1
+
+
 def test_run_daily_routes_picks_to_primary_or_shadow_by_ev(tmp_layout, monkeypatch):
     """A pick whose EV lands in [10, 25) should go to shadow_picks; >=25 to primary."""
     fetch = _odds_for_one_batter()

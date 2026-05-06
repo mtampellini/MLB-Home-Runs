@@ -68,11 +68,13 @@ MODEL_VERSION = "v7-baseline-0.1.0"
 # "what the model produces" and "what we choose to bet" stays clean.
 EV_THRESHOLD_PCT = 25.0           # primary tier: would-bet floor
 SHADOW_EV_THRESHOLD_PCT = 10.0    # shadow tier: calibration-only floor
-PRIMARY_PICK_LIMIT = 10           # cap top-N by EV for the primary tier;
-                                  # rank 11+ at EV>=25% routes to SECONDARY.
-                                  # Per docs/known_issues.md: empirically-defended
-                                  # range for HR-prop models (5-15/day); revisit
-                                  # after 60d of CLV data.
+PRIMARY_PICK_LIMIT = 10           # cap top-N by edge_pct for the primary tier;
+                                  # rank 11+ at EV>=25% (or above price cap) → SECONDARY.
+PRIMARY_MAX_PRICE = 900           # primary tier ALSO requires best_price <= +900.
+                                  # Above +900 implied prob < 10%; small calibration
+                                  # errors translate to outsized betting losses. Long
+                                  # shots flow to secondary, tracked but not bet.
+                                  # See docs/known_issues.md item #4c.
 
 PICK_LINE = 0.5
 PRIMARY_PICKS_FILENAME = "picks.json"
@@ -358,6 +360,7 @@ def run_daily(
     ev_threshold_pct: float = EV_THRESHOLD_PCT,
     shadow_ev_threshold_pct: float = SHADOW_EV_THRESHOLD_PCT,
     primary_pick_limit: int = PRIMARY_PICK_LIMIT,
+    primary_max_price: int = PRIMARY_MAX_PRICE,
 ) -> DailyReport:
     cutoff_date = cutoff_date or _date.today()
     ctx = AsOfContext(cutoff_date=cutoff_date)
@@ -478,21 +481,45 @@ def run_daily(
                 "best_book": best_book, "best_price": best_price,
             })
 
-    # Pass 2: rank by EV desc, assign tiers (top-N cap on primary).
+    # Pass 2: assign tiers.
+    #   PRIMARY: ev>=25%  AND  best_price <= +900   (top N by EDGE_PCT desc)
+    #   SECONDARY: ev>=25%  AND  (price > +900  OR  rank > N by edge)
+    #   SHADOW: 10% <= ev < 25%
+    # daily_rank is the global rank by EV across ALL candidates, preserved for
+    # post-deploy "did rank-K outperform rank-J" analysis regardless of tier.
     candidates.sort(key=lambda c: c["ev"].ev_pct, reverse=True)
+    for global_rank, c in enumerate(candidates, start=1):
+        c["_daily_rank"] = global_rank
+
+    above_primary_floor = [c for c in candidates if c["ev"].ev_pct >= ev_threshold_pct]
+    primary_eligible = [c for c in above_primary_floor
+                        if c["best_price"] <= primary_max_price]
+    funnel["primary_eligible_after_price_cap"] = len(primary_eligible)
+    funnel["above_price_cap_pushed_to_secondary"] = (
+        len(above_primary_floor) - len(primary_eligible)
+    )
+
+    # Top N by edge_pct for primary.
+    primary_eligible.sort(key=lambda c: c["ev"].edge_pct, reverse=True)
+    primary_chosen = primary_eligible[:primary_pick_limit]
+    primary_chosen_keys = {
+        (c["row"].entry.batter_id, c["row"].entry.game_pk) for c in primary_chosen
+    }
+
     primary_picks: list[dict] = []
     secondary_picks: list[dict] = []
     shadow_picks: list[dict] = []
 
-    for rank, c in enumerate(candidates, start=1):
+    for c in candidates:
+        key = (c["row"].entry.batter_id, c["row"].entry.game_pk)
         if c["ev"].ev_pct >= ev_threshold_pct:
-            if len(primary_picks) < primary_pick_limit:
+            if key in primary_chosen_keys:
                 tier = "primary"
                 funnel["primary_tier"] += 1
             else:
                 tier = "secondary"
                 funnel["secondary_tier"] += 1
-        else:                                   # in [shadow_floor, primary_floor)
+        else:
             tier = "shadow"
             funnel["shadow_tier"] += 1
 
@@ -500,7 +527,7 @@ def run_daily(
             row=c["row"], quotes=c["qs"], market_prob=c["mkt"], ev_result=c["ev"],
             best_book=c["best_book"], best_price=c["best_price"],
             book_prices=c["book_prices"], devig_method=c["devig_method"],
-            tier=tier, daily_rank=rank,
+            tier=tier, daily_rank=c["_daily_rank"],
         )
         if tier == "primary":
             primary_picks.append(pick)
@@ -509,16 +536,23 @@ def run_daily(
         else:
             shadow_picks.append(pick)
 
+    # File ordering: primary by edge_pct desc (the conviction view); the
+    # other tiers by ev_pct desc (the leverage view).
+    primary_picks.sort(key=lambda p: p["edge_pct"], reverse=True)
+    secondary_picks.sort(key=lambda p: p["ev_pct"], reverse=True)
+    shadow_picks.sort(key=lambda p: p["ev_pct"], reverse=True)
+
     logger.info(
-        "EV funnel: preds=%d → matched=%d → main=%d → alt=%d → "
-        "two_way=%d → single_sided=%d → "
-        "primary(>=%.0f%%, top%d)=%d → secondary(>=%.0f%%, rank%d+)=%d → "
-        "shadow(>=%.0f%%)=%d",
+        "EV funnel: preds=%d → matched=%d → alt=%d → devig(2-way=%d, 1-sided=%d) → "
+        "ev>=%.0f%%(pre-cap)=%d → eligible<=+%d=%d → primary(top%d by edge)=%d → "
+        "secondary=%d → shadow(>=%.0f%%)=%d",
         funnel["predictions_kept"], funnel["matched_any_quote"],
-        funnel["matched_main_market"], funnel["matched_alt_market"],
+        funnel["matched_alt_market"],
         funnel["two_way_devig"], funnel["single_sided_devig"],
-        ev_threshold_pct, primary_pick_limit, funnel["primary_tier"],
-        ev_threshold_pct, primary_pick_limit + 1, funnel["secondary_tier"],
+        ev_threshold_pct, funnel["above_primary_floor_pre_cap"],
+        primary_max_price, funnel["primary_eligible_after_price_cap"],
+        primary_pick_limit, funnel["primary_tier"],
+        funnel["secondary_tier"],
         shadow_ev_threshold_pct, funnel["shadow_tier"],
     )
 

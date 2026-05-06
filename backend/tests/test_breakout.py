@@ -232,9 +232,31 @@ def test_keep_30_pa_with_full_prior_year():
     assert d.reason is None
 
 
-def test_keep_60_pa_no_prior_year():
-    # Current sample is sufficient on its own.
+def test_skip_60_pa_no_prior_year_career_too_small():
+    """Post-Felix-Reyes: season=60 + prior=0 = career 60 < 200 → SKIP via
+    LOW_CAREER_PA, even though season ≥ 50 clears the original gate.
+    Statcast metrics aren't trustworthy at 60 career PAs."""
     d = should_skip_batter(season_pa=60, prior_year_pa=0)
+    assert d.skip is True
+    assert d.code == "LOW_CAREER_PA"
+
+
+def test_keep_when_career_pa_clears_the_threshold():
+    """season=100 + prior=110 = 210 → just over 200 → KEEP."""
+    d = should_skip_batter(season_pa=100, prior_year_pa=110)
+    assert d.skip is False
+
+
+def test_skip_when_career_pa_just_under_threshold():
+    """season=100 + prior=90 = 190 → SKIP via LOW_CAREER_PA."""
+    d = should_skip_batter(season_pa=100, prior_year_pa=90)
+    assert d.skip is True
+    assert d.code == "LOW_CAREER_PA"
+
+
+def test_career_pa_threshold_configurable():
+    """Override career_pa_min to keep a 60-PA batter (e.g. for a relaxed mode)."""
+    d = should_skip_batter(season_pa=60, prior_year_pa=0, career_pa_min=50)
     assert d.skip is False
 
 
@@ -348,11 +370,23 @@ def _common_pred_args() -> dict:
     return dict(
         pitcher_hr_per_9=float("nan"),     # forces neutral pitcher_factor=1.0
         pitcher_hand_split_pa=0,
+        pitcher_season_ip=200.0,           # past shrinkage threshold → no pull
         park_hr_factor=1.0,
         temperature_f=70.0,
         wind_out_to_cf_mph=0.0,
         is_indoor=True,
         pa_per_game=4.2,
+    )
+
+
+def _shrinkage_pred_args(*, ip: float, hr_per_9: float, split_pa: int) -> dict:
+    """Args for testing the shrinkage formula end-to-end."""
+    return dict(
+        blended_hr_per_pa=0.040, reliable_breakout=0.0,
+        pitcher_hr_per_9=hr_per_9, pitcher_hand_split_pa=split_pa,
+        pitcher_season_ip=ip,
+        park_hr_factor=1.0, temperature_f=70.0, wind_out_to_cf_mph=0.0,
+        is_indoor=True, pa_per_game=4.2,
     )
 
 
@@ -396,3 +430,51 @@ def test_baseline_components_include_breakout_signal():
     assert "breakout_signal" in p.components
     # Multiplicative form: 1 + lift = 1 + (1.0 × 0.05) = 1.05
     assert p.components["breakout_signal"] == pytest.approx(1.05)
+
+
+# ---------------------------------------------------------------------------
+# Pitcher-factor shrinkage by season IP
+# ---------------------------------------------------------------------------
+
+def test_pitcher_factor_unchanged_at_full_threshold_ip():
+    """At pitcher_shrinkage_innings (default 100), no pull toward neutral."""
+    p = predict(**_shrinkage_pred_args(ip=100.0, hr_per_9=2.0, split_pa=80))
+    # Raw factor = (2.0 / 38) / 0.032 = 1.645. Weight = 1.0 → unchanged.
+    assert p.components["pitcher"] == pytest.approx(1.6447, abs=1e-3)
+
+
+def test_pitcher_factor_pulls_60pct_toward_neutral_at_40_ip():
+    """At 40 IP (40% of 100), shrinkage_weight=0.4 → factor = raw*0.4 + 1.0*0.6."""
+    p = predict(**_shrinkage_pred_args(ip=40.0, hr_per_9=2.0, split_pa=80))
+    # raw = 1.645; shrunken = 1.645 × 0.4 + 1.0 × 0.6 = 0.658 + 0.6 = 1.258
+    assert p.components["pitcher"] == pytest.approx(1.2579, abs=1e-3)
+
+
+def test_pitcher_factor_clamps_at_full_above_threshold():
+    """At 200 IP (past threshold), shrinkage_weight clamps at 1.0 → factor unchanged."""
+    p_at = predict(**_shrinkage_pred_args(ip=100.0, hr_per_9=2.0, split_pa=80))
+    p_above = predict(**_shrinkage_pred_args(ip=200.0, hr_per_9=2.0, split_pa=80))
+    assert p_at.components["pitcher"] == pytest.approx(p_above.components["pitcher"])
+
+
+def test_pitcher_factor_pulled_to_one_at_zero_ip():
+    """0 IP → weight=0 → factor = 1.0 regardless of raw."""
+    p = predict(**_shrinkage_pred_args(ip=0.0, hr_per_9=2.0, split_pa=80))
+    assert p.components["pitcher"] == pytest.approx(1.0)
+
+
+def test_shrinkage_disabled_when_threshold_zero():
+    """Setting pitcher_shrinkage_innings=0 in config disables the dampener."""
+    cfg = BaselineConfig(pitcher_shrinkage_innings=0.0)
+    p = predict(**_shrinkage_pred_args(ip=10.0, hr_per_9=2.0, split_pa=80),
+                config=cfg)
+    # Raw factor full strength: (2.0 / 38) / 0.032 = 1.645
+    assert p.components["pitcher"] == pytest.approx(1.6447, abs=1e-3)
+
+
+def test_shrinkage_neutral_factor_unchanged():
+    """A pitcher who's already league-average (factor=1.0) is unchanged by shrinkage."""
+    # HR/9 such that raw factor = 1.0:  (1.0 × 38) / 38 = 1.0 means hr_per_pa=0.032,
+    # so hr_per_9 = 0.032 × 38 = 1.216
+    p = predict(**_shrinkage_pred_args(ip=20.0, hr_per_9=1.216, split_pa=80))
+    assert p.components["pitcher"] == pytest.approx(1.0, abs=1e-3)
