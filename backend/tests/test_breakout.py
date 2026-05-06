@@ -356,22 +356,32 @@ def _common_pred_args() -> dict:
     )
 
 
-def test_breakout_enters_as_additive_bump_with_coefficient_one():
+def test_breakout_enters_as_multiplicative_lift_with_coefficient_one():
+    """Post-2026-05-06: breakout is a MULTIPLICATIVE lift, not an additive bump.
+    blended × (1 + coefficient × score). Critical: low-skill batter does NOT
+    get a giant bump from a maxed breakout score."""
     base = predict(blended_hr_per_pa=0.040, reliable_breakout=0.0, **_common_pred_args())
     bump = predict(blended_hr_per_pa=0.040, reliable_breakout=0.05, **_common_pred_args())
-    # adjusted_per_pa should be 0.040 (no breakout) and 0.090 (with breakout).
+    # 0.040 × (1 + 0.05) = 0.042 — a +5% lift, NOT a +0.05 absolute bump.
     assert base.adjusted_per_pa == pytest.approx(0.040)
-    assert bump.adjusted_per_pa == pytest.approx(0.090)
-    # And p_hr should rise.
+    assert bump.adjusted_per_pa == pytest.approx(0.042)
     assert bump.p_hr > base.p_hr
 
 
-def test_breakout_coefficient_scales_bump():
+def test_breakout_lift_does_not_explode_low_skill_batters():
+    """The whole point of multiplicative form: a maxed +0.15 breakout on a
+    0.02 batter stays at 0.023, not 0.17."""
+    p = predict(blended_hr_per_pa=0.020, reliable_breakout=0.15, **_common_pred_args())
+    assert p.adjusted_per_pa == pytest.approx(0.020 * 1.15)
+    assert p.adjusted_per_pa < 0.025                     # well clear of the 0.25 ceiling
+
+
+def test_breakout_coefficient_scales_lift():
     cfg_half = BaselineConfig(breakout_coefficient=0.5)
     p = predict(blended_hr_per_pa=0.040, reliable_breakout=0.05,
                 **_common_pred_args(), config=cfg_half)
-    # adjusted = 0.040 + 0.5 * 0.05 = 0.065
-    assert p.adjusted_per_pa == pytest.approx(0.065)
+    # 0.040 × (1 + 0.5 × 0.05) = 0.040 × 1.025 = 0.041
+    assert p.adjusted_per_pa == pytest.approx(0.041)
 
 
 def test_baseline_skips_when_blended_is_nan():
@@ -384,5 +394,5 @@ def test_baseline_skips_when_blended_is_nan():
 def test_baseline_components_include_breakout_signal():
     p = predict(blended_hr_per_pa=0.040, reliable_breakout=0.05, **_common_pred_args())
     assert "breakout_signal" in p.components
-    # multiplicative equivalent: 1 + (0.05 / 0.040) = 2.25
-    assert p.components["breakout_signal"] == pytest.approx(1 + 0.05 / 0.040)
+    # Multiplicative form: 1 + lift = 1 + (1.0 × 0.05) = 1.05
+    assert p.components["breakout_signal"] == pytest.approx(1.05)

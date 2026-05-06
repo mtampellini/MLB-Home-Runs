@@ -31,3 +31,7 @@ backend/data/research/
 # Run logs / scratch
 backend/*.log
 *.log
+
+# backend/picks.json is a workflow intermediate — the cron writes it then
+# copies to repo-root /picks.json (which IS tracked).
+backend/picks.json

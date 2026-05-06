@@ -147,16 +147,15 @@ Field notes:
 - `breakout_score` — reliability-scaled, clipped value from `src/features/breakout.py`.
   Range [-0.15, +0.15]; this is the raw additive bump applied (× `breakout_coefficient`)
   inside the baseline model.
-- `top_3_features` — multiplicative-equivalent factors from `BaselinePrediction.components`,
-  ranked by `abs(value - 1)`. Encoding rules:
-  - `batter_skill`, `pitcher`, `park`, `temperature`, `wind` → straightforward
-    multiplicative factors (e.g. `park: 1.18` = park inflates HR rate by 18%).
-  - **`breakout_signal: 1.14` means the additive breakout bump added 14% to the
-    blended HR rate.** Encoded as `1 + (breakout_bump / blended_hr_per_pa)` where
-    `breakout_bump = breakout_coefficient × reliable_breakout`. So `1.14` ↔ +14% lift,
-    `0.92` ↔ −8% drag. This puts breakout on the same ranking scale as the
-    multiplicative factors (`abs(value - 1)`) so the top-3 selector sees one consistent
-    signal type.
+- `top_3_features` — multiplicative factors from `BaselinePrediction.components`,
+  ranked by `abs(value - 1)`. All values are direct multipliers vs neutral=1.0:
+  - `batter_skill`, `pitcher`, `park`, `temperature`, `wind` → e.g. `park: 1.18`
+    = park inflates HR rate by 18%.
+  - **`breakout_signal`** is now also natively multiplicative (post-2026-05-06
+    change from additive). Encoded as `1 + (breakout_coefficient × reliable_breakout)`.
+    With default coefficient = 1.0 and cap = 0.15, range is `[0.85, 1.15]` —
+    i.e. max ±15% lift on the underlying skill rate. So `1.14` = +14% lift,
+    `0.92` = −8% drag.
 - `low_confidence: true` when blended rate relies entirely on prior year (e.g., player
   hasn't appeared in the current season yet but has a prior-year track record).
 - `trend_signal` — `(barrel_30d - barrel_season) / barrel_season`. Positive = batter

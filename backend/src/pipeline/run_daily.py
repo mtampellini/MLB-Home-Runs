@@ -394,6 +394,13 @@ def main() -> int:
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
+    # Load backend/.env if present (gitignored). Used for ODDS_API_KEY in local
+    # runs. CI workflows pass the secret via env, so load_dotenv is a no-op there.
+    try:
+        from dotenv import load_dotenv  # type: ignore
+        load_dotenv()
+    except ImportError:
+        pass
     report = run_daily()
     print(json.dumps({
         "as_of_date": report.cutoff_date.isoformat(),

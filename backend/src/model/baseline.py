@@ -7,9 +7,9 @@ odds. Simple, inspectable, every factor named. The full ML model is dormant
 Prediction flow (per batter, per game):
 
     1. blended_hr_per_pa  ← Bayesian blend (season + 30d + dynamic prior-year)
-    2. adjusted_per_pa    ← blended_hr_per_pa  +  breakout_coefficient * reliable_breakout
-                            ─────────────────────────────────────────
-                            (additive bump — this is where breakout enters)
+    2. adjusted_per_pa    ← blended_hr_per_pa × (1 + breakout_coefficient × reliable_breakout)
+                            ────────────────────────────────────────────
+                            MULTIPLICATIVE LIFT (was additive — see history below)
     3. pitcher_factor     ← pitcher's HR/PA on the matched platoon split / league HR/PA
     4. matchup_per_pa     ← adjusted_per_pa * pitcher_factor
     5. park_adjusted      ← matchup_per_pa * park_hr_factor   (handedness-specific)
@@ -17,9 +17,23 @@ Prediction flow (per batter, per game):
     7. final_per_pa       ← clip(park_adjusted * env_factor, [p_min, p_max])
     8. p_game             ← 1 - (1 - final_per_pa) ** pa_per_game
 
-`components` is a dict of every multiplicative factor (and breakout's
-multiplicative-equivalent), so run_daily.py can pick the top-3 contributors
-to surface in picks.json under top_3_features.
+`components` is a dict of every multiplicative factor, so run_daily.py can
+pick the top-3 contributors to surface in picks.json under top_3_features.
+
+History — additive → multiplicative breakout (2026-05-06):
+    The original implementation added the breakout score directly to the
+    per-PA rate. With the post-research weight rebalance (barrel weight 15.0)
+    nearly every batter saturated the +0.15 cap, then the additive bump
+    over-amplified the rate for low-skill batters (a +0.15 bump was a 7×
+    lift on a 0.02 rate but only a 1.5× lift on a 0.10 rate). Result: top
+    model probabilities pegged at 70%+ and the per-PA safety clip fired
+    on every top pick.
+
+    Multiplicative form solves it: the score (in [-0.15, +0.15] at default
+    cap and coefficient=1.0) becomes a max ±15% lift on the underlying
+    skill rate. A maxed-out breakout signal can no longer paper over the
+    absence of skill. Cap and coefficient stay at the same numerical
+    values, but their semantic shifted to "lift, not bump."
 """
 
 from __future__ import annotations
@@ -95,9 +109,15 @@ def predict(
             skip_reason="blended_hr_per_pa is NaN (insufficient batter data)",
         )
 
-    # 2. Additive breakout bump.
-    breakout_bump = config.breakout_coefficient * (reliable_breakout if not _is_nan(reliable_breakout) else 0.0)
-    adjusted_per_pa = blended_hr_per_pa + breakout_bump
+    # 2. MULTIPLICATIVE breakout lift (changed from additive on 2026-05-06).
+    # The score is in roughly [-0.15, +0.15] at default cap; with coefficient=1.0
+    # this becomes max ±15% lift on the underlying skill rate. Critical: the
+    # lift cannot paper over the absence of skill — a maxed-out breakout on a
+    # 0.02 batter still only gets 0.023, not 0.17 as in the old additive form.
+    breakout_lift = config.breakout_coefficient * (
+        reliable_breakout if not _is_nan(reliable_breakout) else 0.0
+    )
+    adjusted_per_pa = blended_hr_per_pa * (1.0 + breakout_lift)
 
     # 3. Pitcher factor — convert HR/9 to HR/PA on the matched platoon split.
     if _is_nan(pitcher_hr_per_9) or pitcher_hand_split_pa < 50:
@@ -136,9 +156,8 @@ def predict(
 
     # Components for top-3 feature surfacing. Each value is a multiplicative
     # equivalent vs neutral=1.0; "deviation" = abs(value-1) ranks them.
-    breakout_mult_equiv = (
-        1.0 + (breakout_bump / blended_hr_per_pa) if blended_hr_per_pa > 0 else 1.0
-    )
+    # breakout is now naturally multiplicative — no skill-relative encoding needed.
+    breakout_mult_equiv = 1.0 + breakout_lift
     components = {
         "batter_skill":     blended_hr_per_pa / config.league_hr_per_pa,
         "breakout_signal":  breakout_mult_equiv,
