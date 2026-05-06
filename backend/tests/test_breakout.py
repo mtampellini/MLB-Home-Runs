@@ -22,8 +22,11 @@ from src.features.blend import (
 from src.features.breakout import (
     BreakoutScore,
     DEFAULT_BREAKOUT_CAP,
+    DEFAULT_BREAKOUT_WEIGHTS,
+    RecentFormFlags,
     apply_reliability_and_cap,
     compute_breakout_score,
+    compute_recent_form_flags,
 )
 from src.features.skip_logic import should_skip_batter
 from src.model.baseline import BaselineConfig, predict
@@ -108,46 +111,73 @@ def test_breakout_zero_pa_returns_zero():
 
 
 def test_compute_breakout_score_single_metric_via_barrel_pct():
-    """Single-metric breakout. Default barrel_pct weight = 7.5; delta = 0.02
-    → raw = 7.5 * 0.02 = 0.15 (exactly hits the cap at full reliability)."""
-    current = {"pa": 50, "xwobacon": 0.40, "barrel_pct": 0.10,
-               "hardhit_pct": 0.40, "avg_ev": 90.0}
-    prior = {"pa": 600, "xwobacon": 0.40, "barrel_pct": 0.08,
-             "hardhit_pct": 0.40, "avg_ev": 90.0}
+    """Single-metric breakout. Default barrel_pct weight = 15.0; delta = 0.01
+    → raw = 15.0 * 0.01 = 0.15 (exactly hits cap at full reliability).
+    At PA=50 (reliability 0.5) → score = 0.075."""
+    current = {"pa": 50, "barrel_pct": 0.11, "sweetspot_pct": 0.36,
+               "pull_air_pct": 0.18, "max_ev": 110.0}
+    prior = {"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+             "pull_air_pct": 0.18, "max_ev": 110.0}
     r = compute_breakout_score(current, prior)
     assert r.raw == pytest.approx(0.15)
     assert r.reliability == pytest.approx(0.5)
     assert r.score == pytest.approx(0.075)
 
 
-def test_compute_breakout_score_default_weights_balance_contributions():
-    """Sanity: with default weights, a typical elite YoY delta in EACH metric
-    contributes ~0.15 to raw_breakout — confirming the weights are normalized
-    across the four metrics' very different scales."""
-    # xwobacon delta 0.03 × w=5.0 → 0.15
-    only_xw = compute_breakout_score(
-        current={"pa": 200, "xwobacon": 0.43, "barrel_pct": 0.10,
-                 "hardhit_pct": 0.40, "avg_ev": 90.0},
-        prior_year={"pa": 600, "xwobacon": 0.40, "barrel_pct": 0.10,
-                    "hardhit_pct": 0.40, "avg_ev": 90.0},
+def test_compute_breakout_score_default_weights_post_rebalance():
+    """Sanity check on the rebalanced weights:
+    - barrel_pct (w=15.0) is the primary signal.
+    - sweetspot, pull_air, max_ev all contribute on a similar but smaller scale.
+    Each test isolates ONE metric so we can read its contribution directly."""
+    # barrel delta 0.02 × w=15.0 = 0.30 raw (capped → 0.15 at full reliability).
+    only_barrel = compute_breakout_score(
+        current={"pa": 200, "barrel_pct": 0.12, "sweetspot_pct": 0.36,
+                 "pull_air_pct": 0.18, "max_ev": 110.0},
+        prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+                    "pull_air_pct": 0.18, "max_ev": 110.0},
     )
-    # barrel delta 0.02 × w=7.5 → 0.15
-    only_br = compute_breakout_score(
-        current={"pa": 200, "xwobacon": 0.40, "barrel_pct": 0.12,
-                 "hardhit_pct": 0.40, "avg_ev": 90.0},
-        prior_year={"pa": 600, "xwobacon": 0.40, "barrel_pct": 0.10,
-                    "hardhit_pct": 0.40, "avg_ev": 90.0},
+    # sweetspot delta 0.05 × w=3.0 = 0.15 raw.
+    only_ss = compute_breakout_score(
+        current={"pa": 200, "barrel_pct": 0.10, "sweetspot_pct": 0.41,
+                 "pull_air_pct": 0.18, "max_ev": 110.0},
+        prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+                    "pull_air_pct": 0.18, "max_ev": 110.0},
     )
-    # avg_ev delta 1.0 × w=0.15 → 0.15
+    # pull_air delta 0.03 × w=5.0 = 0.15 raw.
+    only_pa = compute_breakout_score(
+        current={"pa": 200, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+                 "pull_air_pct": 0.21, "max_ev": 110.0},
+        prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+                    "pull_air_pct": 0.18, "max_ev": 110.0},
+    )
+    # max_ev delta 1.5 × w=0.10 = 0.15 raw.
     only_ev = compute_breakout_score(
-        current={"pa": 200, "xwobacon": 0.40, "barrel_pct": 0.10,
-                 "hardhit_pct": 0.40, "avg_ev": 91.0},
-        prior_year={"pa": 600, "xwobacon": 0.40, "barrel_pct": 0.10,
-                    "hardhit_pct": 0.40, "avg_ev": 90.0},
+        current={"pa": 200, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+                 "pull_air_pct": 0.18, "max_ev": 111.5},
+        prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+                    "pull_air_pct": 0.18, "max_ev": 110.0},
     )
-    assert only_xw.raw == pytest.approx(0.15)
-    assert only_br.raw == pytest.approx(0.15)
+    assert only_barrel.raw == pytest.approx(0.30)   # barrel deliberately 2x — it dominates
+    assert only_ss.raw == pytest.approx(0.15)
+    assert only_pa.raw == pytest.approx(0.15)
     assert only_ev.raw == pytest.approx(0.15)
+    # All score-clipped to ±0.15 cap at full reliability.
+    assert only_barrel.score == pytest.approx(0.15)
+    assert only_ss.score == pytest.approx(0.15)
+
+
+def test_compute_breakout_score_old_metrics_now_ignored():
+    """The pre-rebalance metric set {xwobacon, hardhit_pct, avg_ev} is no longer
+    in the default weights. A delta on those should produce zero breakout."""
+    current = {"pa": 200, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+               "pull_air_pct": 0.18, "max_ev": 110.0,
+               "xwobacon": 0.50, "hardhit_pct": 0.55, "avg_ev": 92.0}
+    prior = {"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+             "pull_air_pct": 0.18, "max_ev": 110.0,
+             "xwobacon": 0.40, "hardhit_pct": 0.40, "avg_ev": 89.0}
+    r = compute_breakout_score(current, prior)
+    assert r.raw == pytest.approx(0.0)
+    assert r.score == pytest.approx(0.0)
 
 
 # ---------------------------------------------------------------------------
@@ -155,8 +185,8 @@ def test_compute_breakout_score_default_weights_balance_contributions():
 # ---------------------------------------------------------------------------
 
 def test_breakout_score_returns_zero_when_no_prior_year():
-    current = {"pa": 200, "xwobacon": 0.45, "barrel_pct": 0.15,
-               "hardhit_pct": 0.50, "avg_ev": 92.0}
+    current = {"pa": 200, "barrel_pct": 0.15, "sweetspot_pct": 0.40,
+               "pull_air_pct": 0.20, "max_ev": 112.0}
     r = compute_breakout_score(current, prior_year=None)
     assert r.score == 0.0
     assert r.raw == 0.0
@@ -165,23 +195,24 @@ def test_breakout_score_returns_zero_when_no_prior_year():
 
 
 def test_breakout_score_returns_zero_when_prior_year_empty_dict():
-    current = {"pa": 200, "xwobacon": 0.45, "barrel_pct": 0.15,
-               "hardhit_pct": 0.50, "avg_ev": 92.0}
+    current = {"pa": 200, "barrel_pct": 0.15, "sweetspot_pct": 0.40,
+               "pull_air_pct": 0.20, "max_ev": 112.0}
     r = compute_breakout_score(current, prior_year={})
     assert r.score == 0.0
     assert r.has_prior_year is False
 
 
 def test_breakout_drops_component_with_nan_in_either_side():
-    """If prior xwOBAcon is NaN but other metrics are clean, only those contribute."""
-    current = {"pa": 200, "xwobacon": 0.45, "barrel_pct": 0.10,
-               "hardhit_pct": 0.40, "avg_ev": 90.0}
-    prior = {"pa": 600, "xwobacon": float("nan"), "barrel_pct": 0.10,
-             "hardhit_pct": 0.40, "avg_ev": 90.0}
+    """If prior barrel_pct is NaN, that component contributes 0; others still count."""
+    current = {"pa": 200, "barrel_pct": 0.12, "sweetspot_pct": 0.36,
+               "pull_air_pct": 0.18, "max_ev": 110.0}
+    prior = {"pa": 600, "barrel_pct": float("nan"), "sweetspot_pct": 0.36,
+             "pull_air_pct": 0.18, "max_ev": 110.0}
     r = compute_breakout_score(current, prior)
-    assert r.components["xwobacon"] == 0.0
-    assert r.raw == 0.0
-    assert r.score == 0.0
+    assert r.components["barrel_pct"] == 0.0   # NaN delta → no contribution
+    # Other components also unchanged → total raw == 0
+    assert r.raw == pytest.approx(0.0)
+    assert r.score == pytest.approx(0.0)
 
 
 # ---------------------------------------------------------------------------
@@ -217,6 +248,95 @@ def test_skip_when_both_below_threshold():
     # Tiny prior-year sample (e.g., 10 PA cup of coffee) should NOT save them.
     d = should_skip_batter(season_pa=20, prior_year_pa=10)
     assert d.skip is True
+
+
+# ---------------------------------------------------------------------------
+# 5. Recent-form flags (trend_signal + unstable_recent)
+# ---------------------------------------------------------------------------
+
+def test_recent_form_default_weights_match_spec():
+    """Confirm the post-rebalance default weights are exactly what the
+    2026-05-06 review gate approved."""
+    assert DEFAULT_BREAKOUT_WEIGHTS == {
+        "barrel_pct":     15.0,
+        "sweetspot_pct":   3.0,
+        "pull_air_pct":    5.0,
+        "max_ev":          0.10,
+    }
+
+
+def test_trend_signal_positive_when_recent_higher_than_season():
+    season = {"barrel_pct": 0.10}
+    recent = {"barrel_pct": 0.12}
+    f = compute_recent_form_flags(season, recent)
+    assert f.trend_signal == pytest.approx(0.20)         # +20% vs season
+    assert f.unstable_recent is False                    # 1.2x is below the 1.5x threshold
+
+
+def test_trend_signal_negative_when_cooling_off():
+    season = {"barrel_pct": 0.10}
+    recent = {"barrel_pct": 0.08}
+    f = compute_recent_form_flags(season, recent)
+    assert f.trend_signal == pytest.approx(-0.20)        # -20% vs season
+    assert f.unstable_recent is False
+
+
+def test_unstable_recent_fires_on_high_ratio():
+    """recent / season >= 1.5 → unstable_recent=True."""
+    season = {"barrel_pct": 0.10}
+    recent = {"barrel_pct": 0.16}
+    f = compute_recent_form_flags(season, recent)
+    assert f.trend_signal == pytest.approx(0.60)
+    assert f.unstable_recent is True
+
+
+def test_unstable_recent_fires_on_low_ratio():
+    """recent / season <= 0.5 → unstable_recent=True (cold spell)."""
+    season = {"barrel_pct": 0.10}
+    recent = {"barrel_pct": 0.04}
+    f = compute_recent_form_flags(season, recent)
+    assert f.trend_signal == pytest.approx(-0.60)
+    assert f.unstable_recent is True
+
+
+def test_unstable_recent_off_at_exactly_threshold_just_inside():
+    """1.49x and 0.51x should NOT trigger; the threshold is inclusive at 1.5/0.5."""
+    just_under_high = compute_recent_form_flags(
+        {"barrel_pct": 0.10}, {"barrel_pct": 0.149},
+    )
+    just_above_low = compute_recent_form_flags(
+        {"barrel_pct": 0.10}, {"barrel_pct": 0.051},
+    )
+    assert just_under_high.unstable_recent is False
+    assert just_above_low.unstable_recent is False
+
+
+def test_recent_form_returns_none_trend_when_season_missing():
+    f = compute_recent_form_flags(None, {"barrel_pct": 0.12})
+    assert f.trend_signal is None
+    assert f.unstable_recent is False
+
+
+def test_recent_form_returns_none_trend_when_season_zero():
+    """Avoid division by zero. Cold-storage batter with 0 season barrel rate
+    can't have a meaningful trend signal — return None, don't flag."""
+    f = compute_recent_form_flags({"barrel_pct": 0.0}, {"barrel_pct": 0.10})
+    assert f.trend_signal is None
+    assert f.unstable_recent is False
+
+
+def test_recent_form_returns_none_trend_when_recent_missing():
+    f = compute_recent_form_flags({"barrel_pct": 0.10}, None)
+    assert f.trend_signal is None
+    assert f.unstable_recent is False
+
+
+def test_recent_form_returns_none_trend_when_recent_nan():
+    f = compute_recent_form_flags(
+        {"barrel_pct": 0.10}, {"barrel_pct": float("nan")},
+    )
+    assert f.trend_signal is None
+    assert f.unstable_recent is False
 
 
 # ---------------------------------------------------------------------------

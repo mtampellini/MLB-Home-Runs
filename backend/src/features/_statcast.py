@@ -126,15 +126,17 @@ def compute_batter_metrics(pitches: pd.DataFrame, batter_hand: str | None = None
     else:
         xwobacon = float("nan")
 
-    # Hard-hit% — % BBE with EV >= 95. Also capture avg_ev for breakout detection.
+    # Hard-hit% — % BBE with EV >= 95. Also capture avg_ev and max_ev.
     if bbe_count and "launch_speed" in bbe.columns:
         ev = pd.to_numeric(bbe["launch_speed"], errors="coerce")
         denom = ev.notna().sum()
         hardhit_pct = float((ev >= 95).sum() / denom) if denom else float("nan")
         avg_ev = float(ev.mean()) if denom else float("nan")
+        max_ev = float(ev.max()) if denom else float("nan")
     else:
         hardhit_pct = float("nan")
         avg_ev = float("nan")
+        max_ev = float("nan")
 
     # Sweet-spot LA% — % BBE with launch_angle in [8, 32]
     if bbe_count and "launch_angle" in bbe.columns:
@@ -144,8 +146,9 @@ def compute_batter_metrics(pitches: pd.DataFrame, batter_hand: str | None = None
     else:
         sweet_pct = float("nan")
 
-    # Pull% — handedness-aware spray angle
-    pull_pct = _compute_pull_pct(bbe, batter_hand)
+    # Pull% (all BBE) and Pull-air% (pulled AND in fly-ball/line-drive contact).
+    # Computed together to avoid duplicating the spray-angle math.
+    pull_pct, pull_air_pct = _compute_pull_metrics(bbe, batter_hand)
 
     return {
         "pa": pa_count,
@@ -159,7 +162,9 @@ def compute_batter_metrics(pitches: pd.DataFrame, batter_hand: str | None = None
         "hardhit_pct": hardhit_pct,
         "sweetspot_pct": sweet_pct,
         "pull_pct": pull_pct,
+        "pull_air_pct": pull_air_pct,
         "avg_ev": avg_ev,
+        "max_ev": max_ev,
     }
 
 
@@ -178,30 +183,44 @@ def _manual_barrel_mask(bbe: pd.DataFrame) -> pd.Series:
     return eligible & la.between(la_min, la_max)
 
 
-def _compute_pull_pct(bbe: pd.DataFrame, batter_hand: str | None) -> float:
-    """Spray-angle based pull rate. Threshold: |angle from CF| >= 15° on pull side.
+def _compute_pull_metrics(bbe: pd.DataFrame, batter_hand: str | None) -> tuple[float, float]:
+    """Return (pull_pct, pull_air_pct) — handedness-aware spray-angle based.
+
+    pull_pct:     pulled BBE / total BBE
+    pull_air_pct: pulled AND fly-ball/line-drive BBE / total BBE
+                  ('air' contact, the kind that turns into HRs)
 
     Statcast hc_x/hc_y are pixel-ish coords with home plate near (125.42, 198.27).
-    Angle is measured from CF; negative = LF side, positive = RF side.
-    For RHB, pull = LF (angle < -15). For LHB, pull = RF (angle > 15).
+    Angle measured from CF; negative = LF side, positive = RF side. For RHB,
+    pull = LF (angle < -15). For LHB, pull = RF (angle > 15).
     """
+    nan_pair = (float("nan"), float("nan"))
     if bbe is None or bbe.empty or batter_hand not in ("R", "L"):
-        return float("nan")
+        return nan_pair
     if "hc_x" not in bbe.columns or "hc_y" not in bbe.columns:
-        return float("nan")
+        return nan_pair
     hc_x = pd.to_numeric(bbe["hc_x"], errors="coerce")
     hc_y = pd.to_numeric(bbe["hc_y"], errors="coerce")
     valid = hc_x.notna() & hc_y.notna()
-    if valid.sum() == 0:
-        return float("nan")
+    n_valid = int(valid.sum())
+    if n_valid == 0:
+        return nan_pair
+
     dx = hc_x[valid] - 125.42
     dy = 198.27 - hc_y[valid]
     angle_deg = np.degrees(np.arctan2(dx, dy))
-    if batter_hand == "R":
-        pulled = angle_deg < -15
+    pulled = (angle_deg < -15) if batter_hand == "R" else (angle_deg > 15)
+
+    pull_pct = float(int(pulled.sum()) / n_valid)
+
+    # pull_air_pct: pulled AND in the air (fly_ball / line_drive).
+    if "bb_type" in bbe.columns:
+        air_mask = bbe.loc[valid, "bb_type"].isin({"fly_ball", "line_drive"})
+        pull_air_pct = float(int((pulled & air_mask).sum()) / n_valid)
     else:
-        pulled = angle_deg > 15
-    return float(pulled.sum() / valid.sum())
+        pull_air_pct = float("nan")
+
+    return pull_pct, pull_air_pct
 
 
 # ---------------------------------------------------------------------------

@@ -97,6 +97,19 @@ function PickRow({ pick }) {
             <span style={{ color: PURPLE, background: 'rgba(168,85,247,0.12)', padding: '1px 5px', borderRadius: 3, fontSize: 9 }}
                   title={`breakout_score = ${pick.breakout_score}`}>BO</span>
           )}
+          {pick.unstable_recent && (
+            <span style={{ color: ACCENT_RED, background: 'rgba(239,68,68,0.10)', padding: '1px 5px', borderRadius: 3, fontSize: 9 }}
+                  title="30d barrel rate has diverged from season baseline by >=1.5x or <=0.5x">UR</span>
+          )}
+          {pick.trend_signal != null && Math.abs(pick.trend_signal) >= 0.10 && (
+            <span style={{
+              color: pick.trend_signal > 0 ? ACCENT : ACCENT_RED,
+              background: pick.trend_signal > 0 ? 'rgba(34,197,94,0.10)' : 'rgba(239,68,68,0.08)',
+              padding: '1px 5px', borderRadius: 3, fontSize: 9,
+            }} title={`barrel trend ${pick.trend_signal > 0 ? 'up' : 'down'} ${Math.round(pick.trend_signal * 100)}% vs season`}>
+              {pick.trend_signal > 0 ? '↑' : '↓'}{Math.abs(Math.round(pick.trend_signal * 100))}%
+            </span>
+          )}
         </div>
       </td>
 
@@ -232,7 +245,7 @@ function Methodology({ data }) {
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
               <tbody>
                 {[
-                  ['Batter', 'Hitter being projected. LC = low confidence (no current-season PAs, projection driven by prior year). BO = breakout score ≥ 0.10 (current Statcast meaningfully better than prior year).'],
+                  ['Batter', 'Hitter being projected. Inline badges: LC = low confidence (no current-season PAs, prior year drives projection). BO = breakout score ≥ 0.10 (current Statcast meaningfully better than prior year). UR = unstable_recent (30d barrel rate diverged ≥1.5x or ≤0.5x vs season — visibility-only). ↑/↓ X% = trend_signal (recent barrel rate trending up/down vs season baseline; informational, not used to score).'],
                   ['Park', "Home park. Game time shown below in your local timezone."],
                   ['vs Pitcher', "Opposing starter and throwing hand."],
                   ['Line', "Always 'Over 0.5' — the alternate HR market we bet."],

@@ -1,34 +1,33 @@
-"""Breakout detection: how much current-season Statcast diverges from prior-year.
+"""Breakout detection + recent-form flags.
 
-Targets the model's primary edge: hitters whose underlying metrics have
-meaningfully improved year-over-year, where the books are still pricing them
-on last year's reputation.
+Two related signals consumed by the daily pipeline:
 
-Formula (per spec):
+1. **Breakout score** — how much current-season Statcast diverges from prior
+   year. Targets the model's primary edge: hitters whose underlying metrics
+   have meaningfully improved year-over-year, where books are still pricing
+   them on last year's reputation.
 
-    raw_breakout = w_xwobacon * (curr_xwobacon - prior_xwobacon)
-                 + w_barrel   * (curr_barrel  - prior_barrel)
-                 + w_hardhit  * (curr_hardhit - prior_hardhit)
-                 + w_avg_ev   * (curr_avg_ev  - prior_avg_ev)
+   Formula:
+        raw = sum(w_metric * (current[metric] - prior_year[metric]))
+        reliable_breakout = clip(raw * min(1, current_PA / 100), -CAP, +CAP)
 
-    reliable_breakout = clip(
-        raw_breakout * min(1, current_season_PA / 100),
-        -CAP, +CAP,
-    )
+2. **Recent-form flags** — `trend_signal` and `unstable_recent`. NOT used to
+   filter or score; surfaced in picks.json so the human reviewer can see when
+   a pick is being driven by hot/cold short-term samples vs settled-in skill.
 
-CAP = 0.15.
+DEFAULT WEIGHTS — REBALANCED 2026-05-06.
 
-Default weights (normalized so each metric contributes ~0.15 to raw_breakout
-for a typical elite YoY delta — i.e. a single dominant metric improvement is
-enough to hit the cap, and a fully-broken-out hitter across all four metrics
-sits comfortably above the cap):
+The 2022-2025 holdout feature-importance research showed `barrel_pct_season`
+ranked #1 by both gain AND mean-|SHAP| in LightGBM. Weights now lean into
+barrel as the primary signal:
 
-    xwobacon     5.0   → typical YoY delta ≈ 0.03 → contribution ≈ 0.15
-    barrel_pct   7.5   → typical YoY delta ≈ 0.02 → contribution ≈ 0.15
-    hardhit_pct  5.0   → typical YoY delta ≈ 0.03 → contribution ≈ 0.15
-    avg_ev (mph) 0.15  → typical YoY delta ≈ 1.0  → contribution ≈ 0.15
+    barrel_pct      15.0   primary; typical YoY delta ~0.02 -> raw ~0.30 (cap)
+    sweetspot_pct    3.0   secondary
+    pull_air_pct     5.0   secondary; pulled fly-ball/line-drive contact
+    max_ev (mph)     0.10  secondary; max exit velo
 
-Weights are configurable per call.
+Replaces the prior set {xwobacon, barrel_pct, hardhit_pct, avg_ev}, which
+mixed mid-tier and low-tier features. Weights are configurable per call.
 """
 
 from __future__ import annotations
@@ -39,15 +38,26 @@ from typing import Optional
 
 
 DEFAULT_BREAKOUT_WEIGHTS: dict[str, float] = {
-    "xwobacon":    5.0,
-    "barrel_pct":  7.5,
-    "hardhit_pct": 5.0,
-    "avg_ev":      0.15,
+    "barrel_pct":     15.0,
+    "sweetspot_pct":   3.0,
+    "pull_air_pct":    5.0,
+    "max_ev":          0.10,
 }
 
-DEFAULT_RELIABILITY_PA = 100   # full reliability at this PA count
-DEFAULT_BREAKOUT_CAP = 0.15    # symmetric clip on the final reliable score
+DEFAULT_RELIABILITY_PA = 100        # full reliability at this PA count
+DEFAULT_BREAKOUT_CAP = 0.15         # symmetric clip on the final reliable score
 
+# Recent-form flag thresholds. unstable_recent fires when 30d barrel rate is
+# 1.5x or more, OR 0.5x or less, of season barrel rate. Source: review-gate
+# spec; intentionally wide so the flag highlights only the genuinely-volatile
+# short windows, not normal mid-season noise.
+UNSTABLE_HIGH_RATIO = 1.5
+UNSTABLE_LOW_RATIO  = 0.5
+
+
+# ---------------------------------------------------------------------------
+# Breakout score (current vs prior year)
+# ---------------------------------------------------------------------------
 
 @dataclass(frozen=True)
 class BreakoutScore:
@@ -71,13 +81,13 @@ def compute_breakout_score(
     reliability_pa: int = DEFAULT_RELIABILITY_PA,
     cap: float = DEFAULT_BREAKOUT_CAP,
 ) -> BreakoutScore:
-    """Compute reliability-scaled, capped breakout score.
+    """Reliability-scaled, capped breakout score.
 
     Args:
         current: dict from compute_batter_metrics() for the current season.
         prior_year: dict from compute_batter_metrics() for the prior season.
-            If None or empty → score = 0 (no baseline to compare to).
-        weights: per-metric weights. Defaults to equal 0.25 each.
+            None or empty → score = 0 (no baseline to compare to).
+        weights: per-metric weights. Defaults to DEFAULT_BREAKOUT_WEIGHTS.
         reliability_pa: PA at which we trust the current sample fully.
         cap: symmetric clip applied AFTER reliability scaling.
     """
@@ -133,6 +143,67 @@ def apply_reliability_and_cap(
         return 0.0
     reliability = min(1.0, current_pa / reliability_pa)
     return max(-cap, min(cap, raw * reliability))
+
+
+# ---------------------------------------------------------------------------
+# Recent-form flags (season vs 30d barrel) — surfaced, not scored
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class RecentFormFlags:
+    """Diagnostic flags for season-vs-30d divergence. Surfaced only.
+
+    Attributes:
+      trend_signal:    (recent_barrel - season_barrel) / season_barrel.
+                       Positive → batter barreling more recently than usual.
+                       None when season_barrel is missing/zero.
+      unstable_recent: True when recent/season ratio is >= 1.5 or <= 0.5.
+                       False when either rate is missing or zero.
+    """
+    trend_signal: Optional[float]
+    unstable_recent: bool
+    season_barrel_pct: Optional[float]
+    recent_barrel_pct: Optional[float]
+
+
+def compute_recent_form_flags(
+    season: Optional[dict],
+    recent: Optional[dict],
+    *,
+    metric_key: str = "barrel_pct",
+    high_ratio: float = UNSTABLE_HIGH_RATIO,
+    low_ratio: float = UNSTABLE_LOW_RATIO,
+) -> RecentFormFlags:
+    """Compute trend_signal + unstable_recent from season vs 30d barrel rates.
+
+    Per the 2026-05-06 research observation: `barrel_pct_30d` shows ~zero
+    importance in LightGBM when `barrel_pct_season` is present, because the
+    30d level alone is noisy. The CHANGE between the two carries signal —
+    that's what trend_signal captures. Surfaced for human review; not used
+    to score or filter.
+    """
+    s_val = (season or {}).get(metric_key)
+    r_val = (recent or {}).get(metric_key)
+
+    s_clean = float(s_val) if (s_val is not None and not _is_nan(s_val)) else None
+    r_clean = float(r_val) if (r_val is not None and not _is_nan(r_val)) else None
+
+    if s_clean is None or r_clean is None or s_clean <= 0:
+        return RecentFormFlags(
+            trend_signal=None, unstable_recent=False,
+            season_barrel_pct=s_clean, recent_barrel_pct=r_clean,
+        )
+
+    trend = (r_clean - s_clean) / s_clean
+    ratio = r_clean / s_clean
+    unstable = ratio >= high_ratio or ratio <= low_ratio
+
+    return RecentFormFlags(
+        trend_signal=trend,
+        unstable_recent=unstable,
+        season_barrel_pct=s_clean,
+        recent_barrel_pct=r_clean,
+    )
 
 
 def _is_nan(x) -> bool:

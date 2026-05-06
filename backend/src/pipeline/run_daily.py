@@ -159,6 +159,14 @@ def _assemble_pick(
         "breakout_score": round(row.breakout.score if row.breakout else 0.0, 4),
         "low_confidence": bool(row.low_confidence),
 
+        # Recent-form diagnostics — surfaced for human review only, not scored.
+        "trend_signal": (
+            round(row.recent_form.trend_signal, 4)
+            if row.recent_form and row.recent_form.trend_signal is not None
+            else None
+        ),
+        "unstable_recent": bool(row.recent_form.unstable_recent) if row.recent_form else False,
+
         "top_3_features": [
             {
                 "name": item["name"],

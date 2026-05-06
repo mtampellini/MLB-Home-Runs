@@ -27,7 +27,12 @@ from src.backtest.as_of_context import AsOfContext
 from src.features.batter_recent import batter_recent_features
 from src.features.batter_season import batter_season_features
 from src.features.blend import BlendResult, blend_features
-from src.features.breakout import BreakoutScore, compute_breakout_score
+from src.features.breakout import (
+    BreakoutScore,
+    RecentFormFlags,
+    compute_breakout_score,
+    compute_recent_form_flags,
+)
 from src.features.park_weather import park_weather_features
 from src.features.pitcher import pitcher_features
 from src.features.skip_logic import should_skip_batter
@@ -65,6 +70,7 @@ class PredictionRow:
     skip_code: Optional[str]
     prediction: Optional[BaselinePrediction] = None
     breakout: Optional[BreakoutScore] = None
+    recent_form: Optional[RecentFormFlags] = None     # surfaced in picks.json
     batter_blend: Optional[BlendResult] = None
     pitcher_blend: Optional[BlendResult] = None
     low_confidence: bool = False        # True when prior-year fully drives the prediction
@@ -194,6 +200,9 @@ def _predict_entry(
         **bk_kwargs,
     )
 
+    # ---- Recent-form flags (surfaced in picks.json, NOT used to score) ----
+    recent_form = compute_recent_form_flags(season, recent)
+
     # ---- Run the baseline -------------------------------------------------
     pred = predict(
         blended_hr_per_pa=batter_blend.rate,
@@ -218,6 +227,7 @@ def _predict_entry(
         skip_code="MODEL_SKIP" if pred.skipped else None,
         prediction=pred,
         breakout=breakout,
+        recent_form=recent_form,
         batter_blend=batter_blend,
         pitcher_blend=pitcher_blend,
         low_confidence=low_confidence,

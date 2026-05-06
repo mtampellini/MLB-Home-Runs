@@ -29,12 +29,15 @@ VET_SEASON = {
     "pa": 200, "ab": 175, "hr": 12, "bbe": 130,
     "hr_per_pa": 0.060, "iso": 0.250,
     "barrel_pct": 0.14, "xwobacon": 0.46, "hardhit_pct": 0.50,
-    "sweetspot_pct": 0.38, "pull_pct": 0.42, "avg_ev": 92.0,
+    "sweetspot_pct": 0.38, "pull_pct": 0.42, "pull_air_pct": 0.22,
+    "avg_ev": 92.0, "max_ev": 113.0,
     "scope": "season",
 }
 VET_RECENT = {**VET_SEASON, "pa": 60, "hr": 5, "hr_per_pa": 0.083, "scope": "last_30d"}
 VET_PRIOR = {**VET_SEASON, "pa": 600, "hr": 30, "hr_per_pa": 0.050,
-             "barrel_pct": 0.10, "xwobacon": 0.42, "hardhit_pct": 0.45, "avg_ev": 90.5}
+             "barrel_pct": 0.10, "xwobacon": 0.42, "hardhit_pct": 0.45,
+             "sweetspot_pct": 0.36, "pull_air_pct": 0.18,
+             "avg_ev": 90.5, "max_ev": 110.5}
 
 ROOKIE_SEASON_LOW_PA = {**VET_SEASON, "pa": 30, "hr": 1, "hr_per_pa": 0.033}
 ROOKIE_PRIOR_EMPTY = {"pa": 0}

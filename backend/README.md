@@ -128,6 +128,8 @@ Written by `src/pipeline/run_daily.py` (Phase 5), consumed by the Vercel front-e
       "blended_hr_per_pa": 0.058,
       "breakout_score": 0.082,
       "low_confidence": false,
+      "trend_signal": 0.18,
+      "unstable_recent": false,
 
       "top_3_features": [
         {"name": "batter_skill",     "value": 1.81, "deviation": 0.81},
@@ -157,6 +159,14 @@ Field notes:
     signal type.
 - `low_confidence: true` when blended rate relies entirely on prior year (e.g., player
   hasn't appeared in the current season yet but has a prior-year track record).
+- `trend_signal` — `(barrel_30d - barrel_season) / barrel_season`. Positive = batter
+  barreling more recently than usual baseline; negative = cooling off. **Surfaced for
+  human review only — NOT used to score or filter picks.** `null` when season barrel
+  rate is missing or zero.
+- `unstable_recent: true` when `barrel_30d / barrel_season` ≥ 1.5 OR ≤ 0.5 — i.e. the
+  recent window has diverged wildly from the season baseline. Visibility-only flag;
+  picks still surface, just look at them with extra skepticism. Goes false when either
+  rate is missing or zero.
 - `skipped_count` — batters dropped by skip_logic; full list in the referenced file.
 
 ## Setup
