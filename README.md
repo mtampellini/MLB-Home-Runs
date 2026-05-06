@@ -1,70 +1,62 @@
-# HR Picks
+# HR Picks — V7
 
-MLB Home Run prop betting model. Walk-forward validated over 5 months (May-Sep 2025), profitable every month.
+MLB home run prop betting model + front-end. Single repo, single deploy.
 
-## Setup
+```
+/                       <- Next.js root, deployed to Vercel
+├── src/pages/index.js  <- the picks page; imports ../../picks.json
+├── picks.json          <- written by the daily cron, picked up at build time
+├── backend/            <- V7 Python pipeline (model, odds, settle, tracker)
+│   ├── src/            <- all production code
+│   ├── tests/          <- pytest suite (163 tests)
+│   ├── scripts/        <- one-off utilities (e.g. precompute_park_factors)
+│   └── data/
+│       ├── park_metadata.json    <- committed
+│       ├── odds/                 <- daily snapshots, committed (this IS our dataset)
+│       ├── processed/
+│       │   └── park_factors.parquet  <- committed (precomputed once)
+│       └── raw/                  <- gitignored Statcast caches
+└── .github/workflows/
+    ├── daily_picks.yml      <- 11am ET cron, runs run_daily.py, commits picks.json
+    └── settle_results.yml   <- next-morning cron, settles + updates tracker
+```
 
-1. **Clone and install:**
-```bash
-git clone <your-repo>
-cd hr-picks-app
+The full V7 architecture (8 build phases, validation gates, the no-historical-odds
+constraint, data-hygiene rules) is documented in `backend/README.md`.
+
+## Local development
+
+```powershell
+# Backend (Python 3.11+):
+cd backend
+pip install -e ".[dev]"
+pytest tests/                    # 163 tests, all should pass
+python -m src.pipeline.run_daily # generates picks.json + dated artifacts
+cp picks.json ../picks.json      # what the cron does in CI
+
+# Front-end (Node 18+):
+cd ..
 npm install
+npm run dev                      # http://localhost:3000
 ```
 
-2. **Deploy to Vercel:**
-   - Push to GitHub
-   - Connect repo in Vercel dashboard
-   - It auto-deploys on every push
+## Cron schedule (UTC)
 
-3. **Get odds API key:**
-   - Sign up at https://the-odds-api.com (free tier = 500 req/month)
-   - Set env variable: `export ODDS_API_KEY=your_key`
+| Workflow | Schedule | What it does |
+|---|---|---|
+| `daily_picks.yml` | `0 15 * * *` (11am ET EDT, 10am ET EST) | Pulls slate + odds, runs baseline, writes `picks.json` to repo root, commits. Vercel auto-deploys. |
+| `settle_results.yml` | `0 14 * * *` (10am ET EDT, 9am ET EST) | Pulls yesterday's box scores, marks each pick W/L, updates `backend/data/processed/tracker.json`. |
 
-4. **Model files** should be in `../f5_model/` relative to this app. The publish script references them there.
+Both workflows commit on the cron account; `[ci skip]` in the message prevents
+re-triggering each other.
 
-## Daily Workflow
+## Validation status
 
-### 1. Publish today's picks (after lineups post, ~3-5pm ET)
-```bash
-python scripts/publish_picks.py
-```
-This runs the model, pulls live odds, filters to picks with 10%+ projected ROI, and writes to `src/data/picks.json`.
+V7 is built but **must paper-trade for 60+ days** before any real money — see
+`backend/README.md` → "Validation gates". The ML training infrastructure is
+dormant by design until ~60 days of logged odds accumulate.
 
-### 2. Deploy
-```bash
-git add -A && git commit -m "picks $(date +%Y-%m-%d)" && git push
-```
-Vercel auto-deploys within ~30 seconds.
+## Secrets
 
-### 3. Grade yesterday's results (next morning)
-```bash
-python scripts/grade_results.py
-```
-This checks which batters hit HRs, updates the database, and recalculates cumulative ROI.
-
-### 4. Deploy updated results
-```bash
-git add -A && git commit -m "results $(date -d yesterday +%Y-%m-%d)" && git push
-```
-
-## Model Details
-
-- **Version:** v4 (pitch type matchup + TTO + lineup position)
-- **Training:** 23K+ batter-games from 2025 season
-- **Validation:** Walk-forward, zero data leakage
-- **Backtest:** 5/5 months profitable, +48.4% ROI on top 3% at +500 avg odds
-- **Pick criteria:** Projected ROI >= 10% (model probability vs sportsbook implied probability)
-- **Features:** Barrel%, max EV, bat speed, pitcher HR/PA, pitcher FB rate, park HR factor, altitude, lineup position, times through order, pitch mix
-
-## How Projected ROI Works
-
-```
-projected_roi = (model_prob * payout) - (1 - model_prob)
-
-Example:
-  Model says 22% chance of HR
-  Book offers +400 (pays 4x)
-  ROI = (0.22 * 4.0) - (0.78) = 0.88 - 0.78 = +0.10 = +10% ROI
-```
-
-Only bets where this is >= 10% make the cut.
+Add to the repo's GitHub Actions secrets:
+- `ODDS_API_KEY` — from https://the-odds-api.com

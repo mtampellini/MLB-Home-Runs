@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import picksData from '../data/picks.json'
+// picks.json is written at repo root by the daily_picks GitHub Action.
+import picksData from '../../picks.json'
 
 const ACCENT = '#22c55e'
 const ACCENT_RED = '#ef4444'
@@ -277,41 +278,6 @@ function Methodology({ data }) {
   )
 }
 
-function RefreshButton() {
-  const [status, setStatus] = useState(null)
-
-  const trigger = async () => {
-    setStatus('running')
-    try {
-      const r = await fetch('/api/trigger', { method: 'POST' })
-      const data = await r.json()
-      if (data.success) {
-        setStatus('success')
-        setTimeout(() => setStatus(null), 5000)
-      } else {
-        setStatus('error')
-        setTimeout(() => setStatus(null), 5000)
-      }
-    } catch {
-      setStatus('error')
-      setTimeout(() => setStatus(null), 5000)
-    }
-  }
-
-  const label = status === 'running' ? 'Running...' : status === 'success' ? 'Triggered' : status === 'error' ? 'Error' : 'Refresh Picks'
-  const bg = status === 'success' ? 'rgba(34,197,94,0.15)' : status === 'error' ? 'rgba(239,68,68,0.15)' : 'rgba(59,130,246,0.1)'
-  const color = status === 'success' ? ACCENT : status === 'error' ? ACCENT_RED : BLUE
-
-  return (
-    <button onClick={trigger} disabled={status === 'running'} style={{
-      background: bg, border: `1px solid ${color}33`, borderRadius: 6,
-      color, padding: '6px 14px', fontSize: 11, fontWeight: 600,
-      fontFamily: MONO, cursor: status === 'running' ? 'wait' : 'pointer',
-      letterSpacing: 0.3, opacity: status === 'running' ? 0.6 : 1,
-    }}>{label}</button>
-  )
-}
-
 export default function Home() {
   const picks = picksData?.picks ?? []
   const asOf = picksData?.as_of_date ?? '---'
@@ -352,7 +318,6 @@ export default function Home() {
               background: 'rgba(168,85,247,0.12)', color: PURPLE, letterSpacing: 0.6,
               fontFamily: MONO,
             }}>V7</span>
-            <RefreshButton />
           </div>
           <div style={{ fontSize: 11, color: MUTED, fontFamily: MONO }}>
             {modelVersion} · As of {asOf} · EV threshold {evThreshold}%

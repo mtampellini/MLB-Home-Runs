@@ -1,7 +1,33 @@
+# Next.js / Node
 node_modules/
 .next/
 out/
 .env
 .env.local
+
+# Python
 __pycache__/
 *.pyc
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Backend caches — regeneratable, do NOT commit.
+backend/data/raw/
+backend/data/processed/
+# EXCEPT: park_factors.parquet is small (~5KB) and expensive to rebuild
+# (~20 min of Statcast pulls), so we commit it explicitly.
+!backend/data/processed/park_factors.parquet
+
+# DO commit backend/data/odds/ — those snapshots ARE our dataset.
+# (No ignore for backend/data/odds.)
+
+# Research artifacts (kept local; the chunk cache is GBs)
+backend/data/research/
+
+# Run logs / scratch
+backend/*.log
+*.log
