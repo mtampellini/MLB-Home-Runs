@@ -267,8 +267,14 @@ def settle_all_tiers(
     *,
     client: Optional[MlbStatsClient] = None,
     processed_dir: Path = PROCESSED_DIR,
+    archives_dir: Optional[Path] = None,
 ) -> dict[str, SettlementReport]:
-    """Settle both primary and shadow tiers for one date, sharing the boxscore cache."""
+    """Settle all tiers for one date, sharing the boxscore cache.
+
+    After settlement, also APPENDS results into the daily archive at
+    `data/daily_archives/YYYY-MM-DD.json` so the tracker dashboard can read
+    a single self-describing file per day.
+    """
     client = client or MlbStatsClient()
     box_cache: dict[int, Optional[dict]] = {}
     out: dict[str, SettlementReport] = {}
@@ -281,6 +287,40 @@ def settle_all_tiers(
             client=client, processed_dir=processed_dir,
             tier=tier, box_cache=box_cache,
         )
+
+    # Append settlement to the daily archive (single-file-per-day for the dashboard).
+    if archives_dir is None:
+        archives_dir = processed_dir.parent / "daily_archives"
+    archive_path = archives_dir / f"{cutoff_date.isoformat()}.json"
+    if archive_path.exists() and out:
+        try:
+            with open(archive_path, "r", encoding="utf-8") as f:
+                archive = json.load(f)
+            settlement_block = {
+                "settled_at": datetime.now().astimezone().isoformat(),
+            }
+            for tier, report in out.items():
+                settlement_block[f"{tier}_results"] = [s.__dict__ for s in report.settled]
+                settlement_block[f"{tier}_summary"] = {
+                    "n_picks": report.n_picks,
+                    "n_wins": report.n_wins,
+                    "n_losses": report.n_losses,
+                    "n_voids": report.n_voids,
+                    "units_staked": report.units_staked,
+                    "units_profit": round(report.units_profit, 4),
+                    "roi_pct": round(report.roi_pct, 2),
+                }
+            archive["settlement"] = settlement_block
+            with open(archive_path, "w", encoding="utf-8") as f:
+                json.dump(archive, f, indent=2)
+            logger.info("appended settlement to %s", archive_path)
+        except Exception as e:    # noqa: BLE001
+            logger.warning("could not append settlement to %s: %s: %s",
+                            archive_path, type(e).__name__, e)
+    elif not archive_path.exists():
+        logger.info("no archive at %s — settlement results live in per-tier files only",
+                    archive_path)
+
     return out
 
 

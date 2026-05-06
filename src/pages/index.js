@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState } from 'react'
 // picks.json is written at repo root by the daily_picks GitHub Action.
 import picksData from '../../picks.json'
@@ -108,6 +109,14 @@ function PickRow({ pick }) {
               padding: '1px 5px', borderRadius: 3, fontSize: 9,
             }} title={`barrel trend ${pick.trend_signal > 0 ? 'up' : 'down'} ${Math.round(pick.trend_signal * 100)}% vs season`}>
               {pick.trend_signal > 0 ? '↑' : '↓'}{Math.abs(Math.round(pick.trend_signal * 100))}%
+            </span>
+          )}
+          {pick.stacked && (
+            <span style={{
+              color: YELLOW, background: 'rgba(250,204,21,0.12)',
+              padding: '1px 5px', borderRadius: 3, fontSize: 9,
+            }} title={`Correlated with: ${(pick.stacked_with || []).join(', ')} (same starter)`}>
+              ⛓ STACK
             </span>
           )}
         </div>
@@ -331,6 +340,11 @@ export default function Home() {
               background: 'rgba(168,85,247,0.12)', color: PURPLE, letterSpacing: 0.6,
               fontFamily: MONO,
             }}>V7</span>
+            <Link href="/tracker" style={{
+              fontSize: 11, fontFamily: MONO, color: BLUE,
+              textDecoration: 'none', padding: '4px 10px', borderRadius: 4,
+              background: 'rgba(59,130,246,0.08)', border: `1px solid rgba(59,130,246,0.18)`,
+            }}>Tracker →</Link>
           </div>
           <div style={{ fontSize: 11, color: MUTED, fontFamily: MONO }}>
             {modelVersion} · As of {asOf} · EV threshold {evThreshold}%

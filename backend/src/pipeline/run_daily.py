@@ -80,6 +80,7 @@ PICK_LINE = 0.5
 PRIMARY_PICKS_FILENAME = "picks.json"
 SECONDARY_PICKS_FILENAME = "secondary_picks.json"
 SHADOW_PICKS_FILENAME = "shadow_picks.json"
+DAILY_ARCHIVES_DIR = _DATA_DIR / "daily_archives"
 
 
 # ---------------------------------------------------------------------------
@@ -162,6 +163,103 @@ def _best_bet_prices_by_book(quotes: list[HRPropQuote]) -> dict[str, int]:
     return out
 
 
+
+
+def _annotate_stacked(picks: list[dict]) -> None:
+    """Mark primary picks that share a starting pitcher with another primary pick.
+
+    Same-pitcher primary picks have correlated outcomes (ground out together,
+    HR together) — surfaced here so the human reviewer doesn't bet stacks
+    thinking they're independent. Mutates picks in-place: adds
+        stacked: bool                          (true if 2+ picks share pitcher)
+        stacked_with: list[str]                (other batter names facing same pitcher)
+    """
+    by_pitcher: dict[int, list[dict]] = {}
+    for p in picks:
+        pid = p.get("pitcher_id")
+        if pid is None:
+            continue
+        by_pitcher.setdefault(pid, []).append(p)
+    for pid, group in by_pitcher.items():
+        if len(group) < 2:
+            for p in group:
+                p["stacked"] = False
+                p["stacked_with"] = []
+            continue
+        for p in group:
+            others = [q["batter"] for q in group if q is not p]
+            p["stacked"] = True
+            p["stacked_with"] = others
+
+
+def _write_daily_archive(
+    cutoff_date: _date,
+    primary_picks: list[dict],
+    secondary_picks: list[dict],
+    shadow_picks: list[dict],
+    funnel: dict,
+    slate_meta: dict,
+    rows,
+    league_hr_per_pa: float,
+    output_dir: Path = DAILY_ARCHIVES_DIR,
+) -> Path:
+    """Write a single self-describing per-day file for the tracker dashboard.
+
+    Format (per spec):
+        {
+          date, generated_at, model_version, league_hr_per_pa,
+          funnel: { ...all the counters needed to diagnose weird days... },
+          primary_picks, secondary_picks, shadow_picks,
+          settlement: null   ← appended next morning by settle.py
+        }
+    """
+    skipped_low_data = sum(1 for r in rows if r.skipped and r.skip_code == "LOW_DATA")
+    skipped_low_career_pa = sum(1 for r in rows if r.skipped and r.skip_code == "LOW_CAREER_PA")
+    skipped_other = sum(
+        1 for r in rows
+        if r.skipped and r.skip_code not in ("LOW_DATA", "LOW_CAREER_PA")
+    )
+
+    archive = {
+        "date": cutoff_date.isoformat(),
+        "generated_at": datetime.now().astimezone().isoformat(),
+        "model_version": MODEL_VERSION,
+        "league_hr_per_pa": league_hr_per_pa,
+        "funnel": {
+            # Slate-side
+            "total_slate_games": slate_meta.get("games_total"),
+            "games_excluded_live_or_complete": slate_meta.get("games_excluded_live_or_complete"),
+            "games_pregame": slate_meta.get("games_pregame"),
+            # Predictions
+            "total_predictions": funnel.get("predictions_kept", 0),
+            "skipped_low_data": skipped_low_data,
+            "skipped_career_pa_filter": skipped_low_career_pa,
+            "skipped_other": skipped_other,
+            # Odds matching
+            "matched_in_odds_market": funnel.get("matched_any_quote", 0),
+            "matched_alt_market": funnel.get("matched_alt_market", 0),
+            "matched_main_market": funnel.get("matched_main_market", 0),
+            # Devig
+            "two_way_devig": funnel.get("two_way_devig", 0),
+            "single_sided_devig": funnel.get("single_sided_devig", 0),
+            # Tiering
+            "above_25_ev_pre_cap": funnel.get("above_primary_floor_pre_cap", 0),
+            "eligible_below_900_price_cap": funnel.get("primary_eligible_after_price_cap", 0),
+            "above_price_cap_pushed_to_secondary": funnel.get("above_price_cap_pushed_to_secondary", 0),
+            "primary_count": len(primary_picks),
+            "secondary_count": len(secondary_picks),
+            "shadow_count": len(shadow_picks),
+        },
+        "primary_picks": primary_picks,
+        "secondary_picks": secondary_picks,
+        "shadow_picks": shadow_picks,
+        "settlement": None,        # populated next day by settle.py
+    }
+    output_dir.mkdir(parents=True, exist_ok=True)
+    path = output_dir / f"{cutoff_date.isoformat()}.json"
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(archive, f, indent=2)
+    return path
 
 
 def _devig_inputs_per_book(quotes: list[HRPropQuote]) -> dict:
@@ -542,6 +640,19 @@ def run_daily(
     secondary_picks.sort(key=lambda p: p["ev_pct"], reverse=True)
     shadow_picks.sort(key=lambda p: p["ev_pct"], reverse=True)
 
+    # Add a 1-based RANK WITHIN TIER (by tier's sort metric). The original
+    # daily_rank field stays — that's the cross-tier global rank by EV used
+    # for post-deploy "primary vs secondary" comparison analytics.
+    for i, p in enumerate(primary_picks, start=1):
+        p["tier_rank"] = i
+    for i, p in enumerate(secondary_picks, start=1):
+        p["tier_rank"] = i
+    for i, p in enumerate(shadow_picks, start=1):
+        p["tier_rank"] = i
+
+    # Annotate primary picks with stacked-pitcher correlations.
+    _annotate_stacked(primary_picks)
+
     logger.info(
         "EV funnel: preds=%d → matched=%d → alt=%d → devig(2-way=%d, 1-sided=%d) → "
         "ev>=%.0f%%(pre-cap)=%d → eligible<=+%d=%d → primary(top%d by edge)=%d → "
@@ -647,11 +758,26 @@ def run_daily(
         slate_meta=slate_meta,
     )
 
+    # Daily archive — single self-describing file per day, used by the
+    # tracker dashboard. Settlement gets appended in-place by settle.py
+    # the next morning.
+    archive_path = _write_daily_archive(
+        cutoff_date=cutoff_date,
+        primary_picks=primary_picks,
+        secondary_picks=secondary_picks,
+        shadow_picks=shadow_picks,
+        funnel=funnel,
+        slate_meta=slate_meta,
+        rows=rows,
+        league_hr_per_pa=config.league_hr_per_pa,
+    )
+
     logger.info(
-        "wrote primary=%s (%d picks) + secondary=%s (%d) + shadow=%s (%d)",
+        "wrote primary=%s (%d) + secondary=%s (%d) + shadow=%s (%d) + archive=%s",
         final_picks_path, len(primary_picks),
         final_secondary_path, len(secondary_picks),
         final_shadow_path, len(shadow_picks),
+        archive_path,
     )
 
     return DailyReport(
