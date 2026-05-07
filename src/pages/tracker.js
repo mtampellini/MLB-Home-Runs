@@ -36,7 +36,7 @@ export async function getStaticProps() {
       })
       .filter(Boolean)
       .sort((a, b) => b.date.localeCompare(a.date))
-  } catch { /* directory not present yet — Day 1 case */ }
+  } catch { /* directory not present yet */ }
 
   let tracker = null
   try {
@@ -75,17 +75,63 @@ function fmtGameTime(iso) {
       .replace(' AM', 'am').replace(' PM', 'pm')
   } catch { return '' }
 }
-function summarizeArchive(archive) {
+
+// Combine tracker.json per-tier summaries when "All tiers" is selected.
+function combineTrackerSummaries(...sums) {
+  const valid = sums.filter(Boolean)
+  if (valid.length === 0) return {}
+  const wins = valid.reduce((a, s) => a + (s.wins || 0), 0)
+  const losses = valid.reduce((a, s) => a + (s.losses || 0), 0)
+  const voids = valid.reduce((a, s) => a + (s.voids || 0), 0)
+  const total_picks = valid.reduce((a, s) => a + (s.total_picks || 0), 0)
+  const units_staked = valid.reduce((a, s) => a + (s.units_staked || 0), 0)
+  const units_profit = valid.reduce((a, s) => a + (s.units_profit || 0), 0)
+  const settled = wins + losses
+  const hit_rate = settled > 0 ? wins / settled : null
+  const roi_pct = units_staked > 0 ? (units_profit / units_staked) * 100 : null
+  const totalClvPicks = valid.reduce((a, s) => a + (s.n_picks_with_clv || 0), 0)
+  const avg_clv_pct = totalClvPicks > 0
+    ? valid.reduce((a, s) => a + ((s.avg_clv_pct || 0) * (s.n_picks_with_clv || 0)), 0) / totalClvPicks
+    : null
+  return {
+    wins, losses, voids, total_picks, units_staked, units_profit,
+    hit_rate, roi_pct, avg_clv_pct, n_picks_with_clv: totalClvPicks,
+  }
+}
+
+// Combine per-archive settlement summaries (for day-block headers when
+// tierFilter === 'all'). Each settled pick is 1u stake; voids don't stake.
+function combineSettlementSummaries(...sums) {
+  const valid = sums.filter(Boolean)
+  if (valid.length === 0) return null
+  const n_wins = valid.reduce((a, s) => a + (s.n_wins || 0), 0)
+  const n_losses = valid.reduce((a, s) => a + (s.n_losses || 0), 0)
+  const n_voids = valid.reduce((a, s) => a + (s.n_voids || 0), 0)
+  const units_profit = valid.reduce((a, s) => a + (s.units_profit || 0), 0)
+  const units_staked = n_wins + n_losses
+  const roi_pct = units_staked > 0 ? (units_profit / units_staked) * 100 : null
+  return { n_wins, n_losses, n_voids, units_profit, roi_pct }
+}
+
+function summarizeArchive(archive, tier = 'primary') {
   const funnel = archive.funnel || {}
   const settle = archive.settlement || null
-  const primarySummary = settle?.primary_summary || null
-  const wins = primarySummary?.n_wins ?? null
-  const losses = primarySummary?.n_losses ?? null
-  const voids = primarySummary?.n_voids ?? null
+
+  let summary = null
+  if (settle) {
+    summary = tier === 'all'
+      ? combineSettlementSummaries(
+          settle.primary_summary, settle.secondary_summary, settle.shadow_summary
+        )
+      : (settle[`${tier}_summary`] || null)
+  }
+  const wins = summary?.n_wins ?? null
+  const losses = summary?.n_losses ?? null
+  const voids = summary?.n_voids ?? null
   const settled = (wins ?? 0) + (losses ?? 0)
   const hitRate = settled > 0 ? wins / settled : null
-  const profit = primarySummary?.units_profit ?? null
-  const roiPct = primarySummary?.roi_pct ?? null
+  const profit = summary?.units_profit ?? null
+  const roiPct = summary?.roi_pct ?? null
   return {
     primary_count: funnel.primary_count ?? archive.primary_picks?.length ?? 0,
     secondary_count: funnel.secondary_count ?? archive.secondary_picks?.length ?? 0,
@@ -105,13 +151,16 @@ const CALIBRATION_BUCKETS = [
   { lo: 0.30, hi: 0.40 },
   { lo: 0.40, hi: 0.60 },
 ]
-function buildCalibration(archives) {
+function buildCalibration(archives, tier = 'all') {
+  const tierKeys = tier === 'primary' ? ['primary_results']
+                : tier === 'secondary' ? ['secondary_results']
+                : tier === 'shadow' ? ['shadow_results']
+                : ['primary_results', 'secondary_results', 'shadow_results']
   const allSettled = []
   for (const { data } of archives) {
     const settle = data.settlement
     if (!settle) continue
-    const tiers = ['primary_results', 'secondary_results', 'shadow_results']
-    for (const key of tiers) {
+    for (const key of tierKeys) {
       for (const r of settle[key] || []) {
         if (r.outcome === 'VOID') continue
         allSettled.push({ model_prob: r.model_prob, won: r.outcome === 'W' })
@@ -131,7 +180,6 @@ function buildCalibration(archives) {
 
 // ─── components ────────────────────────────────────────────────────────
 function StatCard({ label, value, sub, tone = 'default' }) {
-  // tone: 'default' | 'positive' | 'negative' | 'muted'
   const valueColor =
     tone === 'positive' ? T.positive
     : tone === 'negative' ? T.negative
@@ -153,7 +201,7 @@ function StatCard({ label, value, sub, tone = 'default' }) {
   )
 }
 
-function PickRow({ pick, settledPick, isPersonal, onTogglePersonal }) {
+function PickRow({ pick, settledPick }) {
   const bp = pick.best_book === 'draftkings' ? pick.dk_odds : pick.fd_odds
   const otherLabel = pick.best_book === 'draftkings' ? 'FD' : 'DK'
   const otherPrice = pick.best_book === 'draftkings' ? pick.fd_odds : pick.dk_odds
@@ -162,7 +210,6 @@ function PickRow({ pick, settledPick, isPersonal, onTogglePersonal }) {
   const evPositive = pick.ev_pct >= 0
   const edgePositive = pick.edge_pct >= 0
 
-  // Quiet meta line: team · hand · #spot · tier · stacked · low conf · unstable
   const tierLabel =
     pick.tier === 'primary' ? 'primary'
     : pick.tier === 'secondary' ? 'secondary'
@@ -190,7 +237,6 @@ function PickRow({ pick, settledPick, isPersonal, onTogglePersonal }) {
     catch { /* clipboard API failed */ }
   }
 
-  // Result cell: W green, L red, VOID gray, pending = pitcher · time in light gray.
   const renderResult = () => {
     if (settledOutcome === 'W') {
       return (
@@ -268,22 +314,6 @@ function PickRow({ pick, settledPick, isPersonal, onTogglePersonal }) {
       </td>
 
       <td style={{ padding: '14px 8px', verticalAlign: 'top', textAlign: 'center' }}>
-        <button onClick={(e) => { e.stopPropagation(); onTogglePersonal && onTogglePersonal() }}
-          style={{
-            background: isPersonal ? T.text : 'transparent',
-            border: `1px solid ${isPersonal ? T.text : T.border}`,
-            borderRadius: 999,
-            color: isPersonal ? '#ffffff' : T.textMedium,
-            fontSize: 11, fontFamily: 'inherit', fontWeight: 500,
-            padding: '4px 12px', cursor: 'pointer', whiteSpace: 'nowrap',
-            letterSpacing: 0,
-          }}
-          title={isPersonal ? 'You bet this' : 'Click if you bet this'}>
-          {isPersonal ? '✓ bet' : 'log bet'}
-        </button>
-      </td>
-
-      <td style={{ padding: '14px 8px', verticalAlign: 'top', textAlign: 'center' }}>
         <button onClick={onShare} style={{
           background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 4,
           color: T.textMedium, fontSize: 11, padding: '4px 10px', cursor: 'pointer',
@@ -294,8 +324,8 @@ function PickRow({ pick, settledPick, isPersonal, onTogglePersonal }) {
   )
 }
 
-function DayBlock({ archive, expanded, onToggle, tierFilter, personalBets, togglePersonal }) {
-  const summary = summarizeArchive(archive.data)
+function DayBlock({ archive, expanded, onToggle, tierFilter }) {
+  const summary = summarizeArchive(archive.data, tierFilter)
   const data = archive.data
 
   const picks = useMemo(() => {
@@ -319,7 +349,6 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, personalBets, toggl
     return map
   }, [data])
 
-  // Header: clean line of date | counts | W-L | ROI. No bg color.
   const profitTone =
     summary.profit == null ? T.textLight
     : summary.profit > 0 ? T.positive
@@ -361,14 +390,14 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, personalBets, toggl
       </button>
       {expanded && (
         <div style={{ padding: '0 0 24px', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, minWidth: 920 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, minWidth: 880 }}>
             <thead>
               <tr style={{ borderBottom: `1px solid ${T.borderStrong}` }}>
                 {[
                   ['#', 'right'], ['Batter', 'left'], ['Pitcher', 'left'],
                   ['Model', 'right'], ['Market', 'right'], ['Edge', 'right'],
                   ['EV', 'right'], ['Odds', 'right'],
-                  ['Result', 'left'], ['Bet', 'center'], ['Share', 'center'],
+                  ['Result', 'left'], ['Share', 'center'],
                 ].map(([h, align]) => (
                   <th key={h} style={{
                     padding: '12px 8px', fontSize: 11, fontWeight: 500,
@@ -380,13 +409,7 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, personalBets, toggl
             <tbody>
               {picks.map(p => {
                 const k = `${p.batter_id}|${p.game_pk || ''}`
-                const personalKey = `${archive.date}|${k}`
-                return (
-                  <PickRow key={k} pick={p}
-                            settledPick={settledByKey[k]}
-                            isPersonal={personalBets[personalKey] === true}
-                            onTogglePersonal={() => togglePersonal(personalKey)} />
-                )
+                return <PickRow key={k} pick={p} settledPick={settledByKey[k]} />
               })}
             </tbody>
           </table>
@@ -396,8 +419,9 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, personalBets, toggl
   )
 }
 
-function CalibrationView({ archives }) {
-  const cal = useMemo(() => buildCalibration(archives), [archives])
+function CalibrationView({ archives, tierFilter }) {
+  const cal = useMemo(() => buildCalibration(archives, tierFilter), [archives, tierFilter])
+  const tierLabel = tierFilter === 'all' ? 'all tiers' : tierFilter
   if (cal.total < CALIBRATION_MIN_PICKS) {
     return (
       <div style={{
@@ -405,7 +429,7 @@ function CalibrationView({ archives }) {
         padding: '24px 26px', color: T.textMedium, fontSize: 13, lineHeight: 1.6,
       }}>
         <div style={{ fontSize: 14, fontWeight: 600, color: T.text, marginBottom: 10 }}>Calibration</div>
-        Need {CALIBRATION_MIN_PICKS}+ settled picks across all tiers for meaningful
+        Need {CALIBRATION_MIN_PICKS}+ settled picks ({tierLabel}) for meaningful
         calibration. Currently <strong style={{ color: T.text, fontWeight: 600 }}>{cal.total}</strong>.
         <div style={{ fontSize: 12, color: T.textLight, marginTop: 10 }}>
           The chart will appear here once we cross the threshold.
@@ -423,7 +447,7 @@ function CalibrationView({ archives }) {
         Calibration
       </div>
       <div style={{ fontSize: 12, color: T.textLight, marginBottom: 18 }}>
-        {cal.total} settled picks · predicted vs actual hit rate per model-prob bucket
+        {cal.total} settled picks ({tierLabel}) · predicted vs actual hit rate per model-prob bucket
       </div>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
         <thead>
@@ -476,28 +500,30 @@ function CalibrationView({ archives }) {
   )
 }
 
-// Filter button — text-only, underline + bold on active.
+// Filter button — text-only. Active state: dark + bold + thick underline.
+// Inactive: light gray (high contrast against active so the click is unmistakable).
 function FilterButton({ active, onClick, children }) {
   return (
     <button onClick={onClick} style={{
       background: 'transparent', border: 'none', padding: '4px 0',
-      color: active ? T.text : T.textMedium,
-      fontWeight: active ? 600 : 400,
+      color: active ? T.text : T.textLight,
+      fontWeight: active ? 700 : 400,
       fontSize: 13, cursor: 'pointer', fontFamily: 'inherit',
       textDecoration: active ? 'underline' : 'none',
-      textUnderlineOffset: 6, textDecorationThickness: 1.5,
+      textUnderlineOffset: 6, textDecorationThickness: 2,
+      transition: 'color 0.1s',
     }}>{children}</button>
   )
 }
 function FilterRow({ label, options, value, onChange }) {
   return (
     <div style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
-      <span style={{ fontSize: 11, color: T.textLight, minWidth: 50,
-                      textTransform: 'uppercase', letterSpacing: 0.6 }}>{label}</span>
-      {options.map(([k, lbl], i) => (
-        <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 18 }}>
-          <FilterButton active={value === k} onClick={() => onChange(k)}>{lbl}</FilterButton>
-        </span>
+      <span style={{
+        fontSize: 11, color: T.textLight, minWidth: 50,
+        textTransform: 'uppercase', letterSpacing: 0.6,
+      }}>{label}</span>
+      {options.map(([k, lbl]) => (
+        <FilterButton key={k} active={value === k} onClick={() => onChange(k)}>{lbl}</FilterButton>
       ))}
     </div>
   )
@@ -512,33 +538,20 @@ export default function Tracker({ archives, tracker }) {
     const newest = archives[0]?.date
     return newest ? { [newest]: true } : {}
   })
-  const [personalBets, setPersonalBets] = useState({})
-
-  // Hydrate localStorage personal bets on mount.
-  useMemo(() => {
-    if (typeof window === 'undefined') return
-    try {
-      const saved = window.localStorage.getItem('hr-picks-personal-bets')
-      if (saved) setPersonalBets(JSON.parse(saved))
-    } catch { /* ignore */ }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  const togglePersonal = (key) => {
-    setPersonalBets(prev => {
-      const next = { ...prev, [key]: !prev[key] }
-      if (typeof window !== 'undefined') {
-        try { window.localStorage.setItem('hr-picks-personal-bets', JSON.stringify(next)) } catch {}
-      }
-      return next
-    })
-  }
 
   // Filter + sort the archive list.
   const filteredArchives = useMemo(() => {
     const today = new Date()
     today.setHours(0, 0, 0, 0)
     let list = archives
-    if (dateFilter === '7d') {
+    if (dateFilter === 'yesterday') {
+      const yest = new Date(today); yest.setDate(yest.getDate() - 1)
+      const y = yest.getFullYear()
+      const m = String(yest.getMonth() + 1).padStart(2, '0')
+      const d = String(yest.getDate()).padStart(2, '0')
+      const yestStr = `${y}-${m}-${d}`
+      list = list.filter(a => a.date === yestStr)
+    } else if (dateFilter === '7d') {
       const cutoff = new Date(today); cutoff.setDate(cutoff.getDate() - 7)
       list = list.filter(a => new Date(a.date) >= cutoff)
     } else if (dateFilter === '30d') {
@@ -548,14 +561,36 @@ export default function Tracker({ archives, tracker }) {
     const sorted = [...list]
     if (sortBy === 'date_desc') sorted.sort((a, b) => b.date.localeCompare(a.date))
     else if (sortBy === 'date_asc') sorted.sort((a, b) => a.date.localeCompare(b.date))
-    else if (sortBy === 'roi') sorted.sort((a, b) => (summarizeArchive(b.data).roiPct ?? -Infinity) - (summarizeArchive(a.data).roiPct ?? -Infinity))
-    else if (sortBy === 'hit_rate') sorted.sort((a, b) => (summarizeArchive(b.data).hitRate ?? -Infinity) - (summarizeArchive(a.data).hitRate ?? -Infinity))
-    else if (sortBy === 'count') sorted.sort((a, b) => summarizeArchive(b.data).primary_count - summarizeArchive(a.data).primary_count)
+    else if (sortBy === 'roi') sorted.sort((a, b) => (summarizeArchive(b.data, tierFilter).roiPct ?? -Infinity) - (summarizeArchive(a.data, tierFilter).roiPct ?? -Infinity))
+    else if (sortBy === 'hit_rate') sorted.sort((a, b) => (summarizeArchive(b.data, tierFilter).hitRate ?? -Infinity) - (summarizeArchive(a.data, tierFilter).hitRate ?? -Infinity))
+    else if (sortBy === 'count') {
+      sorted.sort((a, b) => {
+        const sa = summarizeArchive(a.data, tierFilter)
+        const sb = summarizeArchive(b.data, tierFilter)
+        const ca = tierFilter === 'all'
+          ? sa.primary_count + sa.secondary_count + sa.shadow_count
+          : sa.primary_count
+        const cb = tierFilter === 'all'
+          ? sb.primary_count + sb.secondary_count + sb.shadow_count
+          : sb.primary_count
+        return cb - ca
+      })
+    }
     return sorted
-  }, [archives, dateFilter, sortBy])
+  }, [archives, dateFilter, sortBy, tierFilter])
 
-  const sumP = tracker?.summary_primary || tracker?.summary || {}
-  const totalSettled = (sumP.wins || 0) + (sumP.losses || 0)
+  // Top-level metrics — driven by the tier toggle.
+  const sum = useMemo(() => {
+    if (!tracker) return {}
+    if (tierFilter === 'all') {
+      return combineTrackerSummaries(
+        tracker.summary_primary, tracker.summary_secondary, tracker.summary_shadow
+      )
+    }
+    return tracker.summary_primary || tracker.summary || {}
+  }, [tracker, tierFilter])
+
+  const totalSettled = (sum.wins || 0) + (sum.losses || 0)
   const isFirstWeek = totalSettled === 0
 
   const daysSinceDeploy = (() => {
@@ -564,43 +599,6 @@ export default function Tracker({ archives, tracker }) {
     const today = new Date()
     return Math.max(0, Math.floor((today - first) / (1000 * 60 * 60 * 24)) + 1)
   })()
-
-  const personalPerf = useMemo(() => {
-    let bets = 0, wins = 0, losses = 0, profit = 0
-    for (const { date, data } of archives) {
-      const settle = data.settlement
-      if (!settle) continue
-      const settled = {}
-      for (const key of ['primary_results', 'secondary_results', 'shadow_results']) {
-        for (const r of settle[key] || []) {
-          settled[`${r.batter_id}|${r.game_pk || ''}`] = r
-        }
-      }
-      for (const tierKey of ['primary_picks', 'secondary_picks', 'shadow_picks']) {
-        for (const p of data[tierKey] || []) {
-          const personalKey = `${date}|${p.batter_id}|${p.game_pk || ''}`
-          if (!personalBets[personalKey]) continue
-          const k = `${p.batter_id}|${p.game_pk || ''}`
-          const r = settled[k]
-          if (!r || r.outcome === 'VOID') continue
-          bets++
-          if (r.outcome === 'W') { wins++; profit += r.profit_units }
-          else { losses++; profit -= 1 }
-        }
-      }
-    }
-    const roiPct = bets > 0 ? (profit / bets) * 100 : null
-    return { bets, wins, losses, profit, roiPct }
-  }, [archives, personalBets])
-
-  const stackingMetric = useMemo(() => {
-    let totalDays = archives.length
-    let stackedDays = 0
-    for (const { data } of archives) {
-      if ((data.primary_picks || []).some(p => p.stacked)) stackedDays++
-    }
-    return { totalDays, stackedDays, pct: totalDays > 0 ? stackedDays / totalDays : 0 }
-  }, [archives])
 
   return (
     <>
@@ -619,7 +617,7 @@ export default function Tracker({ archives, tracker }) {
         fontFamily: FONT, padding: '40px 24px',
         maxWidth: 1080, margin: '0 auto',
       }}>
-        {/* Header — minimal. Site title + Tracker label. */}
+        {/* Header */}
         <div style={{ marginBottom: 36 }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, flexWrap: 'wrap' }}>
             <Link href="/" style={{
@@ -633,7 +631,7 @@ export default function Tracker({ archives, tracker }) {
           </div>
         </div>
 
-        {/* Day-1 banner — minimal panel, no colored fill. */}
+        {/* Day-1 banner */}
         {isFirstWeek && (
           <div style={{
             border: `1px solid ${T.border}`, borderRadius: 6,
@@ -645,58 +643,35 @@ export default function Tracker({ archives, tracker }) {
           </div>
         )}
 
-        {/* Big metrics */}
+        {/* Big metrics — driven by tier toggle, assumes 1u flat stake on every pick. */}
         <div style={{ display: 'flex', gap: 14, marginBottom: 28, flexWrap: 'wrap' }}>
           <StatCard
             label="Picks settled"
             value={totalSettled}
-            sub={`${sumP.wins || 0}W–${sumP.losses || 0}L · ${sumP.voids || 0} void`}
+            sub={`${sum.wins || 0}W–${sum.losses || 0}L · ${sum.voids || 0} void`}
             tone={totalSettled > 0 ? 'default' : 'muted'}
           />
           <StatCard
             label="Hit rate"
-            value={totalSettled > 0 ? fmtPct(sumP.hit_rate, 1) : '—'}
+            value={totalSettled > 0 ? fmtPct(sum.hit_rate, 1) : '—'}
             sub={totalSettled > 0 ? null : 'awaiting settlement'}
             tone={totalSettled > 0 ? 'default' : 'muted'}
           />
           <StatCard
             label="ROI"
-            value={totalSettled > 0 ? `${sumP.roi_pct >= 0 ? '+' : ''}${sumP.roi_pct?.toFixed(1)}%` : '—'}
-            sub={totalSettled > 0 ? `${fmtUnits(sumP.units_profit)} on ${sumP.units_staked || 0}u` : null}
-            tone={totalSettled > 0 ? (sumP.roi_pct >= 0 ? 'positive' : 'negative') : 'muted'}
+            value={totalSettled > 0 ? `${sum.roi_pct >= 0 ? '+' : ''}${sum.roi_pct?.toFixed(1)}%` : '—'}
+            sub={totalSettled > 0 ? `${fmtUnits(sum.units_profit)} on ${sum.units_staked || 0}u` : null}
+            tone={totalSettled > 0 ? (sum.roi_pct >= 0 ? 'positive' : 'negative') : 'muted'}
           />
           <StatCard
             label="Avg CLV"
-            value={sumP.avg_clv_pct != null ? `${sumP.avg_clv_pct >= 0 ? '+' : ''}${sumP.avg_clv_pct.toFixed(1)}%` : '—'}
-            sub={sumP.n_picks_with_clv ? `${sumP.n_picks_with_clv} picks` : 'awaiting closing snaps'}
-            tone={sumP.avg_clv_pct != null ? (sumP.avg_clv_pct >= 0 ? 'positive' : 'negative') : 'muted'}
+            value={sum.avg_clv_pct != null ? `${sum.avg_clv_pct >= 0 ? '+' : ''}${sum.avg_clv_pct.toFixed(1)}%` : '—'}
+            sub={sum.n_picks_with_clv ? `${sum.n_picks_with_clv} picks` : 'awaiting closing snaps'}
+            tone={sum.avg_clv_pct != null ? (sum.avg_clv_pct >= 0 ? 'positive' : 'negative') : 'muted'}
           />
         </div>
 
-        {/* Personal-bet card */}
-        {personalPerf.bets > 0 && (
-          <div style={{ display: 'flex', gap: 14, marginBottom: 28, flexWrap: 'wrap' }}>
-            <StatCard
-              label="Your bets"
-              value={personalPerf.bets}
-              sub={`${personalPerf.wins}W–${personalPerf.losses}L`}
-            />
-            <StatCard
-              label="Your ROI"
-              value={personalPerf.roiPct != null ? `${personalPerf.roiPct >= 0 ? '+' : ''}${personalPerf.roiPct.toFixed(1)}%` : '—'}
-              sub={fmtUnits(personalPerf.profit)}
-              tone={personalPerf.roiPct >= 0 ? 'positive' : 'negative'}
-            />
-            <StatCard
-              label="Stacked days"
-              value={`${(stackingMetric.pct * 100).toFixed(0)}%`}
-              sub={`${stackingMetric.stackedDays}/${stackingMetric.totalDays} days`}
-              tone="muted"
-            />
-          </div>
-        )}
-
-        {/* Filters — text-only, underline on active. */}
+        {/* Filters */}
         <div style={{
           padding: '20px 0', marginBottom: 8,
           borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}`,
@@ -705,7 +680,12 @@ export default function Tracker({ archives, tracker }) {
           <FilterRow label="Tier"  value={tierFilter} onChange={setTierFilter}
             options={[['primary', 'Primary only'], ['all', 'All tiers']]} />
           <FilterRow label="Range" value={dateFilter} onChange={setDateFilter}
-            options={[['all', 'All time'], ['30d', '30 days'], ['7d', '7 days']]} />
+            options={[
+              ['all',       'All time'],
+              ['30d',       '30 days'],
+              ['7d',        '7 days'],
+              ['yesterday', 'Yesterday'],
+            ]} />
           <FilterRow label="Sort"  value={sortBy} onChange={setSortBy}
             options={[
               ['date_desc', 'Date (newest)'],
@@ -722,7 +702,7 @@ export default function Tracker({ archives, tracker }) {
             padding: '48px 18px', textAlign: 'center', color: T.textLight, fontSize: 13,
             border: `1px solid ${T.border}`, borderRadius: 6, marginTop: 28,
           }}>
-            No archived days yet. The first cron run will populate this list tomorrow at 11am ET.
+            No archived days match the current filter.
           </div>
         ) : (
           <div style={{ marginTop: 8, marginBottom: 36 }}>
@@ -730,18 +710,15 @@ export default function Tracker({ archives, tracker }) {
               <DayBlock key={a.date} archive={a}
                         expanded={!!expanded[a.date]}
                         onToggle={() => setExpanded(p => ({ ...p, [a.date]: !p[a.date] }))}
-                        tierFilter={tierFilter}
-                        personalBets={personalBets}
-                        togglePersonal={togglePersonal} />
+                        tierFilter={tierFilter} />
             ))}
-            {/* Bottom border to close the last day block */}
             <div style={{ borderTop: `1px solid ${T.border}` }} />
           </div>
         )}
 
-        {/* Calibration view — placed below day blocks. */}
+        {/* Calibration view — also tier-aware. */}
         <div style={{ marginTop: 36 }}>
-          <CalibrationView archives={archives} />
+          <CalibrationView archives={archives} tierFilter={tierFilter} />
         </div>
 
         {/* Footer */}
@@ -749,9 +726,9 @@ export default function Tracker({ archives, tracker }) {
           marginTop: 40, paddingTop: 20, borderTop: `1px solid ${T.border}`,
           fontSize: 11, color: T.textLight, lineHeight: 1.7,
         }}>
-          Calibration computed across all settled tiers (primary + secondary + shadow).
-          Personal-bet log stored in your browser only. "stacked" picks share a starting
-          pitcher with another primary pick today — outcomes correlated.
+          All metrics assume a flat 1u stake on every pick of the selected tier.
+          "stacked" picks share a starting pitcher with another primary pick that
+          day — outcomes correlated.
         </div>
       </div>
     </>
