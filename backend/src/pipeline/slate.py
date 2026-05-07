@@ -98,7 +98,13 @@ class MlbStatsClient:
             params={
                 "sportId": 1,
                 "date": d.isoformat(),
-                "hydrate": "probablePitcher,lineups,team,venue",
+                # `person` (top-level, NOT nested as probablePitcher(person))
+                # is what populates each probable pitcher's pitchHand.code.
+                # Without it the pitchHand field is missing for every pitcher
+                # in the response — which used to silently coerce them to "R"
+                # at line ~340 below, breaking platoon-split logic for every
+                # left-handed pitcher in the slate.
+                "hydrate": "probablePitcher,lineups,team,venue,person",
             },
         )
 
@@ -323,6 +329,17 @@ def build_slate(
             (g.away_lineup_ids, g.away_team_code,
              g.home_starter_id, g.home_starter_name, g.home_starter_hand),
         ):
+            # If the schedule hydrate is missing pitchHand we don't want to
+            # silently coerce every pitcher to R (used to be `starter_hand or "R"`
+            # — broke platoon-split logic for every LHP in the slate). Log the
+            # gap loudly. Default of "R" is kept only as last-resort defense.
+            if starter_id is not None and not starter_hand:
+                logger.warning(
+                    "slate: pitchHand missing for starter %s (id=%s) — "
+                    "platoon split will default to RHP. Check the /schedule "
+                    "hydrate string includes `person`.",
+                    starter_name or "?", starter_id,
+                )
             for spot, batter_id in enumerate(ids[:9], start=1):
                 person = people.get(batter_id, {})
                 bat_side_raw = (person.get("batSide") or {}).get("code") or ""

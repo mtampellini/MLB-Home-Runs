@@ -159,6 +159,24 @@ def _people_payload(ids):
     return {"people": out}
 
 
+def test_schedule_for_date_hydrate_string_includes_person():
+    """Regression: without `person` in the hydrate, the MLB Stats /schedule
+    response omits pitchHand for every probable pitcher — every LHP then
+    silently coerced to RHP at slate-build time, breaking platoon splits.
+    Ground truth: try `?hydrate=probablePitcher` vs `?hydrate=probablePitcher,person`
+    against statsapi.mlb.com/api/v1/schedule for a real date and the latter
+    is the one that returns `pitchHand.code`.
+    """
+    client = MlbStatsClient()
+    client._get = MagicMock(return_value={"dates": []})
+    client.schedule_for_date(date(2026, 5, 7))
+    args, kwargs = client._get.call_args
+    params = kwargs.get("params") or args[1]
+    assert "person" in params["hydrate"], (
+        f"hydrate must include `person` to populate pitchHand; got {params['hydrate']!r}"
+    )
+
+
 def test_build_slate_creates_18_entries_for_one_game_with_lineups():
     """One game with two posted 9-player lineups → 18 slate entries."""
     schedule_one_game = {"dates": [SCHEDULE_PAYLOAD["dates"][0]["games"][0]],
