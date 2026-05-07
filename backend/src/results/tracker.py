@@ -46,6 +46,13 @@ CALIBRATION_BUCKETS = (
     (0.30, 0.40), (0.40, 0.60),
 )
 
+# Filename prefixes per tier. settle.py writes:
+#   primary   → results_DATE.json           + picks_DATE.json
+#   secondary → secondary_results_DATE.json + secondary_picks_DATE.json
+#   shadow    → shadow_results_DATE.json    + shadow_picks_DATE.json
+_RESULTS_PREFIX = {"primary": "results", "secondary": "secondary_results", "shadow": "shadow_results"}
+_PICKS_PREFIX   = {"primary": "picks",   "secondary": "secondary_picks",   "shadow": "shadow_picks"}
+
 
 # ---------------------------------------------------------------------------
 # Loading settled days + snapshots
@@ -54,7 +61,7 @@ CALIBRATION_BUCKETS = (
 def _list_results_files(start: Optional[_date], end: Optional[_date],
                         tier: str = "primary",
                         processed_dir: Path = PROCESSED_DIR) -> list[Path]:
-    prefix = "results" if tier == "primary" else "shadow_results"
+    prefix = _RESULTS_PREFIX[tier]
     files = sorted(processed_dir.glob(f"{prefix}_*.json"))
     out: list[Path] = []
     pat = re.compile(rf"{prefix}_(\d{{4}}-\d{{2}}-\d{{2}})\.json")
@@ -259,7 +266,7 @@ def _load_tier_rows(
     files = _list_results_files(start, end, tier=tier, processed_dir=processed_dir)
     rows: list[dict] = []
     picks_meta: dict[str, dict] = {}
-    picks_prefix = "picks" if tier == "primary" else "shadow_picks"
+    picks_prefix = _PICKS_PREFIX[tier]
 
     for rf in files:
         with open(rf, "r", encoding="utf-8") as f:

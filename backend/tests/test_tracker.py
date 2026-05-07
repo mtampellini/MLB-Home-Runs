@@ -196,6 +196,64 @@ def test_tracker_handles_missing_snapshot_gracefully(tmp_layout):
     assert out.summary.n_picks_with_clv == 0
 
 
+def test_tracker_loads_each_tier_from_its_own_files(tmp_layout):
+    """Regression: tracker.py used to read shadow_results_*.json for tier='secondary'
+    because of an ``if tier == 'primary' else 'shadow_*'`` ternary. With three
+    distinct tiers each must resolve to its own filename prefix.
+    """
+    day = date(2026, 5, 6)
+    proc = tmp_layout["processed"]
+
+    # Primary: 1W
+    _write_picks(proc, day, [_pick_payload(1, 100, taken=310)])
+    _write_results(proc, day, [_settled_payload(1, 100, "W", taken=310)])
+
+    # Secondary: 2L. Different files, different filename prefix.
+    sec_picks = [_pick_payload(2, 200, taken=600), _pick_payload(3, 200, taken=600)]
+    (proc / f"secondary_picks_{day.isoformat()}.json").write_text(json.dumps({
+        "as_of_date": day.isoformat(), "picks": sec_picks,
+    }))
+    sec_settled = [_settled_payload(2, 200, "L", taken=600),
+                    _settled_payload(3, 200, "L", taken=600)]
+    (proc / f"secondary_results_{day.isoformat()}.json").write_text(json.dumps({
+        "as_of_date": day.isoformat(),
+        "settled_at": "2026-05-07T08:00:00+00:00",
+        "n_picks": len(sec_settled), "n_wins": 0, "n_losses": 2, "n_voids": 0,
+        "units_staked": 2.0, "units_profit": -2.0, "roi_pct": -100.0,
+        "results": sec_settled,
+    }))
+
+    # Shadow: 1W (different result count from secondary so the bug is loud)
+    sh_picks = [_pick_payload(4, 300, taken=900)]
+    (proc / f"shadow_picks_{day.isoformat()}.json").write_text(json.dumps({
+        "as_of_date": day.isoformat(), "picks": sh_picks,
+    }))
+    sh_settled = [_settled_payload(4, 300, "W", taken=900)]
+    (proc / f"shadow_results_{day.isoformat()}.json").write_text(json.dumps({
+        "as_of_date": day.isoformat(),
+        "settled_at": "2026-05-07T08:00:00+00:00",
+        "n_picks": 1, "n_wins": 1, "n_losses": 0, "n_voids": 0,
+        "units_staked": 1.0, "units_profit": 9.0, "roi_pct": 900.0,
+        "results": sh_settled,
+    }))
+
+    build_tracker(processed_dir=proc)
+    payload = json.loads((proc / "tracker.json").read_text())
+
+    # Each tier must reflect ITS OWN files, not be cross-contaminated.
+    assert payload["summary_primary"]["wins"] == 1
+    assert payload["summary_primary"]["losses"] == 0
+    assert payload["summary_secondary"]["wins"] == 0
+    assert payload["summary_secondary"]["losses"] == 2
+    assert payload["summary_shadow"]["wins"] == 1
+    assert payload["summary_shadow"]["losses"] == 0
+
+    # And calibration aggregates ALL three tiers' rows.
+    assert payload["calibration_n_picks_primary"] == 1
+    assert payload["calibration_n_picks_secondary"] == 2
+    assert payload["calibration_n_picks_shadow"] == 1
+
+
 def test_tracker_by_book_breakdown(tmp_layout):
     day = date(2026, 5, 6)
     picks = [
