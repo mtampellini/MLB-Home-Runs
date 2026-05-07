@@ -25,6 +25,9 @@ backend/data/processed/*
 # EXCEPT: park_factors.parquet is small (~5KB) and expensive to rebuild
 # (~20 min of Statcast pulls), so we commit it explicitly.
 !backend/data/processed/park_factors.parquet
+# AND: tracker.json — small, generated nightly, read at build time by
+# /tracker page for the big-number metric cards.
+!backend/data/processed/tracker.json
 
 # DO commit backend/data/odds/ — those snapshots ARE our dataset.
 # (No ignore for backend/data/odds.)
