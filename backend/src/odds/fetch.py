@@ -281,7 +281,19 @@ def parse_event_response(payload: dict) -> list[HRPropQuote]:
 
                 elif mkey == MARKET_ALT:
                     # Alternate market — only the point=0.5 Over interests us.
-                    if o.get("point") != TARGET_POINT:
+                    # Don't compare `o.get("point") != 0.5` directly: a missing
+                    # `point` field returns None and `None != 0.5` is True, so
+                    # an API schema change that drops the field would silently
+                    # drop every alt outcome. Log loudly instead.
+                    point = o.get("point")
+                    if point is None:
+                        logger.warning(
+                            "alt-market outcome missing 'point' field "
+                            "(book=%s batter=%s side=%s) — dropping",
+                            book_key, name, side,
+                        )
+                        continue
+                    if point != TARGET_POINT:
                         continue
                     if side == TARGET_OVER:
                         bet_over[name] = int(price)

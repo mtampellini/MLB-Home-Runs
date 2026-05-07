@@ -247,7 +247,23 @@ def get_game_weather(
                 is_indoor=False,
             )
 
-    return _select_hour(payload, park_code, game_datetime)
+    # _select_hour can raise (e.g. malformed payload, missing utc_offset_seconds).
+    # Don't let a single park's parsing error nuke the entire daily cron — fall
+    # back to neutral weather with a loud log, same as the network-failure path.
+    try:
+        return _select_hour(payload, park_code, game_datetime)
+    except Exception as e:    # noqa: BLE001
+        logger.error(
+            "Open-Meteo payload parse failed for park=%s; falling back to neutral "
+            "weather (70F, no wind). Error: %s: %s",
+            park_code, type(e).__name__, e,
+        )
+        return GameWeather(
+            park=park_code, game_datetime=game_datetime,
+            temperature_f=70.0, wind_speed_mph=0.0,
+            wind_direction_deg=0.0, precipitation_in=0.0,
+            is_indoor=False,
+        )
 
 
 OPEN_METEO_TIMEOUT_S = 30          # was 15 — CI runners occasionally see 15s+ TLS handshakes
@@ -313,7 +329,17 @@ def _select_hour(payload: dict, park_code: str, game_datetime: datetime) -> Game
     # Normalize: convert target to the park's local clock via utc_offset_seconds,
     # then strip tz so the comparison is naive↔naive.
     target = game_datetime.replace(minute=0, second=0, microsecond=0)
-    offset_s = int(payload.get("utc_offset_seconds") or 0)
+    # Don't `or 0` the offset — silently defaulting to UTC for non-UTC parks
+    # picks the wrong hourly index by 4-8h (same shape as the pitcher_hand
+    # silent-default bug). Require the field; the caller wraps and falls back
+    # to neutral weather if this raises.
+    raw_offset = payload.get("utc_offset_seconds")
+    if raw_offset is None:
+        raise ValueError(
+            f"Open-Meteo response missing utc_offset_seconds for park={park_code}; "
+            "cannot align game time to local hourly index"
+        )
+    offset_s = int(raw_offset)
     if target.tzinfo is not None:
         from datetime import timedelta as _td, timezone as _tz
         target = target.astimezone(_tz(_td(seconds=offset_s))).replace(tzinfo=None)

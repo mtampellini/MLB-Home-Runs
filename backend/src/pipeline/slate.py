@@ -319,6 +319,19 @@ def build_slate(
                 "game %s: probable pitchers missing for one side; skipped", g.game_pk,
             )
             continue
+        # Park-code resolution: if MLB Stats omitted both team.id (no
+        # TEAM_CODE_BY_MLBAM_ID hit) and team.abbreviation, we'd silently
+        # ship picks with park="", and downstream get_park_factor("") would
+        # return 1.0 with a warning — same shape as the pitcher_hand bug.
+        # Hard-skip the game instead.
+        if not g.park_code:
+            games_skipped.append(g.game_pk)
+            logger.warning(
+                "game %s (%s @ %s): park_code unresolved (home team id=%s "
+                "abbr missing); skipped to avoid neutral-park-factor leak",
+                g.game_pk, g.away_team_name, g.home_team_name, g.home_team_id,
+            )
+            continue
         games_with_lineups += 1
         team_pairs_in_slate.append((g.home_team_name, g.away_team_name))
 
@@ -354,7 +367,10 @@ def build_slate(
                     pitcher_id=starter_id,
                     pitcher_name=starter_name or "",
                     pitcher_hand=starter_hand or "R",
-                    park=g.park_code or g.home_team_code,
+                    # park_code is non-empty here — verified by the skip-guard
+                    # above. Don't fall back to home_team_code (was dead code:
+                    # both fields derive from the same `home_code`).
+                    park=g.park_code,
                     game_datetime=g.game_datetime,
                     lineup_spot=spot,
                     game_pk=g.game_pk,

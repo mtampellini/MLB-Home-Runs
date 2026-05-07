@@ -77,6 +77,7 @@ function PickRow({ pick }) {
   if (pick.low_confidence) metaParts.push('low conf')
   if (pick.breakout_score >= 0.10) metaParts.push('breakout')
   if (pick.unstable_recent) metaParts.push('unstable')
+  if (pick.pitcher_factor_shrunk) metaParts.push('shrunk')
   if (pick.trend_signal != null && Math.abs(pick.trend_signal) >= 0.10) {
     const arrow = pick.trend_signal > 0 ? '↑' : '↓'
     metaParts.push(`${arrow}${Math.abs(Math.round(pick.trend_signal * 100))}%`)

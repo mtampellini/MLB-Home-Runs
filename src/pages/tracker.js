@@ -223,6 +223,7 @@ function PickRow({ pick, settledPick }) {
   if (pick.stacked) metaParts.push('stacked')
   if (pick.low_confidence) metaParts.push('low conf')
   if (pick.unstable_recent) metaParts.push('unstable')
+  if (pick.pitcher_factor_shrunk) metaParts.push('shrunk')
 
   const onShare = async (e) => {
     e.stopPropagation()

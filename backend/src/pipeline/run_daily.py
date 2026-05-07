@@ -326,6 +326,10 @@ def _assemble_pick(
         "blended_hr_per_pa": round(pred.blended_hr_per_pa, 5),
         "breakout_score": round(row.breakout.score if row.breakout else 0.0, 4),
         "low_confidence": bool(row.low_confidence),
+        # True when early-season shrinkage is active on pitcher_factor
+        # (pitcher's season IP < 100). Tells reviewers the pitcher matchup
+        # signal is conservative because the sample is still building.
+        "pitcher_factor_shrunk": bool(pred.pitcher_factor_shrunk),
 
         # Recent-form diagnostics — surfaced for human review only, not scored.
         "trend_signal": (

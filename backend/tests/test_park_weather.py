@@ -115,6 +115,56 @@ def test_select_hour_floors_to_game_hour():
     assert wx.temperature_f == 70.0
 
 
+def test_select_hour_raises_when_utc_offset_seconds_missing():
+    """Regression: payload used to default to UTC+0 if utc_offset_seconds was
+    missing, silently picking the wrong hour by 4-8h for non-UTC parks. Now
+    it raises so the wrapper falls back to neutral weather instead."""
+    payload = {
+        # NO utc_offset_seconds key.
+        "hourly": {
+            "time": ["2026-05-06T18:00", "2026-05-06T19:00"],
+            "temperature_2m": [72.0, 75.0],
+            "wind_speed_10m": [5.0, 5.0],
+            "wind_direction_10m": [180.0, 180.0],
+            "precipitation": [0.0, 0.0],
+        },
+    }
+    game_dt = datetime(2026, 5, 6, 23, 5, tzinfo=timezone.utc)
+    with pytest.raises(ValueError, match="utc_offset_seconds"):
+        _select_hour(payload, "NYY", game_dt)
+
+
+def test_get_game_weather_falls_back_to_neutral_on_missing_utc_offset(
+    tmp_path, monkeypatch,
+):
+    """Wrap-and-fall-back: if _select_hour raises (e.g. missing utc_offset),
+    get_game_weather logs and returns neutral weather, doesn't crash."""
+    import json as _json
+    from src.features import park_weather as pw_mod
+
+    monkeypatch.setattr(pw_mod, "WEATHER_CACHE_DIR", tmp_path / "weather")
+    (tmp_path / "weather").mkdir(parents=True, exist_ok=True)
+    # Pre-seed cache with a malformed payload (no utc_offset_seconds).
+    cache_path = tmp_path / "weather" / "NYY_2026-05-06.json"
+    cache_path.write_text(_json.dumps({
+        "hourly": {
+            "time": ["2026-05-06T19:00"],
+            "temperature_2m": [80.0],
+            "wind_speed_10m": [10.0],
+            "wind_direction_10m": [90.0],
+            "precipitation": [0.0],
+        },
+    }))
+    wx = pw_mod.get_game_weather(
+        "NYY", datetime(2026, 5, 6, 23, 5, tzinfo=timezone.utc),
+        use_cache=True,
+    )
+    # Falls back to neutral, NOT the (malformed) cached 80F that would have
+    # come out of the silent-default code path.
+    assert wx.temperature_f == 70.0
+    assert wx.wind_speed_mph == 0.0
+
+
 def test_get_game_weather_falls_back_to_neutral_when_open_meteo_fails(tmp_path, monkeypatch):
     """If Open-Meteo errors out, we DON'T crash the cron — we return neutral
     weather (70F, no wind) and keep going. A single park's API failure

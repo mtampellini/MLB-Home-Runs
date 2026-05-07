@@ -88,6 +88,11 @@ class BaselinePrediction:
     components: dict[str, float] = field(default_factory=dict)
     skipped: bool = False
     skip_reason: Optional[str] = None
+    # True when early-season shrinkage was active on pitcher_factor (i.e. the
+    # pitcher's season IP was below `pitcher_shrinkage_innings`, so the raw
+    # factor was pulled toward 1.0). Surfaced so reviewers know the estimate
+    # is conservative for early-season starters.
+    pitcher_factor_shrunk: bool = False
 
     def is_valid(self) -> bool:
         return (not self.skipped) and not (math.isnan(self.p_hr) or math.isinf(self.p_hr))
@@ -145,6 +150,7 @@ def predict(
     else:
         shrinkage_weight = min(1.0, max(0.0, pitcher_season_ip / config.pitcher_shrinkage_innings))
         pitcher_factor = pitcher_factor_raw * shrinkage_weight + 1.0 * (1.0 - shrinkage_weight)
+    pitcher_factor_shrunk = shrinkage_weight < 1.0
 
     # 4. Park.
     pf = 1.0 if _is_nan(park_hr_factor) else float(park_hr_factor)
@@ -196,6 +202,7 @@ def predict(
         components=components,
         skipped=False,
         skip_reason=None,
+        pitcher_factor_shrunk=pitcher_factor_shrunk,
     )
 
 

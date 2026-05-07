@@ -254,6 +254,39 @@ def test_build_slate_excludes_live_and_final_games():
                                 "Preview/Postponed"]
 
 
+def test_build_slate_skips_game_with_unresolved_park_code():
+    """If MLB Stats omits both team.id (no TEAM_CODE_BY_MLBAM_ID hit) and
+    team.abbreviation, park_code is None and we'd silently ship picks with
+    park="" — get_park_factor("") then returns neutral 1.0. Skip instead."""
+    bad_game = {
+        "gamePk": 99999,
+        "gameDate": "2026-05-06T23:05:00Z",
+        "status": {"abstractGameState": "Preview", "detailedState": "Scheduled"},
+        "venue": {"id": 0, "name": "?"},
+        "teams": {
+            # Unknown team id (not in TEAM_CODE_BY_MLBAM_ID) AND no abbreviation
+            "home": {"team": {"id": 999_999, "name": "Mystery Home"},
+                     "probablePitcher": {"id": 1, "fullName": "X",
+                                          "pitchHand": {"code": "R"}}},
+            "away": {"team": {"id": 999_998, "name": "Mystery Away"},
+                     "probablePitcher": {"id": 2, "fullName": "Y",
+                                          "pitchHand": {"code": "R"}}},
+        },
+        "lineups": {
+            "homePlayers": [{"id": i} for i in range(101, 110)],
+            "awayPlayers": [{"id": i} for i in range(201, 210)],
+        },
+    }
+    schedule = {"dates": [{"games": [bad_game]}]}
+    client = MlbStatsClient()
+    client.schedule_for_date = MagicMock(return_value=schedule)
+    client.fetch_people = MagicMock(return_value={})
+    slate, meta = build_slate(date(2026, 5, 6), client=client)
+    assert slate == [], "no slate entries should be created for park-less games"
+    assert meta["games_with_lineups"] == 0
+    assert meta["games_no_lineup_skipped"] == 1
+
+
 def test_is_pregame_helper_decisions():
     from src.pipeline.slate import GameInfo, is_pregame
     base = dict(

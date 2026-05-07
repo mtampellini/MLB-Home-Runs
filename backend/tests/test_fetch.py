@@ -131,6 +131,40 @@ def test_parse_filters_alt_market_to_point_0_5():
     assert judge_fd.bet_over_american == 290           # 0.5 line, NOT the 1.5's +1100
 
 
+def test_parse_logs_alt_market_outcome_with_missing_point(caplog):
+    """Regression: if The Odds API ever drops the 'point' field on an alt-market
+    outcome, we should log loudly and skip — not silently treat None != 0.5 as
+    'wrong line' and drop the bet without explanation."""
+    import logging as _logging
+    payload = {
+        "id": "evt", "sport_key": "baseball_mlb",
+        "commence_time": "2026-05-06T23:05:00Z",
+        "home_team": "X", "away_team": "Y",
+        "bookmakers": [{
+            "key": "draftkings", "last_update": "2026-05-06T19:00:00Z",
+            "markets": [{
+                "key": "batter_home_runs_alternate",
+                "outcomes": [
+                    # Outcome with point=0.5 — should normally be picked up.
+                    {"name": "Over", "description": "Aaron Judge",
+                     "point": 0.5, "price": 310},
+                    # MALFORMED: missing 'point' field entirely.
+                    {"name": "Over", "description": "Anthony Volpe",
+                     "price": 600},
+                ],
+            }],
+        }],
+    }
+    with caplog.at_level(_logging.WARNING):
+        quotes = parse_event_response(payload)
+    judge = next((q for q in quotes if q.batter_name == "Aaron Judge"), None)
+    volpe = next((q for q in quotes if q.batter_name == "Anthony Volpe"), None)
+    assert judge is not None and judge.bet_over_american == 310
+    assert volpe is None, "outcome with no 'point' field should be dropped"
+    # Loud signal in the logs so a schema change can't go unnoticed.
+    assert any("missing 'point'" in r.message for r in caplog.records)
+
+
 def test_parse_handles_batter_in_only_one_market():
     """Add a batter to the alt market only — main fields should be None."""
     payload = {**SAMPLE_EVENT_PROPS}

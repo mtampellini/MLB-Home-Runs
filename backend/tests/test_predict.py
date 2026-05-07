@@ -214,6 +214,31 @@ def test_full_prediction_returns_p_hr_in_zero_to_one():
     assert r.batter_blend.used_prior_year is False
 
 
+def test_pitcher_factor_shrunk_flag_set_when_ip_below_threshold():
+    """Below the shrinkage threshold (default 100 IP), pitcher_factor is
+    pulled toward 1.0 and the prediction must surface a flag so reviewers
+    know the pitcher signal is conservative for early-season starters."""
+    from src.model.baseline import predict as baseline_predict
+    # Same inputs other than pitcher_season_ip.
+    common = dict(
+        blended_hr_per_pa=0.030,
+        reliable_breakout=0.0,
+        pitcher_hr_per_9=2.0,        # well above league
+        pitcher_hand_split_pa=200,
+        park_hr_factor=1.0,
+        temperature_f=70.0,
+        wind_out_to_cf_mph=0.0,
+        is_indoor=False,
+        lineup_spot=3,
+    )
+    early = baseline_predict(**common, pitcher_season_ip=30.0)   # below 100
+    late  = baseline_predict(**common, pitcher_season_ip=150.0)  # above 100
+    assert early.pitcher_factor_shrunk is True
+    assert late.pitcher_factor_shrunk is False
+    # And the shrinkage pulled the factor closer to neutral (1.0).
+    assert abs(early.components["pitcher"] - 1.0) < abs(late.components["pitcher"] - 1.0)
+
+
 def test_pitcher_split_picked_by_batter_hand():
     """Right-handed batter must read pitcher's vs_R split, not overall."""
     provider = _make_provider(
