@@ -2,9 +2,12 @@ name: Daily picks
 
 on:
   schedule:
-    # 15:00 UTC = 11am ET (EDT) / 10am ET (EST). Per project README the DST
-    # hour shift is acceptable; lineups still post in time.
-    - cron: "0 15 * * *"
+    # 15:13 UTC ≈ 11:13am ET (EDT) / 10:13am ET (EST). Per project README the
+    # DST hour shift is acceptable; lineups still post in time. Off-hour
+    # minute: top-of-hour cron times are heavily contended on GitHub Actions
+    # and runs are commonly skipped under load. The settle workflow runs at
+    # 14:47 UTC, leaving ~26 min for it to finish before daily picks fires.
+    - cron: "13 15 * * *"
   workflow_dispatch:
 
 permissions:

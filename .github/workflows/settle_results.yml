@@ -2,8 +2,11 @@ name: Settle results
 
 on:
   schedule:
-    # 14:00 UTC = 10am ET (EDT) / 9am ET (EST). Yesterday's box scores stable.
-    - cron: "0 14 * * *"
+    # 14:47 UTC ≈ 10:47am ET (EDT) / 9:47am ET (EST). Yesterday's box scores stable.
+    # Off-hour minute on purpose: top-of-hour cron times have heavy contention
+    # on GitHub Actions and runs are commonly skipped or deferred for hours
+    # under load. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: "47 14 * * *"
   workflow_dispatch:
 
 permissions:
