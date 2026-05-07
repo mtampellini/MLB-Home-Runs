@@ -1,16 +1,29 @@
 {
-  "generated_at": "2026-05-07T15:52:53.070197+00:00",
-  "as_of_date": "2026-05-07",
+  "date": "2026-05-07",
+  "generated_at": "2026-05-07T15:52:53.072575+00:00",
   "model_version": "v7-baseline-0.1.0",
   "league_hr_per_pa": 0.032,
-  "tier": "primary",
-  "ev_threshold_pct_min": 25.0,
-  "ev_threshold_pct_max": null,
-  "ev_threshold_pct": 25.0,
-  "total_games_today": 10,
-  "games_pregame": 10,
-  "games_excluded_live_or_complete": 0,
-  "picks": [
+  "funnel": {
+    "total_slate_games": 10,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 10,
+    "total_predictions": 67,
+    "skipped_low_data": 3,
+    "skipped_career_pa_filter": 2,
+    "skipped_other": 0,
+    "matched_in_odds_market": 67,
+    "matched_alt_market": 67,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 67,
+    "above_25_ev_pre_cap": 10,
+    "eligible_below_900_price_cap": 8,
+    "above_price_cap_pushed_to_secondary": 2,
+    "primary_count": 8,
+    "secondary_count": 2,
+    "shadow_count": 5
+  },
+  "primary_picks": [
     {
       "tier": "primary",
       "daily_rank": 1,
@@ -424,6 +437,345 @@
       "stacked_with": []
     }
   ],
-  "skipped_count": 5,
-  "skipped_reference": "data/processed/skipped_batters_2026-05-07.json"
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 2,
+      "batter": "Evan Carter",
+      "batter_id": 694497,
+      "batter_hand": "L",
+      "team": "TEX",
+      "lineup_spot": 7,
+      "pitcher": "Paul Blackburn",
+      "pitcher_id": 621112,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823551,
+      "game_datetime": "2026-05-07T16:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 910,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0935,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1825,
+      "ev_pct": 84.29,
+      "edge_pct": 8.9,
+      "blended_hr_per_pa": 0.03909,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "trend_signal": 0.071,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2215,
+          "deviation": 0.2215
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 3,
+      "batter": "Jos\u00e9 Tena",
+      "batter_id": 677588,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 6,
+      "pitcher": "Simeon Woods Richardson",
+      "pitcher_id": 680573,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822741,
+      "game_datetime": "2026-05-07T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1220,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0733,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1266,
+      "ev_pct": 67.13,
+      "edge_pct": 5.33,
+      "blended_hr_per_pa": 0.03252,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "trend_signal": 0.275,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 0.902,
+          "deviation": 0.098
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0466,
+          "deviation": 0.0466
+        }
+      ],
+      "tier_rank": 2
+    }
+  ],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 2,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824681,
+      "game_datetime": "2026-05-07T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 690,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1252,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.157,
+      "ev_pct": 24.04,
+      "edge_pct": 3.18,
+      "blended_hr_per_pa": 0.03792,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "trend_signal": -0.3857,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.185,
+          "deviation": 0.185
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 12,
+      "batter": "Elly De La Cruz",
+      "batter_id": 682829,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 3,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824681,
+      "game_datetime": "2026-05-07T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 434,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1769,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2274,
+      "ev_pct": 22.81,
+      "edge_pct": 5.05,
+      "blended_hr_per_pa": 0.05799,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "trend_signal": -0.0137,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8122,
+          "deviation": 0.8122
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
+      "batter": "Trent Grisham",
+      "batter_id": 663757,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 7,
+      "pitcher": "MacKenzie Gore",
+      "pitcher_id": 669022,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823551,
+      "game_datetime": "2026-05-07T16:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 578,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.141,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1765,
+      "ev_pct": 19.65,
+      "edge_pct": 3.55,
+      "blended_hr_per_pa": 0.03771,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "trend_signal": 0.0069,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1784,
+          "deviation": 0.1784
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 14,
+      "batter": "CJ Abrams",
+      "batter_id": 682928,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 4,
+      "pitcher": "Simeon Woods Richardson",
+      "pitcher_id": 680573,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822741,
+      "game_datetime": "2026-05-07T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 520,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1532,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1873,
+      "ev_pct": 16.15,
+      "edge_pct": 3.41,
+      "blended_hr_per_pa": 0.04603,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "trend_signal": 0.1975,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4383,
+          "deviation": 0.4383
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 0.902,
+          "deviation": 0.098
+        }
+      ],
+      "tier_rank": 4
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 15,
+      "batter": "Salvador Perez",
+      "batter_id": 521692,
+      "batter_hand": "R",
+      "team": "KC",
+      "lineup_spot": 4,
+      "pitcher": "Slade Cecconi",
+      "pitcher_id": 677944,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824117,
+      "game_datetime": "2026-05-07T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 415,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1802,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2051,
+      "ev_pct": 10.74,
+      "edge_pct": 2.49,
+      "blended_hr_per_pa": 0.0356,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "trend_signal": -0.4206,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.729,
+          "deviation": 0.729
+        },
+        {
+          "name": "wind",
+          "value": 1.1667,
+          "deviation": 0.1667
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 5
+    }
+  ],
+  "settlement": null
 }
