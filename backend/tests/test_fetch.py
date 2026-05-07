@@ -240,7 +240,9 @@ def test_fetch_today_hr_props_full_flow():
         ),
     ]
     client = OddsAPIClient(api_key="test", session=session)
-    result = fetch_today_hr_props(client=client)
+    # skip_started_clock_skew_min=None disables the past-event filter so the
+    # static 2026-05-06 fixture doesn't stop being "today" tomorrow.
+    result = fetch_today_hr_props(client=client, skip_started_clock_skew_min=None)
 
     assert len(result.events) == 1
     assert len(result.quotes) == 4
@@ -266,7 +268,8 @@ def test_fetch_today_hr_props_filters_events_by_team_pairs():
     ]
     client = OddsAPIClient(api_key="test", session=session)
     relevant = {("New York Yankees", "Boston Red Sox")}
-    result = fetch_today_hr_props(client=client, relevant_team_pairs=relevant)
+    result = fetch_today_hr_props(client=client, relevant_team_pairs=relevant,
+                                   skip_started_clock_skew_min=None)
     # Only one detail call made (for the matching event).
     assert session.get.call_count == 2     # 1 list + 1 detail (NOT 2 details)
     assert len(result.quotes) == 4         # only from the matching event
@@ -282,9 +285,37 @@ def test_fetch_records_per_event_errors_without_failing():
         _mock_response(429, {"message": "Too many"}),  # fail one event
     ]
     client = OddsAPIClient(api_key="test", session=session)
-    result = fetch_today_hr_props(client=client)
+    result = fetch_today_hr_props(client=client, skip_started_clock_skew_min=None)
 
     assert len(result.events) == 1
     assert len(result.quotes) == 0
     assert len(result.errors) == 1
     assert result.errors[0]["event_id"] == "evt_abc"
+
+
+def test_fetch_today_hr_props_pregame_filter_drops_past_events():
+    """Pre-game filter test (covers the behavior the three tests above bypass).
+    Builds events relative to NOW so the assertion stays valid every day."""
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    now = _dt.now(_tz.utc)
+    past_iso   = (now - _td(hours=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    future_iso = (now + _td(hours=4)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    events_payload = [
+        {"id": "evt_past",   "sport_key": "baseball_mlb",
+         "commence_time": past_iso,
+         "home_team": "Houston Astros", "away_team": "Texas Rangers"},
+        {"id": "evt_future", "sport_key": "baseball_mlb",
+         "commence_time": future_iso,
+         "home_team": "New York Yankees", "away_team": "Boston Red Sox"},
+    ]
+    session = MagicMock()
+    session.get.side_effect = [
+        _mock_response(200, events_payload, headers={"x-requests-remaining": "100"}),
+        # Only the future event should trigger a detail call.
+        _mock_response(200, SAMPLE_EVENT_PROPS, headers={"x-requests-remaining": "98"}),
+    ]
+    client = OddsAPIClient(api_key="test", session=session)
+    result = fetch_today_hr_props(client=client)   # default skip_started=5min
+    assert session.get.call_count == 2             # 1 list + 1 detail (past dropped)
+    assert len(result.quotes) == 4

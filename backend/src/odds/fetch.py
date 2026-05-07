@@ -307,7 +307,7 @@ def fetch_today_hr_props(
     client: Optional[OddsAPIClient] = None,
     books: Iterable[str] = DEFAULT_BOOKS,
     relevant_team_pairs: Optional[set[tuple[str, str]]] = None,
-    skip_started_clock_skew_min: int = 5,
+    skip_started_clock_skew_min: Optional[int] = 5,
 ) -> FetchResult:
     """List today's events, pull both HR markets per event, return assembled result.
 
@@ -318,7 +318,9 @@ def fetch_today_hr_props(
     `skip_started_clock_skew_min`: events whose `commence_time` is more than
     this many minutes in the past are skipped. Defense in depth — the slate
     filter already excludes Live games via MLB Stats, but the Odds API may
-    still list events for which we shouldn't pull props. Set to 0 to disable.
+    still list events for which we shouldn't pull props. ``None`` disables the
+    filter entirely (used by tests with static fixtures whose dates would
+    otherwise go stale every day).
     """
     from datetime import timedelta as _td
     if client is None:
@@ -329,14 +331,17 @@ def fetch_today_hr_props(
 
     # Defense-in-depth pre-game filter on commence_time. The slate already
     # filtered by MLB Stats abstractGameState; this catches any drift.
-    started_cutoff = fetched_at - _td(minutes=skip_started_clock_skew_min)
-    before_time = len(events)
-    events_pregame = [e for e in events if e.commence_time > started_cutoff]
-    if before_time != len(events_pregame):
-        logger.info(
-            "Odds: dropped %d events whose commence_time was in the past",
-            before_time - len(events_pregame),
-        )
+    if skip_started_clock_skew_min is None:
+        events_pregame = list(events)
+    else:
+        started_cutoff = fetched_at - _td(minutes=skip_started_clock_skew_min)
+        before_time = len(events)
+        events_pregame = [e for e in events if e.commence_time > started_cutoff]
+        if before_time != len(events_pregame):
+            logger.info(
+                "Odds: dropped %d events whose commence_time was in the past",
+                before_time - len(events_pregame),
+            )
 
     if relevant_team_pairs is not None:
         before = len(events_pregame)
