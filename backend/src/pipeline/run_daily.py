@@ -19,17 +19,18 @@ from __future__ import annotations
 import json
 import logging
 import os
-from dataclasses import asdict, dataclass, field, is_dataclass
+from dataclasses import asdict, dataclass, field, is_dataclass, replace
 from datetime import date as _date
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
 from src.backtest.as_of_context import AsOfContext
-from src.model.baseline import BaselineConfig
+from src.model.baseline import BaselineConfig, compute_slate_league_hr_per_pa
 from src.model.predict import (
     FeatureProvider,
     PredictionRow,
+    default_feature_provider,
     predict_slate,
     top_n_features,
 )
@@ -481,7 +482,37 @@ def run_daily(
         slate_meta["games_no_lineup_skipped"],
     )
 
-    # --- 2. Predictions ----------------------------------------------------
+    # --- 2. Empirical league HR/PA -----------------------------------------
+    # The previous code used a frozen 0.032 constant. That's the denominator
+    # of pitcher_factor (`pitcher_hr_per_pa / league_hr_per_pa`) — if the
+    # league trends shift mid-season (e.g. juiced ball), every factor was
+    # silently miscalibrated. Aggregate from today's slate batters instead.
+    # Falls back to LEAGUE_HR_PER_PA_DEFAULT when sample is too thin (early
+    # opening-day case), so behavior is stable on day one.
+    provider_for_lookup = feature_provider or default_feature_provider()
+    seen_ids: set[int] = set()
+    season_recs: list[dict] = []
+    for entry in slate:
+        if entry.batter_id in seen_ids:
+            continue
+        seen_ids.add(entry.batter_id)
+        try:
+            rec = provider_for_lookup.batter_season(
+                entry.batter_id, ctx, batter_hand=entry.batter_hand,
+            )
+        except Exception:    # noqa: BLE001 — single-batter lookup failure is fine
+            continue
+        if rec:
+            season_recs.append(rec)
+    league_rate = compute_slate_league_hr_per_pa(season_recs)
+    if league_rate != config.league_hr_per_pa:
+        logger.info(
+            "league_hr_per_pa: empirical=%.4f (was config=%.4f, %d batter-records)",
+            league_rate, config.league_hr_per_pa, len(season_recs),
+        )
+        config = replace(config, league_hr_per_pa=league_rate)
+
+    # --- 3. Predictions ----------------------------------------------------
     rows = predict_slate(
         slate, ctx, config=config,
         breakout_weights=breakout_weights, provider=feature_provider,

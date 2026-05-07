@@ -214,12 +214,12 @@ def test_full_prediction_returns_p_hr_in_zero_to_one():
     assert r.batter_blend.used_prior_year is False
 
 
-def test_pitcher_factor_shrunk_flag_set_when_ip_below_threshold():
-    """Below the shrinkage threshold (default 100 IP), pitcher_factor is
+def test_pitcher_factor_shrunk_flag_set_when_split_pa_below_threshold():
+    """Below the shrinkage threshold (default 200 split-PA), pitcher_factor is
     pulled toward 1.0 and the prediction must surface a flag so reviewers
-    know the pitcher signal is conservative for early-season starters."""
+    know the pitcher signal is conservative for early-season starters or
+    starters whose split sample is still building."""
     from src.model.baseline import predict as baseline_predict
-    # Same inputs other than pitcher_season_ip.
     common = dict(
         blended_hr_per_pa=0.030,
         reliable_breakout=0.0,
@@ -231,8 +231,8 @@ def test_pitcher_factor_shrunk_flag_set_when_ip_below_threshold():
         is_indoor=False,
         lineup_spot=3,
     )
-    early = baseline_predict(**common, pitcher_season_ip=30.0)   # below 100
-    late  = baseline_predict(**common, pitcher_season_ip=150.0)  # above 100
+    early = baseline_predict(**common, pitcher_split_pa=60.0)    # below 200
+    late  = baseline_predict(**common, pitcher_split_pa=300.0)   # above 200
     assert early.pitcher_factor_shrunk is True
     assert late.pitcher_factor_shrunk is False
     # And the shrinkage pulled the factor closer to neutral (1.0).

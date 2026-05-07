@@ -370,7 +370,7 @@ def _common_pred_args() -> dict:
     return dict(
         pitcher_hr_per_9=float("nan"),     # forces neutral pitcher_factor=1.0
         pitcher_hand_split_pa=0,
-        pitcher_season_ip=200.0,           # past shrinkage threshold → no pull
+        pitcher_split_pa=400.0,            # past shrinkage threshold → no pull
         park_hr_factor=1.0,
         temperature_f=70.0,
         wind_out_to_cf_mph=0.0,
@@ -379,12 +379,15 @@ def _common_pred_args() -> dict:
     )
 
 
-def _shrinkage_pred_args(*, ip: float, hr_per_9: float, split_pa: int) -> dict:
-    """Args for testing the shrinkage formula end-to-end."""
+def _shrinkage_pred_args(*, split_pa: float, hr_per_9: float, hand_split_pa: int) -> dict:
+    """Args for testing the shrinkage formula end-to-end. ``split_pa`` is the
+    PA on the matched platoon split that drives shrinkage; ``hand_split_pa``
+    is the PA gating the platoon-split lookup itself (must be >=50 to read
+    a non-neutral pitcher_factor)."""
     return dict(
         blended_hr_per_pa=0.040, reliable_breakout=0.0,
-        pitcher_hr_per_9=hr_per_9, pitcher_hand_split_pa=split_pa,
-        pitcher_season_ip=ip,
+        pitcher_hr_per_9=hr_per_9, pitcher_hand_split_pa=hand_split_pa,
+        pitcher_split_pa=split_pa,
         park_hr_factor=1.0, temperature_f=70.0, wind_out_to_cf_mph=0.0,
         is_indoor=True, pa_per_game=4.2,
     )
@@ -433,48 +436,85 @@ def test_baseline_components_include_breakout_signal():
 
 
 # ---------------------------------------------------------------------------
-# Pitcher-factor shrinkage by season IP
+# Pitcher-factor shrinkage by split-PA (was IP — see baseline.py history)
 # ---------------------------------------------------------------------------
 
-def test_pitcher_factor_unchanged_at_full_threshold_ip():
-    """At pitcher_shrinkage_innings (default 100), no pull toward neutral."""
-    p = predict(**_shrinkage_pred_args(ip=100.0, hr_per_9=2.0, split_pa=80))
+def test_pitcher_factor_unchanged_at_full_threshold():
+    """At pitcher_shrinkage_split_pa (default 200 PA), no pull toward neutral."""
+    p = predict(**_shrinkage_pred_args(split_pa=200.0, hr_per_9=2.0, hand_split_pa=80))
     # Raw factor = (2.0 / 38) / 0.032 = 1.645. Weight = 1.0 → unchanged.
     assert p.components["pitcher"] == pytest.approx(1.6447, abs=1e-3)
 
 
-def test_pitcher_factor_pulls_60pct_toward_neutral_at_40_ip():
-    """At 40 IP (40% of 100), shrinkage_weight=0.4 → factor = raw*0.4 + 1.0*0.6."""
-    p = predict(**_shrinkage_pred_args(ip=40.0, hr_per_9=2.0, split_pa=80))
+def test_pitcher_factor_pulls_60pct_toward_neutral_at_40pct_threshold():
+    """At 80 PA (40% of 200), shrinkage_weight=0.4 → factor = raw*0.4 + 1.0*0.6."""
+    p = predict(**_shrinkage_pred_args(split_pa=80.0, hr_per_9=2.0, hand_split_pa=80))
     # raw = 1.645; shrunken = 1.645 × 0.4 + 1.0 × 0.6 = 0.658 + 0.6 = 1.258
     assert p.components["pitcher"] == pytest.approx(1.2579, abs=1e-3)
 
 
 def test_pitcher_factor_clamps_at_full_above_threshold():
-    """At 200 IP (past threshold), shrinkage_weight clamps at 1.0 → factor unchanged."""
-    p_at = predict(**_shrinkage_pred_args(ip=100.0, hr_per_9=2.0, split_pa=80))
-    p_above = predict(**_shrinkage_pred_args(ip=200.0, hr_per_9=2.0, split_pa=80))
+    """At 400 PA (past 200 threshold), shrinkage_weight clamps at 1.0 → factor unchanged."""
+    p_at = predict(**_shrinkage_pred_args(split_pa=200.0, hr_per_9=2.0, hand_split_pa=80))
+    p_above = predict(**_shrinkage_pred_args(split_pa=400.0, hr_per_9=2.0, hand_split_pa=80))
     assert p_at.components["pitcher"] == pytest.approx(p_above.components["pitcher"])
 
 
-def test_pitcher_factor_pulled_to_one_at_zero_ip():
-    """0 IP → weight=0 → factor = 1.0 regardless of raw."""
-    p = predict(**_shrinkage_pred_args(ip=0.0, hr_per_9=2.0, split_pa=80))
+def test_pitcher_factor_pulled_to_one_at_zero_split_pa():
+    """0 split-PA → weight=0 → factor = 1.0 regardless of raw."""
+    p = predict(**_shrinkage_pred_args(split_pa=0.0, hr_per_9=2.0, hand_split_pa=80))
     assert p.components["pitcher"] == pytest.approx(1.0)
 
 
 def test_shrinkage_disabled_when_threshold_zero():
-    """Setting pitcher_shrinkage_innings=0 in config disables the dampener."""
-    cfg = BaselineConfig(pitcher_shrinkage_innings=0.0)
-    p = predict(**_shrinkage_pred_args(ip=10.0, hr_per_9=2.0, split_pa=80),
+    """Setting pitcher_shrinkage_split_pa=0 in config disables the dampener."""
+    cfg = BaselineConfig(pitcher_shrinkage_split_pa=0.0)
+    p = predict(**_shrinkage_pred_args(split_pa=20.0, hr_per_9=2.0, hand_split_pa=80),
                 config=cfg)
     # Raw factor full strength: (2.0 / 38) / 0.032 = 1.645
     assert p.components["pitcher"] == pytest.approx(1.6447, abs=1e-3)
+
+
+def test_compute_slate_league_hr_per_pa_aggregates_when_sample_sufficient():
+    from src.model.baseline import compute_slate_league_hr_per_pa
+    # 8 batters × 200 PA = 1600 PA; 50 HR total → 0.03125 HR/PA.
+    season_recs = [
+        {"hr": 6, "pa": 200}, {"hr": 8, "pa": 200},
+        {"hr": 4, "pa": 200}, {"hr": 7, "pa": 200},
+        {"hr": 5, "pa": 200}, {"hr": 9, "pa": 200},
+        {"hr": 6, "pa": 200}, {"hr": 5, "pa": 200},
+    ]
+    rate = compute_slate_league_hr_per_pa(season_recs)
+    assert rate == pytest.approx(50.0 / 1600.0, abs=1e-6)
+
+
+def test_compute_slate_league_hr_per_pa_falls_back_when_sample_thin():
+    """Opening-day case: not enough cumulative PA → use the LEAGUE_HR_PER_PA_DEFAULT."""
+    from src.model.baseline import (
+        LEAGUE_HR_PER_PA_DEFAULT, compute_slate_league_hr_per_pa,
+    )
+    # 5 batters × 50 PA = 250 PA, well below the 1000 floor.
+    season_recs = [{"hr": 1, "pa": 50}] * 5
+    rate = compute_slate_league_hr_per_pa(season_recs)
+    assert rate == LEAGUE_HR_PER_PA_DEFAULT
+
+
+def test_compute_slate_league_hr_per_pa_skips_invalid_records():
+    from src.model.baseline import compute_slate_league_hr_per_pa
+    # Mix of valid + None / zero-PA / missing records — only the valid ones count.
+    season_recs = [
+        {"hr": 50, "pa": 1500},   # 0.0333
+        None,
+        {"hr": 0, "pa": 0},
+        {},                       # missing keys
+    ]
+    rate = compute_slate_league_hr_per_pa(season_recs)
+    assert rate == pytest.approx(50.0 / 1500.0, abs=1e-6)
 
 
 def test_shrinkage_neutral_factor_unchanged():
     """A pitcher who's already league-average (factor=1.0) is unchanged by shrinkage."""
     # HR/9 such that raw factor = 1.0:  (1.0 × 38) / 38 = 1.0 means hr_per_pa=0.032,
     # so hr_per_9 = 0.032 × 38 = 1.216
-    p = predict(**_shrinkage_pred_args(ip=20.0, hr_per_9=1.216, split_pa=80))
+    p = predict(**_shrinkage_pred_args(split_pa=40.0, hr_per_9=1.216, hand_split_pa=80))
     assert p.components["pitcher"] == pytest.approx(1.0, abs=1e-3)

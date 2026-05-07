@@ -47,6 +47,43 @@ from typing import Optional
 LEAGUE_HR_PER_PA_DEFAULT = 0.032
 DEFAULT_PA_PER_GAME = 4.2
 
+# Slate-aggregation defaults for compute_slate_league_hr_per_pa.
+# Need enough cumulative PA across the slate's batters to trust the empirical
+# rate — a single opening-day slate with 5 PA per batter is too noisy.
+LEAGUE_RATE_MIN_TOTAL_PA = 1000
+
+
+def compute_slate_league_hr_per_pa(
+    season_records: list[dict],
+    *,
+    fallback: float = LEAGUE_HR_PER_PA_DEFAULT,
+    min_total_pa: int = LEAGUE_RATE_MIN_TOTAL_PA,
+) -> float:
+    """Empirical league HR/PA aggregated from the slate's batters' season stats.
+
+    Today's slate has ~150 unique batters with ~150 PA each ≈ 22k PA — more than
+    enough sample to trust the empirical rate. Falls back to
+    `LEAGUE_HR_PER_PA_DEFAULT` if the cumulative PA is too small (early-April
+    opening-day case where stats are sparse).
+
+    `season_records` is a list of dicts each shaped `{"hr": int, "pa": int, ...}`.
+    Caller is expected to pass de-duped batter season records.
+    """
+    total_hr = 0.0
+    total_pa = 0
+    for rec in season_records:
+        if not rec:
+            continue
+        pa = int(rec.get("pa") or 0)
+        hr = float(rec.get("hr") or 0)
+        if pa <= 0:
+            continue
+        total_hr += hr
+        total_pa += pa
+    if total_pa < min_total_pa:
+        return fallback
+    return total_hr / total_pa
+
 # PA per game by lineup spot (approximate, from public lineup-position data).
 PA_BY_LINEUP_SPOT: dict[int, float] = {
     1: 4.6, 2: 4.5, 3: 4.4, 4: 4.3, 5: 4.2, 6: 4.0, 7: 3.9, 8: 3.7, 9: 3.6,
@@ -67,14 +104,20 @@ class BaselineConfig:
     p_per_pa_clip: tuple[float, float] = (0.001, 0.25)
     # Conversion: pitcher HR/9 → HR/PA. ~9 IP × ~4.3 PA/IP ≈ 38 PA per 9 IP.
     pa_per_9_innings: float = 38.0
-    # Early-season pitcher-factor shrinkage. With small samples (e.g. 30-40 IP
-    # in early May), pitcher_factor is statistically noisy; we Bayesian-shrink
-    # toward 1.0 (neutral) until the pitcher accumulates enough innings to
-    # support a confident factor. Shrinkage fades linearly with IP and
-    # disappears at `pitcher_shrinkage_innings`.
-    #   weight = min(1.0, ip / pitcher_shrinkage_innings)
+    # Early-season pitcher-factor shrinkage. With small samples (e.g. 60 PA on
+    # the matched platoon split), the per-split HR/9 estimate is statistically
+    # noisy; we Bayesian-shrink toward 1.0 (neutral) until the pitcher has
+    # accumulated enough split-PA to support a confident factor.
+    # Shrinkage fades linearly with split-PA and disappears at
+    # `pitcher_shrinkage_split_pa`.
+    #   weight   = min(1.0, split_pa / pitcher_shrinkage_split_pa)
     #   shrunken = raw_factor * weight + 1.0 * (1 - weight)
-    pitcher_shrinkage_innings: float = 100.0
+    # 200 PA ≈ what 100 IP buys you on ONE platoon side (~half of the
+    # ~420 total PA at 100 IP × 4.2 PA/IP). Using IP was wrong: a 100-IP
+    # starter with a heavily-imbalanced opponent diet might have only ~60
+    # PA on the relevant split, so the factor was claiming confidence we
+    # didn't have.
+    pitcher_shrinkage_split_pa: float = 200.0
 
 
 @dataclass(frozen=True)
@@ -89,9 +132,9 @@ class BaselinePrediction:
     skipped: bool = False
     skip_reason: Optional[str] = None
     # True when early-season shrinkage was active on pitcher_factor (i.e. the
-    # pitcher's season IP was below `pitcher_shrinkage_innings`, so the raw
-    # factor was pulled toward 1.0). Surfaced so reviewers know the estimate
-    # is conservative for early-season starters.
+    # pitcher's PA on the matched platoon split was below
+    # `pitcher_shrinkage_split_pa`, so the raw factor was pulled toward 1.0).
+    # Surfaced so reviewers know the estimate is conservative.
     pitcher_factor_shrunk: bool = False
 
     def is_valid(self) -> bool:
@@ -111,7 +154,7 @@ def predict(
     pa_per_game: Optional[float] = None,
     lineup_spot: Optional[int] = None,
     config: BaselineConfig = BaselineConfig(),
-    pitcher_season_ip: float = float("nan"),
+    pitcher_split_pa: float = float("nan"),
 ) -> BaselinePrediction:
     """Empirical-Bayes P(HR ≥ 1) for one batter–pitcher–park–weather combo."""
     # 1. Start from the Bayesian-blended batter rate.
@@ -141,14 +184,15 @@ def predict(
         pitcher_hr_per_pa = pitcher_hr_per_9 / config.pa_per_9_innings
         pitcher_factor_raw = pitcher_hr_per_pa / config.league_hr_per_pa
 
-    # Bayesian shrinkage on pitcher_factor by season IP. Early-season factors
-    # built on 30-40 IP are statistically noisy; shrink toward 1.0 until the
-    # pitcher accumulates enough innings to support a confident estimate.
-    if _is_nan(pitcher_season_ip) or config.pitcher_shrinkage_innings <= 0:
+    # Bayesian shrinkage on pitcher_factor by split-PA. Use PA on the SAME
+    # platoon split the prediction reads (vs_R or vs_L), not total IP — a
+    # 100-IP starter who's faced mostly RHB might have only 60 PA on the LHB
+    # split, and shrinkage should reflect THAT sample, not the total.
+    if _is_nan(pitcher_split_pa) or config.pitcher_shrinkage_split_pa <= 0:
         pitcher_factor = pitcher_factor_raw
         shrinkage_weight = 1.0
     else:
-        shrinkage_weight = min(1.0, max(0.0, pitcher_season_ip / config.pitcher_shrinkage_innings))
+        shrinkage_weight = min(1.0, max(0.0, pitcher_split_pa / config.pitcher_shrinkage_split_pa))
         pitcher_factor = pitcher_factor_raw * shrinkage_weight + 1.0 * (1.0 - shrinkage_weight)
     pitcher_factor_shrunk = shrinkage_weight < 1.0
 

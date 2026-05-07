@@ -204,18 +204,19 @@ def _predict_entry(
     recent_form = compute_recent_form_flags(season, recent)
 
     # ---- Run the baseline -------------------------------------------------
-    # Pitcher season IP — used by predict() for early-season shrinkage on
-    # pitcher_factor. Pulled from the OVERALL split (not vs_R/vs_L) since
-    # shrinkage is about total sample reliability, not platoon sample.
-    pit_season_overall = (pitcher_data.get("season") or {}).get("overall") or {}
-    pitcher_season_ip = float(pit_season_overall.get("ip_estimate") or 0.0)
+    # Pitcher split-PA — used by predict() for early-season shrinkage on
+    # pitcher_factor. Pulled from the SAME platoon split the factor reads
+    # (vs_R or vs_L), NOT overall IP — shrinkage should reflect the sample
+    # actually informing the prediction, not total work that may be heavily
+    # weighted toward the other handedness.
+    split_pa_value = float(pit_season_split.get("pa", 0) or 0)
 
     pred = predict(
         blended_hr_per_pa=batter_blend.rate,
         reliable_breakout=breakout.score,
         pitcher_hr_per_9=pitcher_blend.rate,
-        pitcher_hand_split_pa=int(pit_season_split.get("pa", 0) or 0),
-        pitcher_season_ip=pitcher_season_ip,
+        pitcher_hand_split_pa=int(split_pa_value),
+        pitcher_split_pa=split_pa_value,
         park_hr_factor=pw.get("park_hr_factor", 1.0) if pw else 1.0,
         temperature_f=pw.get("temperature_f", config.temp_baseline_f) if pw else config.temp_baseline_f,
         wind_out_to_cf_mph=pw.get("wind_out_to_cf_mph", 0.0) if pw else 0.0,
