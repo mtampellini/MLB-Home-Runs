@@ -330,9 +330,9 @@ function DayBlock({ archive, expanded, onToggle, tierFilter }) {
 
   const picks = useMemo(() => {
     const all = []
-    if (tierFilter === 'all' || tierFilter === 'primary') all.push(...(data.primary_picks || []))
-    if (tierFilter === 'all') all.push(...(data.secondary_picks || []))
-    if (tierFilter === 'all') all.push(...(data.shadow_picks || []))
+    if (tierFilter === 'all' || tierFilter === 'primary')   all.push(...(data.primary_picks   || []))
+    if (tierFilter === 'all' || tierFilter === 'secondary') all.push(...(data.secondary_picks || []))
+    if (tierFilter === 'all' || tierFilter === 'shadow')    all.push(...(data.shadow_picks    || []))
     return all
   }, [data, tierFilter])
 
@@ -587,7 +587,8 @@ export default function Tracker({ archives, tracker }) {
         tracker.summary_primary, tracker.summary_secondary, tracker.summary_shadow
       )
     }
-    return tracker.summary_primary || tracker.summary || {}
+    // Per-tier: tracker.summary_primary / _secondary / _shadow.
+    return tracker[`summary_${tierFilter}`] || tracker.summary || {}
   }, [tracker, tierFilter])
 
   const totalSettled = (sum.wins || 0) + (sum.losses || 0)
@@ -678,7 +679,12 @@ export default function Tracker({ archives, tracker }) {
           display: 'flex', flexDirection: 'column', gap: 14,
         }}>
           <FilterRow label="Tier"  value={tierFilter} onChange={setTierFilter}
-            options={[['primary', 'Primary only'], ['all', 'All tiers']]} />
+            options={[
+              ['primary',   'Primary'],
+              ['secondary', 'Secondary'],
+              ['shadow',    'Shadow'],
+              ['all',       'All'],
+            ]} />
           <FilterRow label="Range" value={dateFilter} onChange={setDateFilter}
             options={[
               ['all',       'All time'],
