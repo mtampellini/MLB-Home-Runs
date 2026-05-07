@@ -182,9 +182,38 @@ def tmp_layout(tmp_path, monkeypatch):
     picks_path = tmp_path / "picks.json"
     skipped_dir = tmp_path / "data" / "processed"
     odds_dir = tmp_path / "data" / "odds"
+    archives_dir = tmp_path / "data" / "daily_archives"
     odds_dir.mkdir(parents=True)
     monkeypatch.setattr(log_mod, "ODDS_DIR", odds_dir)
-    return {"picks_path": picks_path, "skipped_dir": skipped_dir, "odds_dir": odds_dir}
+    # Without this patch, tests calling run_daily(cutoff_date=...) would write
+    # a stub archive into the REAL backend/data/daily_archives/ on the runner,
+    # clobbering production data. (Caused 2026-05-06 to be wiped on
+    # 2026-05-07's CI run — the fixture was incomplete.)
+    monkeypatch.setattr(rd_mod, "DAILY_ARCHIVES_DIR", archives_dir)
+    return {"picks_path": picks_path, "skipped_dir": skipped_dir,
+            "odds_dir": odds_dir, "archives_dir": archives_dir}
+
+
+def test_run_daily_archive_writes_stay_inside_tmp(tmp_layout, monkeypatch):
+    """Regression: tmp_layout used to leave DAILY_ARCHIVES_DIR un-patched, so
+    a test that called run_daily(cutoff_date=date(2026,5,6)) would write a
+    stub archive into the REAL backend/data/daily_archives/2026-05-06.json
+    on the CI runner — committing it and wiping yesterday's settled data.
+    """
+    fetch = _odds_for_one_batter()
+    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
+                        lambda client=None, books=None, relevant_team_pairs=None,
+                                skip_started_clock_skew_min=None: fetch)
+    run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    # Archive lands in the patched tmp dir, not the production directory.
+    assert (tmp_layout["archives_dir"] / "2026-05-06.json").exists()
 
 
 def test_run_daily_writes_picks_with_full_schema(tmp_layout, monkeypatch):

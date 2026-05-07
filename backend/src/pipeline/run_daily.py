@@ -201,8 +201,13 @@ def _write_daily_archive(
     slate_meta: dict,
     rows,
     league_hr_per_pa: float,
-    output_dir: Path = DAILY_ARCHIVES_DIR,
+    output_dir: Optional[Path] = None,
 ) -> Path:
+    # Resolve lazily so monkeypatching the module-level DAILY_ARCHIVES_DIR in
+    # tests actually takes effect. (A `= DAILY_ARCHIVES_DIR` default is bound
+    # at function-definition time and won't pick up the patch.)
+    if output_dir is None:
+        output_dir = DAILY_ARCHIVES_DIR
     """Write a single self-describing per-day file for the tracker dashboard.
 
     Format (per spec):
