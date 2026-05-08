@@ -193,6 +193,59 @@ def _annotate_stacked(picks: list[dict]) -> None:
             p["stacked_with"] = others
 
 
+def _load_existing_archive(
+    cutoff_date: _date, output_dir: Optional[Path] = None,
+) -> Optional[dict]:
+    """Read a same-day archive if one exists. Used by merge mode so multiple
+    cron fires across the day can ADD picks for newly-posted lineups instead
+    of clobbering each other."""
+    if output_dir is None:
+        output_dir = DAILY_ARCHIVES_DIR
+    path = output_dir / f"{cutoff_date.isoformat()}.json"
+    if not path.exists():
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:    # noqa: BLE001
+        logger.warning("could not load existing archive %s: %s", path, e)
+        return None
+
+
+def _merge_with_existing(
+    primary_picks: list[dict], secondary_picks: list[dict], shadow_picks: list[dict],
+    existing: Optional[dict],
+) -> tuple[list[dict], list[dict], list[dict]]:
+    """Append this-run's picks to an existing same-day archive's picks.
+
+    Slate filter (in run_daily) already removed any game_pks already covered,
+    so duplicates can't appear. Ranks are recomputed across the merged set:
+    daily_rank is the cross-tier rank by EV, tier_rank is the within-tier rank
+    by the tier's sort key (primary=edge_pct, secondary/shadow=ev_pct).
+    """
+    if not existing:
+        return primary_picks, secondary_picks, shadow_picks
+    merged_primary   = list(existing.get("primary_picks")   or []) + primary_picks
+    merged_secondary = list(existing.get("secondary_picks") or []) + secondary_picks
+    merged_shadow    = list(existing.get("shadow_picks")    or []) + shadow_picks
+
+    # Cross-tier daily_rank by EV.
+    all_picks = merged_primary + merged_secondary + merged_shadow
+    for r, p in enumerate(sorted(all_picks, key=lambda x: x.get("ev_pct", 0), reverse=True),
+                            start=1):
+        p["daily_rank"] = r
+
+    # Within-tier sort + tier_rank.
+    merged_primary.sort(key=lambda p: p.get("edge_pct", 0), reverse=True)
+    merged_secondary.sort(key=lambda p: p.get("ev_pct",  0), reverse=True)
+    merged_shadow.sort(key=lambda p: p.get("ev_pct",     0), reverse=True)
+    for i, p in enumerate(merged_primary,   start=1): p["tier_rank"] = i
+    for i, p in enumerate(merged_secondary, start=1): p["tier_rank"] = i
+    for i, p in enumerate(merged_shadow,    start=1): p["tier_rank"] = i
+
+    return merged_primary, merged_secondary, merged_shadow
+
+
 def _write_daily_archive(
     cutoff_date: _date,
     primary_picks: list[dict],
@@ -203,6 +256,7 @@ def _write_daily_archive(
     rows,
     league_hr_per_pa: float,
     output_dir: Optional[Path] = None,
+    existing_settlement: Optional[dict] = None,
 ) -> Path:
     # Resolve lazily so monkeypatching the module-level DAILY_ARCHIVES_DIR in
     # tests actually takes effect. (A `= DAILY_ARCHIVES_DIR` default is bound
@@ -259,7 +313,10 @@ def _write_daily_archive(
         "primary_picks": primary_picks,
         "secondary_picks": secondary_picks,
         "shadow_picks": shadow_picks,
-        "settlement": None,        # populated next day by settle.py
+        # Preserve settlement across merge runs. Same-day settlement is rare
+        # (settle_results runs the next morning), but if a manual settle ran
+        # between picks fires we don't want to wipe its work.
+        "settlement": existing_settlement,
     }
     output_dir.mkdir(parents=True, exist_ok=True)
     path = output_dir / f"{cutoff_date.isoformat()}.json"
@@ -482,6 +539,27 @@ def run_daily(
         slate_meta["games_no_lineup_skipped"],
     )
 
+    # --- 1.5. MERGE MODE: filter slate to games not already in today's archive ---
+    # Multiple cron fires across the day pick up newly-posted lineups. Each
+    # subsequent run only processes game_pks NOT already covered, then appends
+    # to the archive. Without this, the second run would either clobber the
+    # first or do redundant work for games already picked.
+    existing_archive = _load_existing_archive(cutoff_date)
+    if existing_archive:
+        covered_game_pks: set = set()
+        for tier_key in ("primary_picks", "secondary_picks", "shadow_picks"):
+            for p in existing_archive.get(tier_key, []) or []:
+                if p.get("game_pk"):
+                    covered_game_pks.add(p["game_pk"])
+        if covered_game_pks:
+            before = len(slate)
+            slate = [e for e in slate if e.game_pk not in covered_game_pks]
+            logger.info(
+                "merge mode: %d game(s) already in archive; slate filtered "
+                "%d → %d entries",
+                len(covered_game_pks), before, len(slate),
+            )
+
     # --- 2. Empirical league HR/PA -----------------------------------------
     # The previous code used a frozen 0.032 constant. That's the denominator
     # of pitcher_factor (`pitcher_hr_per_pa / league_hr_per_pa`) — if the
@@ -690,7 +768,15 @@ def run_daily(
     for i, p in enumerate(shadow_picks, start=1):
         p["tier_rank"] = i
 
-    # Annotate primary picks with stacked-pitcher correlations.
+    # MERGE MODE: append to existing same-day archive, recompute ranks across
+    # the combined set. Slate filter above ensured no game_pk overlap.
+    primary_picks, secondary_picks, shadow_picks = _merge_with_existing(
+        primary_picks, secondary_picks, shadow_picks, existing_archive,
+    )
+
+    # Annotate primary picks with stacked-pitcher correlations. Run AFTER merge
+    # so a primary from the morning run that shares a pitcher with a primary
+    # from the afternoon run gets correctly flagged as stacked.
     _annotate_stacked(primary_picks)
 
     logger.info(
@@ -810,6 +896,7 @@ def run_daily(
         slate_meta=slate_meta,
         rows=rows,
         league_hr_per_pa=config.league_hr_per_pa,
+        existing_settlement=(existing_archive or {}).get("settlement"),
     )
 
     logger.info(

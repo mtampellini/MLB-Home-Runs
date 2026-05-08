@@ -194,6 +194,61 @@ def tmp_layout(tmp_path, monkeypatch):
             "odds_dir": odds_dir, "archives_dir": archives_dir}
 
 
+def test_run_daily_merge_appends_picks_from_subsequent_run(tmp_layout, monkeypatch):
+    """Merge mode: a second run on the same date appends to the existing
+    archive. Game_pks already covered are filtered from the slate; new
+    game_pks add their picks to the existing list. Ranks are recomputed."""
+    fetch = _odds_for_one_batter()
+    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
+                        lambda client=None, books=None, relevant_team_pairs=None,
+                                skip_started_clock_skew_min=None: fetch)
+
+    # Pre-seed an archive with a pick from a "morning" run (different game_pk
+    # than what the slate fixture below produces).
+    archives_dir = tmp_layout["archives_dir"]
+    archives_dir.mkdir(parents=True, exist_ok=True)
+    morning_pick = {
+        "tier": "primary", "daily_rank": 1, "tier_rank": 1,
+        "batter": "Mookie Betts", "batter_id": 605141,
+        "team": "LAD", "lineup_spot": 1,
+        "pitcher": "Morning Pitcher", "pitcher_id": 555,
+        "pitcher_hand": "R", "park": "LAD",
+        "game_pk": 9999, "game_datetime": "2026-05-06T20:10:00Z",
+        "line": 0.5, "fd_odds": 250, "dk_odds": 270, "best_book": "draftkings",
+        "market_prob_devig": 0.20, "model_prob": 0.27,
+        "ev_pct": 35.0, "edge_pct": 7.0,
+    }
+    morning_archive = {
+        "date": "2026-05-06",
+        "generated_at": "2026-05-06T15:13:00Z",
+        "model_version": "v7-baseline-0.1.0",
+        "primary_picks": [morning_pick],
+        "secondary_picks": [], "shadow_picks": [],
+        "settlement": None,
+    }
+    import json as _json
+    (archives_dir / "2026-05-06.json").write_text(_json.dumps(morning_archive))
+
+    # Now run the pipeline — the fixture's slate produces game_pk=1 (different
+    # from the morning's 9999), so the new pick should APPEND.
+    run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    merged = _json.loads((archives_dir / "2026-05-06.json").read_text())
+    pks = sorted({p["game_pk"] for p in merged["primary_picks"]})
+    assert pks == [1, 9999], f"merge should keep both game_pks; got {pks}"
+    # Mookie's morning pick survives.
+    assert any(p["batter_id"] == 605141 for p in merged["primary_picks"])
+    # Tier_rank is recomputed across the combined set (1..N).
+    ranks = sorted(p["tier_rank"] for p in merged["primary_picks"])
+    assert ranks == list(range(1, len(merged["primary_picks"]) + 1))
+
+
 def test_run_daily_archive_writes_stay_inside_tmp(tmp_layout, monkeypatch):
     """Regression: tmp_layout used to leave DAILY_ARCHIVES_DIR un-patched, so
     a test that called run_daily(cutoff_date=date(2026,5,6)) would write a

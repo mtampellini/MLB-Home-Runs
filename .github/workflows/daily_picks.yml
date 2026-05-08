@@ -2,12 +2,19 @@ name: Daily picks
 
 on:
   schedule:
-    # 15:13 UTC ≈ 11:13am ET (EDT) / 10:13am ET (EST). Per project README the
-    # DST hour shift is acceptable; lineups still post in time. Off-hour
-    # minute: top-of-hour cron times are heavily contended on GitHub Actions
-    # and runs are commonly skipped under load. The settle workflow runs at
-    # 14:47 UTC, leaving ~26 min for it to finish before daily picks fires.
-    - cron: "13 15 * * *"
+    # Hourly fires from 11:13am to 7:13pm ET (15:13 UTC to 23:13 UTC during EDT).
+    # Three reasons for the wide window:
+    #   1. Lineup-posting times span ~9 hours per day — afternoon games' lineups
+    #      post 9-10am; 10pm West Coast games' lineups don't post until 6pm ET.
+    #      No single fire time covers both.
+    #   2. run_daily is now idempotent (merge mode): each fire only processes
+    #      game_pks not already in today's archive. Most fires that find no
+    #      new lineups exit fast.
+    #   3. GitHub's scheduled-event scheduler is unreliable for this repo
+    #      (3 consecutive skips even at off-hour minutes). 9 daily fires give
+    #      defense in depth — even a 50% fire rate hits every category.
+    # Off-hour minute (:13) on purpose to dodge top-of-hour cron contention.
+    - cron: "13 15-23 * * *"
   workflow_dispatch:
 
 permissions:
