@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-09T18:15:14.049010+00:00",
+  "generated_at": "2026-05-09T19:39:52.190008+00:00",
   "as_of_date": "2026-05-09",
   "model_version": "v7-baseline-0.1.0",
-  "league_hr_per_pa": 0.03598971722365039,
+  "league_hr_per_pa": 0.028542173300908743,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 28,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -61,7 +61,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 20,
+      "daily_rank": 29,
       "batter": "JJ Bleday",
       "batter_id": 668709,
       "batter_hand": "L",
@@ -107,8 +107,57 @@
         }
       ],
       "tier_rank": 2
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 30,
+      "batter": "Willson Contreras",
+      "batter_id": 575929,
+      "batter_hand": "R",
+      "team": "BOS",
+      "lineup_spot": 2,
+      "pitcher": "Nick Martinez",
+      "pitcher_id": 607259,
+      "pitcher_hand": "R",
+      "park": "BOS",
+      "game_pk": 824766,
+      "game_datetime": "2026-05-09T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 472,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1636,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1966,
+      "ev_pct": 15.99,
+      "edge_pct": 3.3,
+      "blended_hr_per_pa": 0.05143,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1922,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8018,
+          "deviation": 0.8018
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 0.891,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 3
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-05-09.json"
 }
