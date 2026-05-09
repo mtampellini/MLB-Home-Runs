@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-09T00:12:15.228587+00:00",
+  "generated_at": "2026-05-09T16:11:06.372113+00:00",
   "as_of_date": "2026-05-09",
   "model_version": "v7-baseline-0.1.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03431372549019608,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,114 @@
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Mike Trout",
+      "batter_id": 545361,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 2,
+      "pitcher": "Trey Yesavage",
+      "pitcher_id": 702056,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822820,
+      "game_datetime": "2026-05-09T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 335,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2223,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3108,
+      "ev_pct": 35.2,
+      "edge_pct": 8.85,
+      "blended_hr_per_pa": 0.0629,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2016,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8331,
+          "deviation": 0.8331
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0975,
+          "deviation": 0.0975
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Jorge Soler"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Jorge Soler",
+      "batter_id": 624585,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 4,
+      "pitcher": "Trey Yesavage",
+      "pitcher_id": 702056,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822820,
+      "game_datetime": "2026-05-09T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 422,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1823,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2678,
+      "ev_pct": 39.77,
+      "edge_pct": 8.54,
+      "blended_hr_per_pa": 0.05539,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1583,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6142,
+          "deviation": 0.6142
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0975,
+          "deviation": 0.0975
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Mike Trout"
+      ]
+    }
+  ],
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-05-09.json"
 }
