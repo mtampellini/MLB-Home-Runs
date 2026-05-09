@@ -1,8 +1,8 @@
 {
   "date": "2026-05-09",
-  "generated_at": "2026-05-09T16:11:06.373467+00:00",
+  "generated_at": "2026-05-09T17:14:56.826934+00:00",
   "model_version": "v7-baseline-0.1.0",
-  "league_hr_per_pa": 0.03431372549019608,
+  "league_hr_per_pa": 0.02492331288343558,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
@@ -16,17 +16,123 @@
     "matched_main_market": 0,
     "two_way_devig": 0,
     "single_sided_devig": 14,
-    "above_25_ev_pre_cap": 3,
-    "eligible_below_900_price_cap": 2,
-    "above_price_cap_pushed_to_secondary": 1,
-    "primary_count": 2,
-    "secondary_count": 1,
+    "above_25_ev_pre_cap": 5,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 2,
+    "primary_count": 5,
+    "secondary_count": 3,
     "shadow_count": 0
   },
   "primary_picks": [
     {
       "tier": "primary",
-      "daily_rank": 3,
+      "daily_rank": 1,
+      "batter": "Liam Hicks",
+      "batter_id": 689414,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 3,
+      "pitcher": "Zack Littell",
+      "pitcher_id": 641793,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823869,
+      "game_datetime": "2026-05-09T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 740,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1114,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.7139,
+      "ev_pct": 499.7,
+      "edge_pct": 60.26,
+      "blended_hr_per_pa": 0.06272,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.026,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 3.5007,
+          "deviation": 2.5007
+        },
+        {
+          "name": "batter_skill",
+          "value": 2.5164,
+          "deviation": 1.5164
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Kyle Stowers"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
+      "batter": "Kyle Stowers",
+      "batter_id": 669065,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 4,
+      "pitcher": "Zack Littell",
+      "pitcher_id": 641793,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823869,
+      "game_datetime": "2026-05-09T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 473,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1634,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.334,
+      "ev_pct": 97.07,
+      "edge_pct": 17.06,
+      "blended_hr_per_pa": 0.03092,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1591,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 3.5007,
+          "deviation": 2.5007
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2405,
+          "deviation": 0.2405
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Liam Hicks"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
       "batter": "Mike Trout",
       "batter_id": 545361,
       "batter_hand": "R",
@@ -71,7 +177,7 @@
           "deviation": 0.0975
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
         "Jorge Soler"
@@ -79,7 +185,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 5,
       "batter": "Jorge Soler",
       "batter_id": 624585,
       "batter_hand": "R",
@@ -124,17 +230,117 @@
           "deviation": 0.0975
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": true,
       "stacked_with": [
         "Mike Trout"
       ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "CJ Abrams",
+      "batter_id": 682928,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 4,
+      "pitcher": "Janson Junk",
+      "pitcher_id": 676083,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823869,
+      "game_datetime": "2026-05-09T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 585,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1402,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1867,
+      "ev_pct": 27.92,
+      "edge_pct": 4.65,
+      "blended_hr_per_pa": 0.04502,
+      "breakout_score": 0.0688,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2443,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8064,
+          "deviation": 0.8064
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0688,
+          "deviation": 0.0688
+        },
+        {
+          "name": "park",
+          "value": 0.9805,
+          "deviation": 0.0195
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": false,
+      "stacked_with": []
     }
   ],
   "secondary_picks": [
     {
       "tier": "secondary",
-      "daily_rank": 1,
+      "daily_rank": 2,
+      "batter": "Xavier Edwards",
+      "batter_id": 669364,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 1,
+      "pitcher": "Zack Littell",
+      "pitcher_id": 641793,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823869,
+      "game_datetime": "2026-05-09T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 980,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0838,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2649,
+      "ev_pct": 201.97,
+      "edge_pct": 18.1,
+      "blended_hr_per_pa": 0.01639,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5729,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 3.5007,
+          "deviation": 2.5007
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6578,
+          "deviation": 0.3422
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 3,
       "batter": "Josh Lowe",
       "batter_id": 666139,
       "batter_hand": "L",
@@ -179,7 +385,56 @@
           "deviation": 0.0661
         }
       ],
-      "tier_rank": 1
+      "tier_rank": 2
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 6,
+      "batter": "Jos\u00e9 Tena",
+      "batter_id": 677588,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 7,
+      "pitcher": "Janson Junk",
+      "pitcher_id": 676083,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823869,
+      "game_datetime": "2026-05-09T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 930,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0926,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1322,
+      "ev_pct": 36.17,
+      "edge_pct": 3.96,
+      "blended_hr_per_pa": 0.03183,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3125,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2771,
+          "deviation": 0.2771
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 0.9805,
+          "deviation": 0.0195
+        }
+      ],
+      "tier_rank": 3
     }
   ],
   "shadow_picks": [],

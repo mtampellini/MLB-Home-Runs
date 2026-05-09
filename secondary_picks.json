@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-09T16:11:06.372739+00:00",
+  "generated_at": "2026-05-09T17:14:56.826157+00:00",
   "as_of_date": "2026-05-09",
   "model_version": "v7-baseline-0.1.0",
-  "league_hr_per_pa": 0.03431372549019608,
+  "league_hr_per_pa": 0.02492331288343558,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,56 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 1,
+      "daily_rank": 2,
+      "batter": "Xavier Edwards",
+      "batter_id": 669364,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 1,
+      "pitcher": "Zack Littell",
+      "pitcher_id": 641793,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823869,
+      "game_datetime": "2026-05-09T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 980,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0838,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2649,
+      "ev_pct": 201.97,
+      "edge_pct": 18.1,
+      "blended_hr_per_pa": 0.01639,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5729,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 3.5007,
+          "deviation": 2.5007
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6578,
+          "deviation": 0.3422
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 3,
       "batter": "Josh Lowe",
       "batter_id": 666139,
       "batter_hand": "L",
@@ -57,7 +106,56 @@
           "deviation": 0.0661
         }
       ],
-      "tier_rank": 1
+      "tier_rank": 2
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 6,
+      "batter": "Jos\u00e9 Tena",
+      "batter_id": 677588,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 7,
+      "pitcher": "Janson Junk",
+      "pitcher_id": 676083,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823869,
+      "game_datetime": "2026-05-09T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 930,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0926,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1322,
+      "ev_pct": 36.17,
+      "edge_pct": 3.96,
+      "blended_hr_per_pa": 0.03183,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3125,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2771,
+          "deviation": 0.2771
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 0.9805,
+          "deviation": 0.0195
+        }
+      ],
+      "tier_rank": 3
     }
   ],
   "skipped_count": 4,
