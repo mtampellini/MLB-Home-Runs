@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-11T20:08:54.580782+00:00",
+  "generated_at": "2026-05-11T21:47:56.571635+00:00",
   "as_of_date": "2026-05-11",
   "model_version": "v7-baseline-0.1.0",
-  "league_hr_per_pa": 0.03193430656934307,
+  "league_hr_per_pa": 0.0360257868790292,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,56 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 7,
+      "daily_rank": 16,
+      "batter": "Ezequiel Duran",
+      "batter_id": 677649,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 2,
+      "pitcher": "Michael Soroka",
+      "pitcher_id": 647336,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822901,
+      "game_datetime": "2026-05-12T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 800,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1022,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1305,
+      "ev_pct": 20.03,
+      "edge_pct": 2.83,
+      "blended_hr_per_pa": 0.02448,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3557,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6796,
+          "deviation": 0.3204
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 17,
       "batter": "Jake Fraley",
       "batter_id": 641584,
       "batter_hand": "L",
@@ -57,11 +106,11 @@
           "deviation": 0.0736
         }
       ],
-      "tier_rank": 1
+      "tier_rank": 2
     },
     {
       "tier": "shadow",
-      "daily_rank": 8,
+      "daily_rank": 18,
       "batter": "Yandy D\u00edaz",
       "batter_id": 650490,
       "batter_hand": "R",
@@ -106,11 +155,158 @@
           "deviation": 0.0975
         }
       ],
-      "tier_rank": 2
+      "tier_rank": 3
     },
     {
       "tier": "shadow",
-      "daily_rank": 9,
+      "daily_rank": 19,
+      "batter": "Luke Raley",
+      "batter_id": 670042,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 6,
+      "pitcher": "Peter Lambert",
+      "pitcher_id": 663567,
+      "pitcher_hand": "R",
+      "park": "HOU",
+      "game_pk": 824199,
+      "game_datetime": "2026-05-12T00:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 459,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1655,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.197,
+      "ev_pct": 16.21,
+      "edge_pct": 3.15,
+      "blended_hr_per_pa": 0.06972,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0658,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9353,
+          "deviation": 0.9353
+        },
+        {
+          "name": "pitcher",
+          "value": 0.61,
+          "deviation": 0.39
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 4
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 20,
+      "batter": "Pete Alonso",
+      "batter_id": 624413,
+      "batter_hand": "R",
+      "team": "BAL",
+      "lineup_spot": 4,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "BAL",
+      "game_pk": 824844,
+      "game_datetime": "2026-05-11T22:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 386,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1909,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2221,
+      "ev_pct": 13.28,
+      "edge_pct": 3.12,
+      "blended_hr_per_pa": 0.04642,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1299,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6652,
+          "deviation": 0.6652
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2886,
+          "deviation": 0.2886
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 5
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
+      "batter": "Leody Taveras",
+      "batter_id": 665750,
+      "batter_hand": "R",
+      "team": "BAL",
+      "lineup_spot": 7,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "BAL",
+      "game_pk": 824844,
+      "game_datetime": "2026-05-11T22:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 920,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0864,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.098,
+      "ev_pct": 11.71,
+      "edge_pct": 1.16,
+      "blended_hr_per_pa": 0.02135,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0476,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6652,
+          "deviation": 0.6652
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5927,
+          "deviation": 0.4073
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 6
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
       "batter": "Jes\u00fas S\u00e1nchez",
       "batter_id": 660821,
       "batter_hand": "L",
@@ -155,9 +351,9 @@
           "deviation": 0.0796
         }
       ],
-      "tier_rank": 3
+      "tier_rank": 7
     }
   ],
-  "skipped_count": 9,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-05-11.json"
 }

@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-11T20:08:54.580327+00:00",
+  "generated_at": "2026-05-11T21:47:56.571048+00:00",
   "as_of_date": "2026-05-11",
   "model_version": "v7-baseline-0.1.0",
-  "league_hr_per_pa": 0.03193430656934307,
+  "league_hr_per_pa": 0.0360257868790292,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,56 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 1,
+      "daily_rank": 2,
+      "batter": "Ildemaro Vargas",
+      "batter_id": 545121,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 5,
+      "pitcher": "Jakob Junis",
+      "pitcher_id": 596001,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822901,
+      "game_datetime": "2026-05-12T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 850,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0945,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2201,
+      "ev_pct": 124.46,
+      "edge_pct": 12.55,
+      "blended_hr_per_pa": 0.04762,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1798,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3218,
+          "deviation": 0.3218
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0493,
+          "deviation": 0.0493
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 3,
       "batter": "Oswald Peraza",
       "batter_id": 672724,
       "batter_hand": "R",
@@ -57,11 +106,11 @@
           "deviation": 0.2103
         }
       ],
-      "tier_rank": 1
+      "tier_rank": 2
     },
     {
       "tier": "secondary",
-      "daily_rank": 4,
+      "daily_rank": 10,
       "batter": "Daniel Schneemann",
       "batter_id": 682177,
       "batter_hand": "L",
@@ -106,9 +155,9 @@
           "deviation": 0.1398
         }
       ],
-      "tier_rank": 2
+      "tier_rank": 3
     }
   ],
-  "skipped_count": 9,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-05-11.json"
 }
