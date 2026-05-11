@@ -8,7 +8,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from src.pipeline.slate import MlbStatsClient
-from src.results.settle import settle_date, settle_pick
+from src.results.settle import settle_all_tiers, settle_date, settle_pick
 
 
 def _box_with_hr(batter_id: int, hr: int) -> dict:
@@ -103,33 +103,49 @@ def test_settle_pick_uses_taken_book_price_for_payout():
 
 
 # ---------------------------------------------------------------------------
-# settle_date: full file flow
+# settle_date + settle_all_tiers: read picks from daily archive
 # ---------------------------------------------------------------------------
 
-def _write_picks_file(tmp_dir: Path, day: date, picks: list[dict]) -> None:
-    f = tmp_dir / f"picks_{day.isoformat()}.json"
-    f.write_text(json.dumps({
-        "as_of_date": day.isoformat(),
+def _write_archive(archives_dir: Path, day: date, *,
+                   primary_picks: list[dict] = (),
+                   secondary_picks: list[dict] = (),
+                   shadow_picks: list[dict] = ()) -> Path:
+    archives_dir.mkdir(parents=True, exist_ok=True)
+    path = archives_dir / f"{day.isoformat()}.json"
+    path.write_text(json.dumps({
+        "date": day.isoformat(),
+        "generated_at": f"{day.isoformat()}T15:00:00+00:00",
         "model_version": "v7-baseline-0.1.0",
         "league_hr_per_pa": 0.032,
-        "ev_threshold_pct": 25.0,
-        "picks": picks,
-        "skipped_count": 0,
-        "skipped_reference": "x",
+        "funnel": {},
+        "primary_picks": list(primary_picks),
+        "secondary_picks": list(secondary_picks),
+        "shadow_picks": list(shadow_picks),
+        "settlement": None,
     }))
+    return path
 
 
-def test_settle_date_writes_results_file_with_aggregate(tmp_path):
+def _mock_client_for_boxes(boxes: dict) -> MlbStatsClient:
+    client = MlbStatsClient()
+    def _get(path, params=None):
+        # Path looks like "/game/{pk}/boxscore"
+        pk = int(path.split("/")[2])
+        return boxes[pk]
+    client._get = MagicMock(side_effect=_get)
+    return client
+
+
+def test_settle_date_reads_picks_from_archive_and_aggregates(tmp_path):
     day = date(2026, 5, 6)
     picks = [
         _pick(1, game_pk=10),
         _pick(2, game_pk=10),    # same game → boxscore cached
         _pick(3, game_pk=20),
     ]
-    _write_picks_file(tmp_path, day, picks)
+    _write_archive(tmp_path, day, primary_picks=picks)
 
-    client = MlbStatsClient()
-    # Mock boxscore returns: id=1 hits HR, id=2 doesn't, id=3 hits HR.
+    # id=1 hits HR, id=2 doesn't, id=3 hits HR.
     boxes = {
         10: {"teams": {
             "home": {"players": {
@@ -145,29 +161,78 @@ def test_settle_date_writes_results_file_with_aggregate(tmp_path):
             "away": {"players": {}},
         }},
     }
-    def _get(path, params=None):
-        # Path looks like "/game/{pk}/boxscore"
-        pk = int(path.split("/")[2])
-        return boxes[pk]
-    client._get = MagicMock(side_effect=_get)
+    client = _mock_client_for_boxes(boxes)
 
-    report = settle_date(day, client=client, processed_dir=tmp_path)
+    report = settle_date(day, client=client, archives_dir=tmp_path, tier="primary")
     assert report.n_picks == 3
     assert report.n_wins == 2
     assert report.n_losses == 1
     assert report.n_voids == 0
     assert report.units_staked == 3.0
-    # Two wins at +310 (payout 3.10 each) - one loss at -1
     assert report.units_profit == pytest.approx(3.10 + 3.10 - 1.0)
     # Boxscore was fetched twice (once per game_pk), not three times.
     assert client._get.call_count == 2
 
-    # Output file exists with correct shape.
-    out = json.loads(report.output_path.read_text())
-    assert out["n_wins"] == 2
-    assert len(out["results"]) == 3
 
-
-def test_settle_date_raises_when_picks_file_missing(tmp_path):
+def test_settle_date_raises_when_archive_missing(tmp_path):
     with pytest.raises(FileNotFoundError):
-        settle_date(date(2026, 5, 6), processed_dir=tmp_path)
+        settle_date(date(2026, 5, 6), archives_dir=tmp_path)
+
+
+def test_settle_all_tiers_appends_settlement_block_to_archive(tmp_path):
+    """End-to-end: archive in → settlement block appended to same archive."""
+    day = date(2026, 5, 6)
+    _write_archive(
+        tmp_path, day,
+        primary_picks=[_pick(1, game_pk=10)],
+        secondary_picks=[_pick(2, game_pk=20)],
+        shadow_picks=[_pick(3, game_pk=30)],
+    )
+    boxes = {
+        10: _box_with_hr(1, hr=1),
+        20: _box_with_hr(2, hr=0),
+        30: _box_with_hr(3, hr=2),
+    }
+    client = _mock_client_for_boxes(boxes)
+
+    reports = settle_all_tiers(day, client=client, archives_dir=tmp_path)
+    assert set(reports.keys()) == {"primary", "secondary", "shadow"}
+    assert reports["primary"].n_wins == 1
+    assert reports["secondary"].n_losses == 1
+    assert reports["shadow"].n_wins == 1
+
+    archive = json.loads((tmp_path / f"{day.isoformat()}.json").read_text())
+    settle = archive["settlement"]
+    assert settle is not None
+    assert "settled_at" in settle
+    assert settle["primary_summary"]["n_wins"] == 1
+    assert settle["secondary_summary"]["n_losses"] == 1
+    assert settle["shadow_summary"]["n_wins"] == 1
+    assert len(settle["primary_results"]) == 1
+    assert len(settle["secondary_results"]) == 1
+    assert len(settle["shadow_results"]) == 1
+
+
+def test_settle_all_tiers_skips_tiers_with_no_picks(tmp_path):
+    """Tier with empty picks list is skipped (not in the settlement block)."""
+    day = date(2026, 5, 6)
+    _write_archive(
+        tmp_path, day,
+        primary_picks=[_pick(1, game_pk=10)],
+        secondary_picks=[],
+        shadow_picks=[],
+    )
+    client = _mock_client_for_boxes({10: _box_with_hr(1, hr=1)})
+    reports = settle_all_tiers(day, client=client, archives_dir=tmp_path)
+    assert set(reports.keys()) == {"primary"}
+
+    settle = json.loads((tmp_path / f"{day.isoformat()}.json").read_text())["settlement"]
+    assert "primary_summary" in settle
+    assert "secondary_summary" not in settle
+    assert "shadow_summary" not in settle
+
+
+def test_settle_all_tiers_returns_empty_when_archive_missing(tmp_path):
+    """Missing archive → empty result, no exception (workflow can run idempotently)."""
+    reports = settle_all_tiers(date(2026, 5, 6), archives_dir=tmp_path)
+    assert reports == {}

@@ -793,7 +793,11 @@ def run_daily(
         shadow_ev_threshold_pct, funnel["shadow_tier"],
     )
 
-    # --- 5. Write picks.json (primary) + shadow_picks.json + dated copies --
+    # --- 5. Write picks.json (primary) + secondary + shadow tier files ----
+    # Per-tier files at the repo root are consumed by the web front-end and
+    # by local debug tooling. The daily archive (written below) is the
+    # committed source of truth for settle.py + tracker.py — there are no
+    # separate dated picks files anymore.
     final_picks_path = _write_picks_json(
         picks=primary_picks,
         cutoff_date=cutoff_date,
@@ -806,23 +810,7 @@ def run_daily(
         ev_threshold_pct_max=None,
         slate_meta=slate_meta,
     )
-    # Dated permanent copy for settle.py + tracker.py.
-    dated_picks_path = skipped_dir / f"picks_{cutoff_date.isoformat()}.json"
-    _write_picks_json(
-        picks=primary_picks,
-        cutoff_date=cutoff_date,
-        league_hr_per_pa=config.league_hr_per_pa,
-        skipped_count=skipped_count,
-        skipped_path=skipped_path,
-        output_path=dated_picks_path,
-        tier="primary",
-        ev_threshold_pct_min=ev_threshold_pct,
-        ev_threshold_pct_max=None,
-        slate_meta=slate_meta,
-    )
 
-    # Secondary tier — picks above EV floor but past the top-N cap. Same
-    # schema as primary; web doesn't consume; tracker compares vs primary.
     secondary_path_resolved = (
         secondary_picks_path or (picks_path.parent / SECONDARY_PICKS_FILENAME)
     )
@@ -838,22 +826,7 @@ def run_daily(
         ev_threshold_pct_max=None,
         slate_meta=slate_meta,
     )
-    dated_secondary_path = skipped_dir / f"secondary_picks_{cutoff_date.isoformat()}.json"
-    _write_picks_json(
-        picks=secondary_picks,
-        cutoff_date=cutoff_date,
-        league_hr_per_pa=config.league_hr_per_pa,
-        skipped_count=skipped_count,
-        skipped_path=skipped_path,
-        output_path=dated_secondary_path,
-        tier="secondary",
-        ev_threshold_pct_min=ev_threshold_pct,
-        ev_threshold_pct_max=None,
-        slate_meta=slate_meta,
-    )
 
-    # Shadow tier — same schema, separate file. Web does NOT consume this;
-    # it feeds tracker.py + post-deploy calibration analysis.
     shadow_path_resolved = (
         shadow_picks_path
         or (picks_path.parent / SHADOW_PICKS_FILENAME)
@@ -865,19 +838,6 @@ def run_daily(
         skipped_count=skipped_count,
         skipped_path=skipped_path,
         output_path=shadow_path_resolved,
-        tier="shadow",
-        ev_threshold_pct_min=shadow_ev_threshold_pct,
-        ev_threshold_pct_max=ev_threshold_pct,
-        slate_meta=slate_meta,
-    )
-    dated_shadow_path = skipped_dir / f"shadow_picks_{cutoff_date.isoformat()}.json"
-    _write_picks_json(
-        picks=shadow_picks,
-        cutoff_date=cutoff_date,
-        league_hr_per_pa=config.league_hr_per_pa,
-        skipped_count=skipped_count,
-        skipped_path=skipped_path,
-        output_path=dated_shadow_path,
         tier="shadow",
         ev_threshold_pct_min=shadow_ev_threshold_pct,
         ev_threshold_pct_max=ev_threshold_pct,

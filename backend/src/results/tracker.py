@@ -1,8 +1,8 @@
 """Aggregate settled picks → running ROI / hit rate / CLV / calibration.
 
 Reads:
-  data/processed/results_*.json  (one per settled day, written by settle.py)
-  data/odds/*.json               (snapshot history, used for CLV)
+  data/daily_archives/YYYY-MM-DD.json   (per-day picks + settlement block)
+  data/odds/*.json                      (snapshot history, used for CLV)
 
 Writes:
   data/processed/tracker.json    (web-friendly running stats)
@@ -37,6 +37,7 @@ logger = logging.getLogger(__name__)
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 _DATA_DIR = Path(os.environ.get("HR_V7_DATA_DIR", PROJECT_ROOT / "data"))
 PROCESSED_DIR = _DATA_DIR / "processed"
+DAILY_ARCHIVES_DIR = _DATA_DIR / "daily_archives"
 ODDS_DIR = _DATA_DIR / "odds"
 TRACKER_PATH = PROCESSED_DIR / "tracker.json"
 
@@ -46,27 +47,23 @@ CALIBRATION_BUCKETS = (
     (0.30, 0.40), (0.40, 0.60),
 )
 
-# Filename prefixes per tier. settle.py writes:
-#   primary   → results_DATE.json           + picks_DATE.json
-#   secondary → secondary_results_DATE.json + secondary_picks_DATE.json
-#   shadow    → shadow_results_DATE.json    + shadow_picks_DATE.json
-_RESULTS_PREFIX = {"primary": "results", "secondary": "secondary_results", "shadow": "shadow_results"}
-_PICKS_PREFIX   = {"primary": "picks",   "secondary": "secondary_picks",   "shadow": "shadow_picks"}
+TIERS = ("primary", "secondary", "shadow")
 
 
 # ---------------------------------------------------------------------------
-# Loading settled days + snapshots
+# Loading archives + snapshots
 # ---------------------------------------------------------------------------
 
-def _list_results_files(start: Optional[_date], end: Optional[_date],
-                        tier: str = "primary",
-                        processed_dir: Path = PROCESSED_DIR) -> list[Path]:
-    prefix = _RESULTS_PREFIX[tier]
-    files = sorted(processed_dir.glob(f"{prefix}_*.json"))
-    out: list[Path] = []
-    pat = re.compile(rf"{prefix}_(\d{{4}}-\d{{2}}-\d{{2}})\.json")
-    for f in files:
-        m = pat.match(f.name)
+_ARCHIVE_PAT = re.compile(r"(\d{4}-\d{2}-\d{2})\.json")
+
+
+def _list_archive_files(start: Optional[_date], end: Optional[_date],
+                         archives_dir: Path) -> list[tuple[_date, Path]]:
+    if not archives_dir.exists():
+        return []
+    out: list[tuple[_date, Path]] = []
+    for f in sorted(archives_dir.glob("*.json")):
+        m = _ARCHIVE_PAT.match(f.name)
         if not m:
             continue
         d = _date.fromisoformat(m.group(1))
@@ -74,16 +71,16 @@ def _list_results_files(start: Optional[_date], end: Optional[_date],
             continue
         if end and d > end:
             continue
-        out.append(f)
+        out.append((d, f))
     return out
 
 
-def _load_snapshots_for_date(d: _date) -> list[dict]:
+def _load_snapshots_for_date(d: _date, odds_dir: Path) -> list[dict]:
     """All snapshots whose filename starts with the given date (sorted by filename → time)."""
-    if not ODDS_DIR.exists():
+    if not odds_dir.exists():
         return []
     out: list[dict] = []
-    for f in sorted(ODDS_DIR.glob(f"{d.isoformat()}-*.json")):
+    for f in sorted(odds_dir.glob(f"{d.isoformat()}-*.json")):
         try:
             with open(f, "r", encoding="utf-8") as fh:
                 out.append(json.load(fh))
@@ -257,69 +254,64 @@ def _by_book_breakdown(rows: list[dict], picks_lookup: dict[str, dict]) -> dict:
 # Build tracker
 # ---------------------------------------------------------------------------
 
-def _load_tier_rows(
-    tier: str, start: Optional[_date], end: Optional[_date],
-    processed_dir: Path,
+def _load_all_tiers_rows(
+    start: Optional[_date], end: Optional[_date],
+    archives_dir: Path, odds_dir: Path,
     snapshots_cache: dict[_date, list[dict]],
-) -> tuple[list[dict], dict[str, dict]]:
-    """Load (rows, picks_meta) for one tier (primary or shadow)."""
-    files = _list_results_files(start, end, tier=tier, processed_dir=processed_dir)
-    rows: list[dict] = []
-    picks_meta: dict[str, dict] = {}
-    picks_prefix = _PICKS_PREFIX[tier]
-
-    for rf in files:
-        with open(rf, "r", encoding="utf-8") as f:
-            payload = json.load(f)
-        d = _date.fromisoformat(payload["as_of_date"])
-        if start and d < start: continue
-        if end and d > end: continue
-
-        picks_file = processed_dir / f"{picks_prefix}_{payload['as_of_date']}.json"
-        picks_index: dict[str, dict] = {}
-        if picks_file.exists():
-            try:
-                pp = json.load(open(picks_file, "r", encoding="utf-8"))
-                for p in pp.get("picks", []):
-                    key = f"{p['batter_id']}|{p.get('game_pk') or ''}"
-                    picks_index[key] = p
-            except Exception as e:    # noqa: BLE001
-                logger.warning("could not load %s: %s", picks_file, e)
-
+) -> dict[str, tuple[list[dict], dict[str, dict]]]:
+    """Walk daily archives once and return per-tier (rows, picks_meta)."""
+    per_tier: dict[str, tuple[list[dict], dict[str, dict]]] = {
+        tier: ([], {}) for tier in TIERS
+    }
+    files = _list_archive_files(start, end, archives_dir)
+    for d, af in files:
+        with open(af, "r", encoding="utf-8") as f:
+            archive = json.load(f)
+        settle = archive.get("settlement") or {}
+        if not settle:
+            continue
         if d not in snapshots_cache:
-            snapshots_cache[d] = _load_snapshots_for_date(d)
+            snapshots_cache[d] = _load_snapshots_for_date(d, odds_dir)
         snaps_by_date = {d: snapshots_cache[d]}
 
-        for r in payload.get("results", []):
-            r["_tier"] = tier
-            rows.append(r)
-            key = f"{r['batter_id']}|{r.get('game_pk') or ''}"
-            pick = picks_index.get(key) or {}
-            taken = r.get("over_american") or pick.get("dk_odds") or pick.get("fd_odds")
-            close = _closing_quote_for_pick(pick, snaps_by_date) if pick else None
-            clv = _clv_pct(int(taken), int(close)) if (taken and close) else None
-            picks_meta[key] = {**pick, "taken_american": taken,
-                                "closing_american": close, "clv_pct": clv,
-                                "_tier": tier}
-
-    return rows, picks_meta
+        for tier in TIERS:
+            results = settle.get(f"{tier}_results") or []
+            if not results:
+                continue
+            rows, picks_meta = per_tier[tier]
+            picks_list = archive.get(f"{tier}_picks") or []
+            picks_index: dict[str, dict] = {}
+            for p in picks_list:
+                key = f"{p['batter_id']}|{p.get('game_pk') or ''}"
+                picks_index[key] = p
+            for r in results:
+                r = dict(r)
+                r["_tier"] = tier
+                r["settled_date"] = d.isoformat()
+                rows.append(r)
+                key = f"{r['batter_id']}|{r.get('game_pk') or ''}"
+                pick = picks_index.get(key) or {}
+                taken = r.get("over_american") or pick.get("dk_odds") or pick.get("fd_odds")
+                close = _closing_quote_for_pick(pick, snaps_by_date) if pick else None
+                clv = _clv_pct(int(taken), int(close)) if (taken and close) else None
+                picks_meta[key] = {**pick, "taken_american": taken,
+                                    "closing_american": close, "clv_pct": clv,
+                                    "_tier": tier}
+    return per_tier
 
 
 def build_tracker(
     *, start: Optional[_date] = None, end: Optional[_date] = None,
+    archives_dir: Path = DAILY_ARCHIVES_DIR,
     processed_dir: Path = PROCESSED_DIR,
+    odds_dir: Path = ODDS_DIR,
 ) -> TrackerOutput:
     snapshots_cache: dict[_date, list[dict]] = {}
+    per_tier = _load_all_tiers_rows(start, end, archives_dir, odds_dir, snapshots_cache)
 
-    primary_rows, primary_meta = _load_tier_rows("primary", start, end,
-                                                  processed_dir, snapshots_cache)
-    secondary_rows, secondary_meta = _load_tier_rows("secondary", start, end,
-                                                      processed_dir, snapshots_cache)
-    shadow_rows, shadow_meta = _load_tier_rows("shadow", start, end,
-                                                processed_dir, snapshots_cache)
-
-    # Combined picks_meta for cross-tier lookups.
-    all_meta = {**primary_meta, **secondary_meta, **shadow_meta}
+    primary_rows, primary_meta = per_tier["primary"]
+    secondary_rows, secondary_meta = per_tier["secondary"]
+    shadow_rows, shadow_meta = per_tier["shadow"]
 
     # Per-tier summaries (ROI, hit rate, CLV per tier).
     summary = _summarize(primary_rows, primary_meta)
@@ -347,8 +339,8 @@ def build_tracker(
         calibration=calibration,
     )
 
-    # Write tracker.json (now with primary + shadow split per the dual-tier design).
     out_path = processed_dir / "tracker.json"
+    processed_dir.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump({
             "last_updated": out.last_updated.isoformat(),

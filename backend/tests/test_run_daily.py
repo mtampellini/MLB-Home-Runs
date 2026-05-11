@@ -546,23 +546,6 @@ def test_run_daily_routes_picks_to_primary_or_shadow_by_ev(tmp_layout, monkeypat
     assert shadow_payload["ev_threshold_pct_max"] == 25.0
 
 
-def test_run_daily_dated_shadow_copy_written(tmp_layout, monkeypatch):
-    """data/processed/shadow_picks_YYYY-MM-DD.json must be written for tracker."""
-    fetch = _odds_for_one_batter()
-    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
-                        lambda client=None, books=None, relevant_team_pairs=None: fetch)
-    run_daily(
-        cutoff_date=date(2026, 5, 6),
-        feature_provider=_feature_provider(),
-        odds_client=MagicMock(spec=OddsAPIClient),
-        slate_client=_slate_client_one_game(),
-        picks_path=tmp_layout["picks_path"],
-        skipped_dir=tmp_layout["skipped_dir"],
-    )
-    dated = tmp_layout["skipped_dir"] / "shadow_picks_2026-05-06.json"
-    assert dated.exists()
-
-
 def test_run_daily_picks_carry_both_ev_and_edge_fields(tmp_layout, monkeypatch):
     """picks.json schema must include ev_pct (Option A) and edge_pct (Option B)
     so post-deploy analysis can compare frameworks."""

@@ -1,14 +1,14 @@
 """Settle yesterday's picks against MLB Stats API box scores.
 
 Workflow:
-    1. Read data/processed/picks_YYYY-MM-DD.json (the permanent dated copy
-       written by run_daily.py).
+    1. Read the day's daily archive at data/daily_archives/YYYY-MM-DD.json
+       (the committed source of truth — primary_picks/secondary_picks/shadow_picks).
     2. For each pick, GET /v1/game/{game_pk}/boxscore to find the batter's
        hits + HR for that game.
-    3. Mark W (HR ≥ 1) / L / VOID (game postponed, batter didn't appear, or
+    3. Mark W (HR >= 1) / L / VOID (game postponed, batter didn't appear, or
        pick is missing game_pk).
     4. Compute realized profit at $1/pick: payout if W, -1 if L, 0 if VOID.
-    5. Write data/processed/results_YYYY-MM-DD.json.
+    5. Append a `settlement` block back into the same daily archive file.
 
 The MlbStatsClient is reused (and injectable for tests).
 """
@@ -32,7 +32,9 @@ logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 _DATA_DIR = Path(os.environ.get("HR_V7_DATA_DIR", PROJECT_ROOT / "data"))
-PROCESSED_DIR = _DATA_DIR / "processed"
+DAILY_ARCHIVES_DIR = _DATA_DIR / "daily_archives"
+
+TIERS = ("primary", "secondary", "shadow")
 
 
 # ---------------------------------------------------------------------------
@@ -66,7 +68,6 @@ class SettlementReport:
     units_profit: float
     roi_pct: float
     settled: list[SettledPick] = field(default_factory=list)
-    output_path: Optional[Path] = None
 
 
 # ---------------------------------------------------------------------------
@@ -93,9 +94,6 @@ def _hr_count_for_batter(boxscore: dict, batter_id: int) -> Optional[int]:
 
 def _is_game_final(boxscore: dict) -> bool:
     """True iff the game is finished (status code F/Final)."""
-    info_blocks = boxscore.get("info", []) or []
-    # Boxscore status sometimes lives under teamStats / topLevel / not present;
-    # the safest signal: any non-empty player.stats.batting count means real game.
     teams = boxscore.get("teams", {}) or {}
     for side in ("home", "away"):
         players = (teams.get(side, {}) or {}).get("players", {}) or {}
@@ -106,43 +104,33 @@ def _is_game_final(boxscore: dict) -> bool:
 
 
 # ---------------------------------------------------------------------------
-# I/O
+# Archive I/O
 # ---------------------------------------------------------------------------
 
-PICKS_FILENAME_PREFIX = {
-    "primary": "picks",
-    "secondary": "secondary_picks",
-    "shadow": "shadow_picks",
-}
-RESULTS_FILENAME_PREFIX = {
-    "primary": "results",
-    "secondary": "secondary_results",
-    "shadow": "shadow_results",
-}
+def _archive_path_for(cutoff_date: _date, archives_dir: Path) -> Path:
+    return archives_dir / f"{cutoff_date.isoformat()}.json"
 
 
-def _picks_path_for(cutoff_date: _date, processed_dir: Path,
-                    tier: str = "primary") -> Path:
-    return processed_dir / f"{PICKS_FILENAME_PREFIX[tier]}_{cutoff_date.isoformat()}.json"
-
-
-def _results_path_for(cutoff_date: _date, processed_dir: Path,
-                      tier: str = "primary") -> Path:
-    return processed_dir / f"{RESULTS_FILENAME_PREFIX[tier]}_{cutoff_date.isoformat()}.json"
-
-
-def load_picks_for_date(cutoff_date: _date,
-                        processed_dir: Path = PROCESSED_DIR,
-                        tier: str = "primary") -> list[dict]:
-    path = _picks_path_for(cutoff_date, processed_dir, tier=tier)
+def _read_archive(cutoff_date: _date, archives_dir: Path) -> dict:
+    path = _archive_path_for(cutoff_date, archives_dir)
     if not path.exists():
         raise FileNotFoundError(
-            f"no dated {tier} picks file at {path}; "
+            f"no daily archive at {path}; "
             "run_daily writes it as part of every run."
         )
     with open(path, "r", encoding="utf-8") as f:
-        payload = json.load(f)
-    return payload.get("picks", []) or []
+        return json.load(f)
+
+
+def load_picks_for_date(
+    cutoff_date: _date,
+    *,
+    archives_dir: Path = DAILY_ARCHIVES_DIR,
+    tier: str = "primary",
+) -> list[dict]:
+    """Load one tier's picks from the day's daily archive."""
+    archive = _read_archive(cutoff_date, archives_dir)
+    return archive.get(f"{tier}_picks", []) or []
 
 
 # ---------------------------------------------------------------------------
@@ -151,9 +139,6 @@ def load_picks_for_date(cutoff_date: _date,
 
 def settle_pick(pick: dict, boxscore: Optional[dict]) -> SettledPick:
     """Mark one pick as W / L / VOID given its game's boxscore."""
-    over = int(pick["fd_odds"] if pick.get("best_book") == "fanduel"
-               else pick.get("dk_odds") or pick.get("fd_odds") or 0)
-    # Above is defensive; downstream we always have a price.
     if pick.get("best_book") == "fanduel" and pick.get("fd_odds") is not None:
         over = int(pick["fd_odds"])
     elif pick.get("best_book") == "draftkings" and pick.get("dk_odds") is not None:
@@ -194,26 +179,13 @@ def settle_pick(pick: dict, boxscore: Optional[dict]) -> SettledPick:
                        profit_units=-1.0)
 
 
-def settle_date(
-    cutoff_date: _date,
+def _settle_picks(
+    picks: list[dict],
     *,
-    client: Optional[MlbStatsClient] = None,
-    processed_dir: Path = PROCESSED_DIR,
-    tier: str = "primary",
-    box_cache: Optional[dict[int, Optional[dict]]] = None,
+    client: MlbStatsClient,
+    box_cache: dict[int, Optional[dict]],
 ) -> SettlementReport:
-    """Settle one tier (primary or shadow) for one date.
-
-    `box_cache` is shared across tiers so primary + shadow on the same day
-    only hit the MLB Stats API once per game.
-    """
-    client = client or MlbStatsClient()
-    picks = load_picks_for_date(cutoff_date, processed_dir=processed_dir, tier=tier)
-
-    if box_cache is None:
-        box_cache = {}
     settled: list[SettledPick] = []
-
     for pick in picks:
         gpk = pick.get("game_pk")
         if gpk is None:
@@ -228,98 +200,95 @@ def settle_date(
                 box_cache[gpk] = None
         settled.append(settle_pick(pick, box_cache[gpk]))
 
-    # Aggregate
     n_w = sum(1 for s in settled if s.outcome == "W")
     n_l = sum(1 for s in settled if s.outcome == "L")
     n_v = sum(1 for s in settled if s.outcome == "VOID")
     units_staked = float(n_w + n_l)
     units_profit = float(sum(s.profit_units for s in settled))
     roi_pct = (units_profit / units_staked * 100.0) if units_staked > 0 else 0.0
-
-    out_path = _results_path_for(cutoff_date, processed_dir, tier=tier)
-    processed_dir.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump({
-            "as_of_date": cutoff_date.isoformat(),
-            "settled_at": datetime.now().astimezone().isoformat(),
-            "tier": tier,
-            "n_picks": len(settled),
-            "n_wins": n_w,
-            "n_losses": n_l,
-            "n_voids": n_v,
-            "units_staked": units_staked,
-            "units_profit": round(units_profit, 4),
-            "roi_pct": round(roi_pct, 2),
-            "results": [s.__dict__ for s in settled],
-        }, f, indent=2)
-
     return SettlementReport(
-        as_of_date=cutoff_date,
+        as_of_date=_date.today(),  # caller fixes this up if it cares
         n_picks=len(settled),
         n_wins=n_w, n_losses=n_l, n_voids=n_v,
         units_staked=units_staked, units_profit=units_profit, roi_pct=roi_pct,
-        settled=settled, output_path=out_path,
+        settled=settled,
     )
+
+
+def settle_date(
+    cutoff_date: _date,
+    *,
+    client: Optional[MlbStatsClient] = None,
+    archives_dir: Path = DAILY_ARCHIVES_DIR,
+    tier: str = "primary",
+    box_cache: Optional[dict[int, Optional[dict]]] = None,
+) -> SettlementReport:
+    """Settle one tier for one date by reading the day's daily archive.
+
+    `box_cache` is shared across tiers so primary + secondary + shadow on the
+    same day only hit the MLB Stats API once per game.
+    """
+    client = client or MlbStatsClient()
+    picks = load_picks_for_date(cutoff_date, archives_dir=archives_dir, tier=tier)
+    if box_cache is None:
+        box_cache = {}
+    report = _settle_picks(picks, client=client, box_cache=box_cache)
+    report.as_of_date = cutoff_date
+    return report
 
 
 def settle_all_tiers(
     cutoff_date: _date,
     *,
     client: Optional[MlbStatsClient] = None,
-    processed_dir: Path = PROCESSED_DIR,
-    archives_dir: Optional[Path] = None,
+    archives_dir: Path = DAILY_ARCHIVES_DIR,
 ) -> dict[str, SettlementReport]:
     """Settle all tiers for one date, sharing the boxscore cache.
 
-    After settlement, also APPENDS results into the daily archive at
-    `data/daily_archives/YYYY-MM-DD.json` so the tracker dashboard can read
-    a single self-describing file per day.
+    Reads picks from `data/daily_archives/YYYY-MM-DD.json` and appends a
+    `settlement` block back into the same file. The archive is the committed
+    source of truth for the tracker dashboard.
     """
     client = client or MlbStatsClient()
+    archive_path = _archive_path_for(cutoff_date, archives_dir)
+    if not archive_path.exists():
+        logger.warning("no archive at %s — nothing to settle", archive_path)
+        return {}
+    with open(archive_path, "r", encoding="utf-8") as f:
+        archive = json.load(f)
+
     box_cache: dict[int, Optional[dict]] = {}
     out: dict[str, SettlementReport] = {}
-    for tier in ("primary", "secondary", "shadow"):
-        if not _picks_path_for(cutoff_date, processed_dir, tier=tier).exists():
-            logger.info("%s picks file not present for %s; skipping settle", tier, cutoff_date)
+    for tier in TIERS:
+        picks = archive.get(f"{tier}_picks") or []
+        if not picks:
+            logger.info("%s tier has no picks for %s; skipping", tier, cutoff_date)
             continue
-        out[tier] = settle_date(
-            cutoff_date,
-            client=client, processed_dir=processed_dir,
-            tier=tier, box_cache=box_cache,
-        )
+        report = _settle_picks(picks, client=client, box_cache=box_cache)
+        report.as_of_date = cutoff_date
+        out[tier] = report
 
-    # Append settlement to the daily archive (single-file-per-day for the dashboard).
-    if archives_dir is None:
-        archives_dir = processed_dir.parent / "daily_archives"
-    archive_path = archives_dir / f"{cutoff_date.isoformat()}.json"
-    if archive_path.exists() and out:
-        try:
-            with open(archive_path, "r", encoding="utf-8") as f:
-                archive = json.load(f)
-            settlement_block = {
-                "settled_at": datetime.now().astimezone().isoformat(),
-            }
-            for tier, report in out.items():
-                settlement_block[f"{tier}_results"] = [s.__dict__ for s in report.settled]
-                settlement_block[f"{tier}_summary"] = {
-                    "n_picks": report.n_picks,
-                    "n_wins": report.n_wins,
-                    "n_losses": report.n_losses,
-                    "n_voids": report.n_voids,
-                    "units_staked": report.units_staked,
-                    "units_profit": round(report.units_profit, 4),
-                    "roi_pct": round(report.roi_pct, 2),
-                }
-            archive["settlement"] = settlement_block
-            with open(archive_path, "w", encoding="utf-8") as f:
-                json.dump(archive, f, indent=2)
-            logger.info("appended settlement to %s", archive_path)
-        except Exception as e:    # noqa: BLE001
-            logger.warning("could not append settlement to %s: %s: %s",
-                            archive_path, type(e).__name__, e)
-    elif not archive_path.exists():
-        logger.info("no archive at %s — settlement results live in per-tier files only",
-                    archive_path)
+    if not out:
+        return out
+
+    settlement_block = {
+        "settled_at": datetime.now().astimezone().isoformat(),
+    }
+    for tier, report in out.items():
+        settlement_block[f"{tier}_results"] = [s.__dict__ for s in report.settled]
+        settlement_block[f"{tier}_summary"] = {
+            "n_picks": report.n_picks,
+            "n_wins": report.n_wins,
+            "n_losses": report.n_losses,
+            "n_voids": report.n_voids,
+            "units_staked": report.units_staked,
+            "units_profit": round(report.units_profit, 4),
+            "roi_pct": round(report.roi_pct, 2),
+        }
+    archive["settlement"] = settlement_block
+    with open(archive_path, "w", encoding="utf-8") as f:
+        json.dump(archive, f, indent=2)
+    logger.info("appended settlement to %s", archive_path)
 
     return out
 
@@ -346,7 +315,6 @@ def main() -> int:
         "n_wins": r.n_wins, "n_losses": r.n_losses, "n_voids": r.n_voids,
         "roi_pct": r.roi_pct,
         "units_profit": r.units_profit,
-        "output": str(r.output_path),
     } for tier, r in reports.items()}
     print(json.dumps({"as_of_date": cutoff.isoformat(), "tiers": summary}, indent=2))
     return 0
