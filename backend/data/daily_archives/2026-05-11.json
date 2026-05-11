@@ -1,30 +1,486 @@
 {
   "date": "2026-05-11",
-  "generated_at": "2026-05-11T17:31:33.749429+00:00",
+  "generated_at": "2026-05-11T20:08:54.581352+00:00",
   "model_version": "v7-baseline-0.1.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03193430656934307,
   "funnel": {
     "total_slate_games": 6,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 6,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "total_predictions": 27,
+    "skipped_low_data": 2,
+    "skipped_career_pa_filter": 7,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 27,
+    "matched_alt_market": 27,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 0,
-    "secondary_count": 0,
-    "shadow_count": 0
+    "single_sided_devig": 27,
+    "above_25_ev_pre_cap": 6,
+    "eligible_below_900_price_cap": 4,
+    "above_price_cap_pushed_to_secondary": 2,
+    "primary_count": 4,
+    "secondary_count": 2,
+    "shadow_count": 3
   },
-  "primary_picks": [],
-  "secondary_picks": [],
-  "shadow_picks": [],
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Junior Caminero",
+      "batter_id": 691406,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 2,
+      "pitcher": "Kevin Gausman",
+      "pitcher_id": 592332,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822818,
+      "game_datetime": "2026-05-11T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 340,
+      "dk_odds": 338,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2164,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3229,
+      "ev_pct": 42.08,
+      "edge_pct": 10.65,
+      "blended_hr_per_pa": 0.07091,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1014,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.2205,
+          "deviation": 1.2205
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2548,
+          "deviation": 0.2548
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": []
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Mike Trout",
+      "batter_id": 545361,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 2,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824441,
+      "game_datetime": "2026-05-11T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 454,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1624,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2242,
+      "ev_pct": 39.03,
+      "edge_pct": 6.19,
+      "blended_hr_per_pa": 0.06133,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1033,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9204,
+          "deviation": 0.9204
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2537,
+          "deviation": 0.2537
+        },
+        {
+          "name": "park",
+          "value": 0.7897,
+          "deviation": 0.2103
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Jorge Soler"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Jorge Soler",
+      "batter_id": 624585,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 4,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824441,
+      "game_datetime": "2026-05-11T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 610,
+      "dk_odds": 610,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1338,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1767,
+      "ev_pct": 25.46,
+      "edge_pct": 4.29,
+      "blended_hr_per_pa": 0.04942,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2004,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5475,
+          "deviation": 0.5475
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2537,
+          "deviation": 0.2537
+        },
+        {
+          "name": "park",
+          "value": 0.7897,
+          "deviation": 0.2103
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Mike Trout"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "David Fry",
+      "batter_id": 681807,
+      "batter_hand": "R",
+      "team": "CLE",
+      "lineup_spot": 6,
+      "pitcher": "Brent Suter",
+      "pitcher_id": 608718,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824441,
+      "game_datetime": "2026-05-11T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 670,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1191,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1593,
+      "ev_pct": 29.07,
+      "edge_pct": 4.03,
+      "blended_hr_per_pa": 0.05164,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4904,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6172,
+          "deviation": 0.6172
+        },
+        {
+          "name": "park",
+          "value": 0.7897,
+          "deviation": 0.2103
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1523,
+          "deviation": 0.1523
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": []
+    }
+  ],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 1,
+      "batter": "Oswald Peraza",
+      "batter_id": 672724,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 7,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824441,
+      "game_datetime": "2026-05-11T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1160,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0727,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1611,
+      "ev_pct": 109.48,
+      "edge_pct": 8.85,
+      "blended_hr_per_pa": 0.04924,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0769,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.542,
+          "deviation": 0.542
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2537,
+          "deviation": 0.2537
+        },
+        {
+          "name": "park",
+          "value": 0.7897,
+          "deviation": 0.2103
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 4,
+      "batter": "Daniel Schneemann",
+      "batter_id": 682177,
+      "batter_hand": "L",
+      "team": "CLE",
+      "lineup_spot": 7,
+      "pitcher": "Brent Suter",
+      "pitcher_id": 608718,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824441,
+      "game_datetime": "2026-05-11T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 1020,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0846,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1187,
+      "ev_pct": 32.97,
+      "edge_pct": 3.42,
+      "blended_hr_per_pa": 0.03846,
+      "breakout_score": 0.1398,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1973,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2044,
+          "deviation": 0.2044
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1398,
+          "deviation": 0.1398
+        }
+      ],
+      "tier_rank": 2
+    }
+  ],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
+      "batter": "Jake Fraley",
+      "batter_id": 641584,
+      "batter_hand": "L",
+      "team": "TB",
+      "lineup_spot": 5,
+      "pitcher": "Kevin Gausman",
+      "pitcher_id": 592332,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822818,
+      "game_datetime": "2026-05-11T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 980,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0861,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1108,
+      "ev_pct": 19.65,
+      "edge_pct": 2.47,
+      "blended_hr_per_pa": 0.03429,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2321,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.6559,
+          "deviation": 0.3441
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0736,
+          "deviation": 0.0736
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
+      "batter": "Yandy D\u00edaz",
+      "batter_id": 650490,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 4,
+      "pitcher": "Kevin Gausman",
+      "pitcher_id": 592332,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822818,
+      "game_datetime": "2026-05-11T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 720,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1127,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1425,
+      "ev_pct": 18.24,
+      "edge_pct": 2.97,
+      "blended_hr_per_pa": 0.02605,
+      "breakout_score": -0.0213,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.526,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2548,
+          "deviation": 0.2548
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8157,
+          "deviation": 0.1843
+        },
+        {
+          "name": "park",
+          "value": 1.0975,
+          "deviation": 0.0975
+        }
+      ],
+      "tier_rank": 2
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 9,
+      "batter": "Jes\u00fas S\u00e1nchez",
+      "batter_id": 660821,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 6,
+      "pitcher": "Drew Rasmussen",
+      "pitcher_id": 656876,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822818,
+      "game_datetime": "2026-05-11T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 690,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.121,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1412,
+      "ev_pct": 11.52,
+      "edge_pct": 2.01,
+      "blended_hr_per_pa": 0.03816,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1071,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1948,
+          "deviation": 0.1948
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0796,
+          "deviation": 0.0796
+        }
+      ],
+      "tier_rank": 3
+    }
+  ],
   "settlement": null
 }
