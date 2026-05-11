@@ -1,27 +1,27 @@
 {
   "date": "2026-05-11",
-  "generated_at": "2026-05-11T21:47:56.572595+00:00",
+  "generated_at": "2026-05-11T23:14:36.795914+00:00",
   "model_version": "v7-baseline-0.1.0",
-  "league_hr_per_pa": 0.0360257868790292,
+  "league_hr_per_pa": 0.02959830866807611,
   "funnel": {
     "total_slate_games": 6,
-    "games_excluded_live_or_complete": 0,
-    "games_pregame": 6,
-    "total_predictions": 48,
-    "skipped_low_data": 3,
-    "skipped_career_pa_filter": 3,
+    "games_excluded_live_or_complete": 3,
+    "games_pregame": 3,
+    "total_predictions": 17,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 1,
     "skipped_other": 0,
-    "matched_in_odds_market": 47,
-    "matched_alt_market": 47,
+    "matched_in_odds_market": 17,
+    "matched_alt_market": 17,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 47,
-    "above_25_ev_pre_cap": 9,
-    "eligible_below_900_price_cap": 8,
-    "above_price_cap_pushed_to_secondary": 1,
-    "primary_count": 12,
+    "single_sided_devig": 17,
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 4,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 16,
     "secondary_count": 3,
-    "shadow_count": 7
+    "shadow_count": 8
   },
   "primary_picks": [
     {
@@ -79,7 +79,61 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 4,
+      "batter": "Casey Schmitt",
+      "batter_id": 669477,
+      "batter_hand": "R",
+      "team": "SF",
+      "lineup_spot": 3,
+      "pitcher": "Roki Sasaki",
+      "pitcher_id": 808963,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823953,
+      "game_datetime": "2026-05-12T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 520,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1599,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3101,
+      "ev_pct": 92.28,
+      "edge_pct": 15.02,
+      "blended_hr_per_pa": 0.04651,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4519,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.8287,
+          "deviation": 0.8287
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.5714,
+          "deviation": 0.5714
+        },
+        {
+          "name": "park",
+          "value": 1.2462,
+          "deviation": 0.2462
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Heliot Ramos",
+        "Harrison Bader"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -124,7 +178,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
         "Aaron Judge"
@@ -132,7 +186,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 5,
       "batter": "Nolan Arenado",
       "batter_id": 571448,
       "batter_hand": "R",
@@ -177,7 +231,7 @@
           "deviation": 0.111
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "stacked": true,
       "stacked_with": [
         "Gabriel Moreno"
@@ -185,7 +239,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 10,
       "batter": "Junior Caminero",
       "batter_id": 691406,
       "batter_hand": "R",
@@ -230,13 +284,67 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "stacked": false,
       "stacked_with": []
     },
     {
       "tier": "primary",
-      "daily_rank": 14,
+      "daily_rank": 7,
+      "batter": "Heliot Ramos",
+      "batter_id": 671218,
+      "batter_hand": "R",
+      "team": "SF",
+      "lineup_spot": 5,
+      "pitcher": "Roki Sasaki",
+      "pitcher_id": 808963,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823953,
+      "game_datetime": "2026-05-12T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 511,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1611,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2536,
+      "ev_pct": 54.94,
+      "edge_pct": 9.25,
+      "blended_hr_per_pa": 0.03101,
+      "breakout_score": 0.06,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.418,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.8287,
+          "deviation": 0.8287
+        },
+        {
+          "name": "park",
+          "value": 1.2462,
+          "deviation": 0.2462
+        },
+        {
+          "name": "temperature",
+          "value": 0.871,
+          "deviation": 0.129
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Casey Schmitt",
+        "Harrison Bader"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 18,
       "batter": "Aaron Judge",
       "batter_id": 592450,
       "batter_hand": "R",
@@ -281,7 +389,7 @@
           "deviation": 0.0767
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "stacked": true,
       "stacked_with": [
         "Ben Rice"
@@ -289,7 +397,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 9,
       "batter": "Evan Carter",
       "batter_id": 694497,
       "batter_hand": "L",
@@ -334,7 +442,7 @@
           "deviation": 0.0493
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "Josh Jung"
@@ -342,7 +450,112 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 6,
+      "batter": "Harrison Bader",
+      "batter_id": 664056,
+      "batter_hand": "R",
+      "team": "SF",
+      "lineup_spot": 8,
+      "pitcher": "Roki Sasaki",
+      "pitcher_id": 808963,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823953,
+      "game_datetime": "2026-05-12T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 800,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1022,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1706,
+      "ev_pct": 56.91,
+      "edge_pct": 6.83,
+      "blended_hr_per_pa": 0.02833,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.8287,
+          "deviation": 0.8287
+        },
+        {
+          "name": "park",
+          "value": 1.2462,
+          "deviation": 0.2462
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Casey Schmitt",
+        "Heliot Ramos"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 17,
+      "batter": "Max Muncy",
+      "batter_id": 571970,
+      "batter_hand": "L",
+      "team": "LAD",
+      "lineup_spot": 6,
+      "pitcher": "Trevor McDonald",
+      "pitcher_id": 686790,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823953,
+      "game_datetime": "2026-05-12T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 352,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2182,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2825,
+      "ev_pct": 27.69,
+      "edge_pct": 6.43,
+      "blended_hr_per_pa": 0.06528,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0333,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.2056,
+          "deviation": 1.2056
+        },
+        {
+          "name": "park",
+          "value": 1.1814,
+          "deviation": 0.1814
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 10,
+      "stacked": false,
+      "stacked_with": []
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
       "batter": "Mike Trout",
       "batter_id": 545361,
       "batter_hand": "R",
@@ -387,7 +600,7 @@
           "deviation": 0.2103
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 11,
       "stacked": true,
       "stacked_with": [
         "Jorge Soler"
@@ -395,7 +608,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 12,
       "batter": "Gabriel Moreno",
       "batter_id": 672515,
       "batter_hand": "R",
@@ -440,7 +653,7 @@
           "deviation": 0.0377
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 12,
       "stacked": true,
       "stacked_with": [
         "Nolan Arenado"
@@ -448,7 +661,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 14,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -493,7 +706,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 13,
       "stacked": true,
       "stacked_with": [
         "Adley Rutschman"
@@ -501,7 +714,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 15,
+      "daily_rank": 19,
       "batter": "Jorge Soler",
       "batter_id": 624585,
       "batter_hand": "R",
@@ -546,7 +759,7 @@
           "deviation": 0.2103
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 14,
       "stacked": true,
       "stacked_with": [
         "Mike Trout"
@@ -554,7 +767,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 15,
       "batter": "David Fry",
       "batter_id": 681807,
       "batter_hand": "R",
@@ -599,13 +812,13 @@
           "deviation": 0.1523
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 15,
       "stacked": false,
       "stacked_with": []
     },
     {
       "tier": "primary",
-      "daily_rank": 13,
+      "daily_rank": 16,
       "batter": "Josh Jung",
       "batter_id": 673962,
       "batter_hand": "R",
@@ -650,7 +863,7 @@
           "deviation": 0.1103
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 16,
       "stacked": true,
       "stacked_with": [
         "Evan Carter"
@@ -758,7 +971,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 10,
+      "daily_rank": 13,
       "batter": "Daniel Schneemann",
       "batter_id": 682177,
       "batter_hand": "L",
@@ -809,7 +1022,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 16,
+      "daily_rank": 20,
       "batter": "Ezequiel Duran",
       "batter_id": 677649,
       "batter_hand": "R",
@@ -858,7 +1071,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 21,
       "batter": "Jake Fraley",
       "batter_id": 641584,
       "batter_hand": "L",
@@ -907,7 +1120,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 22,
       "batter": "Yandy D\u00edaz",
       "batter_id": 650490,
       "batter_hand": "R",
@@ -956,7 +1169,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 23,
       "batter": "Luke Raley",
       "batter_id": 670042,
       "batter_hand": "L",
@@ -1005,7 +1218,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 20,
+      "daily_rank": 24,
       "batter": "Pete Alonso",
       "batter_id": 624413,
       "batter_hand": "R",
@@ -1054,7 +1267,56 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 25,
+      "batter": "Andy Pages",
+      "batter_id": 681624,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 7,
+      "pitcher": "Trevor McDonald",
+      "pitcher_id": 686790,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823953,
+      "game_datetime": "2026-05-12T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 573,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1415,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1677,
+      "ev_pct": 12.89,
+      "edge_pct": 2.63,
+      "blended_hr_per_pa": 0.04834,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1591,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6333,
+          "deviation": 0.6333
+        },
+        {
+          "name": "park",
+          "value": 1.2462,
+          "deviation": 0.2462
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 6
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 26,
       "batter": "Leody Taveras",
       "batter_id": 665750,
       "batter_hand": "R",
@@ -1099,11 +1361,11 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 6
+      "tier_rank": 7
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 27,
       "batter": "Jes\u00fas S\u00e1nchez",
       "batter_id": 660821,
       "batter_hand": "L",
@@ -1148,7 +1410,7 @@
           "deviation": 0.0796
         }
       ],
-      "tier_rank": 7
+      "tier_rank": 8
     }
   ],
   "settlement": null
