@@ -92,4 +92,14 @@ jobs:
             exit 0
           fi
           git commit -m "Daily picks $(date -u +%Y-%m-%d) [ci skip]"
-          git push
+          # Hourly fires can overlap; rebase-and-retry handles the push race.
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push; then
+              echo "push succeeded on attempt $i"
+              exit 0
+            fi
+            echo "push attempt $i failed, retrying after backoff..."
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "push failed after 5 attempts"
+          exit 1

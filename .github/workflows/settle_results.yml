@@ -73,4 +73,14 @@ jobs:
             exit 0
           fi
           git commit -m "Settle results $(date -u -d 'yesterday' +%Y-%m-%d) + tracker [ci skip]"
-          git push
+          # Can collide with daily-picks pushes if GitHub defers this run into the picks window.
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push; then
+              echo "push succeeded on attempt $i"
+              exit 0
+            fi
+            echo "push attempt $i failed, retrying after backoff..."
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "push failed after 5 attempts"
+          exit 1
