@@ -24,6 +24,17 @@ from datetime import date as _date
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
+from zoneinfo import ZoneInfo
+
+# The MLB "slate" is defined in ET — MLB schedules and lineups roll over at
+# midnight ET, not midnight UTC. Default cutoff_date must therefore be derived
+# in ET; using _date.today() on a UTC GH Actions runner gives the wrong date
+# any time after 8pm ET (commit will be timestamped "tomorrow" UTC).
+_ET = ZoneInfo("America/New_York")
+
+
+def today_et() -> _date:
+    return datetime.now(_ET).date()
 
 from src.backtest.as_of_context import AsOfContext
 from src.model.baseline import BaselineConfig, compute_slate_league_hr_per_pa
@@ -527,7 +538,7 @@ def run_daily(
     primary_pick_limit: int = PRIMARY_PICK_LIMIT,
     primary_max_price: int = PRIMARY_MAX_PRICE,
 ) -> DailyReport:
-    cutoff_date = cutoff_date or _date.today()
+    cutoff_date = cutoff_date or today_et()
     ctx = AsOfContext(cutoff_date=cutoff_date)
     logger.info("daily run starting; as_of=%s", cutoff_date)
 

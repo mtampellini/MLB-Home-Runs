@@ -23,9 +23,14 @@ from datetime import date as _date
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
+from zoneinfo import ZoneInfo
 
 from src.odds.ev import american_payout
 from src.pipeline.slate import MlbStatsClient
+
+# Slate dates are in ET (see run_daily.today_et). Default "yesterday" for
+# settle must match what run_daily wrote, so derive it in ET too.
+_ET = ZoneInfo("America/New_York")
 
 logger = logging.getLogger(__name__)
 
@@ -308,7 +313,7 @@ def main() -> int:
     )
     args = parser.parse_args()
     cutoff = (_date.fromisoformat(args.date) if args.date
-              else _date.today() - timedelta(days=1))
+              else datetime.now(_ET).date() - timedelta(days=1))
     reports = settle_all_tiers(cutoff)
     summary = {tier: {
         "n_picks": r.n_picks,
