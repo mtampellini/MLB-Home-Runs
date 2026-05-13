@@ -102,7 +102,15 @@ class BaselineConfig:
     temp_factor_clip: tuple[float, float] = (0.85, 1.20)
     wind_factor_clip: tuple[float, float] = (0.70, 1.40)
     # Final per-PA HR probability sanity bounds.
-    p_per_pa_clip: tuple[float, float] = (0.001, 0.25)
+    # Upper bound 0.10: no batter in modern MLB has sustained > 0.10 HR/PA
+    # over any meaningful sample (Judge peak ≈ 0.073; Bonds 2001 all-time
+    # record 0.153). Empirical analysis of 5 days of paper-traded picks
+    # (2026-05-13) showed calibration breaks at p_per_pa ≈ 0.083 — above
+    # that the model is systematically over-confident. 0.10 sits just above
+    # the calibration break point so the well-calibrated zone passes through
+    # but cascade-runaway predictions are capped. Previous value 0.25
+    # (≡ p_game 77% leadoff) was a day-one guess that never fired in practice.
+    p_per_pa_clip: tuple[float, float] = (0.001, 0.10)
     # Conversion: pitcher HR/9 → HR/PA. ~9 IP × ~4.3 PA/IP ≈ 38 PA per 9 IP.
     pa_per_9_innings: float = 38.0
     # Early-season pitcher-factor shrinkage. With small samples (e.g. 60 PA on
