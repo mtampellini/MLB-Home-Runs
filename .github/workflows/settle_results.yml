@@ -2,11 +2,12 @@ name: Settle results
 
 on:
   schedule:
-    # 14:47 UTC ≈ 10:47am ET (EDT) / 9:47am ET (EST). Yesterday's box scores stable.
+    # 11:13 UTC ≈ 7:13am ET (EDT) / 6:13am ET (EST). West Coast games end ~1am ET,
+    # so yesterday's box scores are stable well before this fire.
     # Off-hour minute on purpose: top-of-hour cron times have heavy contention
     # on GitHub Actions and runs are commonly skipped or deferred for hours
     # under load. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-    - cron: "47 14 * * *"
+    - cron: "13 11 * * *"
   workflow_dispatch:
 
 permissions:
