@@ -394,7 +394,10 @@ def test_baseline_components_include_breakout_signal():
 
 def test_pitcher_factor_unchanged_at_full_threshold():
     """At pitcher_shrinkage_split_pa (default 200 PA), no pull toward neutral."""
-    p = predict(**_shrinkage_pred_args(split_pa=200.0, hr_per_9=2.0, hand_split_pa=80))
+    # Disable the post-shrinkage clip so this test isolates shrinkage behaviour.
+    cfg = BaselineConfig(pitcher_factor_clip=(0.0, 10.0))
+    p = predict(**_shrinkage_pred_args(split_pa=200.0, hr_per_9=2.0, hand_split_pa=80),
+                config=cfg)
     # Raw factor = (2.0 / 38) / 0.032 = 1.645. Weight = 1.0 → unchanged.
     assert p.components["pitcher"] == pytest.approx(1.6447, abs=1e-3)
 
@@ -421,11 +424,30 @@ def test_pitcher_factor_pulled_to_one_at_zero_split_pa():
 
 def test_shrinkage_disabled_when_threshold_zero():
     """Setting pitcher_shrinkage_split_pa=0 in config disables the dampener."""
-    cfg = BaselineConfig(pitcher_shrinkage_split_pa=0.0)
+    # Also disable the post-shrinkage clip so this test isolates the shrinkage path.
+    cfg = BaselineConfig(pitcher_shrinkage_split_pa=0.0,
+                         pitcher_factor_clip=(0.0, 10.0))
     p = predict(**_shrinkage_pred_args(split_pa=20.0, hr_per_9=2.0, hand_split_pa=80),
                 config=cfg)
     # Raw factor full strength: (2.0 / 38) / 0.032 = 1.645
     assert p.components["pitcher"] == pytest.approx(1.6447, abs=1e-3)
+
+
+def test_pitcher_factor_capped_by_clip():
+    """Raw factor above config.pitcher_factor_clip[1] is capped post-shrinkage.
+
+    Empirical: 5 days of paper-trade picks showed shrunk factors reaching 3.5
+    on tiny-split-PA blowups. The clip is the safety rail for what shrinkage
+    fails to tame.
+    """
+    # hr_per_9=3.0 → raw factor = 3.0/38/0.032 = 2.467. At 400 split_PA the
+    # shrinkage weight clamps at 1.0 (no pull), so the unshrunk 2.467 would
+    # be the output — except the clip should bring it back down to 1.6.
+    p = predict(**_shrinkage_pred_args(split_pa=400.0, hr_per_9=3.0, hand_split_pa=80))
+    assert p.components["pitcher"] == pytest.approx(1.6)
+    # Sanity: a within-bounds factor passes through unclipped.
+    p_low = predict(**_shrinkage_pred_args(split_pa=400.0, hr_per_9=1.5, hand_split_pa=80))
+    assert p_low.components["pitcher"] == pytest.approx(1.5 / 38 / 0.032, abs=1e-3)
 
 
 def test_compute_slate_league_hr_per_pa_aggregates_when_sample_sufficient():

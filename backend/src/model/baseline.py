@@ -127,6 +127,16 @@ class BaselineConfig:
     # PA on the relevant split, so the factor was claiming confidence we
     # didn't have.
     pitcher_shrinkage_split_pa: float = 200.0
+    # Upper clip on pitcher_factor AFTER shrinkage. Empirically the
+    # shrinkage formula isn't enough in May/June: 5 days of paper-trade
+    # picks (2026-05-13 audit) showed 100% of pitcher-top-3 picks were
+    # already shrunk (split_pa < 200), yet shrunk factors still reached
+    # 3.5 for tiny-sample bad starts. Anchoring rationale: league-worst
+    # sustained pitcher HR/9 sits around 2.0-2.5 → factor ≈ 1.6-2.0. We
+    # cap at 1.6 to align with the upper edge of plausible sustained
+    # performance; anything above is small-sample noise that the
+    # shrinkage failed to fully tame.
+    pitcher_factor_clip: tuple[float, float] = (0.0, 1.6)
 
 
 @dataclass(frozen=True)
@@ -204,6 +214,11 @@ def predict(
         shrinkage_weight = min(1.0, max(0.0, pitcher_split_pa / config.pitcher_shrinkage_split_pa))
         pitcher_factor = pitcher_factor_raw * shrinkage_weight + 1.0 * (1.0 - shrinkage_weight)
     pitcher_factor_shrunk = shrinkage_weight < 1.0
+
+    # Hard clip on the post-shrinkage factor: shrinkage alone has been
+    # observed letting 3.5× factors through on tiny split-PA samples.
+    # See config.pitcher_factor_clip for the rationale.
+    pitcher_factor = _clip(pitcher_factor, config.pitcher_factor_clip)
 
     # 4. Park.
     pf = 1.0 if _is_nan(park_hr_factor) else float(park_hr_factor)
