@@ -73,7 +73,12 @@ _DATA_DIR = Path(os.environ.get("HR_V7_DATA_DIR", PROJECT_ROOT / "data"))
 PROCESSED_DIR = _DATA_DIR / "processed"
 PICKS_PATH_DEFAULT = PROJECT_ROOT / "picks.json"
 
-MODEL_VERSION = "v7-baseline-0.1.0"
+MODEL_VERSION = "v7-baseline-0.2.0"
+# 0.2.0 — 2026-05-13: four calibration fixes (blend rewrite, p_per_pa_clip 0.25→0.10,
+#                     pitcher_factor cap 1.6, breakout weights ÷5). Predictions
+#                     are not directly comparable to 0.1.0; picks.json + archives
+#                     carry model_version so the front-end can scope tracker views.
+# 0.1.0 — 2026-05-06: V7 baseline shipped.
 
 # Tier-config constants. These are pipeline-level — kept here (rather than
 # in BaselineConfig, which is the model's config) so the separation between

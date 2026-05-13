@@ -21,6 +21,12 @@ const TABULAR = { fontVariantNumeric: 'tabular-nums' }
 
 const CALIBRATION_MIN_PICKS = 100   // calibration view shows numbers below this; visualizes above
 
+// Model-rebuild boundary. Picks dated >= this are produced by the post-rebuild
+// model (v7-baseline-0.2.0); picks dated < this are pre-rebuild (0.1.0) and
+// shouldn't be aggregated with post-rebuild numbers because the two models
+// over-predict at different rates. See the README of 2026-05-13.
+const MODEL_REBUILD_DATE = '2026-05-13'
+
 // ─── data loading at build time ────────────────────────────────────────
 export async function getStaticProps() {
   const archivesDir = path.join(process.cwd(), 'backend/data/daily_archives')
@@ -96,6 +102,40 @@ function combineTrackerSummaries(...sums) {
   return {
     wins, losses, voids, total_picks, units_staked, units_profit,
     hit_rate, roi_pct, avg_clv_pct, n_picks_with_clv: totalClvPicks,
+  }
+}
+
+// Sum settlement summaries across a list of archives, for the given tier(s).
+// Mirrors backend tracker.py for the basic stats we surface in the top panels;
+// CLV requires closing-line snapshots that aren't carried per-archive, so it's
+// omitted here and the StatCard renders "—" when this path is used.
+function computeSummaryFromArchives(archives, tier) {
+  const tierKeys = tier === 'all'
+    ? ['primary_summary', 'secondary_summary', 'shadow_summary']
+    : [`${tier}_summary`]
+  let wins = 0, losses = 0, voids = 0, units_profit = 0
+  for (const { data } of archives) {
+    const settle = data.settlement
+    if (!settle) continue
+    for (const key of tierKeys) {
+      const s = settle[key]
+      if (!s) continue
+      wins += s.n_wins || 0
+      losses += s.n_losses || 0
+      voids += s.n_voids || 0
+      units_profit += s.units_profit || 0
+    }
+  }
+  const settled = wins + losses
+  return {
+    wins, losses, voids,
+    total_picks: settled + voids,
+    units_staked: settled,
+    units_profit,
+    hit_rate: settled > 0 ? wins / settled : null,
+    roi_pct: settled > 0 ? (units_profit / settled) * 100 : null,
+    avg_clv_pct: null,            // CLV not reconstructible from archives alone
+    n_picks_with_clv: 0,
   }
 }
 
@@ -534,17 +574,41 @@ function FilterRow({ label, options, value, onChange }) {
 export default function Tracker({ archives, tracker }) {
   const [tierFilter, setTierFilter] = useState('primary')
   const [dateFilter, setDateFilter] = useState('all')
+  // Default to "post-rebuild" if any post-rebuild archive exists (current
+  // model is the relevant one to show); otherwise default to "all" so the
+  // page isn't empty when only pre-rebuild data exists yet.
+  const [modelFilter, setModelFilter] = useState(() => {
+    return archives.some(a => a.date >= MODEL_REBUILD_DATE) ? 'post' : 'all'
+  })
   const [sortBy, setSortBy] = useState('date_desc')
   const [expanded, setExpanded] = useState(() => {
     const newest = archives[0]?.date
     return newest ? { [newest]: true } : {}
   })
 
+  // Two related conditions:
+  //   hasPreRebuild — any pre-rebuild archive is in the dataset; drives the
+  //     banner so users see the context whenever old-model data could be on
+  //     the page.
+  //   spansRebuild — the dataset has BOTH pre and post; drives the Model
+  //     filter row (there's nothing to filter between if only one side exists).
+  const { hasPreRebuild, spansRebuild } = useMemo(() => {
+    const hasPre = archives.some(a => a.date < MODEL_REBUILD_DATE)
+    const hasPost = archives.some(a => a.date >= MODEL_REBUILD_DATE)
+    return { hasPreRebuild: hasPre, spansRebuild: hasPre && hasPost }
+  }, [archives])
+
   // Filter + sort the archive list.
   const filteredArchives = useMemo(() => {
     const today = new Date()
     today.setHours(0, 0, 0, 0)
     let list = archives
+    // Model filter first — it's the most semantic cut.
+    if (modelFilter === 'post') {
+      list = list.filter(a => a.date >= MODEL_REBUILD_DATE)
+    } else if (modelFilter === 'pre') {
+      list = list.filter(a => a.date < MODEL_REBUILD_DATE)
+    }
     if (dateFilter === 'yesterday') {
       const yest = new Date(today); yest.setDate(yest.getDate() - 1)
       const y = yest.getFullYear()
@@ -578,19 +642,24 @@ export default function Tracker({ archives, tracker }) {
       })
     }
     return sorted
-  }, [archives, dateFilter, sortBy, tierFilter])
+  }, [archives, dateFilter, sortBy, tierFilter, modelFilter])
 
-  // Top-level metrics — driven by the tier toggle.
+  // Top-level metrics — driven by tier AND model filters. When model filter
+  // is anything other than "all", compute client-side from the filtered
+  // archives so the panels match what the day blocks show. When "all" model,
+  // use the precomputed tracker.json (faster, includes CLV).
   const sum = useMemo(() => {
+    if (modelFilter !== 'all') {
+      return computeSummaryFromArchives(filteredArchives, tierFilter)
+    }
     if (!tracker) return {}
     if (tierFilter === 'all') {
       return combineTrackerSummaries(
         tracker.summary_primary, tracker.summary_secondary, tracker.summary_shadow
       )
     }
-    // Per-tier: tracker.summary_primary / _secondary / _shadow.
     return tracker[`summary_${tierFilter}`] || tracker.summary || {}
-  }, [tracker, tierFilter])
+  }, [tracker, tierFilter, modelFilter, filteredArchives])
 
   const totalSettled = (sum.wins || 0) + (sum.losses || 0)
   const isFirstWeek = totalSettled === 0
@@ -645,6 +714,33 @@ export default function Tracker({ archives, tracker }) {
           </div>
         )}
 
+        {/* Model-rebuild banner — shows whenever pre-rebuild data is in the
+            dataset (so users get context while the old picks are still visible).
+            Hides once pre-rebuild data ages out. */}
+        {hasPreRebuild && (
+          <div style={{
+            border: `1px solid ${T.border}`, borderRadius: 6,
+            padding: '16px 20px', marginBottom: 28,
+            fontSize: 13, color: T.textMedium, lineHeight: 1.6,
+            background: T.bgSubtle,
+          }}>
+            <strong style={{ color: T.text, fontWeight: 600 }}>Model rebuilt {MODEL_REBUILD_DATE}.</strong>{' '}
+            Four calibration fixes shipped on this date: Bayesian-blend rewrite
+            (de-overlap season/recent windows + per-player prior anchor),{' '}
+            <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>p_per_pa</code> ceiling
+            tightened from 0.25 to 0.10,{' '}
+            <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>pitcher_factor</code> capped
+            at 1.6 post-shrinkage, breakout-score weights rescaled ÷5 to unsaturate the cap. Pre-rebuild
+            picks reflect a model that systematically over-predicted at the top of the distribution
+            {spansRebuild ? (
+              <> and shouldn't be aggregated with post-rebuild numbers — use the{' '}
+              <strong style={{ color: T.text }}>Model</strong> filter below to scope the view.</>
+            ) : (
+              <>. Tomorrow's settled picks will be the first under the new model.</>
+            )}
+          </div>
+        )}
+
         {/* Big metrics — driven by tier toggle, assumes 1u flat stake on every pick. */}
         <div style={{ display: 'flex', gap: 14, marginBottom: 28, flexWrap: 'wrap' }}>
           <StatCard
@@ -686,6 +782,14 @@ export default function Tracker({ archives, tracker }) {
               ['shadow',    'Shadow'],
               ['all',       'All'],
             ]} />
+          {spansRebuild && (
+            <FilterRow label="Model" value={modelFilter} onChange={setModelFilter}
+              options={[
+                ['post', 'Post-rebuild'],
+                ['pre',  'Pre-rebuild'],
+                ['all',  'All'],
+              ]} />
+          )}
           <FilterRow label="Range" value={dateFilter} onChange={setDateFilter}
             options={[
               ['all',       'All time'],
@@ -723,9 +827,11 @@ export default function Tracker({ archives, tracker }) {
           </div>
         )}
 
-        {/* Calibration view — also tier-aware. */}
+        {/* Calibration view — scoped to whatever filtered archive set is active
+            (so picking "Post-rebuild" shows only post-rebuild calibration, not
+            the mixed-model calibration that would otherwise dominate the bins). */}
         <div style={{ marginTop: 36 }}>
-          <CalibrationView archives={archives} tierFilter={tierFilter} />
+          <CalibrationView archives={filteredArchives} tierFilter={tierFilter} />
         </div>
 
         {/* Footer */}
