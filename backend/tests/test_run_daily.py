@@ -24,7 +24,7 @@ from src.odds.fetch import (
     HRPropQuote,
     OddsAPIClient,
 )
-from src.pipeline.run_daily import EV_THRESHOLD_PCT, run_daily
+from src.pipeline.run_daily import EV_THRESHOLD_PCT, MODEL_VERSION, run_daily
 from src.pipeline.slate import MlbStatsClient
 import src.pipeline.run_daily as rd_mod
 import src.odds.log as log_mod
@@ -287,7 +287,10 @@ def test_run_daily_writes_picks_with_full_schema(tmp_layout, monkeypatch):
     assert report.picks_count >= 1
     payload = json.loads(tmp_layout["picks_path"].read_text())
     assert "generated_at" in payload
-    assert payload["model_version"] == "v7-baseline-0.1.0"
+    # Import the constant rather than hardcode — every version bump
+    # used to require a manual test edit (and the 0.1.0 -> 0.2.0 bump
+    # broke the daily-picks workflow until this was caught).
+    assert payload["model_version"] == MODEL_VERSION
     assert payload["ev_threshold_pct"] == EV_THRESHOLD_PCT
     pick = payload["picks"][0]
     expected = {
