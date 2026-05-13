@@ -64,59 +64,70 @@ def test_breakout_zero_pa_returns_zero():
 
 
 def test_compute_breakout_score_single_metric_via_barrel_pct():
-    """Single-metric breakout. Default barrel_pct weight = 15.0; delta = 0.01
-    → raw = 15.0 * 0.01 = 0.15 (exactly hits cap at full reliability).
-    At PA=50 (reliability 0.5) → score = 0.075."""
+    """Single-metric breakout. Default barrel_pct weight = 3.0; delta = 0.01
+    → raw = 3.0 * 0.01 = 0.03. At PA=50 (reliability 0.5) → score = 0.015."""
     current = {"pa": 50, "barrel_pct": 0.11, "sweetspot_pct": 0.36,
                "pull_air_pct": 0.18, "max_ev": 110.0}
     prior = {"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
              "pull_air_pct": 0.18, "max_ev": 110.0}
     r = compute_breakout_score(current, prior)
-    assert r.raw == pytest.approx(0.15)
+    assert r.raw == pytest.approx(0.03)
     assert r.reliability == pytest.approx(0.5)
-    assert r.score == pytest.approx(0.075)
+    assert r.score == pytest.approx(0.015)
 
 
 def test_compute_breakout_score_default_weights_post_rebalance():
-    """Sanity check on the rebalanced weights:
-    - barrel_pct (w=15.0) is the primary signal.
-    - sweetspot, pull_air, max_ev all contribute on a similar but smaller scale.
-    Each test isolates ONE metric so we can read its contribution directly."""
-    # barrel delta 0.02 × w=15.0 = 0.30 raw (capped → 0.15 at full reliability).
+    """Sanity check on the scale-corrected weights:
+    - barrel_pct (w=3.0) is the primary signal — biggest contribution per unit delta.
+    - sweetspot, pull_air, max_ev contribute on smaller scales.
+    Each test isolates ONE metric so we can read its contribution directly.
+    Under the corrected weights, NONE of these realistic deltas saturate
+    the cap — they're well inside the differentiating zone."""
+    # barrel delta 0.02 × w=3.0 = 0.06 raw.
     only_barrel = compute_breakout_score(
         current={"pa": 200, "barrel_pct": 0.12, "sweetspot_pct": 0.36,
                  "pull_air_pct": 0.18, "max_ev": 110.0},
         prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
                     "pull_air_pct": 0.18, "max_ev": 110.0},
     )
-    # sweetspot delta 0.05 × w=3.0 = 0.15 raw.
+    # sweetspot delta 0.05 × w=0.6 = 0.03 raw.
     only_ss = compute_breakout_score(
         current={"pa": 200, "barrel_pct": 0.10, "sweetspot_pct": 0.41,
                  "pull_air_pct": 0.18, "max_ev": 110.0},
         prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
                     "pull_air_pct": 0.18, "max_ev": 110.0},
     )
-    # pull_air delta 0.03 × w=5.0 = 0.15 raw.
+    # pull_air delta 0.03 × w=1.0 = 0.03 raw.
     only_pa = compute_breakout_score(
         current={"pa": 200, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
                  "pull_air_pct": 0.21, "max_ev": 110.0},
         prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
                     "pull_air_pct": 0.18, "max_ev": 110.0},
     )
-    # max_ev delta 1.5 × w=0.10 = 0.15 raw.
+    # max_ev delta 1.5 × w=0.02 = 0.03 raw.
     only_ev = compute_breakout_score(
         current={"pa": 200, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
                  "pull_air_pct": 0.18, "max_ev": 111.5},
         prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
                     "pull_air_pct": 0.18, "max_ev": 110.0},
     )
-    assert only_barrel.raw == pytest.approx(0.30)   # barrel deliberately 2x — it dominates
-    assert only_ss.raw == pytest.approx(0.15)
-    assert only_pa.raw == pytest.approx(0.15)
-    assert only_ev.raw == pytest.approx(0.15)
-    # All score-clipped to ±0.15 cap at full reliability.
-    assert only_barrel.score == pytest.approx(0.15)
-    assert only_ss.score == pytest.approx(0.15)
+    assert only_barrel.raw == pytest.approx(0.06)   # barrel dominates per unit delta
+    assert only_ss.raw == pytest.approx(0.03)
+    assert only_pa.raw == pytest.approx(0.03)
+    assert only_ev.raw == pytest.approx(0.03)
+    # None saturate the cap — they're inside the differentiating zone.
+    assert only_barrel.score == pytest.approx(0.06)
+    assert only_ss.score == pytest.approx(0.03)
+    # Sanity: an EXTREME barrel delta still hits the cap.
+    extreme_barrel = compute_breakout_score(
+        current={"pa": 200, "barrel_pct": 0.16, "sweetspot_pct": 0.36,
+                 "pull_air_pct": 0.18, "max_ev": 110.0},
+        prior_year={"pa": 600, "barrel_pct": 0.10, "sweetspot_pct": 0.36,
+                    "pull_air_pct": 0.18, "max_ev": 110.0},
+    )
+    # 0.06 delta × 3.0 = 0.18 raw → score clipped to +0.15.
+    assert extreme_barrel.raw == pytest.approx(0.18)
+    assert extreme_barrel.score == pytest.approx(0.15)
 
 
 def test_compute_breakout_score_old_metrics_now_ignored():
@@ -233,10 +244,10 @@ def test_recent_form_default_weights_match_spec():
     """Confirm the post-rebalance default weights are exactly what the
     2026-05-06 review gate approved."""
     assert DEFAULT_BREAKOUT_WEIGHTS == {
-        "barrel_pct":     15.0,
-        "sweetspot_pct":   3.0,
-        "pull_air_pct":    5.0,
-        "max_ev":          0.10,
+        "barrel_pct":      3.0,
+        "sweetspot_pct":   0.6,
+        "pull_air_pct":    1.0,
+        "max_ev":          0.02,
     }
 
 

@@ -15,16 +15,27 @@ Two related signals consumed by the daily pipeline:
    filter or score; surfaced in picks.json so the human reviewer can see when
    a pick is being driven by hot/cold short-term samples vs settled-in skill.
 
-DEFAULT WEIGHTS — REBALANCED 2026-05-06.
+DEFAULT WEIGHTS — REBALANCED 2026-05-06, SCALE-CORRECTED 2026-05-13.
 
 The 2022-2025 holdout feature-importance research showed `barrel_pct_season`
-ranked #1 by both gain AND mean-|SHAP| in LightGBM. Weights now lean into
-barrel as the primary signal:
+ranked #1 by both gain AND mean-|SHAP| in LightGBM. The 2026-05-06 rebalance
+got the metric *ratios* right (barrel >> others) but set absolute magnitudes
+~5x too high: barrel_pct=15.0 meant a 1pp YoY barrel improvement alone
+(15 x 0.01) produced raw = 0.15 — exactly saturating the cap by itself.
 
-    barrel_pct      15.0   primary; typical YoY delta ~0.02 -> raw ~0.30 (cap)
-    sweetspot_pct    3.0   secondary
-    pull_air_pct     5.0   secondary; pulled fly-ball/line-drive contact
-    max_ev (mph)     0.10  secondary; max exit velo
+Empirical audit on 2026-05-13 (5 days of paper-traded picks, n=306) found
+87.3% of picks pegged at ±0.15, with 93% of top-30-by-p_game picks pegged
+at +0.15. The signal had degenerated into a three-state flag (improved /
+unchanged / declined) instead of a continuous score that differentiates
+"modestly improved" from "dramatically improved."
+
+Scale-corrected weights (÷5) so typical YoY deltas produce modest scores
+and only EXTREME year-over-year changes saturate the cap:
+
+    barrel_pct       3.0   primary; 1pp YoY delta -> raw +0.03 (~20% of cap)
+    sweetspot_pct    0.6   secondary
+    pull_air_pct     1.0   secondary; pulled fly-ball/line-drive contact
+    max_ev (mph)     0.02  secondary; max exit velo
 
 Replaces the prior set {xwobacon, barrel_pct, hardhit_pct, avg_ev}, which
 mixed mid-tier and low-tier features. Weights are configurable per call.
@@ -38,10 +49,10 @@ from typing import Optional
 
 
 DEFAULT_BREAKOUT_WEIGHTS: dict[str, float] = {
-    "barrel_pct":     15.0,
-    "sweetspot_pct":   3.0,
-    "pull_air_pct":    5.0,
-    "max_ev":          0.10,
+    "barrel_pct":      3.0,
+    "sweetspot_pct":   0.6,
+    "pull_air_pct":    1.0,
+    "max_ev":          0.02,
 }
 
 DEFAULT_RELIABILITY_PA = 100        # full reliability at this PA count
