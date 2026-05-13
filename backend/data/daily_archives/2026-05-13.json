@@ -1,16 +1,29 @@
 {
-  "generated_at": "2026-05-13T11:53:27.448672-04:00",
-  "as_of_date": "2026-05-13",
+  "date": "2026-05-13",
+  "generated_at": "2026-05-13T11:53:27.451915-04:00",
   "model_version": "v7-baseline-0.2.0",
   "league_hr_per_pa": 0.026143790849673203,
-  "tier": "primary",
-  "ev_threshold_pct_min": 25.0,
-  "ev_threshold_pct_max": null,
-  "ev_threshold_pct": 25.0,
-  "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
-  "picks": [
+  "funnel": {
+    "total_slate_games": 15,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 15,
+    "total_predictions": 16,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 1,
+    "skipped_other": 0,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 16,
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 3,
+    "secondary_count": 1,
+    "shadow_count": 1
+  },
+  "primary_picks": [
     {
       "tier": "primary",
       "daily_rank": 2,
@@ -169,6 +182,107 @@
       ]
     }
   ],
-  "skipped_count": 2,
-  "skipped_reference": "data\\processed\\skipped_batters_2026-05-13.json"
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 1,
+      "batter": "J.C. Escarra",
+      "batter_id": 641555,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 9,
+      "pitcher": "Kyle Bradish",
+      "pitcher_id": 680694,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824841,
+      "game_datetime": "2026-05-13T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 990,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0835,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1568,
+      "ev_pct": 78.74,
+      "edge_pct": 7.33,
+      "blended_hr_per_pa": 0.03048,
+      "breakout_score": 0.0843,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0303,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1657,
+          "deviation": 0.1657
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        },
+        {
+          "name": "wind",
+          "value": 1.1054,
+          "deviation": 0.1054
+        }
+      ],
+      "tier_rank": 1
+    }
+  ],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Trent Grisham",
+      "batter_id": 663757,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 1,
+      "pitcher": "Kyle Bradish",
+      "pitcher_id": 680694,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824841,
+      "game_datetime": "2026-05-13T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 440,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1759,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2134,
+      "ev_pct": 15.24,
+      "edge_pct": 3.75,
+      "blended_hr_per_pa": 0.03959,
+      "breakout_score": -0.0828,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5405,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5143,
+          "deviation": 0.5143
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        },
+        {
+          "name": "wind",
+          "value": 1.1054,
+          "deviation": 0.1054
+        }
+      ],
+      "tier_rank": 1
+    }
+  ],
+  "settlement": null
 }
