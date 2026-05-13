@@ -1,12 +1,13 @@
 """Pre-Phase-3 review-gate tests.
 
-Locks in the four behaviours requested:
-1. Dynamic prior-year weight: 1 - PA/200, clamped at 0.
-2. Breakout reliability scaling: raw * min(1, PA/100), clipped to ±0.15.
-3. No-prior-year edge case → breakout = 0.
-4. Skip logic: season_PA<50 AND no prior-year → SKIP, otherwise KEEP.
+Locks in the behaviours requested:
+1. Breakout reliability scaling: raw * min(1, PA/100), clipped to ±0.15.
+2. No-prior-year edge case → breakout = 0.
+3. Skip logic: season_PA<50 AND no prior-year → SKIP, otherwise KEEP.
 
-Plus integration sanity checks for blend + breakout interplay.
+Plus integration sanity checks for blend + breakout interplay. The
+dynamic prior-year weight (1 - PA/200) was replaced by a fixed-strength
+per-player anchor in the blend; see test_blend.py.
 """
 
 import math
@@ -14,10 +15,8 @@ import math
 import pytest
 
 from src.features.blend import (
-    DYNAMIC_PRIOR_YEAR_PA_DENOMINATOR,
     bayesian_blend,
     blend_features,
-    dynamic_prior_year_weight,
 )
 from src.features.breakout import (
     BreakoutScore,
@@ -33,53 +32,7 @@ from src.model.baseline import BaselineConfig, predict
 
 
 # ---------------------------------------------------------------------------
-# 1. Dynamic prior-year weight
-# ---------------------------------------------------------------------------
-
-def test_dynamic_weight_april_20_pa_returns_about_90_percent():
-    assert dynamic_prior_year_weight(20) == pytest.approx(0.90)
-
-
-def test_dynamic_weight_may_100_pa_returns_50_percent():
-    assert dynamic_prior_year_weight(100) == pytest.approx(0.50)
-
-
-def test_dynamic_weight_june_200_pa_returns_zero():
-    assert dynamic_prior_year_weight(200) == pytest.approx(0.00)
-
-
-def test_dynamic_weight_300_pa_clamped_to_zero():
-    assert dynamic_prior_year_weight(300) == 0.0
-
-
-def test_dynamic_weight_zero_pa_returns_one():
-    # Vet hasn't played yet — give prior year full weight.
-    assert dynamic_prior_year_weight(0) == 1.0
-
-
-def test_blend_features_uses_dynamic_weight_by_default():
-    # With season_pa=20 and prior-year present, dynamic weight should be ~0.90.
-    season = {"pa": 20, "hr_per_pa": 0.04}
-    recent = {"pa": 20, "hr_per_pa": 0.04}
-    py = {"pa": 600, "hr_per_pa": 0.05}
-    r = blend_features(season, recent, prior_year=py, metric_key="hr_per_pa", pa_key="pa")
-    assert r.used_prior_year is True
-    assert r.prior_year_weight == pytest.approx(0.90)
-
-
-def test_blend_features_dynamic_zero_weight_post_june():
-    # season_pa=250 → dynamic weight clamps to 0 → prior year not used.
-    season = {"pa": 250, "hr_per_pa": 0.04}
-    recent = {"pa": 60, "hr_per_pa": 0.05}
-    py = {"pa": 600, "hr_per_pa": 0.07}
-    r = blend_features(season, recent, prior_year=py, metric_key="hr_per_pa", pa_key="pa")
-    # Even though use_prior_year is technically gated by EARLY_SEASON_PA_THRESHOLD,
-    # at season_pa=250 we're past the threshold AND the weight would be 0.
-    assert r.used_prior_year is False
-
-
-# ---------------------------------------------------------------------------
-# 2. Breakout reliability scaling
+# 1. Breakout reliability scaling
 # ---------------------------------------------------------------------------
 
 def test_breakout_reliability_50_pa_halves_raw():

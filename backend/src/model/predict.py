@@ -1,10 +1,13 @@
 """Slate orchestrator: features → skip → blend → breakout → baseline.
 
 For each batter on today's slate this:
-  1. Pulls batter season + 30d + prior-year via the FeatureProvider.
+  1. Pulls batter pre-30d + last-30d + prior-year via the FeatureProvider.
+     (Pre-30d and last-30d are disjoint windows — see batter_season_features.)
   2. Applies skip_logic — drops batters with no meaningful track record.
+     "Current-season PA" = pre-30d PA + last-30d PA.
   3. Pulls pitcher features (with vs-RHB / vs-LHB splits) and park+weather.
-  4. Blends batter HR/PA across season + recent + (early-season) prior year.
+  4. Blends batter HR/PA across pre-30d + recent, anchored by a per-player
+     prior (prior-year HR/PA if available, else league mean) at fixed weight.
   5. Computes the breakout signal vs prior-year underlying metrics.
   6. Picks the matched platoon split for the pitcher and blends his HR/9.
   7. Calls baseline.predict() to get P(HR ≥ 1) and component breakdown.
@@ -19,6 +22,7 @@ can be exercised end-to-end without touching pybaseball, Open-Meteo, or disk.
 from __future__ import annotations
 
 import logging
+import math
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Callable, Optional
@@ -147,11 +151,16 @@ def _predict_entry(
         season_year=ctx.cutoff_date.year - 1,
     )
 
+    # `season` is now pre-30d (March 1 → cutoff-31) per batter_season_features;
+    # `recent` is last 30 days. The two are disjoint. For skip-logic and the
+    # low-confidence flag we want the TOTAL current-season sample.
     season_pa = int((season or {}).get("pa", 0) or 0)
+    recent_pa = int((recent or {}).get("pa", 0) or 0)
+    current_season_pa = season_pa + recent_pa
     prior_year_pa = int((prior_year or {}).get("pa", 0) or 0)
 
     # ---- Skip rule (project rule: never median-fill) ----------------------
-    skip = should_skip_batter(season_pa=season_pa, prior_year_pa=prior_year_pa)
+    skip = should_skip_batter(season_pa=current_season_pa, prior_year_pa=prior_year_pa)
     if skip.skip:
         return PredictionRow(
             entry=entry, skipped=True,
@@ -185,10 +194,21 @@ def _predict_entry(
     # ---- Park + weather ---------------------------------------------------
     pw = provider.park_weather(entry.park, entry.batter_hand, entry.game_datetime, ctx)
 
-    # ---- Blend batter HR/PA (dynamic prior-year weight handled inside) ----
+    # ---- Blend batter HR/PA -----------------------------------------------
+    # Per-player anchor: prior-year HR/PA if we have it, else league mean.
+    # The anchor's weight (PRIOR_PA_EQUIVALENT) is fixed inside blend_features.
+    prior_year_hr_per_pa = (
+        float((prior_year or {}).get("hr_per_pa", float("nan")))
+        if prior_year_pa > 0 else float("nan")
+    )
+    batter_prior_rate = (
+        prior_year_hr_per_pa
+        if not math.isnan(prior_year_hr_per_pa)
+        else config.league_hr_per_pa
+    )
     batter_blend = blend_features(
         season, recent,
-        prior_year=prior_year if prior_year_pa > 0 else None,
+        prior_rate=batter_prior_rate,
         metric_key="hr_per_pa", pa_key="pa",
     )
 
@@ -226,7 +246,8 @@ def _predict_entry(
     )
 
     # Vet hasn't appeared yet this season but prior-year carries us → flag it.
-    low_confidence = (season_pa == 0 and prior_year_pa > 0)
+    # "Appeared this season" = any PA in pre-30d OR last 30 days.
+    low_confidence = (current_season_pa == 0 and prior_year_pa > 0)
 
     return PredictionRow(
         entry=entry,

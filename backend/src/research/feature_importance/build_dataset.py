@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 
 from src.features._statcast import AB_EVENTS, PA_END_EVENTS  # reuse production definitions
-from src.features.blend import bayesian_blend
+from src.features.blend import PRIOR_PA_EQUIVALENT, bayesian_blend
 from src.research.feature_importance import progress
 from src.research.feature_importance.config import (
     DATASETS_DIR,
@@ -345,13 +345,18 @@ def _add_blended_hr_per_pa(df: pd.DataFrame) -> pd.DataFrame:
         out["prior_year_pa"].fillna(0).astype(int),
         out["prior_year_hr_per_pa"],
     ):
+        # Anchor on prior-year HR/PA when available; otherwise no anchor.
+        # (Production also falls back to league HR/PA, but that requires a
+        # slate-level value the offline dataset doesn't carry; rows where
+        # py_rate is NaN simply skip the anchor here.)
+        has_prior = int(py_pa) > 0 and not _isnan(py_rate)
         r = bayesian_blend(
             season_pa=season_pa,
             season_rate=float(season_rate) if not _isnan(season_rate) else float("nan"),
             recent_pa=recent_pa,
             recent_rate=float(recent_rate) if not _isnan(recent_rate) else float("nan"),
-            prior_year_pa=int(py_pa),
-            prior_year_rate=float(py_rate) if not _isnan(py_rate) else float("nan"),
+            prior_pa=PRIOR_PA_EQUIVALENT if has_prior else 0,
+            prior_rate=float(py_rate) if has_prior else float("nan"),
         )
         blended_vals.append(r.rate)
     out["blended_hr_per_pa"] = blended_vals

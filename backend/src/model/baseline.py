@@ -6,7 +6,8 @@ odds. Simple, inspectable, every factor named. The full ML model is dormant
 
 Prediction flow (per batter, per game):
 
-    1. blended_hr_per_pa  ← Bayesian blend (season + 30d + dynamic prior-year)
+    1. blended_hr_per_pa  ← Bayesian blend (pre-30d + last-30d + per-player
+                            prior anchor: prior-year HR/PA, or league rate)
     2. adjusted_per_pa    ← blended_hr_per_pa × (1 + breakout_coefficient × reliable_breakout)
                             ────────────────────────────────────────────
                             MULTIPLICATIVE LIFT (was additive — see history below)

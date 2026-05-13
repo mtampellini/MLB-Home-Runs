@@ -39,7 +39,8 @@ VET_PRIOR = {**VET_SEASON, "pa": 600, "hr": 30, "hr_per_pa": 0.050,
              "sweetspot_pct": 0.36, "pull_air_pct": 0.18,
              "avg_ev": 90.5, "max_ev": 110.5}
 
-ROOKIE_SEASON_LOW_PA = {**VET_SEASON, "pa": 30, "hr": 1, "hr_per_pa": 0.033}
+ROOKIE_SEASON_LOW_PA = {**VET_SEASON, "pa": 20, "hr": 1, "hr_per_pa": 0.033}
+ROOKIE_RECENT_LOW_PA = {**VET_SEASON, "pa": 20, "hr": 1, "hr_per_pa": 0.033, "scope": "last_30d"}
 ROOKIE_PRIOR_EMPTY = {"pa": 0}
 
 EARLY_SEASON_NO_GAMES = {**VET_SEASON, "pa": 0, "hr": 0, "hr_per_pa": float("nan")}
@@ -145,7 +146,7 @@ CTX = AsOfContext(cutoff_date=date(2026, 5, 6))
 def test_skip_no_track_record():
     provider = _make_provider(
         season_for={1: ROOKIE_SEASON_LOW_PA},
-        recent_for={1: ROOKIE_SEASON_LOW_PA},
+        recent_for={1: ROOKIE_RECENT_LOW_PA},
         prior_for={1: ROOKIE_PRIOR_EMPTY},
     )
     rows = predict_slate([_entry(1)], CTX, provider=provider)
@@ -154,7 +155,8 @@ def test_skip_no_track_record():
     assert r.skipped is True
     assert r.skip_code == "LOW_DATA"
     assert r.prediction is None
-    assert "current_season_PA=30" in r.skip_reason
+    # Skip-logic now sees pre-30d + last-30d combined (20 + 20 = 40).
+    assert "current_season_PA=40" in r.skip_reason
 
 
 def test_keep_when_prior_year_carries_low_current():
@@ -183,8 +185,8 @@ def test_low_confidence_when_no_current_season_pa():
     assert r.skipped is False
     assert r.low_confidence is True
     assert r.prediction is not None
-    # Blend should resolve from prior year alone.
-    assert r.batter_blend.used_prior_year is True
+    # With no in-season PA, the blend rests entirely on the prior-year anchor.
+    assert r.batter_blend.used_prior is True
     # Breakout should be 0 — current data missing means no signal.
     assert r.breakout.score == 0.0
 
@@ -210,8 +212,9 @@ def test_full_prediction_returns_p_hr_in_zero_to_one():
     assert 0.001 <= p.p_per_pa <= 0.25
     # Breakout should be positive — current Statcast > prior across the board.
     assert r.breakout.score > 0.0
-    # Blend should NOT use prior year (season_pa=200 → dynamic weight = 0).
-    assert r.batter_blend.used_prior_year is False
+    # Anchor is always applied in production (prior-year HR/PA here); its
+    # relative weight is small because season_PA is large.
+    assert r.batter_blend.used_prior is True
 
 
 def test_pitcher_factor_shrunk_flag_set_when_split_pa_below_threshold():

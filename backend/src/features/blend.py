@@ -1,28 +1,43 @@
-"""Bayesian blend of season-to-date and last-30-day rates.
+"""Empirical-Bayes blend of pre-30d + recent + per-player prior.
 
 Formula:
 
-    blended = (season_PA * season_rate + recent_PA * recent_rate * shrinkage)
-              / (season_PA + recent_PA * shrinkage)
+    blended = (prior_PA × prior_rate
+               + season_PA × season_rate
+               + recent_PA × recent_rate × shrinkage)
+            / (prior_PA + season_PA + recent_PA × shrinkage)
 
-`shrinkage` weights the recent window (default 1.5 → recent form upweighted).
+Three terms, each defensible on its own:
 
-Prior-year fallback (early-season): when the season window is sparse, prior-year
-season is folded in as another sample. The PRIOR-YEAR WEIGHT IS DYNAMIC:
+- `prior_PA × prior_rate` — the anchor. Caller passes either the batter's
+  prior-year HR/PA (preferred) or the league mean (~0.032) when no prior
+  year exists. `PRIOR_PA_EQUIVALENT=100` gives this anchor a fixed strength
+  in PA-equivalent units, so its relative weight naturally diminishes as the
+  in-season sample grows. (Replaces the older `dynamic_prior_year_weight`
+  decay, which made the prior vanish at exactly the point where the
+  in-season sample was big enough to over-fit.)
 
-    prior_year_weight = max(0, 1 - current_season_PA / 200)
+- `season_PA × season_rate` — the pre-30d in-season sample. The caller
+  (`batter_season_features`) computes this excluding the last 30 days, so
+  this term and the recent term are DISJOINT. Without that de-overlap the
+  last 30 days were counted twice and the blend over-weighted hot streaks.
 
-So:
-- April (~20 current-season PAs)  → prior year ≈ 90% weight
-- May   (~100 current-season PAs) → prior year ≈ 50%
-- June+ (≥200 current-season PAs) → prior year clamped to 0%
+- `recent_PA × recent_rate × shrinkage` — last 30 days. `DEFAULT_SHRINKAGE=1.0`
+  gives recent its natural inverse-variance weight (proportional to sample
+  size). Pass `shrinkage > 1.0` if you want a recent-form premium; the
+  previous default of 1.5 was unjustified by the literature on intra-season
+  HR-rate predictiveness and compounded with the overlap bug to inflate
+  estimates for hot players.
 
-Edge cases:
-- No prior-year data → prior_year_weight is irrelevant; only current-season is used.
-  If current_season_PA < 50 the BATTER should be SKIPPED upstream (see skip_logic).
-- Prior-year data but no current data (early April, hasn't played yet) → prior
-  year is used at full weight (1.0). Caller should flag low-confidence.
-- Player who changed teams → prior-year still applies; skill is player-level.
+NaN policy: any rate that's NaN drops its term (PA effectively zeroed) so
+NaN can't pollute the blended rate. Skip-the-batter decisions live upstream
+(see src/features/skip_logic.py) — this module never median-fills.
+
+Why this is "empirical-Bayes" not full Bayesian:
+The prior is point-valued (no variance assumption), the sample weights
+ignore over-dispersion, and there's no MCMC. But the shrinkage behavior is
+the same: small samples get pulled toward the prior, large samples
+overwhelm it.
 """
 
 from __future__ import annotations
@@ -32,33 +47,18 @@ from dataclasses import dataclass
 from typing import Optional
 
 
-DEFAULT_SHRINKAGE = 1.5
-DYNAMIC_PRIOR_YEAR_PA_DENOMINATOR = 200  # decay scale for prior-year weight
-EARLY_SEASON_PA_THRESHOLD = 100          # below this we even bother computing prior-year fold-in
-
-
-def dynamic_prior_year_weight(
-    current_season_pa: int,
-    pa_denominator: int = DYNAMIC_PRIOR_YEAR_PA_DENOMINATOR,
-) -> float:
-    """Weight assigned to prior-year season as a function of current-season PA.
-
-    weight = max(0, 1 - current_season_PA / 200)
-    """
-    if current_season_pa <= 0:
-        return 1.0
-    w = 1.0 - (current_season_pa / pa_denominator)
-    return max(0.0, w)
+DEFAULT_SHRINKAGE = 1.0          # recent gets weight by sample size, not multiplier
+PRIOR_PA_EQUIVALENT = 100        # fixed anchor weight in PA-equivalent units
 
 
 @dataclass(frozen=True)
 class BlendResult:
     rate: float
-    season_pa: int
+    season_pa: int               # pre-30d in-season PA (current year)
     recent_pa: int
-    prior_year_pa: int
-    used_prior_year: bool
-    prior_year_weight: float
+    prior_pa: int                # how much weight the anchor carried
+    prior_rate: float            # the anchor value used (for diagnostics)
+    used_prior: bool             # True iff the anchor contributed > 0
 
     def is_valid(self) -> bool:
         return not (math.isnan(self.rate) or math.isinf(self.rate))
@@ -69,100 +69,87 @@ def bayesian_blend(
     season_rate: float,
     recent_pa: int,
     recent_rate: float,
+    *,
+    prior_pa: int = 0,
+    prior_rate: float = float("nan"),
     shrinkage: float = DEFAULT_SHRINKAGE,
-    prior_year_pa: int = 0,
-    prior_year_rate: float = float("nan"),
-    prior_year_weight: Optional[float] = None,
-    early_season_pa_threshold: int = EARLY_SEASON_PA_THRESHOLD,
 ) -> BlendResult:
-    """Combine season + recent (and optionally prior-year) into one blended rate.
+    """Combine pre-30d + recent + (optional) prior anchor into one blended rate.
 
-    `prior_year_weight=None` (default) → computed dynamically from season_pa via
-    `dynamic_prior_year_weight()`. Pass an explicit float to override (useful in
-    tests and for non-PA-counted metrics).
+    Arguments:
+      season_pa / season_rate: PRE-30d in-season sample (March 1 → cutoff-31).
+        Disjoint with recent. See `batter_season_features`.
+      recent_pa / recent_rate: last-30-day sample.
+      prior_pa / prior_rate: anchor in PA-equivalent units. Pass 0 (default)
+        for no anchor — used by the pitcher HR/9 blend, which doesn't have a
+        per-pitcher prior available yet. For batters, pass either prior-year
+        HR/PA or the league rate, with prior_pa = PRIOR_PA_EQUIVALENT.
+      shrinkage: weight multiplier on the recent term. Default 1.0 = inverse
+        -variance weighting by sample size; >1.0 = recent-form premium.
 
-    Skip semantics:
-      - If everything is empty/NaN → returns NaN. Caller decides skip-vs-impute
-        (project rule: skip, never median-fill).
-      - If a rate is NaN, its component is dropped (PA effectively zeroed).
+    Returns a BlendResult. `rate` is NaN iff every term has zero effective weight.
     """
-    use_prior_year = (
-        season_pa < early_season_pa_threshold
-        and prior_year_pa > 0
-        and not _is_nan(prior_year_rate)
-    )
-
-    if prior_year_weight is None:
-        py_weight_resolved = dynamic_prior_year_weight(season_pa)
-    else:
-        py_weight_resolved = float(prior_year_weight)
-
     season_w, season_term = _term(season_pa, season_rate, weight=1.0)
     recent_w, recent_term = _term(recent_pa, recent_rate, weight=shrinkage)
+    prior_w, prior_term = _term(prior_pa, prior_rate, weight=1.0)
 
-    if use_prior_year and py_weight_resolved > 0:
-        py_w, py_term = _term(prior_year_pa, prior_year_rate, weight=py_weight_resolved)
-    else:
-        py_w, py_term = 0.0, 0.0
-        if not use_prior_year:
-            py_weight_resolved = 0.0
-
-    denom = season_w + recent_w + py_w
+    denom = season_w + recent_w + prior_w
     if denom <= 0:
         return BlendResult(
             rate=float("nan"),
             season_pa=season_pa,
             recent_pa=recent_pa,
-            prior_year_pa=prior_year_pa if use_prior_year else 0,
-            used_prior_year=False,
-            prior_year_weight=py_weight_resolved,
+            prior_pa=0,
+            prior_rate=prior_rate,
+            used_prior=False,
         )
 
-    rate = (season_term + recent_term + py_term) / denom
     return BlendResult(
-        rate=rate,
+        rate=(season_term + recent_term + prior_term) / denom,
         season_pa=season_pa,
         recent_pa=recent_pa,
-        prior_year_pa=prior_year_pa if use_prior_year else 0,
-        used_prior_year=use_prior_year and py_w > 0,
-        prior_year_weight=py_weight_resolved,
+        prior_pa=int(prior_pa) if prior_w > 0 else 0,
+        prior_rate=prior_rate,
+        used_prior=prior_w > 0,
     )
 
 
 def blend_features(
     season: dict,
     recent: dict,
-    prior_year: Optional[dict] = None,
+    *,
+    prior_rate: Optional[float] = None,
+    prior_pa: int = PRIOR_PA_EQUIVALENT,
     metric_key: str = "hr_per_pa",
     pa_key: str = "pa",
     shrinkage: float = DEFAULT_SHRINKAGE,
-    prior_year_weight: Optional[float] = None,
 ) -> BlendResult:
-    """Higher-level wrapper: blend a feature key across season/recent/prior-year dicts.
+    """Higher-level wrapper: blend a feature key across season + recent + anchor.
 
-    Each dict must have `metric_key` (the rate) and `pa_key` (the denominator).
-    Default `prior_year_weight=None` → dynamic decay based on current-season PA.
+    `prior_rate` is the per-player anchor for this metric — for HR/PA pass
+    either prior-year HR/PA (when the batter has a prior year) OR the league
+    mean as a fallback. Pass `None` to skip the anchor (no prior shrinkage).
     """
     season_pa = int(season.get(pa_key, 0) or 0)
     recent_pa = int(recent.get(pa_key, 0) or 0)
     season_rate = float(season.get(metric_key, float("nan")))
     recent_rate = float(recent.get(metric_key, float("nan")))
 
-    py_pa = 0
-    py_rate = float("nan")
-    if prior_year is not None:
-        py_pa = int(prior_year.get(pa_key, 0) or 0)
-        py_rate = float(prior_year.get(metric_key, float("nan")))
+    if prior_rate is None or _is_nan(prior_rate):
+        prior_pa_resolved = 0
+        prior_rate_resolved = float("nan")
+    else:
+        prior_pa_resolved = int(prior_pa)
+        prior_rate_resolved = float(prior_rate)
 
     return bayesian_blend(
         season_pa=season_pa,
         season_rate=season_rate,
         recent_pa=recent_pa,
         recent_rate=recent_rate,
+        prior_pa=prior_pa_resolved,
+        prior_rate=prior_rate_resolved,
         shrinkage=shrinkage,
-        prior_year_pa=py_pa,
-        prior_year_rate=py_rate,
-        prior_year_weight=prior_year_weight,
     )
 
 
@@ -173,8 +160,8 @@ def _term(pa: int, rate: float, weight: float) -> tuple[float, float]:
     return w, w * rate
 
 
-def _is_nan(x: float) -> bool:
+def _is_nan(x) -> bool:
     try:
-        return math.isnan(x)
+        return math.isnan(float(x))
     except (TypeError, ValueError):
         return True
