@@ -129,13 +129,16 @@ def _closing_quote_for_pick(
         if f_dt >= game_dt:
             continue
         # First (most recent) snapshot before game time wins.
+        # Snapshot quotes are alt-HR market (implicitly point=0.5/Over); the
+        # batter price lives in `bet_over_american`.
         prices: list[int] = []
         for q in snap.get("quotes", []) or []:
             if normalize_name(q.get("batter_name", "")) != target_norm:
                 continue
-            if float(q.get("point", 0)) != 0.5:
+            price = q.get("bet_over_american")
+            if price is None:
                 continue
-            prices.append(int(q.get("over_american")))
+            prices.append(int(price))
         if prices:
             closing = max(prices)
             break
