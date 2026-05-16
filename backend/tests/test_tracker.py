@@ -94,10 +94,10 @@ def _write_snapshot(odds_dir, day: date, hour_min: str,
         "books_filtered": ["fanduel", "draftkings"],
         "market": "batter_home_runs_alternate",
         "quotes": [
-            {"book": "fanduel",   "batter_name": batter, "point": 0.5,
-             "over_american": fd_over, "under_american": -400},
-            {"book": "draftkings","batter_name": batter, "point": 0.5,
-             "over_american": dk_over, "under_american": -400},
+            {"book": "fanduel",   "batter_name": batter,
+             "bet_over_american": fd_over},
+            {"book": "draftkings","batter_name": batter,
+             "bet_over_american": dk_over},
         ],
     }))
 
