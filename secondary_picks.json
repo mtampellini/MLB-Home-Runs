@@ -1,18 +1,116 @@
 {
-  "generated_at": "2026-05-16T18:03:03.757293+00:00",
+  "generated_at": "2026-05-16T19:38:52.267641+00:00",
   "as_of_date": "2026-05-16",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030902004454342984,
+  "league_hr_per_pa": 0.030595813204508857,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 14,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "secondary",
+      "daily_rank": 2,
+      "batter": "Brandon Lowe",
+      "batter_id": 664040,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 7,
+      "pitcher": "Cristopher S\u00e1nchez",
+      "pitcher_id": 650911,
+      "pitcher_hand": "L",
+      "park": "PIT",
+      "game_pk": 823382,
+      "game_datetime": "2026-05-16T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 930,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0882,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1903,
+      "ev_pct": 105.56,
+      "edge_pct": 10.21,
+      "blended_hr_per_pa": 0.05882,
+      "breakout_score": -0.028,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2395,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9226,
+          "deviation": 0.9226
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8892,
+          "deviation": 0.1108
+        },
+        {
+          "name": "wind",
+          "value": 1.038,
+          "deviation": 0.038
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "secondary",
       "daily_rank": 3,
+      "batter": "Ryan O'Hearn",
+      "batter_id": 656811,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 5,
+      "pitcher": "Cristopher S\u00e1nchez",
+      "pitcher_id": 650911,
+      "pitcher_hand": "L",
+      "park": "PIT",
+      "game_pk": 823382,
+      "game_datetime": "2026-05-16T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1260,
+      "dk_odds": 1140,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0717,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1471,
+      "ev_pct": 100.05,
+      "edge_pct": 7.54,
+      "blended_hr_per_pa": 0.03507,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5434,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1463,
+          "deviation": 0.1463
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8892,
+          "deviation": 0.1108
+        }
+      ],
+      "tier_rank": 2
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 7,
       "batter": "Matt McLain",
       "batter_id": 680574,
       "batter_hand": "R",
@@ -57,11 +155,11 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 1
+      "tier_rank": 3
     },
     {
       "tier": "secondary",
-      "daily_rank": 6,
+      "daily_rank": 11,
       "batter": "Brayan Rocchio",
       "batter_id": 677587,
       "batter_hand": "L",
@@ -106,11 +204,11 @@
           "deviation": 0.0744
         }
       ],
-      "tier_rank": 2
+      "tier_rank": 4
     },
     {
       "tier": "secondary",
-      "daily_rank": 7,
+      "daily_rank": 13,
       "batter": "Steven Kwan",
       "batter_id": 680757,
       "batter_hand": "L",
@@ -155,9 +253,9 @@
           "deviation": 0.0744
         }
       ],
-      "tier_rank": 3
+      "tier_rank": 5
     }
   ],
-  "skipped_count": 8,
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-05-16.json"
 }
