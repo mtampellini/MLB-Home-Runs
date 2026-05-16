@@ -1,18 +1,67 @@
 {
-  "generated_at": "2026-05-16T19:38:52.267641+00:00",
+  "generated_at": "2026-05-16T21:17:01.413976+00:00",
   "as_of_date": "2026-05-16",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030595813204508857,
+  "league_hr_per_pa": 0.032968615030233225,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 12,
-  "games_excluded_live_or_complete": 3,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "secondary",
       "daily_rank": 2,
+      "batter": "Amed Rosario",
+      "batter_id": 642708,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 6,
+      "pitcher": "Huascar Brazob\u00e1n",
+      "pitcher_id": 623211,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823627,
+      "game_datetime": "2026-05-16T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1260,
+      "dk_odds": 1360,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.066,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1478,
+      "ev_pct": 115.84,
+      "edge_pct": 8.18,
+      "blended_hr_per_pa": 0.03338,
+      "breakout_score": 0.0876,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1136,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.0876,
+          "deviation": 0.0876
+        },
+        {
+          "name": "wind",
+          "value": 1.0301,
+          "deviation": 0.0301
+        },
+        {
+          "name": "park",
+          "value": 1.0258,
+          "deviation": 0.0258
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 3,
       "batter": "Brandon Lowe",
       "batter_id": 664040,
       "batter_hand": "L",
@@ -57,11 +106,11 @@
           "deviation": 0.038
         }
       ],
-      "tier_rank": 1
+      "tier_rank": 2
     },
     {
       "tier": "secondary",
-      "daily_rank": 3,
+      "daily_rank": 4,
       "batter": "Ryan O'Hearn",
       "batter_id": 656811,
       "batter_hand": "L",
@@ -106,11 +155,11 @@
           "deviation": 0.1108
         }
       ],
-      "tier_rank": 2
+      "tier_rank": 3
     },
     {
       "tier": "secondary",
-      "daily_rank": 7,
+      "daily_rank": 9,
       "batter": "Matt McLain",
       "batter_id": 680574,
       "batter_hand": "R",
@@ -155,11 +204,11 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 3
+      "tier_rank": 4
     },
     {
       "tier": "secondary",
-      "daily_rank": 11,
+      "daily_rank": 21,
       "batter": "Brayan Rocchio",
       "batter_id": 677587,
       "batter_hand": "L",
@@ -204,11 +253,11 @@
           "deviation": 0.0744
         }
       ],
-      "tier_rank": 4
+      "tier_rank": 5
     },
     {
       "tier": "secondary",
-      "daily_rank": 13,
+      "daily_rank": 23,
       "batter": "Steven Kwan",
       "batter_id": 680757,
       "batter_hand": "L",
@@ -253,9 +302,9 @@
           "deviation": 0.0744
         }
       ],
-      "tier_rank": 5
+      "tier_rank": 6
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 11,
   "skipped_reference": "data/processed/skipped_batters_2026-05-16.json"
 }
