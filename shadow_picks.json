@@ -1,15 +1,114 @@
 {
-  "generated_at": "2026-05-18T17:37:24.144190+00:00",
+  "generated_at": "2026-05-18T20:17:08.131562+00:00",
   "as_of_date": "2026-05-18",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03025064822817632,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 14,
   "games_pregame": 14,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
+      "batter": "Jonathan Aranda",
+      "batter_id": 666018,
+      "batter_hand": "L",
+      "team": "TB",
+      "lineup_spot": 2,
+      "pitcher": "Trevor Rogers",
+      "pitcher_id": 669432,
+      "pitcher_hand": "L",
+      "park": "TB",
+      "game_pk": 822980,
+      "game_datetime": "2026-05-18T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0949,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1272,
+      "ev_pct": 24.65,
+      "edge_pct": 3.23,
+      "blended_hr_per_pa": 0.03881,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2385,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.283,
+          "deviation": 0.283
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 0.9027,
+          "deviation": 0.0973
+        }
+      ],
+      "tier_rank": 1
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 23,
+      "batter": "Jacob Young",
+      "batter_id": 696285,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 6,
+      "pitcher": "Christian Scott",
+      "pitcher_id": 681035,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822734,
+      "game_datetime": "2026-05-18T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 1020,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0871,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1065,
+      "ev_pct": 19.24,
+      "edge_pct": 1.94,
+      "blended_hr_per_pa": 0.01946,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1843,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6433,
+          "deviation": 0.3567
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2
+    }
+  ],
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-05-18.json"
 }
