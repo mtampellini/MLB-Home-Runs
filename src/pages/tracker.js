@@ -70,6 +70,12 @@ function fmtUnits(v) {
   const sign = v > 0 ? '+' : ''
   return `${sign}${v.toFixed(2)}u`
 }
+// 1u = $1 flat-stake assumption surfaced everywhere on this page.
+function fmtDollars(v, digits = 2) {
+  if (v === null || v === undefined || Number.isNaN(v)) return '—'
+  const sign = v > 0 ? '+' : v < 0 ? '−' : ''
+  return `${sign}$${Math.abs(v).toFixed(digits)}`
+}
 function fmtOdds(odds) {
   if (odds == null) return '—'
   return odds > 0 ? `+${odds}` : `${odds}`
@@ -644,12 +650,13 @@ export default function Tracker({ archives, tracker }) {
     return sorted
   }, [archives, dateFilter, sortBy, tierFilter, modelFilter])
 
-  // Top-level metrics — driven by tier AND model filters. When model filter
-  // is anything other than "all", compute client-side from the filtered
-  // archives so the panels match what the day blocks show. When "all" model,
-  // use the precomputed tracker.json (faster, includes CLV).
+  // Top-level metrics — driven by tier, model, AND date filters. When any
+  // filter is non-default, compute client-side from the filtered archives so
+  // the panels match what the day blocks show. Only the all-time / all-model
+  // path uses tracker.json (faster, and the only path that carries CLV since
+  // closing snaps aren't reconstructible from per-day archives).
   const sum = useMemo(() => {
-    if (modelFilter !== 'all') {
+    if (modelFilter !== 'all' || dateFilter !== 'all') {
       return computeSummaryFromArchives(filteredArchives, tierFilter)
     }
     if (!tracker) return {}
@@ -659,7 +666,7 @@ export default function Tracker({ archives, tracker }) {
       )
     }
     return tracker[`summary_${tierFilter}`] || tracker.summary || {}
-  }, [tracker, tierFilter, modelFilter, filteredArchives])
+  }, [tracker, tierFilter, modelFilter, dateFilter, filteredArchives])
 
   const totalSettled = (sum.wins || 0) + (sum.losses || 0)
   const isFirstWeek = totalSettled === 0
@@ -760,6 +767,12 @@ export default function Tracker({ archives, tracker }) {
             value={totalSettled > 0 ? `${sum.roi_pct >= 0 ? '+' : ''}${sum.roi_pct?.toFixed(1)}%` : '—'}
             sub={totalSettled > 0 ? `${fmtUnits(sum.units_profit)} on ${sum.units_staked || 0}u` : null}
             tone={totalSettled > 0 ? (sum.roi_pct >= 0 ? 'positive' : 'negative') : 'muted'}
+          />
+          <StatCard
+            label="Net @ $1/bet"
+            value={totalSettled > 0 ? fmtDollars(sum.units_profit) : '—'}
+            sub={totalSettled > 0 ? `on ${sum.units_staked || 0} bets` : null}
+            tone={totalSettled > 0 ? (sum.units_profit >= 0 ? 'positive' : 'negative') : 'muted'}
           />
           <StatCard
             label="Avg CLV"
