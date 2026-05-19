@@ -17,6 +17,7 @@ from src.odds.fetch import (
     MARKETS_REQUEST,
     OddsAPIClient,
     OddsAPIError,
+    QuotaExhaustedError,
     RateLimitedError,
     fetch_today_hr_props,
     parse_event_response,
@@ -257,8 +258,100 @@ def test_client_raises_generic_error_on_500():
 
 def test_client_requires_api_key(monkeypatch):
     monkeypatch.delenv("ODDS_API_KEY", raising=False)
+    for i in range(2, 6):
+        monkeypatch.delenv(f"ODDS_API_KEY_{i}", raising=False)
     with pytest.raises(OddsAPIError):
         OddsAPIClient()
+
+
+def test_quota_exhausted_401_classified_as_quota_error():
+    """401 with OUT_OF_USAGE_CREDITS body must raise QuotaExhaustedError —
+    distinct from a transient 429 so the client rotates instead of retrying."""
+    session = MagicMock()
+    session.get.return_value = _mock_response(
+        401,
+        {"message": "Usage quota has been reached",
+         "error_code": "OUT_OF_USAGE_CREDITS"},
+        headers={"x-requests-remaining": "1", "x-requests-used": "499"},
+    )
+    client = OddsAPIClient(api_key="solo", session=session)
+    with pytest.raises(QuotaExhaustedError):
+        client.list_events()
+    # QuotaExhaustedError is a RateLimitedError subclass — existing catch
+    # blocks that catch RateLimitedError keep working.
+    assert issubclass(QuotaExhaustedError, RateLimitedError)
+
+
+def test_client_rotates_to_second_key_on_quota_exhaustion():
+    """First key 401s OUT_OF_USAGE_CREDITS; second key returns 200. The
+    request should succeed and the active key index should advance."""
+    session = MagicMock()
+    session.get.side_effect = [
+        _mock_response(
+            401,
+            {"error_code": "OUT_OF_USAGE_CREDITS"},
+            headers={"x-requests-remaining": "1", "x-requests-used": "499"},
+        ),
+        _mock_response(
+            200, SAMPLE_EVENTS_LIST,
+            headers={"x-requests-remaining": "500", "x-requests-used": "0"},
+        ),
+    ]
+    client = OddsAPIClient(api_key=["primary", "backup"], session=session)
+    events = client.list_events()
+    assert client.active_key_index == 1
+    assert client.api_key == "backup"
+    assert len(events) > 0
+    # Second call used the backup key.
+    second_call_params = session.get.call_args_list[1].kwargs["params"]
+    assert second_call_params["apiKey"] == "backup"
+
+
+def test_client_raises_when_all_keys_exhausted():
+    """Both keys 401 OUT_OF_USAGE_CREDITS → QuotaExhaustedError propagates."""
+    quota_response = _mock_response(
+        401,
+        {"error_code": "OUT_OF_USAGE_CREDITS"},
+        headers={"x-requests-remaining": "0", "x-requests-used": "500"},
+    )
+    session = MagicMock()
+    session.get.side_effect = [quota_response, quota_response]
+    client = OddsAPIClient(api_key=["k1", "k2"], session=session)
+    with pytest.raises(QuotaExhaustedError):
+        client.list_events()
+    assert client.active_key_index == 1  # advanced to last key, then raised
+
+
+def test_client_does_not_rotate_on_transient_429():
+    """A 429 is a per-second rate limit, not a monthly quota wipe — must
+    NOT burn through to the backup key on a single 429."""
+    session = MagicMock()
+    session.get.return_value = _mock_response(429, {"message": "Too many"})
+    client = OddsAPIClient(api_key=["primary", "backup"], session=session)
+    with pytest.raises(RateLimitedError):
+        client.list_events()
+    assert client.active_key_index == 0
+    assert session.get.call_count == 1
+
+
+def test_client_reads_indexed_env_keys(monkeypatch):
+    """ODDS_API_KEY_2..N are picked up automatically when no arg is passed.
+    Order is preserved, duplicates stripped."""
+    monkeypatch.setenv("ODDS_API_KEY", "alpha")
+    monkeypatch.setenv("ODDS_API_KEY_2", "beta")
+    monkeypatch.setenv("ODDS_API_KEY_3", "alpha")  # duplicate, should drop
+    monkeypatch.setenv("ODDS_API_KEY_4", "gamma")
+    monkeypatch.delenv("ODDS_API_KEY_5", raising=False)
+    client = OddsAPIClient(session=MagicMock())
+    assert client.num_keys == 3
+    assert client.api_key == "alpha"
+
+
+def test_client_accepts_comma_separated_keys():
+    """Single string with commas splits into multiple keys."""
+    client = OddsAPIClient(api_key="k1,k2,k3", session=MagicMock())
+    assert client.num_keys == 3
+    assert client.api_key == "k1"
 
 
 def test_fetch_today_hr_props_full_flow():

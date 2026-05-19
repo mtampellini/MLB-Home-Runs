@@ -30,6 +30,7 @@ jobs:
     timeout-minutes: 60
     env:
       ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+      ODDS_API_KEY_2: ${{ secrets.ODDS_API_KEY_2 }}
 
     steps:
       - name: Checkout repo

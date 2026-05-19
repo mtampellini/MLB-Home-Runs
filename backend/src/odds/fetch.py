@@ -65,6 +65,12 @@ class RateLimitedError(OddsAPIError):
     """422 / 429 / quota-exhausted variant."""
 
 
+class QuotaExhaustedError(RateLimitedError):
+    """401 + error_code=OUT_OF_USAGE_CREDITS — the monthly request budget
+    on the active API key is gone. Distinct from a transient 429 so the
+    client can rotate to a fallback key instead of retrying the same one."""
+
+
 # ---------------------------------------------------------------------------
 # Schemas
 # ---------------------------------------------------------------------------
@@ -121,6 +127,63 @@ class FetchResult:
 
 
 # ---------------------------------------------------------------------------
+# Key resolution + quota-error detection helpers
+# ---------------------------------------------------------------------------
+
+# Scan up to this many indexed env vars: ODDS_API_KEY, ODDS_API_KEY_2, _3, ...
+# Five is enough headroom for hand-managed free-tier rotation; raise if needed.
+_MAX_ENV_KEYS = 5
+
+
+def _resolve_api_keys(api_key: Optional[str | list[str]]) -> list[str]:
+    """Build the ordered key list for OddsAPIClient.
+
+    Inputs accepted, in priority order:
+      1. ``api_key`` constructor arg: ``str`` (comma-separated OK) or ``list[str]``.
+      2. Env vars ``ODDS_API_KEY``, ``ODDS_API_KEY_2``, ..., ``ODDS_API_KEY_{N}``.
+         A comma-separated ``ODDS_API_KEY`` is also accepted (split here).
+
+    Empties/duplicates removed while preserving order — secrets that aren't
+    configured in CI come through as empty strings."""
+    if api_key is not None:
+        raw = api_key if isinstance(api_key, list) else [api_key]
+    else:
+        raw = [os.environ.get("ODDS_API_KEY", "")]
+        for i in range(2, _MAX_ENV_KEYS + 1):
+            raw.append(os.environ.get(f"ODDS_API_KEY_{i}", ""))
+
+    out: list[str] = []
+    seen: set[str] = set()
+    for item in raw:
+        if not item:
+            continue
+        for tok in item.split(","):
+            tok = tok.strip()
+            if tok and tok not in seen:
+                out.append(tok)
+                seen.add(tok)
+    return out
+
+
+def _is_out_of_credits(resp: requests.Response) -> bool:
+    """Return True iff the body indicates monthly quota exhaustion.
+
+    The Odds API returns 401 with JSON body containing
+    ``"error_code": "OUT_OF_USAGE_CREDITS"`` when the key's monthly budget
+    is gone. Distinguishing this from other 401s (e.g. invalid key) matters —
+    we only rotate on quota exhaustion, not on auth failures that would
+    affect every key equally."""
+    try:
+        body = resp.json()
+        if isinstance(body, dict) and body.get("error_code") == "OUT_OF_USAGE_CREDITS":
+            return True
+    except (ValueError, AttributeError):
+        pass
+    # Fallback: text match in case the JSON parse fails for any reason.
+    return "OUT_OF_USAGE_CREDITS" in (resp.text or "")
+
+
+# ---------------------------------------------------------------------------
 # Client
 # ---------------------------------------------------------------------------
 
@@ -129,29 +192,78 @@ class OddsAPIClient:
 
     def __init__(
         self,
-        api_key: Optional[str] = None,
+        api_key: Optional[str | list[str]] = None,
         session: Optional[requests.Session] = None,
         base_url: str = ODDS_API_BASE,
         timeout: int = 15,
     ) -> None:
-        self.api_key = api_key or os.environ.get("ODDS_API_KEY")
-        if not self.api_key:
+        self._api_keys: list[str] = _resolve_api_keys(api_key)
+        if not self._api_keys:
             raise OddsAPIError(
                 "ODDS_API_KEY not provided (env var or constructor arg)."
             )
+        self._key_idx: int = 0
         self.session = session or requests.Session()
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
         self.last_requests_remaining: Optional[int] = None
         self.last_requests_used: Optional[int] = None
 
+    @property
+    def api_key(self) -> str:
+        """Currently active API key. Rotates on QuotaExhaustedError."""
+        return self._api_keys[self._key_idx]
+
+    @property
+    def active_key_index(self) -> int:
+        return self._key_idx
+
+    @property
+    def num_keys(self) -> int:
+        return len(self._api_keys)
+
     # -------- HTTP plumbing --------------------------------------------------
 
     def _get(self, path: str, params: dict) -> requests.Response:
+        """GET with automatic key rotation on quota exhaustion.
+
+        Each call tries the active key first. If it returns
+        401 OUT_OF_USAGE_CREDITS, advance to the next key and retry the same
+        request. Stops when a non-quota response arrives or all keys are
+        exhausted. 429/422 (transient rate limit) does NOT trigger rotation —
+        it propagates as before."""
+        last_err: Optional[QuotaExhaustedError] = None
+        while True:
+            try:
+                return self._get_once(path, params)
+            except QuotaExhaustedError as e:
+                last_err = e
+                if self._key_idx + 1 >= len(self._api_keys):
+                    logger.error(
+                        "Odds API: all %d key(s) exhausted at %s",
+                        len(self._api_keys), path,
+                    )
+                    raise
+                logger.warning(
+                    "Odds API: key index %d exhausted (remaining=%s used=%s); "
+                    "rotating to key index %d",
+                    self._key_idx,
+                    self.last_requests_remaining, self.last_requests_used,
+                    self._key_idx + 1,
+                )
+                self._key_idx += 1
+                continue
+
+    def _get_once(self, path: str, params: dict) -> requests.Response:
         params = {**params, "apiKey": self.api_key}
         url = f"{self.base_url}{path}"
         resp = self.session.get(url, params=params, timeout=self.timeout)
         self._track_budget(resp)
+        if resp.status_code == 401 and _is_out_of_credits(resp):
+            raise QuotaExhaustedError(
+                f"401 OUT_OF_USAGE_CREDITS from {path} on key index "
+                f"{self._key_idx}: {resp.text[:200]}"
+            )
         if resp.status_code == 429 or resp.status_code == 422:
             raise RateLimitedError(
                 f"{resp.status_code} from {path}: {resp.text[:200]}"
