@@ -1,27 +1,27 @@
 {
   "date": "2026-05-19",
-  "generated_at": "2026-05-19T22:00:56.716513+00:00",
+  "generated_at": "2026-05-19T23:40:10.743152+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.0343606830487297,
+  "league_hr_per_pa": 0.03512575888985256,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 1,
-    "games_pregame": 14,
-    "total_predictions": 97,
-    "skipped_low_data": 3,
-    "skipped_career_pa_filter": 8,
+    "games_excluded_live_or_complete": 9,
+    "games_pregame": 6,
+    "total_predictions": 47,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 6,
     "skipped_other": 0,
-    "matched_in_odds_market": 97,
-    "matched_alt_market": 97,
+    "matched_in_odds_market": 47,
+    "matched_alt_market": 47,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 97,
+    "single_sided_devig": 47,
     "above_25_ev_pre_cap": 7,
-    "eligible_below_900_price_cap": 6,
-    "above_price_cap_pushed_to_secondary": 1,
-    "primary_count": 16,
-    "secondary_count": 11,
-    "shadow_count": 22
+    "eligible_below_900_price_cap": 5,
+    "above_price_cap_pushed_to_secondary": 2,
+    "primary_count": 21,
+    "secondary_count": 13,
+    "shadow_count": 24
   },
   "primary_picks": [
     {
@@ -130,7 +130,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 13,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -183,7 +183,117 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 17,
+      "daily_rank": 10,
+      "batter": "Jorge Soler",
+      "batter_id": 624585,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 4,
+      "pitcher": "Jacob Lopez",
+      "pitcher_id": 682052,
+      "pitcher_hand": "L",
+      "park": "LAA",
+      "game_pk": 824033,
+      "game_datetime": "2026-05-20T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 402,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.186,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3458,
+      "ev_pct": 79.81,
+      "edge_pct": 15.98,
+      "blended_hr_per_pa": 0.04653,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4453,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.3245,
+          "deviation": 0.3245
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Mike Trout",
+        "Zach Neto",
+        "Oswald Peraza"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 19,
+      "batter": "Mike Trout",
+      "batter_id": 545361,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 2,
+      "pitcher": "Jacob Lopez",
+      "pitcher_id": 682052,
+      "pitcher_hand": "L",
+      "park": "LAA",
+      "game_pk": 824033,
+      "game_datetime": "2026-05-20T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 340,
+      "dk_odds": 357,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2119,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3488,
+      "ev_pct": 59.41,
+      "edge_pct": 13.69,
+      "blended_hr_per_pa": 0.04502,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1447,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2817,
+          "deviation": 0.2817
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "Jorge Soler",
+        "Zach Neto",
+        "Oswald Peraza"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 20,
       "batter": "Daulton Varsho",
       "batter_id": 662139,
       "batter_hand": "L",
@@ -228,7 +338,7 @@
           "deviation": 0.2
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "stacked": false,
       "stacked_with": []
     },
@@ -279,7 +389,7 @@
           "deviation": 0.1306
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "stacked": false,
       "stacked_with": []
     },
@@ -330,7 +440,7 @@
           "deviation": 0.1175
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "stacked": false,
       "stacked_with": []
     },
@@ -381,7 +491,7 @@
           "deviation": 0.2
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "stacked": true,
       "stacked_with": [
         "Bryce Harper"
@@ -389,7 +499,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 16,
+      "daily_rank": 18,
       "batter": "Jos\u00e9 Ram\u00edrez",
       "batter_id": 608070,
       "batter_hand": "L",
@@ -434,7 +544,7 @@
           "deviation": 0.153
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Angel Mart\u00ednez"
@@ -487,7 +597,7 @@
           "deviation": 0.0857
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 11,
       "stacked": true,
       "stacked_with": [
         "Brandon Lowe",
@@ -496,7 +606,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 10,
+      "daily_rank": 11,
       "batter": "Brandon Lowe",
       "batter_id": 664040,
       "batter_hand": "L",
@@ -541,7 +651,7 @@
           "deviation": 0.1855
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 12,
       "stacked": true,
       "stacked_with": [
         "Konnor Griffin",
@@ -550,7 +660,62 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 15,
+      "daily_rank": 22,
+      "batter": "Zach Neto",
+      "batter_id": 687263,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 1,
+      "pitcher": "Jacob Lopez",
+      "pitcher_id": 682052,
+      "pitcher_hand": "L",
+      "park": "LAA",
+      "game_pk": 824033,
+      "game_datetime": "2026-05-20T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 411,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1861,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2881,
+      "ev_pct": 47.22,
+      "edge_pct": 10.2,
+      "blended_hr_per_pa": 0.03526,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4098,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1235,
+          "deviation": 0.1235
+        }
+      ],
+      "tier_rank": 13,
+      "stacked": true,
+      "stacked_with": [
+        "Jorge Soler",
+        "Mike Trout",
+        "Oswald Peraza"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 17,
       "batter": "Oneil Cruz",
       "batter_id": 665833,
       "batter_hand": "L",
@@ -595,7 +760,7 @@
           "deviation": 0.1855
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 14,
       "stacked": true,
       "stacked_with": [
         "Konnor Griffin",
@@ -604,7 +769,62 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 20,
+      "daily_rank": 16,
+      "batter": "Oswald Peraza",
+      "batter_id": 672724,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 6,
+      "pitcher": "Jacob Lopez",
+      "pitcher_id": 682052,
+      "pitcher_hand": "L",
+      "park": "LAA",
+      "game_pk": 824033,
+      "game_datetime": "2026-05-20T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 599,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1388,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2305,
+      "ev_pct": 61.14,
+      "edge_pct": 9.17,
+      "blended_hr_per_pa": 0.0314,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1835,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1235,
+          "deviation": 0.1235
+        }
+      ],
+      "tier_rank": 15,
+      "stacked": true,
+      "stacked_with": [
+        "Jorge Soler",
+        "Mike Trout",
+        "Zach Neto"
+      ]
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 25,
       "batter": "Julio Rodr\u00edguez",
       "batter_id": 677594,
       "batter_hand": "R",
@@ -649,7 +869,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 16,
       "stacked": true,
       "stacked_with": [
         "Rob Refsnyder"
@@ -657,7 +877,58 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 18,
+      "daily_rank": 21,
+      "batter": "Harrison Bader",
+      "batter_id": 664056,
+      "batter_hand": "R",
+      "team": "SF",
+      "lineup_spot": 1,
+      "pitcher": "Ryne Nelson",
+      "pitcher_id": 669194,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825086,
+      "game_datetime": "2026-05-20T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 590,
+      "dk_odds": 620,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1348,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2064,
+      "ev_pct": 48.63,
+      "edge_pct": 7.16,
+      "blended_hr_per_pa": 0.03755,
+      "breakout_score": -0.1292,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2778,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4994,
+          "deviation": 0.4994
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8708,
+          "deviation": 0.1292
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.069,
+          "deviation": 0.069
+        }
+      ],
+      "tier_rank": 17,
+      "stacked": false,
+      "stacked_with": []
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 23,
       "batter": "Rob Refsnyder",
       "batter_id": 608701,
       "batter_hand": "R",
@@ -702,7 +973,7 @@
           "deviation": 0.0381
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 18,
       "stacked": true,
       "stacked_with": [
         "Julio Rodr\u00edguez"
@@ -710,7 +981,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 23,
+      "daily_rank": 30,
       "batter": "Teoscar Hern\u00e1ndez",
       "batter_id": 606192,
       "batter_hand": "R",
@@ -755,7 +1026,7 @@
           "deviation": 0.092
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 19,
       "stacked": true,
       "stacked_with": [
         "Mookie Betts"
@@ -763,7 +1034,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 25,
+      "daily_rank": 32,
       "batter": "Mookie Betts",
       "batter_id": 605141,
       "batter_hand": "R",
@@ -808,7 +1079,7 @@
           "deviation": 0.0504
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 20,
       "stacked": true,
       "stacked_with": [
         "Teoscar Hern\u00e1ndez"
@@ -816,7 +1087,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 26,
+      "daily_rank": 33,
       "batter": "Yandy D\u00edaz",
       "batter_id": 650490,
       "batter_hand": "R",
@@ -861,7 +1132,7 @@
           "deviation": 0.0357
         }
       ],
-      "tier_rank": 16,
+      "tier_rank": 21,
       "stacked": false,
       "stacked_with": []
     }
@@ -1016,7 +1287,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 11,
+      "daily_rank": 12,
       "batter": "Matt Vierling",
       "batter_id": 663837,
       "batter_hand": "R",
@@ -1065,7 +1336,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 13,
+      "daily_rank": 14,
       "batter": "Matt McLain",
       "batter_id": 680574,
       "batter_hand": "R",
@@ -1114,7 +1385,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 14,
+      "daily_rank": 15,
       "batter": "Brayan Rocchio",
       "batter_id": 677587,
       "batter_hand": "L",
@@ -1163,7 +1434,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 19,
+      "daily_rank": 24,
       "batter": "Elly De La Cruz",
       "batter_id": 682829,
       "batter_hand": "R",
@@ -1212,7 +1483,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 21,
+      "daily_rank": 26,
       "batter": "Chase DeLauter",
       "batter_id": 800050,
       "batter_hand": "L",
@@ -1261,7 +1532,56 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 22,
+      "daily_rank": 27,
+      "batter": "Ildemaro Vargas",
+      "batter_id": 545121,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 5,
+      "pitcher": "Landen Roupp",
+      "pitcher_id": 694738,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825086,
+      "game_datetime": "2026-05-20T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1300,
+      "dk_odds": 1180,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0695,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1002,
+      "ev_pct": 40.27,
+      "edge_pct": 3.07,
+      "blended_hr_per_pa": 0.03785,
+      "breakout_score": 0.1245,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3892,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.5832,
+          "deviation": 0.4168
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1245,
+          "deviation": 0.1245
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0776,
+          "deviation": 0.0776
+        }
+      ],
+      "tier_rank": 9
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 28,
       "batter": "Jahmai Jones",
       "batter_id": 663330,
       "batter_hand": "R",
@@ -1306,11 +1626,60 @@
           "deviation": 0.1175
         }
       ],
-      "tier_rank": 9
+      "tier_rank": 10
     },
     {
       "tier": "secondary",
-      "daily_rank": 24,
+      "daily_rank": 29,
+      "batter": "Gabriel Moreno",
+      "batter_id": 672515,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 7,
+      "pitcher": "Landen Roupp",
+      "pitcher_id": 694738,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825086,
+      "game_datetime": "2026-05-20T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1180,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0721,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1045,
+      "ev_pct": 35.83,
+      "edge_pct": 3.24,
+      "blended_hr_per_pa": 0.03735,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2269,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.6496,
+          "deviation": 0.3504
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0633,
+          "deviation": 0.0633
+        }
+      ],
+      "tier_rank": 11
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 31,
       "batter": "Jes\u00fas S\u00e1nchez",
       "batter_id": 660821,
       "batter_hand": "L",
@@ -1355,11 +1724,11 @@
           "deviation": 0.1852
         }
       ],
-      "tier_rank": 10
+      "tier_rank": 12
     },
     {
       "tier": "secondary",
-      "daily_rank": 27,
+      "daily_rank": 34,
       "batter": "Daniel Schneemann",
       "batter_id": 682177,
       "batter_hand": "L",
@@ -1404,13 +1773,13 @@
           "deviation": 0.1089
         }
       ],
-      "tier_rank": 11
+      "tier_rank": 13
     }
   ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 28,
+      "daily_rank": 35,
       "batter": "Tyler Heineman",
       "batter_id": 623168,
       "batter_hand": "L",
@@ -1459,7 +1828,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 29,
+      "daily_rank": 36,
       "batter": "Tyrone Taylor",
       "batter_id": 621438,
       "batter_hand": "R",
@@ -1508,7 +1877,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 30,
+      "daily_rank": 37,
       "batter": "Nico Hoerner",
       "batter_id": 663538,
       "batter_hand": "R",
@@ -1557,7 +1926,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 31,
+      "daily_rank": 38,
       "batter": "Brandon Marsh",
       "batter_id": 669016,
       "batter_hand": "L",
@@ -1606,7 +1975,56 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 32,
+      "daily_rank": 39,
+      "batter": "Nolan Arenado",
+      "batter_id": 571448,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 4,
+      "pitcher": "Landen Roupp",
+      "pitcher_id": 694738,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825086,
+      "game_datetime": "2026-05-20T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 940,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0878,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1097,
+      "ev_pct": 18.47,
+      "edge_pct": 2.19,
+      "blended_hr_per_pa": 0.0375,
+      "breakout_score": 0.0945,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1148,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.6496,
+          "deviation": 0.3504
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0945,
+          "deviation": 0.0945
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0675,
+          "deviation": 0.0675
+        }
+      ],
+      "tier_rank": 5
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 40,
       "batter": "Junior Caminero",
       "batter_id": 691406,
       "batter_hand": "R",
@@ -1651,11 +2069,11 @@
           "deviation": 0.0563
         }
       ],
-      "tier_rank": 5
+      "tier_rank": 6
     },
     {
       "tier": "shadow",
-      "daily_rank": 33,
+      "daily_rank": 41,
       "batter": "Wenceel P\u00e9rez",
       "batter_id": 672761,
       "batter_hand": "R",
@@ -1700,11 +2118,11 @@
           "deviation": 0.1175
         }
       ],
-      "tier_rank": 6
+      "tier_rank": 7
     },
     {
       "tier": "shadow",
-      "daily_rank": 34,
+      "daily_rank": 42,
       "batter": "Mois\u00e9s Ballesteros",
       "batter_id": 694208,
       "batter_hand": "L",
@@ -1749,11 +2167,11 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 7
+      "tier_rank": 8
     },
     {
       "tier": "shadow",
-      "daily_rank": 35,
+      "daily_rank": 43,
       "batter": "Jac Caglianone",
       "batter_id": 695506,
       "batter_hand": "L",
@@ -1798,11 +2216,11 @@
           "deviation": 0.1173
         }
       ],
-      "tier_rank": 8
+      "tier_rank": 9
     },
     {
       "tier": "shadow",
-      "daily_rank": 36,
+      "daily_rank": 44,
       "batter": "Daylen Lile",
       "batter_id": 695734,
       "batter_hand": "L",
@@ -1847,11 +2265,11 @@
           "deviation": 0.1699
         }
       ],
-      "tier_rank": 9
+      "tier_rank": 10
     },
     {
       "tier": "shadow",
-      "daily_rank": 37,
+      "daily_rank": 45,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -1896,11 +2314,11 @@
           "deviation": 0.0891
         }
       ],
-      "tier_rank": 10
+      "tier_rank": 11
     },
     {
       "tier": "shadow",
-      "daily_rank": 38,
+      "daily_rank": 46,
       "batter": "Max Muncy",
       "batter_id": 571970,
       "batter_hand": "L",
@@ -1945,11 +2363,11 @@
           "deviation": 0.1306
         }
       ],
-      "tier_rank": 11
+      "tier_rank": 12
     },
     {
       "tier": "shadow",
-      "daily_rank": 39,
+      "daily_rank": 47,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -1994,11 +2412,11 @@
           "deviation": 0.0608
         }
       ],
-      "tier_rank": 12
+      "tier_rank": 13
     },
     {
       "tier": "shadow",
-      "daily_rank": 40,
+      "daily_rank": 48,
       "batter": "Andy Pages",
       "batter_id": 681624,
       "batter_hand": "R",
@@ -2043,11 +2461,11 @@
           "deviation": 0.0481
         }
       ],
-      "tier_rank": 13
+      "tier_rank": 14
     },
     {
       "tier": "shadow",
-      "daily_rank": 41,
+      "daily_rank": 49,
       "batter": "Jake Bauers",
       "batter_id": 641343,
       "batter_hand": "L",
@@ -2092,11 +2510,11 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 14
+      "tier_rank": 15
     },
     {
       "tier": "shadow",
-      "daily_rank": 42,
+      "daily_rank": 50,
       "batter": "Randy Arozarena",
       "batter_id": 668227,
       "batter_hand": "R",
@@ -2141,11 +2559,60 @@
           "deviation": 0.1328
         }
       ],
-      "tier_rank": 15
+      "tier_rank": 16
     },
     {
       "tier": "shadow",
-      "daily_rank": 43,
+      "daily_rank": 51,
+      "batter": "Jo Adell",
+      "batter_id": 666176,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 5,
+      "pitcher": "Jacob Lopez",
+      "pitcher_id": 682052,
+      "pitcher_hand": "L",
+      "park": "LAA",
+      "game_pk": 824033,
+      "game_datetime": "2026-05-20T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 350,
+      "dk_odds": 340,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2135,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2543,
+      "ev_pct": 14.44,
+      "edge_pct": 4.08,
+      "blended_hr_per_pa": 0.0452,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1529,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2869,
+          "deviation": 0.2869
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 17
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 52,
       "batter": "Spencer Steer",
       "batter_id": 668715,
       "batter_hand": "R",
@@ -2190,11 +2657,11 @@
           "deviation": 0.1697
         }
       ],
-      "tier_rank": 16
+      "tier_rank": 18
     },
     {
       "tier": "shadow",
-      "daily_rank": 44,
+      "daily_rank": 53,
       "batter": "Samuel Basallo",
       "batter_id": 694212,
       "batter_hand": "L",
@@ -2239,11 +2706,11 @@
           "deviation": 0.0973
         }
       ],
-      "tier_rank": 17
+      "tier_rank": 19
     },
     {
       "tier": "shadow",
-      "daily_rank": 45,
+      "daily_rank": 54,
       "batter": "Steven Kwan",
       "batter_id": 680757,
       "batter_hand": "L",
@@ -2288,11 +2755,11 @@
           "deviation": 0.153
         }
       ],
-      "tier_rank": 18
+      "tier_rank": 20
     },
     {
       "tier": "shadow",
-      "daily_rank": 46,
+      "daily_rank": 55,
       "batter": "Kyle Manzardo",
       "batter_id": 700932,
       "batter_hand": "L",
@@ -2337,11 +2804,11 @@
           "deviation": 0.153
         }
       ],
-      "tier_rank": 19
+      "tier_rank": 21
     },
     {
       "tier": "shadow",
-      "daily_rank": 47,
+      "daily_rank": 56,
       "batter": "Rafael March\u00e1n",
       "batter_id": 665561,
       "batter_hand": "L",
@@ -2386,11 +2853,11 @@
           "deviation": 0.2787
         }
       ],
-      "tier_rank": 20
+      "tier_rank": 22
     },
     {
       "tier": "shadow",
-      "daily_rank": 48,
+      "daily_rank": 57,
       "batter": "Dane Myers",
       "batter_id": 667472,
       "batter_hand": "R",
@@ -2435,11 +2902,11 @@
           "deviation": 0.1133
         }
       ],
-      "tier_rank": 21
+      "tier_rank": 23
     },
     {
       "tier": "shadow",
-      "daily_rank": 49,
+      "daily_rank": 58,
       "batter": "Adley Rutschman",
       "batter_id": 668939,
       "batter_hand": "L",
@@ -2484,7 +2951,7 @@
           "deviation": 0.0915
         }
       ],
-      "tier_rank": 22
+      "tier_rank": 24
     }
   ],
   "settlement": null
