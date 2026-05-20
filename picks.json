@@ -1,16 +1,74 @@
 {
-  "generated_at": "2026-05-20T22:29:04.688246+00:00",
+  "generated_at": "2026-05-20T22:46:55.016400+00:00",
   "as_of_date": "2026-05-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.037463976945244955,
+  "league_hr_per_pa": 0.04352617079889807,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 7,
-  "games_excluded_live_or_complete": 8,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 9,
   "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 29,
+      "batter": "Shea Langeliers",
+      "batter_id": 669127,
+      "batter_hand": "R",
+      "team": "OAK",
+      "lineup_spot": 2,
+      "pitcher": "Jack Kochanowicz",
+      "pitcher_id": 686799,
+      "pitcher_hand": "R",
+      "park": "LAA",
+      "game_pk": 824032,
+      "game_datetime": "2026-05-21T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 327,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2243,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3418,
+      "ev_pct": 45.94,
+      "edge_pct": 11.74,
+      "blended_hr_per_pa": 0.073,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0585,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6771,
+          "deviation": 0.6771
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1235,
+          "deviation": 0.1235
+        }
+      ],
+      "tier_rank": 10,
+      "stacked": true,
+      "stacked_with": [
+        "Brent Rooker"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
     {
       "tier": "primary",
       "daily_rank": 26,
@@ -58,7 +116,7 @@
           "deviation": 0.2
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 16,
       "stacked": true,
       "stacked_with": [
         "Nathaniel Lowe",
@@ -121,7 +179,7 @@
           "deviation": 0.1659
         }
       ],
-      "tier_rank": 26,
+      "tier_rank": 28,
       "stacked": true,
       "stacked_with": [
         "Bryce Harper",
@@ -135,7 +193,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 43,
+      "daily_rank": 45,
       "batter": "Jake Burger",
       "batter_id": 669394,
       "batter_hand": "R",
@@ -180,7 +238,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 27,
+      "tier_rank": 29,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -190,6 +248,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-05-20.json"
 }
