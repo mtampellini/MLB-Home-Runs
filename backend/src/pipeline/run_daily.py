@@ -63,6 +63,7 @@ from src.odds.fetch import (
     fetch_today_hr_props,
 )
 from src.odds.log import write_snapshot
+from src.pipeline.filters import annotate_filter_status, kept_by
 from src.pipeline.slate import MlbStatsClient, build_slate, normalize_name
 
 
@@ -795,6 +796,14 @@ def run_daily(
     # from the afternoon run gets correctly flagged as stacked.
     _annotate_stacked(primary_picks)
 
+    # Tag every pick with filter_status (baseline / triple / quad) derived from
+    # the 5/13-5/19 backtest. Site picks.json files include only triple-passing
+    # picks; the daily archive retains every pick for the 30-day stat-sig eval.
+    # Must run AFTER stacked annotation since passes_triple reads `stacked`.
+    annotate_filter_status(primary_picks)
+    annotate_filter_status(secondary_picks)
+    annotate_filter_status(shadow_picks)
+
     logger.info(
         "EV funnel: preds=%d → matched=%d → alt=%d → devig(2-way=%d, 1-sided=%d) → "
         "ev>=%.0f%%(pre-cap)=%d → eligible<=+%d=%d → primary(top%d by edge)=%d → "
@@ -811,11 +820,17 @@ def run_daily(
 
     # --- 5. Write picks.json (primary) + secondary + shadow tier files ----
     # Per-tier files at the repo root are consumed by the web front-end and
-    # by local debug tooling. The daily archive (written below) is the
-    # committed source of truth for settle.py + tracker.py — there are no
-    # separate dated picks files anymore.
+    # by local debug tooling. They contain only picks that pass the triple
+    # filter. The daily archive (written below) is the committed source of
+    # truth for settle.py + tracker.py and retains EVERY pick (kept + dropped)
+    # tagged with filter_status, so the day-30 stat-sig evaluator can compare
+    # baseline vs triple vs quad on the same underlying slate.
+    site_primary = kept_by("passes_triple", primary_picks)
+    site_secondary = kept_by("passes_triple", secondary_picks)
+    site_shadow = kept_by("passes_triple", shadow_picks)
+
     final_picks_path = _write_picks_json(
-        picks=primary_picks,
+        picks=site_primary,
         cutoff_date=cutoff_date,
         league_hr_per_pa=config.league_hr_per_pa,
         skipped_count=skipped_count,
@@ -831,7 +846,7 @@ def run_daily(
         secondary_picks_path or (picks_path.parent / SECONDARY_PICKS_FILENAME)
     )
     final_secondary_path = _write_picks_json(
-        picks=secondary_picks,
+        picks=site_secondary,
         cutoff_date=cutoff_date,
         league_hr_per_pa=config.league_hr_per_pa,
         skipped_count=skipped_count,
@@ -848,7 +863,7 @@ def run_daily(
         or (picks_path.parent / SHADOW_PICKS_FILENAME)
     )
     final_shadow_path = _write_picks_json(
-        picks=shadow_picks,
+        picks=site_shadow,
         cutoff_date=cutoff_date,
         league_hr_per_pa=config.league_hr_per_pa,
         skipped_count=skipped_count,
@@ -876,10 +891,11 @@ def run_daily(
     )
 
     logger.info(
-        "wrote primary=%s (%d) + secondary=%s (%d) + shadow=%s (%d) + archive=%s",
-        final_picks_path, len(primary_picks),
-        final_secondary_path, len(secondary_picks),
-        final_shadow_path, len(shadow_picks),
+        "wrote primary=%s (%d kept / %d total) + secondary=%s (%d kept / %d total) "
+        "+ shadow=%s (%d kept / %d total) + archive=%s",
+        final_picks_path, len(site_primary), len(primary_picks),
+        final_secondary_path, len(site_secondary), len(secondary_picks),
+        final_shadow_path, len(site_shadow), len(shadow_picks),
         archive_path,
     )
 
