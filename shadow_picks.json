@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-20T16:05:04.509307+00:00",
+  "generated_at": "2026-05-20T17:49:28.436006+00:00",
   "as_of_date": "2026-05-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032083862770012704,
+  "league_hr_per_pa": 0.0289198606271777,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 15,
+      "daily_rank": 20,
       "batter": "Samuel Basallo",
       "batter_id": 694212,
       "batter_hand": "L",
@@ -63,8 +63,116 @@
         "passes_triple": true,
         "passes_quad": false
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
+      "batter": "Ezequiel Duran",
+      "batter_id": 677649,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 5,
+      "pitcher": "Kyle Freeland",
+      "pitcher_id": 607536,
+      "pitcher_hand": "L",
+      "park": "COL",
+      "game_pk": 824355,
+      "game_datetime": "2026-05-20T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 800,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1077,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1317,
+      "ev_pct": 18.54,
+      "edge_pct": 2.4,
+      "blended_hr_per_pa": 0.02182,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7544,
+          "deviation": 0.2456
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
+      "batter": "Brandon Nimmo",
+      "batter_id": 607043,
+      "batter_hand": "L",
+      "team": "TEX",
+      "lineup_spot": 3,
+      "pitcher": "Kyle Freeland",
+      "pitcher_id": 607536,
+      "pitcher_hand": "L",
+      "park": "COL",
+      "game_pk": 824355,
+      "game_datetime": "2026-05-20T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 620,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1234,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1428,
+      "ev_pct": 15.69,
+      "edge_pct": 1.94,
+      "blended_hr_per_pa": 0.03412,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5387,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1799,
+          "deviation": 0.1799
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-05-20.json"
 }

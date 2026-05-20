@@ -1,15 +1,70 @@
 {
-  "generated_at": "2026-05-20T16:05:04.509177+00:00",
+  "generated_at": "2026-05-20T17:49:28.435818+00:00",
   "as_of_date": "2026-05-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032083862770012704,
+  "league_hr_per_pa": 0.0289198606271777,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 5,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 3,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 14,
+      "batter": "Drew Gilbert",
+      "batter_id": 687551,
+      "batter_hand": "L",
+      "team": "SF",
+      "lineup_spot": 9,
+      "pitcher": "Merrill Kelly",
+      "pitcher_id": 518876,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825084,
+      "game_datetime": "2026-05-20T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 1020,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0846,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1195,
+      "ev_pct": 33.83,
+      "edge_pct": 3.49,
+      "blended_hr_per_pa": 0.02141,
+      "breakout_score": 0.014,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3889,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7402,
+          "deviation": 0.2598
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.014,
+          "deviation": 0.014
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-05-20.json"
 }
