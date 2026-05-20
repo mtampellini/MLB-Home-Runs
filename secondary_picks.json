@@ -1,18 +1,126 @@
 {
-  "generated_at": "2026-05-20T20:48:23.235500+00:00",
+  "generated_at": "2026-05-20T22:29:04.688656+00:00",
   "as_of_date": "2026-05-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03090299601927509,
+  "league_hr_per_pa": 0.037463976945244955,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 9,
-  "games_excluded_live_or_complete": 6,
+  "games_pregame": 7,
+  "games_excluded_live_or_complete": 8,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 28,
+      "daily_rank": 24,
+      "batter": "Alex Bregman",
+      "batter_id": 608324,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 2,
+      "pitcher": "Kyle Harrison",
+      "pitcher_id": 690986,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824678,
+      "game_datetime": "2026-05-20T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1040,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0789,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1226,
+      "ev_pct": 49.59,
+      "edge_pct": 4.37,
+      "blended_hr_per_pa": 0.03487,
+      "breakout_score": 0.0357,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2679,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "wind",
+          "value": 0.8741,
+          "deviation": 0.1259
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9308,
+          "deviation": 0.0692
+        }
+      ],
+      "tier_rank": 11,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 31,
+      "batter": "Seiya Suzuki",
+      "batter_id": 673548,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 4,
+      "pitcher": "Kyle Harrison",
+      "pitcher_id": 690986,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824678,
+      "game_datetime": "2026-05-20T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 860,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.094,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1334,
+      "ev_pct": 36.07,
+      "edge_pct": 3.94,
+      "blended_hr_per_pa": 0.04857,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": null,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2965,
+          "deviation": 0.2965
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 13,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 38,
       "batter": "Drew Gilbert",
       "batter_id": 687551,
       "batter_hand": "L",
@@ -57,7 +165,61 @@
           "deviation": 0.014
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 15,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 42,
+      "batter": "Nico Hoerner",
+      "batter_id": 663538,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 1,
+      "pitcher": "Kyle Harrison",
+      "pitcher_id": 690986,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824678,
+      "game_datetime": "2026-05-20T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1500,
+      "dk_odds": 1440,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0583,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0806,
+      "ev_pct": 28.89,
+      "edge_pct": 2.22,
+      "blended_hr_per_pa": 0.01983,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.5294,
+          "deviation": 0.4706
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 16,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -65,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 13,
+  "skipped_count": 0,
   "skipped_reference": "data/processed/skipped_batters_2026-05-20.json"
 }
