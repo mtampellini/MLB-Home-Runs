@@ -115,21 +115,44 @@ function combineTrackerSummaries(...sums) {
 // Mirrors backend tracker.py for the basic stats we surface in the top panels;
 // CLV requires closing-line snapshots that aren't carried per-archive, so it's
 // omitted here and the StatCard renders "—" when this path is used.
-function computeSummaryFromArchives(archives, tier) {
-  const tierKeys = tier === 'all'
-    ? ['primary_summary', 'secondary_summary', 'shadow_summary']
-    : [`${tier}_summary`]
+function computeSummaryFromArchives(archives, tier, filterView = 'baseline') {
+  const tiers = tier === 'all' ? ['primary', 'secondary', 'shadow'] : [tier]
   let wins = 0, losses = 0, voids = 0, units_profit = 0
-  for (const { data } of archives) {
-    const settle = data.settlement
-    if (!settle) continue
-    for (const key of tierKeys) {
-      const s = settle[key]
-      if (!s) continue
-      wins += s.n_wins || 0
-      losses += s.n_losses || 0
-      voids += s.n_voids || 0
-      units_profit += s.units_profit || 0
+  // Baseline path uses the pre-computed per-day summaries (faster). Filter
+  // views (triple/quad) iterate the raw picks + results so we can scope by
+  // filter_status — that information isn't in the daily summary objects.
+  if (filterView === 'baseline') {
+    for (const { data } of archives) {
+      const settle = data.settlement
+      if (!settle) continue
+      for (const t of tiers) {
+        const s = settle[`${t}_summary`]
+        if (!s) continue
+        wins += s.n_wins || 0
+        losses += s.n_losses || 0
+        voids += s.n_voids || 0
+        units_profit += s.units_profit || 0
+      }
+    }
+  } else {
+    const flag = filterView === 'triple' ? 'passes_triple' : 'passes_quad'
+    for (const { data } of archives) {
+      const settle = data.settlement
+      if (!settle) continue
+      for (const t of tiers) {
+        const picksList = data[`${t}_picks`] || []
+        const results = settle[`${t}_results`] || []
+        const pickIdx = new Map()
+        for (const p of picksList) pickIdx.set(`${p.batter_id}|${p.game_pk || ''}`, p)
+        for (const r of results) {
+          const p = pickIdx.get(`${r.batter_id}|${r.game_pk || ''}`)
+          if (!p || !p.filter_status?.[flag]) continue
+          if (r.outcome === 'W') wins++
+          else if (r.outcome === 'L') losses++
+          else voids++
+          units_profit += r.profit_units || 0
+        }
+      }
     }
   }
   const settled = wins + losses
@@ -580,6 +603,12 @@ function FilterRow({ label, options, value, onChange }) {
 export default function Tracker({ archives, tracker }) {
   const [tierFilter, setTierFilter] = useState('primary')
   const [dateFilter, setDateFilter] = useState('all')
+  // View filter scopes the top metrics by post-build empirical filter.
+  // baseline = every settled pick (back-compat).
+  // triple   = only picks that pass the production filter (passes_triple).
+  // quad     = only picks that pass the experimental quad filter.
+  // See backend/docs/filter_experiment.md.
+  const [filterView, setFilterView] = useState('baseline')
   // Default to "post-rebuild" if any post-rebuild archive exists (current
   // model is the relevant one to show); otherwise default to "all" so the
   // page isn't empty when only pre-rebuild data exists yet.
@@ -657,16 +686,21 @@ export default function Tracker({ archives, tracker }) {
   // closing snaps aren't reconstructible from per-day archives).
   const sum = useMemo(() => {
     if (modelFilter !== 'all' || dateFilter !== 'all') {
-      return computeSummaryFromArchives(filteredArchives, tierFilter)
+      return computeSummaryFromArchives(filteredArchives, tierFilter, filterView)
     }
     if (!tracker) return {}
+    // Filter views read from the by_filter block. Falls back to baseline
+    // (with a 0-count summary) if a pre-2026-05-20 tracker.json is loaded.
+    const source = filterView === 'baseline'
+      ? tracker
+      : (tracker.by_filter?.[filterView] || tracker)
     if (tierFilter === 'all') {
       return combineTrackerSummaries(
-        tracker.summary_primary, tracker.summary_secondary, tracker.summary_shadow
+        source.summary_primary, source.summary_secondary, source.summary_shadow
       )
     }
-    return tracker[`summary_${tierFilter}`] || tracker.summary || {}
-  }, [tracker, tierFilter, modelFilter, dateFilter, filteredArchives])
+    return source[`summary_${tierFilter}`] || tracker.summary || {}
+  }, [tracker, tierFilter, modelFilter, dateFilter, filterView, filteredArchives])
 
   const totalSettled = (sum.wins || 0) + (sum.losses || 0)
   const isFirstWeek = totalSettled === 0
@@ -795,6 +829,12 @@ export default function Tracker({ archives, tracker }) {
               ['shadow',    'Shadow'],
               ['all',       'All'],
             ]} />
+          <FilterRow label="View"  value={filterView} onChange={setFilterView}
+            options={[
+              ['baseline', 'Baseline'],
+              ['triple',   'Triple'],
+              ['quad',     'Quad'],
+            ]} />
           {spansRebuild && (
             <FilterRow label="Model" value={modelFilter} onChange={setModelFilter}
               options={[
@@ -854,7 +894,11 @@ export default function Tracker({ archives, tracker }) {
         }}>
           All metrics assume a flat 1u stake on every pick of the selected tier.
           "stacked" picks share a starting pitcher with another primary pick that
-          day — outcomes correlated.
+          day — outcomes correlated. View filter scopes the top metrics:{' '}
+          <strong style={{ color: T.textMedium }}>Baseline</strong> includes every settled pick,{' '}
+          <strong style={{ color: T.textMedium }}>Triple</strong> is the production filter
+          (stacked-EV shade + EV ceiling + pitcher-factor band),{' '}
+          <strong style={{ color: T.textMedium }}>Quad</strong> adds a model-prob band drop.
         </div>
       </div>
     </>

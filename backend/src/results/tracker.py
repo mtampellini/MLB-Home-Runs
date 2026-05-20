@@ -29,6 +29,7 @@ from pathlib import Path
 from typing import Iterable, Optional
 
 from src.odds.ev import american_to_decimal
+from src.pipeline.filters import annotate_filter_status, passes_quad, passes_triple
 from src.pipeline.slate import normalize_name
 
 logger = logging.getLogger(__name__)
@@ -291,6 +292,13 @@ def _load_all_tiers_rows(
                 continue
             rows, picks_meta = per_tier[tier]
             picks_list = archive.get(f"{tier}_picks") or []
+            # Backfill filter_status for archives written before 2026-05-20
+            # (the day the triple-filter experiment shipped). Computing it
+            # on the fly means pre-experiment data lines up with post.
+            if any("filter_status" not in p for p in picks_list):
+                for p in picks_list:
+                    p.setdefault("tier", tier)
+                annotate_filter_status(picks_list)
             picks_index: dict[str, dict] = {}
             for p in picks_list:
                 key = f"{p['batter_id']}|{p.get('game_pk') or ''}"
@@ -299,9 +307,14 @@ def _load_all_tiers_rows(
                 r = dict(r)
                 r["_tier"] = tier
                 r["settled_date"] = d.isoformat()
-                rows.append(r)
                 key = f"{r['batter_id']}|{r.get('game_pk') or ''}"
                 pick = picks_index.get(key) or {}
+                fs = pick.get("filter_status") or {}
+                # Stamp the filter flags onto the row itself so downstream
+                # filtering doesn't need a secondary lookup.
+                r["passes_triple"] = bool(fs.get("passes_triple", passes_triple(pick)))
+                r["passes_quad"] = bool(fs.get("passes_quad", passes_quad(pick)))
+                rows.append(r)
                 taken = r.get("over_american") or pick.get("dk_odds") or pick.get("fd_odds")
                 close = _closing_quote_for_pick(pick, snaps_by_date) if pick else None
                 clv = _clv_pct(int(taken), int(close)) if (taken and close) else None
@@ -329,6 +342,39 @@ def build_tracker(
     summary_secondary = _summarize(secondary_rows, secondary_meta)
     summary_shadow = _summarize(shadow_rows, shadow_meta)
     by_book = _by_book_breakdown(primary_rows, primary_meta) # primary only — what we'd actually bet
+
+    # Filter-level rollups. Baseline = every settled pick (the three summary_*
+    # fields above). Triple/quad = subset that would have cleared each filter.
+    # See backend/docs/filter_experiment.md.
+    def _filter_rows(rows: list[dict], flag: str) -> list[dict]:
+        return [r for r in rows if r.get(flag)]
+
+    by_filter: dict[str, dict] = {}
+    for filter_name, flag in (("triple", "passes_triple"), ("quad", "passes_quad")):
+        f_primary = _filter_rows(primary_rows, flag)
+        f_secondary = _filter_rows(secondary_rows, flag)
+        f_shadow = _filter_rows(shadow_rows, flag)
+        by_filter[filter_name] = {
+            "summary_primary": _summarize(f_primary, primary_meta).__dict__,
+            "summary_secondary": _summarize(f_secondary, secondary_meta).__dict__,
+            "summary_shadow": _summarize(f_shadow, shadow_meta).__dict__,
+            "calibration_combined": _calibration_buckets(f_primary + f_secondary + f_shadow),
+            "calibration_n_picks_primary": len(f_primary),
+            "calibration_n_picks_secondary": len(f_secondary),
+            "calibration_n_picks_shadow": len(f_shadow),
+        }
+    # Dropped = passed baseline but failed triple. Surfaces H3 directly.
+    dropped_primary = [r for r in primary_rows if not r.get("passes_triple")]
+    dropped_secondary = [r for r in secondary_rows if not r.get("passes_triple")]
+    dropped_shadow = [r for r in shadow_rows if not r.get("passes_triple")]
+    by_filter["dropped_by_triple"] = {
+        "summary_primary": _summarize(dropped_primary, primary_meta).__dict__,
+        "summary_secondary": _summarize(dropped_secondary, secondary_meta).__dict__,
+        "summary_shadow": _summarize(dropped_shadow, shadow_meta).__dict__,
+        "calibration_n_picks_primary": len(dropped_primary),
+        "calibration_n_picks_secondary": len(dropped_secondary),
+        "calibration_n_picks_shadow": len(dropped_shadow),
+    }
 
     rolling_cutoff = (end or _date.today()) - timedelta(days=30)
     rolling_rows = [
@@ -369,6 +415,10 @@ def build_tracker(
             # Back-compat: keep `summary` pointing at primary so existing UI works.
             "summary": out.summary.__dict__,
             "calibration": out.calibration,
+            # Filter-level rollups (per filter_experiment.md). The top-level
+            # summary_* fields above remain baseline; by_filter contains the
+            # triple, quad, and dropped-by-triple equivalents.
+            "by_filter": by_filter,
         }, f, indent=2)
     logger.info("wrote %s (primary=%d, secondary=%d, shadow=%d)",
                 out_path, len(primary_rows), len(secondary_rows), len(shadow_rows))
