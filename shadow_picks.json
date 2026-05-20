@@ -1,18 +1,72 @@
 {
-  "generated_at": "2026-05-20T18:04:34.367095+00:00",
+  "generated_at": "2026-05-20T20:48:23.235729+00:00",
   "as_of_date": "2026-05-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03378817413905133,
+  "league_hr_per_pa": 0.03090299601927509,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 12,
-  "games_excluded_live_or_complete": 3,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 23,
+      "daily_rank": 36,
+      "batter": "Daylen Lile",
+      "batter_id": 695734,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 6,
+      "pitcher": "Zach Thornton",
+      "pitcher_id": 804267,
+      "pitcher_hand": "L",
+      "park": "WSH",
+      "game_pk": 822735,
+      "game_datetime": "2026-05-20T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 870,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0954,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.126,
+      "ev_pct": 23.45,
+      "edge_pct": 3.06,
+      "blended_hr_per_pa": 0.03509,
+      "breakout_score": 0.02,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.6825,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1355,
+          "deviation": 0.1355
+        },
+        {
+          "name": "wind",
+          "value": 0.8997,
+          "deviation": 0.1003
+        },
+        {
+          "name": "temperature",
+          "value": 1.049,
+          "deviation": 0.049
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 37,
       "batter": "Samuel Basallo",
       "batter_id": 694212,
       "batter_hand": "L",
@@ -57,7 +111,7 @@
           "deviation": 0.0973
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +120,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 24,
+      "daily_rank": 38,
       "batter": "Ezequiel Duran",
       "batter_id": 677649,
       "batter_hand": "R",
@@ -111,7 +165,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -120,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 25,
+      "daily_rank": 39,
       "batter": "Brandon Nimmo",
       "batter_id": 607043,
       "batter_hand": "L",
@@ -165,14 +219,122 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 40,
+      "batter": "Austin Wells",
+      "batter_id": 669224,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 9,
+      "pitcher": "Trey Yesavage",
+      "pitcher_id": 702056,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823547,
+      "game_datetime": "2026-05-20T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 600,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1329,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1561,
+      "ev_pct": 13.93,
+      "edge_pct": 2.31,
+      "blended_hr_per_pa": 0.03304,
+      "breakout_score": -0.1052,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4375,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.195,
+          "deviation": 0.195
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8948,
+          "deviation": 0.1052
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 42,
+      "batter": "Trent Grisham",
+      "batter_id": 663757,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 6,
+      "pitcher": "Trey Yesavage",
+      "pitcher_id": 702056,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823547,
+      "game_datetime": "2026-05-20T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": 449,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1761,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2008,
+      "ev_pct": 10.24,
+      "edge_pct": 2.47,
+      "blended_hr_per_pa": 0.03676,
+      "breakout_score": -0.0481,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.6087,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.195,
+          "deviation": 0.195
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1896,
+          "deviation": 0.1896
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
     }
   ],
-  "skipped_count": 6,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-05-20.json"
 }
