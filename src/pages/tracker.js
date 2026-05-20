@@ -88,6 +88,47 @@ function fmtGameTime(iso) {
   } catch { return '' }
 }
 
+// JS port of backend/src/pipeline/filters.py — backfills filter_status on
+// archived picks that pre-date 2026-05-20. Must mirror the Python filter
+// logic exactly or the per-day client-side compute drifts from tracker.json.
+const STACKED_SHADE_FACTOR = 0.7
+const EV_CEILING_PCT = 50.0
+const PITCHER_FACTOR_BAND = [1.10, 1.45]
+const MODEL_PROB_BAND = [0.15, 0.25]
+const TIER_EV_MIN = { primary: 25.0, secondary: 25.0, shadow: 10.0 }
+
+function pitcherFactor(pick) {
+  const feats = pick.top_3_features || []
+  for (const f of feats) if (f.name === 'pitcher') return Number(f.value) || 1.0
+  return 1.0
+}
+function picksTriple(pick) {
+  if (Number(pick.ev_pct || 0) >= EV_CEILING_PCT) return false
+  const pf = pitcherFactor(pick)
+  if (pf >= PITCHER_FACTOR_BAND[0] && pf < PITCHER_FACTOR_BAND[1]) return false
+  if (pick.stacked) {
+    const shaded = Number(pick.ev_pct) * STACKED_SHADE_FACTOR
+    const tierMin = TIER_EV_MIN[pick.tier || 'primary'] ?? 25.0
+    if (shaded < tierMin) return false
+  }
+  return true
+}
+function picksQuad(pick) {
+  if (!picksTriple(pick)) return false
+  const mp = Number(pick.model_prob || 0)
+  if (mp >= MODEL_PROB_BAND[0] && mp < MODEL_PROB_BAND[1]) return false
+  return true
+}
+function pickPassesFilter(pick, filterView, tier) {
+  if (filterView === 'baseline') return true
+  // Older archives may lack filter_status; compute from the pick fields directly.
+  const fs = pick.filter_status
+  const p = { ...pick, tier: pick.tier || tier }
+  if (filterView === 'triple') return fs?.passes_triple ?? picksTriple(p)
+  if (filterView === 'quad')   return fs?.passes_quad   ?? picksQuad(p)
+  return true
+}
+
 // Combine tracker.json per-tier summaries when "All tiers" is selected.
 function combineTrackerSummaries(...sums) {
   const valid = sums.filter(Boolean)
@@ -135,7 +176,6 @@ function computeSummaryFromArchives(archives, tier, filterView = 'baseline') {
       }
     }
   } else {
-    const flag = filterView === 'triple' ? 'passes_triple' : 'passes_quad'
     for (const { data } of archives) {
       const settle = data.settlement
       if (!settle) continue
@@ -146,7 +186,8 @@ function computeSummaryFromArchives(archives, tier, filterView = 'baseline') {
         for (const p of picksList) pickIdx.set(`${p.batter_id}|${p.game_pk || ''}`, p)
         for (const r of results) {
           const p = pickIdx.get(`${r.batter_id}|${r.game_pk || ''}`)
-          if (!p || !p.filter_status?.[flag]) continue
+          if (!p) continue
+          if (!pickPassesFilter(p, filterView, t)) continue
           if (r.outcome === 'W') wins++
           else if (r.outcome === 'L') losses++
           else voids++
