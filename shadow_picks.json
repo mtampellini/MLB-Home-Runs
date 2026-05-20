@@ -1,15 +1,70 @@
 {
-  "generated_at": "2026-05-20T14:39:39.060820+00:00",
+  "generated_at": "2026-05-20T16:05:04.509307+00:00",
   "as_of_date": "2026-05-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03776978417266187,
+  "league_hr_per_pa": 0.032083862770012704,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 2,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 15,
+      "batter": "Samuel Basallo",
+      "batter_id": 694212,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 6,
+      "pitcher": "Steven Matz",
+      "pitcher_id": 571927,
+      "pitcher_hand": "L",
+      "park": "TB",
+      "game_pk": 822977,
+      "game_datetime": "2026-05-20T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": null,
+      "dk_odds": 660,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.125,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1577,
+      "ev_pct": 19.86,
+      "edge_pct": 3.27,
+      "blended_hr_per_pa": 0.04413,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4375,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3754,
+          "deviation": 0.3754
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 0.9027,
+          "deviation": 0.0973
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    }
+  ],
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-05-20.json"
 }

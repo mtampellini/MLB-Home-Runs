@@ -1,27 +1,27 @@
 {
   "date": "2026-05-20",
-  "generated_at": "2026-05-20T14:39:39.060937+00:00",
+  "generated_at": "2026-05-20T16:05:04.509535+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03776978417266187,
+  "league_hr_per_pa": 0.032083862770012704,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 16,
+    "total_predictions": 31,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 2,
+    "skipped_career_pa_filter": 5,
     "skipped_other": 0,
-    "matched_in_odds_market": 16,
-    "matched_alt_market": 16,
+    "matched_in_odds_market": 31,
+    "matched_alt_market": 31,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 16,
-    "above_25_ev_pre_cap": 10,
-    "eligible_below_900_price_cap": 10,
+    "single_sided_devig": 31,
+    "above_25_ev_pre_cap": 3,
+    "eligible_below_900_price_cap": 3,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 10,
+    "primary_count": 13,
     "secondary_count": 0,
-    "shadow_count": 1
+    "shadow_count": 3
   },
   "primary_picks": [
     {
@@ -215,7 +215,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 6,
       "batter": "JJ Bleday",
       "batter_id": 668709,
       "batter_hand": "L",
@@ -278,7 +278,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 7,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -337,7 +337,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 5,
       "batter": "Spencer Steer",
       "batter_id": 668715,
       "batter_hand": "R",
@@ -400,7 +400,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 8,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -463,7 +463,65 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 4,
+      "batter": "Jeremiah Jackson",
+      "batter_id": 669236,
+      "batter_hand": "R",
+      "team": "BAL",
+      "lineup_spot": 7,
+      "pitcher": "Steven Matz",
+      "pitcher_id": 571927,
+      "pitcher_hand": "L",
+      "park": "TB",
+      "game_pk": 822977,
+      "game_datetime": "2026-05-20T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": null,
+      "dk_odds": 730,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.112,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2227,
+      "ev_pct": 84.82,
+      "edge_pct": 11.06,
+      "blended_hr_per_pa": 0.04051,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5145,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2709,
+          "deviation": 0.2709
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2628,
+          "deviation": 0.2628
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Adley Rutschman"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 9,
       "batter": "Will Benson",
       "batter_id": 666181,
       "batter_hand": "L",
@@ -508,7 +566,7 @@
           "deviation": 0.2
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 9,
       "stacked": true,
       "stacked_with": [
         "Nathaniel Lowe",
@@ -526,7 +584,121 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 13,
+      "batter": "Junior Caminero",
+      "batter_id": 691406,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 2,
+      "pitcher": "Shane Baz",
+      "pitcher_id": 669358,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822977,
+      "game_datetime": "2026-05-20T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 330,
+      "dk_odds": 313,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2255,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.311,
+      "ev_pct": 33.74,
+      "edge_pct": 8.55,
+      "blended_hr_per_pa": 0.06236,
+      "breakout_score": 0.0189,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2154,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9438,
+          "deviation": 0.9438
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1837,
+          "deviation": 0.1837
+        },
+        {
+          "name": "park",
+          "value": 1.0563,
+          "deviation": 0.0563
+        }
+      ],
+      "tier_rank": 10,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
+      "batter": "Adley Rutschman",
+      "batter_id": 668939,
+      "batter_hand": "R",
+      "team": "BAL",
+      "lineup_spot": 3,
+      "pitcher": "Steven Matz",
+      "pitcher_id": 571927,
+      "pitcher_hand": "L",
+      "park": "TB",
+      "game_pk": 822977,
+      "game_datetime": "2026-05-20T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 590,
+      "dk_odds": 600,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1367,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2113,
+      "ev_pct": 47.92,
+      "edge_pct": 7.46,
+      "blended_hr_per_pa": 0.04192,
+      "breakout_score": -0.0667,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.2083,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3066,
+          "deviation": 0.3066
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2709,
+          "deviation": 0.2709
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9333,
+          "deviation": 0.0667
+        }
+      ],
+      "tier_rank": 11,
+      "stacked": true,
+      "stacked_with": [
+        "Jeremiah Jackson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
       "batter": "Bryson Stott",
       "batter_id": 681082,
       "batter_hand": "L",
@@ -571,7 +743,7 @@
           "deviation": 0.1659
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 12,
       "stacked": true,
       "stacked_with": [
         "Bryce Harper",
@@ -585,7 +757,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 10,
+      "daily_rank": 12,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -630,7 +802,7 @@
           "deviation": 0.1076
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 13,
       "stacked": true,
       "stacked_with": [
         "Bryce Harper",
@@ -647,7 +819,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 14,
       "batter": "Otto Kemp",
       "batter_id": 805249,
       "batter_hand": "R",
@@ -693,6 +865,114 @@
         }
       ],
       "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 15,
+      "batter": "Samuel Basallo",
+      "batter_id": 694212,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 6,
+      "pitcher": "Steven Matz",
+      "pitcher_id": 571927,
+      "pitcher_hand": "L",
+      "park": "TB",
+      "game_pk": 822977,
+      "game_datetime": "2026-05-20T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": null,
+      "dk_odds": 660,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.125,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1577,
+      "ev_pct": 19.86,
+      "edge_pct": 3.27,
+      "blended_hr_per_pa": 0.04413,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4375,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3754,
+          "deviation": 0.3754
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 0.9027,
+          "deviation": 0.0973
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 16,
+      "batter": "James Outman",
+      "batter_id": 681546,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 9,
+      "pitcher": "Mike Burrows",
+      "pitcher_id": 681347,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823703,
+      "game_datetime": "2026-05-20T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 700,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.119,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1401,
+      "ev_pct": 12.09,
+      "edge_pct": 2.11,
+      "blended_hr_per_pa": 0.03644,
+      "breakout_score": -0.0848,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4271,
+          "deviation": 0.4271
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1357,
+          "deviation": 0.1357
+        }
+      ],
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
