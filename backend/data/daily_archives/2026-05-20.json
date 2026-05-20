@@ -1,0 +1,704 @@
+{
+  "date": "2026-05-20",
+  "generated_at": "2026-05-20T14:39:39.060937+00:00",
+  "model_version": "v7-baseline-0.2.0",
+  "league_hr_per_pa": 0.03776978417266187,
+  "funnel": {
+    "total_slate_games": 15,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 15,
+    "total_predictions": 16,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 2,
+    "skipped_other": 0,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 16,
+    "above_25_ev_pre_cap": 10,
+    "eligible_below_900_price_cap": 10,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 10,
+    "secondary_count": 0,
+    "shadow_count": 1
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Nathaniel Lowe",
+      "batter_id": 663993,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 6,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 587,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.14,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3439,
+      "ev_pct": 136.26,
+      "edge_pct": 20.39,
+      "blended_hr_per_pa": 0.04672,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1538,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.237,
+          "deviation": 0.237
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Elly De La Cruz",
+        "Matt McLain",
+        "JJ Bleday",
+        "Spencer Steer",
+        "Sal Stewart",
+        "Will Benson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Elly De La Cruz",
+      "batter_id": 682829,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 2,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 448,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.178,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 106.91,
+      "edge_pct": 19.95,
+      "blended_hr_per_pa": 0.04451,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2103,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1845,
+          "deviation": 0.1845
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "Matt McLain",
+        "JJ Bleday",
+        "Spencer Steer",
+        "Sal Stewart",
+        "Will Benson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 1,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 650,
+      "dk_odds": 680,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1242,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3083,
+      "ev_pct": 140.46,
+      "edge_pct": 18.41,
+      "blended_hr_per_pa": 0.03866,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6089,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2841,
+          "deviation": 0.2841
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "Elly De La Cruz",
+        "JJ Bleday",
+        "Spencer Steer",
+        "Sal Stewart",
+        "Will Benson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "JJ Bleday",
+      "batter_id": 668709,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 3,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 394,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1972,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.371,
+      "ev_pct": 83.26,
+      "edge_pct": 17.38,
+      "blended_hr_per_pa": 0.06038,
+      "breakout_score": 0.0108,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.25,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5986,
+          "deviation": 0.5986
+        },
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "Elly De La Cruz",
+        "Matt McLain",
+        "Spencer Steer",
+        "Sal Stewart",
+        "Will Benson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Bryce Harper",
+      "batter_id": 547180,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 3,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 376,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2009,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3354,
+      "ev_pct": 59.64,
+      "edge_pct": 13.45,
+      "blended_hr_per_pa": 0.0519,
+      "breakout_score": 0.0855,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0269,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3742,
+          "deviation": 0.3742
+        },
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "Bryson Stott",
+        "Alec Bohm"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
+      "batter": "Spencer Steer",
+      "batter_id": 668715,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 5,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 600,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1388,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2621,
+      "ev_pct": 83.5,
+      "edge_pct": 12.34,
+      "blended_hr_per_pa": 0.03506,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2235,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2841,
+          "deviation": 0.2841
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "Elly De La Cruz",
+        "Matt McLain",
+        "JJ Bleday",
+        "Sal Stewart",
+        "Will Benson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
+      "batter": "Sal Stewart",
+      "batter_id": 701398,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 4,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 396,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1968,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3202,
+      "ev_pct": 58.82,
+      "edge_pct": 12.34,
+      "blended_hr_per_pa": 0.05305,
+      "breakout_score": -0.0656,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3006,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4045,
+          "deviation": 0.4045
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2841,
+          "deviation": 0.2841
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "Elly De La Cruz",
+        "Matt McLain",
+        "JJ Bleday",
+        "Spencer Steer",
+        "Will Benson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "Will Benson",
+      "batter_id": 666181,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 8,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 464,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1774,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2637,
+      "ev_pct": 48.71,
+      "edge_pct": 8.63,
+      "blended_hr_per_pa": 0.04652,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 3.4167,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2318,
+          "deviation": 0.2318
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "Elly De La Cruz",
+        "Matt McLain",
+        "JJ Bleday",
+        "Spencer Steer",
+        "Sal Stewart"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "Bryson Stott",
+      "batter_id": 681082,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 8,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 870,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0954,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1492,
+      "ev_pct": 46.26,
+      "edge_pct": 5.39,
+      "blended_hr_per_pa": 0.0315,
+      "breakout_score": -0.1379,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0267,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8341,
+          "deviation": 0.1659
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Bryce Harper",
+        "Alec Bohm"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
+      "batter": "Alec Bohm",
+      "batter_id": 664761,
+      "batter_hand": "R",
+      "team": "PHI",
+      "lineup_spot": 4,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 720,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1127,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1629,
+      "ev_pct": 35.2,
+      "edge_pct": 5.02,
+      "blended_hr_per_pa": 0.02972,
+      "breakout_score": -0.0878,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1574,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.787,
+          "deviation": 0.213
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1076,
+          "deviation": 0.1076
+        }
+      ],
+      "tier_rank": 10,
+      "stacked": true,
+      "stacked_with": [
+        "Bryce Harper",
+        "Bryson Stott"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    }
+  ],
+  "secondary_picks": [],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
+      "batter": "Otto Kemp",
+      "batter_id": 805249,
+      "batter_hand": "R",
+      "team": "PHI",
+      "lineup_spot": 9,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823462,
+      "game_datetime": "2026-05-20T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": null,
+      "dk_odds": 532,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1503,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1965,
+      "ev_pct": 24.22,
+      "edge_pct": 4.62,
+      "blended_hr_per_pa": 0.03812,
+      "breakout_score": 0.0357,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1076,
+          "deviation": 0.1076
+        },
+        {
+          "name": "wind",
+          "value": 1.1046,
+          "deviation": 0.1046
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    }
+  ],
+  "settlement": null
+}
