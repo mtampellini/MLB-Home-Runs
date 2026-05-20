@@ -223,30 +223,65 @@ function combineSettlementSummaries(...sums) {
   return { n_wins, n_losses, n_voids, units_profit, roi_pct }
 }
 
-function summarizeArchive(archive, tier = 'primary') {
+function summarizeArchive(archive, tier = 'primary', filterView = 'baseline') {
   const funnel = archive.funnel || {}
   const settle = archive.settlement || null
+  const tiers = tier === 'all' ? ['primary', 'secondary', 'shadow'] : [tier]
 
-  let summary = null
-  if (settle) {
-    summary = tier === 'all'
-      ? combineSettlementSummaries(
-          settle.primary_summary, settle.secondary_summary, settle.shadow_summary
-        )
-      : (settle[`${tier}_summary`] || null)
+  // Baseline path uses pre-computed per-day summaries (cheaper).
+  if (filterView === 'baseline') {
+    let summary = null
+    if (settle) {
+      summary = tier === 'all'
+        ? combineSettlementSummaries(
+            settle.primary_summary, settle.secondary_summary, settle.shadow_summary
+          )
+        : (settle[`${tier}_summary`] || null)
+    }
+    const wins = summary?.n_wins ?? null
+    const losses = summary?.n_losses ?? null
+    const voids = summary?.n_voids ?? null
+    const settled = (wins ?? 0) + (losses ?? 0)
+    const hitRate = settled > 0 ? wins / settled : null
+    const profit = summary?.units_profit ?? null
+    const roiPct = summary?.roi_pct ?? null
+    return {
+      primary_count: funnel.primary_count ?? archive.primary_picks?.length ?? 0,
+      secondary_count: funnel.secondary_count ?? archive.secondary_picks?.length ?? 0,
+      shadow_count: funnel.shadow_count ?? archive.shadow_picks?.length ?? 0,
+      wins, losses, voids, hitRate, profit, roiPct,
+      isSettled: settle != null,
+    }
   }
-  const wins = summary?.n_wins ?? null
-  const losses = summary?.n_losses ?? null
-  const voids = summary?.n_voids ?? null
-  const settled = (wins ?? 0) + (losses ?? 0)
-  const hitRate = settled > 0 ? wins / settled : null
-  const profit = summary?.units_profit ?? null
-  const roiPct = summary?.roi_pct ?? null
+
+  // Filter view: compute counts + settlement from raw picks scoped by filter.
+  const counts = { primary: 0, secondary: 0, shadow: 0 }
+  let wins = 0, losses = 0, voids = 0, profit = 0
+  for (const t of tiers) {
+    const picksList = archive[`${t}_picks`] || []
+    const filteredPicks = picksList.filter(p => pickPassesFilter(p, filterView, t))
+    counts[t] = filteredPicks.length
+    if (!settle) continue
+    const results = settle[`${t}_results`] || []
+    const keys = new Set(filteredPicks.map(p => `${p.batter_id}|${p.game_pk || ''}`))
+    for (const r of results) {
+      const k = `${r.batter_id}|${r.game_pk || ''}`
+      if (!keys.has(k)) continue
+      if (r.outcome === 'W') wins++
+      else if (r.outcome === 'L') losses++
+      else voids++
+      profit += r.profit_units || 0
+    }
+  }
+  const settled = wins + losses
   return {
-    primary_count: funnel.primary_count ?? archive.primary_picks?.length ?? 0,
-    secondary_count: funnel.secondary_count ?? archive.secondary_picks?.length ?? 0,
-    shadow_count: funnel.shadow_count ?? archive.shadow_picks?.length ?? 0,
-    wins, losses, voids, hitRate, profit, roiPct,
+    primary_count: counts.primary,
+    secondary_count: counts.secondary,
+    shadow_count: counts.shadow,
+    wins, losses, voids,
+    hitRate: settled > 0 ? wins / settled : null,
+    profit: settle ? profit : null,
+    roiPct: settled > 0 ? (profit / settled) * 100 : null,
     isSettled: settle != null,
   }
 }
@@ -261,18 +296,23 @@ const CALIBRATION_BUCKETS = [
   { lo: 0.30, hi: 0.40 },
   { lo: 0.40, hi: 0.60 },
 ]
-function buildCalibration(archives, tier = 'all') {
-  const tierKeys = tier === 'primary' ? ['primary_results']
-                : tier === 'secondary' ? ['secondary_results']
-                : tier === 'shadow' ? ['shadow_results']
-                : ['primary_results', 'secondary_results', 'shadow_results']
+function buildCalibration(archives, tier = 'all', filterView = 'baseline') {
+  const tiers = tier === 'primary' ? ['primary']
+              : tier === 'secondary' ? ['secondary']
+              : tier === 'shadow' ? ['shadow']
+              : ['primary', 'secondary', 'shadow']
   const allSettled = []
   for (const { data } of archives) {
     const settle = data.settlement
     if (!settle) continue
-    for (const key of tierKeys) {
-      for (const r of settle[key] || []) {
+    for (const t of tiers) {
+      const picksList = data[`${t}_picks`] || []
+      const pickIdx = new Map()
+      for (const p of picksList) pickIdx.set(`${p.batter_id}|${p.game_pk || ''}`, p)
+      for (const r of settle[`${t}_results`] || []) {
         if (r.outcome === 'VOID') continue
+        const p = pickIdx.get(`${r.batter_id}|${r.game_pk || ''}`)
+        if (filterView !== 'baseline' && !(p && pickPassesFilter(p, filterView, t))) continue
         allSettled.push({ model_prob: r.model_prob, won: r.outcome === 'W' })
       }
     }
@@ -435,17 +475,22 @@ function PickRow({ pick, settledPick }) {
   )
 }
 
-function DayBlock({ archive, expanded, onToggle, tierFilter }) {
-  const summary = summarizeArchive(archive.data, tierFilter)
+function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'baseline' }) {
+  const summary = summarizeArchive(archive.data, tierFilter, filterView)
   const data = archive.data
 
   const picks = useMemo(() => {
     const all = []
-    if (tierFilter === 'all' || tierFilter === 'primary')   all.push(...(data.primary_picks   || []))
-    if (tierFilter === 'all' || tierFilter === 'secondary') all.push(...(data.secondary_picks || []))
-    if (tierFilter === 'all' || tierFilter === 'shadow')    all.push(...(data.shadow_picks    || []))
+    const pull = (t, list) => {
+      for (const p of list || []) {
+        if (pickPassesFilter(p, filterView, t)) all.push({ ...p, _tier: t })
+      }
+    }
+    if (tierFilter === 'all' || tierFilter === 'primary')   pull('primary',   data.primary_picks)
+    if (tierFilter === 'all' || tierFilter === 'secondary') pull('secondary', data.secondary_picks)
+    if (tierFilter === 'all' || tierFilter === 'shadow')    pull('shadow',    data.shadow_picks)
     return all
-  }, [data, tierFilter])
+  }, [data, tierFilter, filterView])
 
   const settledByKey = useMemo(() => {
     const map = {}
@@ -530,8 +575,11 @@ function DayBlock({ archive, expanded, onToggle, tierFilter }) {
   )
 }
 
-function CalibrationView({ archives, tierFilter }) {
-  const cal = useMemo(() => buildCalibration(archives, tierFilter), [archives, tierFilter])
+function CalibrationView({ archives, tierFilter, filterView = 'baseline' }) {
+  const cal = useMemo(
+    () => buildCalibration(archives, tierFilter, filterView),
+    [archives, tierFilter, filterView],
+  )
   const tierLabel = tierFilter === 'all' ? 'all tiers' : tierFilter
   if (cal.total < CALIBRATION_MIN_PICKS) {
     return (
@@ -702,12 +750,12 @@ export default function Tracker({ archives, tracker }) {
     const sorted = [...list]
     if (sortBy === 'date_desc') sorted.sort((a, b) => b.date.localeCompare(a.date))
     else if (sortBy === 'date_asc') sorted.sort((a, b) => a.date.localeCompare(b.date))
-    else if (sortBy === 'roi') sorted.sort((a, b) => (summarizeArchive(b.data, tierFilter).roiPct ?? -Infinity) - (summarizeArchive(a.data, tierFilter).roiPct ?? -Infinity))
-    else if (sortBy === 'hit_rate') sorted.sort((a, b) => (summarizeArchive(b.data, tierFilter).hitRate ?? -Infinity) - (summarizeArchive(a.data, tierFilter).hitRate ?? -Infinity))
+    else if (sortBy === 'roi') sorted.sort((a, b) => (summarizeArchive(b.data, tierFilter, filterView).roiPct ?? -Infinity) - (summarizeArchive(a.data, tierFilter, filterView).roiPct ?? -Infinity))
+    else if (sortBy === 'hit_rate') sorted.sort((a, b) => (summarizeArchive(b.data, tierFilter, filterView).hitRate ?? -Infinity) - (summarizeArchive(a.data, tierFilter, filterView).hitRate ?? -Infinity))
     else if (sortBy === 'count') {
       sorted.sort((a, b) => {
-        const sa = summarizeArchive(a.data, tierFilter)
-        const sb = summarizeArchive(b.data, tierFilter)
+        const sa = summarizeArchive(a.data, tierFilter, filterView)
+        const sb = summarizeArchive(b.data, tierFilter, filterView)
         const ca = tierFilter === 'all'
           ? sa.primary_count + sa.secondary_count + sa.shadow_count
           : sa.primary_count
@@ -718,7 +766,7 @@ export default function Tracker({ archives, tracker }) {
       })
     }
     return sorted
-  }, [archives, dateFilter, sortBy, tierFilter, modelFilter])
+  }, [archives, dateFilter, sortBy, tierFilter, modelFilter, filterView])
 
   // Top-level metrics — driven by tier, model, AND date filters. When any
   // filter is non-default, compute client-side from the filtered archives so
@@ -915,7 +963,8 @@ export default function Tracker({ archives, tracker }) {
               <DayBlock key={a.date} archive={a}
                         expanded={!!expanded[a.date]}
                         onToggle={() => setExpanded(p => ({ ...p, [a.date]: !p[a.date] }))}
-                        tierFilter={tierFilter} />
+                        tierFilter={tierFilter}
+                        filterView={filterView} />
             ))}
             <div style={{ borderTop: `1px solid ${T.border}` }} />
           </div>
@@ -925,7 +974,7 @@ export default function Tracker({ archives, tracker }) {
             (so picking "Post-rebuild" shows only post-rebuild calibration, not
             the mixed-model calibration that would otherwise dominate the bins). */}
         <div style={{ marginTop: 36 }}>
-          <CalibrationView archives={filteredArchives} tierFilter={tierFilter} />
+          <CalibrationView archives={filteredArchives} tierFilter={tierFilter} filterView={filterView} />
         </div>
 
         {/* Footer */}
