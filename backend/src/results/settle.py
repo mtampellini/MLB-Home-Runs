@@ -309,19 +309,32 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Settle picks against MLB box scores.")
     parser.add_argument(
         "--date", type=str, default=None,
-        help="ISO date to settle (default: yesterday).",
+        help="ISO date to settle. Default: settle BOTH today and yesterday in ET "
+             "(idempotent — finished games stay W/L, in-progress stay VOID and "
+             "flip to W/L on next fire).",
     )
     args = parser.parse_args()
-    cutoff = (_date.fromisoformat(args.date) if args.date
-              else datetime.now(_ET).date() - timedelta(days=1))
-    reports = settle_all_tiers(cutoff)
-    summary = {tier: {
-        "n_picks": r.n_picks,
-        "n_wins": r.n_wins, "n_losses": r.n_losses, "n_voids": r.n_voids,
-        "roi_pct": r.roi_pct,
-        "units_profit": r.units_profit,
-    } for tier, r in reports.items()}
-    print(json.dumps({"as_of_date": cutoff.isoformat(), "tiers": summary}, indent=2))
+
+    if args.date:
+        cutoffs = [_date.fromisoformat(args.date)]
+    else:
+        today = datetime.now(_ET).date()
+        cutoffs = [today, today - timedelta(days=1)]
+
+    out: dict[str, dict] = {}
+    for cutoff in cutoffs:
+        archive_path = _archive_path_for(cutoff, DAILY_ARCHIVES_DIR)
+        if not archive_path.exists():
+            logger.info("no archive for %s — skipping", cutoff)
+            continue
+        reports = settle_all_tiers(cutoff)
+        out[cutoff.isoformat()] = {tier: {
+            "n_picks": r.n_picks,
+            "n_wins": r.n_wins, "n_losses": r.n_losses, "n_voids": r.n_voids,
+            "roi_pct": r.roi_pct,
+            "units_profit": r.units_profit,
+        } for tier, r in reports.items()}
+    print(json.dumps(out, indent=2))
     return 0
 
 
