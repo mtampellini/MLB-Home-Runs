@@ -1,27 +1,27 @@
 {
   "date": "2026-05-21",
-  "generated_at": "2026-05-21T16:35:36.821604+00:00",
+  "generated_at": "2026-05-21T18:27:03.009945+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.02531645569620253,
   "funnel": {
     "total_slate_games": 7,
-    "games_excluded_live_or_complete": 0,
-    "games_pregame": 7,
-    "total_predictions": 0,
+    "games_excluded_live_or_complete": 2,
+    "games_pregame": 5,
+    "total_predictions": 15,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "skipped_career_pa_filter": 3,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 15,
+    "matched_alt_market": 15,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
+    "single_sided_devig": 15,
     "above_25_ev_pre_cap": 0,
     "eligible_below_900_price_cap": 0,
     "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 2,
     "secondary_count": 4,
-    "shadow_count": 1
+    "shadow_count": 3
   },
   "primary_picks": [
     {
@@ -412,6 +412,114 @@
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
+      "batter": "CJ Abrams",
+      "batter_id": 682928,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 4,
+      "pitcher": "David Peterson",
+      "pitcher_id": 656849,
+      "pitcher_hand": "L",
+      "park": "WSH",
+      "game_pk": 822733,
+      "game_datetime": "2026-05-21T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 900,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0921,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1135,
+      "ev_pct": 15.76,
+      "edge_pct": 2.14,
+      "blended_hr_per_pa": 0.03722,
+      "breakout_score": 0.0835,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2816,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4704,
+          "deviation": 0.4704
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8468,
+          "deviation": 0.1532
+        },
+        {
+          "name": "wind",
+          "value": 0.883,
+          "deviation": 0.117
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 9,
+      "batter": "James Wood",
+      "batter_id": 695578,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 1,
+      "pitcher": "David Peterson",
+      "pitcher_id": 656849,
+      "pitcher_hand": "L",
+      "park": "WSH",
+      "game_pk": 822733,
+      "game_datetime": "2026-05-21T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 576,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1469,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1666,
+      "ev_pct": 12.61,
+      "edge_pct": 1.97,
+      "blended_hr_per_pa": 0.04931,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0162,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9476,
+          "deviation": 0.9476
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8468,
+          "deviation": 0.1532
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
       }
     }
   ],
