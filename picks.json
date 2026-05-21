@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-05-21T21:53:41.269177+00:00",
+  "generated_at": "2026-05-21T23:01:11.516418+00:00",
   "as_of_date": "2026-05-21",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.038892162639952856,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 7,
-  "games_pregame": 4,
-  "games_excluded_live_or_complete": 3,
+  "games_pregame": 2,
+  "games_excluded_live_or_complete": 5,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 10,
       "batter": "Aaron Judge",
       "batter_id": 592450,
       "batter_hand": "R",
@@ -125,7 +125,63 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 4,
+      "batter": "Carlos Cortes",
+      "batter_id": 666126,
+      "batter_hand": "L",
+      "team": "OAK",
+      "lineup_spot": 1,
+      "pitcher": "Jos\u00e9 Soriano",
+      "pitcher_id": 667755,
+      "pitcher_hand": "R",
+      "park": "LAA",
+      "game_pk": 824031,
+      "game_datetime": "2026-05-22T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 710,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.108,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1512,
+      "ev_pct": 39.12,
+      "edge_pct": 4.33,
+      "blended_hr_per_pa": 0.0325,
+      "breakout_score": 0.0668,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5877,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.8355,
+          "deviation": 0.1645
+        },
+        {
+          "name": "park",
+          "value": 1.1063,
+          "deviation": 0.1063
+        },
+        {
+          "name": "temperature",
+          "value": 0.908,
+          "deviation": 0.092
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
       "batter": "Liam Hicks",
       "batter_id": 689414,
       "batter_hand": "L",
@@ -170,7 +226,7 @@
           "deviation": 0.0195
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -180,6 +236,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-05-21.json"
 }

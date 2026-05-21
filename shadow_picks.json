@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-21T21:53:41.269778+00:00",
+  "generated_at": "2026-05-21T23:01:11.517206+00:00",
   "as_of_date": "2026-05-21",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.038892162639952856,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 7,
-  "games_pregame": 4,
-  "games_excluded_live_or_complete": 3,
+  "games_pregame": 2,
+  "games_excluded_live_or_complete": 5,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 10,
+      "daily_rank": 11,
       "batter": "Matt Vierling",
       "batter_id": 663837,
       "batter_hand": "R",
@@ -66,7 +66,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 12,
+      "batter": "Tyler Soderstrom",
+      "batter_id": 691016,
+      "batter_hand": "L",
+      "team": "OAK",
+      "lineup_spot": 5,
+      "pitcher": "Jos\u00e9 Soriano",
+      "pitcher_id": 667755,
+      "pitcher_hand": "R",
+      "park": "LAA",
+      "game_pk": 824031,
+      "game_datetime": "2026-05-22T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 539,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1452,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1774,
+      "ev_pct": 18.83,
+      "edge_pct": 3.21,
+      "blended_hr_per_pa": 0.04131,
+      "breakout_score": 0.0885,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2701,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1063,
+          "deviation": 0.1063
+        },
+        {
+          "name": "temperature",
+          "value": 0.908,
+          "deviation": 0.092
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0885,
+          "deviation": 0.0885
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
       "batter": "CJ Abrams",
       "batter_id": 682928,
       "batter_hand": "L",
@@ -111,7 +165,7 @@
           "deviation": 0.117
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -120,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 12,
+      "daily_rank": 14,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -165,7 +219,7 @@
           "deviation": 0.1852
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -174,7 +228,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 15,
       "batter": "Kazuma Okamoto",
       "batter_id": 672960,
       "batter_hand": "R",
@@ -219,7 +273,7 @@
           "deviation": 0.094
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -228,7 +282,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 16,
+      "batter": "Nick Kurtz",
+      "batter_id": 701762,
+      "batter_hand": "L",
+      "team": "OAK",
+      "lineup_spot": 3,
+      "pitcher": "Jos\u00e9 Soriano",
+      "pitcher_id": 667755,
+      "pitcher_hand": "R",
+      "park": "LAA",
+      "game_pk": 824031,
+      "game_datetime": "2026-05-22T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 399,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1883,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2216,
+      "ev_pct": 13.02,
+      "edge_pct": 3.33,
+      "blended_hr_per_pa": 0.04995,
+      "breakout_score": 0.0971,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3731,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2842,
+          "deviation": 0.2842
+        },
+        {
+          "name": "park",
+          "value": 1.1063,
+          "deviation": 0.1063
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0971,
+          "deviation": 0.0971
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 17,
       "batter": "James Wood",
       "batter_id": 695578,
       "batter_hand": "L",
@@ -273,7 +381,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -281,6 +389,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-05-21.json"
 }
