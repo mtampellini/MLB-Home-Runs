@@ -2,19 +2,23 @@ name: Daily picks
 
 on:
   schedule:
-    # Hourly fires from 11:13am to 7:13pm ET (15:13 UTC to 23:13 UTC during EDT).
-    # Three reasons for the wide window:
+    # Every 13 minutes from 14:00 to 23:59 UTC = 10:00am to 7:59pm ET (EDT).
+    # Fires at :00, :13, :26, :39, :52 each hour → ~50 scheduled runs/day.
+    #
+    # Why so many:
     #   1. Lineup-posting times span ~9 hours per day — afternoon games' lineups
     #      post 9-10am; 10pm West Coast games' lineups don't post until 6pm ET.
-    #      No single fire time covers both.
-    #   2. run_daily is now idempotent (merge mode): each fire only processes
-    #      game_pks not already in today's archive. Most fires that find no
-    #      new lineups exit fast.
-    #   3. GitHub's scheduled-event scheduler is unreliable for this repo
-    #      (3 consecutive skips even at off-hour minutes). 9 daily fires give
-    #      defense in depth — even a 50% fire rate hits every category.
-    # Off-hour minute (:13) on purpose to dodge top-of-hour cron contention.
-    - cron: "13 15-23 * * *"
+    #   2. GitHub Actions scheduled events are unreliable, especially at popular
+    #      cron minutes (:00, :15, :30). Skip rate observed at 30-50% during
+    #      evening hours. Aggressive cadence + off-peak minutes (*/13) gives
+    #      defense in depth — expected fire rate ≈ every 25-30 min real-world
+    #      across the window.
+    #   3. run_daily is idempotent (merge mode): each fire only processes
+    #      game_pks not already in today's archive. Re-runs with no new lineups
+    #      exit fast.
+    #   4. Concurrency guard below queues overlapping fires instead of letting
+    #      them race the git push.
+    - cron: "*/13 14-23 * * *"
   workflow_dispatch:
 
 permissions:
