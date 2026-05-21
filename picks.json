@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-21T19:51:18.097190+00:00",
+  "generated_at": "2026-05-21T20:20:20.073013+00:00",
   "as_of_date": "2026-05-21",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03028263795423957,
+  "league_hr_per_pa": 0.037037037037037035,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,119 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 9,
+      "batter": "Aaron Judge",
+      "batter_id": 592450,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 2,
+      "pitcher": "Braydon Fisher",
+      "pitcher_id": 680755,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823545,
+      "game_datetime": "2026-05-21T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 285,
+      "dk_odds": 277,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2546,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3251,
+      "ev_pct": 25.17,
+      "edge_pct": 7.05,
+      "blended_hr_per_pa": 0.07371,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3226,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9901,
+          "deviation": 0.9901
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Daulton Varsho",
+      "batter_id": 662139,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 3,
+      "pitcher": "Carlos Rod\u00f3n",
+      "pitcher_id": 607074,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823545,
+      "game_datetime": "2026-05-21T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 650,
+      "dk_odds": 660,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1258,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.184,
+      "ev_pct": 39.83,
+      "edge_pct": 5.82,
+      "blended_hr_per_pa": 0.04842,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1822,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3073,
+          "deviation": 0.3073
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
       "batter": "Liam Hicks",
       "batter_id": 689414,
       "batter_hand": "L",
@@ -58,7 +170,7 @@
           "deviation": 0.0195
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -68,6 +180,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-05-21.json"
 }
