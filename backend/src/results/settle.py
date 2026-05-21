@@ -98,7 +98,11 @@ def _hr_count_for_batter(boxscore: dict, batter_id: int) -> Optional[int]:
 
 
 def _is_game_final(boxscore: dict) -> bool:
-    """True iff the game is finished (status code F/Final)."""
+    """Legacy heuristic: True if any player has batting stats. WEAK — a game
+    that's 1 pitch into the 1st inning passes this. Used only as a fallback
+    when no authoritative status is available (e.g. older tests that don't
+    pass a status). Real settles should use _fetch_game_statuses below.
+    """
     teams = boxscore.get("teams", {}) or {}
     for side in ("home", "away"):
         players = (teams.get(side, {}) or {}).get("players", {}) or {}
@@ -106,6 +110,28 @@ def _is_game_final(boxscore: dict) -> bool:
             if (player.get("stats", {}) or {}).get("batting"):
                 return True
     return False
+
+
+def _fetch_game_statuses(
+    client: MlbStatsClient, cutoff_date: _date,
+) -> dict[int, str]:
+    """Return {game_pk: abstractGameState} for the cutoff date.
+    abstractGameState values: 'Preview', 'Live', 'Final'.
+    One schedule call covers the whole slate."""
+    out: dict[int, str] = {}
+    try:
+        payload = client.schedule_for_date(cutoff_date)
+    except Exception as e:  # noqa: BLE001
+        logger.warning("schedule fetch failed for %s: %s: %s",
+                       cutoff_date, type(e).__name__, e)
+        return out
+    for date_block in payload.get("dates", []) or []:
+        for g in date_block.get("games", []) or []:
+            gpk = g.get("gamePk")
+            state = (g.get("status", {}) or {}).get("abstractGameState", "")
+            if gpk is not None:
+                out[int(gpk)] = str(state)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -142,8 +168,20 @@ def load_picks_for_date(
 # Settlement
 # ---------------------------------------------------------------------------
 
-def settle_pick(pick: dict, boxscore: Optional[dict]) -> SettledPick:
-    """Mark one pick as W / L / VOID given its game's boxscore."""
+def settle_pick(
+    pick: dict,
+    boxscore: Optional[dict],
+    *,
+    game_status: Optional[str] = None,
+) -> SettledPick:
+    """Mark one pick as W / L / VOID given its game's boxscore.
+
+    `game_status` is the authoritative abstractGameState ('Final' | 'Live' |
+    'Preview') from /v1/schedule. When provided, it gates settlement: only
+    'Final' games proceed to W/L; everything else returns VOID(game_not_final).
+    When None, falls back to the weak _is_game_final boxscore heuristic
+    (legacy path for tests written before intraday settles existed).
+    """
     if pick.get("best_book") == "fanduel" and pick.get("fd_odds") is not None:
         over = int(pick["fd_odds"])
     elif pick.get("best_book") == "draftkings" and pick.get("dk_odds") is not None:
@@ -165,10 +203,15 @@ def settle_pick(pick: dict, boxscore: Optional[dict]) -> SettledPick:
     if pick.get("game_pk") is None:
         return SettledPick(**base, actual_hr=0, outcome="VOID",
                            profit_units=0.0, void_reason="no_game_pk")
+    # Authoritative status gate (intraday safe). Only 'Final' proceeds.
+    if game_status is not None and game_status != "Final":
+        return SettledPick(**base, actual_hr=0, outcome="VOID",
+                           profit_units=0.0, void_reason="game_not_final")
     if boxscore is None:
         return SettledPick(**base, actual_hr=0, outcome="VOID",
                            profit_units=0.0, void_reason="boxscore_unavailable")
-    if not _is_game_final(boxscore):
+    # Legacy fallback when no status passed (older tests).
+    if game_status is None and not _is_game_final(boxscore):
         return SettledPick(**base, actual_hr=0, outcome="VOID",
                            profit_units=0.0, void_reason="game_not_final")
 
@@ -189,12 +232,20 @@ def _settle_picks(
     *,
     client: MlbStatsClient,
     box_cache: dict[int, Optional[dict]],
+    status_map: Optional[dict[int, str]] = None,
 ) -> SettlementReport:
     settled: list[SettledPick] = []
+    status_map = status_map or {}
     for pick in picks:
         gpk = pick.get("game_pk")
         if gpk is None:
             settled.append(settle_pick(pick, None))
+            continue
+        status = status_map.get(int(gpk))
+        # Skip the boxscore fetch entirely for non-final games — saves API
+        # quota during intraday settles and avoids the heuristic ever firing.
+        if status is not None and status != "Final":
+            settled.append(settle_pick(pick, None, game_status=status))
             continue
         if gpk not in box_cache:
             try:
@@ -203,7 +254,7 @@ def _settle_picks(
                 logger.warning("boxscore fetch failed for game_pk=%s: %s: %s",
                                gpk, type(e).__name__, e)
                 box_cache[gpk] = None
-        settled.append(settle_pick(pick, box_cache[gpk]))
+        settled.append(settle_pick(pick, box_cache[gpk], game_status=status))
 
     n_w = sum(1 for s in settled if s.outcome == "W")
     n_l = sum(1 for s in settled if s.outcome == "L")
@@ -237,7 +288,9 @@ def settle_date(
     picks = load_picks_for_date(cutoff_date, archives_dir=archives_dir, tier=tier)
     if box_cache is None:
         box_cache = {}
-    report = _settle_picks(picks, client=client, box_cache=box_cache)
+    status_map = _fetch_game_statuses(client, cutoff_date)
+    report = _settle_picks(picks, client=client, box_cache=box_cache,
+                           status_map=status_map)
     report.as_of_date = cutoff_date
     return report
 
@@ -262,6 +315,15 @@ def settle_all_tiers(
     with open(archive_path, "r", encoding="utf-8") as f:
         archive = json.load(f)
 
+    # One schedule call per settle invocation gives the authoritative
+    # abstractGameState for every game on the slate. Without this map,
+    # in-progress games slip past the boxscore heuristic and get marked as L.
+    status_map = _fetch_game_statuses(client, cutoff_date)
+    pending = sum(1 for s in status_map.values() if s != "Final")
+    if pending:
+        logger.info("settle %s: %d/%d games still pending (Live/Preview)",
+                    cutoff_date, pending, len(status_map))
+
     box_cache: dict[int, Optional[dict]] = {}
     out: dict[str, SettlementReport] = {}
     for tier in TIERS:
@@ -269,7 +331,8 @@ def settle_all_tiers(
         if not picks:
             logger.info("%s tier has no picks for %s; skipping", tier, cutoff_date)
             continue
-        report = _settle_picks(picks, client=client, box_cache=box_cache)
+        report = _settle_picks(picks, client=client, box_cache=box_cache,
+                               status_map=status_map)
         report.as_of_date = cutoff_date
         out[tier] = report
 

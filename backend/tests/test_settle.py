@@ -129,6 +129,13 @@ def _write_archive(archives_dir: Path, day: date, *,
 def _mock_client_for_boxes(boxes: dict) -> MlbStatsClient:
     client = MlbStatsClient()
     def _get(path, params=None):
+        # /schedule returns abstractGameState=Final for every mocked game
+        # so settle.py's status gate lets them through to the boxscore path.
+        if path == "/schedule":
+            return {"dates": [{"games": [
+                {"gamePk": pk, "status": {"abstractGameState": "Final"}}
+                for pk in boxes
+            ]}]}
         # Path looks like "/game/{pk}/boxscore"
         pk = int(path.split("/")[2])
         return boxes[pk]
@@ -171,7 +178,12 @@ def test_settle_date_reads_picks_from_archive_and_aggregates(tmp_path):
     assert report.units_staked == 3.0
     assert report.units_profit == pytest.approx(3.10 + 3.10 - 1.0)
     # Boxscore was fetched twice (once per game_pk), not three times.
-    assert client._get.call_count == 2
+    # Plus one schedule call up-front for the game-status map.
+    boxscore_calls = sum(
+        1 for c in client._get.call_args_list
+        if c.args and "/boxscore" in c.args[0]
+    )
+    assert boxscore_calls == 2
 
 
 def test_settle_date_raises_when_archive_missing(tmp_path):
