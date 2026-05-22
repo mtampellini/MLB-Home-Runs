@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-22T18:11:26.582937+00:00",
+  "generated_at": "2026-05-22T20:22:06.193019+00:00",
   "as_of_date": "2026-05-22",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.02945736434108527,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,126 @@
   "total_games_today": 15,
   "games_pregame": 13,
   "games_excluded_live_or_complete": 2,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 14,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Richard Lovelady",
+      "pitcher_id": 663992,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824922,
+      "game_datetime": "2026-05-22T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 330,
+      "dk_odds": 310,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2263,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.337,
+      "ev_pct": 44.93,
+      "edge_pct": 11.07,
+      "blended_hr_per_pa": 0.06018,
+      "breakout_score": 0.1354,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3387,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.043,
+          "deviation": 1.043
+        },
+        {
+          "name": "temperature",
+          "value": 1.144,
+          "deviation": 0.144
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1354,
+          "deviation": 0.1354
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "Dominic Smith",
+        "Michael Harris II"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 16,
+      "batter": "Bryson Stott",
+      "batter_id": 681082,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 7,
+      "pitcher": "Gavin Williams",
+      "pitcher_id": 668909,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823461,
+      "game_datetime": "2026-05-22T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 780,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1034,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1557,
+      "ev_pct": 43.21,
+      "edge_pct": 5.23,
+      "blended_hr_per_pa": 0.03109,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0946,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5139,
+          "deviation": 0.5139
+        },
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 12,
+      "stacked": true,
+      "stacked_with": [
+        "Bryce Harper",
+        "Kyle Schwarber"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    }
+  ],
+  "skipped_count": 21,
   "skipped_reference": "data/processed/skipped_batters_2026-05-22.json"
 }
