@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-05-22T21:30:21.527183+00:00",
+  "generated_at": "2026-05-22T22:36:38.971788+00:00",
   "as_of_date": "2026-05-22",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.035314550366653805,
+  "league_hr_per_pa": 0.038650129795212,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 2,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 17,
+      "daily_rank": 18,
       "batter": "Matt Olson",
       "batter_id": 621566,
       "batter_hand": "L",
@@ -58,7 +58,7 @@
           "deviation": 0.1354
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "stacked": true,
       "stacked_with": [
         "Dominic Smith",
@@ -72,7 +72,65 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 19,
+      "daily_rank": 22,
+      "batter": "Brent Rooker",
+      "batter_id": 667670,
+      "batter_hand": "R",
+      "team": "OAK",
+      "lineup_spot": 4,
+      "pitcher": "Walker Buehler",
+      "pitcher_id": 621111,
+      "pitcher_hand": "R",
+      "park": "SD",
+      "game_pk": 823298,
+      "game_datetime": "2026-05-23T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 458,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1685,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2448,
+      "ev_pct": 39.55,
+      "edge_pct": 7.64,
+      "blended_hr_per_pa": 0.05376,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4653,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.391,
+          "deviation": 0.391
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 0.913,
+          "deviation": 0.087
+        }
+      ],
+      "tier_rank": 13,
+      "stacked": true,
+      "stacked_with": [
+        "Shea Langeliers"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 20,
       "batter": "Bryson Stott",
       "batter_id": 681082,
       "batter_hand": "L",
@@ -117,7 +175,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 17,
       "stacked": true,
       "stacked_with": [
         "Bryce Harper",
@@ -131,7 +189,63 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 24,
+      "daily_rank": 23,
+      "batter": "Gavin Sheets",
+      "batter_id": 657757,
+      "batter_hand": "L",
+      "team": "SD",
+      "lineup_spot": 3,
+      "pitcher": "Jeffrey Springs",
+      "pitcher_id": 605488,
+      "pitcher_hand": "L",
+      "park": "SD",
+      "game_pk": 823298,
+      "game_datetime": "2026-05-23T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 690,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.121,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1707,
+      "ev_pct": 34.88,
+      "edge_pct": 4.97,
+      "blended_hr_per_pa": 0.05927,
+      "breakout_score": -0.0614,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1242,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5334,
+          "deviation": 0.5334
+        },
+        {
+          "name": "park",
+          "value": 0.8694,
+          "deviation": 0.1306
+        },
+        {
+          "name": "temperature",
+          "value": 0.913,
+          "deviation": 0.087
+        }
+      ],
+      "tier_rank": 18,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 27,
       "batter": "Paul Goldschmidt",
       "batter_id": 502671,
       "batter_hand": "R",
@@ -176,7 +290,7 @@
           "deviation": 0.076
         }
       ],
-      "tier_rank": 16,
+      "tier_rank": 19,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -186,6 +300,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-05-22.json"
 }

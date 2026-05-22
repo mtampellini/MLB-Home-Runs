@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-22T21:30:21.528093+00:00",
+  "generated_at": "2026-05-22T22:36:38.972732+00:00",
   "as_of_date": "2026-05-22",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.035314550366653805,
+  "league_hr_per_pa": 0.038650129795212,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 2,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 27,
+      "daily_rank": 30,
       "batter": "Yandy D\u00edaz",
       "batter_id": 650490,
       "batter_hand": "R",
@@ -66,7 +66,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 29,
+      "daily_rank": 32,
       "batter": "Wilyer Abreu",
       "batter_id": 677800,
       "batter_hand": "L",
@@ -120,7 +120,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 30,
+      "daily_rank": 33,
       "batter": "Mark Vientos",
       "batter_id": 668901,
       "batter_hand": "R",
@@ -174,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 31,
+      "daily_rank": 34,
       "batter": "Andy Pages",
       "batter_id": 681624,
       "batter_hand": "R",
@@ -228,7 +228,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 32,
+      "daily_rank": 35,
       "batter": "Mookie Betts",
       "batter_id": 605141,
       "batter_hand": "R",
@@ -282,7 +282,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 33,
+      "daily_rank": 36,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -336,7 +336,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 34,
+      "daily_rank": 37,
       "batter": "Nico Hoerner",
       "batter_id": 663538,
       "batter_hand": "R",
@@ -390,7 +390,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 36,
+      "daily_rank": 39,
+      "batter": "Jorge Soler",
+      "batter_id": 624585,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 4,
+      "pitcher": "Jacob deGrom",
+      "pitcher_id": 594798,
+      "pitcher_hand": "R",
+      "park": "LAA",
+      "game_pk": 824029,
+      "game_datetime": "2026-05-23T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": 435,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1784,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.219,
+      "ev_pct": 17.19,
+      "edge_pct": 4.06,
+      "blended_hr_per_pa": 0.04798,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3333,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2414,
+          "deviation": 0.2414
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1235,
+          "deviation": 0.1235
+        }
+      ],
+      "tier_rank": 10,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 40,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -435,7 +489,7 @@
           "deviation": 0.1017
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -444,7 +498,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 37,
+      "daily_rank": 41,
       "batter": "Dansby Swanson",
       "batter_id": 621020,
       "batter_hand": "R",
@@ -489,7 +543,7 @@
           "deviation": 0.1077
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -498,7 +552,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 38,
+      "daily_rank": 42,
       "batter": "George Springer",
       "batter_id": 543807,
       "batter_hand": "R",
@@ -543,7 +597,7 @@
           "deviation": 0.0975
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 13,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -551,6 +605,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-05-22.json"
 }
