@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-22T20:22:06.193019+00:00",
+  "generated_at": "2026-05-22T21:30:21.527183+00:00",
   "as_of_date": "2026-05-22",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.02945736434108527,
+  "league_hr_per_pa": 0.035314550366653805,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 14,
+      "daily_rank": 17,
       "batter": "Matt Olson",
       "batter_id": 621566,
       "batter_hand": "L",
@@ -72,7 +72,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 16,
+      "daily_rank": 19,
       "batter": "Bryson Stott",
       "batter_id": 681082,
       "batter_hand": "L",
@@ -117,7 +117,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 15,
       "stacked": true,
       "stacked_with": [
         "Bryce Harper",
@@ -128,8 +128,64 @@
         "passes_triple": true,
         "passes_quad": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 24,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 5,
+      "pitcher": "Nick Martinez",
+      "pitcher_id": 607259,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823546,
+      "game_datetime": "2026-05-22T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 850,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1012,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1384,
+      "ev_pct": 31.45,
+      "edge_pct": 3.72,
+      "blended_hr_per_pa": 0.03534,
+      "breakout_score": 0.076,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0222,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8945,
+          "deviation": 0.1055
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.076,
+          "deviation": 0.076
+        }
+      ],
+      "tier_rank": 16,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
     }
   ],
-  "skipped_count": 21,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-05-22.json"
 }
