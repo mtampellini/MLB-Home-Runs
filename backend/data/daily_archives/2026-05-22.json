@@ -1,0 +1,527 @@
+{
+  "date": "2026-05-22",
+  "generated_at": "2026-05-22T16:18:51.656538+00:00",
+  "model_version": "v7-baseline-0.2.0",
+  "league_hr_per_pa": 0.03695150115473441,
+  "funnel": {
+    "total_slate_games": 15,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 15,
+    "total_predictions": 16,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 2,
+    "skipped_other": 0,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 16,
+    "above_25_ev_pre_cap": 7,
+    "eligible_below_900_price_cap": 2,
+    "above_price_cap_pushed_to_secondary": 5,
+    "primary_count": 2,
+    "secondary_count": 5,
+    "shadow_count": 2
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Yordan Alvarez",
+      "batter_id": 670541,
+      "batter_hand": "L",
+      "team": "HOU",
+      "lineup_spot": 3,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 447,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1748,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.302,
+      "ev_pct": 65.21,
+      "edge_pct": 12.72,
+      "blended_hr_per_pa": 0.05376,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3602,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4548,
+          "deviation": 0.4548
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Christian Walker"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Christian Walker",
+      "batter_id": 572233,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 4,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 680,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1183,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.231,
+      "ev_pct": 87.15,
+      "edge_pct": 11.27,
+      "blended_hr_per_pa": 0.05059,
+      "breakout_score": -0.1468,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0301,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.369,
+          "deviation": 0.369
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8532,
+          "deviation": 0.1468
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Yordan Alvarez"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    }
+  ],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 2,
+      "batter": "Cam Smith",
+      "batter_id": 701358,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 7,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1160,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0727,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1303,
+      "ev_pct": 69.36,
+      "edge_pct": 5.76,
+      "blended_hr_per_pa": 0.02226,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3841,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6025,
+          "deviation": 0.3975
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 4,
+      "batter": "Isaac Paredes",
+      "batter_id": 670623,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 2,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 860,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.094,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1596,
+      "ev_pct": 62.79,
+      "edge_pct": 6.56,
+      "blended_hr_per_pa": 0.03247,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2105,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8787,
+          "deviation": 0.1213
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 5,
+      "batter": "Jeremy Pe\u00f1a",
+      "batter_id": 665161,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 1,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1000,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0831,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1264,
+      "ev_pct": 44.08,
+      "edge_pct": 4.33,
+      "blended_hr_per_pa": 0.02273,
+      "breakout_score": -0.0727,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6152,
+          "deviation": 0.3848
+        },
+        {
+          "name": "wind",
+          "value": 0.8923,
+          "deviation": 0.1077
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 6,
+      "batter": "Christian V\u00e1zquez",
+      "batter_id": 543877,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 9,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1260,
+      "dk_odds": 1240,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0689,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0989,
+      "ev_pct": 34.55,
+      "edge_pct": 3.0,
+      "blended_hr_per_pa": 0.01986,
+      "breakout_score": 0.0459,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6837,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5375,
+          "deviation": 0.4625
+        },
+        {
+          "name": "wind",
+          "value": 0.8923,
+          "deviation": 0.1077
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 7,
+      "batter": "Alex Bregman",
+      "batter_id": 608324,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 3,
+      "pitcher": "Spencer Arrighetti",
+      "pitcher_id": 681293,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 940,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0855,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1165,
+      "ev_pct": 32.81,
+      "edge_pct": 3.1,
+      "blended_hr_per_pa": 0.03446,
+      "breakout_score": 0.0804,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3819,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.8688,
+          "deviation": 0.1312
+        },
+        {
+          "name": "wind",
+          "value": 0.8923,
+          "deviation": 0.1077
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0804,
+          "deviation": 0.0804
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
+      "batter": "Nico Hoerner",
+      "batter_id": 663538,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 1,
+      "pitcher": "Spencer Arrighetti",
+      "pitcher_id": 681293,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1500,
+      "dk_odds": 1340,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0604,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0751,
+      "ev_pct": 20.1,
+      "edge_pct": 1.46,
+      "blended_hr_per_pa": 0.01961,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.5308,
+          "deviation": 0.4692
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8688,
+          "deviation": 0.1312
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 9,
+      "batter": "Dansby Swanson",
+      "batter_id": 621020,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 9,
+      "pitcher": "Spencer Arrighetti",
+      "pitcher_id": 681293,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824679,
+      "game_datetime": "2026-05-22T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 890,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.09,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1044,
+      "ev_pct": 12.72,
+      "edge_pct": 1.43,
+      "blended_hr_per_pa": 0.03516,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6657,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8688,
+          "deviation": 0.1312
+        },
+        {
+          "name": "wind",
+          "value": 0.8923,
+          "deviation": 0.1077
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "settlement": null
+}
