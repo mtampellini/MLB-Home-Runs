@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-23T22:05:25.539926+00:00",
+  "generated_at": "2026-05-23T23:12:31.951778+00:00",
   "as_of_date": "2026-05-23",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03508771929824561,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 16,
-  "games_pregame": 5,
-  "games_excluded_live_or_complete": 11,
+  "games_pregame": 3,
+  "games_excluded_live_or_complete": 13,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 12,
+      "daily_rank": 14,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "R",
@@ -57,7 +57,7 @@
           "deviation": 0.0759
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +66,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 17,
+      "daily_rank": 19,
       "batter": "Andr\u00e9s Gim\u00e9nez",
       "batter_id": 665926,
       "batter_hand": "L",
@@ -111,7 +111,7 @@
           "deviation": 0.0661
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -120,7 +120,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 21,
+      "daily_rank": 23,
       "batter": "Victor Caratini",
       "batter_id": 605170,
       "batter_hand": "R",
@@ -165,7 +165,61 @@
           "deviation": 0.068
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 25,
+      "batter": "Ezequiel Tovar",
+      "batter_id": 678662,
+      "batter_hand": "R",
+      "team": "COL",
+      "lineup_spot": 6,
+      "pitcher": "Zac Gallen",
+      "pitcher_id": 668678,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825080,
+      "game_datetime": "2026-05-24T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 1080,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0825,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1128,
+      "ev_pct": 33.07,
+      "edge_pct": 3.03,
+      "blended_hr_per_pa": 0.01833,
+      "breakout_score": 0.0355,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7413,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5523,
+          "deviation": 0.5523
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5225,
+          "deviation": 0.4775
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0355,
+          "deviation": 0.0355
+        }
+      ],
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -173,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-05-23.json"
 }
