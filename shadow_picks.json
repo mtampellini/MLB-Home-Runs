@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-23T20:06:24.870376+00:00",
+  "generated_at": "2026-05-23T21:08:42.997822+00:00",
   "as_of_date": "2026-05-23",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.040978941377347755,
+  "league_hr_per_pa": 0.035908596300326445,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 24,
+      "daily_rank": 28,
       "batter": "Daylen Lile",
       "batter_id": 695734,
       "batter_hand": "L",
@@ -66,7 +66,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 26,
+      "daily_rank": 30,
       "batter": "Willson Contreras",
       "batter_id": 575929,
       "batter_hand": "R",
@@ -120,7 +120,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 30,
+      "daily_rank": 34,
       "batter": "Jordan Walker",
       "batter_id": 691023,
       "batter_hand": "R",
@@ -174,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 31,
+      "daily_rank": 35,
       "batter": "Spencer Horwitz",
       "batter_id": 687462,
       "batter_hand": "L",
@@ -228,7 +228,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 33,
+      "daily_rank": 37,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -282,7 +282,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 35,
+      "daily_rank": 38,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 4,
+      "pitcher": "Chase Petty",
+      "pitcher_id": 695534,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824516,
+      "game_datetime": "2026-05-23T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 359,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2045,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.242,
+      "ev_pct": 13.72,
+      "edge_pct": 3.74,
+      "blended_hr_per_pa": 0.04538,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4374,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2637,
+          "deviation": 0.2637
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
+        }
+      ],
+      "tier_rank": 12,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 40,
       "batter": "Mookie Betts",
       "batter_id": 605141,
       "batter_hand": "R",
@@ -327,7 +381,7 @@
           "deviation": 0.0504
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 14,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -336,7 +390,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 36,
+      "daily_rank": 41,
       "batter": "Andy Pages",
       "batter_id": 681624,
       "batter_hand": "R",
@@ -381,7 +435,7 @@
           "deviation": 0.0459
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -390,7 +444,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 37,
+      "daily_rank": 42,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -435,7 +489,7 @@
           "deviation": 0.09
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 16,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -443,6 +497,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-05-23.json"
 }
