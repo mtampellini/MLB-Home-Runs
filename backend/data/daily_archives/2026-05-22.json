@@ -1,27 +1,27 @@
 {
   "date": "2026-05-22",
-  "generated_at": "2026-05-22T23:42:20.444066+00:00",
+  "generated_at": "2026-05-23T01:31:15.772413+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.026744186046511628,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 11,
-    "games_pregame": 4,
-    "total_predictions": 0,
+    "games_excluded_live_or_complete": 14,
+    "games_pregame": 1,
+    "total_predictions": 14,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "skipped_career_pa_filter": 4,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 14,
+    "matched_alt_market": 14,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
+    "single_sided_devig": 14,
     "above_25_ev_pre_cap": 0,
     "eligible_below_900_price_cap": 0,
     "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 19,
     "secondary_count": 10,
-    "shadow_count": 15
+    "shadow_count": 18
   },
   "primary_picks": [
     {
@@ -1939,6 +1939,60 @@
     {
       "tier": "shadow",
       "daily_rank": 35,
+      "batter": "Colson Montgomery",
+      "batter_id": 695657,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 4,
+      "pitcher": "Trevor McDonald",
+      "pitcher_id": 686790,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823223,
+      "game_datetime": "2026-05-23T02:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 499,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1598,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2066,
+      "ev_pct": 23.72,
+      "edge_pct": 4.67,
+      "blended_hr_per_pa": 0.06365,
+      "breakout_score": -0.1114,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1391,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.3801,
+          "deviation": 1.3801
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3602,
+          "deviation": 0.3602
+        },
+        {
+          "name": "park",
+          "value": 0.7503,
+          "deviation": 0.2497
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 36,
       "batter": "Mookie Betts",
       "batter_id": 605141,
       "batter_hand": "R",
@@ -1983,7 +2037,7 @@
           "deviation": 0.0504
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1992,7 +2046,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 36,
+      "daily_rank": 37,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -2037,7 +2091,7 @@
           "deviation": 0.142
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2046,7 +2100,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 37,
+      "daily_rank": 38,
+      "batter": "Munetaka Murakami",
+      "batter_id": 808959,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 2,
+      "pitcher": "Trevor McDonald",
+      "pitcher_id": 686790,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823223,
+      "game_datetime": "2026-05-23T02:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 397,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1887,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2358,
+      "ev_pct": 20.27,
+      "edge_pct": 4.71,
+      "blended_hr_per_pa": 0.06265,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2481,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.3426,
+          "deviation": 1.3426
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3602,
+          "deviation": 0.3602
+        },
+        {
+          "name": "park",
+          "value": 0.7503,
+          "deviation": 0.2497
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 39,
       "batter": "Nico Hoerner",
       "batter_id": 663538,
       "batter_hand": "R",
@@ -2091,7 +2199,7 @@
           "deviation": 0.1312
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2100,7 +2208,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 38,
+      "daily_rank": 40,
       "batter": "Leody Taveras",
       "batter_id": 665750,
       "batter_hand": "L",
@@ -2145,7 +2253,7 @@
           "deviation": 0.1545
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2154,7 +2262,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 39,
+      "daily_rank": 41,
       "batter": "Jorge Soler",
       "batter_id": 624585,
       "batter_hand": "R",
@@ -2199,7 +2307,7 @@
           "deviation": 0.1235
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2208,7 +2316,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 40,
+      "daily_rank": 42,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -2253,7 +2361,7 @@
           "deviation": 0.1017
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 13,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2262,7 +2370,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 41,
+      "daily_rank": 43,
       "batter": "Dansby Swanson",
       "batter_id": 621020,
       "batter_hand": "R",
@@ -2307,7 +2415,7 @@
           "deviation": 0.1077
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 14,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2316,7 +2424,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 42,
+      "daily_rank": 44,
       "batter": "George Springer",
       "batter_id": 543807,
       "batter_hand": "R",
@@ -2361,7 +2469,7 @@
           "deviation": 0.0975
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2370,7 +2478,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 43,
+      "daily_rank": 45,
+      "batter": "Andrew Benintendi",
+      "batter_id": 643217,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 6,
+      "pitcher": "Trevor McDonald",
+      "pitcher_id": 686790,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823223,
+      "game_datetime": "2026-05-23T02:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 840,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0969,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1136,
+      "ev_pct": 11.31,
+      "edge_pct": 1.67,
+      "blended_hr_per_pa": 0.02788,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2119,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3602,
+          "deviation": 0.3602
+        },
+        {
+          "name": "park",
+          "value": 0.7503,
+          "deviation": 0.2497
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 16,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 46,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -2415,7 +2577,7 @@
           "deviation": 0.1592
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 17,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2424,7 +2586,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 44,
+      "daily_rank": 47,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -2469,7 +2631,7 @@
           "deviation": 0.1545
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 18,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
