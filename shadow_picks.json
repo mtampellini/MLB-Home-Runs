@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-23T14:56:38.103959+00:00",
+  "generated_at": "2026-05-23T16:01:05.100961+00:00",
   "as_of_date": "2026-05-23",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03712164477441462,
+  "league_hr_per_pa": 0.03181401040073417,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 4,
+      "daily_rank": 11,
       "batter": "Jordan Walker",
       "batter_id": 691023,
       "batter_hand": "R",
@@ -57,7 +57,7 @@
           "deviation": 0.1443
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +66,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 12,
+      "batter": "Spencer Horwitz",
+      "batter_id": 687462,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 5,
+      "pitcher": "Patrick Corbin",
+      "pitcher_id": 571578,
+      "pitcher_hand": "L",
+      "park": "TOR",
+      "game_pk": 822814,
+      "game_datetime": "2026-05-23T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 970,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0816,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0957,
+      "ev_pct": 16.73,
+      "edge_pct": 1.41,
+      "blended_hr_per_pa": 0.02611,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.9437,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.8207,
+          "deviation": 0.1793
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0661,
+          "deviation": 0.0661
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -111,7 +165,7 @@
           "deviation": 0.1443
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -119,6 +173,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-05-23.json"
 }
