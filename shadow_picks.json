@@ -1,18 +1,72 @@
 {
-  "generated_at": "2026-05-23T16:01:05.100961+00:00",
+  "generated_at": "2026-05-23T17:00:59.254625+00:00",
   "as_of_date": "2026-05-23",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03181401040073417,
+  "league_hr_per_pa": 0.025826446280991736,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 16,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 14,
+      "batter": "Willson Contreras",
+      "batter_id": 575929,
+      "batter_hand": "R",
+      "team": "BOS",
+      "lineup_spot": 4,
+      "pitcher": "Taj Bradley",
+      "pitcher_id": 671737,
+      "pitcher_hand": "R",
+      "park": "BOS",
+      "game_pk": 824760,
+      "game_datetime": "2026-05-23T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 620,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1369,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1685,
+      "ev_pct": 21.33,
+      "edge_pct": 3.16,
+      "blended_hr_per_pa": 0.04598,
+      "breakout_score": 0.0577,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7802,
+          "deviation": 0.7802
+        },
+        {
+          "name": "wind",
+          "value": 0.9241,
+          "deviation": 0.0759
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0717,
+          "deviation": 0.0717
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 18,
       "batter": "Jordan Walker",
       "batter_id": 691023,
       "batter_hand": "R",
@@ -57,7 +111,7 @@
           "deviation": 0.1443
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +120,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 12,
+      "daily_rank": 19,
       "batter": "Spencer Horwitz",
       "batter_id": 687462,
       "batter_hand": "L",
@@ -111,7 +165,7 @@
           "deviation": 0.0661
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -120,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 21,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -165,14 +219,68 @@
           "deviation": 0.1443
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": false
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
+      "batter": "Cole Young",
+      "batter_id": 702284,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 6,
+      "pitcher": "Stephen Kolek",
+      "pitcher_id": 663568,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824109,
+      "game_datetime": "2026-05-23T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 1020,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0871,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0989,
+      "ev_pct": 10.75,
+      "edge_pct": 1.18,
+      "blended_hr_per_pa": 0.02936,
+      "breakout_score": 0.0781,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2174,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 0.7943,
+          "deviation": 0.2057
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1368,
+          "deviation": 0.1368
+        },
+        {
+          "name": "temperature",
+          "value": 1.09,
+          "deviation": 0.09
+        }
+      ],
+      "tier_rank": 10,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
     }
   ],
-  "skipped_count": 6,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-05-23.json"
 }

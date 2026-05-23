@@ -1,18 +1,72 @@
 {
-  "generated_at": "2026-05-23T16:01:05.100738+00:00",
+  "generated_at": "2026-05-23T17:00:59.254295+00:00",
   "as_of_date": "2026-05-23",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03181401040073417,
+  "league_hr_per_pa": 0.025826446280991736,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 16,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 6,
+      "daily_rank": 5,
+      "batter": "Brooks Lee",
+      "batter_id": 686797,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 8,
+      "pitcher": "Jovani Mor\u00e1n",
+      "pitcher_id": 663558,
+      "pitcher_hand": "L",
+      "park": "BOS",
+      "game_pk": 824760,
+      "game_datetime": "2026-05-23T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1220,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.071,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.112,
+      "ev_pct": 47.83,
+      "edge_pct": 4.1,
+      "blended_hr_per_pa": 0.02784,
+      "breakout_score": -0.0718,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5527,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.517,
+          "deviation": 0.517
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0779,
+          "deviation": 0.0779
+        },
+        {
+          "name": "wind",
+          "value": 0.9241,
+          "deviation": 0.0759
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 8,
       "batter": "Andr\u00e9s Gim\u00e9nez",
       "batter_id": 665926,
       "batter_hand": "L",
@@ -57,7 +111,61 @@
           "deviation": 0.0661
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 9,
+      "batter": "Victor Caratini",
+      "batter_id": 605170,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 6,
+      "pitcher": "Jovani Mor\u00e1n",
+      "pitcher_id": 663558,
+      "pitcher_hand": "L",
+      "park": "BOS",
+      "game_pk": 824760,
+      "game_datetime": "2026-05-23T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1080,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0775,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1113,
+      "ev_pct": 35.84,
+      "edge_pct": 3.38,
+      "blended_hr_per_pa": 0.02538,
+      "breakout_score": -0.0629,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0839,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.517,
+          "deviation": 0.517
+        },
+        {
+          "name": "wind",
+          "value": 0.9241,
+          "deviation": 0.0759
+        },
+        {
+          "name": "temperature",
+          "value": 0.932,
+          "deviation": 0.068
+        }
+      ],
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -65,6 +173,6 @@
       }
     }
   ],
-  "skipped_count": 6,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-05-23.json"
 }
