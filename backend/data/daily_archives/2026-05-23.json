@@ -1,0 +1,317 @@
+{
+  "date": "2026-05-23",
+  "generated_at": "2026-05-23T14:56:38.104202+00:00",
+  "model_version": "v7-baseline-0.2.0",
+  "league_hr_per_pa": 0.03712164477441462,
+  "funnel": {
+    "total_slate_games": 16,
+    "games_excluded_live_or_complete": 1,
+    "games_pregame": 15,
+    "total_predictions": 15,
+    "skipped_low_data": 2,
+    "skipped_career_pa_filter": 1,
+    "skipped_other": 0,
+    "matched_in_odds_market": 15,
+    "matched_alt_market": 15,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 15,
+    "above_25_ev_pre_cap": 3,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 3,
+    "secondary_count": 0,
+    "shadow_count": 2
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Nathaniel Lowe",
+      "batter_id": 663993,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 4,
+      "pitcher": "Andre Pallante",
+      "pitcher_id": 669467,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824518,
+      "game_datetime": "2026-05-23T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 590,
+      "dk_odds": 610,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1357,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2411,
+      "ev_pct": 71.16,
+      "edge_pct": 10.53,
+      "blended_hr_per_pa": 0.04581,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3846,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.234,
+          "deviation": 0.234
+        },
+        {
+          "name": "park",
+          "value": 1.1875,
+          "deviation": 0.1875
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "JJ Bleday",
+        "Elly De La Cruz"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "JJ Bleday",
+      "batter_id": 668709,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 1,
+      "pitcher": "Andre Pallante",
+      "pitcher_id": 669467,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824518,
+      "game_datetime": "2026-05-23T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 397,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1892,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2852,
+      "ev_pct": 48.33,
+      "edge_pct": 9.6,
+      "blended_hr_per_pa": 0.05905,
+      "breakout_score": 0.0108,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1719,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5907,
+          "deviation": 0.5907
+        },
+        {
+          "name": "park",
+          "value": 1.1875,
+          "deviation": 0.1875
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8951,
+          "deviation": 0.1049
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "Elly De La Cruz"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Elly De La Cruz",
+      "batter_id": 682829,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 2,
+      "pitcher": "Andre Pallante",
+      "pitcher_id": 669467,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824518,
+      "game_datetime": "2026-05-23T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 473,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1626,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2414,
+      "ev_pct": 42.41,
+      "edge_pct": 7.88,
+      "blended_hr_per_pa": 0.0439,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2711,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1875,
+          "deviation": 0.1875
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1825,
+          "deviation": 0.1825
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "JJ Bleday"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    }
+  ],
+  "secondary_picks": [],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 4,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 4,
+      "pitcher": "Chris Paddack",
+      "pitcher_id": 663978,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824518,
+      "game_datetime": "2026-05-23T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 331,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.211,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2311,
+      "ev_pct": 17.86,
+      "edge_pct": 2.01,
+      "blended_hr_per_pa": 0.04538,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4374,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2224,
+          "deviation": 0.2224
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Sal Stewart",
+      "batter_id": 701398,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 3,
+      "pitcher": "Andre Pallante",
+      "pitcher_id": 669467,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824518,
+      "game_datetime": "2026-05-23T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 387,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1991,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2248,
+      "ev_pct": 14.64,
+      "edge_pct": 2.57,
+      "blended_hr_per_pa": 0.05506,
+      "breakout_score": -0.0341,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4332,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4833,
+          "deviation": 0.4833
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8325,
+          "deviation": 0.1675
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    }
+  ],
+  "settlement": null
+}

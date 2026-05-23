@@ -1,60 +1,60 @@
 {
-  "generated_at": "2026-05-23T03:47:11.174495+00:00",
-  "as_of_date": "2026-05-22",
+  "generated_at": "2026-05-23T14:56:38.103959+00:00",
+  "as_of_date": "2026-05-23",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03712164477441462,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
-  "total_games_today": 15,
-  "games_pregame": 0,
-  "games_excluded_live_or_complete": 15,
+  "total_games_today": 16,
+  "games_pregame": 15,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 30,
-      "batter": "Yandy D\u00edaz",
-      "batter_id": 650490,
+      "daily_rank": 4,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
       "batter_hand": "R",
-      "team": "TB",
+      "team": "STL",
       "lineup_spot": 4,
-      "pitcher": "Gerrit Cole",
-      "pitcher_id": 543037,
+      "pitcher": "Chris Paddack",
+      "pitcher_id": 663978,
       "pitcher_hand": "R",
-      "park": "NYY",
-      "game_pk": 823546,
-      "game_datetime": "2026-05-22T23:05:00+00:00",
+      "park": "CIN",
+      "game_pk": 824518,
+      "game_datetime": "2026-05-23T17:10:00+00:00",
       "line": 0.5,
-      "fd_odds": 680,
-      "dk_odds": 690,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.121,
+      "fd_odds": 410,
+      "dk_odds": 331,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.211,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.158,
-      "ev_pct": 24.86,
-      "edge_pct": 3.7,
-      "blended_hr_per_pa": 0.03804,
-      "breakout_score": 0.0067,
+      "model_prob": 0.2311,
+      "ev_pct": 17.86,
+      "edge_pct": 2.01,
+      "blended_hr_per_pa": 0.04538,
+      "breakout_score": 0.15,
       "low_confidence": false,
       "pitcher_factor_shrunk": true,
-      "trend_signal": 0.36,
+      "trend_signal": -0.4374,
       "unstable_recent": false,
       "top_3_features": [
         {
-          "name": "park",
-          "value": 1.1897,
-          "deviation": 0.1897
-        },
-        {
           "name": "batter_skill",
-          "value": 1.0771,
-          "deviation": 0.0771
+          "value": 1.2224,
+          "deviation": 0.2224
         },
         {
-          "name": "wind",
-          "value": 0.9257,
-          "deviation": 0.0743
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
         }
       ],
       "tier_rank": 1,
@@ -66,538 +66,52 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 32,
-      "batter": "Wilyer Abreu",
-      "batter_id": 677800,
-      "batter_hand": "L",
-      "team": "BOS",
+      "daily_rank": 5,
+      "batter": "Sal Stewart",
+      "batter_id": 701398,
+      "batter_hand": "R",
+      "team": "CIN",
       "lineup_spot": 3,
-      "pitcher": "Connor Prielipp",
-      "pitcher_id": 687570,
-      "pitcher_hand": "L",
-      "park": "BOS",
-      "game_pk": 824761,
-      "game_datetime": "2026-05-22T23:10:00+00:00",
+      "pitcher": "Andre Pallante",
+      "pitcher_id": 669467,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824518,
+      "game_datetime": "2026-05-23T17:10:00+00:00",
       "line": 0.5,
-      "fd_odds": 820,
-      "dk_odds": 830,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.1005,
+      "fd_odds": 410,
+      "dk_odds": 387,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1991,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.1335,
-      "ev_pct": 24.18,
-      "edge_pct": 3.3,
-      "blended_hr_per_pa": 0.03798,
-      "breakout_score": 0.0159,
+      "model_prob": 0.2248,
+      "ev_pct": 14.64,
+      "edge_pct": 2.57,
+      "blended_hr_per_pa": 0.05506,
+      "breakout_score": -0.0341,
       "low_confidence": false,
       "pitcher_factor_shrunk": true,
-      "trend_signal": -0.24,
+      "trend_signal": -0.4332,
       "unstable_recent": false,
       "top_3_features": [
         {
           "name": "batter_skill",
-          "value": 1.2894,
-          "deviation": 0.2894
-        },
-        {
-          "name": "temperature",
-          "value": 0.901,
-          "deviation": 0.099
-        },
-        {
-          "name": "park",
-          "value": 0.9513,
-          "deviation": 0.0487
-        }
-      ],
-      "tier_rank": 3,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 33,
-      "batter": "Mark Vientos",
-      "batter_id": 668901,
-      "batter_hand": "R",
-      "team": "NYM",
-      "lineup_spot": 4,
-      "pitcher": "Eury P\u00e9rez",
-      "pitcher_id": 691587,
-      "pitcher_hand": "R",
-      "park": "MIA",
-      "game_pk": 823863,
-      "game_datetime": "2026-05-22T23:10:00+00:00",
-      "line": 0.5,
-      "fd_odds": 570,
-      "dk_odds": 580,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.1407,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1823,
-      "ev_pct": 23.96,
-      "edge_pct": 4.15,
-      "blended_hr_per_pa": 0.03814,
-      "breakout_score": -0.0702,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 0.8685,
-      "unstable_recent": true,
-      "top_3_features": [
-        {
-          "name": "pitcher",
-          "value": 1.6,
-          "deviation": 0.6
-        },
-        {
-          "name": "batter_skill",
-          "value": 1.2947,
-          "deviation": 0.2947
-        },
-        {
-          "name": "park",
-          "value": 0.8059,
-          "deviation": 0.1941
-        }
-      ],
-      "tier_rank": 4,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 34,
-      "batter": "Andy Pages",
-      "batter_id": 681624,
-      "batter_hand": "R",
-      "team": "LAD",
-      "lineup_spot": 5,
-      "pitcher": "Logan Henderson",
-      "pitcher_id": 701656,
-      "pitcher_hand": "R",
-      "park": "MIL",
-      "game_pk": 823788,
-      "game_datetime": "2026-05-22T23:40:00+00:00",
-      "line": 0.5,
-      "fd_odds": 540,
-      "dk_odds": 600,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.1421,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1769,
-      "ev_pct": 23.82,
-      "edge_pct": 3.48,
-      "blended_hr_per_pa": 0.04336,
-      "breakout_score": -0.0575,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.0831,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "batter_skill",
-          "value": 1.2279,
-          "deviation": 0.2279
-        },
-        {
-          "name": "park",
-          "value": 1.1082,
-          "deviation": 0.1082
-        },
-        {
-          "name": "breakout_signal",
-          "value": 0.9425,
-          "deviation": 0.0575
-        }
-      ],
-      "tier_rank": 5,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 36,
-      "batter": "Mookie Betts",
-      "batter_id": 605141,
-      "batter_hand": "R",
-      "team": "LAD",
-      "lineup_spot": 2,
-      "pitcher": "Logan Henderson",
-      "pitcher_id": 701656,
-      "pitcher_hand": "R",
-      "park": "MIL",
-      "game_pk": 823788,
-      "game_datetime": "2026-05-22T23:40:00+00:00",
-      "line": 0.5,
-      "fd_odds": 570,
-      "dk_odds": 537,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.1455,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1827,
-      "ev_pct": 22.42,
-      "edge_pct": 3.73,
-      "blended_hr_per_pa": 0.03767,
-      "breakout_score": 0.0504,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 1.0565,
-      "unstable_recent": true,
-      "top_3_features": [
-        {
-          "name": "park",
-          "value": 1.1082,
-          "deviation": 0.1082
-        },
-        {
-          "name": "batter_skill",
-          "value": 1.0666,
-          "deviation": 0.0666
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.0504,
-          "deviation": 0.0504
-        }
-      ],
-      "tier_rank": 7,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 37,
-      "batter": "Kevin McGonigle",
-      "batter_id": 805808,
-      "batter_hand": "L",
-      "team": "DET",
-      "lineup_spot": 1,
-      "pitcher": "Keegan Akin",
-      "pitcher_id": 669211,
-      "pitcher_hand": "L",
-      "park": "BAL",
-      "game_pk": 824842,
-      "game_datetime": "2026-05-22T23:15:00+00:00",
-      "line": 0.5,
-      "fd_odds": 710,
-      "dk_odds": 660,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.1199,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1509,
-      "ev_pct": 22.24,
-      "edge_pct": 3.1,
-      "blended_hr_per_pa": 0.03284,
-      "breakout_score": 0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.4158,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "park",
-          "value": 1.1545,
-          "deviation": 0.1545
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.15,
-          "deviation": 0.15
-        },
-        {
-          "name": "temperature",
-          "value": 0.858,
-          "deviation": 0.142
-        }
-      ],
-      "tier_rank": 8,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 39,
-      "batter": "Nico Hoerner",
-      "batter_id": 663538,
-      "batter_hand": "R",
-      "team": "CHC",
-      "lineup_spot": 1,
-      "pitcher": "Spencer Arrighetti",
-      "pitcher_id": 681293,
-      "pitcher_hand": "R",
-      "park": "CHC",
-      "game_pk": 824679,
-      "game_datetime": "2026-05-22T18:20:00+00:00",
-      "line": 0.5,
-      "fd_odds": 1500,
-      "dk_odds": 1340,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.0604,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.0751,
-      "ev_pct": 20.1,
-      "edge_pct": 1.46,
-      "blended_hr_per_pa": 0.01961,
-      "breakout_score": 0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -1.0,
-      "unstable_recent": true,
-      "top_3_features": [
-        {
-          "name": "batter_skill",
-          "value": 0.5308,
-          "deviation": 0.4692
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.15,
-          "deviation": 0.15
+          "value": 1.4833,
+          "deviation": 0.4833
         },
         {
           "name": "pitcher",
-          "value": 0.8688,
-          "deviation": 0.1312
-        }
-      ],
-      "tier_rank": 10,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 41,
-      "batter": "Jorge Soler",
-      "batter_id": 624585,
-      "batter_hand": "R",
-      "team": "LAA",
-      "lineup_spot": 4,
-      "pitcher": "Jacob deGrom",
-      "pitcher_id": 594798,
-      "pitcher_hand": "R",
-      "park": "LAA",
-      "game_pk": 824029,
-      "game_datetime": "2026-05-23T01:38:00+00:00",
-      "line": 0.5,
-      "fd_odds": 430,
-      "dk_odds": 435,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.1784,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.219,
-      "ev_pct": 17.19,
-      "edge_pct": 4.06,
-      "blended_hr_per_pa": 0.04798,
-      "breakout_score": 0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.3333,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "batter_skill",
-          "value": 1.2414,
-          "deviation": 0.2414
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.15,
-          "deviation": 0.15
+          "value": 0.8325,
+          "deviation": 0.1675
         },
         {
           "name": "park",
-          "value": 1.1235,
-          "deviation": 0.1235
+          "value": 1.1443,
+          "deviation": 0.1443
         }
       ],
-      "tier_rank": 12,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 42,
-      "batter": "Alec Bohm",
-      "batter_id": 664761,
-      "batter_hand": "R",
-      "team": "PHI",
-      "lineup_spot": 4,
-      "pitcher": "Gavin Williams",
-      "pitcher_id": 668909,
-      "pitcher_hand": "R",
-      "park": "PHI",
-      "game_pk": 823461,
-      "game_datetime": "2026-05-22T22:40:00+00:00",
-      "line": 0.5,
-      "fd_odds": 1120,
-      "dk_odds": 1000,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.0804,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.0927,
-      "ev_pct": 13.11,
-      "edge_pct": 1.23,
-      "blended_hr_per_pa": 0.03245,
-      "breakout_score": -0.1017,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 0.2436,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "temperature",
-          "value": 0.891,
-          "deviation": 0.109
-        },
-        {
-          "name": "batter_skill",
-          "value": 1.1017,
-          "deviation": 0.1017
-        },
-        {
-          "name": "breakout_signal",
-          "value": 0.8983,
-          "deviation": 0.1017
-        }
-      ],
-      "tier_rank": 13,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 43,
-      "batter": "Dansby Swanson",
-      "batter_id": 621020,
-      "batter_hand": "R",
-      "team": "CHC",
-      "lineup_spot": 9,
-      "pitcher": "Spencer Arrighetti",
-      "pitcher_id": 681293,
-      "pitcher_hand": "R",
-      "park": "CHC",
-      "game_pk": 824679,
-      "game_datetime": "2026-05-22T18:20:00+00:00",
-      "line": 0.5,
-      "fd_odds": 980,
-      "dk_odds": 890,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.09,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1044,
-      "ev_pct": 12.72,
-      "edge_pct": 1.43,
-      "blended_hr_per_pa": 0.03516,
-      "breakout_score": 0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.6657,
-      "unstable_recent": true,
-      "top_3_features": [
-        {
-          "name": "breakout_signal",
-          "value": 1.15,
-          "deviation": 0.15
-        },
-        {
-          "name": "pitcher",
-          "value": 0.8688,
-          "deviation": 0.1312
-        },
-        {
-          "name": "wind",
-          "value": 0.8923,
-          "deviation": 0.1077
-        }
-      ],
-      "tier_rank": 14,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true
-      }
-    },
-    {
-      "tier": "shadow",
-      "daily_rank": 44,
-      "batter": "George Springer",
-      "batter_id": 543807,
-      "batter_hand": "R",
-      "team": "TOR",
-      "lineup_spot": 1,
-      "pitcher": "Bubba Chandler",
-      "pitcher_id": 696149,
-      "pitcher_hand": "R",
-      "park": "TOR",
-      "game_pk": 822816,
-      "game_datetime": "2026-05-22T23:07:00+00:00",
-      "line": 0.5,
-      "fd_odds": 540,
-      "dk_odds": 516,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.1513,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1747,
-      "ev_pct": 11.79,
-      "edge_pct": 2.33,
-      "blended_hr_per_pa": 0.04492,
-      "breakout_score": -0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.5278,
-      "unstable_recent": true,
-      "top_3_features": [
-        {
-          "name": "batter_skill",
-          "value": 1.5249,
-          "deviation": 0.5249
-        },
-        {
-          "name": "breakout_signal",
-          "value": 0.85,
-          "deviation": 0.15
-        },
-        {
-          "name": "park",
-          "value": 1.0975,
-          "deviation": 0.0975
-        }
-      ],
-      "tier_rank": 15,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -605,6 +119,6 @@
       }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-05-22.json"
+  "skipped_count": 3,
+  "skipped_reference": "data/processed/skipped_batters_2026-05-23.json"
 }
