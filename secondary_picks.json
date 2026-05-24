@@ -1,63 +1,63 @@
 {
-  "generated_at": "2026-05-24T02:40:39.792146+00:00",
-  "as_of_date": "2026-05-23",
+  "generated_at": "2026-05-24T15:05:34.304988+00:00",
+  "as_of_date": "2026-05-24",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03181247383842612,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 16,
-  "games_pregame": 0,
-  "games_excluded_live_or_complete": 16,
+  "games_pregame": 16,
+  "games_excluded_live_or_complete": 0,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 14,
-      "batter": "Brooks Lee",
-      "batter_id": 686797,
+      "daily_rank": 3,
+      "batter": "Austin Hedges",
+      "batter_id": 595978,
       "batter_hand": "R",
-      "team": "MIN",
+      "team": "CLE",
       "lineup_spot": 8,
-      "pitcher": "Jovani Mor\u00e1n",
-      "pitcher_id": 663558,
-      "pitcher_hand": "L",
-      "park": "BOS",
-      "game_pk": 824760,
-      "game_datetime": "2026-05-23T20:10:00+00:00",
+      "pitcher": "Andrew Painter",
+      "pitcher_id": 691725,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823459,
+      "game_datetime": "2026-05-24T17:35:00+00:00",
       "line": 0.5,
-      "fd_odds": 1200,
-      "dk_odds": 1220,
+      "fd_odds": 1120,
+      "dk_odds": 1260,
       "best_book": "draftkings",
-      "market_prob_devig": 0.071,
+      "market_prob_devig": 0.0723,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.112,
-      "ev_pct": 47.83,
-      "edge_pct": 4.1,
-      "blended_hr_per_pa": 0.02784,
-      "breakout_score": -0.0718,
+      "model_prob": 0.1059,
+      "ev_pct": 44.07,
+      "edge_pct": 3.36,
+      "blended_hr_per_pa": 0.02333,
+      "breakout_score": -0.0315,
       "low_confidence": false,
       "pitcher_factor_shrunk": true,
-      "trend_signal": 0.5527,
+      "trend_signal": -1.0,
       "unstable_recent": true,
       "top_3_features": [
         {
           "name": "pitcher",
-          "value": 1.517,
-          "deviation": 0.517
+          "value": 1.6,
+          "deviation": 0.6
         },
         {
           "name": "batter_skill",
-          "value": 1.0779,
-          "deviation": 0.0779
+          "value": 0.7335,
+          "deviation": 0.2665
         },
         {
-          "name": "wind",
-          "value": 0.9241,
-          "deviation": 0.0759
+          "name": "temperature",
+          "value": 0.882,
+          "deviation": 0.118
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 1,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,49 +66,49 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 19,
-      "batter": "Andr\u00e9s Gim\u00e9nez",
-      "batter_id": 665926,
-      "batter_hand": "L",
-      "team": "TOR",
-      "lineup_spot": 7,
-      "pitcher": "Paul Skenes",
-      "pitcher_id": 694973,
-      "pitcher_hand": "R",
-      "park": "TOR",
-      "game_pk": 822814,
-      "game_datetime": "2026-05-23T19:07:00+00:00",
+      "daily_rank": 9,
+      "batter": "Jeremiah Jackson",
+      "batter_id": 669236,
+      "batter_hand": "R",
+      "team": "BAL",
+      "lineup_spot": 8,
+      "pitcher": "Framber Valdez",
+      "pitcher_id": 664285,
+      "pitcher_hand": "L",
+      "park": "BAL",
+      "game_pk": 824839,
+      "game_datetime": "2026-05-24T16:35:00+00:00",
       "line": 0.5,
-      "fd_odds": 1300,
-      "dk_odds": 1460,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.063,
+      "fd_odds": 1200,
+      "dk_odds": 930,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0876,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.09,
-      "ev_pct": 40.39,
-      "edge_pct": 2.7,
-      "blended_hr_per_pa": 0.02901,
-      "breakout_score": 0.0229,
+      "model_prob": 0.0965,
+      "ev_pct": 25.41,
+      "edge_pct": 0.88,
+      "blended_hr_per_pa": 0.04008,
+      "breakout_score": 0.15,
       "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.3167,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.339,
       "unstable_recent": false,
       "top_3_features": [
         {
-          "name": "pitcher",
-          "value": 0.7551,
-          "deviation": 0.2449
-        },
-        {
           "name": "batter_skill",
-          "value": 0.9119,
-          "deviation": 0.0881
+          "value": 1.2598,
+          "deviation": 0.2598
         },
         {
-          "name": "park",
-          "value": 1.0661,
-          "deviation": 0.0661
+          "name": "pitcher",
+          "value": 0.7669,
+          "deviation": 0.2331
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
         }
       ],
       "tier_rank": 5,
@@ -117,170 +117,8 @@
         "passes_triple": true,
         "passes_quad": true
       }
-    },
-    {
-      "tier": "secondary",
-      "daily_rank": 23,
-      "batter": "Victor Caratini",
-      "batter_id": 605170,
-      "batter_hand": "R",
-      "team": "MIN",
-      "lineup_spot": 6,
-      "pitcher": "Jovani Mor\u00e1n",
-      "pitcher_id": 663558,
-      "pitcher_hand": "L",
-      "park": "BOS",
-      "game_pk": 824760,
-      "game_datetime": "2026-05-23T20:10:00+00:00",
-      "line": 0.5,
-      "fd_odds": 1120,
-      "dk_odds": 1080,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.0775,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1113,
-      "ev_pct": 35.84,
-      "edge_pct": 3.38,
-      "blended_hr_per_pa": 0.02538,
-      "breakout_score": -0.0629,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 0.0839,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "pitcher",
-          "value": 1.517,
-          "deviation": 0.517
-        },
-        {
-          "name": "wind",
-          "value": 0.9241,
-          "deviation": 0.0759
-        },
-        {
-          "name": "temperature",
-          "value": 0.932,
-          "deviation": 0.068
-        }
-      ],
-      "tier_rank": 6,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true
-      }
-    },
-    {
-      "tier": "secondary",
-      "daily_rank": 25,
-      "batter": "Ezequiel Tovar",
-      "batter_id": 678662,
-      "batter_hand": "R",
-      "team": "COL",
-      "lineup_spot": 6,
-      "pitcher": "Zac Gallen",
-      "pitcher_id": 668678,
-      "pitcher_hand": "R",
-      "park": "ARI",
-      "game_pk": 825080,
-      "game_datetime": "2026-05-24T02:10:00+00:00",
-      "line": 0.5,
-      "fd_odds": 980,
-      "dk_odds": 1080,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.0825,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1128,
-      "ev_pct": 33.07,
-      "edge_pct": 3.03,
-      "blended_hr_per_pa": 0.01833,
-      "breakout_score": 0.0355,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.7413,
-      "unstable_recent": true,
-      "top_3_features": [
-        {
-          "name": "pitcher",
-          "value": 1.5523,
-          "deviation": 0.5523
-        },
-        {
-          "name": "batter_skill",
-          "value": 0.5225,
-          "deviation": 0.4775
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.0355,
-          "deviation": 0.0355
-        }
-      ],
-      "tier_rank": 7,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true
-      }
-    },
-    {
-      "tier": "secondary",
-      "daily_rank": 26,
-      "batter": "Oswald Peraza",
-      "batter_id": 672724,
-      "batter_hand": "R",
-      "team": "LAA",
-      "lineup_spot": 7,
-      "pitcher": "Nathan Eovaldi",
-      "pitcher_id": 543135,
-      "pitcher_hand": "R",
-      "park": "LAA",
-      "game_pk": 824030,
-      "game_datetime": "2026-05-24T02:05:00+00:00",
-      "line": 0.5,
-      "fd_odds": 1040,
-      "dk_odds": 1040,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.0816,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1146,
-      "ev_pct": 30.59,
-      "edge_pct": 3.3,
-      "blended_hr_per_pa": 0.03346,
-      "breakout_score": 0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.4267,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "pitcher",
-          "value": 0.7725,
-          "deviation": 0.2275
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.15,
-          "deviation": 0.15
-        },
-        {
-          "name": "park",
-          "value": 1.1235,
-          "deviation": 0.1235
-        }
-      ],
-      "tier_rank": 8,
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true
-      }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-05-23.json"
+  "skipped_count": 7,
+  "skipped_reference": "data/processed/skipped_batters_2026-05-24.json"
 }
