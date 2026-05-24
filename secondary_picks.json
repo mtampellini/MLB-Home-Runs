@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-24T18:00:06.660358+00:00",
+  "generated_at": "2026-05-24T19:04:55.622977+00:00",
   "as_of_date": "2026-05-24",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.0310391363022942,
+  "league_hr_per_pa": 0.03791208791208791,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 16,
-  "games_pregame": 8,
-  "games_excluded_live_or_complete": 8,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 10,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 18,
+      "daily_rank": 20,
       "batter": "Austin Hedges",
       "batter_id": 595978,
       "batter_hand": "R",
@@ -66,7 +66,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 21,
+      "daily_rank": 23,
       "batter": "Derek Hill",
       "batter_id": 656537,
       "batter_hand": "R",
@@ -120,7 +120,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 23,
+      "daily_rank": 25,
       "batter": "Jonathan Aranda",
       "batter_id": 666018,
       "batter_hand": "L",
@@ -174,7 +174,115 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 33,
+      "daily_rank": 29,
+      "batter": "Jacob Young",
+      "batter_id": 696285,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 7,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824921,
+      "game_datetime": "2026-05-24T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1260,
+      "dk_odds": 1120,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0723,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.099,
+      "ev_pct": 34.6,
+      "edge_pct": 2.67,
+      "blended_hr_per_pa": 0.02214,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4686,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.5841,
+          "deviation": 0.4159
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.089,
+          "deviation": 0.089
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 38,
+      "batter": "Daylen Lile",
+      "batter_id": 695734,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 6,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824921,
+      "game_datetime": "2026-05-24T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 870,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0935,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.123,
+      "ev_pct": 25.45,
+      "edge_pct": 2.95,
+      "blended_hr_per_pa": 0.03348,
+      "breakout_score": 0.0575,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3059,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7815,
+          "deviation": 0.2185
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8831,
+          "deviation": 0.1169
+        },
+        {
+          "name": "park",
+          "value": 1.0892,
+          "deviation": 0.0892
+        }
+      ],
+      "tier_rank": 11,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 39,
       "batter": "Jeremiah Jackson",
       "batter_id": 669236,
       "batter_hand": "R",
@@ -219,7 +327,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -227,6 +335,6 @@
       }
     }
   ],
-  "skipped_count": 12,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-05-24.json"
 }

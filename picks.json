@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-05-24T18:00:06.659967+00:00",
+  "generated_at": "2026-05-24T19:04:55.622586+00:00",
   "as_of_date": "2026-05-24",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.0310391363022942,
+  "league_hr_per_pa": 0.03791208791208791,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 16,
-  "games_pregame": 8,
-  "games_excluded_live_or_complete": 8,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 10,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 20,
+      "daily_rank": 22,
       "batter": "JJ Bleday",
       "batter_id": 668709,
       "batter_hand": "L",
@@ -69,7 +69,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 22,
+      "daily_rank": 24,
       "batter": "JJ Wetherholt",
       "batter_id": 802139,
       "batter_hand": "L",
@@ -125,7 +125,66 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 25,
+      "daily_rank": 28,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Foster Griffin",
+      "pitcher_id": 656492,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824921,
+      "game_datetime": "2026-05-24T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 359,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2004,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2789,
+      "ev_pct": 36.67,
+      "edge_pct": 7.85,
+      "blended_hr_per_pa": 0.05874,
+      "breakout_score": 0.1286,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3269,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5493,
+          "deviation": 0.5493
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1286,
+          "deviation": 0.1286
+        },
+        {
+          "name": "park",
+          "value": 1.0892,
+          "deviation": 0.0892
+        }
+      ],
+      "tier_rank": 13,
+      "stacked": true,
+      "stacked_with": [
+        "Eli White",
+        "Michael Harris II"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 27,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -170,7 +229,7 @@
           "deviation": 0.1537
         }
       ],
-      "tier_rank": 20,
+      "tier_rank": 23,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -178,8 +237,64 @@
         "passes_triple": true,
         "passes_quad": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 36,
+      "batter": "Curtis Mead",
+      "batter_id": 678554,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 2,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824921,
+      "game_datetime": "2026-05-24T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 760,
+      "dk_odds": 800,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1057,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1408,
+      "ev_pct": 26.69,
+      "edge_pct": 3.5,
+      "blended_hr_per_pa": 0.02854,
+      "breakout_score": 0.1216,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0783,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7529,
+          "deviation": 0.2471
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1216,
+          "deviation": 0.1216
+        },
+        {
+          "name": "temperature",
+          "value": 1.089,
+          "deviation": 0.089
+        }
+      ],
+      "tier_rank": 27,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
     }
   ],
-  "skipped_count": 12,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-05-24.json"
 }
