@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-23T23:12:31.951778+00:00",
+  "generated_at": "2026-05-24T00:11:18.307053+00:00",
   "as_of_date": "2026-05-23",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03508771929824561,
+  "league_hr_per_pa": 0.03795284646348476,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -225,8 +225,62 @@
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 26,
+      "batter": "Oswald Peraza",
+      "batter_id": 672724,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 7,
+      "pitcher": "Nathan Eovaldi",
+      "pitcher_id": 543135,
+      "pitcher_hand": "R",
+      "park": "LAA",
+      "game_pk": 824030,
+      "game_datetime": "2026-05-24T02:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1040,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0816,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1146,
+      "ev_pct": 30.59,
+      "edge_pct": 3.3,
+      "blended_hr_per_pa": 0.03346,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4267,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7725,
+          "deviation": 0.2275
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1235,
+          "deviation": 0.1235
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
     }
   ],
-  "skipped_count": 6,
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-05-23.json"
 }
