@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-05-24T20:15:22.276931+00:00",
+  "generated_at": "2026-05-24T21:19:20.966003+00:00",
   "as_of_date": "2026-05-24",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03393457658208499,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 16,
-  "games_pregame": 3,
-  "games_excluded_live_or_complete": 13,
+  "games_pregame": 2,
+  "games_excluded_live_or_complete": 14,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 22,
+      "daily_rank": 23,
       "batter": "JJ Bleday",
       "batter_id": 668709,
       "batter_hand": "L",
@@ -69,7 +69,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 24,
+      "daily_rank": 26,
       "batter": "JJ Wetherholt",
       "batter_id": 802139,
       "batter_hand": "L",
@@ -125,7 +125,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 28,
+      "daily_rank": 30,
       "batter": "Matt Olson",
       "batter_id": 621566,
       "batter_hand": "L",
@@ -184,7 +184,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 27,
+      "daily_rank": 29,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -229,7 +229,7 @@
           "deviation": 0.1537
         }
       ],
-      "tier_rank": 23,
+      "tier_rank": 24,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -240,7 +240,63 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 36,
+      "daily_rank": 24,
+      "batter": "Adley Rutschman",
+      "batter_id": 668939,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 3,
+      "pitcher": "Troy Melton",
+      "pitcher_id": 675512,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824840,
+      "game_datetime": "2026-05-24T22:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 760,
+      "dk_odds": 680,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.115,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1644,
+      "ev_pct": 41.35,
+      "edge_pct": 4.94,
+      "blended_hr_per_pa": 0.04037,
+      "breakout_score": -0.0297,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.1818,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        },
+        {
+          "name": "temperature",
+          "value": 0.903,
+          "deviation": 0.097
+        }
+      ],
+      "tier_rank": 26,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 38,
       "batter": "Curtis Mead",
       "batter_id": 678554,
       "batter_hand": "R",
@@ -285,7 +341,7 @@
           "deviation": 0.089
         }
       ],
-      "tier_rank": 27,
+      "tier_rank": 29,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -295,6 +351,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-05-24.json"
 }
