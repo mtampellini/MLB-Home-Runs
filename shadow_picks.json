@@ -1,18 +1,342 @@
 {
-  "generated_at": "2026-05-24T15:05:34.305220+00:00",
+  "generated_at": "2026-05-24T16:08:31.342147+00:00",
   "as_of_date": "2026-05-24",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03181247383842612,
+  "league_hr_per_pa": 0.029553264604810996,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 16,
-  "games_pregame": 16,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 15,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 20,
+      "batter": "Nico Hoerner",
+      "batter_id": 663538,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 2,
+      "pitcher": "Peter Lambert",
+      "pitcher_id": 663567,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824676,
+      "game_datetime": "2026-05-24T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1260,
+      "dk_odds": 1300,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0674,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.089,
+      "ev_pct": 24.61,
+      "edge_pct": 2.16,
+      "blended_hr_per_pa": 0.01919,
+      "breakout_score": 0.1253,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6495,
+          "deviation": 0.3505
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1253,
+          "deviation": 0.1253
+        },
+        {
+          "name": "temperature",
+          "value": 0.899,
+          "deviation": 0.101
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
+      "batter": "Alex Bregman",
+      "batter_id": 608324,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 4,
+      "pitcher": "Peter Lambert",
+      "pitcher_id": 663567,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824676,
+      "game_datetime": "2026-05-24T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 770,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1057,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1379,
+      "ev_pct": 22.71,
+      "edge_pct": 3.22,
+      "blended_hr_per_pa": 0.03356,
+      "breakout_score": 0.0645,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4974,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1355,
+          "deviation": 0.1355
+        },
+        {
+          "name": "temperature",
+          "value": 0.899,
+          "deviation": 0.101
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0674,
+          "deviation": 0.0674
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 4,
+      "pitcher": "Brady Singer",
+      "pitcher_id": 663903,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824514,
+      "game_datetime": "2026-05-24T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 310,
+      "dk_odds": 272,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2462,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2951,
+      "ev_pct": 21.0,
+      "edge_pct": 4.89,
+      "blended_hr_per_pa": 0.0498,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3583,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.685,
+          "deviation": 0.685
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 23,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 9,
+      "pitcher": "Brycen Mautz",
+      "pitcher_id": 802408,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824514,
+      "game_datetime": "2026-05-24T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 590,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1377,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1737,
+      "ev_pct": 19.86,
+      "edge_pct": 3.6,
+      "blended_hr_per_pa": 0.03758,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.419,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2715,
+          "deviation": 0.2715
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
+      "batter": "Elly De La Cruz",
+      "batter_id": 682829,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 2,
+      "pitcher": "Brycen Mautz",
+      "pitcher_id": 802408,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824514,
+      "game_datetime": "2026-05-24T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2021,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2521,
+      "ev_pct": 18.51,
+      "edge_pct": 5.0,
+      "blended_hr_per_pa": 0.04551,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2549,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.54,
+          "deviation": 0.54
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 25,
+      "batter": "Jos\u00e9 Caballero",
+      "batter_id": 676609,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 7,
+      "pitcher": "Drew Rasmussen",
+      "pitcher_id": 656876,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823544,
+      "game_datetime": "2026-05-24T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1800,
+      "dk_odds": 1780,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0476,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0622,
+      "ev_pct": 18.14,
+      "edge_pct": 1.46,
+      "blended_hr_per_pa": 0.01914,
+      "breakout_score": -0.1075,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2347,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6475,
+          "deviation": 0.3525
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 28,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -57,7 +381,169 @@
           "deviation": 0.1545
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 10,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 29,
+      "batter": "Brice Matthews",
+      "batter_id": 694728,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 1,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824676,
+      "game_datetime": "2026-05-24T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 660,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1234,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.145,
+      "ev_pct": 13.13,
+      "edge_pct": 2.16,
+      "blended_hr_per_pa": 0.04451,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2857,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5061,
+          "deviation": 0.5061
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 0.899,
+          "deviation": 0.101
+        }
+      ],
+      "tier_rank": 11,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 31,
+      "batter": "Aaron Judge",
+      "batter_id": 592450,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 2,
+      "pitcher": "Drew Rasmussen",
+      "pitcher_id": 656876,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823544,
+      "game_datetime": "2026-05-24T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 290,
+      "dk_odds": 291,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2484,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2882,
+      "ev_pct": 12.69,
+      "edge_pct": 3.98,
+      "blended_hr_per_pa": 0.07175,
+      "breakout_score": 0.0608,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1875,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.4279,
+          "deviation": 1.4279
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 13,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 33,
+      "batter": "Carson Kelly",
+      "batter_id": 608348,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 8,
+      "pitcher": "Peter Lambert",
+      "pitcher_id": 663567,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824676,
+      "game_datetime": "2026-05-24T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1000,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0831,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0982,
+      "ev_pct": 11.92,
+      "edge_pct": 1.51,
+      "blended_hr_per_pa": 0.02889,
+      "breakout_score": 0.0042,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.8333,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 0.899,
+          "deviation": 0.101
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0674,
+          "deviation": 0.0674
+        },
+        {
+          "name": "wind",
+          "value": 0.9524,
+          "deviation": 0.0476
+        }
+      ],
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -65,6 +551,6 @@
       }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 11,
   "skipped_reference": "data/processed/skipped_batters_2026-05-24.json"
 }

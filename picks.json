@@ -1,19 +1,131 @@
 {
-  "generated_at": "2026-05-24T15:05:34.304721+00:00",
+  "generated_at": "2026-05-24T16:08:31.341532+00:00",
   "as_of_date": "2026-05-24",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03181247383842612,
+  "league_hr_per_pa": 0.029553264604810996,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 16,
-  "games_pregame": 16,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 15,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 10,
+      "batter": "JJ Bleday",
+      "batter_id": 668709,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Brycen Mautz",
+      "pitcher_id": 802408,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824514,
+      "game_datetime": "2026-05-24T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1667,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2502,
+      "ev_pct": 42.62,
+      "edge_pct": 8.35,
+      "blended_hr_per_pa": 0.0568,
+      "breakout_score": 0.0108,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.087,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9219,
+          "deviation": 0.9219
+        },
+        {
+          "name": "park",
+          "value": 1.1875,
+          "deviation": 0.1875
+        },
+        {
+          "name": "wind",
+          "value": 1.0235,
+          "deviation": 0.0235
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "JJ Wetherholt",
+      "batter_id": 802139,
+      "batter_hand": "L",
+      "team": "STL",
+      "lineup_spot": 1,
+      "pitcher": "Brady Singer",
+      "pitcher_id": 663903,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824514,
+      "game_datetime": "2026-05-24T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 431,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1774,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2575,
+      "ev_pct": 39.04,
+      "edge_pct": 8.01,
+      "blended_hr_per_pa": 0.02747,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1313,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.1875,
+          "deviation": 0.1875
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 13,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -58,7 +170,7 @@
           "deviation": 0.1537
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 9,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -68,6 +180,6 @@
       }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 11,
   "skipped_reference": "data/processed/skipped_batters_2026-05-24.json"
 }
