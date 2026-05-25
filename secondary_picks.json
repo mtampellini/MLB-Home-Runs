@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-25T20:02:19.339648+00:00",
+  "generated_at": "2026-05-25T21:08:15.303324+00:00",
   "as_of_date": "2026-05-25",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03319502074688797,
+  "league_hr_per_pa": 0.03203562706507686,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 13,
-  "games_pregame": 7,
-  "games_excluded_live_or_complete": 6,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 7,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 8,
+      "daily_rank": 12,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -57,7 +57,61 @@
           "deviation": 0.0546
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 13,
+      "batter": "Christian V\u00e1zquez",
+      "batter_id": 543877,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 9,
+      "pitcher": "Kumar Rocker",
+      "pitcher_id": 677958,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822899,
+      "game_datetime": "2026-05-25T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1300,
+      "dk_odds": 1220,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0684,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0989,
+      "ev_pct": 38.5,
+      "edge_pct": 3.05,
+      "blended_hr_per_pa": 0.0237,
+      "breakout_score": 0.0405,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6635,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7398,
+          "deviation": 0.2602
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        },
+        {
+          "name": "pitcher",
+          "value": 1.041,
+          "deviation": 0.041
+        }
+      ],
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -67,6 +121,60 @@
     {
       "tier": "secondary",
       "daily_rank": 14,
+      "batter": "Ezequiel Duran",
+      "batter_id": 677649,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 4,
+      "pitcher": "Tatsuya Imai",
+      "pitcher_id": 837227,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822899,
+      "game_datetime": "2026-05-25T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 990,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0882,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1256,
+      "ev_pct": 36.92,
+      "edge_pct": 3.74,
+      "blended_hr_per_pa": 0.02405,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3842,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7509,
+          "deviation": 0.2491
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 20,
       "batter": "Harrison Bader",
       "batter_id": 664056,
       "batter_hand": "R",
@@ -111,7 +219,7 @@
           "deviation": 0.1292
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -119,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 11,
   "skipped_reference": "data/processed/skipped_batters_2026-05-25.json"
 }

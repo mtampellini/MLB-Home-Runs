@@ -1,18 +1,126 @@
 {
-  "generated_at": "2026-05-25T20:02:19.339897+00:00",
+  "generated_at": "2026-05-25T21:08:15.303669+00:00",
   "as_of_date": "2026-05-25",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03319502074688797,
+  "league_hr_per_pa": 0.03203562706507686,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 13,
-  "games_pregame": 7,
-  "games_excluded_live_or_complete": 6,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 7,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 26,
+      "batter": "Willi Castro",
+      "batter_id": 650489,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 6,
+      "pitcher": "Emmet Sheehan",
+      "pitcher_id": 686218,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823948,
+      "game_datetime": "2026-05-26T01:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 760,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1115,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1435,
+      "ev_pct": 23.39,
+      "edge_pct": 3.2,
+      "blended_hr_per_pa": 0.01996,
+      "breakout_score": 0.148,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6151,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6231,
+          "deviation": 0.3769
+        },
+        {
+          "name": "park",
+          "value": 1.1814,
+          "deviation": 0.1814
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 27,
+      "batter": "Hunter Goodman",
+      "batter_id": 696100,
+      "batter_hand": "R",
+      "team": "COL",
+      "lineup_spot": 2,
+      "pitcher": "Emmet Sheehan",
+      "pitcher_id": 686218,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823948,
+      "game_datetime": "2026-05-26T01:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 351,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2023,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2486,
+      "ev_pct": 21.81,
+      "edge_pct": 4.63,
+      "blended_hr_per_pa": 0.05397,
+      "breakout_score": 0.0254,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.16,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6846,
+          "deviation": 0.6846
+        },
+        {
+          "name": "park",
+          "value": 1.2462,
+          "deviation": 0.2462
+        },
+        {
+          "name": "temperature",
+          "value": 0.861,
+          "deviation": 0.139
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 28,
       "batter": "Tyrone Taylor",
       "batter_id": 621438,
       "batter_hand": "R",
@@ -57,7 +165,7 @@
           "deviation": 0.0849
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 34,
       "batter": "Spencer Steer",
       "batter_id": 668715,
       "batter_hand": "R",
@@ -111,7 +219,7 @@
           "deviation": 0.1009
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -119,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 11,
   "skipped_reference": "data/processed/skipped_batters_2026-05-25.json"
 }
