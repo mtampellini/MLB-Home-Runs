@@ -1,19 +1,79 @@
 {
-  "generated_at": "2026-05-25T16:20:16.558338+00:00",
+  "generated_at": "2026-05-25T18:07:30.576283+00:00",
   "as_of_date": "2026-05-25",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03375886524822695,
+  "league_hr_per_pa": 0.029547553093259463,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 13,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 4,
   "picks": [
     {
       "tier": "primary",
       "daily_rank": 7,
+      "batter": "Sal Stewart",
+      "batter_id": 701398,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 4,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 610,
+      "dk_odds": 477,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1492,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2019,
+      "ev_pct": 43.33,
+      "edge_pct": 5.26,
+      "blended_hr_per_pa": 0.05374,
+      "breakout_score": -0.0057,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5199,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8187,
+          "deviation": 0.8187
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8991,
+          "deviation": 0.1009
+        },
+        {
+          "name": "wind",
+          "value": 1.0409,
+          "deviation": 0.0409
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "JJ Bleday",
+        "Elly De La Cruz"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 12,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -58,7 +118,7 @@
           "deviation": 0.1545
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 11,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -68,6 +128,6 @@
       }
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-05-25.json"
 }

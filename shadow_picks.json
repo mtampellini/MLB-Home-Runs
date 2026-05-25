@@ -1,15 +1,124 @@
 {
-  "generated_at": "2026-05-25T16:20:16.558762+00:00",
+  "generated_at": "2026-05-25T18:07:30.576757+00:00",
   "as_of_date": "2026-05-25",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03375886524822695,
+  "league_hr_per_pa": 0.029547553093259463,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 13,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 5,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 4,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 16,
+      "batter": "Tyrone Taylor",
+      "batter_id": 621438,
+      "batter_hand": "R",
+      "team": "NYM",
+      "lineup_spot": 6,
+      "pitcher": "Nick Lodolo",
+      "pitcher_id": 666157,
+      "pitcher_hand": "L",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 710,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1134,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.145,
+      "ev_pct": 20.31,
+      "edge_pct": 3.15,
+      "blended_hr_per_pa": 0.0208,
+      "breakout_score": 0.0849,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.22,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7038,
+          "deviation": 0.2962
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0849,
+          "deviation": 0.0849
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
+      "batter": "Spencer Steer",
+      "batter_id": 668715,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 730,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1169,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1378,
+      "ev_pct": 14.41,
+      "edge_pct": 2.09,
+      "blended_hr_per_pa": 0.03393,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2048,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1485,
+          "deviation": 0.1485
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8991,
+          "deviation": 0.1009
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-05-25.json"
 }

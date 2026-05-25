@@ -1,32 +1,152 @@
 {
   "date": "2026-05-25",
-  "generated_at": "2026-05-25T16:20:16.558903+00:00",
+  "generated_at": "2026-05-25T18:07:30.576965+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03375886524822695,
+  "league_hr_per_pa": 0.029547553093259463,
   "funnel": {
     "total_slate_games": 13,
-    "games_excluded_live_or_complete": 0,
-    "games_pregame": 13,
-    "total_predictions": 31,
-    "skipped_low_data": 1,
-    "skipped_career_pa_filter": 4,
+    "games_excluded_live_or_complete": 4,
+    "games_pregame": 9,
+    "total_predictions": 28,
+    "skipped_low_data": 2,
+    "skipped_career_pa_filter": 6,
     "skipped_other": 0,
-    "matched_in_odds_market": 31,
-    "matched_alt_market": 31,
+    "matched_in_odds_market": 28,
+    "matched_alt_market": 28,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 31,
-    "above_25_ev_pre_cap": 4,
+    "single_sided_devig": 28,
+    "above_25_ev_pre_cap": 6,
     "eligible_below_900_price_cap": 4,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 9,
-    "secondary_count": 0,
-    "shadow_count": 4
+    "above_price_cap_pushed_to_secondary": 2,
+    "primary_count": 13,
+    "secondary_count": 2,
+    "shadow_count": 6
   },
   "primary_picks": [
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 1,
+      "batter": "Nathaniel Lowe",
+      "batter_id": 663993,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 6,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 680,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1169,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2379,
+      "ev_pct": 97.49,
+      "edge_pct": 12.1,
+      "blended_hr_per_pa": 0.052,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.125,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7598,
+          "deviation": 0.7598
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0821,
+          "deviation": 0.0821
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "JJ Bleday",
+        "Elly De La Cruz",
+        "Sal Stewart"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "JJ Bleday",
+      "batter_id": 668709,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 3,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 536,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1456,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2492,
+      "ev_pct": 66.95,
+      "edge_pct": 10.36,
+      "blended_hr_per_pa": 0.0568,
+      "breakout_score": 0.0108,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.087,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9222,
+          "deviation": 0.9222
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0821,
+          "deviation": 0.0821
+        },
+        {
+          "name": "wind",
+          "value": 1.0409,
+          "deviation": 0.0409
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "Elly De La Cruz",
+        "Sal Stewart"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -71,7 +191,7 @@
           "deviation": 0.091
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
         "Brooks Lee"
@@ -84,7 +204,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 1,
+      "daily_rank": 2,
       "batter": "Brice Turang",
       "batter_id": 668930,
       "batter_hand": "L",
@@ -129,7 +249,7 @@
           "deviation": 0.0543
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": true,
       "stacked_with": [
         "Christian Yelich"
@@ -142,7 +262,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 11,
       "batter": "Aaron Judge",
       "batter_id": 592450,
       "batter_hand": "R",
@@ -187,7 +307,7 @@
           "deviation": 0.143
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "stacked": true,
       "stacked_with": [
         "Paul Goldschmidt"
@@ -200,7 +320,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 5,
       "batter": "Christian Yelich",
       "batter_id": 592885,
       "batter_hand": "L",
@@ -245,7 +365,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "stacked": true,
       "stacked_with": [
         "Brice Turang"
@@ -258,7 +378,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 3,
+      "daily_rank": 6,
       "batter": "Mois\u00e9s Ballesteros",
       "batter_id": 694208,
       "batter_hand": "L",
@@ -303,7 +423,7 @@
           "deviation": 0.097
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "stacked": true,
       "stacked_with": [
         "Ian Happ"
@@ -316,7 +436,127 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 9,
+      "batter": "Elly De La Cruz",
+      "batter_id": 682829,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 2,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 446,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1703,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2339,
+      "ev_pct": 33.31,
+      "edge_pct": 6.35,
+      "blended_hr_per_pa": 0.04551,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1798,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5403,
+          "deviation": 0.5403
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0821,
+          "deviation": 0.0821
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "JJ Bleday",
+        "Sal Stewart"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
+      "batter": "Sal Stewart",
+      "batter_id": 701398,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 4,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 610,
+      "dk_odds": 477,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1492,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2019,
+      "ev_pct": 43.33,
+      "edge_pct": 5.26,
+      "blended_hr_per_pa": 0.05374,
+      "breakout_score": -0.0057,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5199,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8187,
+          "deviation": 0.8187
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8991,
+          "deviation": 0.1009
+        },
+        {
+          "name": "wind",
+          "value": 1.0409,
+          "deviation": 0.0409
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe",
+        "JJ Bleday",
+        "Elly De La Cruz"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
       "batter": "Ian Happ",
       "batter_id": 664023,
       "batter_hand": "L",
@@ -361,7 +601,7 @@
           "deviation": 0.097
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Mois\u00e9s Ballesteros"
@@ -374,7 +614,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 12,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -419,7 +659,7 @@
           "deviation": 0.1545
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 11,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -430,7 +670,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 14,
       "batter": "Paul Goldschmidt",
       "batter_id": 502671,
       "batter_hand": "R",
@@ -475,7 +715,7 @@
           "deviation": 0.0904
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 12,
       "stacked": true,
       "stacked_with": [
         "Aaron Judge"
@@ -488,7 +728,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 15,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "R",
@@ -533,7 +773,7 @@
           "deviation": 0.091
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 13,
       "stacked": true,
       "stacked_with": [
         "Byron Buxton"
@@ -545,11 +785,174 @@
       }
     }
   ],
-  "secondary_picks": [],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 4,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 9,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1060,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0809,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1409,
+      "ev_pct": 63.48,
+      "edge_pct": 6.01,
+      "blended_hr_per_pa": 0.03758,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6706,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2717,
+          "deviation": 0.2717
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8991,
+          "deviation": 0.1009
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 13,
+      "batter": "Harrison Bader",
+      "batter_id": 664056,
+      "batter_hand": "R",
+      "team": "SF",
+      "lineup_spot": 8,
+      "pitcher": "Merrill Kelly",
+      "pitcher_id": 518876,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823219,
+      "game_datetime": "2026-05-25T21:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1060,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0809,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1127,
+      "ev_pct": 30.77,
+      "edge_pct": 3.19,
+      "blended_hr_per_pa": 0.03893,
+      "breakout_score": -0.1292,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2581,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3174,
+          "deviation": 0.3174
+        },
+        {
+          "name": "park",
+          "value": 0.8472,
+          "deviation": 0.1528
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8708,
+          "deviation": 0.1292
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 10,
+      "daily_rank": 16,
+      "batter": "Tyrone Taylor",
+      "batter_id": 621438,
+      "batter_hand": "R",
+      "team": "NYM",
+      "lineup_spot": 6,
+      "pitcher": "Nick Lodolo",
+      "pitcher_id": 666157,
+      "pitcher_hand": "L",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 710,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1134,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.145,
+      "ev_pct": 20.31,
+      "edge_pct": 3.15,
+      "blended_hr_per_pa": 0.0208,
+      "breakout_score": 0.0849,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.22,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7038,
+          "deviation": 0.2962
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0849,
+          "deviation": 0.0849
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 17,
       "batter": "Luke Keaschall",
       "batter_id": 807712,
       "batter_hand": "R",
@@ -594,7 +997,7 @@
           "deviation": 0.091
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -603,7 +1006,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 18,
       "batter": "Junior Caminero",
       "batter_id": 691406,
       "batter_hand": "R",
@@ -648,7 +1051,7 @@
           "deviation": 0.0767
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -657,7 +1060,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 12,
+      "daily_rank": 19,
       "batter": "Anthony Volpe",
       "batter_id": 683011,
       "batter_hand": "R",
@@ -702,7 +1105,7 @@
           "deviation": 0.143
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -711,7 +1114,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 20,
       "batter": "Yandy D\u00edaz",
       "batter_id": 650490,
       "batter_hand": "R",
@@ -756,11 +1159,65 @@
           "deviation": 0.0767
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
         "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
+      "batter": "Spencer Steer",
+      "batter_id": 668715,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823625,
+      "game_datetime": "2026-05-25T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 730,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1169,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1378,
+      "ev_pct": 14.41,
+      "edge_pct": 2.09,
+      "blended_hr_per_pa": 0.03393,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2048,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1485,
+          "deviation": 0.1485
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8991,
+          "deviation": 0.1009
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
       }
     }
   ],
