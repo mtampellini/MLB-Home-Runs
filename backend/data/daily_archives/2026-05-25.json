@@ -1,27 +1,27 @@
 {
   "date": "2026-05-25",
-  "generated_at": "2026-05-25T21:08:15.304051+00:00",
+  "generated_at": "2026-05-25T22:12:59.606754+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03203562706507686,
+  "league_hr_per_pa": 0.044532130777903044,
   "funnel": {
     "total_slate_games": 13,
-    "games_excluded_live_or_complete": 7,
-    "games_pregame": 6,
-    "total_predictions": 61,
-    "skipped_low_data": 1,
-    "skipped_career_pa_filter": 10,
+    "games_excluded_live_or_complete": 8,
+    "games_pregame": 5,
+    "total_predictions": 15,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 3,
     "skipped_other": 0,
-    "matched_in_odds_market": 61,
-    "matched_alt_market": 61,
+    "matched_in_odds_market": 15,
+    "matched_alt_market": 15,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 61,
-    "above_25_ev_pre_cap": 9,
-    "eligible_below_900_price_cap": 6,
-    "above_price_cap_pushed_to_secondary": 3,
+    "single_sided_devig": 15,
+    "above_25_ev_pre_cap": 0,
+    "eligible_below_900_price_cap": 0,
+    "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 19,
     "secondary_count": 6,
-    "shadow_count": 10
+    "shadow_count": 12
   },
   "primary_picks": [
     {
@@ -1833,6 +1833,60 @@
     {
       "tier": "shadow",
       "daily_rank": 33,
+      "batter": "Carlos Cortes",
+      "batter_id": 666126,
+      "batter_hand": "L",
+      "team": "OAK",
+      "lineup_spot": 1,
+      "pitcher": "Luis Castillo",
+      "pitcher_id": 622491,
+      "pitcher_hand": "R",
+      "park": "OAK",
+      "game_pk": 825005,
+      "game_datetime": "2026-05-26T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 456,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.162,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1886,
+      "ev_pct": 16.96,
+      "edge_pct": 2.66,
+      "blended_hr_per_pa": 0.03427,
+      "breakout_score": 0.1058,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7457,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2734,
+          "deviation": 0.2734
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7696,
+          "deviation": 0.2304
+        },
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 34,
       "batter": "Lenyn Sosa",
       "batter_id": 672820,
       "batter_hand": "R",
@@ -1877,7 +1931,7 @@
           "deviation": 0.0975
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -1886,7 +1940,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 34,
+      "daily_rank": 35,
       "batter": "Spencer Steer",
       "batter_id": 668715,
       "batter_hand": "R",
@@ -1931,7 +1985,7 @@
           "deviation": 0.1009
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1940,7 +1994,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 35,
+      "daily_rank": 36,
       "batter": "Kazuma Okamoto",
       "batter_id": 672960,
       "batter_hand": "R",
@@ -1985,10 +2039,64 @@
           "deviation": 0.0975
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 37,
+      "batter": "Luke Raley",
+      "batter_id": 670042,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 5,
+      "pitcher": "Aaron Civale",
+      "pitcher_id": 650644,
+      "pitcher_hand": "R",
+      "park": "OAK",
+      "game_pk": 825005,
+      "game_datetime": "2026-05-26T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 395,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1839,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.205,
+      "ev_pct": 10.72,
+      "edge_pct": 2.11,
+      "blended_hr_per_pa": 0.04667,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0094,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "wind",
+          "value": 1.0831,
+          "deviation": 0.0831
+        }
+      ],
+      "tier_rank": 12,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
         "passes_quad": false
       }
     }
