@@ -1,29 +1,87 @@
 {
   "date": "2026-05-25",
-  "generated_at": "2026-05-25T15:58:39.968958+00:00",
+  "generated_at": "2026-05-25T16:20:16.558903+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03056687662097073,
+  "league_hr_per_pa": 0.03375886524822695,
   "funnel": {
     "total_slate_games": 13,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 13,
-    "total_predictions": 48,
-    "skipped_low_data": 4,
-    "skipped_career_pa_filter": 2,
+    "total_predictions": 31,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 4,
     "skipped_other": 0,
-    "matched_in_odds_market": 48,
-    "matched_alt_market": 48,
+    "matched_in_odds_market": 31,
+    "matched_alt_market": 31,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 48,
-    "above_25_ev_pre_cap": 5,
-    "eligible_below_900_price_cap": 5,
+    "single_sided_devig": 31,
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 4,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 5,
+    "primary_count": 9,
     "secondary_count": 0,
-    "shadow_count": 2
+    "shadow_count": 4
   },
   "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "Byron Buxton",
+      "batter_id": 621439,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 1,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824598,
+      "game_datetime": "2026-05-25T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 245,
+      "dk_odds": 244,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2816,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3841,
+      "ev_pct": 32.51,
+      "edge_pct": 10.25,
+      "blended_hr_per_pa": 0.07826,
+      "breakout_score": -0.0314,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3011,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.3182,
+          "deviation": 1.3182
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3103,
+          "deviation": 0.3103
+        },
+        {
+          "name": "temperature",
+          "value": 1.091,
+          "deviation": 0.091
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Brooks Lee"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
     {
       "tier": "primary",
       "daily_rank": 1,
@@ -71,10 +129,68 @@
           "deviation": 0.0543
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "stacked": true,
       "stacked_with": [
         "Christian Yelich"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Aaron Judge",
+      "batter_id": 592450,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 2,
+      "pitcher": "Michael Wacha",
+      "pitcher_id": 608379,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824107,
+      "game_datetime": "2026-05-25T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 260,
+      "dk_odds": 244,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2757,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3678,
+      "ev_pct": 32.4,
+      "edge_pct": 9.21,
+      "blended_hr_per_pa": 0.07383,
+      "breakout_score": 0.032,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.125,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.187,
+          "deviation": 1.187
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1799,
+          "deviation": 0.1799
+        },
+        {
+          "name": "temperature",
+          "value": 1.143,
+          "deviation": 0.143
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Paul Goldschmidt"
       ],
       "filter_status": {
         "passes_baseline": true,
@@ -129,7 +245,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": true,
       "stacked_with": [
         "Brice Turang"
@@ -187,7 +303,7 @@
           "deviation": 0.097
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "stacked": true,
       "stacked_with": [
         "Ian Happ"
@@ -245,7 +361,7 @@
           "deviation": 0.097
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "stacked": true,
       "stacked_with": [
         "Mois\u00e9s Ballesteros"
@@ -258,7 +374,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 7,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -303,12 +419,128 @@
           "deviation": 0.1545
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 5,
+      "pitcher": "Michael Wacha",
+      "pitcher_id": 608379,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824107,
+      "game_datetime": "2026-05-25T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 583,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1346,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1782,
+      "ev_pct": 30.08,
+      "edge_pct": 4.36,
+      "blended_hr_per_pa": 0.03418,
+      "breakout_score": 0.0505,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0213,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.1799,
+          "deviation": 0.1799
+        },
+        {
+          "name": "temperature",
+          "value": 1.143,
+          "deviation": 0.143
+        },
+        {
+          "name": "park",
+          "value": 0.9096,
+          "deviation": 0.0904
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Aaron Judge"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "Brooks Lee",
+      "batter_id": 686797,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 2,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824598,
+      "game_datetime": "2026-05-25T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 720,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1176,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1536,
+      "ev_pct": 25.94,
+      "edge_pct": 3.6,
+      "blended_hr_per_pa": 0.0271,
+      "breakout_score": -0.0159,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0601,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3103,
+          "deviation": 0.3103
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8028,
+          "deviation": 0.1972
+        },
+        {
+          "name": "temperature",
+          "value": 1.091,
+          "deviation": 0.091
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Byron Buxton"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
         "passes_quad": false
       }
     }
@@ -317,7 +549,61 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 10,
+      "batter": "Luke Keaschall",
+      "batter_id": 807712,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 7,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824598,
+      "game_datetime": "2026-05-25T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1080,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0775,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0986,
+      "ev_pct": 20.27,
+      "edge_pct": 2.11,
+      "blended_hr_per_pa": 0.01801,
+      "breakout_score": 0.0689,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5869,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.5335,
+          "deviation": 0.4665
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3103,
+          "deviation": 0.3103
+        },
+        {
+          "name": "temperature",
+          "value": 1.091,
+          "deviation": 0.091
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
       "batter": "Junior Caminero",
       "batter_id": 691406,
       "batter_hand": "R",
@@ -362,7 +648,7 @@
           "deviation": 0.0767
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -371,7 +657,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 7,
+      "daily_rank": 12,
+      "batter": "Anthony Volpe",
+      "batter_id": 683011,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 7,
+      "pitcher": "Michael Wacha",
+      "pitcher_id": 608379,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824107,
+      "game_datetime": "2026-05-25T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 850,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0995,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1249,
+      "ev_pct": 18.64,
+      "edge_pct": 2.54,
+      "blended_hr_per_pa": 0.02645,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": null,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7834,
+          "deviation": 0.2166
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1799,
+          "deviation": 0.1799
+        },
+        {
+          "name": "temperature",
+          "value": 1.143,
+          "deviation": 0.143
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
       "batter": "Yandy D\u00edaz",
       "batter_id": 650490,
       "batter_hand": "R",
@@ -416,7 +756,7 @@
           "deviation": 0.0767
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
