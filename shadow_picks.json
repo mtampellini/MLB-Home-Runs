@@ -1,15 +1,124 @@
 {
-  "generated_at": "2026-05-26T17:47:22.941567+00:00",
+  "generated_at": "2026-05-26T18:44:15.990470+00:00",
   "as_of_date": "2026-05-26",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.038537549407114624,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 1,
+      "batter": "CJ Abrams",
+      "batter_id": 682928,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 4,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824434,
+      "game_datetime": "2026-05-26T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 710,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1097,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1267,
+      "ev_pct": 12.8,
+      "edge_pct": 1.71,
+      "blended_hr_per_pa": 0.0405,
+      "breakout_score": 0.0449,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0818,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.771,
+          "deviation": 0.229
+        },
+        {
+          "name": "park",
+          "value": 0.9256,
+          "deviation": 0.0744
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0509,
+          "deviation": 0.0509
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 2,
+      "batter": "Curtis Mead",
+      "batter_id": 678554,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 2,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824434,
+      "game_datetime": "2026-05-26T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 1000,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0853,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1011,
+      "ev_pct": 11.25,
+      "edge_pct": 1.58,
+      "blended_hr_per_pa": 0.03541,
+      "breakout_score": 0.1207,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.2226,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7274,
+          "deviation": 0.2726
+        },
+        {
+          "name": "park",
+          "value": 0.7897,
+          "deviation": 0.2103
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1207,
+          "deviation": 0.1207
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-05-26.json"
 }
