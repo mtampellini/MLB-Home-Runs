@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-26T18:44:15.990081+00:00",
+  "generated_at": "2026-05-26T20:30:26.755642+00:00",
   "as_of_date": "2026-05-26",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.038537549407114624,
+  "league_hr_per_pa": 0.032603704270626054,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,122 @@
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 2,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "Ian Happ",
+      "batter_id": 664023,
+      "batter_hand": "L",
+      "team": "CHC",
+      "lineup_spot": 5,
+      "pitcher": "Braxton Ashcraft",
+      "pitcher_id": 677952,
+      "pitcher_hand": "R",
+      "park": "PIT",
+      "game_pk": 823379,
+      "game_datetime": "2026-05-26T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 521,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1531,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2299,
+      "ev_pct": 42.77,
+      "edge_pct": 7.68,
+      "blended_hr_per_pa": 0.04267,
+      "breakout_score": 0.1338,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0938,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3089,
+          "deviation": 0.3089
+        },
+        {
+          "name": "temperature",
+          "value": 1.134,
+          "deviation": 0.134
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1338,
+          "deviation": 0.1338
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Mois\u00e9s Ballesteros"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 12,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Ranger Suarez",
+      "pitcher_id": 624133,
+      "pitcher_hand": "L",
+      "park": "BOS",
+      "game_pk": 824758,
+      "game_datetime": "2026-05-26T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 439,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1761,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2464,
+      "ev_pct": 33.07,
+      "edge_pct": 7.03,
+      "blended_hr_per_pa": 0.05812,
+      "breakout_score": 0.0751,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.226,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7825,
+          "deviation": 0.7825
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8322,
+          "deviation": 0.1678
+        },
+        {
+          "name": "temperature",
+          "value": 1.134,
+          "deviation": 0.134
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    }
+  ],
+  "skipped_count": 17,
   "skipped_reference": "data/processed/skipped_batters_2026-05-26.json"
 }

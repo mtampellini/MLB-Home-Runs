@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-26T18:44:15.990470+00:00",
+  "generated_at": "2026-05-26T20:30:26.756317+00:00",
   "as_of_date": "2026-05-26",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.038537549407114624,
+  "league_hr_per_pa": 0.032603704270626054,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,115 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 1,
+      "daily_rank": 18,
+      "batter": "JJ Bleday",
+      "batter_id": 668709,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "David Peterson",
+      "pitcher_id": 656849,
+      "pitcher_hand": "L",
+      "park": "NYM",
+      "game_pk": 823624,
+      "game_datetime": "2026-05-26T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 710,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1134,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.142,
+      "ev_pct": 17.88,
+      "edge_pct": 2.86,
+      "blended_hr_per_pa": 0.05977,
+      "breakout_score": 0.0108,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1737,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8332,
+          "deviation": 0.8332
+        },
+        {
+          "name": "pitcher",
+          "value": 0.6292,
+          "deviation": 0.3708
+        },
+        {
+          "name": "wind",
+          "value": 1.0267,
+          "deviation": 0.0267
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 19,
+      "batter": "Samuel Basallo",
+      "batter_id": 694212,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 4,
+      "pitcher": "Griffin Jax",
+      "pitcher_id": 643377,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824837,
+      "game_datetime": "2026-05-26T22:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 386,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1811,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.205,
+      "ev_pct": 16.87,
+      "edge_pct": 2.4,
+      "blended_hr_per_pa": 0.04527,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5013,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3886,
+          "deviation": 0.3886
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8432,
+          "deviation": 0.1568
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 23,
       "batter": "CJ Abrams",
       "batter_id": 682928,
       "batter_hand": "L",
@@ -57,7 +165,7 @@
           "deviation": 0.0509
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 2,
+      "daily_rank": 24,
       "batter": "Curtis Mead",
       "batter_id": 678554,
       "batter_hand": "R",
@@ -111,7 +219,7 @@
           "deviation": 0.1207
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -119,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 2,
+  "skipped_count": 17,
   "skipped_reference": "data/processed/skipped_batters_2026-05-26.json"
 }
