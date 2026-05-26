@@ -2,23 +2,28 @@ name: Daily picks
 
 on:
   schedule:
-    # Every 13 minutes from 14:00 to 23:59 UTC = 10:00am to 7:59pm ET (EDT).
-    # Fires at :00, :13, :26, :39, :52 each hour → ~50 scheduled runs/day.
+    # Every 20 minutes from 14:00 to 23:59 UTC = 10:00am to 7:59pm ET (EDT).
+    # Fires at :00, :20, :40 each hour → ~30 scheduled runs/day.
     #
-    # Why so many:
+    # Reduced 2026-05-26 from */13 (~50/day) to */20 (~30/day) to lower the
+    # GitHub Actions footprint after an account suspension that the ~50/day
+    # cadence likely triggered (abuse/mining false-positive). This is a cron
+    # frequency change only — it does NOT touch filters, MODEL_VERSION, or
+    # features, so it does not violate the experiment lock (to 2026-06-18).
+    #
+    # Why still this many fires:
     #   1. Lineup-posting times span ~9 hours per day — afternoon games' lineups
     #      post 9-10am; 10pm West Coast games' lineups don't post until 6pm ET.
     #   2. GitHub Actions scheduled events are unreliable, especially at popular
     #      cron minutes (:00, :15, :30). Skip rate observed at 30-50% during
-    #      evening hours. Aggressive cadence + off-peak minutes (*/13) gives
-    #      defense in depth — expected fire rate ≈ every 25-30 min real-world
-    #      across the window.
+    #      evening hours. Off-peak minutes (*/20) give defense in depth —
+    #      expected fire rate ≈ every 30-40 min real-world across the window.
     #   3. run_daily is idempotent (merge mode): each fire only processes
     #      game_pks not already in today's archive. Re-runs with no new lineups
     #      exit fast.
     #   4. Concurrency guard below queues overlapping fires instead of letting
     #      them race the git push.
-    - cron: "*/13 14-23 * * *"
+    - cron: "*/20 14-23 * * *"
   workflow_dispatch:
 
 permissions:
