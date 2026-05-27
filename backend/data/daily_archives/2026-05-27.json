@@ -1,27 +1,27 @@
 {
   "date": "2026-05-27",
-  "generated_at": "2026-05-27T21:45:12.178924+00:00",
+  "generated_at": "2026-05-27T23:05:57.189721+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03413346952672795,
+  "league_hr_per_pa": 0.03158406219630709,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 6,
-    "games_pregame": 9,
-    "total_predictions": 95,
-    "skipped_low_data": 5,
-    "skipped_career_pa_filter": 8,
+    "games_excluded_live_or_complete": 11,
+    "games_pregame": 4,
+    "total_predictions": 16,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 95,
-    "matched_alt_market": 95,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 95,
-    "above_25_ev_pre_cap": 18,
-    "eligible_below_900_price_cap": 14,
-    "above_price_cap_pushed_to_secondary": 4,
+    "single_sided_devig": 16,
+    "above_25_ev_pre_cap": 0,
+    "eligible_below_900_price_cap": 0,
+    "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 20,
     "secondary_count": 13,
-    "shadow_count": 14
+    "shadow_count": 15
   },
   "primary_picks": [
     {
@@ -2544,6 +2544,60 @@
     {
       "tier": "shadow",
       "daily_rank": 46,
+      "batter": "Randal Grichuk",
+      "batter_id": 545341,
+      "batter_hand": "R",
+      "team": "CHW",
+      "lineup_spot": 4,
+      "pitcher": "Connor Prielipp",
+      "pitcher_id": 687570,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824596,
+      "game_datetime": "2026-05-27T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 508,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1615,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1843,
+      "ev_pct": 12.03,
+      "edge_pct": 2.28,
+      "blended_hr_per_pa": 0.04636,
+      "breakout_score": 0.0473,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2121,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4677,
+          "deviation": 0.4677
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1254,
+          "deviation": 0.1254
+        },
+        {
+          "name": "wind",
+          "value": 0.8979,
+          "deviation": 0.1021
+        }
+      ],
+      "tier_rank": 13,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 47,
       "batter": "Mark Vientos",
       "batter_id": 668901,
       "batter_hand": "R",
@@ -2588,7 +2642,7 @@
           "deviation": 0.1436
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 14,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2597,7 +2651,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 47,
+      "daily_rank": 48,
       "batter": "Taylor Trammell",
       "batter_id": 666211,
       "batter_hand": "L",
@@ -2642,7 +2696,7 @@
           "deviation": 0.0817
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
