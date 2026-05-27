@@ -1,18 +1,180 @@
 {
-  "generated_at": "2026-05-27T17:41:29.270702+00:00",
+  "generated_at": "2026-05-27T19:46:14.332404+00:00",
   "as_of_date": "2026-05-27",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03128390596745027,
+  "league_hr_per_pa": 0.03144129104062326,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 12,
-  "games_excluded_live_or_complete": 3,
+  "games_pregame": 10,
+  "games_excluded_live_or_complete": 5,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 10,
+      "daily_rank": 18,
+      "batter": "Spencer Steer",
+      "batter_id": 668715,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Huascar Brazob\u00e1n",
+      "pitcher_id": 623211,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823626,
+      "game_datetime": "2026-05-27T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 660,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1199,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1517,
+      "ev_pct": 22.92,
+      "edge_pct": 3.18,
+      "blended_hr_per_pa": 0.03307,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1402,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8547,
+          "deviation": 0.1453
+        },
+        {
+          "name": "temperature",
+          "value": 1.133,
+          "deviation": 0.133
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 19,
+      "batter": "Elly De La Cruz",
+      "batter_id": 682829,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 2,
+      "pitcher": "Huascar Brazob\u00e1n",
+      "pitcher_id": 623211,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823626,
+      "game_datetime": "2026-05-27T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 531,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1495,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1901,
+      "ev_pct": 21.66,
+      "edge_pct": 4.06,
+      "blended_hr_per_pa": 0.04433,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3128,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4099,
+          "deviation": 0.4099
+        },
+        {
+          "name": "pitcher",
+          "value": 0.74,
+          "deviation": 0.26
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 20,
+      "batter": "Tyler Stephenson",
+      "batter_id": 663886,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 8,
+      "pitcher": "Huascar Brazob\u00e1n",
+      "pitcher_id": 623211,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823626,
+      "game_datetime": "2026-05-27T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 810,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0985,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1197,
+      "ev_pct": 17.3,
+      "edge_pct": 2.11,
+      "blended_hr_per_pa": 0.03012,
+      "breakout_score": 0.0348,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1837,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.8547,
+          "deviation": 0.1453
+        },
+        {
+          "name": "temperature",
+          "value": 1.133,
+          "deviation": 0.133
+        },
+        {
+          "name": "wind",
+          "value": 1.0939,
+          "deviation": 0.0939
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
       "batter": "Victor Robles",
       "batter_id": 645302,
       "batter_hand": "R",
@@ -57,7 +219,7 @@
           "deviation": 0.0685
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +228,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 22,
       "batter": "Rob Refsnyder",
       "batter_id": 608701,
       "batter_hand": "R",
@@ -111,7 +273,7 @@
           "deviation": 0.0685
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -119,6 +281,6 @@
       }
     }
   ],
-  "skipped_count": 10,
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-05-27.json"
 }
