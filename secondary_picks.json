@@ -1,18 +1,126 @@
 {
-  "generated_at": "2026-05-27T19:46:14.332202+00:00",
+  "generated_at": "2026-05-27T21:45:12.177923+00:00",
   "as_of_date": "2026-05-27",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03144129104062326,
+  "league_hr_per_pa": 0.03413346952672795,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 10,
-  "games_excluded_live_or_complete": 5,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 13,
+      "daily_rank": 23,
+      "batter": "Wenceel P\u00e9rez",
+      "batter_id": 672761,
+      "batter_hand": "L",
+      "team": "DET",
+      "lineup_spot": 7,
+      "pitcher": "Jos\u00e9 Soriano",
+      "pitcher_id": 667755,
+      "pitcher_hand": "R",
+      "park": "DET",
+      "game_pk": 824270,
+      "game_datetime": "2026-05-27T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 1040,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0864,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.121,
+      "ev_pct": 37.92,
+      "edge_pct": 3.46,
+      "blended_hr_per_pa": 0.03035,
+      "breakout_score": -0.0258,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5238,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.115,
+          "deviation": 0.115
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8892,
+          "deviation": 0.1108
+        },
+        {
+          "name": "park",
+          "value": 0.9305,
+          "deviation": 0.0695
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 27,
+      "batter": "Gunnar Henderson",
+      "batter_id": 683002,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 2,
+      "pitcher": "Steven Matz",
+      "pitcher_id": 571927,
+      "pitcher_hand": "L",
+      "park": "BAL",
+      "game_pk": 824836,
+      "game_datetime": "2026-05-27T22:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 480,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1624,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2229,
+      "ev_pct": 31.48,
+      "edge_pct": 6.04,
+      "blended_hr_per_pa": 0.04036,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5126,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1825,
+          "deviation": 0.1825
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 30,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -57,7 +165,61 @@
           "deviation": 0.0685
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 12,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 31,
+      "batter": "Ezequiel Duran",
+      "batter_id": 677649,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 7,
+      "pitcher": "Mike Burrows",
+      "pitcher_id": 681347,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822897,
+      "game_datetime": "2026-05-28T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 1060,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0831,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1101,
+      "ev_pct": 27.69,
+      "edge_pct": 2.69,
+      "blended_hr_per_pa": 0.02349,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2391,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6882,
+          "deviation": 0.3118
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        }
+      ],
+      "tier_rank": 13,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -65,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-05-27.json"
 }

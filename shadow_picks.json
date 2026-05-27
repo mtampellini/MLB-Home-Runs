@@ -1,18 +1,72 @@
 {
-  "generated_at": "2026-05-27T19:46:14.332404+00:00",
+  "generated_at": "2026-05-27T21:45:12.178309+00:00",
   "as_of_date": "2026-05-27",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03144129104062326,
+  "league_hr_per_pa": 0.03413346952672795,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 10,
-  "games_excluded_live_or_complete": 5,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 36,
+      "batter": "Oswald Peraza",
+      "batter_id": 672724,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 7,
+      "pitcher": "Casey Mize",
+      "pitcher_id": 663554,
+      "pitcher_hand": "R",
+      "park": "DET",
+      "game_pk": 824270,
+      "game_datetime": "2026-05-27T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 830,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1022,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1327,
+      "ev_pct": 23.39,
+      "edge_pct": 3.04,
+      "blended_hr_per_pa": 0.03201,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4943,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.115,
+          "deviation": 0.115
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8992,
+          "deviation": 0.1008
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 37,
       "batter": "Spencer Steer",
       "batter_id": 668715,
       "batter_hand": "R",
@@ -57,7 +111,7 @@
           "deviation": 0.133
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +120,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 38,
       "batter": "Elly De La Cruz",
       "batter_id": 682829,
       "batter_hand": "L",
@@ -111,7 +165,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -120,7 +174,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 20,
+      "daily_rank": 40,
+      "batter": "Jake Burger",
+      "batter_id": 669394,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 5,
+      "pitcher": "Mike Burrows",
+      "pitcher_id": 681347,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822897,
+      "game_datetime": "2026-05-28T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 499,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1598,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1983,
+      "ev_pct": 18.81,
+      "edge_pct": 3.85,
+      "blended_hr_per_pa": 0.04847,
+      "breakout_score": -0.0299,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1222,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4199,
+          "deviation": 0.4199
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9701,
+          "deviation": 0.0299
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 41,
       "batter": "Tyler Stephenson",
       "batter_id": 663886,
       "batter_hand": "R",
@@ -165,7 +273,7 @@
           "deviation": 0.0939
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -174,7 +282,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 43,
       "batter": "Victor Robles",
       "batter_id": 645302,
       "batter_hand": "R",
@@ -219,7 +327,7 @@
           "deviation": 0.0685
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -228,7 +336,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 44,
+      "batter": "Jorge Soler",
+      "batter_id": 624585,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 4,
+      "pitcher": "Casey Mize",
+      "pitcher_id": 663554,
+      "pitcher_hand": "R",
+      "park": "DET",
+      "game_pk": 824270,
+      "game_datetime": "2026-05-27T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 456,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1688,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2015,
+      "ev_pct": 14.87,
+      "edge_pct": 3.28,
+      "blended_hr_per_pa": 0.04554,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3383,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3342,
+          "deviation": 0.3342
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.115,
+          "deviation": 0.115
+        }
+      ],
+      "tier_rank": 11,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 45,
       "batter": "Rob Refsnyder",
       "batter_id": 608701,
       "batter_hand": "R",
@@ -273,14 +435,68 @@
           "deviation": 0.0685
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": false
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 47,
+      "batter": "Taylor Trammell",
+      "batter_id": 666211,
+      "batter_hand": "L",
+      "team": "HOU",
+      "lineup_spot": 4,
+      "pitcher": "Jacob deGrom",
+      "pitcher_id": 594798,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822897,
+      "game_datetime": "2026-05-28T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 700,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.119,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1394,
+      "ev_pct": 11.48,
+      "edge_pct": 2.03,
+      "blended_hr_per_pa": 0.01953,
+      "breakout_score": 0.0817,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5475,
+          "deviation": 0.5475
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5721,
+          "deviation": 0.4279
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0817,
+          "deviation": 0.0817
+        }
+      ],
+      "tier_rank": 14,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-05-27.json"
 }

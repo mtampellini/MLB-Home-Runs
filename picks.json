@@ -1,16 +1,75 @@
 {
-  "generated_at": "2026-05-27T19:46:14.331981+00:00",
+  "generated_at": "2026-05-27T21:45:12.177597+00:00",
   "as_of_date": "2026-05-27",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03144129104062326,
+  "league_hr_per_pa": 0.03413346952672795,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 10,
-  "games_excluded_live_or_complete": 5,
-  "picks": [],
-  "skipped_count": 4,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 6,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 21,
+      "batter": "Yordan Alvarez",
+      "batter_id": 670541,
+      "batter_hand": "L",
+      "team": "HOU",
+      "lineup_spot": 2,
+      "pitcher": "Jacob deGrom",
+      "pitcher_id": 594798,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822897,
+      "game_datetime": "2026-05-28T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 250,
+      "dk_odds": 270,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2697,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 39.7,
+      "edge_pct": 10.79,
+      "blended_hr_per_pa": 0.05922,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0781,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.735,
+          "deviation": 0.735
+        },
+        {
+          "name": "pitcher",
+          "value": 1.5475,
+          "deviation": 0.5475
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Christian Walker"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-05-27.json"
 }
