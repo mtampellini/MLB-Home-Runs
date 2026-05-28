@@ -1,75 +1,75 @@
 {
-  "generated_at": "2026-05-28T00:17:05.056020+00:00",
-  "as_of_date": "2026-05-27",
+  "generated_at": "2026-05-28T15:26:22.650165+00:00",
+  "as_of_date": "2026-05-28",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.032955715756951595,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
-  "total_games_today": 15,
-  "games_pregame": 1,
-  "games_excluded_live_or_complete": 14,
+  "total_games_today": 6,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 0,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 21,
-      "batter": "Yordan Alvarez",
-      "batter_id": 670541,
-      "batter_hand": "L",
-      "team": "HOU",
-      "lineup_spot": 2,
-      "pitcher": "Jacob deGrom",
-      "pitcher_id": 594798,
+      "daily_rank": 2,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 3,
+      "pitcher": "Grayson Rodriguez",
+      "pitcher_id": 680570,
       "pitcher_hand": "R",
-      "park": "TEX",
-      "game_pk": 822897,
-      "game_datetime": "2026-05-28T00:05:00+00:00",
+      "park": "DET",
+      "game_pk": 824272,
+      "game_datetime": "2026-05-28T17:10:00+00:00",
       "line": 0.5,
-      "fd_odds": 250,
-      "dk_odds": 270,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.2697,
+      "fd_odds": 570,
+      "dk_odds": 546,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1444,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.3776,
-      "ev_pct": 39.7,
-      "edge_pct": 10.79,
-      "blended_hr_per_pa": 0.05922,
-      "breakout_score": 0.15,
+      "model_prob": 0.2028,
+      "ev_pct": 35.85,
+      "edge_pct": 5.83,
+      "blended_hr_per_pa": 0.04668,
+      "breakout_score": 0.0616,
       "low_confidence": false,
       "pitcher_factor_shrunk": true,
-      "trend_signal": -0.0781,
-      "unstable_recent": false,
+      "trend_signal": -0.5147,
+      "unstable_recent": true,
       "top_3_features": [
         {
           "name": "batter_skill",
-          "value": 1.735,
-          "deviation": 0.735
+          "value": 1.4164,
+          "deviation": 0.4164
         },
         {
-          "name": "pitcher",
-          "value": 1.5475,
-          "deviation": 0.5475
+          "name": "wind",
+          "value": 1.0756,
+          "deviation": 0.0756
         },
         {
-          "name": "breakout_signal",
-          "value": 1.15,
-          "deviation": 0.15
+          "name": "park",
+          "value": 0.9259,
+          "deviation": 0.0741
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
-        "Christian Walker"
+        "Kevin McGonigle"
       ],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
-        "passes_quad": true
+        "passes_quad": false
       }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-05-27.json"
+  "skipped_count": 4,
+  "skipped_reference": "data/processed/skipped_batters_2026-05-28.json"
 }
