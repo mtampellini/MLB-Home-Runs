@@ -27,6 +27,13 @@ const CALIBRATION_MIN_PICKS = 100   // calibration view shows numbers below this
 // over-predict at different rates. See the README of 2026-05-13.
 const MODEL_REBUILD_DATE = '2026-05-13'
 
+// Triple-filter ship date. The production triple filter (stacked-EV shade +
+// EV ceiling + pitcher-factor band) went live 2026-05-20 and every pick since
+// carries filter_status. The "Since triple" range scopes the view to this date
+// onward — the live experiment window (pre-registered eval 2026-06-18). Combine
+// with View = Triple to see exactly what's been shown/bet since the filter went on.
+const TRIPLE_FILTER_DATE = '2026-05-20'
+
 // ─── data loading at build time ────────────────────────────────────────
 export async function getStaticProps() {
   const archivesDir = path.join(process.cwd(), 'backend/data/daily_archives')
@@ -746,6 +753,8 @@ export default function Tracker({ archives, tracker }) {
     } else if (dateFilter === '30d') {
       const cutoff = new Date(today); cutoff.setDate(cutoff.getDate() - 30)
       list = list.filter(a => new Date(a.date) >= cutoff)
+    } else if (dateFilter === 'since_triple') {
+      list = list.filter(a => a.date >= TRIPLE_FILTER_DATE)
     }
     const sorted = [...list]
     if (sortBy === 'date_desc') sorted.sort((a, b) => b.date.localeCompare(a.date))
@@ -934,10 +943,11 @@ export default function Tracker({ archives, tracker }) {
           )}
           <FilterRow label="Range" value={dateFilter} onChange={setDateFilter}
             options={[
-              ['all',       'All time'],
-              ['30d',       '30 days'],
-              ['7d',        '7 days'],
-              ['yesterday', 'Yesterday'],
+              ['all',          'All time'],
+              ['since_triple', 'Since triple (5/20)'],
+              ['30d',          '30 days'],
+              ['7d',           '7 days'],
+              ['yesterday',    'Yesterday'],
             ]} />
           <FilterRow label="Sort"  value={sortBy} onChange={setSortBy}
             options={[
