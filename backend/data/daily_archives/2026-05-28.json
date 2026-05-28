@@ -1,27 +1,27 @@
 {
   "date": "2026-05-28",
-  "generated_at": "2026-05-28T19:56:00.329021+00:00",
+  "generated_at": "2026-05-28T22:26:13.199929+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03645200486026731,
   "funnel": {
     "total_slate_games": 6,
-    "games_excluded_live_or_complete": 3,
-    "games_pregame": 3,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "games_excluded_live_or_complete": 5,
+    "games_pregame": 1,
+    "total_predictions": 15,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 15,
+    "matched_alt_market": 15,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
+    "single_sided_devig": 15,
     "above_25_ev_pre_cap": 0,
     "eligible_below_900_price_cap": 0,
     "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 7,
     "secondary_count": 1,
-    "shadow_count": 4
+    "shadow_count": 5
   },
   "primary_picks": [
     {
@@ -602,6 +602,60 @@
     {
       "tier": "shadow",
       "daily_rank": 11,
+      "batter": "Brice Matthews",
+      "batter_id": 694728,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 8,
+      "pitcher": "Nathan Eovaldi",
+      "pitcher_id": 543135,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822896,
+      "game_datetime": "2026-05-29T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 810,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1071,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1273,
+      "ev_pct": 15.8,
+      "edge_pct": 2.01,
+      "blended_hr_per_pa": 0.04217,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2463,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1568,
+          "deviation": 0.1568
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 12,
       "batter": "Miguel Vargas",
       "batter_id": 678246,
       "batter_hand": "R",
@@ -646,7 +700,7 @@
           "deviation": 0.1366
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -655,7 +709,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 12,
+      "daily_rank": 13,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
@@ -700,7 +754,7 @@
           "deviation": 0.0741
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
