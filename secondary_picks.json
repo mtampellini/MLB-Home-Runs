@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-29T20:08:31.822553+00:00",
+  "generated_at": "2026-05-29T22:13:00.019653+00:00",
   "as_of_date": "2026-05-29",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.034144921912891646,
+  "league_hr_per_pa": 0.030927835051546393,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,61 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 9,
+      "daily_rank": 13,
+      "batter": "Konnor Griffin",
+      "batter_id": 804606,
+      "batter_hand": "R",
+      "team": "PIT",
+      "lineup_spot": 6,
+      "pitcher": "Taj Bradley",
+      "pitcher_id": 671737,
+      "pitcher_hand": "R",
+      "park": "PIT",
+      "game_pk": 823377,
+      "game_datetime": "2026-05-29T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 840,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0951,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1404,
+      "ev_pct": 43.2,
+      "edge_pct": 4.53,
+      "blended_hr_per_pa": 0.05556,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3222,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7963,
+          "deviation": 0.7963
+        },
+        {
+          "name": "park",
+          "value": 0.6898,
+          "deviation": 0.3102
+        },
+        {
+          "name": "pitcher",
+          "value": 0.7046,
+          "deviation": 0.2954
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 20,
       "batter": "Jacob Young",
       "batter_id": 696285,
       "batter_hand": "R",
@@ -57,14 +111,230 @@
           "deviation": 0.092
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 21,
+      "batter": "Nico Hoerner",
+      "batter_id": 663538,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 2,
+      "pitcher": "Andre Pallante",
+      "pitcher_id": 669467,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823055,
+      "game_datetime": "2026-05-29T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1600,
+      "dk_odds": 1660,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.052,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.076,
+      "ev_pct": 33.69,
+      "edge_pct": 2.39,
+      "blended_hr_per_pa": 0.01813,
+      "breakout_score": 0.1082,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.586,
+          "deviation": 0.414
+        },
+        {
+          "name": "pitcher",
+          "value": 0.847,
+          "deviation": 0.153
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1082,
+          "deviation": 0.1082
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 23,
+      "batter": "Alex Bregman",
+      "batter_id": 608324,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 4,
+      "pitcher": "Andre Pallante",
+      "pitcher_id": 669467,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823055,
+      "game_datetime": "2026-05-29T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 870,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.091,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1209,
+      "ev_pct": 30.62,
+      "edge_pct": 3.0,
+      "blended_hr_per_pa": 0.03138,
+      "breakout_score": 0.0865,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7771,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.847,
+          "deviation": 0.153
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0865,
+          "deviation": 0.0865
+        },
+        {
+          "name": "park",
+          "value": 0.9143,
+          "deviation": 0.0857
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 25,
+      "batter": "Josh Jung",
+      "batter_id": 673962,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 2,
+      "pitcher": "Stephen Kolek",
+      "pitcher_id": 663568,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822894,
+      "game_datetime": "2026-05-30T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 860,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0959,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1309,
+      "ev_pct": 28.29,
+      "edge_pct": 3.5,
+      "blended_hr_per_pa": 0.02995,
+      "breakout_score": -0.0774,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.065,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9226,
+          "deviation": 0.0774
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9683,
+          "deviation": 0.0317
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 27,
+      "batter": "Jake Burger",
+      "batter_id": 669394,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 4,
+      "pitcher": "Stephen Kolek",
+      "pitcher_id": 663568,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822894,
+      "game_datetime": "2026-05-30T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 525,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1502,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1985,
+      "ev_pct": 27.03,
+      "edge_pct": 4.83,
+      "blended_hr_per_pa": 0.0474,
+      "breakout_score": -0.0477,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0639,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5325,
+          "deviation": 0.5325
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9523,
+          "deviation": 0.0477
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
     }
   ],
-  "skipped_count": 11,
+  "skipped_count": 19,
   "skipped_reference": "data/processed/skipped_batters_2026-05-29.json"
 }
