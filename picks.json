@@ -1,19 +1,78 @@
 {
-  "generated_at": "2026-05-30T18:53:31.882190+00:00",
+  "generated_at": "2026-05-30T19:54:19.506913+00:00",
   "as_of_date": "2026-05-30",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03138847858197932,
+  "league_hr_per_pa": 0.03173311635475997,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 14,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 8,
+  "games_excluded_live_or_complete": 7,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 12,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Brady Singer",
+      "pitcher_id": 663903,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824513,
+      "game_datetime": "2026-05-30T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 270,
+      "dk_odds": 258,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2666,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.371,
+      "ev_pct": 37.26,
+      "edge_pct": 10.44,
+      "blended_hr_per_pa": 0.05785,
+      "breakout_score": 0.1328,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.393,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8231,
+          "deviation": 0.8231
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.1875,
+          "deviation": 0.1875
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Michael Harris II",
+        "Dominic Smith"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
       "batter": "Brandon Lowe",
       "batter_id": 664040,
       "batter_hand": "L",
@@ -58,7 +117,7 @@
           "deviation": 0.0442
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": true,
       "stacked_with": [
         "Oneil Cruz",
@@ -72,7 +131,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 9,
       "batter": "Spencer Horwitz",
       "batter_id": 687462,
       "batter_hand": "L",
@@ -117,7 +176,7 @@
           "deviation": 0.0277
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 11,
       "stacked": true,
       "stacked_with": [
         "Brandon Lowe",
@@ -131,7 +190,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 10,
       "batter": "Matt Vierling",
       "batter_id": 663837,
       "batter_hand": "R",
@@ -176,7 +235,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 13,
       "stacked": true,
       "stacked_with": [
         "Dillon Dingler",
@@ -190,7 +249,63 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 19,
+      "daily_rank": 22,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 9,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824513,
+      "game_datetime": "2026-05-30T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 690,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1252,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1606,
+      "ev_pct": 26.9,
+      "edge_pct": 3.54,
+      "blended_hr_per_pa": 0.03675,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.625,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1581,
+          "deviation": 0.1581
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
+        }
+      ],
+      "tier_rank": 17,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 23,
       "batter": "Angel Mart\u00ednez",
       "batter_id": 682657,
       "batter_hand": "L",
@@ -235,7 +350,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 18,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -245,6 +360,6 @@
       }
     }
   ],
-  "skipped_count": 8,
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-05-30.json"
 }
