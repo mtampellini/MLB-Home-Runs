@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "node --test src/lib/bets.test.js src/lib/bets.dom.test.js"
   },
   "dependencies": {
     "next": "14.2.5",
