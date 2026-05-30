@@ -1,0 +1,317 @@
+{
+  "date": "2026-05-30",
+  "generated_at": "2026-05-30T15:12:16.748344+00:00",
+  "model_version": "v7-baseline-0.2.0",
+  "league_hr_per_pa": 0.03115727002967359,
+  "funnel": {
+    "total_slate_games": 15,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 15,
+    "total_predictions": 15,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 3,
+    "skipped_other": 0,
+    "matched_in_odds_market": 15,
+    "matched_alt_market": 15,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 15,
+    "above_25_ev_pre_cap": 3,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 3,
+    "secondary_count": 0,
+    "shadow_count": 2
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 2,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824593,
+      "game_datetime": "2026-05-30T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 563,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1483,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2762,
+      "ev_pct": 83.09,
+      "edge_pct": 12.79,
+      "blended_hr_per_pa": 0.04849,
+      "breakout_score": 0.0638,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4826,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5563,
+          "deviation": 0.5563
+        },
+        {
+          "name": "pitcher",
+          "value": 1.5219,
+          "deviation": 0.5219
+        },
+        {
+          "name": "wind",
+          "value": 0.8819,
+          "deviation": 0.1181
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Jahmai Jones",
+        "Matt Vierling"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Jahmai Jones",
+      "batter_id": 663330,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 6,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824593,
+      "game_datetime": "2026-05-30T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 545,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1503,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2011,
+      "ev_pct": 29.71,
+      "edge_pct": 5.08,
+      "blended_hr_per_pa": 0.0389,
+      "breakout_score": 0.0445,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5219,
+          "deviation": 0.5219
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2485,
+          "deviation": 0.2485
+        },
+        {
+          "name": "wind",
+          "value": 0.8819,
+          "deviation": 0.1181
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Dillon Dingler",
+        "Matt Vierling"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Matt Vierling",
+      "batter_id": 663837,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 3,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824593,
+      "game_datetime": "2026-05-30T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 830,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1005,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1478,
+      "ev_pct": 37.44,
+      "edge_pct": 4.72,
+      "blended_hr_per_pa": 0.0231,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1771,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5219,
+          "deviation": 0.5219
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7415,
+          "deviation": 0.2585
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Dillon Dingler",
+        "Jahmai Jones"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "secondary_picks": [],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 4,
+      "batter": "Wenceel P\u00e9rez",
+      "batter_id": 672761,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 7,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824593,
+      "game_datetime": "2026-05-30T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 740,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1163,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1421,
+      "ev_pct": 19.34,
+      "edge_pct": 2.58,
+      "blended_hr_per_pa": 0.03264,
+      "breakout_score": -0.1213,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.7311,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5219,
+          "deviation": 0.5219
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8787,
+          "deviation": 0.1213
+        },
+        {
+          "name": "wind",
+          "value": 0.8819,
+          "deviation": 0.1181
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Spencer Torkelson",
+      "batter_id": 679529,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 5,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824593,
+      "game_datetime": "2026-05-30T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 443,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1754,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2189,
+      "ev_pct": 18.88,
+      "edge_pct": 4.35,
+      "blended_hr_per_pa": 0.04142,
+      "breakout_score": 0.0267,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2109,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5219,
+          "deviation": 0.5219
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.3295,
+          "deviation": 0.3295
+        },
+        {
+          "name": "wind",
+          "value": 0.8819,
+          "deviation": 0.1181
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    }
+  ],
+  "settlement": null
+}
