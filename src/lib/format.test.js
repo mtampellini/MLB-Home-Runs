@@ -4,18 +4,21 @@ const assert = require('node:assert/strict')
 
 const { fmtRefreshed } = require('./format')
 
-test('fmtRefreshed renders a stable UTC string regardless of host timezone', () => {
-  // The whole point is timezone-independence (server build vs client browser),
-  // so pin the process TZ to something far from UTC and assert UTC output.
+test('fmtRefreshed renders Eastern time, DST-aware, regardless of host timezone', () => {
+  // The result must depend only on the instant + America/New_York, not the
+  // host's TZ (server build vs client browser), so pin the process TZ far away.
   const prev = process.env.TZ
   process.env.TZ = 'America/Los_Angeles'
   try {
-    assert.equal(fmtRefreshed('2026-05-30T19:22:00Z'), 'May 30, 2026, 7:22pm UTC')
-    // Midnight and noon edge cases for the 12-hour clock.
-    assert.equal(fmtRefreshed('2026-01-01T00:05:00Z'), 'Jan 1, 2026, 12:05am UTC')
-    assert.equal(fmtRefreshed('2026-12-31T12:00:00Z'), 'Dec 31, 2026, 12:00pm UTC')
-    // Single-digit minutes are zero-padded.
-    assert.equal(fmtRefreshed('2026-07-04T23:09:00Z'), 'Jul 4, 2026, 11:09pm UTC')
+    // Summer -> EDT (UTC-4): 19:22Z = 3:22pm ET.
+    assert.equal(fmtRefreshed('2026-05-30T19:22:00Z'), 'May 30, 2026, 3:22pm ET')
+    assert.equal(fmtRefreshed('2026-07-04T23:09:00Z'), 'Jul 4, 2026, 7:09pm ET')
+    // Winter -> EST (UTC-5). 00:05Z rolls back across midnight to the prior day.
+    assert.equal(fmtRefreshed('2026-01-01T00:05:00Z'), 'Dec 31, 2025, 7:05pm ET')
+    // Noon UTC in winter is 7:00am ET.
+    assert.equal(fmtRefreshed('2026-12-31T12:00:00Z'), 'Dec 31, 2026, 7:00am ET')
+    // Midnight ET (05:00Z in winter) renders as 12:xx am, not 0:xx.
+    assert.equal(fmtRefreshed('2026-12-31T05:07:00Z'), 'Dec 31, 2026, 12:07am ET')
   } finally {
     process.env.TZ = prev
   }
