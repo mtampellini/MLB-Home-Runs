@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-30T16:18:16.608917+00:00",
+  "generated_at": "2026-05-30T17:45:57.874344+00:00",
   "as_of_date": "2026-05-30",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030513042641255175,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,115 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 4,
+      "daily_rank": 16,
+      "batter": "Salvador Perez",
+      "batter_id": 521692,
+      "batter_hand": "R",
+      "team": "KC",
+      "lineup_spot": 5,
+      "pitcher": "Kumar Rocker",
+      "pitcher_id": 677958,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822893,
+      "game_datetime": "2026-05-30T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 620,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1369,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1703,
+      "ev_pct": 22.63,
+      "edge_pct": 3.34,
+      "blended_hr_per_pa": 0.04694,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4974,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5384,
+          "deviation": 0.5384
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 18,
+      "batter": "Jorge Soler",
+      "batter_id": 624585,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 4,
+      "pitcher": "Drew Rasmussen",
+      "pitcher_id": 656876,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822975,
+      "game_datetime": "2026-05-30T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 485,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1617,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2066,
+      "ev_pct": 21.91,
+      "edge_pct": 4.49,
+      "blended_hr_per_pa": 0.04453,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3385,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4595,
+          "deviation": 0.4595
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0563,
+          "deviation": 0.0563
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
       "batter": "Wenceel P\u00e9rez",
       "batter_id": 672761,
       "batter_hand": "R",
@@ -57,7 +165,7 @@
           "deviation": 0.1181
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 22,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
@@ -111,7 +219,7 @@
           "deviation": 0.1181
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -119,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-05-30.json"
 }
