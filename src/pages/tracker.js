@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import fs from 'fs'
 import path from 'path'
+import { betKey, toggleBet, countBetsForDay, countBets, loadBets, saveBets } from '../lib/bets'
 
 const T = {
   bg: '#ffffff',
@@ -358,7 +359,7 @@ function StatCard({ label, value, sub, tone = 'default' }) {
   )
 }
 
-function PickRow({ pick, settledPick }) {
+function PickRow({ pick, settledPick, betted, onToggleBet }) {
   const bp = pick.best_book === 'draftkings' ? pick.dk_odds : pick.fd_odds
   const otherLabel = pick.best_book === 'draftkings' ? 'FD' : 'DK'
   const otherPrice = pick.best_book === 'draftkings' ? pick.fd_odds : pick.dk_odds
@@ -413,8 +414,31 @@ function PickRow({ pick, settledPick }) {
     )
   }
 
+  const onBet = (e) => {
+    e.stopPropagation()
+    onToggleBet()
+  }
+
   return (
-    <tr style={{ borderBottom: `1px solid ${T.border}` }}>
+    <tr style={{
+      borderBottom: `1px solid ${T.border}`,
+      background: betted ? '#f0fdf4' : 'transparent',
+    }}>
+      <td style={{ padding: '14px 8px', textAlign: 'center', verticalAlign: 'top' }}>
+        <button
+          onClick={onBet}
+          aria-pressed={betted}
+          title={betted ? 'You bet on this player — click to clear' : 'Mark that you bet on this player'}
+          style={{
+            width: 26, height: 26, borderRadius: 6, cursor: 'pointer',
+            border: `1.5px solid ${betted ? T.positive : T.borderStrong}`,
+            background: betted ? T.positive : 'transparent',
+            color: '#ffffff', fontSize: 15, lineHeight: 1, fontFamily: 'inherit',
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            padding: 0, transition: 'background 0.1s, border-color 0.1s',
+          }}
+        >{betted ? '✓' : ''}</button>
+      </td>
       <td style={{
         padding: '14px 8px', textAlign: 'right', verticalAlign: 'top',
         fontSize: 11, color: T.textLight, ...TABULAR,
@@ -482,9 +506,11 @@ function PickRow({ pick, settledPick }) {
   )
 }
 
-function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'baseline' }) {
+function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'baseline', bets, onToggleBet }) {
   const summary = summarizeArchive(archive.data, tierFilter, filterView)
   const data = archive.data
+  const date = archive.date
+  const dayBetCount = countBetsForDay(bets, date)
 
   const picks = useMemo(() => {
     const all = []
@@ -545,6 +571,13 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'basel
           ) : (
             <span style={{ fontSize: 12, color: T.textLight }}>unsettled</span>
           )}
+          {dayBetCount > 0 && (
+            <span style={{
+              fontSize: 11, color: T.positive, fontWeight: 600,
+              border: `1px solid ${T.positive}`, borderRadius: 4,
+              padding: '2px 8px', ...TABULAR,
+            }}>✓ {dayBetCount} bet</span>
+          )}
         </div>
         <span style={{
           fontSize: 12, color: T.textLight,
@@ -557,7 +590,7 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'basel
             <thead>
               <tr style={{ borderBottom: `1px solid ${T.borderStrong}` }}>
                 {[
-                  ['#', 'right'], ['Batter', 'left'], ['Pitcher', 'left'],
+                  ['Bet', 'center'], ['#', 'right'], ['Batter', 'left'], ['Pitcher', 'left'],
                   ['Model', 'right'], ['Market', 'right'], ['Edge', 'right'],
                   ['EV', 'right'], ['Odds', 'right'],
                   ['Result', 'left'], ['Share', 'center'],
@@ -572,7 +605,16 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'basel
             <tbody>
               {picks.map(p => {
                 const k = `${p.batter_id}|${p.game_pk || ''}`
-                return <PickRow key={k} pick={p} settledPick={settledByKey[k]} />
+                const bKey = betKey(date, p.batter_id, p.game_pk)
+                return (
+                  <PickRow
+                    key={k}
+                    pick={p}
+                    settledPick={settledByKey[k]}
+                    betted={!!bets[bKey]}
+                    onToggleBet={() => onToggleBet(bKey)}
+                  />
+                )
               })}
             </tbody>
           </table>
@@ -717,6 +759,27 @@ export default function Tracker({ archives, tracker }) {
     return newest ? { [newest]: true } : {}
   })
 
+  // "Did I bet on this player?" flags. This is a statically-built page with no
+  // per-user backend, so the set lives in the browser's localStorage. Start
+  // empty so the server-rendered HTML and first client render match (no
+  // hydration mismatch); the saved flags load in an effect right after mount.
+  const [bets, setBets] = useState({})
+  const [betsLoaded, setBetsLoaded] = useState(false)
+  useEffect(() => {
+    setBets(loadBets(window.localStorage))
+    setBetsLoaded(true)
+  }, [])
+  // Persist on every change — but only after the initial load, so we never
+  // clobber stored flags with the empty starting state.
+  useEffect(() => {
+    if (!betsLoaded) return
+    saveBets(window.localStorage, bets)
+  }, [bets, betsLoaded])
+  const handleToggleBet = useCallback((key) => {
+    setBets(prev => toggleBet(prev, key))
+  }, [])
+  const totalBets = countBets(bets)
+
   // Two related conditions:
   //   hasPreRebuild — any pre-rebuild archive is in the dataset; drives the
   //     banner so users see the context whenever old-model data could be on
@@ -838,6 +901,9 @@ export default function Tracker({ archives, tracker }) {
           </div>
           <div style={{ fontSize: 12, color: T.textLight, marginTop: 8 }}>
             {archives.length} archived day{archives.length === 1 ? '' : 's'} · day {daysSinceDeploy} since deploy
+            {totalBets > 0 && (
+              <span style={{ color: T.positive, fontWeight: 600 }}> · ✓ {totalBets} bet{totalBets === 1 ? '' : 's'} flagged</span>
+            )}
           </div>
         </div>
 
@@ -974,7 +1040,9 @@ export default function Tracker({ archives, tracker }) {
                         expanded={!!expanded[a.date]}
                         onToggle={() => setExpanded(p => ({ ...p, [a.date]: !p[a.date] }))}
                         tierFilter={tierFilter}
-                        filterView={filterView} />
+                        filterView={filterView}
+                        bets={bets}
+                        onToggleBet={handleToggleBet} />
             ))}
             <div style={{ borderTop: `1px solid ${T.border}` }} />
           </div>
@@ -999,6 +1067,9 @@ export default function Tracker({ archives, tracker }) {
           <strong style={{ color: T.textMedium }}>Triple</strong> is the production filter
           (stacked-EV shade + EV ceiling + pitcher-factor band),{' '}
           <strong style={{ color: T.textMedium }}>Quad</strong> adds a model-prob band drop.
+          {' '}The <strong style={{ color: T.textMedium }}>Bet</strong> checkbox marks which
+          players you actually bet on; flags are saved in this browser (localStorage) and
+          persist across reloads — they're personal and not part of the model's record.
         </div>
       </div>
     </>
