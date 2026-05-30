@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-30T17:45:57.874344+00:00",
+  "generated_at": "2026-05-30T18:53:31.883049+00:00",
   "as_of_date": "2026-05-30",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030513042641255175,
+  "league_hr_per_pa": 0.03138847858197932,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 16,
+      "daily_rank": 21,
       "batter": "Salvador Perez",
       "batter_id": 521692,
       "batter_hand": "R",
@@ -66,7 +66,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 23,
       "batter": "Jorge Soler",
       "batter_id": 624585,
       "batter_hand": "R",
@@ -120,7 +120,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 26,
       "batter": "Wenceel P\u00e9rez",
       "batter_id": 672761,
       "batter_hand": "R",
@@ -174,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 27,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
@@ -225,8 +225,62 @@
         "passes_triple": true,
         "passes_quad": false
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 28,
+      "batter": "Yordan Alvarez",
+      "batter_id": 670541,
+      "batter_hand": "L",
+      "team": "HOU",
+      "lineup_spot": 2,
+      "pitcher": "Brandon Sproat",
+      "pitcher_id": 687075,
+      "pitcher_hand": "R",
+      "park": "HOU",
+      "game_pk": 824190,
+      "game_datetime": "2026-05-30T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 300,
+      "dk_odds": 275,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2481,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2963,
+      "ev_pct": 18.51,
+      "edge_pct": 4.82,
+      "blended_hr_per_pa": 0.06225,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1588,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9834,
+          "deviation": 0.9834
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0911,
+          "deviation": 0.0911
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
     }
   ],
-  "skipped_count": 12,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-05-30.json"
 }

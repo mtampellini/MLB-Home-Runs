@@ -1,18 +1,72 @@
 {
-  "generated_at": "2026-05-30T17:45:57.874133+00:00",
+  "generated_at": "2026-05-30T18:53:31.882765+00:00",
   "as_of_date": "2026-05-30",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030513042641255175,
+  "league_hr_per_pa": 0.03138847858197932,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "secondary",
       "daily_rank": 4,
+      "batter": "Andr\u00e9s Gim\u00e9nez",
+      "batter_id": 665926,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 8,
+      "pitcher": "Brandon Young",
+      "pitcher_id": 687064,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824833,
+      "game_datetime": "2026-05-30T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1180,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0721,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1149,
+      "ev_pct": 49.32,
+      "edge_pct": 4.28,
+      "blended_hr_per_pa": 0.03019,
+      "breakout_score": -0.0223,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0682,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9618,
+          "deviation": 0.0382
+        },
+        {
+          "name": "wind",
+          "value": 0.9699,
+          "deviation": 0.0301
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 6,
       "batter": "Oswald Peraza",
       "batter_id": 672724,
       "batter_hand": "R",
@@ -57,7 +111,7 @@
           "deviation": 0.0312
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -65,6 +119,6 @@
       }
     }
   ],
-  "skipped_count": 12,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-05-30.json"
 }
