@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useCallback } from 'react'
 import fs from 'fs'
 import path from 'path'
 import { betKey, toggleBet, countBetsForDay, countBets, loadBets, saveBets } from '../lib/bets'
+import { fmtRefreshed } from '../lib/format'
 
 const T = {
   bg: '#ffffff',
@@ -60,7 +61,12 @@ export async function getStaticProps() {
     ))
   } catch { /* no tracker yet */ }
 
-  return { props: { archives, tracker } }
+  // Build timestamp — the page is statically generated, so "now" at build
+  // time is when the data was last refreshed (each daily cron / Vercel deploy
+  // regenerates it). Surfaced in the header as "Last refreshed".
+  const generatedAt = new Date().toISOString()
+
+  return { props: { archives, tracker, generatedAt } }
 }
 
 // ─── helpers ──────────────────────────────────────────────────────────
@@ -738,7 +744,8 @@ function FilterRow({ label, options, value, onChange }) {
 }
 
 // ─── page component ────────────────────────────────────────────────────
-export default function Tracker({ archives, tracker }) {
+export default function Tracker({ archives, tracker, generatedAt }) {
+  const refreshed = fmtRefreshed(generatedAt)
   const [tierFilter, setTierFilter] = useState('primary')
   const [dateFilter, setDateFilter] = useState('all')
   // View filter scopes the top metrics by post-build empirical filter.
@@ -901,6 +908,7 @@ export default function Tracker({ archives, tracker }) {
           </div>
           <div style={{ fontSize: 12, color: T.textLight, marginTop: 8 }}>
             {archives.length} archived day{archives.length === 1 ? '' : 's'} · day {daysSinceDeploy} since deploy
+            {refreshed && <> · last refreshed {refreshed}</>}
             {totalBets > 0 && (
               <span style={{ color: T.positive, fontWeight: 600 }}> · ✓ {totalBets} bet{totalBets === 1 ? '' : 's'} flagged</span>
             )}
