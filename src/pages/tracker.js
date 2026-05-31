@@ -858,21 +858,23 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     return sorted
   }, [archives, dateFilter, sortBy, tierFilter, modelFilter, filterView, betsOnly, bets])
 
-  // Top-level metrics — driven by tier, model, AND date filters. When any
-  // filter is non-default, compute client-side from the filtered archives so
-  // the panels match what the day blocks show. Only the all-time / all-model
-  // path uses tracker.json (faster, and the only path that carries CLV since
-  // closing snaps aren't reconstructible from per-day archives).
+  // Top-level metrics. tracker.json is the canonical aggregate AND the only
+  // source carrying CLV (closing snaps aren't reconstructible from per-day
+  // archives). Crucially, tracker.json is itself scoped to post-rebuild
+  // (date_range starts MODEL_REBUILD_DATE), so it's the correct source for BOTH
+  // the "Post-rebuild" view (the default) and the "All" view — not just "All".
+  // We only fall back to per-archive compute (which yields no CLV) when the
+  // view can't be served by tracker.json: a date sub-range, the pre-rebuild
+  // slice, the bets-only slice, or when tracker.json is missing.
   const sum = useMemo(() => {
     // Bets-only ROI must be reconstructed from the flagged picks (tracker.json
     // has no per-bet record), so always compute client-side in this mode.
     if (betsOnly) {
       return computeSummaryFromArchives(filteredArchives, tierFilter, filterView, bets, true)
     }
-    if (modelFilter !== 'all' || dateFilter !== 'all') {
+    if (dateFilter !== 'all' || modelFilter === 'pre' || !tracker) {
       return computeSummaryFromArchives(filteredArchives, tierFilter, filterView)
     }
-    if (!tracker) return {}
     // Filter views read from the by_filter block. Falls back to baseline
     // (with a 0-count summary) if a pre-2026-05-20 tracker.json is loaded.
     const source = filterView === 'baseline'
