@@ -5,6 +5,7 @@ import fs from 'fs'
 import path from 'path'
 import { betKey, toggleBet, countBetsForDay, countBets, loadBets, saveBets } from '../lib/bets'
 import { fmtRefreshed } from '../lib/format'
+import { summaryFromCounts, aggregateResults, collectResults } from '../lib/betStats'
 
 const T = {
   bg: '#ffffff',
@@ -170,13 +171,13 @@ function combineTrackerSummaries(...sums) {
 // Mirrors backend tracker.py for the basic stats we surface in the top panels;
 // CLV requires closing-line snapshots that aren't carried per-archive, so it's
 // omitted here and the StatCard renders "—" when this path is used.
-function computeSummaryFromArchives(archives, tier, filterView = 'baseline') {
+function computeSummaryFromArchives(archives, tier, filterView = 'baseline', bets = null, betsOnly = false) {
   const tiers = tier === 'all' ? ['primary', 'secondary', 'shadow'] : [tier]
   let wins = 0, losses = 0, voids = 0, units_profit = 0
-  // Baseline path uses the pre-computed per-day summaries (faster). Filter
-  // views (triple/quad) iterate the raw picks + results so we can scope by
-  // filter_status — that information isn't in the daily summary objects.
-  if (filterView === 'baseline') {
+  // Fast path — pre-computed per-day summaries. Only usable for the baseline
+  // view with no per-pick "did I bet on it?" scoping; filter views (triple/quad)
+  // and the bets-only view both need to inspect individual picks.
+  if (filterView === 'baseline' && !betsOnly) {
     for (const { data } of archives) {
       const settle = data.settlement
       if (!settle) continue
@@ -189,35 +190,21 @@ function computeSummaryFromArchives(archives, tier, filterView = 'baseline') {
         units_profit += s.units_profit || 0
       }
     }
-  } else {
-    for (const { data } of archives) {
-      const settle = data.settlement
-      if (!settle) continue
-      for (const t of tiers) {
-        const picksList = data[`${t}_picks`] || []
-        const results = settle[`${t}_results`] || []
-        const pickIdx = new Map()
-        for (const p of picksList) pickIdx.set(`${p.batter_id}|${p.game_pk || ''}`, p)
-        for (const r of results) {
-          const p = pickIdx.get(`${r.batter_id}|${r.game_pk || ''}`)
-          if (!p) continue
-          if (!pickPassesFilter(p, filterView, t)) continue
-          if (r.outcome === 'W') wins++
-          else if (r.outcome === 'L') losses++
-          else voids++
-          units_profit += r.profit_units || 0
-        }
-      }
+    return {
+      ...summaryFromCounts(wins, losses, voids, units_profit),
+      avg_clv_pct: null,          // fast path: not reconstructed here
+      n_picks_with_clv: 0,
     }
   }
-  const settled = wins + losses
+  // Per-pick path (filter views and/or bets-only): select the relevant result
+  // rows via the shared, unit-tested helper, then aggregate.
+  const rows = collectResults(archives, tiers, {
+    passes: (p, t) => pickPassesFilter(p, filterView, t),
+    bets,
+    betsOnly,
+  })
   return {
-    wins, losses, voids,
-    total_picks: settled + voids,
-    units_staked: settled,
-    units_profit,
-    hit_rate: settled > 0 ? wins / settled : null,
-    roi_pct: settled > 0 ? (units_profit / settled) * 100 : null,
+    ...aggregateResults(rows),
     avg_clv_pct: null,            // CLV not reconstructible from archives alone
     n_picks_with_clv: 0,
   }
@@ -237,13 +224,16 @@ function combineSettlementSummaries(...sums) {
   return { n_wins, n_losses, n_voids, units_profit, roi_pct }
 }
 
-function summarizeArchive(archive, tier = 'primary', filterView = 'baseline') {
+// isBetted: optional (batter_id, game_pk) => bool predicate. When provided
+// (bets-only view) we scope counts + settlement to flagged picks and must use
+// the per-pick path even for the baseline view.
+function summarizeArchive(archive, tier = 'primary', filterView = 'baseline', isBetted = null) {
   const funnel = archive.funnel || {}
   const settle = archive.settlement || null
   const tiers = tier === 'all' ? ['primary', 'secondary', 'shadow'] : [tier]
 
   // Baseline path uses pre-computed per-day summaries (cheaper).
-  if (filterView === 'baseline') {
+  if (filterView === 'baseline' && !isBetted) {
     let summary = null
     if (settle) {
       summary = tier === 'all'
@@ -273,7 +263,8 @@ function summarizeArchive(archive, tier = 'primary', filterView = 'baseline') {
   let wins = 0, losses = 0, voids = 0, profit = 0
   for (const t of tiers) {
     const picksList = archive[`${t}_picks`] || []
-    const filteredPicks = picksList.filter(p => pickPassesFilter(p, filterView, t))
+    const filteredPicks = picksList.filter(p =>
+      pickPassesFilter(p, filterView, t) && (!isBetted || isBetted(p.batter_id, p.game_pk)))
     counts[t] = filteredPicks.length
     if (!settle) continue
     const results = settle[`${t}_results`] || []
@@ -310,13 +301,13 @@ const CALIBRATION_BUCKETS = [
   { lo: 0.30, hi: 0.40 },
   { lo: 0.40, hi: 0.60 },
 ]
-function buildCalibration(archives, tier = 'all', filterView = 'baseline') {
+function buildCalibration(archives, tier = 'all', filterView = 'baseline', bets = null, betsOnly = false) {
   const tiers = tier === 'primary' ? ['primary']
               : tier === 'secondary' ? ['secondary']
               : tier === 'shadow' ? ['shadow']
               : ['primary', 'secondary', 'shadow']
   const allSettled = []
-  for (const { data } of archives) {
+  for (const { date, data } of archives) {
     const settle = data.settlement
     if (!settle) continue
     for (const t of tiers) {
@@ -327,6 +318,7 @@ function buildCalibration(archives, tier = 'all', filterView = 'baseline') {
         if (r.outcome === 'VOID') continue
         const p = pickIdx.get(`${r.batter_id}|${r.game_pk || ''}`)
         if (filterView !== 'baseline' && !(p && pickPassesFilter(p, filterView, t))) continue
+        if (betsOnly && !bets?.[betKey(date, r.batter_id, r.game_pk)]) continue
         allSettled.push({ model_prob: r.model_prob, won: r.outcome === 'W' })
       }
     }
@@ -512,24 +504,28 @@ function PickRow({ pick, settledPick, betted, onToggleBet }) {
   )
 }
 
-function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'baseline', bets, onToggleBet }) {
-  const summary = summarizeArchive(archive.data, tierFilter, filterView)
+function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'baseline', bets, betsOnly = false, onToggleBet }) {
   const data = archive.data
   const date = archive.date
   const dayBetCount = countBetsForDay(bets, date)
+  // In bets-only mode, scope the day's counts/picks to the flagged players.
+  const isBetted = betsOnly ? (bid, gpk) => !!bets[betKey(date, bid, gpk)] : null
+  const summary = summarizeArchive(data, tierFilter, filterView, isBetted)
 
   const picks = useMemo(() => {
     const all = []
     const pull = (t, list) => {
       for (const p of list || []) {
-        if (pickPassesFilter(p, filterView, t)) all.push({ ...p, _tier: t })
+        if (!pickPassesFilter(p, filterView, t)) continue
+        if (betsOnly && !bets[betKey(date, p.batter_id, p.game_pk)]) continue
+        all.push({ ...p, _tier: t })
       }
     }
     if (tierFilter === 'all' || tierFilter === 'primary')   pull('primary',   data.primary_picks)
     if (tierFilter === 'all' || tierFilter === 'secondary') pull('secondary', data.secondary_picks)
     if (tierFilter === 'all' || tierFilter === 'shadow')    pull('shadow',    data.shadow_picks)
     return all
-  }, [data, tierFilter, filterView])
+  }, [data, date, tierFilter, filterView, betsOnly, bets])
 
   const settledByKey = useMemo(() => {
     const map = {}
@@ -630,10 +626,10 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'basel
   )
 }
 
-function CalibrationView({ archives, tierFilter, filterView = 'baseline' }) {
+function CalibrationView({ archives, tierFilter, filterView = 'baseline', bets = null, betsOnly = false }) {
   const cal = useMemo(
-    () => buildCalibration(archives, tierFilter, filterView),
-    [archives, tierFilter, filterView],
+    () => buildCalibration(archives, tierFilter, filterView, bets, betsOnly),
+    [archives, tierFilter, filterView, bets, betsOnly],
   )
   const tierLabel = tierFilter === 'all' ? 'all tiers' : tierFilter
   if (cal.total < CALIBRATION_MIN_PICKS) {
@@ -786,6 +782,11 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     setBets(prev => toggleBet(prev, key))
   }, [])
   const totalBets = countBets(bets)
+  // "My bets" view: restrict everything (day blocks, metric cards, calibration)
+  // to picks you flagged with the Bet checkbox, so the ROI panel reflects your
+  // actual wagers rather than every model pick.
+  const [betFilter, setBetFilter] = useState('all')
+  const betsOnly = betFilter === 'bets'
 
   // Two related conditions:
   //   hasPreRebuild — any pre-rebuild archive is in the dataset; drives the
@@ -826,15 +827,25 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     } else if (dateFilter === 'since_triple') {
       list = list.filter(a => a.date >= TRIPLE_FILTER_DATE)
     }
+    // Per-day bet predicate, bound to that day's date (bets keys include date).
+    const mkBetted = (d) => betsOnly ? ((bid, gpk) => !!bets[betKey(d, bid, gpk)]) : null
+    // Bets-only: drop days where nothing in the current tier/view was flagged.
+    if (betsOnly) {
+      list = list.filter(a => {
+        const s = summarizeArchive(a.data, tierFilter, filterView, mkBetted(a.date))
+        return (s.primary_count + s.secondary_count + s.shadow_count) > 0
+      })
+    }
+    const sumOf = (a) => summarizeArchive(a.data, tierFilter, filterView, mkBetted(a.date))
     const sorted = [...list]
     if (sortBy === 'date_desc') sorted.sort((a, b) => b.date.localeCompare(a.date))
     else if (sortBy === 'date_asc') sorted.sort((a, b) => a.date.localeCompare(b.date))
-    else if (sortBy === 'roi') sorted.sort((a, b) => (summarizeArchive(b.data, tierFilter, filterView).roiPct ?? -Infinity) - (summarizeArchive(a.data, tierFilter, filterView).roiPct ?? -Infinity))
-    else if (sortBy === 'hit_rate') sorted.sort((a, b) => (summarizeArchive(b.data, tierFilter, filterView).hitRate ?? -Infinity) - (summarizeArchive(a.data, tierFilter, filterView).hitRate ?? -Infinity))
+    else if (sortBy === 'roi') sorted.sort((a, b) => (sumOf(b).roiPct ?? -Infinity) - (sumOf(a).roiPct ?? -Infinity))
+    else if (sortBy === 'hit_rate') sorted.sort((a, b) => (sumOf(b).hitRate ?? -Infinity) - (sumOf(a).hitRate ?? -Infinity))
     else if (sortBy === 'count') {
       sorted.sort((a, b) => {
-        const sa = summarizeArchive(a.data, tierFilter, filterView)
-        const sb = summarizeArchive(b.data, tierFilter, filterView)
+        const sa = sumOf(a)
+        const sb = sumOf(b)
         const ca = tierFilter === 'all'
           ? sa.primary_count + sa.secondary_count + sa.shadow_count
           : sa.primary_count
@@ -845,7 +856,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
       })
     }
     return sorted
-  }, [archives, dateFilter, sortBy, tierFilter, modelFilter, filterView])
+  }, [archives, dateFilter, sortBy, tierFilter, modelFilter, filterView, betsOnly, bets])
 
   // Top-level metrics — driven by tier, model, AND date filters. When any
   // filter is non-default, compute client-side from the filtered archives so
@@ -853,6 +864,11 @@ export default function Tracker({ archives, tracker, generatedAt }) {
   // path uses tracker.json (faster, and the only path that carries CLV since
   // closing snaps aren't reconstructible from per-day archives).
   const sum = useMemo(() => {
+    // Bets-only ROI must be reconstructed from the flagged picks (tracker.json
+    // has no per-bet record), so always compute client-side in this mode.
+    if (betsOnly) {
+      return computeSummaryFromArchives(filteredArchives, tierFilter, filterView, bets, true)
+    }
     if (modelFilter !== 'all' || dateFilter !== 'all') {
       return computeSummaryFromArchives(filteredArchives, tierFilter, filterView)
     }
@@ -868,7 +884,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
       )
     }
     return source[`summary_${tierFilter}`] || tracker.summary || {}
-  }, [tracker, tierFilter, modelFilter, dateFilter, filterView, filteredArchives])
+  }, [tracker, tierFilter, modelFilter, dateFilter, filterView, filteredArchives, betsOnly, bets])
 
   const totalSettled = (sum.wins || 0) + (sum.losses || 0)
   const isFirstWeek = totalSettled === 0
@@ -916,7 +932,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
         </div>
 
         {/* Day-1 banner */}
-        {isFirstWeek && (
+        {isFirstWeek && !betsOnly && (
           <div style={{
             border: `1px solid ${T.border}`, borderRadius: 6,
             padding: '16px 20px', marginBottom: 28,
@@ -951,6 +967,20 @@ export default function Tracker({ archives, tracker, generatedAt }) {
             ) : (
               <>. Tomorrow's settled picks will be the first under the new model.</>
             )}
+          </div>
+        )}
+
+        {/* Bets-only banner — makes clear the metrics below are the user's own record. */}
+        {betsOnly && (
+          <div style={{
+            border: `1px solid ${T.positive}`, borderRadius: 6,
+            padding: '12px 18px', marginBottom: 20,
+            fontSize: 13, color: T.textMedium, lineHeight: 1.5,
+            background: '#f0fdf4',
+          }}>
+            <strong style={{ color: T.positive, fontWeight: 600 }}>Your bets only.</strong>{' '}
+            Showing the {totalBets} pick{totalBets === 1 ? '' : 's'} you flagged with the Bet box — the
+            metrics below are your actual hit rate and ROI on those wagers (1u flat stake), not the model's full record.
           </div>
         )}
 
@@ -994,6 +1024,11 @@ export default function Tracker({ archives, tracker, generatedAt }) {
           borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}`,
           display: 'flex', flexDirection: 'column', gap: 14,
         }}>
+          <FilterRow label="Bets"  value={betFilter} onChange={setBetFilter}
+            options={[
+              ['all',  'All picks'],
+              ['bets', totalBets > 0 ? `My bets (${totalBets})` : 'My bets'],
+            ]} />
           <FilterRow label="Tier"  value={tierFilter} onChange={setTierFilter}
             options={[
               ['primary',   'Primary'],
@@ -1039,7 +1074,11 @@ export default function Tracker({ archives, tracker, generatedAt }) {
             padding: '48px 18px', textAlign: 'center', color: T.textLight, fontSize: 13,
             border: `1px solid ${T.border}`, borderRadius: 6, marginTop: 28,
           }}>
-            No archived days match the current filter.
+            {betsOnly
+              ? (totalBets === 0
+                  ? 'No bets flagged yet. Tick the Bet box on any pick to track it here.'
+                  : 'None of your flagged bets match the current filters.')
+              : 'No archived days match the current filter.'}
           </div>
         ) : (
           <div style={{ marginTop: 8, marginBottom: 36 }}>
@@ -1050,6 +1089,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
                         tierFilter={tierFilter}
                         filterView={filterView}
                         bets={bets}
+                        betsOnly={betsOnly}
                         onToggleBet={handleToggleBet} />
             ))}
             <div style={{ borderTop: `1px solid ${T.border}` }} />
@@ -1060,7 +1100,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
             (so picking "Post-rebuild" shows only post-rebuild calibration, not
             the mixed-model calibration that would otherwise dominate the bins). */}
         <div style={{ marginTop: 36 }}>
-          <CalibrationView archives={filteredArchives} tierFilter={tierFilter} filterView={filterView} />
+          <CalibrationView archives={filteredArchives} tierFilter={tierFilter} filterView={filterView} bets={bets} betsOnly={betsOnly} />
         </div>
 
         {/* Footer */}
@@ -1078,6 +1118,8 @@ export default function Tracker({ archives, tracker, generatedAt }) {
           {' '}The <strong style={{ color: T.textMedium }}>Bet</strong> checkbox marks which
           players you actually bet on; flags are saved in this browser (localStorage) and
           persist across reloads — they're personal and not part of the model's record.
+          Set <strong style={{ color: T.textMedium }}>Bets → My bets</strong> to scope the whole
+          page (metrics, day blocks, calibration) to just those flagged picks for your actual ROI.
         </div>
       </div>
     </>
