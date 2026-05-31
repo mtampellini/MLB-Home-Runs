@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-31T20:35:18.348718+00:00",
+  "generated_at": "2026-05-31T21:18:39.305427+00:00",
   "as_of_date": "2026-05-31",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03543647363872083,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -67,6 +67,60 @@
     {
       "tier": "shadow",
       "daily_rank": 15,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 3,
+      "pitcher": "Jordan Wicks",
+      "pitcher_id": 696136,
+      "pitcher_hand": "L",
+      "park": "STL",
+      "game_pk": 823053,
+      "game_datetime": "2026-05-31T23:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 441,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1758,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2205,
+      "ev_pct": 19.32,
+      "edge_pct": 4.48,
+      "blended_hr_per_pa": 0.04723,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5264,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3329,
+          "deviation": 0.3329
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.1,
+          "deviation": 0.1
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 16,
       "batter": "Bryson Stott",
       "batter_id": 681082,
       "batter_hand": "L",
@@ -111,7 +165,7 @@
           "deviation": 0.1463
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -120,7 +174,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 16,
+      "daily_rank": 17,
       "batter": "Carlos Cortes",
       "batter_id": 666126,
       "batter_hand": "L",
@@ -165,7 +219,7 @@
           "deviation": 0.0995
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -174,7 +228,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 18,
       "batter": "Brandon Marsh",
       "batter_id": 669016,
       "batter_hand": "L",
@@ -219,7 +273,7 @@
           "deviation": 0.1455
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -228,7 +282,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 19,
       "batter": "Aaron Judge",
       "batter_id": 592450,
       "batter_hand": "R",
@@ -273,14 +327,68 @@
           "deviation": 0.1447
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 20,
+      "batter": "Pete Crow-Armstrong",
+      "batter_id": 691718,
+      "batter_hand": "L",
+      "team": "CHC",
+      "lineup_spot": 2,
+      "pitcher": "Matthew Liberatore",
+      "pitcher_id": 669461,
+      "pitcher_hand": "L",
+      "park": "STL",
+      "game_pk": 823053,
+      "game_datetime": "2026-05-31T23:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 590,
+      "dk_odds": 559,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1409,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.16,
+      "ev_pct": 10.42,
+      "edge_pct": 1.91,
+      "blended_hr_per_pa": 0.03321,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.9595,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4912,
+          "deviation": 0.4912
+        },
+        {
+          "name": "park",
+          "value": 0.8145,
+          "deviation": 0.1855
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-05-31.json"
 }
