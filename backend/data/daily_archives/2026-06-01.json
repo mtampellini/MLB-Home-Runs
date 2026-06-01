@@ -1,15 +1,88 @@
 {
-  "generated_at": "2026-06-01T19:28:32.743465+00:00",
-  "as_of_date": "2026-06-01",
+  "date": "2026-06-01",
+  "generated_at": "2026-06-01T19:28:32.743724+00:00",
   "model_version": "v7-baseline-0.2.0",
   "league_hr_per_pa": 0.0327431481930633,
-  "tier": "shadow",
-  "ev_threshold_pct_min": 10.0,
-  "ev_threshold_pct_max": 25.0,
-  "total_games_today": 9,
-  "games_pregame": 9,
-  "games_excluded_live_or_complete": 0,
-  "picks": [
+  "funnel": {
+    "total_slate_games": 9,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 9,
+    "total_predictions": 32,
+    "skipped_low_data": 2,
+    "skipped_career_pa_filter": 2,
+    "skipped_other": 0,
+    "matched_in_odds_market": 32,
+    "matched_alt_market": 32,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 32,
+    "above_25_ev_pre_cap": 1,
+    "eligible_below_900_price_cap": 1,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 1,
+    "secondary_count": 0,
+    "shadow_count": 2
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 2,
+      "pitcher": "Griffin Jax",
+      "pitcher_id": 643377,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822974,
+      "game_datetime": "2026-06-01T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 650,
+      "dk_odds": 573,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1339,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.221,
+      "ev_pct": 65.76,
+      "edge_pct": 8.71,
+      "blended_hr_per_pa": 0.04794,
+      "breakout_score": 0.0601,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4495,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.464,
+          "deviation": 0.464
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0601,
+          "deviation": 0.0601
+        },
+        {
+          "name": "park",
+          "value": 1.0563,
+          "deviation": 0.0563
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    }
+  ],
+  "secondary_picks": [],
+  "shadow_picks": [
     {
       "tier": "shadow",
       "daily_rank": 2,
@@ -119,6 +192,5 @@
       }
     }
   ],
-  "skipped_count": 4,
-  "skipped_reference": "data/processed/skipped_batters_2026-06-01.json"
+  "settlement": null
 }
