@@ -1,0 +1,361 @@
+{
+  "date": "2026-06-03",
+  "generated_at": "2026-06-03T15:41:42.393294+00:00",
+  "model_version": "v7-baseline-0.2.0",
+  "league_hr_per_pa": 0.027790228597041687,
+  "funnel": {
+    "total_slate_games": 15,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 15,
+    "total_predictions": 47,
+    "skipped_low_data": 3,
+    "skipped_career_pa_filter": 4,
+    "skipped_other": 0,
+    "matched_in_odds_market": 47,
+    "matched_alt_market": 47,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 47,
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 2,
+    "above_price_cap_pushed_to_secondary": 2,
+    "primary_count": 2,
+    "secondary_count": 2,
+    "shadow_count": 2
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 4,
+      "batter": "Byron Buxton",
+      "batter_id": 621439,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 1,
+      "pitcher": "Erick Fedde",
+      "pitcher_id": 607200,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823701,
+      "game_datetime": "2026-06-03T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 270,
+      "dk_odds": 233,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2767,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3841,
+      "ev_pct": 42.11,
+      "edge_pct": 10.74,
+      "blended_hr_per_pa": 0.07347,
+      "breakout_score": 0.0177,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1327,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.6439,
+          "deviation": 1.6439
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "temperature",
+          "value": 1.115,
+          "deviation": 0.115
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Curtis Mead",
+      "batter_id": 678554,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 3,
+      "pitcher": "Max Meyer",
+      "pitcher_id": 676974,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822727,
+      "game_datetime": "2026-06-03T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 750,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1156,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1949,
+      "ev_pct": 65.67,
+      "edge_pct": 7.93,
+      "blended_hr_per_pa": 0.03544,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1321,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2752,
+          "deviation": 0.2752
+        },
+        {
+          "name": "pitcher",
+          "value": 1.226,
+          "deviation": 0.226
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    }
+  ],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 1,
+      "batter": "Jacob Young",
+      "batter_id": 696285,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 5,
+      "pitcher": "Max Meyer",
+      "pitcher_id": 676974,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822727,
+      "game_datetime": "2026-06-03T17:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 980,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0812,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1422,
+      "ev_pct": 73.54,
+      "edge_pct": 6.11,
+      "blended_hr_per_pa": 0.02644,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.1716,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.226,
+          "deviation": 0.226
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.108,
+          "deviation": 0.108
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 3,
+      "batter": "Luke Keaschall",
+      "batter_id": 807712,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 7,
+      "pitcher": "Erick Fedde",
+      "pitcher_id": 607200,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823701,
+      "game_datetime": "2026-06-03T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1020,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0796,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1249,
+      "ev_pct": 52.33,
+      "edge_pct": 4.52,
+      "blended_hr_per_pa": 0.01653,
+      "breakout_score": 0.0667,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7869,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5948,
+          "deviation": 0.4052
+        },
+        {
+          "name": "temperature",
+          "value": 1.115,
+          "deviation": 0.115
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    }
+  ],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 3,
+      "pitcher": "Nick Martinez",
+      "pitcher_id": 607259,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822973,
+      "game_datetime": "2026-06-03T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 475,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1631,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1993,
+      "ev_pct": 17.59,
+      "edge_pct": 3.62,
+      "blended_hr_per_pa": 0.05216,
+      "breakout_score": 0.0765,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3134,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8769,
+          "deviation": 0.8769
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8305,
+          "deviation": 0.1695
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0765,
+          "deviation": 0.0765
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Orlando Arcia",
+      "batter_id": 606115,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 9,
+      "pitcher": "Erick Fedde",
+      "pitcher_id": 607200,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823701,
+      "game_datetime": "2026-06-03T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 960,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0869,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1034,
+      "ev_pct": 11.63,
+      "edge_pct": 1.64,
+      "blended_hr_per_pa": 0.01435,
+      "breakout_score": 0.0912,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0455,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5163,
+          "deviation": 0.4837
+        },
+        {
+          "name": "temperature",
+          "value": 1.115,
+          "deviation": 0.115
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "settlement": null
+}
