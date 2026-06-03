@@ -1,25 +1,25 @@
 {
   "date": "2026-06-03",
-  "generated_at": "2026-06-03T15:41:42.393294+00:00",
+  "generated_at": "2026-06-03T17:13:57.017959+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.027790228597041687,
+  "league_hr_per_pa": 0.026422764227642278,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 0,
-    "games_pregame": 15,
-    "total_predictions": 47,
-    "skipped_low_data": 3,
+    "games_excluded_live_or_complete": 2,
+    "games_pregame": 13,
+    "total_predictions": 14,
+    "skipped_low_data": 0,
     "skipped_career_pa_filter": 4,
     "skipped_other": 0,
-    "matched_in_odds_market": 47,
-    "matched_alt_market": 47,
+    "matched_in_odds_market": 14,
+    "matched_alt_market": 14,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 47,
-    "above_25_ev_pre_cap": 4,
-    "eligible_below_900_price_cap": 2,
-    "above_price_cap_pushed_to_secondary": 2,
-    "primary_count": 2,
+    "single_sided_devig": 14,
+    "above_25_ev_pre_cap": 5,
+    "eligible_below_900_price_cap": 5,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 7,
     "secondary_count": 2,
     "shadow_count": 2
   },
@@ -27,6 +27,122 @@
     {
       "tier": "primary",
       "daily_rank": 4,
+      "batter": "Luke Raley",
+      "batter_id": 670042,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 5,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823130,
+      "game_datetime": "2026-06-03T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1792,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3121,
+      "ev_pct": 65.42,
+      "edge_pct": 13.29,
+      "blended_hr_per_pa": 0.05201,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1774,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9684,
+          "deviation": 0.9684
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3954,
+          "deviation": 0.3954
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Cole Young",
+        "J.P. Crawford",
+        "Dominic Canzone"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Juan Soto",
+      "batter_id": 665742,
+      "batter_hand": "L",
+      "team": "NYM",
+      "lineup_spot": 3,
+      "pitcher": "George Kirby",
+      "pitcher_id": 669923,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823130,
+      "game_datetime": "2026-06-03T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1939,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3108,
+      "ev_pct": 52.31,
+      "edge_pct": 11.7,
+      "blended_hr_per_pa": 0.06392,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3654,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.4191,
+          "deviation": 1.4191
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0809,
+          "deviation": 0.0809
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -71,7 +187,7 @@
           "deviation": 0.115
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -82,7 +198,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 3,
       "batter": "Curtis Mead",
       "batter_id": 678554,
       "batter_hand": "R",
@@ -127,9 +243,189 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": false,
       "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Cole Young",
+      "batter_id": 702284,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 6,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823130,
+      "game_datetime": "2026-06-03T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0949,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1715,
+      "ev_pct": 68.07,
+      "edge_pct": 7.66,
+      "blended_hr_per_pa": 0.02885,
+      "breakout_score": 0.1178,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.7429,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3954,
+          "deviation": 0.3954
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1178,
+          "deviation": 0.1178
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0918,
+          "deviation": 0.0918
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "Luke Raley",
+        "J.P. Crawford",
+        "Dominic Canzone"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
+      "batter": "J.P. Crawford",
+      "batter_id": 641487,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 1,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823130,
+      "game_datetime": "2026-06-03T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1148,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1788,
+      "ev_pct": 44.81,
+      "edge_pct": 6.4,
+      "blended_hr_per_pa": 0.03212,
+      "breakout_score": -0.0843,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0865,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3954,
+          "deviation": 0.3954
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2158,
+          "deviation": 0.2158
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9157,
+          "deviation": 0.0843
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Luke Raley",
+        "Cole Young",
+        "Dominic Canzone"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "Dominic Canzone",
+      "batter_id": 686527,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 7,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823130,
+      "game_datetime": "2026-06-03T19:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": null,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1939,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2572,
+      "ev_pct": 26.04,
+      "edge_pct": 6.33,
+      "blended_hr_per_pa": 0.0448,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1694,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6956,
+          "deviation": 0.6956
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3954,
+          "deviation": 0.3954
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Luke Raley",
+        "Cole Young",
+        "J.P. Crawford"
+      ],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -194,7 +490,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 3,
+      "daily_rank": 5,
       "batter": "Luke Keaschall",
       "batter_id": 807712,
       "batter_hand": "R",
@@ -250,7 +546,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 10,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -304,7 +600,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 11,
       "batter": "Orlando Arcia",
       "batter_id": 606115,
       "batter_hand": "R",
