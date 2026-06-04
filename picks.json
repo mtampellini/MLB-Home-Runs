@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-04T21:19:49.318296+00:00",
+  "generated_at": "2026-06-04T22:30:56.344531+00:00",
   "as_of_date": "2026-06-04",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.04038211029092488,
+  "league_hr_per_pa": 0.035146046069817145,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 16,
+      "daily_rank": 21,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -58,7 +58,7 @@
           "deviation": 0.192
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 11,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -69,7 +69,67 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 18,
+      "batter": "Andy Pages",
+      "batter_id": 681624,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 3,
+      "pitcher": "Ryne Nelson",
+      "pitcher_id": 669194,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825076,
+      "game_datetime": "2026-06-05T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 501,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1595,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2384,
+      "ev_pct": 43.29,
+      "edge_pct": 7.89,
+      "blended_hr_per_pa": 0.04491,
+      "breakout_score": -0.1326,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.2962,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5409,
+          "deviation": 0.5409
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2778,
+          "deviation": 0.2778
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8674,
+          "deviation": 0.1326
+        }
+      ],
+      "tier_rank": 14,
+      "stacked": true,
+      "stacked_with": [
+        "Max Muncy",
+        "Mookie Betts",
+        "Will Smith"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 13,
       "batter": "Brice Turang",
       "batter_id": 668930,
       "batter_hand": "L",
@@ -114,7 +174,7 @@
           "deviation": 0.13
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 15,
       "stacked": true,
       "stacked_with": [
         "Jake Bauers",
@@ -128,7 +188,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 13,
+      "daily_rank": 16,
       "batter": "Christian Yelich",
       "batter_id": 592885,
       "batter_hand": "L",
@@ -173,7 +233,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 18,
       "stacked": true,
       "stacked_with": [
         "Jake Bauers",
@@ -184,8 +244,68 @@
         "passes_triple": true,
         "passes_quad": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 22,
+      "batter": "Will Smith",
+      "batter_id": 669257,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 5,
+      "pitcher": "Ryne Nelson",
+      "pitcher_id": 669194,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825076,
+      "game_datetime": "2026-06-05T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 559,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1526,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2082,
+      "ev_pct": 37.19,
+      "edge_pct": 5.56,
+      "blended_hr_per_pa": 0.03281,
+      "breakout_score": 0.0693,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1781,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5409,
+          "deviation": 0.5409
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0693,
+          "deviation": 0.0693
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9336,
+          "deviation": 0.0664
+        }
+      ],
+      "tier_rank": 21,
+      "stacked": true,
+      "stacked_with": [
+        "Max Muncy",
+        "Mookie Betts",
+        "Andy Pages"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-06-04.json"
 }
