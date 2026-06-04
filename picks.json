@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-04T15:05:49.038703+00:00",
+  "generated_at": "2026-06-04T17:01:58.579949+00:00",
   "as_of_date": "2026-06-04",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032535684298908484,
+  "league_hr_per_pa": 0.02592912705272256,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 9,
-  "games_pregame": 9,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 8,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 14,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -58,7 +58,7 @@
           "deviation": 0.192
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 7,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -66,8 +66,126 @@
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "Brice Turang",
+      "batter_id": 668930,
+      "batter_hand": "L",
+      "team": "MIL",
+      "lineup_spot": 3,
+      "pitcher": "Adrian Houser",
+      "pitcher_id": 605288,
+      "pitcher_hand": "R",
+      "park": "MIL",
+      "game_pk": 823779,
+      "game_datetime": "2026-06-04T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 541,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.145,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2195,
+      "ev_pct": 47.07,
+      "edge_pct": 7.45,
+      "blended_hr_per_pa": 0.02975,
+      "breakout_score": 0.13,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7243,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1474,
+          "deviation": 0.1474
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.13,
+          "deviation": 0.13
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Jake Bauers",
+        "Christian Yelich"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "Christian Yelich",
+      "batter_id": 592885,
+      "batter_hand": "L",
+      "team": "MIL",
+      "lineup_spot": 1,
+      "pitcher": "Adrian Houser",
+      "pitcher_id": 605288,
+      "pitcher_hand": "R",
+      "park": "MIL",
+      "game_pk": 823779,
+      "game_datetime": "2026-06-04T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 501,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1533,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2255,
+      "ev_pct": 44.3,
+      "edge_pct": 7.22,
+      "blended_hr_per_pa": 0.03902,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0122,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.5048,
+          "deviation": 0.5048
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 12,
+      "stacked": true,
+      "stacked_with": [
+        "Jake Bauers",
+        "Brice Turang"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-06-04.json"
 }
