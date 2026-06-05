@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-05T20:53:59.701714+00:00",
+  "generated_at": "2026-06-05T22:14:39.900641+00:00",
   "as_of_date": "2026-06-05",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.031384985510416095,
+  "league_hr_per_pa": 0.031911698453221206,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 20,
+      "daily_rank": 24,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -66,7 +66,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 21,
+      "daily_rank": 25,
       "batter": "Ozzie Albies",
       "batter_id": 645277,
       "batter_hand": "L",
@@ -120,7 +120,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 22,
+      "daily_rank": 26,
       "batter": "J.P. Crawford",
       "batter_id": 641487,
       "batter_hand": "L",
@@ -174,7 +174,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 23,
+      "daily_rank": 27,
       "batter": "Spencer Horwitz",
       "batter_id": 687462,
       "batter_hand": "L",
@@ -228,7 +228,61 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 24,
+      "daily_rank": 28,
+      "batter": "Jorge Barrosa",
+      "batter_id": 678489,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 9,
+      "pitcher": "Foster Griffin",
+      "pitcher_id": 656492,
+      "pitcher_hand": "L",
+      "park": "ARI",
+      "game_pk": 825073,
+      "game_datetime": "2026-06-06T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1140,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0756,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1076,
+      "ev_pct": 33.37,
+      "edge_pct": 3.19,
+      "blended_hr_per_pa": 0.01691,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5299,
+          "deviation": 0.4701
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 12,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 29,
       "batter": "Paul Goldschmidt",
       "batter_id": 502671,
       "batter_hand": "R",
@@ -273,7 +327,7 @@
           "deviation": 0.1643
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 13,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -282,7 +336,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 26,
+      "daily_rank": 32,
       "batter": "Oneil Cruz",
       "batter_id": 665833,
       "batter_hand": "L",
@@ -327,7 +381,7 @@
           "deviation": 0.0935
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -335,6 +389,6 @@
       }
     }
   ],
-  "skipped_count": 16,
+  "skipped_count": 15,
   "skipped_reference": "data/processed/skipped_batters_2026-06-05.json"
 }

@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-05T20:53:59.701300+00:00",
+  "generated_at": "2026-06-05T22:14:39.899974+00:00",
   "as_of_date": "2026-06-05",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.031384985510416095,
+  "league_hr_per_pa": 0.031911698453221206,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 16,
+      "daily_rank": 19,
       "batter": "Ian Happ",
       "batter_id": 664023,
       "batter_hand": "R",
@@ -71,7 +71,66 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 15,
+      "daily_rank": 20,
+      "batter": "James Wood",
+      "batter_id": 695578,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 1,
+      "pitcher": "Merrill Kelly",
+      "pitcher_id": 518876,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825073,
+      "game_datetime": "2026-06-06T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 320,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2262,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3364,
+      "ev_pct": 41.28,
+      "edge_pct": 11.02,
+      "blended_hr_per_pa": 0.04974,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1264,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5587,
+          "deviation": 0.5587
+        },
+        {
+          "name": "pitcher",
+          "value": 1.491,
+          "deviation": 0.491
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "CJ Abrams",
+        "Daylen Lile"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 17,
       "batter": "Brandon Lowe",
       "batter_id": 664040,
       "batter_hand": "L",
@@ -116,7 +175,7 @@
           "deviation": 0.0892
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 12,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -127,7 +186,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 18,
+      "daily_rank": 22,
       "batter": "Michael Harris II",
       "batter_id": 671739,
       "batter_hand": "L",
@@ -172,7 +231,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 14,
       "stacked": true,
       "stacked_with": [
         "Matt Olson"
@@ -182,8 +241,123 @@
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 33,
+      "batter": "Hunter Goodman",
+      "batter_id": 696100,
+      "batter_hand": "R",
+      "team": "COL",
+      "lineup_spot": 4,
+      "pitcher": "Brandon Sproat",
+      "pitcher_id": 687075,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824350,
+      "game_datetime": "2026-06-06T00:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 250,
+      "dk_odds": 242,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2804,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3643,
+      "ev_pct": 27.51,
+      "edge_pct": 8.39,
+      "blended_hr_per_pa": 0.05877,
+      "breakout_score": 0.0538,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0647,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8418,
+          "deviation": 0.8418
+        },
+        {
+          "name": "pitcher",
+          "value": 1.4514,
+          "deviation": 0.4514
+        },
+        {
+          "name": "wind",
+          "value": 1.0942,
+          "deviation": 0.0942
+        }
+      ],
+      "tier_rank": 15,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 18,
+      "batter": "Daylen Lile",
+      "batter_id": 695734,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 5,
+      "pitcher": "Merrill Kelly",
+      "pitcher_id": 518876,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825073,
+      "game_datetime": "2026-06-06T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 670,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1191,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1794,
+      "ev_pct": 45.33,
+      "edge_pct": 6.03,
+      "blended_hr_per_pa": 0.03007,
+      "breakout_score": 0.0259,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4044,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.491,
+          "deviation": 0.491
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9422,
+          "deviation": 0.0578
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0259,
+          "deviation": 0.0259
+        }
+      ],
+      "tier_rank": 18,
+      "stacked": true,
+      "stacked_with": [
+        "James Wood",
+        "CJ Abrams"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
     }
   ],
-  "skipped_count": 16,
+  "skipped_count": 15,
   "skipped_reference": "data/processed/skipped_batters_2026-06-05.json"
 }
