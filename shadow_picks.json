@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-06-05T18:27:02.458903+00:00",
+  "generated_at": "2026-06-05T20:53:59.702164+00:00",
   "as_of_date": "2026-06-05",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.031384985510416095,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 4,
+      "daily_rank": 29,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -57,7 +57,169 @@
           "deviation": 0.0521
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 30,
+      "batter": "Bryce Harper",
+      "batter_id": 547180,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 3,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823455,
+      "game_datetime": "2026-06-05T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 412,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1841,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.219,
+      "ev_pct": 13.88,
+      "edge_pct": 3.49,
+      "blended_hr_per_pa": 0.05012,
+      "breakout_score": 0.0786,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2787,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5971,
+          "deviation": 0.5971
+        },
+        {
+          "name": "pitcher",
+          "value": 0.61,
+          "deviation": 0.39
+        },
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 31,
+      "batter": "Byron Buxton",
+      "batter_id": 621439,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 1,
+      "pitcher": "Michael Wacha",
+      "pitcher_id": 608379,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823699,
+      "game_datetime": "2026-06-06T00:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 250,
+      "dk_odds": 244,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2796,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3195,
+      "ev_pct": 11.82,
+      "edge_pct": 3.99,
+      "blended_hr_per_pa": 0.07443,
+      "breakout_score": 0.0371,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2903,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.3714,
+          "deviation": 1.3714
+        },
+        {
+          "name": "temperature",
+          "value": 0.961,
+          "deviation": 0.039
+        },
+        {
+          "name": "pitcher",
+          "value": 1.038,
+          "deviation": 0.038
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 32,
+      "batter": "Nolan Gorman",
+      "batter_id": 669357,
+      "batter_hand": "L",
+      "team": "STL",
+      "lineup_spot": 7,
+      "pitcher": "Brady Singer",
+      "pitcher_id": 663903,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823049,
+      "game_datetime": "2026-06-06T00:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 441,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1791,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2049,
+      "ev_pct": 10.87,
+      "edge_pct": 2.58,
+      "blended_hr_per_pa": 0.03498,
+      "breakout_score": 0.1151,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2234,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.8145,
+          "deviation": 0.1855
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1151,
+          "deviation": 0.1151
+        }
+      ],
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -65,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 16,
   "skipped_reference": "data/processed/skipped_batters_2026-06-05.json"
 }

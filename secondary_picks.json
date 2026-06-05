@@ -1,15 +1,340 @@
 {
-  "generated_at": "2026-06-05T18:27:02.458774+00:00",
+  "generated_at": "2026-06-05T20:53:59.701714+00:00",
   "as_of_date": "2026-06-05",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.031384985510416095,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 20,
+      "batter": "Cole Young",
+      "batter_id": 702284,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 7,
+      "pitcher": "Framber Valdez",
+      "pitcher_id": 664285,
+      "pitcher_hand": "L",
+      "park": "DET",
+      "game_pk": 824271,
+      "game_datetime": "2026-06-05T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1160,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0777,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1081,
+      "ev_pct": 36.2,
+      "edge_pct": 3.04,
+      "blended_hr_per_pa": 0.02856,
+      "breakout_score": 0.1067,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7458,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.8622,
+          "deviation": 0.1378
+        },
+        {
+          "name": "temperature",
+          "value": 1.108,
+          "deviation": 0.108
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1067,
+          "deviation": 0.1067
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 21,
+      "batter": "Ozzie Albies",
+      "batter_id": 645277,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 4,
+      "pitcher": "Mitch Keller",
+      "pitcher_id": 656605,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824914,
+      "game_datetime": "2026-06-05T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 660,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1199,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1667,
+      "ev_pct": 35.0,
+      "edge_pct": 4.68,
+      "blended_hr_per_pa": 0.03136,
+      "breakout_score": -0.06,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2033,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0892,
+          "deviation": 0.0892
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0616,
+          "deviation": 0.0616
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 22,
+      "batter": "J.P. Crawford",
+      "batter_id": 641487,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 1,
+      "pitcher": "Framber Valdez",
+      "pitcher_id": 664285,
+      "pitcher_hand": "L",
+      "park": "DET",
+      "game_pk": 824271,
+      "game_datetime": "2026-06-05T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 930,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0907,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1307,
+      "ev_pct": 34.65,
+      "edge_pct": 4.0,
+      "blended_hr_per_pa": 0.03464,
+      "breakout_score": -0.053,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0326,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.8622,
+          "deviation": 0.1378
+        },
+        {
+          "name": "temperature",
+          "value": 1.108,
+          "deviation": 0.108
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1036,
+          "deviation": 0.1036
+        }
+      ],
+      "tier_rank": 10,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 23,
+      "batter": "Spencer Horwitz",
+      "batter_id": 687462,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 7,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824914,
+      "game_datetime": "2026-06-05T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 1000,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0879,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1216,
+      "ev_pct": 33.71,
+      "edge_pct": 3.37,
+      "blended_hr_per_pa": 0.0305,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 6.0617,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0892,
+          "deviation": 0.0892
+        }
+      ],
+      "tier_rank": 11,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 24,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 3,
+      "pitcher": "Sonny Gray",
+      "pitcher_id": 543243,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823538,
+      "game_datetime": "2026-06-05T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 581,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.144,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1939,
+      "ev_pct": 32.08,
+      "edge_pct": 5.0,
+      "blended_hr_per_pa": 0.03654,
+      "breakout_score": 0.1496,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4558,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8149,
+          "deviation": 0.1851
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1643,
+          "deviation": 0.1643
+        }
+      ],
+      "tier_rank": 12,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 26,
+      "batter": "Oneil Cruz",
+      "batter_id": 665833,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 5,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824914,
+      "game_datetime": "2026-06-05T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 382,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1917,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2513,
+      "ev_pct": 28.18,
+      "edge_pct": 5.96,
+      "blended_hr_per_pa": 0.04831,
+      "breakout_score": 0.0935,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5316,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5393,
+          "deviation": 0.5393
+        },
+        {
+          "name": "temperature",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0935,
+          "deviation": 0.0935
+        }
+      ],
+      "tier_rank": 14,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    }
+  ],
+  "skipped_count": 16,
   "skipped_reference": "data/processed/skipped_batters_2026-06-05.json"
 }
