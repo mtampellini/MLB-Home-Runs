@@ -1,18 +1,72 @@
 {
-  "generated_at": "2026-06-06T16:42:20.565519+00:00",
+  "generated_at": "2026-06-06T18:00:45.326676+00:00",
   "as_of_date": "2026-06-06",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.02795609857113274,
+  "league_hr_per_pa": 0.03243486073674753,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 6,
+      "daily_rank": 16,
+      "batter": "Bryson Stott",
+      "batter_id": 681082,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 7,
+      "pitcher": "Brandon Eisert",
+      "pitcher_id": 685126,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823454,
+      "game_datetime": "2026-06-06T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 650,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1194,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1768,
+      "ev_pct": 46.78,
+      "edge_pct": 5.75,
+      "blended_hr_per_pa": 0.02985,
+      "breakout_score": -0.0696,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.347,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "wind",
+          "value": 1.1419,
+          "deviation": 0.1419
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 18,
       "batter": "Wenceel P\u00e9rez",
       "batter_id": 672761,
       "batter_hand": "L",
@@ -57,7 +111,169 @@
           "deviation": 0.0695
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 19,
+      "batter": "Ozzie Albies",
+      "batter_id": 645277,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 4,
+      "pitcher": "Braxton Ashcraft",
+      "pitcher_id": 677952,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824915,
+      "game_datetime": "2026-06-06T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 710,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1097,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1584,
+      "ev_pct": 41.0,
+      "edge_pct": 4.88,
+      "blended_hr_per_pa": 0.03105,
+      "breakout_score": -0.0676,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0889,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.187,
+          "deviation": 0.187
+        },
+        {
+          "name": "park",
+          "value": 1.0892,
+          "deviation": 0.0892
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9324,
+          "deviation": 0.0676
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 27,
+      "batter": "Brandon Marsh",
+      "batter_id": 669016,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 5,
+      "pitcher": "Brandon Eisert",
+      "pitcher_id": 685126,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823454,
+      "game_datetime": "2026-06-06T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 610,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1278,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1619,
+      "ev_pct": 26.26,
+      "edge_pct": 3.41,
+      "blended_hr_per_pa": 0.02362,
+      "breakout_score": -0.0052,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1803,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7282,
+          "deviation": 0.2718
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 28,
+      "batter": "Shea Langeliers",
+      "batter_id": 669127,
+      "batter_hand": "R",
+      "team": "OAK",
+      "lineup_spot": 2,
+      "pitcher": "Tatsuya Imai",
+      "pitcher_id": 837227,
+      "pitcher_hand": "R",
+      "park": "HOU",
+      "game_pk": 824184,
+      "game_datetime": "2026-06-06T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 330,
+      "dk_odds": 294,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2336,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2917,
+      "ev_pct": 25.42,
+      "edge_pct": 5.81,
+      "blended_hr_per_pa": 0.07205,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2014,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.2214,
+          "deviation": 1.2214
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8733,
+          "deviation": 0.1267
+        }
+      ],
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -65,6 +281,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 15,
   "skipped_reference": "data/processed/skipped_batters_2026-06-06.json"
 }

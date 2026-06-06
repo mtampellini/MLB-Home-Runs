@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-06-06T16:42:20.565757+00:00",
+  "generated_at": "2026-06-06T18:00:45.327079+00:00",
   "as_of_date": "2026-06-06",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.02795609857113274,
+  "league_hr_per_pa": 0.03243486073674753,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 29,
       "batter": "Jos\u00e9 Ferm\u00edn",
       "batter_id": 665877,
       "batter_hand": "R",
@@ -66,7 +66,115 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 30,
+      "batter": "Alec Bohm",
+      "batter_id": 664761,
+      "batter_hand": "R",
+      "team": "PHI",
+      "lineup_spot": 4,
+      "pitcher": "Brandon Eisert",
+      "pitcher_id": 685126,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823454,
+      "game_datetime": "2026-06-06T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 680,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1183,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1516,
+      "ev_pct": 22.77,
+      "edge_pct": 3.33,
+      "blended_hr_per_pa": 0.0307,
+      "breakout_score": -0.0901,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.7468,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "wind",
+          "value": 1.1419,
+          "deviation": 0.1419
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9099,
+          "deviation": 0.0901
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 34,
+      "batter": "Mike Yastrzemski",
+      "batter_id": 573262,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 7,
+      "pitcher": "Braxton Ashcraft",
+      "pitcher_id": 677952,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824915,
+      "game_datetime": "2026-06-06T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 720,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.109,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1288,
+      "ev_pct": 14.61,
+      "edge_pct": 1.98,
+      "blended_hr_per_pa": 0.03008,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.1214,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.187,
+          "deviation": 0.187
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0892,
+          "deviation": 0.0892
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 35,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -111,7 +219,7 @@
           "deviation": 0.0725
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -119,6 +227,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 15,
   "skipped_reference": "data/processed/skipped_batters_2026-06-06.json"
 }

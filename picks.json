@@ -1,19 +1,137 @@
 {
-  "generated_at": "2026-06-06T16:42:20.565119+00:00",
+  "generated_at": "2026-06-06T18:00:45.326074+00:00",
   "as_of_date": "2026-06-06",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.02795609857113274,
+  "league_hr_per_pa": 0.03243486073674753,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 20,
+      "batter": "Colson Montgomery",
+      "batter_id": 695657,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 4,
+      "pitcher": "Andrew Painter",
+      "pitcher_id": 691725,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823454,
+      "game_datetime": "2026-06-06T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 300,
+      "dk_odds": 303,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2366,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.347,
+      "ev_pct": 39.86,
+      "edge_pct": 11.04,
+      "blended_hr_per_pa": 0.05937,
+      "breakout_score": -0.0908,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0237,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8305,
+          "deviation": 0.8305
+        },
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Miguel Vargas",
+        "Andrew Benintendi"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 15,
+      "batter": "Andrew Benintendi",
+      "batter_id": 643217,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 3,
+      "pitcher": "Andrew Painter",
+      "pitcher_id": 691725,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823454,
+      "game_datetime": "2026-06-06T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 435,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1721,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2588,
+      "ev_pct": 47.53,
+      "edge_pct": 8.67,
+      "blended_hr_per_pa": 0.03316,
+      "breakout_score": 0.1353,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0678,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "wind",
+          "value": 1.1419,
+          "deviation": 0.1419
+        }
+      ],
+      "tier_rank": 12,
+      "stacked": true,
+      "stacked_with": [
+        "Miguel Vargas",
+        "Colson Montgomery"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 17,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -58,7 +176,7 @@
           "deviation": 0.0741
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 14,
       "stacked": true,
       "stacked_with": [
         "Kevin McGonigle"
@@ -71,7 +189,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 25,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -116,7 +234,7 @@
           "deviation": 0.0816
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 18,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -126,6 +244,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 15,
   "skipped_reference": "data/processed/skipped_batters_2026-06-06.json"
 }
