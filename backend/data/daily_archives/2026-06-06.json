@@ -1,27 +1,27 @@
 {
   "date": "2026-06-06",
-  "generated_at": "2026-06-06T15:26:34.819055+00:00",
+  "generated_at": "2026-06-06T16:42:20.566005+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03146551724137931,
+  "league_hr_per_pa": 0.02795609857113274,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 47,
+    "total_predictions": 32,
     "skipped_low_data": 1,
-    "skipped_career_pa_filter": 6,
+    "skipped_career_pa_filter": 3,
     "skipped_other": 0,
-    "matched_in_odds_market": 46,
-    "matched_alt_market": 46,
+    "matched_in_odds_market": 32,
+    "matched_alt_market": 32,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 46,
-    "above_25_ev_pre_cap": 9,
-    "eligible_below_900_price_cap": 7,
-    "above_price_cap_pushed_to_secondary": 2,
-    "primary_count": 7,
+    "single_sided_devig": 32,
+    "above_25_ev_pre_cap": 1,
+    "eligible_below_900_price_cap": 1,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 8,
     "secondary_count": 2,
-    "shadow_count": 2
+    "shadow_count": 3
   },
   "primary_picks": [
     {
@@ -141,6 +141,62 @@
     {
       "tier": "primary",
       "daily_rank": 4,
+      "batter": "Coby Mayo",
+      "batter_id": 691723,
+      "batter_hand": "R",
+      "team": "BAL",
+      "lineup_spot": 5,
+      "pitcher": "Braydon Fisher",
+      "pitcher_id": 680755,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822808,
+      "game_datetime": "2026-06-06T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 590,
+      "dk_odds": 630,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1339,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2205,
+      "ev_pct": 60.97,
+      "edge_pct": 8.66,
+      "blended_hr_per_pa": 0.04429,
+      "breakout_score": 0.0008,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.1742,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5841,
+          "deviation": 0.5841
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1839,
+          "deviation": 0.1839
+        },
+        {
+          "name": "park",
+          "value": 1.0975,
+          "deviation": 0.0975
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -185,7 +241,7 @@
           "deviation": 0.0741
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "stacked": true,
       "stacked_with": [
         "Kevin McGonigle"
@@ -198,7 +254,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 7,
       "batter": "Iv\u00e1n Herrera",
       "batter_id": 671056,
       "batter_hand": "R",
@@ -243,7 +299,7 @@
           "deviation": 0.1029
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "stacked": true,
       "stacked_with": [
         "Jordan Walker"
@@ -256,7 +312,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 10,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -301,7 +357,7 @@
           "deviation": 0.1135
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -312,7 +368,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 8,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -357,7 +413,7 @@
           "deviation": 0.0695
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "stacked": true,
       "stacked_with": [
         "Dillon Dingler"
@@ -370,7 +426,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 9,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -415,7 +471,7 @@
           "deviation": 0.0816
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -482,7 +538,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 5,
+      "daily_rank": 6,
       "batter": "Wenceel P\u00e9rez",
       "batter_id": 672761,
       "batter_hand": "L",
@@ -538,7 +594,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 10,
+      "daily_rank": 11,
       "batter": "Jos\u00e9 Ferm\u00edn",
       "batter_id": 665877,
       "batter_hand": "R",
@@ -592,7 +648,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 12,
       "batter": "Luke Raley",
       "batter_id": 670042,
       "batter_hand": "L",
@@ -642,6 +698,60 @@
         "passes_baseline": true,
         "passes_triple": false,
         "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
+      "batter": "Alex Bregman",
+      "batter_id": 608324,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 4,
+      "pitcher": "Landen Roupp",
+      "pitcher_id": 694738,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824669,
+      "game_datetime": "2026-06-06T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 850,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0945,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.112,
+      "ev_pct": 14.21,
+      "edge_pct": 1.74,
+      "blended_hr_per_pa": 0.03137,
+      "breakout_score": 0.0399,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6163,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.8432,
+          "deviation": 0.1568
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.122,
+          "deviation": 0.122
+        },
+        {
+          "name": "wind",
+          "value": 0.9275,
+          "deviation": 0.0725
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
       }
     }
   ],

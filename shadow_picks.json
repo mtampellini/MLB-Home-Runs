@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-06T15:26:34.818863+00:00",
+  "generated_at": "2026-06-06T16:42:20.565757+00:00",
   "as_of_date": "2026-06-06",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03146551724137931,
+  "league_hr_per_pa": 0.02795609857113274,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 10,
+      "daily_rank": 11,
       "batter": "Jos\u00e9 Ferm\u00edn",
       "batter_id": 665877,
       "batter_hand": "R",
@@ -63,8 +63,62 @@
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
+      "batter": "Alex Bregman",
+      "batter_id": 608324,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 4,
+      "pitcher": "Landen Roupp",
+      "pitcher_id": 694738,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824669,
+      "game_datetime": "2026-06-06T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 850,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0945,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.112,
+      "ev_pct": 14.21,
+      "edge_pct": 1.74,
+      "blended_hr_per_pa": 0.03137,
+      "breakout_score": 0.0399,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6163,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.8432,
+          "deviation": 0.1568
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.122,
+          "deviation": 0.122
+        },
+        {
+          "name": "wind",
+          "value": 0.9275,
+          "deviation": 0.0725
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-06-06.json"
 }
