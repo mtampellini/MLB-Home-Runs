@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-06-06T19:27:40.486679+00:00",
+  "generated_at": "2026-06-06T20:48:41.546585+00:00",
   "as_of_date": "2026-06-06",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030211480362537766,
+  "league_hr_per_pa": 0.033568172399502695,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 10,
-  "games_excluded_live_or_complete": 5,
+  "games_pregame": 5,
+  "games_excluded_live_or_complete": 10,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 29,
+      "daily_rank": 35,
       "batter": "Jos\u00e9 Ferm\u00edn",
       "batter_id": 665877,
       "batter_hand": "R",
@@ -66,7 +66,61 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 30,
+      "daily_rank": 36,
+      "batter": "Cody Bellinger",
+      "batter_id": 641355,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 3,
+      "pitcher": "Ranger Suarez",
+      "pitcher_id": 624133,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823539,
+      "game_datetime": "2026-06-06T23:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 505,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.159,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2048,
+      "ev_pct": 23.89,
+      "edge_pct": 4.58,
+      "blended_hr_per_pa": 0.03133,
+      "breakout_score": 0.0187,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2953,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.196,
+          "deviation": 0.196
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "wind",
+          "value": 1.1261,
+          "deviation": 0.1261
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 37,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -111,7 +165,7 @@
           "deviation": 0.0901
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -120,7 +174,169 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 34,
+      "daily_rank": 39,
+      "batter": "Joc Pederson",
+      "batter_id": 592626,
+      "batter_hand": "L",
+      "team": "TEX",
+      "lineup_spot": 1,
+      "pitcher": "Tanner Bibee",
+      "pitcher_id": 676440,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822891,
+      "game_datetime": "2026-06-06T23:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 420,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1845,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2346,
+      "ev_pct": 21.97,
+      "edge_pct": 5.01,
+      "blended_hr_per_pa": 0.03956,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.6333,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1785,
+          "deviation": 0.1785
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 43,
+      "batter": "Mickey Gasper",
+      "batter_id": 681508,
+      "batter_hand": "L",
+      "team": "BOS",
+      "lineup_spot": 6,
+      "pitcher": "Will Warren",
+      "pitcher_id": 701542,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823539,
+      "game_datetime": "2026-06-06T23:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 810,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1033,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.13,
+      "ev_pct": 18.31,
+      "edge_pct": 2.67,
+      "blended_hr_per_pa": 0.024,
+      "breakout_score": 0.1313,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4574,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7149,
+          "deviation": 0.2851
+        },
+        {
+          "name": "pitcher",
+          "value": 0.7896,
+          "deviation": 0.2104
+        },
+        {
+          "name": "temperature",
+          "value": 1.196,
+          "deviation": 0.196
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 44,
+      "batter": "Angel Mart\u00ednez",
+      "batter_id": 682657,
+      "batter_hand": "L",
+      "team": "CLE",
+      "lineup_spot": 6,
+      "pitcher": "Jack Leiter",
+      "pitcher_id": 683004,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822891,
+      "game_datetime": "2026-06-06T23:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 546,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1477,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1817,
+      "ev_pct": 17.35,
+      "edge_pct": 3.39,
+      "blended_hr_per_pa": 0.0435,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5294,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2959,
+          "deviation": 0.2959
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.9313,
+          "deviation": 0.0687
+        }
+      ],
+      "tier_rank": 10,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 45,
       "batter": "Mike Yastrzemski",
       "batter_id": 573262,
       "batter_hand": "L",
@@ -165,7 +381,7 @@
           "deviation": 0.0892
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -174,7 +390,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 35,
+      "daily_rank": 46,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -219,14 +435,68 @@
           "deviation": 0.0725
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 47,
+      "batter": "Jazz Chisholm Jr.",
+      "batter_id": 665862,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 7,
+      "pitcher": "Ranger Suarez",
+      "pitcher_id": 624133,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823539,
+      "game_datetime": "2026-06-06T23:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 562,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.146,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1723,
+      "ev_pct": 14.09,
+      "edge_pct": 2.64,
+      "blended_hr_per_pa": 0.03504,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1444,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.196,
+          "deviation": 0.196
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 13,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-06-06.json"
 }
