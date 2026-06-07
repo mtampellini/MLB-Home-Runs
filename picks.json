@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-07T15:41:13.641819+00:00",
+  "generated_at": "2026-06-07T17:08:38.489099+00:00",
   "as_of_date": "2026-06-07",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03342939481268011,
+  "league_hr_per_pa": 0.029581151832460732,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,123 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 15,
+      "daily_rank": 22,
+      "batter": "Gary S\u00e1nchez",
+      "batter_id": 596142,
+      "batter_hand": "R",
+      "team": "MIL",
+      "lineup_spot": 5,
+      "pitcher": "Kyle Freeland",
+      "pitcher_id": 607536,
+      "pitcher_hand": "L",
+      "park": "COL",
+      "game_pk": 824349,
+      "game_datetime": "2026-06-07T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 310,
+      "dk_odds": 298,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2377,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3536,
+      "ev_pct": 44.99,
+      "edge_pct": 11.59,
+      "blended_hr_per_pa": 0.04458,
+      "breakout_score": 0.1493,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.5069,
+          "deviation": 0.5069
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Jackson Chourio",
+        "Brice Turang",
+        "William Contreras"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 20,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Mason Montgomery",
+      "pitcher_id": 682254,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824916,
+      "game_datetime": "2026-06-07T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 376,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2009,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.315,
+      "ev_pct": 49.94,
+      "edge_pct": 11.41,
+      "blended_hr_per_pa": 0.05847,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6914,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9767,
+          "deviation": 0.9767
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.091,
+          "deviation": 0.091
+        }
+      ],
+      "tier_rank": 10,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 27,
       "batter": "Nick Kurtz",
       "batter_id": 701762,
       "batter_hand": "L",
@@ -58,7 +174,7 @@
           "deviation": 0.0911
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 16,
       "stacked": true,
       "stacked_with": [
         "Tyler Soderstrom"
@@ -68,8 +184,129 @@
         "passes_triple": true,
         "passes_quad": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 25,
+      "batter": "Kyle Manzardo",
+      "batter_id": 700932,
+      "batter_hand": "L",
+      "team": "CLE",
+      "lineup_spot": 4,
+      "pitcher": "Jacob deGrom",
+      "pitcher_id": 594798,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822890,
+      "game_datetime": "2026-06-07T18:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 468,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.167,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2507,
+      "ev_pct": 42.91,
+      "edge_pct": 8.38,
+      "blended_hr_per_pa": 0.04398,
+      "breakout_score": -0.1207,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.645,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4867,
+          "deviation": 0.4867
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8793,
+          "deviation": 0.1207
+        }
+      ],
+      "tier_rank": 17,
+      "stacked": true,
+      "stacked_with": [
+        "Angel Mart\u00ednez",
+        "Jos\u00e9 Ram\u00edrez",
+        "Daniel Schneemann",
+        "Chase DeLauter"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 29,
+      "batter": "William Contreras",
+      "batter_id": 661388,
+      "batter_hand": "R",
+      "team": "MIL",
+      "lineup_spot": 3,
+      "pitcher": "Kyle Freeland",
+      "pitcher_id": 607536,
+      "pitcher_hand": "L",
+      "park": "COL",
+      "game_pk": 824349,
+      "game_datetime": "2026-06-07T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 431,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1728,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2419,
+      "ev_pct": 37.87,
+      "edge_pct": 6.91,
+      "blended_hr_per_pa": 0.02941,
+      "breakout_score": 0.0767,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2381,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0767,
+          "deviation": 0.0767
+        }
+      ],
+      "tier_rank": 18,
+      "stacked": true,
+      "stacked_with": [
+        "Gary S\u00e1nchez",
+        "Jackson Chourio",
+        "Brice Turang"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
     }
   ],
-  "skipped_count": 15,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-06-07.json"
 }

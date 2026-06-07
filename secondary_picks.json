@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-07T15:41:13.642125+00:00",
+  "generated_at": "2026-06-07T17:08:38.489606+00:00",
   "as_of_date": "2026-06-07",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03342939481268011,
+  "league_hr_per_pa": 0.029581151832460732,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,61 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 17,
+      "daily_rank": 23,
+      "batter": "Mauricio Dub\u00f3n",
+      "batter_id": 643289,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 2,
+      "pitcher": "Mason Montgomery",
+      "pitcher_id": 682254,
+      "pitcher_hand": "L",
+      "park": "ATL",
+      "game_pk": 824916,
+      "game_datetime": "2026-06-07T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1080,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0802,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1229,
+      "ev_pct": 44.99,
+      "edge_pct": 4.27,
+      "blended_hr_per_pa": 0.02265,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2297,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7655,
+          "deviation": 0.2345
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.091,
+          "deviation": 0.091
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 30,
       "batter": "Kerry Carpenter",
       "batter_id": 681481,
       "batter_hand": "L",
@@ -57,7 +111,7 @@
           "deviation": 0.096
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,7 +120,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 20,
+      "daily_rank": 33,
       "batter": "Bryson Stott",
       "batter_id": 681082,
       "batter_hand": "L",
@@ -111,7 +165,7 @@
           "deviation": 0.117
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 14,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -120,7 +174,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 21,
+      "daily_rank": 34,
       "batter": "Willson Contreras",
       "batter_id": 575929,
       "batter_hand": "R",
@@ -165,7 +219,7 @@
           "deviation": 0.1897
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -174,7 +228,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 22,
+      "daily_rank": 35,
       "batter": "Brandon Marsh",
       "batter_id": 669016,
       "batter_hand": "L",
@@ -219,7 +273,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 16,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -228,7 +282,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 23,
+      "daily_rank": 37,
       "batter": "Yordan Alvarez",
       "batter_id": 670541,
       "batter_hand": "L",
@@ -273,7 +327,7 @@
           "deviation": 0.0911
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 17,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -281,6 +335,6 @@
       }
     }
   ],
-  "skipped_count": 15,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-06-07.json"
 }
