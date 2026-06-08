@@ -1,15 +1,178 @@
 {
-  "generated_at": "2026-06-08T17:24:16.136101+00:00",
+  "generated_at": "2026-06-08T21:59:33.282932+00:00",
   "as_of_date": "2026-06-08",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030924709449216777,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 8,
   "games_pregame": 8,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
+      "batter": "Angel Mart\u00ednez",
+      "batter_id": 682657,
+      "batter_hand": "L",
+      "team": "CLE",
+      "lineup_spot": 6,
+      "pitcher": "Will Warren",
+      "pitcher_id": 701542,
+      "pitcher_hand": "R",
+      "park": "CLE",
+      "game_pk": 824427,
+      "game_datetime": "2026-06-08T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 640,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1216,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.153,
+      "ev_pct": 23.95,
+      "edge_pct": 3.14,
+      "blended_hr_per_pa": 0.04242,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.538,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3716,
+          "deviation": 0.3716
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8482,
+          "deviation": 0.1518
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 10,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 3,
+      "pitcher": "Gavin Williams",
+      "pitcher_id": 668909,
+      "pitcher_hand": "R",
+      "park": "CLE",
+      "game_pk": 824427,
+      "game_datetime": "2026-06-08T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 760,
+      "dk_odds": 840,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1035,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1258,
+      "ev_pct": 18.27,
+      "edge_pct": 2.23,
+      "blended_hr_per_pa": 0.03542,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5673,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 0.7897,
+          "deviation": 0.2103
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1454,
+          "deviation": 0.1454
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
+      "batter": "Gunnar Henderson",
+      "batter_id": 683002,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 2,
+      "pitcher": "Emerson Hancock",
+      "pitcher_id": 676106,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824829,
+      "game_datetime": "2026-06-08T22:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 389,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1941,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2328,
+      "ev_pct": 14.09,
+      "edge_pct": 3.88,
+      "blended_hr_per_pa": 0.04032,
+      "breakout_score": 0.1457,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2287,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3038,
+          "deviation": 0.3038
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1457,
+          "deviation": 0.1457
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    }
+  ],
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-06-08.json"
 }

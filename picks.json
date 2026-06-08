@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-08T17:24:16.135669+00:00",
+  "generated_at": "2026-06-08T21:59:33.282460+00:00",
   "as_of_date": "2026-06-08",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030924709449216777,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,67 @@
   "total_games_today": 8,
   "games_pregame": 8,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Dominic Canzone",
+      "batter_id": 686527,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 6,
+      "pitcher": "Trey Gibson",
+      "pitcher_id": 694346,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824829,
+      "game_datetime": "2026-06-08T22:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 553,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1494,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2285,
+      "ev_pct": 49.2,
+      "edge_pct": 7.91,
+      "blended_hr_per_pa": 0.04668,
+      "breakout_score": 0.1385,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1855,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5095,
+          "deviation": 0.5095
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1385,
+          "deviation": 0.1385
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Luke Raley",
+        "Cole Young"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false
+      }
+    }
+  ],
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-06-08.json"
 }
