@@ -37,6 +37,11 @@ const MODEL_REBUILD_DATE = '2026-05-13'
 // with View = Triple to see exactly what's been shown/bet since the filter went on.
 const TRIPLE_FILTER_DATE = '2026-05-20'
 
+// Anchor-view ship date. Picks dated >= this carry passes_anchor natively and
+// — more importantly — post-date the data window the anchor parameters were
+// fit on (5/13-6/08), so this range is anchor's true out-of-sample record.
+const ANCHOR_VIEW_DATE = '2026-06-09'
+
 // ─── data loading at build time ────────────────────────────────────────
 export async function getStaticProps() {
   const archivesDir = path.join(process.cwd(), 'backend/data/daily_archives')
@@ -848,6 +853,8 @@ export default function Tracker({ archives, tracker, generatedAt }) {
       list = list.filter(a => new Date(a.date) >= cutoff)
     } else if (dateFilter === 'since_triple') {
       list = list.filter(a => a.date >= TRIPLE_FILTER_DATE)
+    } else if (dateFilter === 'since_anchor') {
+      list = list.filter(a => a.date >= ANCHOR_VIEW_DATE)
     }
     // Per-day bet predicate, bound to that day's date (bets keys include date).
     const mkBetted = (d) => betsOnly ? ((bid, gpk) => !!bets[betKey(d, bid, gpk)]) : null
@@ -863,11 +870,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     if (sortBy === 'date_desc') sorted.sort((a, b) => b.date.localeCompare(a.date))
     else if (sortBy === 'date_asc') sorted.sort((a, b) => a.date.localeCompare(b.date))
     else if (sortBy === 'roi') sorted.sort((a, b) => (sumOf(b).roiPct ?? -Infinity) - (sumOf(a).roiPct ?? -Infinity))
-    else if (sortBy === 'hit_rate') sorted.sort((a, b) => (sumOf(b).hitRate ?? -Infinity) - (sumOf(a).hitRate ?? -Infinity))
-    else if (sortBy === 'count') {
-      const cnt = (s) => tierFilter.reduce((acc, t) => acc + (s[`${t}_count`] || 0), 0)
-      sorted.sort((a, b) => cnt(sumOf(b)) - cnt(sumOf(a)))
-    }
     return sorted
   }, [archives, dateFilter, sortBy, tierFilter, modelFilter, filterView, betsOnly, bets])
 
@@ -1075,6 +1077,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
             options={[
               ['all',          'All time'],
               ['since_triple', 'Since triple (5/20)'],
+              ['since_anchor', 'Since anchor (6/09)'],
               ['30d',          '30 days'],
               ['7d',           '7 days'],
               ['yesterday',    'Yesterday'],
@@ -1084,8 +1087,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
               ['date_desc', 'Date (newest)'],
               ['date_asc',  'Date (oldest)'],
               ['roi',       'ROI'],
-              ['hit_rate',  'Hit rate'],
-              ['count',     'Pick count'],
             ]} />
         </div>
 
