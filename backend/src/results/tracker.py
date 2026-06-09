@@ -29,7 +29,7 @@ from pathlib import Path
 from typing import Iterable, Optional
 
 from src.odds.ev import american_to_decimal
-from src.pipeline.filters import annotate_filter_status, passes_quad, passes_triple
+from src.pipeline.filters import annotate_filter_status, passes_anchor, passes_quad, passes_triple
 from src.pipeline.slate import normalize_name
 
 logger = logging.getLogger(__name__)
@@ -314,6 +314,9 @@ def _load_all_tiers_rows(
                 # filtering doesn't need a secondary lookup.
                 r["passes_triple"] = bool(fs.get("passes_triple", passes_triple(pick)))
                 r["passes_quad"] = bool(fs.get("passes_quad", passes_quad(pick)))
+                # Anchor shipped 2026-06-09: archives before then carry a
+                # filter_status without the key, so fall back to computing it.
+                r["passes_anchor"] = bool(fs.get("passes_anchor", passes_anchor(pick)))
                 rows.append(r)
                 taken = r.get("over_american") or pick.get("dk_odds") or pick.get("fd_odds")
                 close = _closing_quote_for_pick(pick, snaps_by_date) if pick else None
@@ -350,7 +353,11 @@ def build_tracker(
         return [r for r in rows if r.get(flag)]
 
     by_filter: dict[str, dict] = {}
-    for filter_name, flag in (("triple", "passes_triple"), ("quad", "passes_quad")):
+    for filter_name, flag in (
+        ("triple", "passes_triple"),
+        ("quad", "passes_quad"),
+        ("anchor", "passes_anchor"),
+    ):
         f_primary = _filter_rows(primary_rows, flag)
         f_secondary = _filter_rows(secondary_rows, flag)
         f_shadow = _filter_rows(shadow_rows, flag)

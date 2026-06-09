@@ -104,13 +104,20 @@ function fmtGameTime(iso) {
 }
 
 // JS port of backend/src/pipeline/filters.py — backfills filter_status on
-// archived picks that pre-date 2026-05-20. Must mirror the Python filter
-// logic exactly or the per-day client-side compute drifts from tracker.json.
+// archived picks that pre-date each filter's ship date. Must mirror the
+// Python filter logic exactly or the per-day client-side compute drifts
+// from tracker.json.
 const STACKED_SHADE_FACTOR = 0.7
 const EV_CEILING_PCT = 50.0
 const PITCHER_FACTOR_BAND = [1.10, 1.45]
-const MODEL_PROB_BAND = [0.15, 0.25]
 const TIER_EV_MIN = { primary: 25.0, secondary: 25.0, shadow: 10.0 }
+// Anchor view (2026-06-09): the over-prediction audit recommendations as a
+// pick-level overlay. Ratio window caps the winner's-curse zone; the blended
+// and breakout caps drop the audited inflation tails; pitcher band shared
+// with triple. Exploratory tracking view — not pre-registered.
+const ANCHOR_RATIO_BAND = [1.15, 1.60]
+const ANCHOR_BLENDED_MAX = 0.060
+const ANCHOR_BREAKOUT_MAX = 0.10
 
 function pitcherFactor(pick) {
   const feats = pick.top_3_features || []
@@ -128,19 +135,25 @@ function picksTriple(pick) {
   }
   return true
 }
-function picksQuad(pick) {
-  if (!picksTriple(pick)) return false
-  const mp = Number(pick.model_prob || 0)
-  if (mp >= MODEL_PROB_BAND[0] && mp < MODEL_PROB_BAND[1]) return false
+function picksAnchor(pick) {
+  const market = Number(pick.market_prob_devig || 0)
+  if (market <= 0) return false
+  const ratio = Number(pick.model_prob || 0) / market
+  if (ratio < ANCHOR_RATIO_BAND[0] || ratio >= ANCHOR_RATIO_BAND[1]) return false
+  if (Number(pick.blended_hr_per_pa || 0) >= ANCHOR_BLENDED_MAX) return false
+  if (Number(pick.breakout_score || 0) >= ANCHOR_BREAKOUT_MAX) return false
+  const pf = pitcherFactor(pick)
+  if (pf >= PITCHER_FACTOR_BAND[0] && pf < PITCHER_FACTOR_BAND[1]) return false
   return true
 }
 function pickPassesFilter(pick, filterView, tier) {
   if (filterView === 'baseline') return true
-  // Older archives may lack filter_status; compute from the pick fields directly.
+  // Older archives may lack filter_status (or lack the anchor key, which
+  // shipped 2026-06-09); compute from the pick fields directly.
   const fs = pick.filter_status
   const p = { ...pick, tier: pick.tier || tier }
   if (filterView === 'triple') return fs?.passes_triple ?? picksTriple(p)
-  if (filterView === 'quad')   return fs?.passes_quad   ?? picksQuad(p)
+  if (filterView === 'anchor') return fs?.passes_anchor ?? picksAnchor(p)
   return true
 }
 
@@ -171,8 +184,8 @@ function combineTrackerSummaries(...sums) {
 // Mirrors backend tracker.py for the basic stats we surface in the top panels;
 // CLV requires closing-line snapshots that aren't carried per-archive, so it's
 // omitted here and the StatCard renders "—" when this path is used.
-function computeSummaryFromArchives(archives, tier, filterView = 'baseline', bets = null, betsOnly = false) {
-  const tiers = tier === 'all' ? ['primary', 'secondary', 'shadow'] : [tier]
+// `tiers` is an array of selected tier names (multi-select).
+function computeSummaryFromArchives(archives, tiers, filterView = 'baseline', bets = null, betsOnly = false) {
   let wins = 0, losses = 0, voids = 0, units_profit = 0
   // Fast path — pre-computed per-day summaries. Only usable for the baseline
   // view with no per-pick "did I bet on it?" scoping; filter views (triple/quad)
@@ -227,20 +240,16 @@ function combineSettlementSummaries(...sums) {
 // isBetted: optional (batter_id, game_pk) => bool predicate. When provided
 // (bets-only view) we scope counts + settlement to flagged picks and must use
 // the per-pick path even for the baseline view.
-function summarizeArchive(archive, tier = 'primary', filterView = 'baseline', isBetted = null) {
+// `tiers` is an array of selected tier names (multi-select).
+function summarizeArchive(archive, tiers = ['primary'], filterView = 'baseline', isBetted = null) {
   const funnel = archive.funnel || {}
   const settle = archive.settlement || null
-  const tiers = tier === 'all' ? ['primary', 'secondary', 'shadow'] : [tier]
 
   // Baseline path uses pre-computed per-day summaries (cheaper).
   if (filterView === 'baseline' && !isBetted) {
     let summary = null
     if (settle) {
-      summary = tier === 'all'
-        ? combineSettlementSummaries(
-            settle.primary_summary, settle.secondary_summary, settle.shadow_summary
-          )
-        : (settle[`${tier}_summary`] || null)
+      summary = combineSettlementSummaries(...tiers.map(t => settle[`${t}_summary`]))
     }
     const wins = summary?.n_wins ?? null
     const losses = summary?.n_losses ?? null
@@ -301,11 +310,7 @@ const CALIBRATION_BUCKETS = [
   { lo: 0.30, hi: 0.40 },
   { lo: 0.40, hi: 0.60 },
 ]
-function buildCalibration(archives, tier = 'all', filterView = 'baseline', bets = null, betsOnly = false) {
-  const tiers = tier === 'primary' ? ['primary']
-              : tier === 'secondary' ? ['secondary']
-              : tier === 'shadow' ? ['shadow']
-              : ['primary', 'secondary', 'shadow']
+function buildCalibration(archives, tiers = ['primary', 'secondary', 'shadow'], filterView = 'baseline', bets = null, betsOnly = false) {
   const allSettled = []
   for (const { date, data } of archives) {
     const settle = data.settlement
@@ -521,9 +526,9 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'basel
         all.push({ ...p, _tier: t })
       }
     }
-    if (tierFilter === 'all' || tierFilter === 'primary')   pull('primary',   data.primary_picks)
-    if (tierFilter === 'all' || tierFilter === 'secondary') pull('secondary', data.secondary_picks)
-    if (tierFilter === 'all' || tierFilter === 'shadow')    pull('shadow',    data.shadow_picks)
+    if (tierFilter.includes('primary'))   pull('primary',   data.primary_picks)
+    if (tierFilter.includes('secondary')) pull('secondary', data.secondary_picks)
+    if (tierFilter.includes('shadow'))    pull('shadow',    data.shadow_picks)
     return all
   }, [data, date, tierFilter, filterView, betsOnly, bets])
 
@@ -631,7 +636,7 @@ function CalibrationView({ archives, tierFilter, filterView = 'baseline', bets =
     () => buildCalibration(archives, tierFilter, filterView, bets, betsOnly),
     [archives, tierFilter, filterView, bets, betsOnly],
   )
-  const tierLabel = tierFilter === 'all' ? 'all tiers' : tierFilter
+  const tierLabel = tierFilter.length === 3 ? 'all tiers' : tierFilter.join(' + ')
   if (cal.total < CALIBRATION_MIN_PICKS) {
     return (
       <div style={{
@@ -740,14 +745,31 @@ function FilterRow({ label, options, value, onChange }) {
 }
 
 // ─── page component ────────────────────────────────────────────────────
+const ALL_TIERS = ['primary', 'secondary', 'shadow']
+
 export default function Tracker({ archives, tracker, generatedAt }) {
   const refreshed = fmtRefreshed(generatedAt)
-  const [tierFilter, setTierFilter] = useState('primary')
+  // Tier is multi-select: an array of selected tier names. Clicking a tier
+  // toggles it (the last selected tier can't be toggled off); "All" selects
+  // all three at once.
+  const [tierFilter, setTierFilter] = useState(['primary'])
+  const toggleTier = useCallback((t) => {
+    setTierFilter(prev => {
+      if (t === 'all') return [...ALL_TIERS]
+      if (prev.includes(t)) {
+        return prev.length === 1 ? prev : prev.filter(x => x !== t)
+      }
+      // Preserve canonical order so labels read "primary + shadow", never reversed.
+      return ALL_TIERS.filter(x => prev.includes(x) || x === t)
+    })
+  }, [])
   const [dateFilter, setDateFilter] = useState('all')
   // View filter scopes the top metrics by post-build empirical filter.
   // baseline = every settled pick (back-compat).
   // triple   = only picks that pass the production filter (passes_triple).
-  // quad     = only picks that pass the experimental quad filter.
+  // anchor   = the over-prediction-audit overlay (passes_anchor, 2026-06-09);
+  //            replaced quad in this UI — quad is still tagged in archives for
+  //            the pre-registered H2 eval on 2026-06-18.
   // See backend/docs/filter_experiment.md.
   const [filterView, setFilterView] = useState('baseline')
   // Default to "post-rebuild" if any post-rebuild archive exists (current
@@ -843,17 +865,8 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     else if (sortBy === 'roi') sorted.sort((a, b) => (sumOf(b).roiPct ?? -Infinity) - (sumOf(a).roiPct ?? -Infinity))
     else if (sortBy === 'hit_rate') sorted.sort((a, b) => (sumOf(b).hitRate ?? -Infinity) - (sumOf(a).hitRate ?? -Infinity))
     else if (sortBy === 'count') {
-      sorted.sort((a, b) => {
-        const sa = sumOf(a)
-        const sb = sumOf(b)
-        const ca = tierFilter === 'all'
-          ? sa.primary_count + sa.secondary_count + sa.shadow_count
-          : sa.primary_count
-        const cb = tierFilter === 'all'
-          ? sb.primary_count + sb.secondary_count + sb.shadow_count
-          : sb.primary_count
-        return cb - ca
-      })
+      const cnt = (s) => tierFilter.reduce((acc, t) => acc + (s[`${t}_count`] || 0), 0)
+      sorted.sort((a, b) => cnt(sumOf(b)) - cnt(sumOf(a)))
     }
     return sorted
   }, [archives, dateFilter, sortBy, tierFilter, modelFilter, filterView, betsOnly, bets])
@@ -872,20 +885,18 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     if (betsOnly) {
       return computeSummaryFromArchives(filteredArchives, tierFilter, filterView, bets, true)
     }
-    if (dateFilter !== 'all' || modelFilter === 'pre' || !tracker) {
+    // Compute from archives when tracker.json can't serve the view: a date
+    // sub-range, the pre-rebuild slice, a missing tracker, or a filter view
+    // tracker.json doesn't carry yet (anchor, until the next settle cron
+    // regenerates it with the new by_filter block).
+    if (
+      dateFilter !== 'all' || modelFilter === 'pre' || !tracker ||
+      (filterView !== 'baseline' && !tracker.by_filter?.[filterView])
+    ) {
       return computeSummaryFromArchives(filteredArchives, tierFilter, filterView)
     }
-    // Filter views read from the by_filter block. Falls back to baseline
-    // (with a 0-count summary) if a pre-2026-05-20 tracker.json is loaded.
-    const source = filterView === 'baseline'
-      ? tracker
-      : (tracker.by_filter?.[filterView] || tracker)
-    if (tierFilter === 'all') {
-      return combineTrackerSummaries(
-        source.summary_primary, source.summary_secondary, source.summary_shadow
-      )
-    }
-    return source[`summary_${tierFilter}`] || tracker.summary || {}
+    const source = filterView === 'baseline' ? tracker : tracker.by_filter[filterView]
+    return combineTrackerSummaries(...tierFilter.map(t => source[`summary_${t}`]))
   }, [tracker, tierFilter, modelFilter, dateFilter, filterView, filteredArchives, betsOnly, bets])
 
   const totalSettled = (sum.wins || 0) + (sum.losses || 0)
@@ -1031,18 +1042,26 @@ export default function Tracker({ archives, tracker, generatedAt }) {
               ['all',  'All picks'],
               ['bets', totalBets > 0 ? `My bets (${totalBets})` : 'My bets'],
             ]} />
-          <FilterRow label="Tier"  value={tierFilter} onChange={setTierFilter}
-            options={[
-              ['primary',   'Primary'],
-              ['secondary', 'Secondary'],
-              ['shadow',    'Shadow'],
-              ['all',       'All'],
-            ]} />
+          {/* Tier is multi-select: each button toggles membership. */}
+          <div style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
+            <span style={{
+              fontSize: 11, color: T.textLight, minWidth: 50,
+              textTransform: 'uppercase', letterSpacing: 0.6,
+            }}>Tier</span>
+            {[['primary', 'Primary'], ['secondary', 'Secondary'], ['shadow', 'Shadow']].map(([k, lbl]) => (
+              <FilterButton key={k} active={tierFilter.includes(k)} onClick={() => toggleTier(k)}>
+                {lbl}
+              </FilterButton>
+            ))}
+            <FilterButton active={tierFilter.length === ALL_TIERS.length} onClick={() => toggleTier('all')}>
+              All
+            </FilterButton>
+          </div>
           <FilterRow label="View"  value={filterView} onChange={setFilterView}
             options={[
               ['baseline', 'Baseline'],
               ['triple',   'Triple'],
-              ['quad',     'Quad'],
+              ['anchor',   'Anchor'],
             ]} />
           {spansRebuild && (
             <FilterRow label="Model" value={modelFilter} onChange={setModelFilter}
@@ -1110,13 +1129,17 @@ export default function Tracker({ archives, tracker, generatedAt }) {
           marginTop: 40, paddingTop: 20, borderTop: `1px solid ${T.border}`,
           fontSize: 11, color: T.textLight, lineHeight: 1.7,
         }}>
-          All metrics assume a flat 1u stake on every pick of the selected tier.
+          All metrics assume a flat 1u stake on every pick of the selected tier(s).
+          Tier buttons multi-select — e.g. Primary + Shadow together.
           "stacked" picks share a starting pitcher with another primary pick that
           day — outcomes correlated. View filter scopes the top metrics:{' '}
           <strong style={{ color: T.textMedium }}>Baseline</strong> includes every settled pick,{' '}
           <strong style={{ color: T.textMedium }}>Triple</strong> is the production filter
           (stacked-EV shade + EV ceiling + pitcher-factor band),{' '}
-          <strong style={{ color: T.textMedium }}>Quad</strong> adds a model-prob band drop.
+          <strong style={{ color: T.textMedium }}>Anchor</strong> is the experimental
+          over-prediction-audit overlay (model/market ratio window 1.15–1.6 + blended-rate cap +
+          breakout cap + pitcher-factor band) tracked since 2026-06-09 — exploratory, not
+          pre-registered, and not what the front page shows.
           {' '}The <strong style={{ color: T.textMedium }}>Bet</strong> checkbox marks which
           players you actually bet on; flags are saved in this browser (localStorage) and
           persist across reloads — they're personal and not part of the model's record.

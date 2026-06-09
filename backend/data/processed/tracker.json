@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-09T12:16:06.923229+00:00",
+  "last_updated": "2026-06-09T14:20:13.254900-04:00",
   "date_range": [
     "2026-05-13",
     null
@@ -365,6 +365,98 @@
       "calibration_n_picks_primary": 69,
       "calibration_n_picks_secondary": 82,
       "calibration_n_picks_shadow": 163
+    },
+    "anchor": {
+      "summary_primary": {
+        "total_picks": 95,
+        "wins": 23,
+        "losses": 69,
+        "voids": 3,
+        "units_staked": 92.0,
+        "units_profit": 45.46,
+        "roi_pct": 49.41,
+        "hit_rate": 0.25,
+        "avg_clv_pct": 0.26,
+        "n_picks_with_clv": 68
+      },
+      "summary_secondary": {
+        "total_picks": 81,
+        "wins": 10,
+        "losses": 71,
+        "voids": 0,
+        "units_staked": 81.0,
+        "units_profit": 6.819999999999995,
+        "roi_pct": 8.42,
+        "hit_rate": 0.1235,
+        "avg_clv_pct": 0.62,
+        "n_picks_with_clv": 68
+      },
+      "summary_shadow": {
+        "total_picks": 160,
+        "wins": 21,
+        "losses": 137,
+        "voids": 2,
+        "units_staked": 158.0,
+        "units_profit": -11.41,
+        "roi_pct": -7.22,
+        "hit_rate": 0.1329,
+        "avg_clv_pct": 0.33,
+        "n_picks_with_clv": 124
+      },
+      "calibration_combined": [
+        {
+          "model_prob_min": 0.0,
+          "model_prob_max": 0.05,
+          "n_picks": 1,
+          "expected_hit_rate": 0.0424,
+          "actual_hit_rate": 0.0
+        },
+        {
+          "model_prob_min": 0.05,
+          "model_prob_max": 0.1,
+          "n_picks": 17,
+          "expected_hit_rate": 0.0873,
+          "actual_hit_rate": 0.1176
+        },
+        {
+          "model_prob_min": 0.1,
+          "model_prob_max": 0.15,
+          "n_picks": 118,
+          "expected_hit_rate": 0.1272,
+          "actual_hit_rate": 0.0763
+        },
+        {
+          "model_prob_min": 0.15,
+          "model_prob_max": 0.2,
+          "n_picks": 96,
+          "expected_hit_rate": 0.1737,
+          "actual_hit_rate": 0.1771
+        },
+        {
+          "model_prob_min": 0.2,
+          "model_prob_max": 0.25,
+          "n_picks": 70,
+          "expected_hit_rate": 0.2226,
+          "actual_hit_rate": 0.2143
+        },
+        {
+          "model_prob_min": 0.25,
+          "model_prob_max": 0.3,
+          "n_picks": 19,
+          "expected_hit_rate": 0.2677,
+          "actual_hit_rate": 0.2632
+        },
+        {
+          "model_prob_min": 0.3,
+          "model_prob_max": 0.4,
+          "n_picks": 10,
+          "expected_hit_rate": 0.3314,
+          "actual_hit_rate": 0.6
+        }
+      ],
+      "calibration_n_picks_primary": 95,
+      "calibration_n_picks_secondary": 81,
+      "calibration_n_picks_shadow": 160
     },
     "dropped_by_triple": {
       "summary_primary": {
