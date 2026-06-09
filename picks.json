@@ -1,19 +1,78 @@
 {
-  "generated_at": "2026-06-09T22:14:24.737475+00:00",
+  "generated_at": "2026-06-09T23:53:38.918975+00:00",
   "as_of_date": "2026-06-09",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.02940563086548488,
+  "league_hr_per_pa": 0.03441507458780424,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 9,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 14,
+      "daily_rank": 13,
+      "batter": "Mois\u00e9s Ballesteros",
+      "batter_id": 694208,
+      "batter_hand": "L",
+      "team": "CHC",
+      "lineup_spot": 2,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824347,
+      "game_datetime": "2026-06-10T00:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 332,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2132,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3119,
+      "ev_pct": 43.47,
+      "edge_pct": 9.87,
+      "blended_hr_per_pa": 0.04326,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2569,
+          "deviation": 0.2569
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "Ian Happ"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 15,
       "batter": "Colton Cowser",
       "batter_id": 681297,
       "batter_hand": "L",
@@ -58,7 +117,7 @@
           "deviation": 0.1545
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "stacked": true,
       "stacked_with": [
         "Gunnar Henderson",
@@ -73,7 +132,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 24,
+      "daily_rank": 25,
       "batter": "Andrew Benintendi",
       "batter_id": 643217,
       "batter_hand": "L",
@@ -118,7 +177,7 @@
           "deviation": 0.081
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 14,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -130,7 +189,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 18,
+      "daily_rank": 19,
       "batter": "Brandon Lowe",
       "batter_id": 664040,
       "batter_hand": "L",
@@ -175,7 +234,7 @@
           "deviation": 0.0466
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 15,
       "stacked": true,
       "stacked_with": [
         "Ryan O'Hearn"
@@ -189,7 +248,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 20,
+      "daily_rank": 21,
       "batter": "Nathaniel Lowe",
       "batter_id": 663993,
       "batter_hand": "L",
@@ -234,7 +293,7 @@
           "deviation": 0.1306
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 16,
       "stacked": true,
       "stacked_with": [
         "Matt McLain"
@@ -248,7 +307,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 19,
+      "daily_rank": 20,
       "batter": "Matt McLain",
       "batter_id": 680574,
       "batter_hand": "R",
@@ -293,7 +352,7 @@
           "deviation": 0.07
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 17,
       "stacked": true,
       "stacked_with": [
         "Nathaniel Lowe"
@@ -306,6 +365,6 @@
       }
     }
   ],
-  "skipped_count": 13,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-06-09.json"
 }
