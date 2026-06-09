@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-08T23:23:32.030990+00:00",
+  "generated_at": "2026-06-09T00:18:52.616119+00:00",
   "as_of_date": "2026-06-08",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.035191281643773414,
+  "league_hr_per_pa": 0.02315369261477046,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -175,6 +175,60 @@
     {
       "tier": "shadow",
       "daily_rank": 16,
+      "batter": "Keibert Ruiz",
+      "batter_id": 660688,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 7,
+      "pitcher": "Logan Webb",
+      "pitcher_id": 657277,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823218,
+      "game_datetime": "2026-06-09T01:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1440,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.071,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0754,
+      "ev_pct": 16.15,
+      "edge_pct": 0.44,
+      "blended_hr_per_pa": 0.02875,
+      "breakout_score": 0.0986,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4333,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 0.7503,
+          "deviation": 0.2497
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2416,
+          "deviation": 0.2416
+        },
+        {
+          "name": "temperature",
+          "value": 0.861,
+          "deviation": 0.139
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 17,
       "batter": "Shea Langeliers",
       "batter_id": 669127,
       "batter_hand": "R",
@@ -219,7 +273,7 @@
           "deviation": 0.076
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -228,7 +282,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 19,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -273,7 +327,7 @@
           "deviation": 0.1457
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -282,7 +336,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 22,
       "batter": "Colby Thomas",
       "batter_id": 687515,
       "batter_hand": "R",
@@ -327,7 +381,7 @@
           "deviation": 0.076
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 14,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -335,6 +389,6 @@
       }
     }
   ],
-  "skipped_count": 13,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-06-08.json"
 }

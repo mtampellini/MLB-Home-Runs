@@ -1,27 +1,27 @@
 {
   "date": "2026-06-08",
-  "generated_at": "2026-06-08T23:23:32.031509+00:00",
+  "generated_at": "2026-06-09T00:18:52.616736+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.035191281643773414,
+  "league_hr_per_pa": 0.02315369261477046,
   "funnel": {
     "total_slate_games": 8,
     "games_excluded_live_or_complete": 4,
     "games_pregame": 4,
-    "total_predictions": 59,
-    "skipped_low_data": 5,
-    "skipped_career_pa_filter": 8,
+    "total_predictions": 16,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 58,
-    "matched_alt_market": 58,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 58,
-    "above_25_ev_pre_cap": 2,
-    "eligible_below_900_price_cap": 1,
-    "above_price_cap_pushed_to_secondary": 1,
+    "single_sided_devig": 16,
+    "above_25_ev_pre_cap": 0,
+    "eligible_below_900_price_cap": 0,
+    "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 5,
     "secondary_count": 3,
-    "shadow_count": 14
+    "shadow_count": 15
   },
   "primary_picks": [
     {
@@ -860,6 +860,60 @@
     {
       "tier": "shadow",
       "daily_rank": 16,
+      "batter": "Keibert Ruiz",
+      "batter_id": 660688,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 7,
+      "pitcher": "Logan Webb",
+      "pitcher_id": 657277,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823218,
+      "game_datetime": "2026-06-09T01:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1440,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.071,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0754,
+      "ev_pct": 16.15,
+      "edge_pct": 0.44,
+      "blended_hr_per_pa": 0.02875,
+      "breakout_score": 0.0986,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4333,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 0.7503,
+          "deviation": 0.2497
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2416,
+          "deviation": 0.2416
+        },
+        {
+          "name": "temperature",
+          "value": 0.861,
+          "deviation": 0.139
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 17,
       "batter": "Shea Langeliers",
       "batter_id": 669127,
       "batter_hand": "R",
@@ -904,7 +958,7 @@
           "deviation": 0.076
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -913,7 +967,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 18,
       "batter": "Jake Bauers",
       "batter_id": 641343,
       "batter_hand": "L",
@@ -958,7 +1012,7 @@
           "deviation": 0.0871
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -967,7 +1021,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 19,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -1012,7 +1066,7 @@
           "deviation": 0.1457
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1021,7 +1075,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 20,
       "batter": "LaMonte Wade Jr.",
       "batter_id": 664774,
       "batter_hand": "L",
@@ -1066,7 +1120,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -1075,7 +1129,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 20,
+      "daily_rank": 21,
       "batter": "Edmundo Sosa",
       "batter_id": 624641,
       "batter_hand": "R",
@@ -1120,7 +1174,7 @@
           "deviation": 0.0538
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 13,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -1129,7 +1183,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 22,
       "batter": "Colby Thomas",
       "batter_id": 687515,
       "batter_hand": "R",
@@ -1174,7 +1228,7 @@
           "deviation": 0.076
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 14,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1183,7 +1237,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 23,
       "batter": "Yandy D\u00edaz",
       "batter_id": 650490,
       "batter_hand": "R",
@@ -1228,7 +1282,7 @@
           "deviation": 0.0563
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
