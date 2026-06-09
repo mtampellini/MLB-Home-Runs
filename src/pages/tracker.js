@@ -829,8 +829,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
 
   // Filter + sort the archive list.
   const filteredArchives = useMemo(() => {
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
     let list = archives
     // Model filter first — it's the most semantic cut.
     if (modelFilter === 'post') {
@@ -838,20 +836,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     } else if (modelFilter === 'pre') {
       list = list.filter(a => a.date < MODEL_REBUILD_DATE)
     }
-    if (dateFilter === 'yesterday') {
-      const yest = new Date(today); yest.setDate(yest.getDate() - 1)
-      const y = yest.getFullYear()
-      const m = String(yest.getMonth() + 1).padStart(2, '0')
-      const d = String(yest.getDate()).padStart(2, '0')
-      const yestStr = `${y}-${m}-${d}`
-      list = list.filter(a => a.date === yestStr)
-    } else if (dateFilter === '7d') {
-      const cutoff = new Date(today); cutoff.setDate(cutoff.getDate() - 7)
-      list = list.filter(a => new Date(a.date) >= cutoff)
-    } else if (dateFilter === '30d') {
-      const cutoff = new Date(today); cutoff.setDate(cutoff.getDate() - 30)
-      list = list.filter(a => new Date(a.date) >= cutoff)
-    } else if (dateFilter === 'since_triple') {
+    if (dateFilter === 'since_triple') {
       list = list.filter(a => a.date >= TRIPLE_FILTER_DATE)
     } else if (dateFilter === 'since_anchor') {
       list = list.filter(a => a.date >= ANCHOR_VIEW_DATE)
@@ -1078,9 +1063,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
               ['all',          'All time'],
               ['since_triple', 'Since triple (5/20)'],
               ['since_anchor', 'Since anchor (6/09)'],
-              ['30d',          '30 days'],
-              ['7d',           '7 days'],
-              ['yesterday',    'Yesterday'],
             ]} />
           <FilterRow label="Sort"  value={sortBy} onChange={setSortBy}
             options={[
