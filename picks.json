@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-09T21:03:00.631650+00:00",
+  "generated_at": "2026-06-09T22:14:24.737475+00:00",
   "as_of_date": "2026-06-09",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03024102999151654,
+  "league_hr_per_pa": 0.02940563086548488,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 14,
       "batter": "Colton Cowser",
       "batter_id": 681297,
       "batter_hand": "L",
@@ -58,7 +58,7 @@
           "deviation": 0.1545
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "stacked": true,
       "stacked_with": [
         "Gunnar Henderson",
@@ -73,7 +73,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 17,
+      "daily_rank": 24,
       "batter": "Andrew Benintendi",
       "batter_id": 643217,
       "batter_hand": "L",
@@ -118,7 +118,7 @@
           "deviation": 0.081
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 12,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -127,8 +127,185 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 18,
+      "batter": "Brandon Lowe",
+      "batter_id": 664040,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 2,
+      "pitcher": "Eric Lauer",
+      "pitcher_id": 641778,
+      "pitcher_hand": "L",
+      "park": "PIT",
+      "game_pk": 823374,
+      "game_datetime": "2026-06-09T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 455,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1888,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2487,
+      "ev_pct": 38.02,
+      "edge_pct": 5.98,
+      "blended_hr_per_pa": 0.05354,
+      "breakout_score": 0.0466,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0788,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8209,
+          "deviation": 0.8209
+        },
+        {
+          "name": "temperature",
+          "value": 1.155,
+          "deviation": 0.155
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0466,
+          "deviation": 0.0466
+        }
+      ],
+      "tier_rank": 13,
+      "stacked": true,
+      "stacked_with": [
+        "Ryan O'Hearn"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 20,
+      "batter": "Nathaniel Lowe",
+      "batter_id": 663993,
+      "batter_hand": "L",
+      "team": "CIN",
+      "lineup_spot": 4,
+      "pitcher": "Lucas Giolito",
+      "pitcher_id": 608337,
+      "pitcher_hand": "R",
+      "park": "SD",
+      "game_pk": 823290,
+      "game_datetime": "2026-06-10T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 610,
+      "dk_odds": 660,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1294,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1805,
+      "ev_pct": 37.17,
+      "edge_pct": 5.11,
+      "blended_hr_per_pa": 0.04909,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1084,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6694,
+          "deviation": 0.6694
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 0.8694,
+          "deviation": 0.1306
+        }
+      ],
+      "tier_rank": 14,
+      "stacked": true,
+      "stacked_with": [
+        "Matt McLain"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 19,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Lucas Giolito",
+      "pitcher_id": 608337,
+      "pitcher_hand": "R",
+      "park": "SD",
+      "game_pk": 823290,
+      "game_datetime": "2026-06-10T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 610,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1243,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1704,
+      "ev_pct": 38.01,
+      "edge_pct": 4.61,
+      "blended_hr_per_pa": 0.0421,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0148,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4317,
+          "deviation": 0.4317
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 0.93,
+          "deviation": 0.07
+        }
+      ],
+      "tier_rank": 15,
+      "stacked": true,
+      "stacked_with": [
+        "Nathaniel Lowe"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 17,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-06-09.json"
 }
