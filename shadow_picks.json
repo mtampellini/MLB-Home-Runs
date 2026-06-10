@@ -1,18 +1,238 @@
 {
-  "generated_at": "2026-06-10T18:07:51.603333+00:00",
+  "generated_at": "2026-06-10T20:04:51.639698+00:00",
   "as_of_date": "2026-06-10",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.022972972972972974,
+  "league_hr_per_pa": 0.029666756976429152,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 2,
+  "games_pregame": 11,
+  "games_excluded_live_or_complete": 4,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 22,
+      "batter": "Alec Bohm",
+      "batter_id": 664761,
+      "batter_hand": "R",
+      "team": "PHI",
+      "lineup_spot": 5,
+      "pitcher": "Max Scherzer",
+      "pitcher_id": 453286,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822804,
+      "game_datetime": "2026-06-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 720,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.109,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1335,
+      "ev_pct": 18.78,
+      "edge_pct": 2.45,
+      "blended_hr_per_pa": 0.03201,
+      "breakout_score": -0.0677,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4736,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.0975,
+          "deviation": 0.0975
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0788,
+          "deviation": 0.0788
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9323,
+          "deviation": 0.0677
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 23,
+      "batter": "Ernie Clement",
+      "batter_id": 676391,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 3,
+      "pitcher": "Jes\u00fas Luzardo",
+      "pitcher_id": 666200,
+      "pitcher_hand": "L",
+      "park": "TOR",
+      "game_pk": 822804,
+      "game_datetime": "2026-06-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1000,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0831,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1029,
+      "ev_pct": 17.35,
+      "edge_pct": 1.99,
+      "blended_hr_per_pa": 0.02299,
+      "breakout_score": -0.0615,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 3.5058,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.775,
+          "deviation": 0.225
+        },
+        {
+          "name": "park",
+          "value": 1.0975,
+          "deviation": 0.0975
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9385,
+          "deviation": 0.0615
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
+      "batter": "Kazuma Okamoto",
+      "batter_id": 672960,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 4,
+      "pitcher": "Jes\u00fas Luzardo",
+      "pitcher_id": 666200,
+      "pitcher_hand": "L",
+      "park": "TOR",
+      "game_pk": 822804,
+      "game_datetime": "2026-06-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 504,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1592,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1874,
+      "ev_pct": 13.19,
+      "edge_pct": 2.83,
+      "blended_hr_per_pa": 0.04169,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1989,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4052,
+          "deviation": 0.4052
+        },
+        {
+          "name": "park",
+          "value": 1.0975,
+          "deviation": 0.0975
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0298,
+          "deviation": 0.0298
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 25,
+      "batter": "Brandon Marsh",
+      "batter_id": 669016,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 4,
+      "pitcher": "Max Scherzer",
+      "pitcher_id": 453286,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822804,
+      "game_datetime": "2026-06-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 536,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1489,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1734,
+      "ev_pct": 11.0,
+      "edge_pct": 2.45,
+      "blended_hr_per_pa": 0.02787,
+      "breakout_score": -0.0372,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3932,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5146,
+          "deviation": 0.5146
+        },
+        {
+          "name": "park",
+          "value": 1.0661,
+          "deviation": 0.0661
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9395,
+          "deviation": 0.0605
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 26,
       "batter": "Matt Chapman",
       "batter_id": 656305,
       "batter_hand": "R",
@@ -57,7 +277,7 @@
           "deviation": 0.1127
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,6 +286,6 @@
       }
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-06-10.json"
 }
