@@ -47,6 +47,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Queued runs are pinned to the SHA from trigger time, which predates
+          # whatever the run ahead of them in the concurrency group just pushed.
+          # ref: main checks out the live branch tip instead, so a queued run
+          # sees its predecessor's commit and exits "no changes" rather than
+          # rebuilding a duplicate that conflicts at push (2026-06-10 failure).
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -104,11 +110,17 @@ jobs:
           fi
           git commit -m "Daily picks $(date -u +%Y-%m-%d) [ci skip]"
           # Hourly fires can overlap; rebase-and-retry handles the push race.
+          # -X theirs: during rebase "theirs" is OUR commit being replayed, so
+          # conflicts in these generated files resolve to this run's fresh
+          # output (run_daily is idempotent merge-mode; anything clobbered is
+          # re-added next fire). A conflicted rebase leaves unmerged files that
+          # block every later attempt, so abort before retrying.
           for i in 1 2 3 4 5; do
-            if git pull --rebase origin main && git push; then
+            if git pull --rebase -X theirs origin main && git push; then
               echo "push succeeded on attempt $i"
               exit 0
             fi
+            git rebase --abort 2>/dev/null || true
             echo "push attempt $i failed, retrying after backoff..."
             sleep $((RANDOM % 10 + 5))
           done

@@ -43,6 +43,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Live branch tip, not the trigger-time SHA — queued runs otherwise
+          # check out a tree that predates the run ahead of them (see
+          # daily_picks.yml, 2026-06-10 failure).
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -67,11 +71,15 @@ jobs:
           fi
           git commit -m "Closing odds capture $(date -u +%Y-%m-%dT%H%MZ) [ci skip]"
           # Can race the daily-picks push; rebase-and-retry handles it.
+          # -X theirs keeps this run's snapshot on conflict (filenames are
+          # timestamped, so real conflicts are near-impossible); abort a
+          # conflicted rebase so retries start clean.
           for i in 1 2 3 4 5; do
-            if git pull --rebase origin main && git push; then
+            if git pull --rebase -X theirs origin main && git push; then
               echo "push succeeded on attempt $i"
               exit 0
             fi
+            git rebase --abort 2>/dev/null || true
             echo "push attempt $i failed, retrying after backoff..."
             sleep $((RANDOM % 10 + 5))
           done
