@@ -1,15 +1,71 @@
 {
-  "generated_at": "2026-06-10T17:22:59.051024+00:00",
+  "generated_at": "2026-06-10T18:07:51.603333+00:00",
   "as_of_date": "2026-06-10",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.039764359351988215,
+  "league_hr_per_pa": 0.022972972972972974,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
   "games_pregame": 13,
   "games_excluded_live_or_complete": 2,
-  "picks": [],
-  "skipped_count": 6,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 14,
+      "batter": "Matt Chapman",
+      "batter_id": 656305,
+      "batter_hand": "R",
+      "team": "SF",
+      "lineup_spot": 3,
+      "pitcher": "Foster Griffin",
+      "pitcher_id": 656492,
+      "pitcher_hand": "L",
+      "park": "SF",
+      "game_pk": 823215,
+      "game_datetime": "2026-06-10T19:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 594,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1451,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1595,
+      "ev_pct": 10.67,
+      "edge_pct": 1.44,
+      "blended_hr_per_pa": 0.02556,
+      "breakout_score": -0.0428,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.374,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.8472,
+          "deviation": 0.1528
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1127,
+          "deviation": 0.1127
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-06-10.json"
 }

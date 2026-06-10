@@ -1,32 +1,89 @@
 {
   "date": "2026-06-10",
-  "generated_at": "2026-06-10T17:22:59.051152+00:00",
+  "generated_at": "2026-06-10T18:07:51.603484+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.039764359351988215,
+  "league_hr_per_pa": 0.022972972972972974,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 2,
     "games_pregame": 13,
-    "total_predictions": 12,
-    "skipped_low_data": 1,
-    "skipped_career_pa_filter": 5,
+    "total_predictions": 13,
+    "skipped_low_data": 2,
+    "skipped_career_pa_filter": 3,
     "skipped_other": 0,
-    "matched_in_odds_market": 12,
-    "matched_alt_market": 12,
+    "matched_in_odds_market": 13,
+    "matched_alt_market": 13,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 12,
-    "above_25_ev_pre_cap": 8,
-    "eligible_below_900_price_cap": 6,
+    "single_sided_devig": 13,
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 2,
     "above_price_cap_pushed_to_secondary": 2,
-    "primary_count": 6,
-    "secondary_count": 2,
-    "shadow_count": 1
+    "primary_count": 8,
+    "secondary_count": 4,
+    "shadow_count": 2
   },
   "primary_picks": [
     {
       "tier": "primary",
-      "daily_rank": 3,
+      "daily_rank": 1,
+      "batter": "Curtis Mead",
+      "batter_id": 678554,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 2,
+      "pitcher": "Robbie Ray",
+      "pitcher_id": 592662,
+      "pitcher_hand": "L",
+      "park": "SF",
+      "game_pk": 823215,
+      "game_datetime": "2026-06-10T19:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 620,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1402,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.263,
+      "ev_pct": 89.39,
+      "edge_pct": 12.28,
+      "blended_hr_per_pa": 0.03604,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0789,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.569,
+          "deviation": 0.569
+        },
+        {
+          "name": "park",
+          "value": 0.8472,
+          "deviation": 0.1528
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
       "batter": "Gavin Sheets",
       "batter_id": 657757,
       "batter_hand": "L",
@@ -71,7 +128,7 @@
           "deviation": 0.1306
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -83,7 +140,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 5,
       "batter": "JJ Bleday",
       "batter_id": 668709,
       "batter_hand": "L",
@@ -128,7 +185,7 @@
           "deviation": 0.1306
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
         "Matt McLain",
@@ -145,7 +202,64 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 1,
+      "daily_rank": 8,
+      "batter": "Casey Schmitt",
+      "batter_id": 669477,
+      "batter_hand": "R",
+      "team": "SF",
+      "lineup_spot": 1,
+      "pitcher": "Foster Griffin",
+      "pitcher_id": 656492,
+      "pitcher_hand": "L",
+      "park": "SF",
+      "game_pk": 823215,
+      "game_datetime": "2026-06-10T19:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": 423,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1804,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2898,
+      "ev_pct": 53.57,
+      "edge_pct": 10.93,
+      "blended_hr_per_pa": 0.04706,
+      "breakout_score": -0.0373,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1042,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.0486,
+          "deviation": 1.0486
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.8472,
+          "deviation": 0.1528
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
       "batter": "Matt McLain",
       "batter_id": 680574,
       "batter_hand": "R",
@@ -190,7 +304,7 @@
           "deviation": 0.0481
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "stacked": true,
       "stacked_with": [
         "JJ Bleday",
@@ -207,7 +321,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 7,
       "batter": "Nathaniel Lowe",
       "batter_id": 663993,
       "batter_hand": "L",
@@ -252,7 +366,7 @@
           "deviation": 0.1306
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "stacked": true,
       "stacked_with": [
         "JJ Bleday",
@@ -269,7 +383,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 10,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -314,7 +428,7 @@
           "deviation": 0.0763
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "stacked": true,
       "stacked_with": [
         "JJ Bleday",
@@ -331,7 +445,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 11,
       "batter": "Spencer Steer",
       "batter_id": 668715,
       "batter_hand": "R",
@@ -376,7 +490,7 @@
           "deviation": 0.0763
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "JJ Bleday",
@@ -395,7 +509,117 @@
   "secondary_picks": [
     {
       "tier": "secondary",
-      "daily_rank": 5,
+      "daily_rank": 3,
+      "batter": "Jacob Young",
+      "batter_id": 696285,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 6,
+      "pitcher": "Robbie Ray",
+      "pitcher_id": 592662,
+      "pitcher_hand": "L",
+      "park": "SF",
+      "game_pk": 823215,
+      "game_datetime": "2026-06-10T19:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 930,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0882,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1706,
+      "ev_pct": 84.22,
+      "edge_pct": 8.24,
+      "blended_hr_per_pa": 0.02519,
+      "breakout_score": 0.1464,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.3797,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.8472,
+          "deviation": 0.1528
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1464,
+          "deviation": 0.1464
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 4,
+      "batter": "Keibert Ruiz",
+      "batter_id": 660688,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 9,
+      "pitcher": "Robbie Ray",
+      "pitcher_id": 592662,
+      "pitcher_hand": "L",
+      "park": "SF",
+      "game_pk": 823215,
+      "game_datetime": "2026-06-10T19:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 910,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0966,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1612,
+      "ev_pct": 62.77,
+      "edge_pct": 6.46,
+      "blended_hr_per_pa": 0.02832,
+      "breakout_score": 0.0634,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3231,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2328,
+          "deviation": 0.2328
+        },
+        {
+          "name": "park",
+          "value": 0.8472,
+          "deviation": 0.1528
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 9,
       "batter": "Noelvi Marte",
       "batter_id": 682622,
       "batter_hand": "R",
@@ -440,7 +664,7 @@
           "deviation": 0.0481
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -450,7 +674,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 8,
+      "daily_rank": 12,
       "batter": "Dane Myers",
       "batter_id": 667472,
       "batter_hand": "R",
@@ -495,7 +719,7 @@
           "deviation": 0.0763
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -507,7 +731,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 9,
+      "daily_rank": 13,
       "batter": "Manny Machado",
       "batter_id": 592518,
       "batter_hand": "R",
@@ -556,6 +780,61 @@
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 14,
+      "batter": "Matt Chapman",
+      "batter_id": 656305,
+      "batter_hand": "R",
+      "team": "SF",
+      "lineup_spot": 3,
+      "pitcher": "Foster Griffin",
+      "pitcher_id": 656492,
+      "pitcher_hand": "L",
+      "park": "SF",
+      "game_pk": 823215,
+      "game_datetime": "2026-06-10T19:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 594,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1451,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1595,
+      "ev_pct": 10.67,
+      "edge_pct": 1.44,
+      "blended_hr_per_pa": 0.02556,
+      "breakout_score": -0.0428,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.374,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.8472,
+          "deviation": 0.1528
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1127,
+          "deviation": 0.1127
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
         "passes_quad": false,
         "passes_anchor": false
       }
