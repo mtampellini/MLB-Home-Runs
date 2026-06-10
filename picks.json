@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-10T20:04:51.638780+00:00",
+  "generated_at": "2026-06-10T22:25:47.729434+00:00",
   "as_of_date": "2026-06-10",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.029666756976429152,
+  "league_hr_per_pa": 0.03130351393931091,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 13,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -58,7 +58,7 @@
           "deviation": 0.0661
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -70,7 +70,67 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 17,
+      "daily_rank": 14,
+      "batter": "Josh Jung",
+      "batter_id": 673962,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 3,
+      "pitcher": "Seth Lugo",
+      "pitcher_id": 607625,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824103,
+      "game_datetime": "2026-06-10T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 521,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1474,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2115,
+      "ev_pct": 41.72,
+      "edge_pct": 6.41,
+      "blended_hr_per_pa": 0.03163,
+      "breakout_score": -0.1143,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1376,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4589,
+          "deviation": 0.4589
+        },
+        {
+          "name": "temperature",
+          "value": 1.195,
+          "deviation": 0.195
+        },
+        {
+          "name": "wind",
+          "value": 1.1837,
+          "deviation": 0.1837
+        }
+      ],
+      "tier_rank": 12,
+      "stacked": true,
+      "stacked_with": [
+        "Wyatt Langford",
+        "Ezequiel Duran"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 22,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -115,7 +175,7 @@
           "deviation": 0.0741
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 13,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -127,7 +187,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 15,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -172,7 +232,7 @@
           "deviation": 0.0763
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 14,
       "stacked": true,
       "stacked_with": [
         "JJ Bleday",
@@ -189,7 +249,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 13,
+      "daily_rank": 16,
       "batter": "Gabriel Moreno",
       "batter_id": 672515,
       "batter_hand": "R",
@@ -234,7 +294,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 15,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -243,8 +303,68 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 17,
+      "batter": "Ezequiel Duran",
+      "batter_id": 677649,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 6,
+      "pitcher": "Seth Lugo",
+      "pitcher_id": 607625,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824103,
+      "game_datetime": "2026-06-10T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 700,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1141,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1645,
+      "ev_pct": 36.49,
+      "edge_pct": 5.03,
+      "blended_hr_per_pa": 0.02035,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4827,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4589,
+          "deviation": 0.4589
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.65,
+          "deviation": 0.35
+        },
+        {
+          "name": "temperature",
+          "value": 1.195,
+          "deviation": 0.195
+        }
+      ],
+      "tier_rank": 16,
+      "stacked": true,
+      "stacked_with": [
+        "Wyatt Langford",
+        "Josh Jung"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 8,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-06-10.json"
 }
