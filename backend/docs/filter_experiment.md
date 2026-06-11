@@ -61,3 +61,37 @@ whether the filter's discrimination generalizes.
 - Do not selectively settle picks - settle every pick the pipeline generates.
 
 Any of these break the pre-registration and forfeit the stat-sig claim.
+
+## Pre-registered 2026-06-10: H6 mid-band concentration
+
+Registered mid-experiment; does not touch filters, MODEL_VERSION, or the
+H1-H3 lock. Tracking only.
+
+**Disclosure**: this band was found by mining the 5/20-6/10 settled window
+(triple primary+shadow: band n=173, 30W, ROI +37.0%, hit 17.3% vs 15.0%
+expected; outside band n=162, ROI -8.2%). Everything before 2026-06-11 is
+therefore in-sample for H6 and proves nothing. Day-block bootstrap on the
+discovery window itself: P(band ROI > 0) = 95.6%, P(band > outside) = 96.6% -
+suggestive, not significant, and tainted by selection anyway.
+
+**Frozen definition**: `passes_triple` AND tier in {primary, shadow} AND
+`0.10 <= model_prob < 0.20`.
+
+**Hypotheses** (OOS window starts 2026-06-11):
+
+- **H6a**: OOS ROI(band) > 0
+- **H6b**: OOS ROI(band) > ROI(triple primary+shadow outside band)
+
+Method: day-block bootstrap, 20k resamples, one-sided alpha = 0.05 / 2 = 0.025.
+
+**Timeline**: 2026-06-18 review gets a directional readout only (~50-70 band
+picks expected - underpowered, no decision). Formal eval 2026-07-10 (30 OOS
+days). If H6b holds, consider band-weighted staking on top of whatever filter
+wins the H1-H3 decision; never band-exclusivity (outside-band picks still
+carry the volume). If OOS band ROI <= 0, the band is dead - it was bucket
+luck.
+
+```
+cd backend && python band_vs_triple.py            # OOS only (default 2026-06-11)
+cd backend && python band_vs_triple.py 2026-05-20 # include the tainted discovery window
+```
