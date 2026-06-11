@@ -3,7 +3,10 @@ import Link from 'next/link'
 import { useState, useMemo, useEffect, useCallback } from 'react'
 import fs from 'fs'
 import path from 'path'
-import { betKey, toggleBet, countBetsForDay, countBets, loadBets, saveBets } from '../lib/bets'
+import {
+  betKey, toggleBet, isBet, countBetsForDay, countBets, loadBets, saveBets,
+  mergeBets, betsEqual, SYNC_KEY_STORAGE_KEY,
+} from '../lib/bets'
 import { fmtRefreshed } from '../lib/format'
 import { summaryFromCounts, aggregateResults, collectResults } from '../lib/betStats'
 
@@ -328,7 +331,7 @@ function buildCalibration(archives, tiers = ['primary', 'secondary', 'shadow'], 
         if (r.outcome === 'VOID') continue
         const p = pickIdx.get(`${r.batter_id}|${r.game_pk || ''}`)
         if (filterView !== 'baseline' && !(p && pickPassesFilter(p, filterView, t))) continue
-        if (betsOnly && !bets?.[betKey(date, r.batter_id, r.game_pk)]) continue
+        if (betsOnly && !isBet(bets, betKey(date, r.batter_id, r.game_pk))) continue
         allSettled.push({ model_prob: r.model_prob, won: r.outcome === 'W' })
       }
     }
@@ -519,7 +522,7 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'basel
   const date = archive.date
   const dayBetCount = countBetsForDay(bets, date)
   // In bets-only mode, scope the day's counts/picks to the flagged players.
-  const isBetted = betsOnly ? (bid, gpk) => !!bets[betKey(date, bid, gpk)] : null
+  const isBetted = betsOnly ? (bid, gpk) => isBet(bets, betKey(date, bid, gpk)) : null
   const summary = summarizeArchive(data, tierFilter, filterView, isBetted)
 
   const picks = useMemo(() => {
@@ -527,7 +530,7 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'basel
     const pull = (t, list) => {
       for (const p of list || []) {
         if (!pickPassesFilter(p, filterView, t)) continue
-        if (betsOnly && !bets[betKey(date, p.batter_id, p.game_pk)]) continue
+        if (betsOnly && !isBet(bets, betKey(date, p.batter_id, p.game_pk))) continue
         all.push({ ...p, _tier: t })
       }
     }
@@ -623,7 +626,7 @@ function DayBlock({ archive, expanded, onToggle, tierFilter, filterView = 'basel
                     key={k}
                     pick={p}
                     settledPick={settledByKey[k]}
-                    betted={!!bets[bKey]}
+                    betted={isBet(bets, bKey)}
                     onToggleBet={() => onToggleBet(bKey)}
                   />
                 )
@@ -808,6 +811,51 @@ export default function Tracker({ archives, tracker, generatedAt }) {
   const handleToggleBet = useCallback((key) => {
     setBets(prev => toggleBet(prev, key))
   }, [])
+
+  // Cross-device sync. Devices are enrolled once via /tracker?sync=<key>; the
+  // key is stashed in localStorage and stripped from the URL so it never sits
+  // in the address bar or browser history. No key -> local-only, as before.
+  const [syncKey, setSyncKey] = useState(null)
+  const [syncState, setSyncState] = useState('off') // off | syncing | ok | error
+  useEffect(() => {
+    try {
+      const url = new URL(window.location.href)
+      const fromUrl = url.searchParams.get('sync')
+      if (fromUrl) {
+        window.localStorage.setItem(SYNC_KEY_STORAGE_KEY, fromUrl)
+        url.searchParams.delete('sync')
+        window.history.replaceState(null, '', url.pathname + url.search + url.hash)
+      }
+      setSyncKey(window.localStorage.getItem(SYNC_KEY_STORAGE_KEY))
+    } catch { /* private mode — stay local-only */ }
+  }, [])
+  // Push-merge-pull on load and after every toggle (debounced so a burst of
+  // checkbox clicks becomes one request). The server returns the merged map;
+  // adopting it re-fires this effect, which converges as soon as betsEqual
+  // says both sides agree.
+  useEffect(() => {
+    if (!betsLoaded || !syncKey) return
+    setSyncState('syncing')
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch('/api/bets', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json', 'x-sync-key': syncKey },
+          body: JSON.stringify({ bets }),
+        })
+        if (!res.ok) throw new Error(`sync ${res.status}`)
+        const { bets: merged } = await res.json()
+        setBets(prev => {
+          const next = mergeBets(prev, merged)
+          return betsEqual(next, prev) ? prev : next
+        })
+        setSyncState('ok')
+      } catch {
+        setSyncState('error')
+      }
+    }, 800)
+    return () => clearTimeout(timer)
+  }, [bets, betsLoaded, syncKey])
   const totalBets = countBets(bets)
   // "My bets" view: restrict everything (day blocks, metric cards, calibration)
   // to picks you flagged with the Bet checkbox, so the ROI panel reflects your
@@ -842,7 +890,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
       list = list.filter(a => a.date >= ANCHOR_VIEW_DATE)
     }
     // Per-day bet predicate, bound to that day's date (bets keys include date).
-    const mkBetted = (d) => betsOnly ? ((bid, gpk) => !!bets[betKey(d, bid, gpk)]) : null
+    const mkBetted = (d) => betsOnly ? ((bid, gpk) => isBet(bets, betKey(d, bid, gpk))) : null
     // Bets-only: drop days where nothing in the current tier/view was flagged.
     if (betsOnly) {
       list = list.filter(a => {
@@ -927,6 +975,12 @@ export default function Tracker({ archives, tracker, generatedAt }) {
             {refreshed && <> · last refreshed {refreshed}</>}
             {totalBets > 0 && (
               <span style={{ color: T.positive, fontWeight: 600 }}> · ✓ {totalBets} bet{totalBets === 1 ? '' : 's'} flagged</span>
+            )}
+            {syncKey && (
+              <span style={{ color: syncState === 'error' ? T.negative : T.textLight }}>
+                {' · '}
+                {syncState === 'error' ? 'sync failed' : syncState === 'syncing' ? 'syncing…' : 'synced'}
+              </span>
             )}
           </div>
         </div>

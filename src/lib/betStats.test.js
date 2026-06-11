@@ -124,6 +124,17 @@ test('collectResults bets-only ignores flags that point at non-existent results'
   assert.equal(aggregateResults(rows).roi_pct, null)
 })
 
+test('collectResults bets-only excludes v2 un-flag tombstones', () => {
+  // Judge day 1 flagged, Judge day 2 flagged-then-removed on another device.
+  const bets = {
+    [betKey('2026-05-30', 1, 100)]: { on: true, t: 100 },
+    [betKey('2026-05-29', 1, 200)]: { on: false, t: 200 },
+  }
+  const rows = collectResults(archives, ['primary', 'secondary'], { bets, betsOnly: true })
+  assert.equal(rows.length, 1, 'tombstone must not count as a bet')
+  assert.equal(rows[0].outcome, 'W')
+})
+
 test('collectResults composes a filter-view gate with bet scoping', () => {
   const bets = {
     [betKey('2026-05-30', 1, 100)]: true,   // Judge, will pass the gate

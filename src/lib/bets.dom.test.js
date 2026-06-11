@@ -50,7 +50,7 @@ function BetToggle({ pkey }) {
     if (!loaded) return
     saveBets(window.localStorage, bets)
   }, [bets, loaded])
-  const betted = !!bets[pkey]
+  const betted = isBet(bets, pkey)
   return h('button', {
     id: 'toggle',
     'aria-pressed': betted ? 'true' : 'false',

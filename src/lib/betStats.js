@@ -20,7 +20,7 @@ function summaryFromCounts(wins, losses, voids, unitsProfit) {
   }
 }
 
-const { betKey } = require('./bets')
+const { betKey, isBet } = require('./bets')
 
 // Walk archives and pull the settlement result rows that should count toward
 // the metrics, matching each result back to its pick. Optional scoping:
@@ -40,7 +40,7 @@ function collectResults(archives, tiers, { passes = null, bets = null, betsOnly 
         const p = idx.get(`${r.batter_id}|${r.game_pk || ''}`)
         if (!p) continue
         if (passes && !passes(p, t)) continue
-        if (betsOnly && !(bets && bets[betKey(date, r.batter_id, r.game_pk)])) continue
+        if (betsOnly && !isBet(bets, betKey(date, r.batter_id, r.game_pk))) continue
         rows.push(r)
       }
     }
