@@ -1,32 +1,32 @@
 {
   "date": "2026-06-11",
-  "generated_at": "2026-06-11T20:05:30.393792+00:00",
+  "generated_at": "2026-06-11T22:25:32.558977+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03172690763052209,
+  "league_hr_per_pa": 0.0360082304526749,
   "funnel": {
     "total_slate_games": 8,
-    "games_excluded_live_or_complete": 4,
-    "games_pregame": 4,
-    "total_predictions": 15,
-    "skipped_low_data": 3,
-    "skipped_career_pa_filter": 0,
+    "games_excluded_live_or_complete": 6,
+    "games_pregame": 2,
+    "total_predictions": 31,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 4,
     "skipped_other": 0,
-    "matched_in_odds_market": 15,
-    "matched_alt_market": 15,
+    "matched_in_odds_market": 31,
+    "matched_alt_market": 31,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 15,
-    "above_25_ev_pre_cap": 1,
-    "eligible_below_900_price_cap": 1,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 4,
-    "secondary_count": 0,
-    "shadow_count": 2
+    "single_sided_devig": 31,
+    "above_25_ev_pre_cap": 3,
+    "eligible_below_900_price_cap": 2,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 6,
+    "secondary_count": 1,
+    "shadow_count": 5
   },
   "primary_picks": [
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 4,
       "batter": "Hunter Goodman",
       "batter_id": 696100,
       "batter_hand": "R",
@@ -145,6 +145,65 @@
     {
       "tier": "primary",
       "daily_rank": 3,
+      "batter": "Eli White",
+      "batter_id": 642201,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 7,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824589,
+      "game_datetime": "2026-06-11T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 710,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1148,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2077,
+      "ev_pct": 68.2,
+      "edge_pct": 9.28,
+      "blended_hr_per_pa": 0.03613,
+      "breakout_score": 0.0269,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.15,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3614,
+          "deviation": 0.3614
+        },
+        {
+          "name": "wind",
+          "value": 1.0741,
+          "deviation": 0.0741
+        },
+        {
+          "name": "temperature",
+          "value": 1.068,
+          "deviation": 0.068
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Jorge Mateo"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
       "batter": "Brandon Lowe",
       "batter_id": 664040,
       "batter_hand": "L",
@@ -189,7 +248,7 @@
           "deviation": 0.0395
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -201,7 +260,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 7,
       "batter": "Elias D\u00edaz",
       "batter_id": 553869,
       "batter_hand": "R",
@@ -246,7 +305,7 @@
           "deviation": 0.2
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -255,13 +314,183 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Jorge Mateo",
+      "batter_id": 622761,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 6,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824589,
+      "game_datetime": "2026-06-11T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 710,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1097,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1466,
+      "ev_pct": 30.49,
+      "edge_pct": 3.7,
+      "blended_hr_per_pa": 0.02164,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3778,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6009,
+          "deviation": 0.3991
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3614,
+          "deviation": 0.3614
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Eli White"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
     }
   ],
-  "secondary_picks": [],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 2,
+      "batter": "Mauricio Dub\u00f3n",
+      "batter_id": 643289,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 1,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824589,
+      "game_datetime": "2026-06-11T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 880,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.093,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1685,
+      "ev_pct": 71.91,
+      "edge_pct": 7.55,
+      "blended_hr_per_pa": 0.0219,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.6579,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6081,
+          "deviation": 0.3919
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3614,
+          "deviation": 0.3614
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 8,
+      "batter": "Ozzie Albies",
+      "batter_id": 645277,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 4,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824589,
+      "game_datetime": "2026-06-11T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 532,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1461,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1808,
+      "ev_pct": 21.11,
+      "edge_pct": 3.47,
+      "blended_hr_per_pa": 0.02971,
+      "breakout_score": -0.0233,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1648,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3614,
+          "deviation": 0.3614
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.825,
+          "deviation": 0.175
+        },
+        {
+          "name": "wind",
+          "value": 1.0741,
+          "deviation": 0.0741
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 9,
       "batter": "Spencer Horwitz",
       "batter_id": 687462,
       "batter_hand": "L",
@@ -306,7 +535,7 @@
           "deviation": 0.072
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -316,7 +545,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 10,
       "batter": "Max Muncy",
       "batter_id": 571970,
       "batter_hand": "L",
@@ -361,7 +590,117 @@
           "deviation": 0.0808
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
+      "batter": "Colson Montgomery",
+      "batter_id": 695657,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 4,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824589,
+      "game_datetime": "2026-06-11T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 426,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1872,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2151,
+      "ev_pct": 13.14,
+      "edge_pct": 2.78,
+      "blended_hr_per_pa": 0.06034,
+      "breakout_score": -0.1055,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0252,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6757,
+          "deviation": 0.6757
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8845,
+          "deviation": 0.1155
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8945,
+          "deviation": 0.1055
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 12,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824589,
+      "game_datetime": "2026-06-11T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 340,
+      "dk_odds": 346,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2145,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2532,
+      "ev_pct": 12.91,
+      "edge_pct": 3.87,
+      "blended_hr_per_pa": 0.06128,
+      "breakout_score": 0.1408,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6311,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7019,
+          "deviation": 0.7019
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8004,
+          "deviation": 0.1996
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1408,
+          "deviation": 0.1408
+        }
+      ],
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,

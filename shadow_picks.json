@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-06-11T20:05:30.393564+00:00",
+  "generated_at": "2026-06-11T22:25:32.558657+00:00",
   "as_of_date": "2026-06-11",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03172690763052209,
+  "league_hr_per_pa": 0.0360082304526749,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 8,
-  "games_pregame": 4,
-  "games_excluded_live_or_complete": 4,
+  "games_pregame": 2,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 9,
       "batter": "Spencer Horwitz",
       "batter_id": 687462,
       "batter_hand": "L",
@@ -57,7 +57,7 @@
           "deviation": 0.072
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -67,7 +67,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 10,
       "batter": "Max Muncy",
       "batter_id": 571970,
       "batter_hand": "L",
@@ -112,7 +112,117 @@
           "deviation": 0.0808
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
+      "batter": "Colson Montgomery",
+      "batter_id": 695657,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 4,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824589,
+      "game_datetime": "2026-06-11T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 426,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1872,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2151,
+      "ev_pct": 13.14,
+      "edge_pct": 2.78,
+      "blended_hr_per_pa": 0.06034,
+      "breakout_score": -0.1055,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0252,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6757,
+          "deviation": 0.6757
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8845,
+          "deviation": 0.1155
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8945,
+          "deviation": 0.1055
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 12,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Anthony Kay",
+      "pitcher_id": 641743,
+      "pitcher_hand": "L",
+      "park": "CHW",
+      "game_pk": 824589,
+      "game_datetime": "2026-06-11T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 340,
+      "dk_odds": 346,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2145,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2532,
+      "ev_pct": 12.91,
+      "edge_pct": 3.87,
+      "blended_hr_per_pa": 0.06128,
+      "breakout_score": 0.1408,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6311,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7019,
+          "deviation": 0.7019
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8004,
+          "deviation": 0.1996
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1408,
+          "deviation": 0.1408
+        }
+      ],
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -121,6 +231,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-06-11.json"
 }
