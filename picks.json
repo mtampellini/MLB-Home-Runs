@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-11T17:37:52.097050+00:00",
+  "generated_at": "2026-06-11T20:05:30.393004+00:00",
   "as_of_date": "2026-06-11",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03172690763052209,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 8,
-  "games_pregame": 5,
-  "games_excluded_live_or_complete": 3,
+  "games_pregame": 4,
+  "games_excluded_live_or_complete": 4,
   "picks": [
     {
       "tier": "primary",
@@ -73,6 +73,63 @@
     {
       "tier": "primary",
       "daily_rank": 3,
+      "batter": "Brandon Lowe",
+      "batter_id": 664040,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 2,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "PIT",
+      "game_pk": 823371,
+      "game_datetime": "2026-06-11T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 445,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1803,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2473,
+      "ev_pct": 34.77,
+      "edge_pct": 6.7,
+      "blended_hr_per_pa": 0.05247,
+      "breakout_score": 0.0361,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1286,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6537,
+          "deviation": 0.6537
+        },
+        {
+          "name": "temperature",
+          "value": 1.072,
+          "deviation": 0.072
+        },
+        {
+          "name": "wind",
+          "value": 1.0395,
+          "deviation": 0.0395
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
       "batter": "Elias D\u00edaz",
       "batter_id": 553869,
       "batter_hand": "R",
@@ -117,7 +174,7 @@
           "deviation": 0.2
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -128,6 +185,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-06-11.json"
 }

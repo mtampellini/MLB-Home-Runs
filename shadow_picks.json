@@ -1,15 +1,126 @@
 {
-  "generated_at": "2026-06-11T17:37:52.097539+00:00",
+  "generated_at": "2026-06-11T20:05:30.393564+00:00",
   "as_of_date": "2026-06-11",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03172690763052209,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 8,
-  "games_pregame": 5,
-  "games_excluded_live_or_complete": 3,
-  "picks": [],
-  "skipped_count": 0,
+  "games_pregame": 4,
+  "games_excluded_live_or_complete": 4,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Spencer Horwitz",
+      "batter_id": 687462,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 5,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "PIT",
+      "game_pk": 823371,
+      "game_datetime": "2026-06-11T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 780,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1051,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1316,
+      "ev_pct": 17.13,
+      "edge_pct": 2.65,
+      "blended_hr_per_pa": 0.03454,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 3.0219,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0887,
+          "deviation": 0.0887
+        },
+        {
+          "name": "temperature",
+          "value": 1.072,
+          "deviation": 0.072
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Max Muncy",
+      "batter_id": 571970,
+      "batter_hand": "L",
+      "team": "LAD",
+      "lineup_spot": 5,
+      "pitcher": "Mitch Keller",
+      "pitcher_id": 656605,
+      "pitcher_hand": "R",
+      "park": "PIT",
+      "game_pk": 823371,
+      "game_datetime": "2026-06-11T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 352,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2182,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2529,
+      "ev_pct": 14.31,
+      "edge_pct": 3.47,
+      "blended_hr_per_pa": 0.05855,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4118,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8455,
+          "deviation": 0.8455
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.9192,
+          "deviation": 0.0808
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-06-11.json"
 }
