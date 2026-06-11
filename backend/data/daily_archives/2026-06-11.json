@@ -1,16 +1,29 @@
 {
-  "generated_at": "2026-06-11T17:32:39.873135+00:00",
-  "as_of_date": "2026-06-11",
+  "date": "2026-06-11",
+  "generated_at": "2026-06-11T17:32:39.873791+00:00",
   "model_version": "v7-baseline-0.2.0",
   "league_hr_per_pa": 0.0330812854442344,
-  "tier": "primary",
-  "ev_threshold_pct_min": 25.0,
-  "ev_threshold_pct_max": null,
-  "ev_threshold_pct": 25.0,
-  "total_games_today": 8,
-  "games_pregame": 5,
-  "games_excluded_live_or_complete": 3,
-  "picks": [
+  "funnel": {
+    "total_slate_games": 8,
+    "games_excluded_live_or_complete": 3,
+    "games_pregame": 5,
+    "total_predictions": 32,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 3,
+    "skipped_other": 0,
+    "matched_in_odds_market": 31,
+    "matched_alt_market": 31,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 31,
+    "above_25_ev_pre_cap": 3,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 3,
+    "secondary_count": 0,
+    "shadow_count": 0
+  },
+  "primary_picks": [
     {
       "tier": "primary",
       "daily_rank": 2,
@@ -72,6 +85,65 @@
     },
     {
       "tier": "primary",
+      "daily_rank": 1,
+      "batter": "TJ Rumfield",
+      "batter_id": 681198,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 3,
+      "pitcher": "Edward Cabrera",
+      "pitcher_id": 665795,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824346,
+      "game_datetime": "2026-06-11T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 670,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1191,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2136,
+      "ev_pct": 73.02,
+      "edge_pct": 9.45,
+      "blended_hr_per_pa": 0.03525,
+      "breakout_score": -0.013,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0235,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3683,
+          "deviation": 0.3683
+        },
+        {
+          "name": "park",
+          "value": 1.1083,
+          "deviation": 0.1083
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0656,
+          "deviation": 0.0656
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Hunter Goodman"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
       "daily_rank": 3,
       "batter": "Elias D\u00edaz",
       "batter_id": 553869,
@@ -128,6 +200,7 @@
       }
     }
   ],
-  "skipped_count": 4,
-  "skipped_reference": "data/processed/skipped_batters_2026-06-11.json"
+  "secondary_picks": [],
+  "shadow_picks": [],
+  "settlement": null
 }
