@@ -183,6 +183,7 @@ def tmp_layout(tmp_path, monkeypatch):
     skipped_dir = tmp_path / "data" / "processed"
     odds_dir = tmp_path / "data" / "odds"
     archives_dir = tmp_path / "data" / "daily_archives"
+    full_slate_dir = tmp_path / "data" / "full_slate"
     odds_dir.mkdir(parents=True)
     monkeypatch.setattr(log_mod, "ODDS_DIR", odds_dir)
     # Without this patch, tests calling run_daily(cutoff_date=...) would write
@@ -190,8 +191,11 @@ def tmp_layout(tmp_path, monkeypatch):
     # clobbering production data. (Caused 2026-05-06 to be wiped on
     # 2026-05-07's CI run — the fixture was incomplete.)
     monkeypatch.setattr(rd_mod, "DAILY_ARCHIVES_DIR", archives_dir)
+    # Same foot-gun for the full-slate prediction log.
+    monkeypatch.setattr(rd_mod, "FULL_SLATE_DIR", full_slate_dir)
     return {"picks_path": picks_path, "skipped_dir": skipped_dir,
-            "odds_dir": odds_dir, "archives_dir": archives_dir}
+            "odds_dir": odds_dir, "archives_dir": archives_dir,
+            "full_slate_dir": full_slate_dir}
 
 
 def test_run_daily_merge_appends_picks_from_subsequent_run(tmp_layout, monkeypatch):
@@ -247,6 +251,68 @@ def test_run_daily_merge_appends_picks_from_subsequent_run(tmp_layout, monkeypat
     # Tier_rank is recomputed across the combined set (1..N).
     ranks = sorted(p["tier_rank"] for p in merged["primary_picks"])
     assert ranks == list(range(1, len(merged["primary_picks"]) + 1))
+
+
+def test_run_daily_writes_full_slate_log(tmp_layout, monkeypatch):
+    """Every non-skipped prediction lands in the full-slate log — including
+    batters with NO odds match (market fields null) — with full components.
+    A second run on the same date merges by (batter_id, game_pk) without
+    duplicating rows."""
+    import json as _json
+    fetch = _odds_for_one_batter()
+    monkeypatch.setattr(rd_mod, "fetch_today_hr_props",
+                        lambda client=None, books=None, relevant_team_pairs=None,
+                                skip_started_clock_skew_min=None: fetch)
+    run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    log_path = tmp_layout["full_slate_dir"] / "2026-05-06.json"
+    assert log_path.exists()
+    payload = _json.loads(log_path.read_text())
+    rows = payload["rows"]
+    # The fixture slate has 18 batters, all with Vet-quality data → none skipped.
+    assert len(rows) == 18
+    assert payload["model_version"] == MODEL_VERSION
+
+    # Only Aaron Judge has quotes; everyone else is logged with null market.
+    matched = [r for r in rows if r["matched_odds"]]
+    unmatched = [r for r in rows if not r["matched_odds"]]
+    assert len(matched) == 1 and matched[0]["batter_id"] == 592450
+    assert matched[0]["best_price"] == 310          # DK's higher Over
+    assert matched[0]["market_prob_devig"] is not None
+    assert matched[0]["ev_pct"] is not None
+    assert all(r["market_prob_devig"] is None and r["ev_pct"] is None
+               for r in unmatched)
+
+    # Full component set — all 6 multiplicative factors, not the top-3 cut.
+    for r in rows:
+        assert set(r["components"]) == {
+            "batter_skill", "breakout_signal", "pitcher", "park",
+            "temperature", "wind",
+        }
+        assert 0.0 < r["model_prob"] < 1.0
+        assert r["game_pk"] == 1
+
+    # Second fire on the same date: merge mode filters game_pk=1 from the
+    # slate (it's covered in the archive), so the log must be unchanged —
+    # same 18 rows, no duplicates.
+    run_daily(
+        cutoff_date=date(2026, 5, 6),
+        feature_provider=_feature_provider(),
+        odds_client=MagicMock(spec=OddsAPIClient),
+        slate_client=_slate_client_one_game(),
+        picks_path=tmp_layout["picks_path"],
+        skipped_dir=tmp_layout["skipped_dir"],
+    )
+    payload2 = _json.loads(log_path.read_text())
+    assert len(payload2["rows"]) == 18
+    keys = {(r["batter_id"], r["game_pk"]) for r in payload2["rows"]}
+    assert len(keys) == 18
 
 
 def test_run_daily_archive_writes_stay_inside_tmp(tmp_layout, monkeypatch):

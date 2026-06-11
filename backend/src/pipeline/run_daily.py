@@ -99,6 +99,7 @@ PRIMARY_PICKS_FILENAME = "picks.json"
 SECONDARY_PICKS_FILENAME = "secondary_picks.json"
 SHADOW_PICKS_FILENAME = "shadow_picks.json"
 DAILY_ARCHIVES_DIR = _DATA_DIR / "daily_archives"
+FULL_SLATE_DIR = _DATA_DIR / "full_slate"
 
 
 # ---------------------------------------------------------------------------
@@ -340,6 +341,140 @@ def _write_daily_archive(
     with open(path, "w", encoding="utf-8") as f:
         json.dump(archive, f, indent=2)
     return path
+
+
+def _write_full_slate_log(
+    cutoff_date: _date,
+    rows: list[PredictionRow],
+    quotes_idx: Optional[dict[str, list[HRPropQuote]]],
+    league_hr_per_pa: float,
+    output_dir: Optional[Path] = None,
+) -> Optional[Path]:
+    """Log EVERY non-skipped prediction (picks AND passes) with market data.
+
+    Purpose: unbiased training/calibration data for the Phase-8 ML rebuild.
+    The daily archives keep only picks that cleared the EV gate — a sample
+    selected for model-vs-market disagreement, which is exactly the winner's-
+    curse-contaminated subset (the 2026-06-11 P1 backtest measured zero
+    incremental signal in model_prob conditional on that selection). Training
+    or calibrating on picks alone is statistically poisoned; this file is the
+    antidote. Outcomes are NOT settled here — join actual HR by
+    (batter_id, game_pk) offline when building the dataset.
+
+    Merge semantics mirror the daily archive: multiple cron fires per day
+    append rows for newly-processed games. Rows are keyed by
+    (batter_id, game_pk); a re-processed game's rows replace the old ones
+    (later run = later lineup info). Written compact (no indent) — ~150-300
+    rows/day would bloat pretty-printed.
+
+    Never raises: full-slate logging must not break the picks pipeline.
+    """
+    if output_dir is None:
+        output_dir = FULL_SLATE_DIR
+    try:
+        out_rows: list[dict] = []
+        for row in rows:
+            if row.skipped or row.prediction is None:
+                continue
+            entry = row.entry
+            pred = row.prediction
+            rec = {
+                "batter_id": entry.batter_id,
+                "batter": entry.batter_name,
+                "batter_hand": entry.batter_hand,
+                "team": entry.team,
+                "lineup_spot": entry.lineup_spot,
+                "pitcher_id": entry.pitcher_id,
+                "pitcher": entry.pitcher_name,
+                "pitcher_hand": entry.pitcher_hand,
+                "park": entry.park,
+                "game_pk": entry.game_pk,
+                "game_datetime": entry.game_datetime.isoformat(),
+                "league_hr_per_pa": round(league_hr_per_pa, 5),
+
+                "model_prob": round(pred.p_hr, 4),
+                "p_per_pa": round(pred.p_per_pa, 5),
+                "pa_per_game": pred.pa_per_game,
+                "blended_hr_per_pa": round(pred.blended_hr_per_pa, 5),
+                "adjusted_per_pa": round(pred.adjusted_per_pa, 5),
+                "breakout_score": round(row.breakout.score if row.breakout else 0.0, 4),
+                # ALL multiplicative components, not the top-3 cut the picks carry.
+                "components": {
+                    k: round(float(v), 4)
+                    for k, v in (pred.components or {}).items()
+                    if v is not None
+                },
+                "low_confidence": bool(row.low_confidence),
+                "pitcher_factor_shrunk": bool(pred.pitcher_factor_shrunk),
+                "trend_signal": (
+                    round(row.recent_form.trend_signal, 4)
+                    if row.recent_form and row.recent_form.trend_signal is not None
+                    else None
+                ),
+                "unstable_recent": bool(row.recent_form.unstable_recent) if row.recent_form else False,
+
+                "matched_odds": False,
+                "market_prob_devig": None,
+                "devig_method": None,
+                "fd_odds": None,
+                "dk_odds": None,
+                "best_book": None,
+                "best_price": None,
+                "ev_pct": None,
+            }
+            qs = (quotes_idx or {}).get(normalize_name(entry.batter_name)) or []
+            book_prices = _best_bet_prices_by_book(qs)
+            if book_prices:
+                mkt, devig_method = _market_prob_devig(qs)
+                if mkt is not None:
+                    best_book = max(book_prices, key=book_prices.get)
+                    best_price = book_prices[best_book]
+                    ev = ev_pct(
+                        model_prob=pred.p_hr,
+                        over_american=best_price,
+                        market_prob_devig=mkt,
+                    )
+                    rec.update({
+                        "matched_odds": True,
+                        "market_prob_devig": round(mkt, 4),
+                        "devig_method": devig_method,
+                        "fd_odds": book_prices.get("fanduel"),
+                        "dk_odds": book_prices.get("draftkings"),
+                        "best_book": best_book,
+                        "best_price": best_price,
+                        "ev_pct": round(ev.ev_pct, 2),
+                    })
+            out_rows.append(rec)
+
+        path = output_dir / f"{cutoff_date.isoformat()}.json"
+        merged: dict[tuple, dict] = {}
+        if path.exists():
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    existing = json.load(f)
+                for r in existing.get("rows") or []:
+                    merged[(r.get("batter_id"), r.get("game_pk"))] = r
+            except Exception as e:    # noqa: BLE001
+                logger.warning("could not load existing full-slate log %s: %s", path, e)
+        for r in out_rows:
+            merged[(r["batter_id"], r["game_pk"])] = r
+
+        payload = {
+            "date": cutoff_date.isoformat(),
+            "generated_at": datetime.now().astimezone().isoformat(),
+            "model_version": MODEL_VERSION,
+            "rows": list(merged.values()),
+        }
+        output_dir.mkdir(parents=True, exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, separators=(",", ":"))
+        logger.info("full-slate log: %d rows this run, %d total → %s",
+                    len(out_rows), len(merged), path)
+        return path
+    except Exception as e:    # noqa: BLE001
+        logger.warning("full-slate log failed (%s: %s) — picks pipeline unaffected",
+                       type(e).__name__, e)
+        return None
 
 
 def _devig_inputs_per_book(quotes: list[HRPropQuote]) -> dict:
@@ -662,6 +797,7 @@ def run_daily(
 
     # Pass 1: build all eligibility candidates (anyone clearing the SHADOW floor).
     candidates: list[dict] = []
+    quotes_idx: Optional[dict[str, list[HRPropQuote]]] = None
     if fetch is not None:
         quotes_idx = _index_quotes_by_norm_name(fetch.quotes)
         for row in rows:
@@ -816,6 +952,16 @@ def run_daily(
         primary_pick_limit, funnel["primary_tier"],
         funnel["secondary_tier"],
         shadow_ev_threshold_pct, funnel["shadow_tier"],
+    )
+
+    # Full-slate prediction log — every non-skipped prediction with market
+    # data where available, for unbiased ML training (see function docstring).
+    # Independent of tiering; never raises.
+    _write_full_slate_log(
+        cutoff_date=cutoff_date,
+        rows=rows,
+        quotes_idx=quotes_idx,
+        league_hr_per_pa=config.league_hr_per_pa,
     )
 
     # --- 5. Write picks.json (primary) + secondary + shadow tier files ----
