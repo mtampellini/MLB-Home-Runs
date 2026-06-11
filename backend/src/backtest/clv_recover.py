@@ -40,6 +40,7 @@ from __future__ import annotations
 
 import csv
 import json
+import math
 import statistics
 import sys
 from datetime import datetime, timedelta, timezone
@@ -170,9 +171,13 @@ def recover(start: str, end: str) -> list[dict]:
                     "entry_fair": entry_fair,
                     "entry_method": p.get("devig_method"),
                     "outcome": r["outcome"],
+                    "model_prob": p.get("model_prob"),
+                    "ev_pct": p.get("ev_pct"),
                     "passes_baseline": p.get("filter_status", {}).get("passes_baseline", True),
                     "passes_triple": p.get("filter_status", {}).get("passes_triple"),
                     "passes_quad": p.get("filter_status", {}).get("passes_quad"),
+                    # ANCHOR tagging began 2026-06-09; None before that.
+                    "passes_anchor": p.get("filter_status", {}).get("passes_anchor"),
                     "close_price": None,
                     "close_fair": None,
                     "close_method": None,
@@ -192,16 +197,31 @@ def recover(start: str, end: str) -> list[dict]:
 
 
 def _summ(label: str, xs: list[dict]) -> None:
+    """Cohort summary with significance. CLV converges in days, not months:
+    each pick's CLV is a low-variance measurement of edge (did the market
+    move toward us?), so the 95% CI on the mean is the headline number for
+    review decisions — a CI excluding 0 is evidence of real edge (or its
+    absence) long before W/L ROI can reach significance."""
     have = [x for x in xs if x["clv_pp"] is not None]
     if not have:
         print(f"{label:28s} n={len(xs):4d}  (no CLV)")
         return
     clv = [x["clv_pp"] for x in have]
-    beat = sum(1 for c in clv if c > 0) / len(clv) * 100
+    n = len(clv)
+    mean = statistics.mean(clv)
+    if n >= 2:
+        se = statistics.stdev(clv) / math.sqrt(n)
+        ci = f"95%CI[{mean - 1.96 * se:+.2f},{mean + 1.96 * se:+.2f}]"
+        sig = " *" if (mean - 1.96 * se) > 0 or (mean + 1.96 * se) < 0 else ""
+    else:
+        ci, sig = "", ""
+    beat = sum(1 for c in clv if c > 0) / n
+    # Binomial z vs the 50% coin-flip beat rate.
+    bz = (beat - 0.5) / math.sqrt(0.25 / n) if n else 0.0
     print(
-        f"{label:28s} n={len(xs):4d}  w/CLV={len(have):4d}  "
-        f"mean={statistics.mean(clv):+.3f}pp  median={statistics.median(clv):+.3f}pp  "
-        f"beat-close={beat:4.1f}%"
+        f"{label:28s} n={len(xs):4d}  w/CLV={n:4d}  "
+        f"mean={mean:+.3f}pp {ci}{sig}  median={statistics.median(clv):+.3f}pp  "
+        f"beat-close={beat * 100:4.1f}% (z={bz:+.1f})"
     )
 
 
@@ -227,6 +247,17 @@ def main(argv: list[str]) -> None:
     _summ("triple (shown)", [r for r in rows if r["passes_triple"]])
     _summ("quad", [r for r in rows if r["passes_quad"]])
     _summ("dropped by triple", [r for r in rows if r["passes_baseline"] and not r["passes_triple"]])
+    print("\n-- 6/18 review cohorts --")
+    # ANCHOR tagging began 2026-06-09; rows before that have passes_anchor=None
+    # and fall out of both sides (is True / is False keeps the comparison clean).
+    _summ("ANCHOR (tagged 6/09+)", [r for r in rows if r["passes_anchor"] is True])
+    _summ("anchor-dropped (6/09+)", [r for r in rows if r["passes_anchor"] is False])
+    # H6 mid-band: model_prob 10-20%, triple, primary+shadow (band_vs_triple.py).
+    _summ("H6 band 10-20% tri P+S", [
+        r for r in rows
+        if r["passes_triple"] and r["tier"] in ("primary", "shadow")
+        and r["model_prob"] is not None and 0.10 <= r["model_prob"] < 0.20
+    ])
     print("\n-- triple cohort by tier --")
     for tier in TIERS:
         _summ(f"triple {tier}", [r for r in rows if r["passes_triple"] and r["tier"] == tier])

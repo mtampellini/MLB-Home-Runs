@@ -57,6 +57,14 @@ jobs:
         working-directory: backend
         run: python -m src.results.tracker
 
+      - name: CLV report (fair-prob closing-line value by cohort)
+        working-directory: backend
+        # Read-only over local snapshots + archives (no API credits). Rebuilds
+        # the full window each run — idempotent and self-healing. The cohort
+        # summary with CIs prints into this step's log; the per-pick CSV is
+        # committed below (gitignore exception) so review tooling can read it.
+        run: python -m src.backtest.clv_recover
+
       - name: Show tracker summary
         run: |
           python - <<'PY'
