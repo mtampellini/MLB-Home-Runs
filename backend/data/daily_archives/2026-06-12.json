@@ -1,26 +1,26 @@
 {
   "date": "2026-06-12",
-  "generated_at": "2026-06-12T21:40:59.227026+00:00",
+  "generated_at": "2026-06-12T22:56:53.704281+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.031358760001435185,
+  "league_hr_per_pa": 0.030793217696355485,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 0,
-    "games_pregame": 15,
-    "total_predictions": 176,
-    "skipped_low_data": 8,
-    "skipped_career_pa_filter": 14,
+    "games_excluded_live_or_complete": 4,
+    "games_pregame": 11,
+    "total_predictions": 32,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 3,
     "skipped_other": 0,
-    "matched_in_odds_market": 175,
-    "matched_alt_market": 175,
+    "matched_in_odds_market": 32,
+    "matched_alt_market": 32,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 175,
-    "above_25_ev_pre_cap": 46,
-    "eligible_below_900_price_cap": 39,
-    "above_price_cap_pushed_to_secondary": 7,
+    "single_sided_devig": 32,
+    "above_25_ev_pre_cap": 1,
+    "eligible_below_900_price_cap": 0,
+    "above_price_cap_pushed_to_secondary": 1,
     "primary_count": 10,
-    "secondary_count": 36,
+    "secondary_count": 37,
     "shadow_count": 13
   },
   "primary_picks": [
@@ -1779,6 +1779,61 @@
     {
       "tier": "secondary",
       "daily_rank": 32,
+      "batter": "Kameron Misner",
+      "batter_id": 670224,
+      "batter_hand": "L",
+      "team": "KC",
+      "lineup_spot": 8,
+      "pitcher": "Tatsuya Imai",
+      "pitcher_id": 837227,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824102,
+      "game_datetime": "2026-06-13T00:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 950,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0873,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1324,
+      "ev_pct": 43.03,
+      "edge_pct": 4.51,
+      "blended_hr_per_pa": 0.03111,
+      "breakout_score": 0.112,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.315,
+          "deviation": 0.315
+        },
+        {
+          "name": "park",
+          "value": 0.7943,
+          "deviation": 0.2057
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.112,
+          "deviation": 0.112
+        }
+      ],
+      "tier_rank": 22,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 33,
       "batter": "Brandon Lowe",
       "batter_id": 664040,
       "batter_hand": "L",
@@ -1823,7 +1878,7 @@
           "deviation": 0.1147
         }
       ],
-      "tier_rank": 22,
+      "tier_rank": 23,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -1833,7 +1888,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 33,
+      "daily_rank": 34,
       "batter": "George Springer",
       "batter_id": 543807,
       "batter_hand": "R",
@@ -1878,7 +1933,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 23,
+      "tier_rank": 24,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1888,7 +1943,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 34,
+      "daily_rank": 35,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -1933,7 +1988,7 @@
           "deviation": 0.0829
         }
       ],
-      "tier_rank": 24,
+      "tier_rank": 25,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -1943,7 +1998,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 35,
+      "daily_rank": 36,
       "batter": "Willson Contreras",
       "batter_id": 575929,
       "batter_hand": "R",
@@ -1988,7 +2043,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 25,
+      "tier_rank": 26,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -1998,7 +2053,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 36,
+      "daily_rank": 37,
       "batter": "Christian Yelich",
       "batter_id": 592885,
       "batter_hand": "L",
@@ -2043,7 +2098,7 @@
           "deviation": 0.1042
         }
       ],
-      "tier_rank": 26,
+      "tier_rank": 27,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2053,7 +2108,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 37,
+      "daily_rank": 38,
       "batter": "Santiago Espinal",
       "batter_id": 669289,
       "batter_hand": "R",
@@ -2098,7 +2153,7 @@
           "deviation": 0.1387
         }
       ],
-      "tier_rank": 27,
+      "tier_rank": 28,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2108,7 +2163,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 38,
+      "daily_rank": 39,
       "batter": "Matt McLain",
       "batter_id": 680574,
       "batter_hand": "R",
@@ -2153,7 +2208,7 @@
           "deviation": 0.1443
         }
       ],
-      "tier_rank": 28,
+      "tier_rank": 29,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2163,7 +2218,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 39,
+      "daily_rank": 40,
       "batter": "Owen Caissie",
       "batter_id": 683357,
       "batter_hand": "L",
@@ -2208,7 +2263,7 @@
           "deviation": 0.0877
         }
       ],
-      "tier_rank": 29,
+      "tier_rank": 30,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2218,7 +2273,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 40,
+      "daily_rank": 41,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -2263,7 +2318,7 @@
           "deviation": 0.0645
         }
       ],
-      "tier_rank": 30,
+      "tier_rank": 31,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2273,7 +2328,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 41,
+      "daily_rank": 42,
       "batter": "Spencer Horwitz",
       "batter_id": 687462,
       "batter_hand": "L",
@@ -2318,7 +2373,7 @@
           "deviation": 0.1147
         }
       ],
-      "tier_rank": 31,
+      "tier_rank": 32,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2328,7 +2383,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 42,
+      "daily_rank": 43,
       "batter": "Jackson Chourio",
       "batter_id": 694192,
       "batter_hand": "R",
@@ -2373,7 +2428,7 @@
           "deviation": 0.1082
         }
       ],
-      "tier_rank": 32,
+      "tier_rank": 33,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2383,7 +2438,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 43,
+      "daily_rank": 44,
       "batter": "Mickey Gasper",
       "batter_id": 681508,
       "batter_hand": "L",
@@ -2428,7 +2483,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 33,
+      "tier_rank": 34,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2438,7 +2493,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 44,
+      "daily_rank": 45,
       "batter": "Chase Meidroth",
       "batter_id": 805367,
       "batter_hand": "R",
@@ -2483,7 +2538,7 @@
           "deviation": 0.1048
         }
       ],
-      "tier_rank": 34,
+      "tier_rank": 35,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2493,7 +2548,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 45,
+      "daily_rank": 46,
       "batter": "Mauricio Dub\u00f3n",
       "batter_id": 643289,
       "batter_hand": "R",
@@ -2538,7 +2593,7 @@
           "deviation": 0.1684
         }
       ],
-      "tier_rank": 35,
+      "tier_rank": 36,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -2548,7 +2603,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 46,
+      "daily_rank": 47,
       "batter": "Ozzie Albies",
       "batter_id": 645277,
       "batter_hand": "L",
@@ -2593,7 +2648,7 @@
           "deviation": 0.1016
         }
       ],
-      "tier_rank": 36,
+      "tier_rank": 37,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -2605,7 +2660,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 47,
+      "daily_rank": 48,
       "batter": "Xavier Edwards",
       "batter_id": 669364,
       "batter_hand": "L",
@@ -2660,7 +2715,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 48,
+      "daily_rank": 49,
       "batter": "Curtis Mead",
       "batter_id": 678554,
       "batter_hand": "R",
@@ -2715,7 +2770,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 49,
+      "daily_rank": 50,
       "batter": "Mike Yastrzemski",
       "batter_id": 573262,
       "batter_hand": "L",
@@ -2770,7 +2825,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 50,
+      "daily_rank": 51,
       "batter": "Colson Montgomery",
       "batter_id": 695657,
       "batter_hand": "L",
@@ -2825,7 +2880,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 51,
+      "daily_rank": 52,
       "batter": "MJ Melendez",
       "batter_id": 669004,
       "batter_hand": "L",
@@ -2880,7 +2935,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 52,
+      "daily_rank": 53,
       "batter": "Gavin Sheets",
       "batter_id": 657757,
       "batter_hand": "L",
@@ -2935,7 +2990,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 53,
+      "daily_rank": 54,
       "batter": "Tristan Gray",
       "batter_id": 656484,
       "batter_hand": "L",
@@ -2990,7 +3045,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 54,
+      "daily_rank": 55,
       "batter": "Myles Straw",
       "batter_id": 664702,
       "batter_hand": "R",
@@ -3045,7 +3100,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 55,
+      "daily_rank": 56,
       "batter": "Nathan Lukes",
       "batter_id": 664770,
       "batter_hand": "L",
@@ -3100,7 +3155,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 56,
+      "daily_rank": 57,
       "batter": "Davis Schneider",
       "batter_id": 676914,
       "batter_hand": "R",
@@ -3155,7 +3210,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 57,
+      "daily_rank": 58,
       "batter": "Kody Clemens",
       "batter_id": 665019,
       "batter_hand": "L",
@@ -3210,7 +3265,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 58,
+      "daily_rank": 59,
       "batter": "Jacob Young",
       "batter_id": 696285,
       "batter_hand": "R",
@@ -3265,7 +3320,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 59,
+      "daily_rank": 60,
       "batter": "Evan Carter",
       "batter_id": 694497,
       "batter_hand": "L",
