@@ -1,18 +1,128 @@
 {
-  "generated_at": "2026-06-13T17:36:33.499934+00:00",
+  "generated_at": "2026-06-13T19:07:39.952954+00:00",
   "as_of_date": "2026-06-13",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03360629586302244,
+  "league_hr_per_pa": 0.030992546096508436,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 8,
+      "daily_rank": 14,
+      "batter": "Mauricio Dub\u00f3n",
+      "batter_id": 643289,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 1,
+      "pitcher": "Sean Manaea",
+      "pitcher_id": 640455,
+      "pitcher_hand": "L",
+      "park": "NYM",
+      "game_pk": 823616,
+      "game_datetime": "2026-06-13T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 900,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0921,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1404,
+      "ev_pct": 43.18,
+      "edge_pct": 4.83,
+      "blended_hr_per_pa": 0.02162,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2922,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6977,
+          "deviation": 0.3023
+        },
+        {
+          "name": "temperature",
+          "value": 1.189,
+          "deviation": 0.189
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 15,
+      "batter": "Matt Vierling",
+      "batter_id": 663837,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 3,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824426,
+      "game_datetime": "2026-06-13T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 850,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1012,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1495,
+      "ev_pct": 42.06,
+      "edge_pct": 4.83,
+      "blended_hr_per_pa": 0.02121,
+      "breakout_score": 0.133,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1364,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6844,
+          "deviation": 0.3156
+        },
+        {
+          "name": "park",
+          "value": 0.7897,
+          "deviation": 0.2103
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 18,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "R",
@@ -57,7 +167,117 @@
           "deviation": 0.1406
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 21,
+      "batter": "Kevin McGonigle",
+      "batter_id": 805808,
+      "batter_hand": "L",
+      "team": "DET",
+      "lineup_spot": 2,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824426,
+      "game_datetime": "2026-06-13T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 750,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1156,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1536,
+      "ev_pct": 30.59,
+      "edge_pct": 3.8,
+      "blended_hr_per_pa": 0.0314,
+      "breakout_score": 0.1235,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5667,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.141,
+          "deviation": 0.141
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1235,
+          "deviation": 0.1235
+        },
+        {
+          "name": "park",
+          "value": 0.9256,
+          "deviation": 0.0744
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 22,
+      "batter": "Gleyber Torres",
+      "batter_id": 650402,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 1,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824426,
+      "game_datetime": "2026-06-13T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 840,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0951,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1279,
+      "ev_pct": 30.42,
+      "edge_pct": 3.28,
+      "blended_hr_per_pa": 0.02293,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.6813,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7397,
+          "deviation": 0.2603
+        },
+        {
+          "name": "park",
+          "value": 0.7897,
+          "deviation": 0.2103
+        }
+      ],
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,6 +286,6 @@
       }
     }
   ],
-  "skipped_count": 12,
+  "skipped_count": 11,
   "skipped_reference": "data/processed/skipped_batters_2026-06-13.json"
 }
