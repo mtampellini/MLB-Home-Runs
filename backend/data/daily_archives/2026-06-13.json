@@ -1,0 +1,200 @@
+{
+  "date": "2026-06-13",
+  "generated_at": "2026-06-13T15:45:52.049960+00:00",
+  "model_version": "v7-baseline-0.2.0",
+  "league_hr_per_pa": 0.032297628781684386,
+  "funnel": {
+    "total_slate_games": 15,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 15,
+    "total_predictions": 14,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 3,
+    "skipped_other": 0,
+    "matched_in_odds_market": 14,
+    "matched_alt_market": 14,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 14,
+    "above_25_ev_pre_cap": 2,
+    "eligible_below_900_price_cap": 1,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 1,
+    "secondary_count": 1,
+    "shadow_count": 1
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Kody Clemens",
+      "batter_id": 665019,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 3,
+      "pitcher": "Matthew Liberatore",
+      "pitcher_id": 669461,
+      "pitcher_hand": "L",
+      "park": "MIN",
+      "game_pk": 823694,
+      "game_datetime": "2026-06-13T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 581,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1629,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3044,
+      "ev_pct": 107.26,
+      "edge_pct": 14.15,
+      "blended_hr_per_pa": 0.04474,
+      "breakout_score": -0.0192,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1638,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5141,
+          "deviation": 0.5141
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.3854,
+          "deviation": 0.3854
+        },
+        {
+          "name": "wind",
+          "value": 1.1409,
+          "deviation": 0.1409
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 2,
+      "batter": "Brooks Lee",
+      "batter_id": 686797,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 5,
+      "pitcher": "Matthew Liberatore",
+      "pitcher_id": 669461,
+      "pitcher_hand": "L",
+      "park": "MIN",
+      "game_pk": 823694,
+      "game_datetime": "2026-06-13T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 890,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.09,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1274,
+      "ev_pct": 37.61,
+      "edge_pct": 3.74,
+      "blended_hr_per_pa": 0.03684,
+      "breakout_score": -0.0235,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.4535,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7349,
+          "deviation": 0.2651
+        },
+        {
+          "name": "wind",
+          "value": 1.1409,
+          "deviation": 0.1409
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1406,
+          "deviation": 0.1406
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 3,
+      "batter": "Byron Buxton",
+      "batter_id": 621439,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 2,
+      "pitcher": "Matthew Liberatore",
+      "pitcher_id": 669461,
+      "pitcher_hand": "L",
+      "park": "MIN",
+      "game_pk": 823694,
+      "game_datetime": "2026-06-13T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 270,
+      "dk_odds": 286,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2567,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3033,
+      "ev_pct": 17.06,
+      "edge_pct": 4.65,
+      "blended_hr_per_pa": 0.07887,
+      "breakout_score": 0.1024,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3989,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.4418,
+          "deviation": 1.4418
+        },
+        {
+          "name": "pitcher",
+          "value": 0.7349,
+          "deviation": 0.2651
+        },
+        {
+          "name": "wind",
+          "value": 1.1409,
+          "deviation": 0.1409
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "settlement": null
+}
