@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-13T15:45:52.049794+00:00",
+  "generated_at": "2026-06-13T17:36:33.500129+00:00",
   "as_of_date": "2026-06-13",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032297628781684386,
+  "league_hr_per_pa": 0.03360629586302244,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,62 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 3,
+      "daily_rank": 10,
+      "batter": "Samuel Basallo",
+      "batter_id": 694212,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 4,
+      "pitcher": "Randy V\u00e1squez",
+      "pitcher_id": 681190,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824828,
+      "game_datetime": "2026-06-13T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 328,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2241,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2912,
+      "ev_pct": 24.62,
+      "edge_pct": 6.71,
+      "blended_hr_per_pa": 0.04782,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.2132,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4231,
+          "deviation": 0.4231
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -57,15 +112,180 @@
           "deviation": 0.1409
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": true,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 12,
+      "batter": "Gunnar Henderson",
+      "batter_id": 683002,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 2,
+      "pitcher": "Randy V\u00e1squez",
+      "pitcher_id": 681190,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824828,
+      "game_datetime": "2026-06-13T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 357,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.205,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2439,
+      "ev_pct": 14.66,
+      "edge_pct": 3.89,
+      "blended_hr_per_pa": 0.04049,
+      "breakout_score": 0.0642,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0498,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2047,
+          "deviation": 0.2047
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 4,
+      "pitcher": "Kevin Gausman",
+      "pitcher_id": 592332,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822802,
+      "game_datetime": "2026-06-13T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 558,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1527,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1718,
+      "ev_pct": 13.08,
+      "edge_pct": 1.92,
+      "blended_hr_per_pa": 0.03659,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6958,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0975,
+          "deviation": 0.0975
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0888,
+          "deviation": 0.0888
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 14,
+      "batter": "Jackson Holliday",
+      "batter_id": 702616,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 8,
+      "pitcher": "Randy V\u00e1squez",
+      "pitcher_id": 681190,
+      "pitcher_hand": "R",
+      "park": "BAL",
+      "game_pk": 824828,
+      "game_datetime": "2026-06-13T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 564,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1366,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1512,
+      "ev_pct": 10.35,
+      "edge_pct": 1.46,
+      "blended_hr_per_pa": 0.03098,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": null,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "park",
+          "value": 1.1545,
+          "deviation": 0.1545
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.922,
+          "deviation": 0.078
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-06-13.json"
 }
