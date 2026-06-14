@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-14T00:34:21.593201+00:00",
+  "generated_at": "2026-06-14T01:40:34.406362+00:00",
   "as_of_date": "2026-06-13",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030614870079753023,
+  "league_hr_per_pa": 0.035866780529461996,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -618,6 +618,61 @@
     {
       "tier": "shadow",
       "daily_rank": 47,
+      "batter": "Colby Thomas",
+      "batter_id": 687515,
+      "batter_hand": "R",
+      "team": "OAK",
+      "lineup_spot": 1,
+      "pitcher": "Kyle Freeland",
+      "pitcher_id": 607536,
+      "pitcher_hand": "L",
+      "park": "OAK",
+      "game_pk": 824995,
+      "game_datetime": "2026-06-14T02:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 245,
+      "dk_odds": 241,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2828,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3215,
+      "ev_pct": 10.92,
+      "edge_pct": 3.87,
+      "blended_hr_per_pa": 0.04239,
+      "breakout_score": 0.1422,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3567,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1819,
+          "deviation": 0.1819
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1422,
+          "deviation": 0.1422
+        }
+      ],
+      "tier_rank": 16,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 48,
       "batter": "Jackson Holliday",
       "batter_id": 702616,
       "batter_hand": "L",
@@ -662,7 +717,7 @@
           "deviation": 0.078
         }
       ],
-      "tier_rank": 16,
+      "tier_rank": 17,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -671,6 +726,6 @@
       }
     }
   ],
-  "skipped_count": 12,
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-06-13.json"
 }
