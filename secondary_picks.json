@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-13T23:08:56.494292+00:00",
+  "generated_at": "2026-06-14T00:34:21.592623+00:00",
   "as_of_date": "2026-06-13",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.035866780529461996,
+  "league_hr_per_pa": 0.030614870079753023,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 16,
+      "daily_rank": 17,
       "batter": "Mauricio Dub\u00f3n",
       "batter_id": 643289,
       "batter_hand": "R",
@@ -57,7 +57,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -67,7 +67,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 17,
+      "daily_rank": 18,
       "batter": "Matt Vierling",
       "batter_id": 663837,
       "batter_hand": "R",
@@ -112,7 +112,7 @@
           "deviation": 0.2103
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -122,7 +122,62 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 20,
+      "daily_rank": 21,
+      "batter": "Miguel Amaya",
+      "batter_id": 665804,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 8,
+      "pitcher": "Trevor McDonald",
+      "pitcher_id": 686790,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823213,
+      "game_datetime": "2026-06-14T02:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 950,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0824,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1132,
+      "ev_pct": 38.14,
+      "edge_pct": 3.08,
+      "blended_hr_per_pa": 0.0439,
+      "breakout_score": 0.0786,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3862,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4341,
+          "deviation": 0.4341
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8462,
+          "deviation": 0.1538
+        },
+        {
+          "name": "park",
+          "value": 0.8472,
+          "deviation": 0.1528
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 22,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "R",
@@ -167,7 +222,7 @@
           "deviation": 0.1406
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -177,7 +232,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 23,
+      "daily_rank": 25,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -222,7 +277,7 @@
           "deviation": 0.0734
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -232,7 +287,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 25,
+      "daily_rank": 27,
       "batter": "Edmundo Sosa",
       "batter_id": 624641,
       "batter_hand": "R",
@@ -277,7 +332,7 @@
           "deviation": 0.0451
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -287,7 +342,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 26,
+      "daily_rank": 28,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -332,7 +387,7 @@
           "deviation": 0.0744
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -342,7 +397,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 27,
+      "daily_rank": 29,
       "batter": "Gleyber Torres",
       "batter_id": 650402,
       "batter_hand": "R",
@@ -387,7 +442,7 @@
           "deviation": 0.2103
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -396,6 +451,6 @@
       }
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-06-13.json"
 }
