@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-06-14T16:37:13.016179+00:00",
+  "generated_at": "2026-06-14T17:29:13.841951+00:00",
   "as_of_date": "2026-06-14",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032734015963879703,
+  "league_hr_per_pa": 0.030175706646294882,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 14,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 8,
+  "games_excluded_live_or_complete": 7,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 31,
+      "daily_rank": 33,
       "batter": "Luke Raley",
       "batter_id": 670042,
       "batter_hand": "L",
@@ -67,7 +67,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 32,
+      "daily_rank": 34,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -122,7 +122,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 34,
+      "daily_rank": 37,
       "batter": "Dominic Canzone",
       "batter_id": 686527,
       "batter_hand": "L",
@@ -167,7 +167,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -177,7 +177,62 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 35,
+      "daily_rank": 38,
+      "batter": "Tyler Soderstrom",
+      "batter_id": 691016,
+      "batter_hand": "L",
+      "team": "OAK",
+      "lineup_spot": 3,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "OAK",
+      "game_pk": 824994,
+      "game_datetime": "2026-06-14T19:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 225,
+      "dk_odds": 220,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.3008,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.371,
+      "ev_pct": 20.57,
+      "edge_pct": 7.02,
+      "blended_hr_per_pa": 0.04711,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5395,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.5612,
+          "deviation": 0.5612
+        },
+        {
+          "name": "temperature",
+          "value": 1.157,
+          "deviation": 0.157
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 39,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
@@ -222,7 +277,7 @@
           "deviation": 0.1426
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -232,7 +287,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 36,
+      "daily_rank": 40,
       "batter": "Kyle Schwarber",
       "batter_id": 656941,
       "batter_hand": "L",
@@ -277,7 +332,7 @@
           "deviation": 0.0807
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -287,7 +342,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 39,
+      "daily_rank": 43,
       "batter": "Jordan Walker",
       "batter_id": 691023,
       "batter_hand": "R",
@@ -332,7 +387,7 @@
           "deviation": 0.1398
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -341,6 +396,6 @@
       }
     }
   ],
-  "skipped_count": 25,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-06-14.json"
 }
