@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-15T18:28:01.224859+00:00",
+  "generated_at": "2026-06-15T21:58:25.091589+00:00",
   "as_of_date": "2026-06-15",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.031056563500533617,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,125 @@
   "total_games_today": 10,
   "games_pregame": 10,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 18,
+      "batter": "Hunter Goodman",
+      "batter_id": 696100,
+      "batter_hand": "R",
+      "team": "COL",
+      "lineup_spot": 4,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824666,
+      "game_datetime": "2026-06-16T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 235,
+      "dk_odds": 245,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2854,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3643,
+      "ev_pct": 25.69,
+      "edge_pct": 7.9,
+      "blended_hr_per_pa": 0.06488,
+      "breakout_score": 0.0283,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3249,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.0892,
+          "deviation": 1.0892
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "temperature",
+          "value": 0.901,
+          "deviation": 0.099
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Tobias Myers",
+      "pitcher_id": 668964,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824505,
+      "game_datetime": "2026-06-15T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 590,
+      "dk_odds": 600,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1367,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2117,
+      "ev_pct": 48.16,
+      "edge_pct": 7.5,
+      "blended_hr_per_pa": 0.03994,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.53,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2862,
+          "deviation": 0.2862
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1443,
+          "deviation": 0.1443
+        }
+      ],
+      "tier_rank": 10,
+      "stacked": true,
+      "stacked_with": [
+        "JJ Bleday",
+        "Noelvi Marte"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "skipped_count": 16,
   "skipped_reference": "data/processed/skipped_batters_2026-06-15.json"
 }

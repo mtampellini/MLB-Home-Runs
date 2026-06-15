@@ -1,15 +1,181 @@
 {
-  "generated_at": "2026-06-15T18:28:01.225078+00:00",
+  "generated_at": "2026-06-15T21:58:25.092035+00:00",
   "as_of_date": "2026-06-15",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.031056563500533617,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 10,
   "games_pregame": 10,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 13,
+      "batter": "Braxton Fulford",
+      "batter_id": 690924,
+      "batter_hand": "R",
+      "team": "COL",
+      "lineup_spot": 9,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824666,
+      "game_datetime": "2026-06-16T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 630,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.126,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.177,
+      "ev_pct": 38.04,
+      "edge_pct": 5.1,
+      "blended_hr_per_pa": 0.02832,
+      "breakout_score": 0.1479,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5833,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1479,
+          "deviation": 0.1479
+        },
+        {
+          "name": "temperature",
+          "value": 0.901,
+          "deviation": 0.099
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 14,
+      "batter": "Curtis Mead",
+      "batter_id": 678554,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 3,
+      "pitcher": "Mitch Spence",
+      "pitcher_id": 687765,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822724,
+      "game_datetime": "2026-06-15T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 610,
+      "dk_odds": 539,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1412,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1861,
+      "ev_pct": 32.17,
+      "edge_pct": 4.49,
+      "blended_hr_per_pa": 0.03783,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3651,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2182,
+          "deviation": 0.2182
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.09,
+          "deviation": 0.09
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 17,
+      "batter": "Heriberto Hern\u00e1ndez",
+      "batter_id": 681715,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 5,
+      "pitcher": "Zack Wheeler",
+      "pitcher_id": 554430,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823452,
+      "game_datetime": "2026-06-15T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 590,
+      "dk_odds": 740,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1242,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1534,
+      "ev_pct": 28.87,
+      "edge_pct": 2.92,
+      "blended_hr_per_pa": 0.04404,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.3684,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.418,
+          "deviation": 0.418
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.9168,
+          "deviation": 0.0832
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 16,
   "skipped_reference": "data/processed/skipped_batters_2026-06-15.json"
 }
