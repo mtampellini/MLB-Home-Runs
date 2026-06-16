@@ -1,25 +1,25 @@
 {
   "date": "2026-06-16",
-  "generated_at": "2026-06-16T23:10:43.726208+00:00",
+  "generated_at": "2026-06-16T23:42:02.530824+00:00",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030021141649048625,
+  "league_hr_per_pa": 0.03133974278936197,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 6,
-    "games_pregame": 9,
-    "total_predictions": 12,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 6,
+    "games_excluded_live_or_complete": 8,
+    "games_pregame": 7,
+    "total_predictions": 43,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 10,
     "skipped_other": 0,
-    "matched_in_odds_market": 12,
-    "matched_alt_market": 12,
+    "matched_in_odds_market": 43,
+    "matched_alt_market": 43,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 12,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
+    "single_sided_devig": 43,
+    "above_25_ev_pre_cap": 1,
+    "eligible_below_900_price_cap": 1,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 10,
+    "primary_count": 11,
     "secondary_count": 30,
     "shadow_count": 29
   },
@@ -613,6 +613,63 @@
         "passes_baseline": true,
         "passes_triple": false,
         "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 41,
+      "batter": "Max Muncy",
+      "batter_id": 571970,
+      "batter_hand": "L",
+      "team": "LAD",
+      "lineup_spot": 5,
+      "pitcher": "Drew Rasmussen",
+      "pitcher_id": 656876,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823939,
+      "game_datetime": "2026-06-17T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 330,
+      "dk_odds": 343,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2177,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2832,
+      "ev_pct": 25.47,
+      "edge_pct": 6.55,
+      "blended_hr_per_pa": 0.06036,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3954,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.926,
+          "deviation": 0.926
+        },
+        {
+          "name": "park",
+          "value": 1.1814,
+          "deviation": 0.1814
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 11,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
         "passes_anchor": false
       }
     }
@@ -2272,7 +2329,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 41,
+      "daily_rank": 42,
       "batter": "Eugenio Su\u00e1rez",
       "batter_id": 553993,
       "batter_hand": "R",
@@ -2327,7 +2384,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 42,
+      "daily_rank": 43,
       "batter": "Jung Hoo Lee",
       "batter_id": 808982,
       "batter_hand": "L",
@@ -2382,7 +2439,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 43,
+      "daily_rank": 44,
       "batter": "Gabriel Arias",
       "batter_id": 672356,
       "batter_hand": "R",
@@ -2437,7 +2494,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 44,
+      "daily_rank": 45,
       "batter": "Jarren Duran",
       "batter_id": 680776,
       "batter_hand": "L",
@@ -2492,7 +2549,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 45,
+      "daily_rank": 46,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -2547,7 +2604,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 46,
+      "daily_rank": 47,
       "batter": "Miguel Vargas",
       "batter_id": 678246,
       "batter_hand": "R",
@@ -2602,7 +2659,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 47,
+      "daily_rank": 48,
       "batter": "Nick Loftin",
       "batter_id": 679845,
       "batter_hand": "R",
@@ -2657,7 +2714,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 48,
+      "daily_rank": 49,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -2712,7 +2769,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 49,
+      "daily_rank": 50,
       "batter": "Starling Marte",
       "batter_id": 516782,
       "batter_hand": "R",
@@ -2767,7 +2824,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 50,
+      "daily_rank": 51,
       "batter": "James Outman",
       "batter_id": 681546,
       "batter_hand": "L",
@@ -2822,7 +2879,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 51,
+      "daily_rank": 52,
       "batter": "Willi Castro",
       "batter_id": 650489,
       "batter_hand": "L",
@@ -2877,7 +2934,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 52,
+      "daily_rank": 53,
       "batter": "Kerry Carpenter",
       "batter_id": 681481,
       "batter_hand": "L",
@@ -2932,7 +2989,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 53,
+      "daily_rank": 54,
       "batter": "Lars Nootbaar",
       "batter_id": 663457,
       "batter_hand": "L",
@@ -2987,7 +3044,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 54,
+      "daily_rank": 55,
       "batter": "Colson Montgomery",
       "batter_id": 695657,
       "batter_hand": "L",
@@ -3042,7 +3099,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 55,
+      "daily_rank": 56,
       "batter": "Wilyer Abreu",
       "batter_id": 677800,
       "batter_hand": "L",
@@ -3097,7 +3154,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 56,
+      "daily_rank": 57,
       "batter": "Luis Garc\u00eda Jr.",
       "batter_id": 671277,
       "batter_hand": "L",
@@ -3152,7 +3209,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 57,
+      "daily_rank": 58,
       "batter": "Mike Yastrzemski",
       "batter_id": 573262,
       "batter_hand": "L",
@@ -3207,7 +3264,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 58,
+      "daily_rank": 59,
       "batter": "Matt Shaw",
       "batter_id": 807713,
       "batter_hand": "R",
@@ -3262,7 +3319,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 59,
+      "daily_rank": 60,
       "batter": "Ozzie Albies",
       "batter_id": 645277,
       "batter_hand": "L",
@@ -3317,7 +3374,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 60,
+      "daily_rank": 61,
       "batter": "Blake Dunn",
       "batter_id": 694362,
       "batter_hand": "R",
@@ -3372,7 +3429,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 61,
+      "daily_rank": 62,
       "batter": "Andr\u00e9s Gim\u00e9nez",
       "batter_id": 665926,
       "batter_hand": "L",
@@ -3427,7 +3484,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 62,
+      "daily_rank": 63,
       "batter": "Juan Soto",
       "batter_id": 665742,
       "batter_hand": "L",
@@ -3482,7 +3539,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 63,
+      "daily_rank": 64,
       "batter": "Salvador Perez",
       "batter_id": 521692,
       "batter_hand": "R",
@@ -3537,7 +3594,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 64,
+      "daily_rank": 65,
       "batter": "Otto Lopez",
       "batter_id": 672640,
       "batter_hand": "R",
@@ -3592,7 +3649,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 65,
+      "daily_rank": 66,
       "batter": "Andrew Benintendi",
       "batter_id": 643217,
       "batter_hand": "L",
@@ -3647,7 +3704,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 66,
+      "daily_rank": 67,
       "batter": "Yordan Alvarez",
       "batter_id": 670541,
       "batter_hand": "L",
@@ -3702,7 +3759,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 67,
+      "daily_rank": 68,
       "batter": "Josh Smith",
       "batter_id": 669701,
       "batter_hand": "L",
@@ -3757,7 +3814,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 68,
+      "daily_rank": 69,
       "batter": "Matt Chapman",
       "batter_id": 656305,
       "batter_hand": "R",
@@ -3812,7 +3869,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 69,
+      "daily_rank": 70,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
