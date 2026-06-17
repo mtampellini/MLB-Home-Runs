@@ -1,15 +1,71 @@
 {
-  "generated_at": "2026-06-17T19:31:07.886746+00:00",
+  "generated_at": "2026-06-17T21:43:38.470650+00:00",
   "as_of_date": "2026-06-17",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03500954805856143,
+  "league_hr_per_pa": 0.027950675278919555,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 8,
-  "games_excluded_live_or_complete": 7,
-  "picks": [],
-  "skipped_count": 10,
+  "games_pregame": 7,
+  "games_excluded_live_or_complete": 8,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 15,
+      "batter": "Andr\u00e9s Gim\u00e9nez",
+      "batter_id": 665926,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 9,
+      "pitcher": "Jake Bennett",
+      "pitcher_id": 687562,
+      "pitcher_hand": "L",
+      "park": "BOS",
+      "game_pk": 824746,
+      "game_datetime": "2026-06-17T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1160,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0727,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1045,
+      "ev_pct": 35.89,
+      "edge_pct": 3.19,
+      "blended_hr_per_pa": 0.02876,
+      "breakout_score": -0.0134,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1758,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.089,
+          "deviation": 0.089
+        },
+        {
+          "name": "park",
+          "value": 0.9513,
+          "deviation": 0.0487
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.029,
+          "deviation": 0.029
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-06-17.json"
 }
