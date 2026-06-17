@@ -1,19 +1,76 @@
 {
-  "generated_at": "2026-06-17T17:00:53.607025+00:00",
+  "generated_at": "2026-06-17T19:31:07.886375+00:00",
   "as_of_date": "2026-06-17",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03146149625022864,
+  "league_hr_per_pa": 0.03500954805856143,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 11,
-  "games_excluded_live_or_complete": 4,
+  "games_pregame": 8,
+  "games_excluded_live_or_complete": 7,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 8,
+      "batter": "Colson Montgomery",
+      "batter_id": 695657,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 4,
+      "pitcher": "Carlos Rod\u00f3n",
+      "pitcher_id": 607074,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823536,
+      "game_datetime": "2026-06-17T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": 435,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1784,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2543,
+      "ev_pct": 36.07,
+      "edge_pct": 7.59,
+      "blended_hr_per_pa": 0.0607,
+      "breakout_score": -0.0421,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2864,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7337,
+          "deviation": 0.7337
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9579,
+          "deviation": 0.0421
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
       "batter": "Ty France",
       "batter_id": 664034,
       "batter_hand": "R",
@@ -58,7 +115,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "Gavin Sheets"
@@ -71,6 +128,6 @@
       }
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 10,
   "skipped_reference": "data/processed/skipped_batters_2026-06-17.json"
 }
