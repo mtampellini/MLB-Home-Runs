@@ -1,56 +1,56 @@
 {
-  "generated_at": "2026-06-17T01:44:37.685500+00:00",
-  "as_of_date": "2026-06-16",
+  "generated_at": "2026-06-17T17:00:53.607025+00:00",
+  "as_of_date": "2026-06-17",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03146149625022864,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 0,
-  "games_excluded_live_or_complete": 15,
+  "games_pregame": 11,
+  "games_excluded_live_or_complete": 4,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 41,
-      "batter": "Max Muncy",
-      "batter_id": 571970,
-      "batter_hand": "L",
-      "team": "LAD",
-      "lineup_spot": 5,
-      "pitcher": "Drew Rasmussen",
-      "pitcher_id": 656876,
+      "daily_rank": 2,
+      "batter": "Ty France",
+      "batter_id": 664034,
+      "batter_hand": "R",
+      "team": "SD",
+      "lineup_spot": 7,
+      "pitcher": "Kyle Leahy",
+      "pitcher_id": 681517,
       "pitcher_hand": "R",
-      "park": "LAD",
-      "game_pk": 823939,
-      "game_datetime": "2026-06-17T02:10:00+00:00",
+      "park": "STL",
+      "game_pk": 823044,
+      "game_datetime": "2026-06-17T18:15:00+00:00",
       "line": 0.5,
-      "fd_odds": 330,
-      "dk_odds": 343,
+      "fd_odds": 760,
+      "dk_odds": 770,
       "best_book": "draftkings",
-      "market_prob_devig": 0.2177,
+      "market_prob_devig": 0.1075,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.2832,
-      "ev_pct": 25.47,
-      "edge_pct": 6.55,
-      "blended_hr_per_pa": 0.06036,
+      "model_prob": 0.1719,
+      "ev_pct": 49.56,
+      "edge_pct": 6.44,
+      "blended_hr_per_pa": 0.03273,
       "breakout_score": 0.15,
       "low_confidence": false,
       "pitcher_factor_shrunk": true,
-      "trend_signal": -0.3954,
+      "trend_signal": -0.4379,
       "unstable_recent": false,
       "top_3_features": [
         {
-          "name": "batter_skill",
-          "value": 1.926,
-          "deviation": 0.926
+          "name": "wind",
+          "value": 1.2347,
+          "deviation": 0.2347
         },
         {
-          "name": "park",
-          "value": 1.1814,
-          "deviation": 0.1814
+          "name": "temperature",
+          "value": 1.186,
+          "deviation": 0.186
         },
         {
           "name": "breakout_signal",
@@ -58,17 +58,19 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 11,
-      "stacked": false,
-      "stacked_with": [],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Gavin Sheets"
+      ],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
-        "passes_quad": true,
+        "passes_quad": false,
         "passes_anchor": false
       }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-06-16.json"
+  "skipped_count": 5,
+  "skipped_reference": "data/processed/skipped_batters_2026-06-17.json"
 }

@@ -1,0 +1,372 @@
+{
+  "date": "2026-06-17",
+  "generated_at": "2026-06-17T17:00:53.607791+00:00",
+  "model_version": "v7-baseline-0.2.0",
+  "league_hr_per_pa": 0.03146149625022864,
+  "funnel": {
+    "total_slate_games": 15,
+    "games_excluded_live_or_complete": 4,
+    "games_pregame": 11,
+    "total_predictions": 31,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 4,
+    "skipped_other": 0,
+    "matched_in_odds_market": 31,
+    "matched_alt_market": 31,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 31,
+    "above_25_ev_pre_cap": 3,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 3,
+    "secondary_count": 0,
+    "shadow_count": 3
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Gavin Sheets",
+      "batter_id": 657757,
+      "batter_hand": "L",
+      "team": "SD",
+      "lineup_spot": 5,
+      "pitcher": "Kyle Leahy",
+      "pitcher_id": 681517,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823044,
+      "game_datetime": "2026-06-17T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 504,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1592,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2813,
+      "ev_pct": 69.89,
+      "edge_pct": 12.21,
+      "blended_hr_per_pa": 0.05117,
+      "breakout_score": 0.0034,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6912,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6263,
+          "deviation": 0.6263
+        },
+        {
+          "name": "pitcher",
+          "value": 1.235,
+          "deviation": 0.235
+        },
+        {
+          "name": "wind",
+          "value": 1.2347,
+          "deviation": 0.2347
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Ty France"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 2,
+      "pitcher": "Peter Lambert",
+      "pitcher_id": 663567,
+      "pitcher_hand": "R",
+      "park": "HOU",
+      "game_pk": 824178,
+      "game_datetime": "2026-06-17T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 375,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1931,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2743,
+      "ev_pct": 39.92,
+      "edge_pct": 8.12,
+      "blended_hr_per_pa": 0.05325,
+      "breakout_score": 0.0353,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0798,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6924,
+          "deviation": 0.6924
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2239,
+          "deviation": 0.2239
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0353,
+          "deviation": 0.0353
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Ty France",
+      "batter_id": 664034,
+      "batter_hand": "R",
+      "team": "SD",
+      "lineup_spot": 7,
+      "pitcher": "Kyle Leahy",
+      "pitcher_id": 681517,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823044,
+      "game_datetime": "2026-06-17T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 760,
+      "dk_odds": 770,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1075,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1719,
+      "ev_pct": 49.56,
+      "edge_pct": 6.44,
+      "blended_hr_per_pa": 0.03273,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4379,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "wind",
+          "value": 1.2347,
+          "deviation": 0.2347
+        },
+        {
+          "name": "temperature",
+          "value": 1.186,
+          "deviation": 0.186
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Gavin Sheets"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "secondary_picks": [],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 4,
+      "batter": "Spencer Torkelson",
+      "batter_id": 679529,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 4,
+      "pitcher": "Peter Lambert",
+      "pitcher_id": 663567,
+      "pitcher_hand": "R",
+      "park": "HOU",
+      "game_pk": 824178,
+      "game_datetime": "2026-06-17T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 393,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1933,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2341,
+      "ev_pct": 15.41,
+      "edge_pct": 4.08,
+      "blended_hr_per_pa": 0.04506,
+      "breakout_score": 0.0698,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1694,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4321,
+          "deviation": 0.4321
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2239,
+          "deviation": 0.2239
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0698,
+          "deviation": 0.0698
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Xander Bogaerts",
+      "batter_id": 593428,
+      "batter_hand": "R",
+      "team": "SD",
+      "lineup_spot": 6,
+      "pitcher": "Kyle Leahy",
+      "pitcher_id": 681517,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823044,
+      "game_datetime": "2026-06-17T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 700,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1141,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1352,
+      "ev_pct": 12.23,
+      "edge_pct": 2.11,
+      "blended_hr_per_pa": 0.02802,
+      "breakout_score": 0.0147,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3898,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "wind",
+          "value": 1.2347,
+          "deviation": 0.2347
+        },
+        {
+          "name": "temperature",
+          "value": 1.186,
+          "deviation": 0.186
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8908,
+          "deviation": 0.1092
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 4,
+      "pitcher": "Bradgley Rodriguez",
+      "pitcher_id": 699134,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823044,
+      "game_datetime": "2026-06-17T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 358,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2048,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2344,
+      "ev_pct": 10.18,
+      "edge_pct": 2.97,
+      "blended_hr_per_pa": 0.04685,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3792,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4893,
+          "deviation": 0.4893
+        },
+        {
+          "name": "wind",
+          "value": 1.2347,
+          "deviation": 0.2347
+        },
+        {
+          "name": "temperature",
+          "value": 1.186,
+          "deviation": 0.186
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "settlement": null
+}
