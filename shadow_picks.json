@@ -1,18 +1,73 @@
 {
-  "generated_at": "2026-06-18T19:42:11.941057+00:00",
+  "generated_at": "2026-06-18T21:39:56.043115+00:00",
   "as_of_date": "2026-06-18",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03167308408893305,
+  "league_hr_per_pa": 0.030857917938284164,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 9,
-  "games_pregame": 5,
-  "games_excluded_live_or_complete": 4,
+  "games_pregame": 4,
+  "games_excluded_live_or_complete": 5,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 27,
+      "batter": "Kyle Schwarber",
+      "batter_id": 656941,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 2,
+      "pitcher": "Sean Manaea",
+      "pitcher_id": 640455,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823448,
+      "game_datetime": "2026-06-18T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 220,
+      "dk_odds": 209,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.3085,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 20.82,
+      "edge_pct": 6.9,
+      "blended_hr_per_pa": 0.07831,
+      "breakout_score": 0.1042,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6242,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.5378,
+          "deviation": 1.5378
+        },
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "wind",
+          "value": 1.1955,
+          "deviation": 0.1955
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 33,
       "batter": "Jac Caglianone",
       "batter_id": 695506,
       "batter_hand": "L",
@@ -57,7 +112,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -67,7 +122,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 34,
       "batter": "Samuel Basallo",
       "batter_id": 694212,
       "batter_hand": "L",
@@ -112,7 +167,7 @@
           "deviation": 0.0698
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -122,7 +177,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 23,
+      "daily_rank": 35,
       "batter": "Edgar Quero",
       "batter_id": 700337,
       "batter_hand": "R",
@@ -167,7 +222,7 @@
           "deviation": 0.1897
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -176,6 +231,6 @@
       }
     }
   ],
-  "skipped_count": 6,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-06-18.json"
 }
