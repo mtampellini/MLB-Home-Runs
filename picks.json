@@ -1,19 +1,141 @@
 {
-  "generated_at": "2026-06-18T17:05:23.449641+00:00",
+  "generated_at": "2026-06-18T19:42:11.940193+00:00",
   "as_of_date": "2026-06-18",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03065231158961368,
+  "league_hr_per_pa": 0.03167308408893305,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 9,
-  "games_pregame": 9,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 5,
+  "games_excluded_live_or_complete": 4,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 4,
+      "batter": "Randal Grichuk",
+      "batter_id": 545341,
+      "batter_hand": "R",
+      "team": "CHW",
+      "lineup_spot": 2,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823533,
+      "game_datetime": "2026-06-18T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 285,
+      "dk_odds": 282,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2529,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 45.36,
+      "edge_pct": 12.46,
+      "blended_hr_per_pa": 0.04762,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6375,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.5036,
+          "deviation": 0.5036
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Colson Montgomery",
+        "Miguel Vargas",
+        "Chase Meidroth"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 12,
+      "batter": "Miguel Vargas",
+      "batter_id": 678246,
+      "batter_hand": "R",
+      "team": "CHW",
+      "lineup_spot": 3,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823533,
+      "game_datetime": "2026-06-18T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 260,
+      "dk_odds": 269,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2662,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.371,
+      "ev_pct": 36.89,
+      "edge_pct": 10.48,
+      "blended_hr_per_pa": 0.04336,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1385,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.369,
+          "deviation": 0.369
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Colson Montgomery",
+        "Randal Grichuk",
+        "Chase Meidroth"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
       "batter": "Gary S\u00e1nchez",
       "batter_id": 596142,
       "batter_hand": "R",
@@ -58,7 +180,7 @@
           "deviation": 0.0816
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "Jackson Chourio",
@@ -70,8 +192,67 @@
         "passes_quad": false,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "J.C. Escarra",
+      "batter_id": 641555,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 9,
+      "pitcher": "Bryan Hudson",
+      "pitcher_id": 663542,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823533,
+      "game_datetime": "2026-06-18T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 760,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1015,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1461,
+      "ev_pct": 43.21,
+      "edge_pct": 4.46,
+      "blended_hr_per_pa": 0.02488,
+      "breakout_score": 0.1031,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7856,
+          "deviation": 0.2144
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "temperature",
+          "value": 1.178,
+          "deviation": 0.178
+        }
+      ],
+      "tier_rank": 11,
+      "stacked": true,
+      "stacked_with": [
+        "Ben Rice"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-06-18.json"
 }
