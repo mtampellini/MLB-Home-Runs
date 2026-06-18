@@ -1,133 +1,77 @@
 {
-  "generated_at": "2026-06-18T01:45:21.985561+00:00",
-  "as_of_date": "2026-06-17",
+  "generated_at": "2026-06-18T17:05:23.449641+00:00",
+  "as_of_date": "2026-06-18",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03065231158961368,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
-  "total_games_today": 15,
-  "games_pregame": 0,
-  "games_excluded_live_or_complete": 15,
+  "total_games_today": 9,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 0,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 16,
-      "batter": "Colson Montgomery",
-      "batter_id": 695657,
-      "batter_hand": "L",
-      "team": "CHW",
-      "lineup_spot": 4,
-      "pitcher": "Carlos Rod\u00f3n",
-      "pitcher_id": 607074,
+      "daily_rank": 6,
+      "batter": "Gary S\u00e1nchez",
+      "batter_id": 596142,
+      "batter_hand": "R",
+      "team": "MIL",
+      "lineup_spot": 6,
+      "pitcher": "Parker Messick",
+      "pitcher_id": 800048,
       "pitcher_hand": "L",
-      "park": "NYY",
-      "game_pk": 823536,
-      "game_datetime": "2026-06-17T23:05:00+00:00",
+      "park": "MIL",
+      "game_pk": 823772,
+      "game_datetime": "2026-06-18T18:10:00+00:00",
       "line": 0.5,
-      "fd_odds": 430,
-      "dk_odds": 435,
+      "fd_odds": 540,
+      "dk_odds": 542,
       "best_book": "draftkings",
-      "market_prob_devig": 0.1784,
+      "market_prob_devig": 0.1482,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.2543,
-      "ev_pct": 36.07,
-      "edge_pct": 7.59,
-      "blended_hr_per_pa": 0.0607,
-      "breakout_score": -0.0421,
+      "model_prob": 0.2149,
+      "ev_pct": 37.94,
+      "edge_pct": 6.66,
+      "blended_hr_per_pa": 0.04949,
+      "breakout_score": 0.0816,
       "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.2864,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1333,
       "unstable_recent": false,
       "top_3_features": [
         {
           "name": "batter_skill",
-          "value": 1.7337,
-          "deviation": 0.7337
+          "value": 1.6146,
+          "deviation": 0.6146
         },
         {
           "name": "park",
-          "value": 1.1852,
-          "deviation": 0.1852
+          "value": 1.1082,
+          "deviation": 0.1082
         },
         {
           "name": "breakout_signal",
-          "value": 0.9579,
-          "deviation": 0.0421
+          "value": 1.0816,
+          "deviation": 0.0816
         }
       ],
-      "tier_rank": 12,
-      "stacked": false,
-      "stacked_with": [],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true,
-        "passes_anchor": false
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 11,
-      "batter": "Ty France",
-      "batter_id": 664034,
-      "batter_hand": "R",
-      "team": "SD",
-      "lineup_spot": 7,
-      "pitcher": "Kyle Leahy",
-      "pitcher_id": 681517,
-      "pitcher_hand": "R",
-      "park": "STL",
-      "game_pk": 823044,
-      "game_datetime": "2026-06-17T18:15:00+00:00",
-      "line": 0.5,
-      "fd_odds": 760,
-      "dk_odds": 770,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.1075,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1719,
-      "ev_pct": 49.56,
-      "edge_pct": 6.44,
-      "blended_hr_per_pa": 0.03273,
-      "breakout_score": 0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.4379,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "wind",
-          "value": 1.2347,
-          "deviation": 0.2347
-        },
-        {
-          "name": "temperature",
-          "value": 1.186,
-          "deviation": 0.186
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.15,
-          "deviation": 0.15
-        }
-      ],
-      "tier_rank": 15,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
-        "Gavin Sheets"
+        "Jackson Chourio",
+        "Jake Bauers"
       ],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": false,
-        "passes_anchor": false
+        "passes_anchor": true
       }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-06-17.json"
+  "skipped_count": 5,
+  "skipped_reference": "data/processed/skipped_batters_2026-06-18.json"
 }

@@ -1,60 +1,60 @@
 {
-  "generated_at": "2026-06-18T01:45:21.985940+00:00",
-  "as_of_date": "2026-06-17",
+  "generated_at": "2026-06-18T17:05:23.449963+00:00",
+  "as_of_date": "2026-06-18",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03065231158961368,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
-  "total_games_today": 15,
-  "games_pregame": 0,
-  "games_excluded_live_or_complete": 15,
+  "total_games_today": 9,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 0,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 17,
-      "batter": "Andr\u00e9s Gim\u00e9nez",
-      "batter_id": 665926,
+      "daily_rank": 2,
+      "batter": "Brice Turang",
+      "batter_id": 668930,
       "batter_hand": "L",
-      "team": "TOR",
-      "lineup_spot": 9,
-      "pitcher": "Jake Bennett",
-      "pitcher_id": 687562,
+      "team": "MIL",
+      "lineup_spot": 3,
+      "pitcher": "Parker Messick",
+      "pitcher_id": 800048,
       "pitcher_hand": "L",
-      "park": "BOS",
-      "game_pk": 824746,
-      "game_datetime": "2026-06-17T22:45:00+00:00",
+      "park": "MIL",
+      "game_pk": 823772,
+      "game_datetime": "2026-06-18T18:10:00+00:00",
       "line": 0.5,
-      "fd_odds": 1200,
-      "dk_odds": 1160,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.0727,
+      "fd_odds": 980,
+      "dk_odds": 1000,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0853,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.1045,
-      "ev_pct": 35.89,
-      "edge_pct": 3.19,
-      "blended_hr_per_pa": 0.02876,
-      "breakout_score": -0.0134,
+      "model_prob": 0.1283,
+      "ev_pct": 41.15,
+      "edge_pct": 4.3,
+      "blended_hr_per_pa": 0.03576,
+      "breakout_score": 0.0286,
       "low_confidence": false,
       "pitcher_factor_shrunk": true,
-      "trend_signal": -0.1758,
+      "trend_signal": 0.0161,
       "unstable_recent": false,
       "top_3_features": [
         {
-          "name": "temperature",
-          "value": 1.089,
-          "deviation": 0.089
-        },
-        {
-          "name": "park",
-          "value": 0.9513,
-          "deviation": 0.0487
+          "name": "pitcher",
+          "value": 0.8205,
+          "deviation": 0.1795
         },
         {
           "name": "batter_skill",
-          "value": 1.029,
-          "deviation": 0.029
+          "value": 1.1667,
+          "deviation": 0.1667
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0286,
+          "deviation": 0.0286
         }
       ],
       "tier_rank": 1,
@@ -64,8 +64,63 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 7,
+      "batter": "Andr\u00e9s Gim\u00e9nez",
+      "batter_id": 665926,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 9,
+      "pitcher": "Sonny Gray",
+      "pitcher_id": 543243,
+      "pitcher_hand": "R",
+      "park": "BOS",
+      "game_pk": 824748,
+      "game_datetime": "2026-06-18T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1040,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0789,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1129,
+      "ev_pct": 37.75,
+      "edge_pct": 3.4,
+      "blended_hr_per_pa": 0.02844,
+      "breakout_score": -0.0134,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2184,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.135,
+          "deviation": 0.135
+        },
+        {
+          "name": "wind",
+          "value": 1.1049,
+          "deviation": 0.1049
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9279,
+          "deviation": 0.0721
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-06-17.json"
+  "skipped_count": 5,
+  "skipped_reference": "data/processed/skipped_batters_2026-06-18.json"
 }
