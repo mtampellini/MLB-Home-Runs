@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-19T20:31:46.950076+00:00",
+  "generated_at": "2026-06-19T21:46:54.741685+00:00",
   "as_of_date": "2026-06-19",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030494072500513943,
+  "league_hr_per_pa": 0.03103930797608447,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 19,
       "batter": "Blake Dunn",
       "batter_id": 694362,
       "batter_hand": "R",
@@ -67,7 +67,62 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 21,
+      "batter": "Yordan Alvarez",
+      "batter_id": 670541,
+      "batter_hand": "L",
+      "team": "HOU",
+      "lineup_spot": 2,
+      "pitcher": "Tanner Bibee",
+      "pitcher_id": 676440,
+      "pitcher_hand": "R",
+      "park": "HOU",
+      "game_pk": 824179,
+      "game_datetime": "2026-06-20T00:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 225,
+      "dk_odds": 217,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.3022,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 22.71,
+      "edge_pct": 7.53,
+      "blended_hr_per_pa": 0.06094,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.2359,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9632,
+          "deviation": 0.9632
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 23,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -112,7 +167,7 @@
           "deviation": 0.113
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -122,7 +177,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 16,
+      "daily_rank": 26,
       "batter": "Jasson Dom\u00ednguez",
       "batter_id": 691176,
       "batter_hand": "L",
@@ -167,7 +222,7 @@
           "deviation": 0.113
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -177,7 +232,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 27,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -222,7 +277,7 @@
           "deviation": 0.0741
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -231,6 +286,6 @@
       }
     }
   ],
-  "skipped_count": 8,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-06-19.json"
 }

@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-19T20:31:46.949380+00:00",
+  "generated_at": "2026-06-19T21:46:54.741021+00:00",
   "as_of_date": "2026-06-19",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030494072500513943,
+  "league_hr_per_pa": 0.03103930797608447,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,67 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 11,
+      "batter": "Josh Jung",
+      "batter_id": 673962,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 2,
+      "pitcher": "Randy V\u00e1squez",
+      "pitcher_id": 681190,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822886,
+      "game_datetime": "2026-06-20T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 610,
+      "dk_odds": 610,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1338,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2027,
+      "ev_pct": 43.89,
+      "edge_pct": 6.89,
+      "blended_hr_per_pa": 0.02882,
+      "breakout_score": -0.0421,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9286,
+          "deviation": 0.0714
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Wyatt Langford",
+        "Jake Burger"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 12,
       "batter": "Spencer Steer",
       "batter_id": 668715,
       "batter_hand": "R",
@@ -58,7 +118,7 @@
           "deviation": 0.1859
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "Matt McLain"
@@ -72,7 +132,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 15,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -117,7 +177,7 @@
           "deviation": 0.0874
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 11,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -129,7 +189,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 10,
+      "daily_rank": 18,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -174,7 +234,7 @@
           "deviation": 0.0387
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 14,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -185,6 +245,6 @@
       }
     }
   ],
-  "skipped_count": 8,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-06-19.json"
 }
