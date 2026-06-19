@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-19T18:21:06.326602+00:00",
+  "generated_at": "2026-06-19T20:31:46.949380+00:00",
   "as_of_date": "2026-06-19",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030494072500513943,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,123 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 6,
+      "batter": "Spencer Steer",
+      "batter_id": 668715,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 5,
+      "pitcher": "Cam Schlittler",
+      "pitcher_id": 693645,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823534,
+      "game_datetime": "2026-06-19T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 630,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.136,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1962,
+      "ev_pct": 43.21,
+      "edge_pct": 6.02,
+      "blended_hr_per_pa": 0.0368,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.307,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2068,
+          "deviation": 0.2068
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8141,
+          "deviation": 0.1859
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Matt McLain"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "Kevin McGonigle",
+      "batter_id": 805808,
+      "batter_hand": "L",
+      "team": "DET",
+      "lineup_spot": 1,
+      "pitcher": "Brandon Eisert",
+      "pitcher_id": 685126,
+      "pitcher_hand": "L",
+      "park": "DET",
+      "game_pk": 824264,
+      "game_datetime": "2026-06-19T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 650,
+      "dk_odds": 610,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1302,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1738,
+      "ev_pct": 30.33,
+      "edge_pct": 4.35,
+      "blended_hr_per_pa": 0.03456,
+      "breakout_score": 0.0874,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5088,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1335,
+          "deviation": 0.1335
+        },
+        {
+          "name": "wind",
+          "value": 1.0933,
+          "deviation": 0.0933
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0874,
+          "deviation": 0.0874
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -58,7 +174,7 @@
           "deviation": 0.0387
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 8,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -69,6 +185,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-06-19.json"
 }
