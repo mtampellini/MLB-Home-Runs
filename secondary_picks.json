@@ -1,18 +1,128 @@
 {
-  "generated_at": "2026-06-19T21:46:54.741464+00:00",
+  "generated_at": "2026-06-19T22:47:47.181670+00:00",
   "as_of_date": "2026-06-19",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03103930797608447,
+  "league_hr_per_pa": 0.029923199536299086,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 14,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 17,
+      "daily_rank": 14,
+      "batter": "Brooks Lee",
+      "batter_id": 686797,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 6,
+      "pitcher": "Michael Soroka",
+      "pitcher_id": 647336,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825069,
+      "game_datetime": "2026-06-20T01:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 940,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0903,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1359,
+      "ev_pct": 41.34,
+      "edge_pct": 4.56,
+      "blended_hr_per_pa": 0.03762,
+      "breakout_score": -0.0689,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.463,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2572,
+          "deviation": 0.2572
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9311,
+          "deviation": 0.0689
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0237,
+          "deviation": 0.0237
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 15,
+      "batter": "Cole Young",
+      "batter_id": 702284,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 6,
+      "pitcher": "Ranger Suarez",
+      "pitcher_id": 624133,
+      "pitcher_hand": "L",
+      "park": "SEA",
+      "game_pk": 823124,
+      "game_datetime": "2026-06-20T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 1080,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0825,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1192,
+      "ev_pct": 40.68,
+      "edge_pct": 3.68,
+      "blended_hr_per_pa": 0.02937,
+      "breakout_score": 0.0415,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6301,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.0415,
+          "deviation": 0.0415
+        },
+        {
+          "name": "park",
+          "value": 1.0211,
+          "deviation": 0.0211
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9816,
+          "deviation": 0.0184
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 23,
       "batter": "Matt Shaw",
       "batter_id": 807713,
       "batter_hand": "R",
@@ -57,7 +167,7 @@
           "deviation": 0.054
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,6 +176,6 @@
       }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 14,
   "skipped_reference": "data/processed/skipped_batters_2026-06-19.json"
 }

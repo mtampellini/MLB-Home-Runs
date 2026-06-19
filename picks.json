@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-19T21:46:54.741021+00:00",
+  "generated_at": "2026-06-19T22:47:47.181246+00:00",
   "as_of_date": "2026-06-19",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03103930797608447,
+  "league_hr_per_pa": 0.029923199536299086,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 14,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 12,
       "batter": "Josh Jung",
       "batter_id": 673962,
       "batter_hand": "R",
@@ -58,7 +58,7 @@
           "deviation": 0.0714
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "Wyatt Langford",
@@ -73,7 +73,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 13,
       "batter": "Spencer Steer",
       "batter_id": 668715,
       "batter_hand": "R",
@@ -118,7 +118,7 @@
           "deviation": 0.1859
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 11,
       "stacked": true,
       "stacked_with": [
         "Matt McLain"
@@ -132,7 +132,64 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 15,
+      "daily_rank": 16,
+      "batter": "Gabriel Moreno",
+      "batter_id": 672515,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 4,
+      "pitcher": "Connor Prielipp",
+      "pitcher_id": 687570,
+      "pitcher_hand": "L",
+      "park": "ARI",
+      "game_pk": 825069,
+      "game_datetime": "2026-06-20T01:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 730,
+      "dk_odds": 760,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1101,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1565,
+      "ev_pct": 34.63,
+      "edge_pct": 4.64,
+      "blended_hr_per_pa": 0.03875,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3537,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2951,
+          "deviation": 0.2951
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8711,
+          "deviation": 0.1289
+        }
+      ],
+      "tier_rank": 14,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 20,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -177,7 +234,7 @@
           "deviation": 0.0874
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 15,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -189,7 +246,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 18,
+      "daily_rank": 24,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -234,7 +291,7 @@
           "deviation": 0.0387
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 18,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -245,6 +302,6 @@
       }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 14,
   "skipped_reference": "data/processed/skipped_batters_2026-06-19.json"
 }
