@@ -1,0 +1,489 @@
+{
+  "date": "2026-06-20",
+  "generated_at": "2026-06-20T15:50:44.799175+00:00",
+  "model_version": "v7-baseline-0.2.0",
+  "league_hr_per_pa": 0.03806160486560722,
+  "funnel": {
+    "total_slate_games": 14,
+    "games_excluded_live_or_complete": 0,
+    "games_pregame": 14,
+    "total_predictions": 30,
+    "skipped_low_data": 3,
+    "skipped_career_pa_filter": 3,
+    "skipped_other": 0,
+    "matched_in_odds_market": 30,
+    "matched_alt_market": 30,
+    "matched_main_market": 0,
+    "two_way_devig": 0,
+    "single_sided_devig": 30,
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 4,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 4,
+    "secondary_count": 0,
+    "shadow_count": 4
+  },
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 3,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823532,
+      "game_datetime": "2026-06-20T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 364,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1993,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.334,
+      "ev_pct": 63.64,
+      "edge_pct": 13.46,
+      "blended_hr_per_pa": 0.04314,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6656,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Amed Rosario",
+        "Jasson Dom\u00ednguez"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Amed Rosario",
+      "batter_id": 642708,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 2,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823532,
+      "game_datetime": "2026-06-20T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 443,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.168,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2947,
+      "ev_pct": 73.87,
+      "edge_pct": 12.67,
+      "blended_hr_per_pa": 0.03651,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0612,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Paul Goldschmidt",
+        "Jasson Dom\u00ednguez"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Jasson Dom\u00ednguez",
+      "batter_id": 691176,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 5,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823532,
+      "game_datetime": "2026-06-20T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 437,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1718,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2615,
+      "ev_pct": 49.08,
+      "edge_pct": 8.98,
+      "blended_hr_per_pa": 0.03962,
+      "breakout_score": -0.0114,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1875,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "wind",
+          "value": 1.1308,
+          "deviation": 0.1308
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Paul Goldschmidt",
+        "Amed Rosario"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
+      "batter": "Andrew Benintendi",
+      "batter_id": 643217,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 3,
+      "pitcher": "Troy Melton",
+      "pitcher_id": 675512,
+      "pitcher_hand": "R",
+      "park": "DET",
+      "game_pk": 824263,
+      "game_datetime": "2026-06-20T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 514,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1607,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2051,
+      "ev_pct": 25.9,
+      "edge_pct": 4.44,
+      "blended_hr_per_pa": 0.03864,
+      "breakout_score": 0.1102,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0583,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.1653,
+          "deviation": 0.1653
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1102,
+          "deviation": 0.1102
+        },
+        {
+          "name": "park",
+          "value": 0.9305,
+          "deviation": 0.0695
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "secondary_picks": [],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Ben Rice",
+      "batter_id": 700250,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 1,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823532,
+      "game_datetime": "2026-06-20T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 270,
+      "dk_odds": 272,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2615,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.332,
+      "ev_pct": 23.49,
+      "edge_pct": 7.05,
+      "blended_hr_per_pa": 0.06445,
+      "breakout_score": -0.0037,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4137,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6933,
+          "deviation": 0.6933
+        },
+        {
+          "name": "park",
+          "value": 1.1852,
+          "deviation": 0.1852
+        },
+        {
+          "name": "wind",
+          "value": 1.1308,
+          "deviation": 0.1308
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Randal Grichuk",
+      "batter_id": 545341,
+      "batter_hand": "R",
+      "team": "CHW",
+      "lineup_spot": 5,
+      "pitcher": "Troy Melton",
+      "pitcher_id": 675512,
+      "pitcher_hand": "R",
+      "park": "DET",
+      "game_pk": 824263,
+      "game_datetime": "2026-06-20T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 446,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.175,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2245,
+      "ev_pct": 22.6,
+      "edge_pct": 4.96,
+      "blended_hr_per_pa": 0.0505,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2848,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3267,
+          "deviation": 0.3267
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 0.9259,
+          "deviation": 0.0741
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
+      "batter": "Jos\u00e9 Caballero",
+      "batter_id": 676609,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 6,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823532,
+      "game_datetime": "2026-06-20T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 760,
+      "dk_odds": 690,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1142,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1366,
+      "ev_pct": 17.47,
+      "edge_pct": 2.24,
+      "blended_hr_per_pa": 0.02385,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6364,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6266,
+          "deviation": 0.3734
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1897,
+          "deviation": 0.1897
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
+      "batter": "Colson Montgomery",
+      "batter_id": 695657,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 4,
+      "pitcher": "Troy Melton",
+      "pitcher_id": 675512,
+      "pitcher_hand": "R",
+      "park": "DET",
+      "game_pk": 824263,
+      "game_datetime": "2026-06-20T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 310,
+      "dk_odds": 314,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2306,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2771,
+      "ev_pct": 14.74,
+      "edge_pct": 4.66,
+      "blended_hr_per_pa": 0.06579,
+      "breakout_score": -0.0673,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0287,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7285,
+          "deviation": 0.7285
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1653,
+          "deviation": 0.1653
+        },
+        {
+          "name": "park",
+          "value": 0.9305,
+          "deviation": 0.0695
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "settlement": null
+}
