@@ -1,16 +1,192 @@
 {
-  "generated_at": "2026-06-20T15:50:44.798515+00:00",
+  "generated_at": "2026-06-20T17:41:27.575502+00:00",
   "as_of_date": "2026-06-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03806160486560722,
+  "league_hr_per_pa": 0.02902014339364971,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 14,
-  "games_pregame": 14,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 6,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 2,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "Kazuma Okamoto",
+      "batter_id": 672960,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 5,
+      "pitcher": "Colin Rea",
+      "pitcher_id": 607067,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824665,
+      "game_datetime": "2026-06-20T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 378,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1963,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2874,
+      "ev_pct": 40.83,
+      "edge_pct": 9.11,
+      "blended_hr_per_pa": 0.04314,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.002,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4865,
+          "deviation": 0.4865
+        },
+        {
+          "name": "temperature",
+          "value": 1.057,
+          "deviation": 0.057
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "George Springer"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 14,
+      "batter": "George Springer",
+      "batter_id": 543807,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 1,
+      "pitcher": "Colin Rea",
+      "pitcher_id": 607067,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824665,
+      "game_datetime": "2026-06-20T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 410,
+      "dk_odds": 406,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.187,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2691,
+      "ev_pct": 37.25,
+      "edge_pct": 8.21,
+      "blended_hr_per_pa": 0.04314,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0461,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4865,
+          "deviation": 0.4865
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Kazuma Okamoto"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 15,
+      "batter": "Wyatt Langford",
+      "batter_id": 694671,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 3,
+      "pitcher": "Walker Buehler",
+      "pitcher_id": 621111,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822885,
+      "game_datetime": "2026-06-20T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 569,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1419,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.203,
+      "ev_pct": 36.01,
+      "edge_pct": 6.11,
+      "blended_hr_per_pa": 0.04959,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0111,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7088,
+          "deviation": 0.7088
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        }
+      ],
+      "tier_rank": 10,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-06-20.json"
 }

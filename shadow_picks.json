@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-06-20T15:50:44.798914+00:00",
+  "generated_at": "2026-06-20T17:41:27.576256+00:00",
   "as_of_date": "2026-06-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03806160486560722,
+  "league_hr_per_pa": 0.02902014339364971,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 14,
-  "games_pregame": 14,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 18,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -67,7 +67,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 19,
       "batter": "Randal Grichuk",
       "batter_id": 545341,
       "batter_hand": "R",
@@ -119,8 +119,228 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
+      "batter": "Josh Jung",
+      "batter_id": 673962,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 2,
+      "pitcher": "Walker Buehler",
+      "pitcher_id": 621111,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822885,
+      "game_datetime": "2026-06-20T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 780,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1051,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1367,
+      "ev_pct": 21.63,
+      "edge_pct": 3.16,
+      "blended_hr_per_pa": 0.02847,
+      "breakout_score": -0.0537,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3846,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0733,
+          "deviation": 0.0733
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9463,
+          "deviation": 0.0537
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
+      "batter": "Davis Schneider",
+      "batter_id": 676914,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 7,
+      "pitcher": "Colin Rea",
+      "pitcher_id": 607067,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824665,
+      "game_datetime": "2026-06-20T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 555,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1559,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1832,
+      "ev_pct": 20.01,
+      "edge_pct": 2.74,
+      "blended_hr_per_pa": 0.03311,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.175,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.141,
+          "deviation": 0.141
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 26,
+      "batter": "Kyle Higashioka",
+      "batter_id": 543309,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 9,
+      "pitcher": "Walker Buehler",
+      "pitcher_id": 621111,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822885,
+      "game_datetime": "2026-06-20T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 650,
+      "dk_odds": 720,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.12,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1383,
+      "ev_pct": 13.44,
+      "edge_pct": 1.83,
+      "blended_hr_per_pa": 0.03312,
+      "breakout_score": 0.0258,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1964,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1414,
+          "deviation": 0.1414
+        },
+        {
+          "name": "park",
+          "value": 1.111,
+          "deviation": 0.111
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0733,
+          "deviation": 0.0733
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 28,
+      "batter": "Andr\u00e9s Gim\u00e9nez",
+      "batter_id": 665926,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 8,
+      "pitcher": "Colin Rea",
+      "pitcher_id": 607067,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824665,
+      "game_datetime": "2026-06-20T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 960,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0895,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1058,
+      "ev_pct": 12.19,
+      "edge_pct": 1.64,
+      "blended_hr_per_pa": 0.0279,
+      "breakout_score": -0.0177,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1667,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.057,
+          "deviation": 0.057
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0468,
+          "deviation": 0.0468
+        },
+        {
+          "name": "park",
+          "value": 0.9601,
+          "deviation": 0.0399
+        }
+      ],
+      "tier_rank": 11,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 6,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-06-20.json"
 }
