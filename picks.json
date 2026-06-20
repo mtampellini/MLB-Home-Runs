@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-20T20:27:57.476146+00:00",
+  "generated_at": "2026-06-20T21:54:19.782698+00:00",
   "as_of_date": "2026-06-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030857917938284164,
+  "league_hr_per_pa": 0.03031371166725414,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,69 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 22,
+      "daily_rank": 26,
+      "batter": "Byron Buxton",
+      "batter_id": 621439,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 2,
+      "pitcher": "Zac Gallen",
+      "pitcher_id": 668678,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825068,
+      "game_datetime": "2026-06-21T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 260,
+      "dk_odds": 276,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2637,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 41.97,
+      "edge_pct": 11.39,
+      "blended_hr_per_pa": 0.07835,
+      "breakout_score": 0.0503,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2547,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.5846,
+          "deviation": 1.5846
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0503,
+          "deviation": 0.0503
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Royce Lewis",
+        "Kody Clemens",
+        "Josh Bell",
+        "Trevor Larnach"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 28,
       "batter": "Kazuma Okamoto",
       "batter_id": 672960,
       "batter_hand": "R",
@@ -58,7 +120,7 @@
           "deviation": 0.057
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "George Springer"
@@ -72,7 +134,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 28,
+      "daily_rank": 35,
       "batter": "George Springer",
       "batter_id": 543807,
       "batter_hand": "R",
@@ -117,7 +179,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 16,
       "stacked": true,
       "stacked_with": [
         "Kazuma Okamoto"
@@ -131,7 +193,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 24,
+      "daily_rank": 30,
       "batter": "Drake Baldwin",
       "batter_id": 686948,
       "batter_hand": "L",
@@ -176,7 +238,7 @@
           "deviation": 0.171
         }
       ],
-      "tier_rank": 16,
+      "tier_rank": 18,
       "stacked": true,
       "stacked_with": [
         "Eli White",
@@ -193,7 +255,69 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 30,
+      "daily_rank": 27,
+      "batter": "Royce Lewis",
+      "batter_id": 668904,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 5,
+      "pitcher": "Zac Gallen",
+      "pitcher_id": 668678,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825068,
+      "game_datetime": "2026-06-21T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 541,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1546,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.22,
+      "ev_pct": 41.04,
+      "edge_pct": 6.54,
+      "blended_hr_per_pa": 0.03508,
+      "breakout_score": 0.0234,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.169,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1574,
+          "deviation": 0.1574
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0234,
+          "deviation": 0.0234
+        }
+      ],
+      "tier_rank": 20,
+      "stacked": true,
+      "stacked_with": [
+        "Byron Buxton",
+        "Kody Clemens",
+        "Josh Bell",
+        "Trevor Larnach"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 37,
       "batter": "Wyatt Langford",
       "batter_id": 694671,
       "batter_hand": "R",
@@ -238,7 +362,7 @@
           "deviation": 0.111
         }
       ],
-      "tier_rank": 19,
+      "tier_rank": 23,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -249,6 +373,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-06-20.json"
 }

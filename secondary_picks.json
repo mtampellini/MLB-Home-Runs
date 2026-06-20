@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-20T20:27:57.476651+00:00",
+  "generated_at": "2026-06-20T21:54:19.783372+00:00",
   "as_of_date": "2026-06-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.030857917938284164,
+  "league_hr_per_pa": 0.03031371166725414,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,62 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 23,
+      "daily_rank": 21,
+      "batter": "Jorge Barrosa",
+      "batter_id": 678489,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 8,
+      "pitcher": "Taj Bradley",
+      "pitcher_id": 671737,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825068,
+      "game_datetime": "2026-06-21T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1260,
+      "dk_odds": 1260,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0684,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1065,
+      "ev_pct": 44.89,
+      "edge_pct": 3.82,
+      "blended_hr_per_pa": 0.0163,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5376,
+          "deviation": 0.4624
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 29,
       "batter": "Myles Straw",
       "batter_id": 664702,
       "batter_hand": "R",
@@ -57,7 +112,7 @@
           "deviation": 0.1286
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -67,7 +122,62 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 31,
+      "daily_rank": 32,
+      "batter": "Luke Keaschall",
+      "batter_id": 807712,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 8,
+      "pitcher": "Zac Gallen",
+      "pitcher_id": 668678,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825068,
+      "game_datetime": "2026-06-21T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1300,
+      "dk_odds": 1220,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0684,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0985,
+      "ev_pct": 37.91,
+      "edge_pct": 3.01,
+      "blended_hr_per_pa": 0.01682,
+      "breakout_score": 0.027,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7641,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5548,
+          "deviation": 0.4452
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.027,
+          "deviation": 0.027
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 40,
       "batter": "Ezequiel Duran",
       "batter_id": 677649,
       "batter_hand": "R",
@@ -112,7 +222,7 @@
           "deviation": 0.111
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -121,6 +231,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-06-20.json"
 }
