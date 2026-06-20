@@ -1,18 +1,73 @@
 {
-  "generated_at": "2026-06-20T21:54:19.783372+00:00",
+  "generated_at": "2026-06-20T23:19:01.415676+00:00",
   "as_of_date": "2026-06-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03031371166725414,
+  "league_hr_per_pa": 0.03066459849659945,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 14,
-  "games_pregame": 7,
-  "games_excluded_live_or_complete": 7,
+  "games_pregame": 5,
+  "games_excluded_live_or_complete": 9,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 21,
+      "daily_rank": 20,
+      "batter": "J.P. Crawford",
+      "batter_id": 641487,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 1,
+      "pitcher": "Connelly Early",
+      "pitcher_id": 813349,
+      "pitcher_hand": "L",
+      "park": "SEA",
+      "game_pk": 823126,
+      "game_datetime": "2026-06-21T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 970,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.089,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1382,
+      "ev_pct": 47.88,
+      "edge_pct": 4.92,
+      "blended_hr_per_pa": 0.0332,
+      "breakout_score": -0.061,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2093,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.0827,
+          "deviation": 0.0827
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.939,
+          "deviation": 0.061
+        },
+        {
+          "name": "park",
+          "value": 1.0211,
+          "deviation": 0.0211
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 22,
       "batter": "Jorge Barrosa",
       "batter_id": 678489,
       "batter_hand": "L",
@@ -57,7 +112,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -67,7 +122,62 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 29,
+      "daily_rank": 24,
+      "batter": "Cole Young",
+      "batter_id": 702284,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 6,
+      "pitcher": "Connelly Early",
+      "pitcher_id": 813349,
+      "pitcher_hand": "L",
+      "park": "SEA",
+      "game_pk": 823126,
+      "game_datetime": "2026-06-21T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1060,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0782,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1181,
+      "ev_pct": 44.04,
+      "edge_pct": 3.99,
+      "blended_hr_per_pa": 0.02912,
+      "breakout_score": 0.0405,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6298,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.9496,
+          "deviation": 0.0504
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0405,
+          "deviation": 0.0405
+        },
+        {
+          "name": "park",
+          "value": 1.0211,
+          "deviation": 0.0211
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 31,
       "batter": "Myles Straw",
       "batter_id": 664702,
       "batter_hand": "R",
@@ -112,7 +222,7 @@
           "deviation": 0.1286
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -122,7 +232,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 32,
+      "daily_rank": 34,
       "batter": "Luke Keaschall",
       "batter_id": 807712,
       "batter_hand": "R",
@@ -167,7 +277,7 @@
           "deviation": 0.027
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -177,7 +287,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 40,
+      "daily_rank": 43,
       "batter": "Ezequiel Duran",
       "batter_id": 677649,
       "batter_hand": "R",
@@ -222,7 +332,7 @@
           "deviation": 0.111
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -231,6 +341,6 @@
       }
     }
   ],
-  "skipped_count": 2,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-06-20.json"
 }

@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-20T21:54:19.782698+00:00",
+  "generated_at": "2026-06-20T23:19:01.414995+00:00",
   "as_of_date": "2026-06-20",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.03031371166725414,
+  "league_hr_per_pa": 0.03066459849659945,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 14,
-  "games_pregame": 7,
-  "games_excluded_live_or_complete": 7,
+  "games_pregame": 5,
+  "games_excluded_live_or_complete": 9,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 26,
+      "daily_rank": 28,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -75,7 +75,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 28,
+      "daily_rank": 30,
       "batter": "Kazuma Okamoto",
       "batter_id": 672960,
       "batter_hand": "R",
@@ -134,7 +134,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 35,
+      "daily_rank": 37,
       "batter": "George Springer",
       "batter_id": 543807,
       "batter_hand": "R",
@@ -193,7 +193,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 30,
+      "daily_rank": 32,
       "batter": "Drake Baldwin",
       "batter_id": 686948,
       "batter_hand": "L",
@@ -255,7 +255,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 27,
+      "daily_rank": 29,
       "batter": "Royce Lewis",
       "batter_id": 668904,
       "batter_hand": "R",
@@ -317,7 +317,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 37,
+      "daily_rank": 39,
       "batter": "Wyatt Langford",
       "batter_id": 694671,
       "batter_hand": "R",
@@ -371,8 +371,65 @@
         "passes_quad": false,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 40,
+      "batter": "Rob Refsnyder",
+      "batter_id": 608701,
+      "batter_hand": "R",
+      "team": "SEA",
+      "lineup_spot": 5,
+      "pitcher": "Connelly Early",
+      "pitcher_id": 813349,
+      "pitcher_hand": "L",
+      "park": "SEA",
+      "game_pk": 823126,
+      "game_datetime": "2026-06-21T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 690,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.121,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1675,
+      "ev_pct": 32.36,
+      "edge_pct": 4.65,
+      "blended_hr_per_pa": 0.03272,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4762,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4797,
+          "deviation": 0.4797
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.067,
+          "deviation": 0.067
+        }
+      ],
+      "tier_rank": 30,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 2,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-06-20.json"
 }
