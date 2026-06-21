@@ -1,435 +1,76 @@
 {
-  "generated_at": "2026-06-21T01:42:56.049958+00:00",
-  "as_of_date": "2026-06-20",
+  "generated_at": "2026-06-21T17:58:35.566037+00:00",
+  "as_of_date": "2026-06-21",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03023605755666322,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
-  "total_games_today": 14,
-  "games_pregame": 2,
-  "games_excluded_live_or_complete": 12,
+  "total_games_today": 15,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 28,
-      "batter": "Byron Buxton",
-      "batter_id": 621439,
-      "batter_hand": "R",
-      "team": "MIN",
+      "daily_rank": 20,
+      "batter": "Brandon Lowe",
+      "batter_id": 664040,
+      "batter_hand": "L",
+      "team": "PIT",
       "lineup_spot": 2,
-      "pitcher": "Zac Gallen",
-      "pitcher_id": 668678,
+      "pitcher": "Michael Lorenzen",
+      "pitcher_id": 547179,
       "pitcher_hand": "R",
-      "park": "ARI",
-      "game_pk": 825068,
-      "game_datetime": "2026-06-21T02:10:00+00:00",
+      "park": "COL",
+      "game_pk": 824343,
+      "game_datetime": "2026-06-21T19:10:00+00:00",
       "line": 0.5,
       "fd_odds": 260,
-      "dk_odds": 276,
+      "dk_odds": 279,
       "best_book": "draftkings",
-      "market_prob_devig": 0.2637,
+      "market_prob_devig": 0.2627,
       "devig_method": "single_sided",
       "devig_inputs": {},
       "model_prob": 0.3776,
-      "ev_pct": 41.97,
-      "edge_pct": 11.39,
-      "blended_hr_per_pa": 0.07835,
-      "breakout_score": 0.0503,
+      "ev_pct": 43.1,
+      "edge_pct": 11.49,
+      "blended_hr_per_pa": 0.05428,
+      "breakout_score": 0.0487,
       "low_confidence": false,
       "pitcher_factor_shrunk": true,
-      "trend_signal": -0.2547,
+      "trend_signal": -0.2137,
       "unstable_recent": false,
       "top_3_features": [
         {
           "name": "batter_skill",
-          "value": 2.5846,
-          "deviation": 1.5846
+          "value": 1.7951,
+          "deviation": 0.7951
         },
         {
           "name": "pitcher",
           "value": 1.6,
           "deviation": 0.6
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.0503,
-          "deviation": 0.0503
-        }
-      ],
-      "tier_rank": 7,
-      "stacked": true,
-      "stacked_with": [
-        "Royce Lewis",
-        "Kody Clemens",
-        "Josh Bell",
-        "Trevor Larnach"
-      ],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true,
-        "passes_anchor": false
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 30,
-      "batter": "Kazuma Okamoto",
-      "batter_id": 672960,
-      "batter_hand": "R",
-      "team": "TOR",
-      "lineup_spot": 5,
-      "pitcher": "Colin Rea",
-      "pitcher_id": 607067,
-      "pitcher_hand": "R",
-      "park": "CHC",
-      "game_pk": 824665,
-      "game_datetime": "2026-06-20T18:20:00+00:00",
-      "line": 0.5,
-      "fd_odds": 390,
-      "dk_odds": 378,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.1963,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.2874,
-      "ev_pct": 40.83,
-      "edge_pct": 9.11,
-      "blended_hr_per_pa": 0.04314,
-      "breakout_score": 0.0,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 0.002,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "pitcher",
-          "value": 1.6,
-          "deviation": 0.6
-        },
-        {
-          "name": "batter_skill",
-          "value": 1.4865,
-          "deviation": 0.4865
         },
         {
           "name": "temperature",
-          "value": 1.057,
-          "deviation": 0.057
+          "value": 1.194,
+          "deviation": 0.194
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
-        "George Springer"
+        "Ryan O'Hearn"
       ],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_quad": true,
-        "passes_anchor": true
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 37,
-      "batter": "George Springer",
-      "batter_id": 543807,
-      "batter_hand": "R",
-      "team": "TOR",
-      "lineup_spot": 1,
-      "pitcher": "Colin Rea",
-      "pitcher_id": 607067,
-      "pitcher_hand": "R",
-      "park": "CHC",
-      "game_pk": 824665,
-      "game_datetime": "2026-06-20T18:20:00+00:00",
-      "line": 0.5,
-      "fd_odds": 410,
-      "dk_odds": 406,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.187,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.2691,
-      "ev_pct": 37.25,
-      "edge_pct": 8.21,
-      "blended_hr_per_pa": 0.04314,
-      "breakout_score": -0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 0.0461,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "pitcher",
-          "value": 1.6,
-          "deviation": 0.6
-        },
-        {
-          "name": "batter_skill",
-          "value": 1.4865,
-          "deviation": 0.4865
-        },
-        {
-          "name": "breakout_signal",
-          "value": 0.85,
-          "deviation": 0.15
-        }
-      ],
-      "tier_rank": 16,
-      "stacked": true,
-      "stacked_with": [
-        "Kazuma Okamoto"
-      ],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": true,
-        "passes_anchor": true
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 32,
-      "batter": "Drake Baldwin",
-      "batter_id": 686948,
-      "batter_hand": "L",
-      "team": "ATL",
-      "lineup_spot": 2,
-      "pitcher": "Kyle Harrison",
-      "pitcher_id": 690986,
-      "pitcher_hand": "L",
-      "park": "ATL",
-      "game_pk": 824909,
-      "game_datetime": "2026-06-20T20:10:00+00:00",
-      "line": 0.5,
-      "fd_odds": 490,
-      "dk_odds": 506,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.1589,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.2299,
-      "ev_pct": 39.31,
-      "edge_pct": 7.1,
-      "blended_hr_per_pa": 0.05101,
-      "breakout_score": 0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.2511,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "batter_skill",
-          "value": 1.4279,
-          "deviation": 0.4279
-        },
-        {
-          "name": "pitcher",
-          "value": 0.7186,
-          "deviation": 0.2814
-        },
-        {
-          "name": "temperature",
-          "value": 1.171,
-          "deviation": 0.171
-        }
-      ],
-      "tier_rank": 18,
-      "stacked": true,
-      "stacked_with": [
-        "Eli White",
-        "Ozzie Albies",
-        "Austin Riley",
-        "Jorge Mateo"
-      ],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false,
-        "passes_anchor": false
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 29,
-      "batter": "Royce Lewis",
-      "batter_id": 668904,
-      "batter_hand": "R",
-      "team": "MIN",
-      "lineup_spot": 5,
-      "pitcher": "Zac Gallen",
-      "pitcher_id": 668678,
-      "pitcher_hand": "R",
-      "park": "ARI",
-      "game_pk": 825068,
-      "game_datetime": "2026-06-21T02:10:00+00:00",
-      "line": 0.5,
-      "fd_odds": 490,
-      "dk_odds": 541,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.1546,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.22,
-      "ev_pct": 41.04,
-      "edge_pct": 6.54,
-      "blended_hr_per_pa": 0.03508,
-      "breakout_score": 0.0234,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 0.169,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "pitcher",
-          "value": 1.6,
-          "deviation": 0.6
-        },
-        {
-          "name": "batter_skill",
-          "value": 1.1574,
-          "deviation": 0.1574
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.0234,
-          "deviation": 0.0234
-        }
-      ],
-      "tier_rank": 20,
-      "stacked": true,
-      "stacked_with": [
-        "Byron Buxton",
-        "Kody Clemens",
-        "Josh Bell",
-        "Trevor Larnach"
-      ],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false,
-        "passes_anchor": true
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 39,
-      "batter": "Wyatt Langford",
-      "batter_id": 694671,
-      "batter_hand": "R",
-      "team": "TEX",
-      "lineup_spot": 3,
-      "pitcher": "Walker Buehler",
-      "pitcher_id": 621111,
-      "pitcher_hand": "R",
-      "park": "TEX",
-      "game_pk": 822885,
-      "game_datetime": "2026-06-20T20:05:00+00:00",
-      "line": 0.5,
-      "fd_odds": 570,
-      "dk_odds": 569,
-      "best_book": "fanduel",
-      "market_prob_devig": 0.1419,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.203,
-      "ev_pct": 36.01,
-      "edge_pct": 6.11,
-      "blended_hr_per_pa": 0.04959,
-      "breakout_score": -0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 0.0111,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "batter_skill",
-          "value": 1.7088,
-          "deviation": 0.7088
-        },
-        {
-          "name": "breakout_signal",
-          "value": 0.85,
-          "deviation": 0.15
-        },
-        {
-          "name": "park",
-          "value": 1.111,
-          "deviation": 0.111
-        }
-      ],
-      "tier_rank": 23,
-      "stacked": false,
-      "stacked_with": [],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false,
-        "passes_anchor": true
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 40,
-      "batter": "Rob Refsnyder",
-      "batter_id": 608701,
-      "batter_hand": "R",
-      "team": "SEA",
-      "lineup_spot": 5,
-      "pitcher": "Connelly Early",
-      "pitcher_id": 813349,
-      "pitcher_hand": "L",
-      "park": "SEA",
-      "game_pk": 823126,
-      "game_datetime": "2026-06-21T02:10:00+00:00",
-      "line": 0.5,
-      "fd_odds": 680,
-      "dk_odds": 690,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.121,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1675,
-      "ev_pct": 32.36,
-      "edge_pct": 4.65,
-      "blended_hr_per_pa": 0.03272,
-      "breakout_score": -0.15,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": false,
-      "trend_signal": -0.4762,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "pitcher",
-          "value": 1.4797,
-          "deviation": 0.4797
-        },
-        {
-          "name": "breakout_signal",
-          "value": 0.85,
-          "deviation": 0.15
-        },
-        {
-          "name": "batter_skill",
-          "value": 1.067,
-          "deviation": 0.067
-        }
-      ],
-      "tier_rank": 30,
-      "stacked": false,
-      "stacked_with": [],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_quad": false,
         "passes_anchor": true
       }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-06-20.json"
+  "skipped_count": 27,
+  "skipped_reference": "data/processed/skipped_batters_2026-06-21.json"
 }
