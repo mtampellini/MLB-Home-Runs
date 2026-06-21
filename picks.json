@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-06-21T19:05:56.947800+00:00",
+  "generated_at": "2026-06-21T20:51:37.754239+00:00",
   "as_of_date": "2026-06-21",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03135100193923723,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 4,
-  "games_excluded_live_or_complete": 11,
+  "games_pregame": 1,
+  "games_excluded_live_or_complete": 14,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 20,
+      "daily_rank": 21,
       "batter": "Brandon Lowe",
       "batter_id": 664040,
       "batter_hand": "L",
@@ -58,7 +58,7 @@
           "deviation": 0.194
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 9,
       "stacked": true,
       "stacked_with": [
         "Ryan O'Hearn"
@@ -69,8 +69,68 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 23,
+      "batter": "Bryce Harper",
+      "batter_id": 547180,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 3,
+      "pitcher": "David Peterson",
+      "pitcher_id": 656849,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823449,
+      "game_datetime": "2026-06-21T23:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": 430,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1792,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2667,
+      "ev_pct": 41.37,
+      "edge_pct": 8.75,
+      "blended_hr_per_pa": 0.04775,
+      "breakout_score": 0.0562,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3407,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.523,
+          "deviation": 0.523
+        },
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8618,
+          "deviation": 0.1382
+        }
+      ],
+      "tier_rank": 13,
+      "stacked": true,
+      "stacked_with": [
+        "Kyle Schwarber",
+        "Brandon Marsh"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-06-21.json"
 }

@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-06-21T19:05:56.948691+00:00",
+  "generated_at": "2026-06-21T20:51:37.755113+00:00",
   "as_of_date": "2026-06-21",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03135100193923723,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 4,
-  "games_excluded_live_or_complete": 11,
+  "games_pregame": 1,
+  "games_excluded_live_or_complete": 14,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 26,
+      "daily_rank": 30,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -67,7 +67,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 27,
+      "daily_rank": 31,
       "batter": "Jeremy Pe\u00f1a",
       "batter_id": 665161,
       "batter_hand": "R",
@@ -122,7 +122,62 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 29,
+      "daily_rank": 32,
+      "batter": "Bryson Stott",
+      "batter_id": 681082,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 9,
+      "pitcher": "David Peterson",
+      "pitcher_id": 656849,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823449,
+      "game_datetime": "2026-06-21T23:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 860,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.094,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1204,
+      "ev_pct": 22.77,
+      "edge_pct": 2.63,
+      "blended_hr_per_pa": 0.02592,
+      "breakout_score": 0.0002,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2237,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2787,
+          "deviation": 0.2787
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8267,
+          "deviation": 0.1733
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8618,
+          "deviation": 0.1382
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 35,
       "batter": "TJ Rumfield",
       "batter_id": 681198,
       "batter_hand": "L",
@@ -167,7 +222,7 @@
           "deviation": 0.1505
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -177,7 +232,62 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 31,
+      "daily_rank": 36,
+      "batter": "Edmundo Sosa",
+      "batter_id": 624641,
+      "batter_hand": "R",
+      "team": "PHI",
+      "lineup_spot": 5,
+      "pitcher": "David Peterson",
+      "pitcher_id": 656849,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823449,
+      "game_datetime": "2026-06-21T23:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 740,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1163,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1362,
+      "ev_pct": 14.42,
+      "edge_pct": 2.0,
+      "blended_hr_per_pa": 0.03389,
+      "breakout_score": 0.0678,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3276,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7597,
+          "deviation": 0.2403
+        },
+        {
+          "name": "temperature",
+          "value": 1.133,
+          "deviation": 0.133
+        },
+        {
+          "name": "wind",
+          "value": 1.0812,
+          "deviation": 0.0812
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 38,
       "batter": "Nolan Arenado",
       "batter_id": 571448,
       "batter_hand": "R",
@@ -222,7 +332,7 @@
           "deviation": 0.0
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -231,6 +341,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-06-21.json"
 }
