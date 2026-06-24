@@ -361,12 +361,20 @@ def test_run_daily_writes_picks_with_full_schema(tmp_layout, monkeypatch):
     # broke the daily-picks workflow until this was caught).
     assert payload["model_version"] == MODEL_VERSION
     assert payload["ev_threshold_pct"] == EV_THRESHOLD_PCT
-    pick = payload["picks"][0]
+
+    # Schema is validated against the daily archive, which retains EVERY pick
+    # (built by the same _assemble_pick as the site file). The Judge fixture has
+    # a maxed-out breakout (0.15): EV 27.3 clears the 25 floor only because of the
+    # boost — boost-off EV is 12.7 — so the P3 drop-only filter (calibration-v2,
+    # 2026-06-23) correctly drops it from the site picks.json. This locks that
+    # behaviour: passes the live triple, fails triple_v2, absent from picks.json.
+    archive = json.loads((tmp_layout["archives_dir"] / "2026-05-06.json").read_text())
+    pick = archive["primary_picks"][0]
     expected = {
         "batter", "batter_id", "batter_hand", "team", "lineup_spot",
         "pitcher", "pitcher_id", "pitcher_hand", "park", "game_datetime",
         "line", "fd_odds", "dk_odds", "best_book", "market_prob_devig",
-        "model_prob", "ev_pct",
+        "model_prob", "ev_pct", "ev_pct_p3",
         "blended_hr_per_pa", "breakout_score", "low_confidence",
         "top_3_features",
     }
@@ -376,6 +384,12 @@ def test_run_daily_writes_picks_with_full_schema(tmp_layout, monkeypatch):
     assert pick["fd_odds"] == 290 and pick["dk_odds"] == 310
     assert len(pick["top_3_features"]) == 3
     assert pick["batter"] == "Aaron Judge"
+
+    # Calibration-v2 drop-only behaviour, locked:
+    assert pick["ev_pct_p3"] < pick["ev_pct"]              # boost removal lowers EV
+    assert pick["filter_status"]["passes_triple"] is True   # still passes live triple
+    assert pick["filter_status"]["passes_triple_v2"] is False  # ...but boost-only -> cut
+    assert payload["picks"] == []                           # so the site file is empty
 
 
 def test_run_daily_filters_below_ev_threshold(tmp_layout, monkeypatch):
