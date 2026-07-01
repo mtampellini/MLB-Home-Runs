@@ -42,6 +42,15 @@ WEATHER_CACHE_DIR = _DATA_DIR / "raw" / "weather"
 PARK_METADATA_PATH = _DATA_DIR / "park_metadata.json"
 PARK_FACTORS_PATH = PROCESSED_DIR / "park_factors.parquet"
 
+# Statcast's `home_team` uses a handful of codes that differ from our internal
+# park/team codes (data/park_metadata.json + _teams.TEAM_CODE_BY_MLBAM_ID). Park
+# factors are LOOKED UP by the internal code the pipeline emits, so they must be
+# STORED under the internal code — otherwise the lookup misses and silently
+# returns neutral 1.0. (This bug shipped 2026-05: ARI/CHW/OAK were stored as
+# AZ/CWS/ATH and got no park adjustment at all.) Any code Statcast emits that is
+# not in this map is assumed to already match our internal code.
+STATCAST_TO_INTERNAL = {"AZ": "ARI", "CWS": "CHW", "ATH": "OAK"}
+
 OPEN_METEO_FORECAST = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_ARCHIVE = "https://archive-api.open-meteo.com/v1/archive"
 # For strict backtests we'd swap to the historical-forecast endpoint to avoid
@@ -101,6 +110,68 @@ def get_park_factor(park_code: str, batter_hand: str) -> float:
     return float(row.iloc[0]["factor"])
 
 
+def validate_park_factor_coverage() -> list[str]:
+    """Return internal (park_code, bat_side) pairs the pipeline can emit that are
+    MISSING from the park_factors artifact.
+
+    Guards against the 2026-05 code-space bug: factors keyed on the wrong code
+    space (AZ vs ARI) look present in the file but resolve to neutral 1.0 at
+    lookup time. This checks every code the schedule parser can produce
+    (TEAM_CODE_BY_MLBAM_ID values) against the stored codes, for both hands.
+    Empty list = full coverage. Returns all codes as missing if the file is absent.
+    """
+    from src.pipeline._teams import TEAM_CODE_BY_MLBAM_ID
+
+    expected = sorted(set(TEAM_CODE_BY_MLBAM_ID.values()))
+    if not PARK_FACTORS_PATH.exists():
+        return [f"{code}/{hand}" for code in expected for hand in ("L", "R")]
+    df = pd.read_parquet(PARK_FACTORS_PATH)
+    have = {(str(r["park"]), str(r["bat_side"])) for _, r in df.iterrows()}
+    return [
+        f"{code}/{hand}"
+        for code in expected
+        for hand in ("L", "R")
+        if (code, hand) not in have
+    ]
+
+
+def regress_park_factors(counts: pd.DataFrame) -> pd.DataFrame:
+    """Empirical-Bayes shrinkage of raw HR park factors toward 1.0.
+
+    Input: one row per (park, bat_side) with summed `hr` and `pa`. Output adds
+    `factor` (regressed), `factor_raw` (unregressed), and `weight` (shrinkage
+    applied, 1.0 = none). Rows are re-summed by (park, bat_side) first, so it is
+    safe to pass a multi-year/multi-source stack.
+
+    Method (per handedness, so L and R use their own league rate + spread):
+    method-of-moments — split the observed cross-park variance of the raw factor
+    into true signal vs binomial sampling noise, then shrink each cell by its
+    reliability `w = V_true / (V_true + sampling_var)`. Equivalent to
+    `w = PA / (PA + K)` with a fitted K. Large-sample parks barely move; noisy
+    small-sample tails pull hardest toward neutral. Raw factors are normalized to
+    the PA-weighted pooled league rate within each hand (league park = 1.0).
+    """
+    c = counts.groupby(["park", "bat_side"], as_index=False)[["hr", "pa"]].sum()
+    parts: list[pd.DataFrame] = []
+    for _, g in c.groupby("bat_side"):
+        g = g.copy()
+        league_rate = g["hr"].sum() / g["pa"].sum()          # PA-weighted pooled
+        raw = (g["hr"] / g["pa"]) / league_rate
+        sampling_var = (1.0 - league_rate) / (league_rate * g["pa"])  # in factor units
+        w = g["pa"].to_numpy(dtype=float)
+        mean_f = np.average(raw, weights=w)
+        v_obs = np.average((raw - mean_f) ** 2, weights=w)
+        v_noise = np.average(sampling_var, weights=w)
+        v_true = max(1e-9, v_obs - v_noise)
+        weight = v_true / (v_true + sampling_var)
+        g["factor_raw"] = raw
+        g["weight"] = weight
+        g["factor"] = 1.0 + weight * (raw - 1.0)
+        parts.append(g)
+    out = pd.concat(parts, ignore_index=True)
+    return out[["park", "bat_side", "factor", "factor_raw", "hr", "pa", "weight"]]
+
+
 def compute_park_factors_from_statcast(
     start_year: int = 2022,
     end_year: int = 2024,
@@ -109,16 +180,28 @@ def compute_park_factors_from_statcast(
 ) -> pd.DataFrame:
     """Build handedness-specific HR park factors from Statcast.
 
-    Methodology: HR / PA at each park (split by batter handedness), normalized
-    so league-average park = 1.0. PA denominator (not BBE) is intentional —
-    the factor absorbs both ball-flight effects and batter-pool composition,
-    fine because the downstream model already conditions on batter + pitcher.
+    Methodology: HR / PA at each park (split by batter handedness). PA
+    denominator (not BBE) is intentional — the factor absorbs both ball-flight
+    effects and batter-pool composition, fine because the downstream model
+    already conditions on batter + pitcher. The raw ratios are then passed
+    through `regress_park_factors` (empirical-Bayes shrinkage toward 1.0) so
+    small-sample tails don't ship as overconfident extremes.
+
+    Statcast `home_team` codes are translated to our internal codes
+    (STATCAST_TO_INTERNAL) BEFORE aggregating, so the stored codes match what the
+    pipeline looks up with. See validate_park_factor_coverage().
 
     `pitches_df`: if provided, use that DataFrame instead of pulling Statcast
     fresh. Must have columns {events, home_team, stand}. Lets callers reuse a
     cached chunked pull (e.g. the research script's chunk cache).
 
-    Writes to data/processed/park_factors.parquet and returns the DataFrame.
+    NOTE — park relocations: a naive multi-year window blends two stadiums under
+    one code (e.g. OAK = Oakland Coliseum 2022-2024 vs Sutter Health Park /
+    Sacramento 2025+). This function cannot detect that; relocated parks must be
+    rebuilt from single-season counts and overridden. See scripts/build_park_factors.py.
+
+    Writes to data/processed/park_factors.parquet and returns the DataFrame
+    (columns: park, bat_side, factor, factor_raw, hr, pa, weight).
     """
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -152,18 +235,13 @@ def compute_park_factors_from_statcast(
         all_pa = all_pa[["home_team", "stand", "is_hr"]]
         logger.info("using pre-loaded pitches DataFrame: %d PA rows", len(all_pa))
 
-    grp = all_pa.groupby(["home_team", "stand"]).agg(
+    all_pa["home_team"] = all_pa["home_team"].replace(STATCAST_TO_INTERNAL)
+    counts = all_pa.groupby(["home_team", "stand"]).agg(
         hr=("is_hr", "sum"), pa=("is_hr", "size")
-    ).reset_index()
-    grp["hr_per_pa"] = grp["hr"] / grp["pa"]
-    # Normalize within batter-hand: league average (across parks) = 1.0.
-    league_avg = grp.groupby("stand")["hr_per_pa"].transform("mean")
-    grp["factor"] = grp["hr_per_pa"] / league_avg
-    out = grp.rename(columns={"home_team": "park", "stand": "bat_side"})[
-        ["park", "bat_side", "factor", "hr", "pa"]
-    ]
+    ).reset_index().rename(columns={"home_team": "park", "stand": "bat_side"})
+    out = regress_park_factors(counts)
     out.to_parquet(output_path, index=False)
-    logger.info("wrote park factors to %s (%d rows)", output_path, len(out))
+    logger.info("wrote regressed park factors to %s (%d rows)", output_path, len(out))
     return out
 
 
