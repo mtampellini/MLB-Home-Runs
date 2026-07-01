@@ -32,6 +32,11 @@ backend/data/processed/*
 # settle workflow each fire (idempotent full-window rebuild). Committed so
 # review tooling can read CLV history without recomputing from snapshots.
 !backend/data/processed/clv_recovered.csv
+# AND: park_factor_counts.parquet — the raw HR/PA counts (by park, hand, source
+# season) that scripts/build_park_factors.py regresses into park_factors.parquet.
+# Committing it makes the factor rebuild reproducible WITHOUT a multi-hour
+# Statcast re-pull (append a new season's counts, re-run the build).
+!backend/data/processed/park_factor_counts.parquet
 
 # DO commit backend/data/odds/ — those snapshots ARE our dataset.
 # (No ignore for backend/data/odds.)

@@ -42,6 +42,15 @@ WEATHER_CACHE_DIR = _DATA_DIR / "raw" / "weather"
 PARK_METADATA_PATH = _DATA_DIR / "park_metadata.json"
 PARK_FACTORS_PATH = PROCESSED_DIR / "park_factors.parquet"
 
+# Statcast's `home_team` uses a handful of codes that differ from our internal
+# park/team codes (data/park_metadata.json + _teams.TEAM_CODE_BY_MLBAM_ID). Park
+# factors are LOOKED UP by the internal code the pipeline emits, so they must be
+# STORED under the internal code — otherwise the lookup misses and silently
+# returns neutral 1.0. (This bug shipped 2026-05: ARI/CHW/OAK were stored as
+# AZ/CWS/ATH and got no park adjustment at all.) Any code Statcast emits that is
+# not in this map is assumed to already match our internal code.
+STATCAST_TO_INTERNAL = {"AZ": "ARI", "CWS": "CHW", "ATH": "OAK"}
+
 OPEN_METEO_FORECAST = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_ARCHIVE = "https://archive-api.open-meteo.com/v1/archive"
 # For strict backtests we'd swap to the historical-forecast endpoint to avoid
@@ -101,6 +110,68 @@ def get_park_factor(park_code: str, batter_hand: str) -> float:
     return float(row.iloc[0]["factor"])
 
 
+def validate_park_factor_coverage() -> list[str]:
+    """Return internal (park_code, bat_side) pairs the pipeline can emit that are
+    MISSING from the park_factors artifact.
+
+    Guards against the 2026-05 code-space bug: factors keyed on the wrong code
+    space (AZ vs ARI) look present in the file but resolve to neutral 1.0 at
+    lookup time. This checks every code the schedule parser can produce
+    (TEAM_CODE_BY_MLBAM_ID values) against the stored codes, for both hands.
+    Empty list = full coverage. Returns all codes as missing if the file is absent.
+    """
+    from src.pipeline._teams import TEAM_CODE_BY_MLBAM_ID
+
+    expected = sorted(set(TEAM_CODE_BY_MLBAM_ID.values()))
+    if not PARK_FACTORS_PATH.exists():
+        return [f"{code}/{hand}" for code in expected for hand in ("L", "R")]
+    df = pd.read_parquet(PARK_FACTORS_PATH)
+    have = {(str(r["park"]), str(r["bat_side"])) for _, r in df.iterrows()}
+    return [
+        f"{code}/{hand}"
+        for code in expected
+        for hand in ("L", "R")
+        if (code, hand) not in have
+    ]
+
+
+def regress_park_factors(counts: pd.DataFrame) -> pd.DataFrame:
+    """Empirical-Bayes shrinkage of raw HR park factors toward 1.0.
+
+    Input: one row per (park, bat_side) with summed `hr` and `pa`. Output adds
+    `factor` (regressed), `factor_raw` (unregressed), and `weight` (shrinkage
+    applied, 1.0 = none). Rows are re-summed by (park, bat_side) first, so it is
+    safe to pass a multi-year/multi-source stack.
+
+    Method (per handedness, so L and R use their own league rate + spread):
+    method-of-moments — split the observed cross-park variance of the raw factor
+    into true signal vs binomial sampling noise, then shrink each cell by its
+    reliability `w = V_true / (V_true + sampling_var)`. Equivalent to
+    `w = PA / (PA + K)` with a fitted K. Large-sample parks barely move; noisy
+    small-sample tails pull hardest toward neutral. Raw factors are normalized to
+    the PA-weighted pooled league rate within each hand (league park = 1.0).
+    """
+    c = counts.groupby(["park", "bat_side"], as_index=False)[["hr", "pa"]].sum()
+    parts: list[pd.DataFrame] = []
+    for _, g in c.groupby("bat_side"):
+        g = g.copy()
+        league_rate = g["hr"].sum() / g["pa"].sum()          # PA-weighted pooled
+        raw = (g["hr"] / g["pa"]) / league_rate
+        sampling_var = (1.0 - league_rate) / (league_rate * g["pa"])  # in factor units
+        w = g["pa"].to_numpy(dtype=float)
+        mean_f = np.average(raw, weights=w)
+        v_obs = np.average((raw - mean_f) ** 2, weights=w)
+        v_noise = np.average(sampling_var, weights=w)
+        v_true = max(1e-9, v_obs - v_noise)
+        weight = v_true / (v_true + sampling_var)
+        g["factor_raw"] = raw
+        g["weight"] = weight
+        g["factor"] = 1.0 + weight * (raw - 1.0)
+        parts.append(g)
+    out = pd.concat(parts, ignore_index=True)
+    return out[["park", "bat_side", "factor", "factor_raw", "hr", "pa", "weight"]]
+
+
 def compute_park_factors_from_statcast(
     start_year: int = 2022,
     end_year: int = 2024,
@@ -109,16 +180,28 @@ def compute_park_factors_from_statcast(
 ) -> pd.DataFrame:
     """Build handedness-specific HR park factors from Statcast.
 
-    Methodology: HR / PA at each park (split by batter handedness), normalized
-    so league-average park = 1.0. PA denominator (not BBE) is intentional —
-    the factor absorbs both ball-flight effects and batter-pool composition,
-    fine because the downstream model already conditions on batter + pitcher.
+    Methodology: HR / PA at each park (split by batter handedness). PA
+    denominator (not BBE) is intentional — the factor absorbs both ball-flight
+    effects and batter-pool composition, fine because the downstream model
+    already conditions on batter + pitcher. The raw ratios are then passed
+    through `regress_park_factors` (empirical-Bayes shrinkage toward 1.0) so
+    small-sample tails don't ship as overconfident extremes.
+
+    Statcast `home_team` codes are translated to our internal codes
+    (STATCAST_TO_INTERNAL) BEFORE aggregating, so the stored codes match what the
+    pipeline looks up with. See validate_park_factor_coverage().
 
     `pitches_df`: if provided, use that DataFrame instead of pulling Statcast
     fresh. Must have columns {events, home_team, stand}. Lets callers reuse a
     cached chunked pull (e.g. the research script's chunk cache).
 
-    Writes to data/processed/park_factors.parquet and returns the DataFrame.
+    NOTE — park relocations: a naive multi-year window blends two stadiums under
+    one code (e.g. OAK = Oakland Coliseum 2022-2024 vs Sutter Health Park /
+    Sacramento 2025+). This function cannot detect that; relocated parks must be
+    rebuilt from single-season counts and overridden. See scripts/build_park_factors.py.
+
+    Writes to data/processed/park_factors.parquet and returns the DataFrame
+    (columns: park, bat_side, factor, factor_raw, hr, pa, weight).
     """
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -152,18 +235,13 @@ def compute_park_factors_from_statcast(
         all_pa = all_pa[["home_team", "stand", "is_hr"]]
         logger.info("using pre-loaded pitches DataFrame: %d PA rows", len(all_pa))
 
-    grp = all_pa.groupby(["home_team", "stand"]).agg(
+    all_pa["home_team"] = all_pa["home_team"].replace(STATCAST_TO_INTERNAL)
+    counts = all_pa.groupby(["home_team", "stand"]).agg(
         hr=("is_hr", "sum"), pa=("is_hr", "size")
-    ).reset_index()
-    grp["hr_per_pa"] = grp["hr"] / grp["pa"]
-    # Normalize within batter-hand: league average (across parks) = 1.0.
-    league_avg = grp.groupby("stand")["hr_per_pa"].transform("mean")
-    grp["factor"] = grp["hr_per_pa"] / league_avg
-    out = grp.rename(columns={"home_team": "park", "stand": "bat_side"})[
-        ["park", "bat_side", "factor", "hr", "pa"]
-    ]
+    ).reset_index().rename(columns={"home_team": "park", "stand": "bat_side"})
+    out = regress_park_factors(counts)
     out.to_parquet(output_path, index=False)
-    logger.info("wrote park factors to %s (%d rows)", output_path, len(out))
+    logger.info("wrote regressed park factors to %s (%d rows)", output_path, len(out))
     return out
 
 
@@ -180,19 +258,28 @@ class GameWeather:
     wind_direction_deg: float  # meteorological: direction wind is FROM, 0=N, 90=E
     precipitation_in: float
     is_indoor: bool
+    # When the source already gives a FIELD-RELATIVE out-to-CF component (MLB
+    # Stats API: "13 mph, Out To CF"), we store the projected mph here directly
+    # and skip the bearing math. None => derive from wind_direction_deg + cf_bearing
+    # (the Open-Meteo path). This also sidesteps Open-Meteo's 10m-height wind,
+    # which overstates field-level wind.
+    wind_out_to_cf_mph: Optional[float] = None
 
     def out_to_cf_component(self, cf_bearing_deg: float) -> float:
         """Wind component pushing toward CF (positive = blowing out / HR-friendly).
 
-        Convention: wind_direction_deg is the direction the wind is *coming from*.
-        A wind from home plate toward CF means the wind is *coming from* the
-        opposite of CF (i.e. wind_direction = (cf_bearing + 180) mod 360).
+        If a field-relative component was supplied by the source, return it
+        directly. Otherwise project the meteorological wind onto the CF axis.
 
-        Returns wind_speed_mph projected onto the CF axis, with positive sign
-        when wind blows out toward CF.
+        Convention (Open-Meteo path): wind_direction_deg is the direction the
+        wind is *coming from*. A wind from home plate toward CF is *coming from*
+        the opposite of CF (wind_direction = (cf_bearing + 180) mod 360). Returns
+        wind_speed_mph projected onto the CF axis, positive when blowing out.
         """
         if self.is_indoor:
             return 0.0
+        if self.wind_out_to_cf_mph is not None:
+            return self.wind_out_to_cf_mph
         # Direction wind is blowing TO:
         wind_to_deg = (self.wind_direction_deg + 180) % 360
         # Angle between "blowing-to" direction and CF bearing:
@@ -200,20 +287,95 @@ class GameWeather:
         return self.wind_speed_mph * math.cos(diff)
 
 
+# MLB Stats API reports wind FIELD-RELATIVE ("13 mph, Out To CF"). Map the
+# direction phrase to its projection onto the home->CF axis (out = HR-friendly).
+# CF = full; the RF/LF gaps sit ~45deg off center (cos45 ~= 0.7); pure crosswinds
+# and calm/unknown contribute nothing to carry over the fence.
+_WIND_PHRASE_TO_CF_MULT = {
+    "out to cf": 1.0, "in from cf": -1.0,
+    "out to rf": 0.7, "out to lf": 0.7,
+    "in from rf": -0.7, "in from lf": -0.7,
+    "l to r": 0.0, "r to l": 0.0, "none": 0.0, "varies": 0.0,
+}
+# Conditions that mean the roof is closed / it's a dome (no wind, controlled temp).
+_INDOOR_CONDITIONS = {"dome", "roof closed"}
+
+
+def parse_mlb_weather(
+    mlb_weather: Optional[dict],
+    park_code: str,
+    game_datetime: datetime,
+) -> Optional[GameWeather]:
+    """Build a GameWeather from an MLB Stats API `weather` block, or None.
+
+    The block looks like {'condition': 'Sunny', 'temp': '92',
+    'wind': '9 mph, Out To LF'}. This is the AUTHORITATIVE roof-state + weather
+    signal: `condition` tells us Dome / Roof Closed vs open explicitly (so a
+    retractable roof that's OPEN gets real weather, and a hot open-roof game is
+    no longer forced to 72F/no-wind), and wind is already field-relative.
+
+    Returns None when the block is absent or unparseable so callers fall back to
+    Open-Meteo. NOTE: at Preview status this is a pre-game forecast (as-of safe);
+    at Final it is the observed game weather (do NOT use in a strict backtest).
+    """
+    if not mlb_weather:
+        return None
+    cond = str(mlb_weather.get("condition", "")).strip().lower()
+    is_indoor = cond in _INDOOR_CONDITIONS or "roof closed" in cond
+    try:
+        temp_f = float(str(mlb_weather.get("temp", "")).strip()) if mlb_weather.get("temp") else None
+    except (TypeError, ValueError):
+        temp_f = None
+    if temp_f is None and not is_indoor:
+        # No usable temperature and not a known dome -> let Open-Meteo handle it.
+        return None
+    if is_indoor:
+        return GameWeather(
+            park=park_code, game_datetime=game_datetime,
+            temperature_f=72.0, wind_speed_mph=0.0, wind_direction_deg=0.0,
+            precipitation_in=0.0, is_indoor=True, wind_out_to_cf_mph=0.0,
+        )
+
+    wind_raw = str(mlb_weather.get("wind", "")).strip()
+    speed = 0.0
+    phrase = "none"
+    if wind_raw:
+        parts = wind_raw.split(",", 1)
+        try:
+            speed = float(parts[0].strip().lower().replace("mph", "").strip())
+        except (TypeError, ValueError):
+            speed = 0.0
+        phrase = parts[1].strip().lower() if len(parts) > 1 else "none"
+    out_to_cf = speed * _WIND_PHRASE_TO_CF_MULT.get(phrase, 0.0)
+    return GameWeather(
+        park=park_code, game_datetime=game_datetime,
+        temperature_f=temp_f, wind_speed_mph=speed, wind_direction_deg=0.0,
+        precipitation_in=0.0, is_indoor=False, wind_out_to_cf_mph=out_to_cf,
+    )
+
+
 def get_game_weather(
     park_code: str,
     game_datetime: datetime,
     use_cache: bool = True,
+    mlb_weather: Optional[dict] = None,
 ) -> GameWeather:
-    """Fetch hourly weather at game time. Uses forecast for future, archive for past.
+    """Game-time weather. Prefers the MLB Stats API `weather` block (authoritative
+    roof state + field-relative wind); falls back to Open-Meteo.
 
-    Cached per (park, date) under data/raw/weather/. Returns indoor placeholder
-    for retractable-roof parks (we have no roof-state signal so we conservatively
-    assume closed and zero out wind / set typical indoor temperature).
+    Cached per (park, date) under data/raw/weather/. When MLB weather is absent
+    AND the park has a retractable roof, we still can't know the roof state, so
+    we conservatively assume closed (the legacy fallback) — but with MLB weather
+    that guess is no longer the primary path.
     """
     info = get_park_info(park_code)
+
+    mlb = parse_mlb_weather(mlb_weather, park_code, game_datetime)
+    if mlb is not None:
+        return mlb
+
     if info.get("retractable_roof"):
-        # Without a roof-state feed we assume closed. Wind=0, temp=72, dir=0.
+        # Fallback only (no MLB signal): assume closed. Wind=0, temp=72, dir=0.
         return GameWeather(
             park=park_code, game_datetime=game_datetime,
             temperature_f=72.0, wind_speed_mph=0.0,
@@ -371,6 +533,7 @@ def park_weather_features(
     batter_hand: str,
     game_datetime: datetime,
     ctx: AsOfContext,
+    mlb_weather: Optional[dict] = None,
 ) -> dict:
     """Combined park + weather feature dict for the daily pipeline.
 
@@ -378,10 +541,13 @@ def park_weather_features(
     weather is fetched live; for games on/after ctx.cutoff_date we accept
     forecast data — that's not a leakage concern because forecasts are made
     BEFORE the game, which is exactly what we want at pick time.
+
+    `mlb_weather`: the MLB Stats API `weather` block for this game (roof state +
+    field-relative wind + official temp). Preferred over Open-Meteo when present.
     """
     info = get_park_info(park_code)
     factor = get_park_factor(park_code, batter_hand)
-    wx = get_game_weather(park_code, game_datetime)
+    wx = get_game_weather(park_code, game_datetime, mlb_weather=mlb_weather)
     cf = float(info["cf_bearing"])
     return {
         "park": park_code,

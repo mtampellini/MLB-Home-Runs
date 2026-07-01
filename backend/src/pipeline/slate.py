@@ -104,7 +104,7 @@ class MlbStatsClient:
                 # in the response — which used to silently coerce them to "R"
                 # at line ~340 below, breaking platoon-split logic for every
                 # left-handed pitcher in the slate.
-                "hydrate": "probablePitcher,lineups,team,venue,person",
+                "hydrate": "probablePitcher,lineups,team,venue,person,weather",
             },
         )
 
@@ -153,6 +153,7 @@ class GameInfo:
     away_lineup_ids: list[int]
     abstract_game_state: str = ""       # 'Preview' / 'Live' / 'Final'
     detailed_state: str = ""            # 'Scheduled' / 'In Progress' / 'Final' / 'Postponed' / etc
+    mlb_weather: Optional[dict] = None  # {'condition','temp','wind'} from the weather hydrate
 
 
 def _parse_iso(s: str) -> datetime:
@@ -211,6 +212,7 @@ def parse_schedule(schedule_payload: dict) -> list[GameInfo]:
                 away_lineup_ids=away_lineup,
                 abstract_game_state=str(status.get("abstractGameState", "")),
                 detailed_state=str(status.get("detailedState", "")),
+                mlb_weather=(g.get("weather") or None),
             ))
     return games
 
@@ -374,6 +376,7 @@ def build_slate(
                     game_datetime=g.game_datetime,
                     lineup_spot=spot,
                     game_pk=g.game_pk,
+                    mlb_weather=g.mlb_weather,
                 ))
 
     metadata = {

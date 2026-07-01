@@ -110,7 +110,7 @@ def _make_provider(*,
     def _pf(player_id, ctx, *, days=30, season_year=None):
         return pitcher
 
-    def _pw(park, batter_hand, game_datetime, ctx):
+    def _pw(park, batter_hand, game_datetime, ctx, mlb_weather=None):
         return park_wx
 
     return FeatureProvider(
@@ -240,6 +240,27 @@ def test_pitcher_factor_shrunk_flag_set_when_split_pa_below_threshold():
     assert late.pitcher_factor_shrunk is False
     # And the shrinkage pulled the factor closer to neutral (1.0).
     assert abs(early.components["pitcher"] - 1.0) < abs(late.components["pitcher"] - 1.0)
+
+
+def test_weather_factors_neutral_at_league_baseline():
+    """Calibration lock (2026-07-01 re-fit): a game at the fitted baseline temp
+    with no wind must apply NO environment tilt (factor 1.0). Guards against the
+    old bug where a 70F anchor put a systematic +4% on every outdoor game."""
+    from src.model.baseline import predict as baseline_predict, BaselineConfig
+    c = BaselineConfig()
+    common = dict(
+        blended_hr_per_pa=0.030, reliable_breakout=0.0,
+        pitcher_hr_per_9=1.3, pitcher_hand_split_pa=200, pitcher_split_pa=300.0,
+        park_hr_factor=1.0, is_indoor=False, lineup_spot=3, config=c,
+    )
+    neutral = baseline_predict(**common, temperature_f=c.temp_baseline_f, wind_out_to_cf_mph=0.0)
+    assert neutral.components["temperature"] == pytest.approx(1.0)
+    assert neutral.components["wind"] == pytest.approx(1.0)
+    # Hotter than baseline lifts, colder suppresses, both within the clip band.
+    hot = baseline_predict(**common, temperature_f=95.0, wind_out_to_cf_mph=0.0)
+    cold = baseline_predict(**common, temperature_f=50.0, wind_out_to_cf_mph=0.0)
+    assert hot.components["temperature"] > 1.0
+    assert c.temp_factor_clip[0] <= cold.components["temperature"] < 1.0
 
 
 def test_pitcher_split_picked_by_batter_hand():

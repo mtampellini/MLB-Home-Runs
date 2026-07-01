@@ -8,9 +8,19 @@ CF (HR-friendly). Negative means blowing in.
 
 from datetime import datetime, timedelta, timezone
 
+import pandas as pd
 import pytest
 
-from src.features.park_weather import GameWeather, _select_hour
+from src.features.park_weather import (
+    GameWeather,
+    _select_hour,
+    get_game_weather,
+    get_park_factor,
+    parse_mlb_weather,
+    regress_park_factors,
+    validate_park_factor_coverage,
+)
+from src.pipeline._teams import TEAM_CODE_BY_MLBAM_ID
 
 
 def _wx(speed: float, direction_from: float, indoor: bool = False) -> GameWeather:
@@ -239,3 +249,143 @@ def test_select_hour_works_across_dst_offsets():
     game_dt = datetime(2026, 5, 7, 2, 5, tzinfo=timezone.utc)
     wx = _select_hour(payload, "LAD", game_dt)
     assert wx.temperature_f == 72.0
+
+
+# ---------------------------------------------------------------------------
+# Park-factor regression (empirical-Bayes shrinkage toward 1.0)
+# ---------------------------------------------------------------------------
+
+def _counts(rows):
+    """rows: list of (park, bat_side, hr, pa)."""
+    return pd.DataFrame(rows, columns=["park", "bat_side", "hr", "pa"])
+
+
+def test_regression_shrinks_extremes_toward_one():
+    """Every regressed factor lies strictly between its raw value and 1.0 —
+    shrinkage never overshoots past neutral or amplifies away from it."""
+    # One league, a spread of parks, one hot outlier on tiny PA.
+    rows = [(f"P{i}", "R", hr, pa) for i, (hr, pa) in enumerate([
+        (300, 10000), (450, 10000), (200, 10000), (500, 10000),
+        (350, 10000), (280, 10000), (420, 10000), (330, 10000),
+    ])]
+    rows.append(("HOT", "R", 90, 1000))    # 0.090 rate, way above ~0.034 league, tiny sample
+    out = regress_park_factors(_counts(rows)).set_index("park")
+    for park, r in out.iterrows():
+        raw, reg = r["factor_raw"], r["factor"]
+        lo, hi = sorted((raw, 1.0))
+        assert lo - 1e-9 <= reg <= hi + 1e-9, f"{park}: reg {reg} not between raw {raw} and 1.0"
+
+
+def test_regression_small_sample_shrinks_more_than_large():
+    """Two parks with identical raw factor but different PA: the smaller-sample
+    park is pulled harder toward 1.0 (lower weight)."""
+    rows = [
+        ("BIG", "R", 600, 10000),    # rate 0.060
+        ("SMALL", "R", 60, 1000),    # same rate 0.060, 1/10th the sample
+        # filler parks so there is a league + between-park variance to estimate
+        ("A", "R", 340, 10000), ("B", "R", 300, 10000),
+        ("C", "R", 380, 10000), ("D", "R", 320, 10000),
+    ]
+    out = regress_park_factors(_counts(rows)).set_index("park")
+    assert out.loc["SMALL", "weight"] < out.loc["BIG", "weight"]
+    # Both share a raw factor; SMALL ends closer to 1.0.
+    assert abs(out.loc["SMALL", "factor"] - 1.0) < abs(out.loc["BIG", "factor"] - 1.0)
+
+
+def test_regression_resums_duplicate_sources():
+    """Passing multiple source rows per (park, bat_side) is summed, not double
+    counted — the multi-year blend path relies on this."""
+    single = regress_park_factors(_counts([
+        ("X", "R", 400, 12000), ("Y", "R", 300, 12000), ("Z", "R", 350, 12000),
+    ]))
+    split = regress_park_factors(_counts([
+        ("X", "R", 250, 7000), ("X", "R", 150, 5000),   # same X totals, two rows
+        ("Y", "R", 300, 12000), ("Z", "R", 350, 12000),
+    ]))
+    xs = single.set_index("park").loc["X", "factor"]
+    xd = split.set_index("park").loc["X", "factor"]
+    assert xs == pytest.approx(xd, abs=1e-9)
+
+
+# ---------------------------------------------------------------------------
+# Code-space coverage guard (regression test for the 2026-05 AZ-vs-ARI bug)
+# ---------------------------------------------------------------------------
+
+def test_shipped_factors_cover_every_pipeline_code():
+    """Every internal code the schedule parser can emit must resolve to a real
+    stored factor. The original bug stored ARI/CHW/OAK as AZ/CWS/ATH, so those
+    lookups silently returned neutral 1.0. This locks full coverage."""
+    assert validate_park_factor_coverage() == []
+
+
+def test_relocated_and_recoded_parks_are_not_neutral():
+    """ARI and OAK (the recoded / relocated parks) must carry a real park
+    factor, not the silent 1.0 fallback, for at least one handedness."""
+    for code in ("ARI", "CHW", "OAK"):
+        factors = [get_park_factor(code, "L"), get_park_factor(code, "R")]
+        assert any(abs(f - 1.0) > 1e-6 for f in factors), (
+            f"{code} resolves to neutral 1.0 for both hands — code-space mismatch?"
+        )
+
+
+# ---------------------------------------------------------------------------
+# MLB Stats API weather (authoritative roof state + field-relative wind)
+# ---------------------------------------------------------------------------
+
+_DT = datetime(2026, 7, 1, 23, 0, tzinfo=timezone.utc)
+
+
+def test_parse_mlb_weather_dome_is_indoor():
+    wx = parse_mlb_weather({"condition": "Dome", "temp": "72", "wind": "0 mph, None"}, "TB", _DT)
+    assert wx.is_indoor is True
+    assert wx.wind_speed_mph == 0.0
+    assert wx.out_to_cf_component(45) == 0.0
+
+
+def test_parse_mlb_weather_roof_closed_is_indoor():
+    wx = parse_mlb_weather({"condition": "Roof Closed", "temp": "72", "wind": "0 mph, None"}, "MIA", _DT)
+    assert wx.is_indoor is True
+
+
+def test_parse_mlb_weather_open_roof_park_gets_real_weather():
+    """The core roof fix: a retractable-roof park whose roof is OPEN (condition is
+    a sky state, not Dome/Roof Closed) must get real temp + wind, NOT the forced
+    72F/no-wind indoor placeholder."""
+    wx = parse_mlb_weather({"condition": "Sunny", "temp": "95", "wind": "12 mph, Out To CF"}, "TOR", _DT)
+    assert wx.is_indoor is False
+    assert wx.temperature_f == 95.0
+    assert wx.out_to_cf_component(999) == pytest.approx(12.0)   # cf_bearing ignored; field-relative
+
+
+def test_parse_mlb_weather_wind_phrases():
+    def cf(phrase, speed=10):
+        wx = parse_mlb_weather({"condition": "Clear", "temp": "80", "wind": f"{speed} mph, {phrase}"}, "NYY", _DT)
+        return wx.out_to_cf_component(0)
+    assert cf("Out To CF") == pytest.approx(10.0)
+    assert cf("In From CF") == pytest.approx(-10.0)
+    assert cf("Out To RF") == pytest.approx(7.0)
+    assert cf("In From LF") == pytest.approx(-7.0)
+    assert cf("L To R") == pytest.approx(0.0)
+    assert cf("R To L") == pytest.approx(0.0)
+    assert cf("None") == pytest.approx(0.0)
+    assert cf("Varies") == pytest.approx(0.0)
+
+
+def test_parse_mlb_weather_absent_or_untemped_returns_none():
+    assert parse_mlb_weather(None, "NYY", _DT) is None
+    assert parse_mlb_weather({}, "NYY", _DT) is None
+    # Outdoor condition but no temp -> defer to Open-Meteo.
+    assert parse_mlb_weather({"condition": "Clear", "wind": "5 mph, Out To CF"}, "NYY", _DT) is None
+
+
+def test_get_game_weather_prefers_mlb_over_roof_assumption(monkeypatch):
+    """A retractable-roof park with MLB weather saying the roof is open must NOT
+    hit the legacy 'assume closed' branch."""
+    from src.features import park_weather as pw_mod
+    # Guard: Open-Meteo must not be called on this path.
+    monkeypatch.setattr(pw_mod, "_fetch_open_meteo", lambda *a, **k: (_ for _ in ()).throw(AssertionError("should not fetch")))
+    wx = get_game_weather("TOR", _DT, use_cache=False,
+                          mlb_weather={"condition": "Partly Cloudy", "temp": "78", "wind": "9 mph, Out To LF"})
+    assert wx.is_indoor is False
+    assert wx.temperature_f == 78.0
+    assert wx.out_to_cf_component(999) == pytest.approx(6.3)   # 9 * 0.7

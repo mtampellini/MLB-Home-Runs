@@ -25,6 +25,7 @@ from src.features.batter_season import batter_season_features
 from src.features.park_weather import (
     PARK_FACTORS_PATH,
     PARK_METADATA_PATH,
+    validate_park_factor_coverage,
 )
 from src.features.pitcher import pitcher_features
 from src.model.predict import SlateEntry
@@ -54,6 +55,18 @@ def preflight() -> dict:
             "Build with `from src.features.park_weather import compute_park_factors_from_statcast; "
             "compute_park_factors_from_statcast()` (slow, multi-hour)."
         )
+    else:
+        # Guard the 2026-05 code-space bug: factors keyed on the wrong code
+        # (AZ vs ARI) look present but resolve to neutral 1.0 at lookup time.
+        missing = validate_park_factor_coverage()
+        out["park_factor_coverage_missing"] = missing
+        if missing:
+            out["warnings"].append(
+                f"park factors present but {len(missing)} internal (code/hand) "
+                f"pairs have no matching row — these silently get neutral 1.0: "
+                f"{', '.join(missing[:8])}{' ...' if len(missing) > 8 else ''}. "
+                "Likely a code-space mismatch; rebuild via scripts/build_park_factors.py."
+            )
     return out
 
 

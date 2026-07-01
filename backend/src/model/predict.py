@@ -63,6 +63,7 @@ class SlateEntry:
     game_datetime: datetime
     lineup_spot: Optional[int] = None
     game_pk: Optional[int] = None     # MLBAM gamePk; used by settle.py
+    mlb_weather: Optional[dict] = None  # MLB Stats API `weather` block (roof/temp/wind)
 
 
 @dataclass
@@ -192,7 +193,10 @@ def _predict_entry(
     )
 
     # ---- Park + weather ---------------------------------------------------
-    pw = provider.park_weather(entry.park, entry.batter_hand, entry.game_datetime, ctx)
+    pw = provider.park_weather(
+        entry.park, entry.batter_hand, entry.game_datetime, ctx,
+        mlb_weather=entry.mlb_weather,
+    )
 
     # ---- Blend batter HR/PA -----------------------------------------------
     # Per-player anchor: prior-year HR/PA if we have it, else league mean.

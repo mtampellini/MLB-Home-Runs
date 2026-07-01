@@ -67,6 +67,43 @@ def passes_triple(pick: dict) -> bool:
     return True
 
 
+def passes_triple_v2(pick: dict) -> bool:
+    """P3 drop-only (calibration-v2, shipped 2026-06-23). The production filter.
+
+    Re-runs the triple test on a breakout-NEUTRALIZED EV (`ev_pct_p3`, the EV the
+    pick would have had with the hot-streak boost turned off; computed in
+    run_daily._assemble_pick). It is strictly DROP-ONLY:
+
+      - A pick must FIRST pass the live `passes_triple` on its real EV. The
+        EV>=50 over-confidence ceiling is therefore judged on the ORIGINAL prob,
+        so removing the boost can never READMIT a pick the ceiling dropped.
+      - It then ALSO must clear tier-min (and stacked-shade) on the lower no-boost
+        EV. Picks that only cleared the floor because the boost inflated them get
+        cut.
+
+    Net effect is a subset of `passes_triple` — it can only remove picks, never
+    add. Running THIS filter on stored picks (5/27-6/22): kept ROI +2.9% vs the
+    old triple's -10.3% on the same slates (-4.0% vs -22.7% on the 6/09+ decay
+    window). See docs/calibration_v2_preregistration.md. CLV did NOT confirm the
+    recovery as edge (the cut picks were fairly priced) — this is a DEFENSIVE
+    variance/exposure cut, not a restored edge.
+    """
+    if not passes_triple(pick):
+        return False
+    ev_p3 = pick.get("ev_pct_p3")
+    if ev_p3 is None:
+        # Fail-safe: no neutralized EV available (e.g. a pick from before this
+        # field existed) -> behave exactly like the live triple, never stricter.
+        return True
+    ev_p3 = float(ev_p3)
+    tier_min = TIER_EV_MIN.get(pick.get("tier", "primary"), 25.0)
+    if ev_p3 < tier_min:
+        return False
+    if pick.get("stacked") and ev_p3 * STACKED_SHADE_FACTOR < tier_min:
+        return False
+    return True
+
+
 def passes_quad(pick: dict) -> bool:
     if not passes_triple(pick):
         return False
@@ -99,6 +136,7 @@ def annotate_filter_status(picks: Iterable[dict]) -> None:
         p["filter_status"] = {
             "passes_baseline": True,
             "passes_triple": passes_triple(p),
+            "passes_triple_v2": passes_triple_v2(p),
             "passes_quad": passes_quad(p),
             "passes_anchor": passes_anchor(p),
         }

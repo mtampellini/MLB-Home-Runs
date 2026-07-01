@@ -74,7 +74,21 @@ _DATA_DIR = Path(os.environ.get("HR_V7_DATA_DIR", PROJECT_ROOT / "data"))
 PROCESSED_DIR = _DATA_DIR / "processed"
 PICKS_PATH_DEFAULT = PROJECT_ROOT / "picks.json"
 
-MODEL_VERSION = "v7-baseline-0.2.0"
+MODEL_VERSION = "v7-weather-cal2-0.3.0"
+# 0.3.0 — 2026-07-01: weather overhaul + calibration-v2 P3 filter, shipped together.
+#   (a) Park factors refreshed to 2022-2025 + regressed + code-space bug fixed
+#       (ARI/CHW/OAK were silently neutral 1.0).
+#   (b) Weather source switched to the MLB Stats API weather hydrate (authoritative
+#       roof state + field-relative wind), Open-Meteo fallback. Temp/wind factors
+#       RE-FITTED from 2025 per-game HR data: baseline 70F->74F (killed a systematic
+#       +4% warm-game inflation), slopes ~unchanged (0.96%/F, 0.97%/mph). Changes
+#       pricing. See docs/weather_calibration.md.
+#   (c) Production filter switched `triple` -> `triple_v2` (P3 DROP-ONLY): re-tests
+#       each kept pick on a breakout-neutralized EV (ev_pct_p3) and cuts picks that
+#       only cleared the floor on the hot-streak boost. model_prob/ev_pct UNCHANGED
+#       (Option B) so CLV/full-slate-log/tracker stay on one scale. Defensive
+#       variance/exposure cut, not a restored edge (CLV did not confirm). Live eval
+#       pre-registered (docs/calibration_v2_preregistration.md), readout ~2026-07-23.
 # 0.2.0 — 2026-05-13: four calibration fixes (blend rewrite, p_per_pa_clip 0.25→0.10,
 #                     pitcher_factor cap 1.6, breakout weights ÷5). Predictions
 #                     are not directly comparable to 0.1.0; picks.json + archives
@@ -491,6 +505,35 @@ def _devig_inputs_per_book(quotes: list[HRPropQuote]) -> dict:
     return out
 
 
+def _breakout_neutralized_ev_pct(pred, best_price: int, market_prob: float):
+    """EV the pick would have with the hot-streak (breakout) boost turned off.
+
+    Powers the P3 drop-only filter (filters.passes_triple_v2). The breakout lift
+    is the multiplicative factor `components['breakout_signal']` (= 1 + lift) that
+    baseline.predict applied to the per-PA rate. Dividing it back out of the final
+    per-PA rate and re-deriving P(HR>=1) gives the no-boost probability; we then
+    price it at the same book/EV math as the live pick. Clip saturation makes this
+    a conservative (slightly low) estimate when the boosted rate hit the 0.10 cap,
+    which only ever makes the drop-only filter stricter — never readmits.
+
+    Returns None if the prediction lacks the fields (caller falls back to triple).
+    """
+    try:
+        lift_factor = (pred.components or {}).get("breakout_signal", 1.0)
+        per_pa = pred.p_per_pa
+        pa = pred.pa_per_game
+        if not lift_factor or lift_factor <= 0:
+            return None
+        if per_pa is None or per_pa != per_pa:  # NaN guard
+            return None
+        per_pa_nb = max(0.001, min(0.10, per_pa / lift_factor))
+        p_nb = 1.0 - (1.0 - per_pa_nb) ** pa
+        p_nb = max(0.0, min(1.0, p_nb))
+        return ev_pct(p_nb, best_price, market_prob).ev_pct
+    except Exception:
+        return None
+
+
 def _assemble_pick(
     row: PredictionRow,
     quotes: list[HRPropQuote],
@@ -532,6 +575,12 @@ def _assemble_pick(
         "model_prob": round(pred.p_hr, 4),
         "ev_pct": round(ev_result.ev_pct, 2),         # Option A: model × payout - (1-model)
         "edge_pct": round(ev_result.edge_pct, 2),     # Option B framing: model_prob - market_prob_devig (pp)
+        # Breakout-neutralized EV (boost off) — drives the P3 drop-only filter
+        # (passes_triple_v2). model_prob/ev_pct above are UNCHANGED, preserving
+        # CLV/full-slate-log/tracker continuity. None if not derivable.
+        "ev_pct_p3": (
+            lambda v: round(v, 2) if v is not None else None
+        )(_breakout_neutralized_ev_pct(pred, best_price, market_prob)),
 
         "blended_hr_per_pa": round(pred.blended_hr_per_pa, 5),
         "breakout_score": round(row.breakout.score if row.breakout else 0.0, 4),
@@ -971,9 +1020,13 @@ def run_daily(
     # truth for settle.py + tracker.py and retains EVERY pick (kept + dropped)
     # tagged with filter_status, so the day-30 stat-sig evaluator can compare
     # baseline vs triple vs quad on the same underlying slate.
-    site_primary = kept_by("passes_triple", primary_picks)
-    site_secondary = kept_by("passes_triple", secondary_picks)
-    site_shadow = kept_by("passes_triple", shadow_picks)
+    # Production filter as of 2026-06-23: passes_triple_v2 (P3 drop-only,
+    # calibration-v2). It is a strict subset of passes_triple; the old triple +
+    # quad + anchor tags are still recorded on every pick for continuity. See
+    # docs/calibration_v2_preregistration.md.
+    site_primary = kept_by("passes_triple_v2", primary_picks)
+    site_secondary = kept_by("passes_triple_v2", secondary_picks)
+    site_shadow = kept_by("passes_triple_v2", shadow_picks)
 
     final_picks_path = _write_picks_json(
         picks=site_primary,
