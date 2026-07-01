@@ -1,16 +1,134 @@
 {
-  "generated_at": "2026-07-01T01:57:12.620915+00:00",
-  "as_of_date": "2026-06-30",
+  "generated_at": "2026-07-01T16:42:13.325271+00:00",
+  "as_of_date": "2026-07-01",
   "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.029587317887170273,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
-  "total_games_today": 15,
-  "games_pregame": 0,
-  "games_excluded_live_or_complete": 15,
-  "picks": [],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-06-30.json"
+  "total_games_today": 14,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 1,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 2,
+      "pitcher": "Will Warren",
+      "pitcher_id": 701542,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823530,
+      "game_datetime": "2026-07-01T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 411,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1899,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2788,
+      "ev_pct": 42.47,
+      "edge_pct": 8.89,
+      "blended_hr_per_pa": 0.05352,
+      "breakout_score": 0.0313,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1458,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8087,
+          "deviation": 0.8087
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
+      "batter": "Amed Rosario",
+      "batter_id": 642708,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 4,
+      "pitcher": "Troy Melton",
+      "pitcher_id": 675512,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823530,
+      "game_datetime": "2026-07-01T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 480,
+      "dk_odds": 440,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1699,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2448,
+      "ev_pct": 42.0,
+      "edge_pct": 7.5,
+      "blended_hr_per_pa": 0.03978,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.181,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3446,
+          "deviation": 0.3446
+        },
+        {
+          "name": "temperature",
+          "value": 1.2,
+          "deviation": 0.2
+        },
+        {
+          "name": "park",
+          "value": 1.1897,
+          "deviation": 0.1897
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Jasson Dom\u00ednguez",
+        "Cody Bellinger"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "skipped_count": 14,
+  "skipped_reference": "data/processed/skipped_batters_2026-07-01.json"
 }
