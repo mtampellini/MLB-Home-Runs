@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-07-01T22:17:01.047269+00:00",
+  "generated_at": "2026-07-01T23:50:06.915368+00:00",
   "as_of_date": "2026-07-01",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03178778086721275,
+  "league_hr_per_pa": 0.026372059871703494,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 14,
-  "games_pregame": 8,
-  "games_excluded_live_or_complete": 6,
+  "games_pregame": 4,
+  "games_excluded_live_or_complete": 10,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 22,
+      "daily_rank": 15,
+      "batter": "Gabriel Moreno",
+      "batter_id": 672515,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 4,
+      "pitcher": "Trevor McDonald",
+      "pitcher_id": 686790,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825064,
+      "game_datetime": "2026-07-02T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1000,
+      "dk_odds": 970,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0857,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1359,
+      "ev_pct": 49.48,
+      "edge_pct": 5.02,
+      "ev_pct_p3": 30.93,
+      "blended_hr_per_pa": 0.03486,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6541,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3217,
+          "deviation": 0.3217
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8266,
+          "deviation": 0.1734
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 24,
       "batter": "Andr\u00e9s Gim\u00e9nez",
       "batter_id": 665926,
       "batter_hand": "L",
@@ -57,7 +114,7 @@
           "deviation": 0.0661
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -68,7 +125,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 28,
+      "daily_rank": 30,
       "batter": "Daulton Varsho",
       "batter_id": 662139,
       "batter_hand": "L",
@@ -113,7 +170,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -123,6 +180,6 @@
       }
     }
   ],
-  "skipped_count": 10,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-07-01.json"
 }
