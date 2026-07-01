@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-07-01T18:29:35.430104+00:00",
+  "generated_at": "2026-07-01T20:34:20.947233+00:00",
   "as_of_date": "2026-07-01",
-  "model_version": "v7-baseline-0.2.0",
-  "league_hr_per_pa": 0.032,
+  "model_version": "v7-weather-cal2-0.3.0",
+  "league_hr_per_pa": 0.031626719614239115,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 14,
-  "games_pregame": 9,
-  "games_excluded_live_or_complete": 5,
+  "games_pregame": 8,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 16,
+      "daily_rank": 19,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -61,13 +61,14 @@
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
+        "passes_triple_v2": true,
         "passes_quad": true,
         "passes_anchor": false
       }
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 22,
       "batter": "Francisco Alvarez",
       "batter_id": 682626,
       "batter_hand": "R",
@@ -112,17 +113,18 @@
           "deviation": 0.0975
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
+        "passes_triple_v2": true,
         "passes_quad": false,
         "passes_anchor": false
       }
     },
     {
       "tier": "shadow",
-      "daily_rank": 20,
+      "daily_rank": 24,
       "batter": "Jazz Chisholm Jr.",
       "batter_id": 665862,
       "batter_hand": "L",
@@ -167,17 +169,18 @@
           "deviation": 0.2
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
+        "passes_triple_v2": true,
         "passes_quad": true,
         "passes_anchor": true
       }
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 25,
       "batter": "Manny Machado",
       "batter_id": 592518,
       "batter_hand": "R",
@@ -222,15 +225,130 @@
           "deviation": 0.2
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 27,
+      "batter": "Brandon Marsh",
+      "batter_id": 669016,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 4,
+      "pitcher": "Paul Skenes",
+      "pitcher_id": 694973,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823446,
+      "game_datetime": "2026-07-01T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 529,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1475,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1754,
+      "ev_pct": 15.78,
+      "edge_pct": 2.79,
+      "ev_pct_p3": 19.14,
+      "blended_hr_per_pa": 0.0359,
+      "breakout_score": -0.0304,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.844,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2565,
+          "deviation": 0.2565
+        },
+        {
+          "name": "pitcher",
+          "value": 0.7542,
+          "deviation": 0.2458
+        },
+        {
+          "name": "temperature",
+          "value": 1.2016,
+          "deviation": 0.2016
+        }
+      ],
+      "tier_rank": 10,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 32,
+      "batter": "Alec Bohm",
+      "batter_id": 664761,
+      "batter_hand": "R",
+      "team": "PHI",
+      "lineup_spot": 5,
+      "pitcher": "Paul Skenes",
+      "pitcher_id": 694973,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823446,
+      "game_datetime": "2026-07-01T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 830,
+      "dk_odds": 780,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1028,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1185,
+      "ev_pct": 10.18,
+      "edge_pct": 1.56,
+      "ev_pct_p3": 16.85,
+      "blended_hr_per_pa": 0.03135,
+      "breakout_score": -0.06,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2439,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7535,
+          "deviation": 0.2465
+        },
+        {
+          "name": "temperature",
+          "value": 1.2016,
+          "deviation": 0.2016
+        },
+        {
+          "name": "wind",
+          "value": 1.1067,
+          "deviation": 0.1067
+        }
+      ],
+      "tier_rank": 15,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
         "passes_quad": true,
         "passes_anchor": true
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-07-01.json"
 }
