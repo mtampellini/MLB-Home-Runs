@@ -34,18 +34,6 @@ const CALIBRATION_MIN_PICKS = 100   // calibration view shows numbers below this
 // that over-predict differently and shouldn't be aggregated with current numbers.
 const MODEL_REBUILD_DATE = '2026-07-01'
 
-// Triple-filter ship date. The production triple filter (stacked-EV shade +
-// EV ceiling + pitcher-factor band) went live 2026-05-20 and every pick since
-// carries filter_status. The "Since triple" range scopes the view to this date
-// onward — the live experiment window (pre-registered eval 2026-06-18). Combine
-// with View = Triple to see exactly what's been shown/bet since the filter went on.
-const TRIPLE_FILTER_DATE = '2026-05-20'
-
-// Anchor-view ship date. Picks dated >= this carry passes_anchor natively and
-// — more importantly — post-date the data window the anchor parameters were
-// fit on (5/13-6/08), so this range is anchor's true out-of-sample record.
-const ANCHOR_VIEW_DATE = '2026-06-09'
-
 // ─── data loading at build time ────────────────────────────────────────
 export async function getStaticProps() {
   const archivesDir = path.join(process.cwd(), 'backend/data/daily_archives')
@@ -772,7 +760,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
       return ALL_TIERS.filter(x => prev.includes(x) || x === t)
     })
   }, [])
-  const [dateFilter, setDateFilter] = useState('all')
   // View filter scopes the top metrics by post-build empirical filter.
   // baseline = every settled pick (back-compat).
   // triple   = only picks that pass the production filter (passes_triple).
@@ -885,11 +872,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     } else if (modelFilter === 'pre') {
       list = list.filter(a => a.date < MODEL_REBUILD_DATE)
     }
-    if (dateFilter === 'since_triple') {
-      list = list.filter(a => a.date >= TRIPLE_FILTER_DATE)
-    } else if (dateFilter === 'since_anchor') {
-      list = list.filter(a => a.date >= ANCHOR_VIEW_DATE)
-    }
     // Per-day bet predicate, bound to that day's date (bets keys include date).
     const mkBetted = (d) => betsOnly ? ((bid, gpk) => isBet(bets, betKey(d, bid, gpk))) : null
     // Bets-only: drop days where nothing in the current tier/view was flagged.
@@ -905,7 +887,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     else if (sortBy === 'date_asc') sorted.sort((a, b) => a.date.localeCompare(b.date))
     else if (sortBy === 'roi') sorted.sort((a, b) => (sumOf(b).roiPct ?? -Infinity) - (sumOf(a).roiPct ?? -Infinity))
     return sorted
-  }, [archives, dateFilter, sortBy, tierFilter, modelFilter, filterView, betsOnly, bets])
+  }, [archives, sortBy, tierFilter, modelFilter, filterView, betsOnly, bets])
 
   // Top-level metrics. tracker.json is the canonical aggregate AND the only
   // source carrying CLV (closing snaps aren't reconstructible from per-day
@@ -925,15 +907,23 @@ export default function Tracker({ archives, tracker, generatedAt }) {
     // sub-range, the pre-rebuild slice, a missing tracker, or a filter view
     // tracker.json doesn't carry yet (anchor, until the next settle cron
     // regenerates it with the new by_filter block).
-    if (
-      dateFilter !== 'all' || modelFilter === 'pre' || !tracker ||
-      (filterView !== 'baseline' && !tracker.by_filter?.[filterView])
-    ) {
+    // tracker.json carries CLV but aggregates a FIXED window [date_range[0]..now].
+    // Only trust it for the "Current model" view when that window actually matches
+    // the current-model boundary — otherwise (a stale tracker.json from before the
+    // boundary moved, or the "All"/"Older models" slices) compute from the filtered
+    // archives so the Model filter drives the top-line figures. Client compute has
+    // no CLV; the fast path returns once the settle cron regenerates tracker.json
+    // scoped to the new boundary.
+    const trackerStart = tracker?.date_range?.[0]
+    const canUseTracker =
+      tracker && modelFilter === 'post' && trackerStart === MODEL_REBUILD_DATE &&
+      (filterView === 'baseline' || tracker.by_filter?.[filterView])
+    if (!canUseTracker) {
       return computeSummaryFromArchives(filteredArchives, tierFilter, filterView)
     }
     const source = filterView === 'baseline' ? tracker : tracker.by_filter[filterView]
     return combineTrackerSummaries(...tierFilter.map(t => source[`summary_${t}`]))
-  }, [tracker, tierFilter, modelFilter, dateFilter, filterView, filteredArchives, betsOnly, bets])
+  }, [tracker, tierFilter, modelFilter, filterView, filteredArchives, betsOnly, bets])
 
   const totalSettled = (sum.wins || 0) + (sum.losses || 0)
   const isFirstWeek = totalSettled === 0
@@ -1113,12 +1103,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
                 ['all',  'All'],
               ]} />
           )}
-          <FilterRow label="Range" value={dateFilter} onChange={setDateFilter}
-            options={[
-              ['all',          'All time'],
-              ['since_triple', 'Since triple (5/20)'],
-              ['since_anchor', 'Since anchor (6/09)'],
-            ]} />
           <FilterRow label="Sort"  value={sortBy} onChange={setSortBy}
             options={[
               ['date_desc', 'Date (newest)'],
