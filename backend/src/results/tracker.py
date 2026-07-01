@@ -50,13 +50,14 @@ CALIBRATION_BUCKETS = (
 
 TIERS = ("primary", "secondary", "shadow")
 
-# Tracker reports post-build picks only. The 2026-05-13 calibration release
-# (commits 9c65339, ac6f23a, 24b1ea5, d27fea2) shipped four structural fixes
-# to the Bayesian blend, p_per_pa clip, pitcher_factor clip, and breakout
-# weights. Pre-build picks were generated against a known-miscalibrated
-# model — their CLV and ROI reflect noise from that model, not the one in
-# production now. Exclude them from headline metrics.
-TRACKER_START_DATE = _date(2026, 5, 13)
+# Tracker reports picks from the CURRENT model version only. Bumped to 2026-07-02
+# when v7-weather-cal2-0.3.0 shipped (refreshed+regressed park factors incl. the
+# ARI/CHW/OAK code-space fix, MLB-weather source + re-fit temp/wind coefficients,
+# and the P3 drop-only filter). Picks before 7/2 were generated against a
+# different model — their CLV/ROI reflect that model, not the one in production
+# now, so they'd muddy the new version's track record. Start the report fresh.
+#   Prior floor: 2026-05-13 (the 0.2.0 calibration release).
+TRACKER_START_DATE = _date(2026, 7, 2)
 
 
 # ---------------------------------------------------------------------------
