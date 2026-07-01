@@ -74,7 +74,16 @@ _DATA_DIR = Path(os.environ.get("HR_V7_DATA_DIR", PROJECT_ROOT / "data"))
 PROCESSED_DIR = _DATA_DIR / "processed"
 PICKS_PATH_DEFAULT = PROJECT_ROOT / "picks.json"
 
-MODEL_VERSION = "v7-baseline-0.2.0"
+MODEL_VERSION = "v7-weather-0.3.0"
+# 0.3.0 — 2026-07-01: weather overhaul (2 fixes).
+#   (1) Park factors refreshed to 2022-2025 + regressed + code-space bug fixed
+#       (ARI/CHW/OAK were silently neutral). MODEL_VERSION not bumped for that.
+#   (2) Weather source switched to the MLB Stats API weather hydrate (authoritative
+#       roof state + field-relative wind), Open-Meteo fallback. Temp/wind factors
+#       RE-FITTED from 2025 per-game HR data: baseline 70F->74F (killed a systematic
+#       +4% warm-game inflation), slopes ~unchanged (0.96%/F, 0.97%/mph), clips set
+#       from the empirical range. This DOES change pricing -> version bump.
+#       See docs/weather_calibration.md.
 # 0.2.0 — 2026-05-13: four calibration fixes (blend rewrite, p_per_pa_clip 0.25→0.10,
 #                     pitcher_factor cap 1.6, breakout weights ÷5). Predictions
 #                     are not directly comparable to 0.1.0; picks.json + archives

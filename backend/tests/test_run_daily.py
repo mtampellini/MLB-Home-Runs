@@ -63,7 +63,10 @@ PITCHER = {
 PARK_WEATHER = {
     "park_hr_factor": 1.10,
     "is_indoor": False,
-    "temperature_f": 78.0,
+    # 82.6F chosen so the net weather factor (~1.16) matches what 78F gave under
+    # the pre-2026-07-01 coefficients (baseline 70F, 1%/F). Keeps these EV->tier
+    # ROUTING tests decoupled from the weather-calibration re-fit.
+    "temperature_f": 82.6,
     "wind_out_to_cf_mph": 7.7,
 }
 

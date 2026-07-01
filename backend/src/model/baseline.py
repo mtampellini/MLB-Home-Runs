@@ -95,12 +95,21 @@ PA_BY_LINEUP_SPOT: dict[int, float] = {
 class BaselineConfig:
     league_hr_per_pa: float = LEAGUE_HR_PER_PA_DEFAULT
     breakout_coefficient: float = 1.0  # multiplicative-lift coefficient — tunable
-    # Environment scaling — light, conservative defaults.
-    temp_baseline_f: float = 70.0
-    temp_per_degree: float = 0.01      # +1% per °F above baseline
-    wind_per_mph: float = 0.01         # +1% per mph blowing out to CF
-    temp_factor_clip: tuple[float, float] = (0.85, 1.20)
-    wind_factor_clip: tuple[float, float] = (0.70, 1.40)
+    # Environment scaling — FITTED from 2025 per-game HR vs weather (Poisson GLM,
+    # offset log-PA, park fixed effects so slopes are within-park / no double-count
+    # with the park factor). n=2238 outdoor games. See docs/weather_calibration.md.
+    #   - baseline is the PA-weighted mean outdoor game temp (73.9F) so a typical
+    #     game -> factor 1.0. The old 70F anchor sat below the operating range and
+    #     put a systematic +4% HR tilt on EVERY outdoor game (mean tf 1.042 -> 1.006).
+    #   - slopes barely moved (temp 0.96%/F, wind 0.97%/mph out-to-CF; both p<1e-3,
+    #     robust to park FE) -> the slopes were fine all along; the baseline was the bug.
+    #   - clips set from the empirical 0.5/99.5 pct so they only guard extrapolation
+    #     (temp binds ~2.7% of games in the cold/hot tails; wind ~0%).
+    temp_baseline_f: float = 74.0
+    temp_per_degree: float = 0.0096    # +0.96% per °F vs league-avg game temp (fitted)
+    wind_per_mph: float = 0.0097       # +0.97% per mph blowing out to CF (fitted)
+    temp_factor_clip: tuple[float, float] = (0.75, 1.22)
+    wind_factor_clip: tuple[float, float] = (0.80, 1.25)
     # Final per-PA HR probability sanity bounds.
     # Upper bound 0.10: no batter in modern MLB has sustained > 0.10 HR/PA
     # over any meaningful sample (Judge peak ≈ 0.073; Bonds 2001 all-time
