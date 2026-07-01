@@ -27,11 +27,12 @@ const TABULAR = { fontVariantNumeric: 'tabular-nums' }
 
 const CALIBRATION_MIN_PICKS = 100   // calibration view shows numbers below this; visualizes above
 
-// Model-rebuild boundary. Picks dated >= this are produced by the post-rebuild
-// model (v7-baseline-0.2.0); picks dated < this are pre-rebuild (0.1.0) and
-// shouldn't be aggregated with post-rebuild numbers because the two models
-// over-predict at different rates. See the README of 2026-05-13.
-const MODEL_REBUILD_DATE = '2026-05-13'
+// Current-model boundary. Picks dated >= this were produced by the current model
+// (v7-weather-cal2-0.3.0, shipped 2026-07-01: park factors refreshed to 2022-2025
+// + regressed + a code-space fix, MLB-weather source with re-fit temp/wind
+// coefficients, and the P3 drop-only filter). Earlier picks came from older models
+// that over-predict differently and shouldn't be aggregated with current numbers.
+const MODEL_REBUILD_DATE = '2026-07-01'
 
 // Triple-filter ship date. The production triple filter (stacked-EV shade +
 // EV ceiling + pitcher-factor band) went live 2026-05-20 and every pick since
@@ -1007,16 +1008,16 @@ export default function Tracker({ archives, tracker, generatedAt }) {
             fontSize: 13, color: T.textMedium, lineHeight: 1.6,
             background: T.bgSubtle,
           }}>
-            <strong style={{ color: T.text, fontWeight: 600 }}>Model rebuilt {MODEL_REBUILD_DATE}.</strong>{' '}
-            Four calibration fixes shipped on this date: Bayesian-blend rewrite
-            (de-overlap season/recent windows + per-player prior anchor),{' '}
-            <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>p_per_pa</code> ceiling
-            tightened from 0.25 to 0.10,{' '}
-            <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>pitcher_factor</code> capped
-            at 1.6 post-shrinkage, breakout-score weights rescaled ÷5 to unsaturate the cap. Pre-rebuild
-            picks reflect a model that systematically over-predicted at the top of the distribution
+            <strong style={{ color: T.text, fontWeight: 600 }}>Model updated {MODEL_REBUILD_DATE}.</strong>{' '}
+            v7-weather-cal2-0.3.0 shipped on this date:{' '}
+            <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>park factors</code> refreshed
+            to 2022-2025 and regressed (plus a code-space fix that had left three parks unadjusted),{' '}
+            game <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>weather</code> switched
+            to the MLB feed with re-fit temperature/wind coefficients, and the{' '}
+            <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>P3</code> drop-only filter.
+            Earlier picks reflect older models
             {spansRebuild ? (
-              <> and shouldn't be aggregated with post-rebuild numbers — use the{' '}
+              <> and shouldn't be aggregated with current numbers — use the{' '}
               <strong style={{ color: T.text }}>Model</strong> filter below to scope the view.</>
             ) : (
               <>. Tomorrow's settled picks will be the first under the new model.</>
@@ -1107,8 +1108,8 @@ export default function Tracker({ archives, tracker, generatedAt }) {
           {spansRebuild && (
             <FilterRow label="Model" value={modelFilter} onChange={setModelFilter}
               options={[
-                ['post', 'Post-rebuild'],
-                ['pre',  'Pre-rebuild'],
+                ['post', 'Current model'],
+                ['pre',  'Older models'],
                 ['all',  'All'],
               ]} />
           )}
