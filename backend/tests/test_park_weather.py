@@ -14,7 +14,9 @@ import pytest
 from src.features.park_weather import (
     GameWeather,
     _select_hour,
+    get_game_weather,
     get_park_factor,
+    parse_mlb_weather,
     regress_park_factors,
     validate_park_factor_coverage,
 )
@@ -324,3 +326,66 @@ def test_relocated_and_recoded_parks_are_not_neutral():
         assert any(abs(f - 1.0) > 1e-6 for f in factors), (
             f"{code} resolves to neutral 1.0 for both hands — code-space mismatch?"
         )
+
+
+# ---------------------------------------------------------------------------
+# MLB Stats API weather (authoritative roof state + field-relative wind)
+# ---------------------------------------------------------------------------
+
+_DT = datetime(2026, 7, 1, 23, 0, tzinfo=timezone.utc)
+
+
+def test_parse_mlb_weather_dome_is_indoor():
+    wx = parse_mlb_weather({"condition": "Dome", "temp": "72", "wind": "0 mph, None"}, "TB", _DT)
+    assert wx.is_indoor is True
+    assert wx.wind_speed_mph == 0.0
+    assert wx.out_to_cf_component(45) == 0.0
+
+
+def test_parse_mlb_weather_roof_closed_is_indoor():
+    wx = parse_mlb_weather({"condition": "Roof Closed", "temp": "72", "wind": "0 mph, None"}, "MIA", _DT)
+    assert wx.is_indoor is True
+
+
+def test_parse_mlb_weather_open_roof_park_gets_real_weather():
+    """The core roof fix: a retractable-roof park whose roof is OPEN (condition is
+    a sky state, not Dome/Roof Closed) must get real temp + wind, NOT the forced
+    72F/no-wind indoor placeholder."""
+    wx = parse_mlb_weather({"condition": "Sunny", "temp": "95", "wind": "12 mph, Out To CF"}, "TOR", _DT)
+    assert wx.is_indoor is False
+    assert wx.temperature_f == 95.0
+    assert wx.out_to_cf_component(999) == pytest.approx(12.0)   # cf_bearing ignored; field-relative
+
+
+def test_parse_mlb_weather_wind_phrases():
+    def cf(phrase, speed=10):
+        wx = parse_mlb_weather({"condition": "Clear", "temp": "80", "wind": f"{speed} mph, {phrase}"}, "NYY", _DT)
+        return wx.out_to_cf_component(0)
+    assert cf("Out To CF") == pytest.approx(10.0)
+    assert cf("In From CF") == pytest.approx(-10.0)
+    assert cf("Out To RF") == pytest.approx(7.0)
+    assert cf("In From LF") == pytest.approx(-7.0)
+    assert cf("L To R") == pytest.approx(0.0)
+    assert cf("R To L") == pytest.approx(0.0)
+    assert cf("None") == pytest.approx(0.0)
+    assert cf("Varies") == pytest.approx(0.0)
+
+
+def test_parse_mlb_weather_absent_or_untemped_returns_none():
+    assert parse_mlb_weather(None, "NYY", _DT) is None
+    assert parse_mlb_weather({}, "NYY", _DT) is None
+    # Outdoor condition but no temp -> defer to Open-Meteo.
+    assert parse_mlb_weather({"condition": "Clear", "wind": "5 mph, Out To CF"}, "NYY", _DT) is None
+
+
+def test_get_game_weather_prefers_mlb_over_roof_assumption(monkeypatch):
+    """A retractable-roof park with MLB weather saying the roof is open must NOT
+    hit the legacy 'assume closed' branch."""
+    from src.features import park_weather as pw_mod
+    # Guard: Open-Meteo must not be called on this path.
+    monkeypatch.setattr(pw_mod, "_fetch_open_meteo", lambda *a, **k: (_ for _ in ()).throw(AssertionError("should not fetch")))
+    wx = get_game_weather("TOR", _DT, use_cache=False,
+                          mlb_weather={"condition": "Partly Cloudy", "temp": "78", "wind": "9 mph, Out To LF"})
+    assert wx.is_indoor is False
+    assert wx.temperature_f == 78.0
+    assert wx.out_to_cf_component(999) == pytest.approx(6.3)   # 9 * 0.7

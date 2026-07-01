@@ -78,7 +78,7 @@ def _feature_provider() -> FeatureProvider:
         return VET_RECENT
     def _pf(player_id, ctx, *, days=30, season_year=None):
         return PITCHER
-    def _pw(park, batter_hand, game_datetime, ctx):
+    def _pw(park, batter_hand, game_datetime, ctx, mlb_weather=None):
         return PARK_WEATHER
     return FeatureProvider(
         batter_season=_bs, batter_recent=_br,

@@ -110,7 +110,7 @@ def _make_provider(*,
     def _pf(player_id, ctx, *, days=30, season_year=None):
         return pitcher
 
-    def _pw(park, batter_hand, game_datetime, ctx):
+    def _pw(park, batter_hand, game_datetime, ctx, mlb_weather=None):
         return park_wx
 
     return FeatureProvider(

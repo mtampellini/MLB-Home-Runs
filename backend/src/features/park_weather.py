@@ -258,19 +258,28 @@ class GameWeather:
     wind_direction_deg: float  # meteorological: direction wind is FROM, 0=N, 90=E
     precipitation_in: float
     is_indoor: bool
+    # When the source already gives a FIELD-RELATIVE out-to-CF component (MLB
+    # Stats API: "13 mph, Out To CF"), we store the projected mph here directly
+    # and skip the bearing math. None => derive from wind_direction_deg + cf_bearing
+    # (the Open-Meteo path). This also sidesteps Open-Meteo's 10m-height wind,
+    # which overstates field-level wind.
+    wind_out_to_cf_mph: Optional[float] = None
 
     def out_to_cf_component(self, cf_bearing_deg: float) -> float:
         """Wind component pushing toward CF (positive = blowing out / HR-friendly).
 
-        Convention: wind_direction_deg is the direction the wind is *coming from*.
-        A wind from home plate toward CF means the wind is *coming from* the
-        opposite of CF (i.e. wind_direction = (cf_bearing + 180) mod 360).
+        If a field-relative component was supplied by the source, return it
+        directly. Otherwise project the meteorological wind onto the CF axis.
 
-        Returns wind_speed_mph projected onto the CF axis, with positive sign
-        when wind blows out toward CF.
+        Convention (Open-Meteo path): wind_direction_deg is the direction the
+        wind is *coming from*. A wind from home plate toward CF is *coming from*
+        the opposite of CF (wind_direction = (cf_bearing + 180) mod 360). Returns
+        wind_speed_mph projected onto the CF axis, positive when blowing out.
         """
         if self.is_indoor:
             return 0.0
+        if self.wind_out_to_cf_mph is not None:
+            return self.wind_out_to_cf_mph
         # Direction wind is blowing TO:
         wind_to_deg = (self.wind_direction_deg + 180) % 360
         # Angle between "blowing-to" direction and CF bearing:
@@ -278,20 +287,95 @@ class GameWeather:
         return self.wind_speed_mph * math.cos(diff)
 
 
+# MLB Stats API reports wind FIELD-RELATIVE ("13 mph, Out To CF"). Map the
+# direction phrase to its projection onto the home->CF axis (out = HR-friendly).
+# CF = full; the RF/LF gaps sit ~45deg off center (cos45 ~= 0.7); pure crosswinds
+# and calm/unknown contribute nothing to carry over the fence.
+_WIND_PHRASE_TO_CF_MULT = {
+    "out to cf": 1.0, "in from cf": -1.0,
+    "out to rf": 0.7, "out to lf": 0.7,
+    "in from rf": -0.7, "in from lf": -0.7,
+    "l to r": 0.0, "r to l": 0.0, "none": 0.0, "varies": 0.0,
+}
+# Conditions that mean the roof is closed / it's a dome (no wind, controlled temp).
+_INDOOR_CONDITIONS = {"dome", "roof closed"}
+
+
+def parse_mlb_weather(
+    mlb_weather: Optional[dict],
+    park_code: str,
+    game_datetime: datetime,
+) -> Optional[GameWeather]:
+    """Build a GameWeather from an MLB Stats API `weather` block, or None.
+
+    The block looks like {'condition': 'Sunny', 'temp': '92',
+    'wind': '9 mph, Out To LF'}. This is the AUTHORITATIVE roof-state + weather
+    signal: `condition` tells us Dome / Roof Closed vs open explicitly (so a
+    retractable roof that's OPEN gets real weather, and a hot open-roof game is
+    no longer forced to 72F/no-wind), and wind is already field-relative.
+
+    Returns None when the block is absent or unparseable so callers fall back to
+    Open-Meteo. NOTE: at Preview status this is a pre-game forecast (as-of safe);
+    at Final it is the observed game weather (do NOT use in a strict backtest).
+    """
+    if not mlb_weather:
+        return None
+    cond = str(mlb_weather.get("condition", "")).strip().lower()
+    is_indoor = cond in _INDOOR_CONDITIONS or "roof closed" in cond
+    try:
+        temp_f = float(str(mlb_weather.get("temp", "")).strip()) if mlb_weather.get("temp") else None
+    except (TypeError, ValueError):
+        temp_f = None
+    if temp_f is None and not is_indoor:
+        # No usable temperature and not a known dome -> let Open-Meteo handle it.
+        return None
+    if is_indoor:
+        return GameWeather(
+            park=park_code, game_datetime=game_datetime,
+            temperature_f=72.0, wind_speed_mph=0.0, wind_direction_deg=0.0,
+            precipitation_in=0.0, is_indoor=True, wind_out_to_cf_mph=0.0,
+        )
+
+    wind_raw = str(mlb_weather.get("wind", "")).strip()
+    speed = 0.0
+    phrase = "none"
+    if wind_raw:
+        parts = wind_raw.split(",", 1)
+        try:
+            speed = float(parts[0].strip().lower().replace("mph", "").strip())
+        except (TypeError, ValueError):
+            speed = 0.0
+        phrase = parts[1].strip().lower() if len(parts) > 1 else "none"
+    out_to_cf = speed * _WIND_PHRASE_TO_CF_MULT.get(phrase, 0.0)
+    return GameWeather(
+        park=park_code, game_datetime=game_datetime,
+        temperature_f=temp_f, wind_speed_mph=speed, wind_direction_deg=0.0,
+        precipitation_in=0.0, is_indoor=False, wind_out_to_cf_mph=out_to_cf,
+    )
+
+
 def get_game_weather(
     park_code: str,
     game_datetime: datetime,
     use_cache: bool = True,
+    mlb_weather: Optional[dict] = None,
 ) -> GameWeather:
-    """Fetch hourly weather at game time. Uses forecast for future, archive for past.
+    """Game-time weather. Prefers the MLB Stats API `weather` block (authoritative
+    roof state + field-relative wind); falls back to Open-Meteo.
 
-    Cached per (park, date) under data/raw/weather/. Returns indoor placeholder
-    for retractable-roof parks (we have no roof-state signal so we conservatively
-    assume closed and zero out wind / set typical indoor temperature).
+    Cached per (park, date) under data/raw/weather/. When MLB weather is absent
+    AND the park has a retractable roof, we still can't know the roof state, so
+    we conservatively assume closed (the legacy fallback) — but with MLB weather
+    that guess is no longer the primary path.
     """
     info = get_park_info(park_code)
+
+    mlb = parse_mlb_weather(mlb_weather, park_code, game_datetime)
+    if mlb is not None:
+        return mlb
+
     if info.get("retractable_roof"):
-        # Without a roof-state feed we assume closed. Wind=0, temp=72, dir=0.
+        # Fallback only (no MLB signal): assume closed. Wind=0, temp=72, dir=0.
         return GameWeather(
             park=park_code, game_datetime=game_datetime,
             temperature_f=72.0, wind_speed_mph=0.0,
@@ -449,6 +533,7 @@ def park_weather_features(
     batter_hand: str,
     game_datetime: datetime,
     ctx: AsOfContext,
+    mlb_weather: Optional[dict] = None,
 ) -> dict:
     """Combined park + weather feature dict for the daily pipeline.
 
@@ -456,10 +541,13 @@ def park_weather_features(
     weather is fetched live; for games on/after ctx.cutoff_date we accept
     forecast data — that's not a leakage concern because forecasts are made
     BEFORE the game, which is exactly what we want at pick time.
+
+    `mlb_weather`: the MLB Stats API `weather` block for this game (roof state +
+    field-relative wind + official temp). Preferred over Open-Meteo when present.
     """
     info = get_park_info(park_code)
     factor = get_park_factor(park_code, batter_hand)
-    wx = get_game_weather(park_code, game_datetime)
+    wx = get_game_weather(park_code, game_datetime, mlb_weather=mlb_weather)
     cf = float(info["cf_bearing"])
     return {
         "park": park_code,
