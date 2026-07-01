@@ -155,7 +155,10 @@ def recover(start: str, end: str) -> list[dict]:
         d = json.loads(f.read_text())
         for tier in TIERS:
             picks = {(p["batter_id"], p["game_pk"]): p for p in d.get(f"{tier}_picks", [])}
-            for r in d.get("settlement", {}).get(f"{tier}_results", []) or []:
+            # `settlement` can be explicitly null (e.g. zero-pick days when odds
+            # quota is exhausted) — `.get(k, {})` returns None then, not {}. Use
+            # `or {}` so null settlement is treated as empty, not a crash.
+            for r in (d.get("settlement") or {}).get(f"{tier}_results", []) or []:
                 p = picks.get((r["batter_id"], r["game_pk"]))
                 if not p:
                     continue
