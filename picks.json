@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-01T20:34:20.946505+00:00",
+  "generated_at": "2026-07-01T22:17:01.046805+00:00",
   "as_of_date": "2026-07-01",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.031626719614239115,
+  "league_hr_per_pa": 0.03178778086721275,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 18,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -58,7 +58,7 @@
           "deviation": 0.1897
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 13,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -71,7 +71,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 13,
+      "daily_rank": 19,
       "batter": "Amed Rosario",
       "batter_id": 642708,
       "batter_hand": "R",
@@ -116,7 +116,7 @@
           "deviation": 0.1897
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 15,
       "stacked": true,
       "stacked_with": [
         "Jasson Dom\u00ednguez",
@@ -129,8 +129,71 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 16,
+      "batter": "Noelvi Marte",
+      "batter_id": 682622,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 6,
+      "pitcher": "Shane Drohan",
+      "pitcher_id": 675660,
+      "pitcher_hand": "L",
+      "park": "MIL",
+      "game_pk": 823767,
+      "game_datetime": "2026-07-02T00:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 640,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1293,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1976,
+      "ev_pct": 46.23,
+      "edge_pct": 6.84,
+      "ev_pct_p3": 69.6,
+      "blended_hr_per_pa": 0.04735,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.6667,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4896,
+          "deviation": 0.4896
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 18,
+      "stacked": true,
+      "stacked_with": [
+        "Elly De La Cruz",
+        "Matt McLain",
+        "Spencer Steer"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 10,
   "skipped_reference": "data/processed/skipped_batters_2026-07-01.json"
 }
