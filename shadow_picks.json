@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-02T19:58:30.402099+00:00",
+  "generated_at": "2026-07-02T21:17:26.782726+00:00",
   "as_of_date": "2026-07-02",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.029139526911210148,
+  "league_hr_per_pa": 0.02808927599346761,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,64 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 12,
+      "daily_rank": 20,
+      "batter": "Carter Jensen",
+      "batter_id": 695600,
+      "batter_hand": "L",
+      "team": "KC",
+      "lineup_spot": 1,
+      "pitcher": "Ian Seymour",
+      "pitcher_id": 693855,
+      "pitcher_hand": "L",
+      "park": "KC",
+      "game_pk": 824093,
+      "game_datetime": "2026-07-02T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 417,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1832,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2334,
+      "ev_pct": 21.39,
+      "edge_pct": 5.02,
+      "ev_pct_p3": 40.28,
+      "blended_hr_per_pa": 0.03958,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2632,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4092,
+          "deviation": 0.4092
+        },
+        {
+          "name": "park",
+          "value": 0.8241,
+          "deviation": 0.1759
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
       "batter": "TJ Rumfield",
       "batter_id": 681198,
       "batter_hand": "L",
@@ -58,7 +115,7 @@
           "deviation": 0.1133
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +126,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 22,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -115,7 +172,7 @@
           "deviation": 0.0543
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +183,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 15,
+      "daily_rank": 24,
       "batter": "Mickey Moniak",
       "batter_id": 666160,
       "batter_hand": "L",
@@ -172,7 +229,7 @@
           "deviation": 0.1133
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -182,6 +239,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-07-02.json"
 }
