@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-07-02T16:11:32.468153+00:00",
+  "generated_at": "2026-07-02T18:07:14.143793+00:00",
   "as_of_date": "2026-07-02",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.033658903080390684,
+  "league_hr_per_pa": 0.02486678507992895,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 9,
-  "games_pregame": 9,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 7,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 8,
+      "daily_rank": 12,
+      "batter": "TJ Rumfield",
+      "batter_id": 681198,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 3,
+      "pitcher": "Ryan Gusto",
+      "pitcher_id": 687473,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824335,
+      "game_datetime": "2026-07-02T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 415,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1786,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2131,
+      "ev_pct": 17.21,
+      "edge_pct": 3.45,
+      "ev_pct_p3": 13.94,
+      "blended_hr_per_pa": 0.03744,
+      "breakout_score": 0.0316,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6378,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5058,
+          "deviation": 0.5058
+        },
+        {
+          "name": "temperature",
+          "value": 1.1536,
+          "deviation": 0.1536
+        },
+        {
+          "name": "park",
+          "value": 1.1133,
+          "deviation": 0.1133
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -58,7 +115,7 @@
           "deviation": 0.0543
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,8 +123,65 @@
         "passes_quad": false,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 15,
+      "batter": "Mickey Moniak",
+      "batter_id": 666160,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 2,
+      "pitcher": "Ryan Gusto",
+      "pitcher_id": 687473,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824335,
+      "game_datetime": "2026-07-02T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 240,
+      "dk_odds": 209,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2996,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3323,
+      "ev_pct": 12.98,
+      "edge_pct": 3.27,
+      "ev_pct_p3": 11.79,
+      "blended_hr_per_pa": 0.06177,
+      "breakout_score": 0.0126,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1647,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.4842,
+          "deviation": 1.4842
+        },
+        {
+          "name": "temperature",
+          "value": 1.1536,
+          "deviation": 0.1536
+        },
+        {
+          "name": "park",
+          "value": 1.1133,
+          "deviation": 0.1133
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-07-02.json"
 }
