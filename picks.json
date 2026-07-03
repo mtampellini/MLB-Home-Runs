@@ -1,16 +1,137 @@
 {
-  "generated_at": "2026-07-03T18:52:06.667890+00:00",
+  "generated_at": "2026-07-03T20:26:43.133285+00:00",
   "as_of_date": "2026-07-03",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.030347890451517395,
+  "league_hr_per_pa": 0.03213055508498504,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 13,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 2,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 1,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "Kody Clemens",
+      "batter_id": 665019,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 3,
+      "pitcher": "Gerrit Cole",
+      "pitcher_id": 543037,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823527,
+      "game_datetime": "2026-07-03T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 290,
+      "dk_odds": 293,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2478,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3685,
+      "ev_pct": 44.83,
+      "edge_pct": 12.08,
+      "ev_pct_p3": 45.79,
+      "blended_hr_per_pa": 0.04669,
+      "breakout_score": -0.0629,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1173,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5121,
+          "deviation": 0.5121
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.453,
+          "deviation": 0.453
+        },
+        {
+          "name": "temperature",
+          "value": 1.22,
+          "deviation": 0.22
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Brooks Lee"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 12,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 5,
+      "pitcher": "Mike Paredes",
+      "pitcher_id": 702474,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823527,
+      "game_datetime": "2026-07-03T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 383,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1953,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2886,
+      "ev_pct": 41.42,
+      "edge_pct": 9.33,
+      "ev_pct_p3": 28.02,
+      "blended_hr_per_pa": 0.04682,
+      "breakout_score": 0.1196,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2964,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4571,
+          "deviation": 0.4571
+        },
+        {
+          "name": "temperature",
+          "value": 1.22,
+          "deviation": 0.22
+        },
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-07-03.json"
 }
