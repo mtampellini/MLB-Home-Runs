@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-07-03T21:39:18.389294+00:00",
+  "generated_at": "2026-07-03T23:03:17.598050+00:00",
   "as_of_date": "2026-07-03",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.029993089149965447,
+  "league_hr_per_pa": 0.03116040440621699,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 13,
-  "games_pregame": 12,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 7,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 14,
+      "daily_rank": 15,
       "batter": "Victor Caratini",
       "batter_id": 605170,
       "batter_hand": "L",
@@ -70,6 +70,63 @@
     {
       "tier": "secondary",
       "daily_rank": 18,
+      "batter": "Andr\u00e9s Gim\u00e9nez",
+      "batter_id": 665926,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 9,
+      "pitcher": "Luis Castillo",
+      "pitcher_id": 622491,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823120,
+      "game_datetime": "2026-07-04T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 960,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0904,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.128,
+      "ev_pct": 35.7,
+      "edge_pct": 3.77,
+      "ev_pct_p3": 40.25,
+      "blended_hr_per_pa": 0.02573,
+      "breakout_score": -0.0341,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1111,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.46,
+          "deviation": 0.46
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8259,
+          "deviation": 0.1741
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9659,
+          "deviation": 0.0341
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 21,
       "batter": "Jackson Holliday",
       "batter_id": 702616,
       "batter_hand": "L",
@@ -115,7 +172,7 @@
           "deviation": 0.1073
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +183,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 21,
+      "daily_rank": 24,
       "batter": "Josh Bell",
       "batter_id": 605137,
       "batter_hand": "L",
@@ -172,7 +229,7 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -183,7 +240,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 22,
+      "daily_rank": 26,
       "batter": "Colton Cowser",
       "batter_id": 681297,
       "batter_hand": "L",
@@ -229,7 +286,7 @@
           "deviation": 0.1824
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -240,7 +297,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 25,
+      "daily_rank": 29,
       "batter": "Tristan Gray",
       "batter_id": 656484,
       "batter_hand": "L",
@@ -286,7 +343,7 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -297,7 +354,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 28,
+      "daily_rank": 33,
       "batter": "Juan Soto",
       "batter_id": 665742,
       "batter_hand": "L",
@@ -343,7 +400,7 @@
           "deviation": 0.079
         }
       ],
-      "tier_rank": 17,
+      "tier_rank": 18,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -353,6 +410,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-07-03.json"
 }
