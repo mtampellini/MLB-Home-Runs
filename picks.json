@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-07-03T23:03:17.597493+00:00",
+  "generated_at": "2026-07-03T23:45:27.719919+00:00",
   "as_of_date": "2026-07-03",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03116040440621699,
+  "league_hr_per_pa": 0.03819444444444445,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 13,
-  "games_pregame": 7,
-  "games_excluded_live_or_complete": 6,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 7,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 10,
+      "daily_rank": 11,
       "batter": "Kody Clemens",
       "batter_id": 665019,
       "batter_hand": "L",
@@ -74,7 +74,66 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 13,
+      "daily_rank": 9,
+      "batter": "Max Muncy",
+      "batter_id": 571970,
+      "batter_hand": "L",
+      "team": "LAD",
+      "lineup_spot": 5,
+      "pitcher": "Michael King",
+      "pitcher_id": 650633,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823933,
+      "game_datetime": "2026-07-04T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 400,
+      "dk_odds": 395,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.191,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2919,
+      "ev_pct": 45.95,
+      "edge_pct": 10.09,
+      "ev_pct_p3": 30.15,
+      "blended_hr_per_pa": 0.05544,
+      "breakout_score": 0.139,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5243,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4515,
+          "deviation": 0.4515
+        },
+        {
+          "name": "park",
+          "value": 1.1765,
+          "deviation": 0.1765
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.139,
+          "deviation": 0.139
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 14,
       "batter": "Paul Goldschmidt",
       "batter_id": 502671,
       "batter_hand": "R",
@@ -120,7 +179,7 @@
           "deviation": 0.1552
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -133,7 +192,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 19,
+      "daily_rank": 20,
       "batter": "Jonathan Aranda",
       "batter_id": 666018,
       "batter_hand": "L",
@@ -179,7 +238,7 @@
           "deviation": 0.0674
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 12,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -192,7 +251,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 16,
+      "daily_rank": 17,
       "batter": "Liam Hicks",
       "batter_id": 689414,
       "batter_hand": "L",
@@ -238,7 +297,7 @@
           "deviation": 0.1067
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 13,
       "stacked": true,
       "stacked_with": [
         "Griffin Conine"
@@ -253,7 +312,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 25,
+      "daily_rank": 26,
       "batter": "Daulton Varsho",
       "batter_id": 662139,
       "batter_hand": "L",
@@ -299,7 +358,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 15,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -311,6 +370,6 @@
       }
     }
   ],
-  "skipped_count": 12,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-07-03.json"
 }
