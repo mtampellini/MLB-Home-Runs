@@ -1,30 +1,88 @@
 {
   "date": "2026-07-03",
-  "generated_at": "2026-07-03T17:27:19.358512+00:00",
+  "generated_at": "2026-07-03T18:52:06.668412+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030347890451517395,
   "funnel": {
     "total_slate_games": 13,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 13,
-    "total_predictions": 0,
+    "total_predictions": 16,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
+    "single_sided_devig": 16,
     "above_25_ev_pre_cap": 0,
     "eligible_below_900_price_cap": 0,
     "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 0,
     "secondary_count": 0,
-    "shadow_count": 0
+    "shadow_count": 1
   },
   "primary_picks": [],
   "secondary_picks": [],
-  "shadow_picks": [],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 1,
+      "batter": "Nathan Church",
+      "batter_id": 701675,
+      "batter_hand": "L",
+      "team": "STL",
+      "lineup_spot": 9,
+      "pitcher": "David Peterson",
+      "pitcher_id": 656849,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824659,
+      "game_datetime": "2026-07-03T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 830,
+      "dk_odds": 920,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0956,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1183,
+      "ev_pct": 20.71,
+      "edge_pct": 2.28,
+      "ev_pct_p3": 5.58,
+      "blended_hr_per_pa": 0.02311,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1581,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7615,
+          "deviation": 0.2385
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.1344,
+          "deviation": 0.1344
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
   "settlement": null
 }
