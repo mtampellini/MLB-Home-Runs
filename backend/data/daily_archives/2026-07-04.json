@@ -1,32 +1,91 @@
 {
   "date": "2026-07-04",
-  "generated_at": "2026-07-04T16:18:14.704907+00:00",
+  "generated_at": "2026-07-04T17:34:03.166939+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.029530978575564564,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 1,
-    "games_pregame": 14,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "games_excluded_live_or_complete": 2,
+    "games_pregame": 13,
+    "total_predictions": 16,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 1,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
+    "single_sided_devig": 16,
+    "above_25_ev_pre_cap": 2,
+    "eligible_below_900_price_cap": 2,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 2,
+    "primary_count": 4,
     "secondary_count": 0,
-    "shadow_count": 3
+    "shadow_count": 4
   },
   "primary_picks": [
     {
       "tier": "primary",
       "daily_rank": 1,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 2,
+      "pitcher": "Cal Quantrill",
+      "pitcher_id": 615698,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822882,
+      "game_datetime": "2026-07-04T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 425,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1818,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3095,
+      "ev_pct": 62.48,
+      "edge_pct": 12.77,
+      "ev_pct_p3": 51.12,
+      "blended_hr_per_pa": 0.05238,
+      "breakout_score": 0.0873,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2933,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7739,
+          "deviation": 0.7739
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3158,
+          "deviation": 0.3158
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0873,
+          "deviation": 0.0873
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -72,7 +131,7 @@
           "deviation": 0.1346
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "stacked": true,
       "stacked_with": [
         "Ryan Kreidler"
@@ -88,6 +147,65 @@
     {
       "tier": "primary",
       "daily_rank": 2,
+      "batter": "Elias D\u00edaz",
+      "batter_id": 553869,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 8,
+      "pitcher": "Jack Flaherty",
+      "pitcher_id": 656427,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822882,
+      "game_datetime": "2026-07-04T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 870,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1088,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1591,
+      "ev_pct": 54.32,
+      "edge_pct": 5.03,
+      "ev_pct_p3": 35.28,
+      "blended_hr_per_pa": 0.04204,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7642,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4235,
+          "deviation": 0.4235
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8977,
+          "deviation": 0.1023
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
       "batter": "Ryan Kreidler",
       "batter_id": 668952,
       "batter_hand": "R",
@@ -133,7 +251,7 @@
           "deviation": 0.0873
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": true,
       "stacked_with": [
         "Brooks Lee"
@@ -151,7 +269,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 3,
+      "daily_rank": 5,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -208,7 +326,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 4,
+      "daily_rank": 6,
       "batter": "Kody Clemens",
       "batter_id": 665019,
       "batter_hand": "L",
@@ -265,7 +383,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 7,
+      "batter": "Spencer Torkelson",
+      "batter_id": 679529,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 5,
+      "pitcher": "Cal Quantrill",
+      "pitcher_id": 615698,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822882,
+      "game_datetime": "2026-07-04T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 392,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1998,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2347,
+      "ev_pct": 15.49,
+      "edge_pct": 3.49,
+      "ev_pct_p3": 13.36,
+      "blended_hr_per_pa": 0.04358,
+      "breakout_score": 0.0209,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0632,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4758,
+          "deviation": 0.4758
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3158,
+          "deviation": 0.3158
+        },
+        {
+          "name": "park",
+          "value": 1.0542,
+          "deviation": 0.0542
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
       "batter": "Jasson Dom\u00ednguez",
       "batter_id": 691176,
       "batter_hand": "L",
@@ -311,7 +486,7 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
