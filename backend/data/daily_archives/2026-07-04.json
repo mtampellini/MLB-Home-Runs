@@ -1,27 +1,27 @@
 {
   "date": "2026-07-04",
-  "generated_at": "2026-07-04T17:34:03.166939+00:00",
+  "generated_at": "2026-07-04T18:41:17.514938+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.029530978575564564,
+  "league_hr_per_pa": 0.03417829678154372,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 2,
     "games_pregame": 13,
-    "total_predictions": 16,
+    "total_predictions": 14,
     "skipped_low_data": 1,
-    "skipped_career_pa_filter": 1,
+    "skipped_career_pa_filter": 3,
     "skipped_other": 0,
-    "matched_in_odds_market": 16,
-    "matched_alt_market": 16,
+    "matched_in_odds_market": 14,
+    "matched_alt_market": 14,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 16,
-    "above_25_ev_pre_cap": 2,
-    "eligible_below_900_price_cap": 2,
+    "single_sided_devig": 14,
+    "above_25_ev_pre_cap": 0,
+    "eligible_below_900_price_cap": 0,
     "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 4,
     "secondary_count": 0,
-    "shadow_count": 4
+    "shadow_count": 6
   },
   "primary_picks": [
     {
@@ -327,6 +327,120 @@
     {
       "tier": "shadow",
       "daily_rank": 6,
+      "batter": "Dominic Canzone",
+      "batter_id": 686527,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 3,
+      "pitcher": "Shane Bieber",
+      "pitcher_id": 669456,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823118,
+      "game_datetime": "2026-07-04T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 400,
+      "dk_odds": 357,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1989,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2415,
+      "ev_pct": 20.77,
+      "edge_pct": 4.26,
+      "ev_pct_p3": 7.02,
+      "blended_hr_per_pa": 0.05178,
+      "breakout_score": 0.1432,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.07,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5149,
+          "deviation": 0.5149
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1432,
+          "deviation": 0.1432
+        },
+        {
+          "name": "park",
+          "value": 1.0289,
+          "deviation": 0.0289
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
+      "batter": "Cole Young",
+      "batter_id": 702284,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 7,
+      "pitcher": "Shane Bieber",
+      "pitcher_id": 669456,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823118,
+      "game_datetime": "2026-07-04T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 800,
+      "dk_odds": 850,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1006,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1246,
+      "ev_pct": 18.33,
+      "edge_pct": 2.39,
+      "ev_pct_p3": 18.03,
+      "blended_hr_per_pa": 0.03251,
+      "breakout_score": 0.0026,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.392,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.9511,
+          "deviation": 0.0489
+        },
+        {
+          "name": "park",
+          "value": 1.0289,
+          "deviation": 0.0289
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0026,
+          "deviation": 0.0026
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
       "batter": "Kody Clemens",
       "batter_id": 665019,
       "batter_hand": "L",
@@ -372,7 +486,7 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -383,7 +497,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 7,
+      "daily_rank": 9,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
@@ -429,7 +543,7 @@
           "deviation": 0.0542
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -440,7 +554,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 8,
+      "daily_rank": 10,
       "batter": "Jasson Dom\u00ednguez",
       "batter_id": 691176,
       "batter_hand": "L",
@@ -486,7 +600,7 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,

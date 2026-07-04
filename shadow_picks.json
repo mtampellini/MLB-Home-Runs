@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-04T17:34:03.166680+00:00",
+  "generated_at": "2026-07-04T18:41:17.514601+00:00",
   "as_of_date": "2026-07-04",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.029530978575564564,
+  "league_hr_per_pa": 0.03417829678154372,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -69,7 +69,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 7,
+      "batter": "Cole Young",
+      "batter_id": 702284,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 7,
+      "pitcher": "Shane Bieber",
+      "pitcher_id": 669456,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823118,
+      "game_datetime": "2026-07-04T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 800,
+      "dk_odds": 850,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1006,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1246,
+      "ev_pct": 18.33,
+      "edge_pct": 2.39,
+      "ev_pct_p3": 18.03,
+      "blended_hr_per_pa": 0.03251,
+      "breakout_score": 0.0026,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.392,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.9511,
+          "deviation": 0.0489
+        },
+        {
+          "name": "park",
+          "value": 1.0289,
+          "deviation": 0.0289
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0026,
+          "deviation": 0.0026
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
       "batter": "Kody Clemens",
       "batter_id": 665019,
       "batter_hand": "L",
@@ -115,7 +172,7 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -125,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 2,
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-07-04.json"
 }
