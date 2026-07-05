@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-07-05T15:21:00.700189+00:00",
+  "generated_at": "2026-07-05T17:52:06.398486+00:00",
   "as_of_date": "2026-07-05",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03209876543209877,
+  "league_hr_per_pa": 0.031099050203527816,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 10,
       "batter": "Victor Caratini",
       "batter_id": 605170,
       "batter_hand": "R",
@@ -59,7 +59,7 @@
           "deviation": 0.1056
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Brooks Lee",
@@ -75,8 +75,131 @@
         "passes_quad": false,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 12,
+      "batter": "Seiya Suzuki",
+      "batter_id": 673548,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 3,
+      "pitcher": "Matthew Liberatore",
+      "pitcher_id": 669461,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824656,
+      "game_datetime": "2026-07-05T18:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 471,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1598,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.225,
+      "ev_pct": 39.49,
+      "edge_pct": 6.52,
+      "ev_pct_p3": 61.34,
+      "blended_hr_per_pa": 0.0444,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0741,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4277,
+          "deviation": 0.4277
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 11,
+      "stacked": true,
+      "stacked_with": [
+        "Ian Happ",
+        "Dansby Swanson",
+        "Alex Bregman",
+        "Carson Kelly"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 19,
+      "batter": "TJ Rumfield",
+      "batter_id": 681198,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 4,
+      "pitcher": "Tyler Mahle",
+      "pitcher_id": 641816,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824333,
+      "game_datetime": "2026-07-05T20:00:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 496,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1563,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2069,
+      "ev_pct": 28.26,
+      "edge_pct": 5.06,
+      "ev_pct_p3": 25.88,
+      "blended_hr_per_pa": 0.0367,
+      "breakout_score": 0.0207,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6259,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.18,
+          "deviation": 0.18
+        },
+        {
+          "name": "temperature",
+          "value": 1.1632,
+          "deviation": 0.1632
+        },
+        {
+          "name": "park",
+          "value": 1.1133,
+          "deviation": 0.1133
+        }
+      ],
+      "tier_rank": 16,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-07-05.json"
 }
