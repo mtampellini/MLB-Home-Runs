@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-07-04T22:10:01.885758+00:00",
+  "generated_at": "2026-07-05T01:19:48.716959+00:00",
   "as_of_date": "2026-07-04",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03186780761286515,
+  "league_hr_per_pa": 0.03081211390688564,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 11,
-  "games_excluded_live_or_complete": 4,
+  "games_pregame": 4,
+  "games_excluded_live_or_complete": 11,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 13,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -69,7 +69,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 8,
+      "daily_rank": 14,
+      "batter": "Xavier Edwards",
+      "batter_id": 669364,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 4,
+      "pitcher": "Aaron Civale",
+      "pitcher_id": 650644,
+      "pitcher_hand": "R",
+      "park": "OAK",
+      "game_pk": 824983,
+      "game_datetime": "2026-07-05T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 830,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0965,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1226,
+      "ev_pct": 22.62,
+      "edge_pct": 2.61,
+      "ev_pct_p3": 12.9,
+      "blended_hr_per_pa": 0.01279,
+      "breakout_score": 0.0905,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.415,
+          "deviation": 0.585
+        },
+        {
+          "name": "park",
+          "value": 1.1522,
+          "deviation": 0.1522
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 16,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -115,7 +172,7 @@
           "deviation": 0.0026
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +183,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 19,
       "batter": "Kody Clemens",
       "batter_id": 665019,
       "batter_hand": "L",
@@ -172,7 +229,7 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -180,8 +237,65 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 25,
+      "batter": "Brice Turang",
+      "batter_id": 668930,
+      "batter_hand": "L",
+      "team": "MIL",
+      "lineup_spot": 1,
+      "pitcher": "Merrill Kelly",
+      "pitcher_id": 518876,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825063,
+      "game_datetime": "2026-07-05T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 497,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1538,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1722,
+      "ev_pct": 10.23,
+      "edge_pct": 1.84,
+      "ev_pct_p3": 10.78,
+      "blended_hr_per_pa": 0.03265,
+      "breakout_score": -0.0054,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0769,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.7748,
+          "deviation": 0.2252
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0597,
+          "deviation": 0.0597
+        }
+      ],
+      "tier_rank": 13,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 10,
   "skipped_reference": "data/processed/skipped_batters_2026-07-04.json"
 }

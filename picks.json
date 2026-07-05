@@ -1,19 +1,80 @@
 {
-  "generated_at": "2026-07-04T22:10:01.885324+00:00",
+  "generated_at": "2026-07-05T01:19:48.716486+00:00",
   "as_of_date": "2026-07-04",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03186780761286515,
+  "league_hr_per_pa": 0.03081211390688564,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 11,
-  "games_excluded_live_or_complete": 4,
+  "games_pregame": 4,
+  "games_excluded_live_or_complete": 11,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 3,
+      "daily_rank": 6,
+      "batter": "William Contreras",
+      "batter_id": 661388,
+      "batter_hand": "R",
+      "team": "MIL",
+      "lineup_spot": 4,
+      "pitcher": "Merrill Kelly",
+      "pitcher_id": 518876,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825063,
+      "game_datetime": "2026-07-05T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 541,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.142,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.207,
+      "ev_pct": 44.92,
+      "edge_pct": 6.51,
+      "ev_pct_p3": 40.39,
+      "blended_hr_per_pa": 0.0318,
+      "breakout_score": 0.0354,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0147,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5827,
+          "deviation": 0.5827
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0354,
+          "deviation": 0.0354
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0319,
+          "deviation": 0.0319
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Jake Bauers"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -59,7 +120,7 @@
           "deviation": 0.1346
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "Ryan Kreidler"
@@ -73,6 +134,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 10,
   "skipped_reference": "data/processed/skipped_batters_2026-07-04.json"
 }
