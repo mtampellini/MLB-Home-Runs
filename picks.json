@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-06T21:02:14.098436+00:00",
+  "generated_at": "2026-07-06T22:21:36.297853+00:00",
   "as_of_date": "2026-07-06",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03399775649322634,
+  "league_hr_per_pa": 0.03195036117799593,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,66 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 10,
+      "batter": "Gavin Sheets",
+      "batter_id": 657757,
+      "batter_hand": "L",
+      "team": "SD",
+      "lineup_spot": 4,
+      "pitcher": "Brandon Pfaadt",
+      "pitcher_id": 694297,
+      "pitcher_hand": "R",
+      "park": "SD",
+      "game_pk": 823282,
+      "game_datetime": "2026-07-07T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 443,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1738,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2575,
+      "ev_pct": 41.62,
+      "edge_pct": 8.36,
+      "ev_pct_p3": 48.12,
+      "blended_hr_per_pa": 0.05136,
+      "breakout_score": -0.0494,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3452,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6075,
+          "deviation": 0.6075
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.8731,
+          "deviation": 0.1269
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 13,
       "batter": "Brice Matthews",
       "batter_id": 694728,
       "batter_hand": "R",
@@ -59,7 +118,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 16,
       "stacked": true,
       "stacked_with": [
         "Christian Walker",
@@ -74,6 +133,6 @@
       }
     }
   ],
-  "skipped_count": 2,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-07-06.json"
 }
