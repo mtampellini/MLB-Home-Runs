@@ -1,34 +1,995 @@
 {
   "date": "2026-07-06",
-  "generated_at": "2026-07-06T18:56:13.197074+00:00",
+  "generated_at": "2026-07-06T21:02:14.099161+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03399775649322634,
   "funnel": {
     "total_slate_games": 8,
     "games_excluded_live_or_complete": 1,
     "games_pregame": 7,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "total_predictions": 52,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 1,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 51,
+    "matched_alt_market": 51,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
+    "single_sided_devig": 51,
+    "above_25_ev_pre_cap": 13,
+    "eligible_below_900_price_cap": 13,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 0,
-    "secondary_count": 0,
-    "shadow_count": 3
+    "primary_count": 10,
+    "secondary_count": 3,
+    "shadow_count": 9
   },
-  "primary_picks": [],
-  "secondary_picks": [],
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Drake Baldwin",
+      "batter_id": 686948,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 4,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824900,
+      "game_datetime": "2026-07-06T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 400,
+      "dk_odds": 419,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1865,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3167,
+      "ev_pct": 64.39,
+      "edge_pct": 13.02,
+      "ev_pct_p3": 45.59,
+      "blended_hr_per_pa": 0.04634,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6342,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3923,
+          "deviation": 0.3923
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.363,
+          "deviation": 0.363
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Matt Olson",
+        "Michael Harris II"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824900,
+      "game_datetime": "2026-07-06T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 310,
+      "dk_odds": 316,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.23,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3438,
+      "ev_pct": 43.03,
+      "edge_pct": 11.38,
+      "ev_pct_p3": 42.35,
+      "blended_hr_per_pa": 0.05708,
+      "breakout_score": 0.0057,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2157,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.679,
+          "deviation": 0.679
+        },
+        {
+          "name": "pitcher",
+          "value": 1.3923,
+          "deviation": 0.3923
+        },
+        {
+          "name": "temperature",
+          "value": 1.096,
+          "deviation": 0.096
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Drake Baldwin",
+        "Michael Harris II"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Michael Harris II",
+      "batter_id": 671739,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 1,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824900,
+      "game_datetime": "2026-07-06T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 386,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.201,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3091,
+      "ev_pct": 50.22,
+      "edge_pct": 10.81,
+      "ev_pct_p3": 33.03,
+      "blended_hr_per_pa": 0.04222,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1516,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3923,
+          "deviation": 0.3923
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2419,
+          "deviation": 0.2419
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Drake Baldwin",
+        "Matt Olson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "James Wood",
+      "batter_id": 695578,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 1,
+      "pitcher": "Mike Burrows",
+      "pitcher_id": 681347,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 250,
+      "dk_odds": 248,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2779,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3809,
+      "ev_pct": 33.32,
+      "edge_pct": 10.3,
+      "ev_pct_p3": 18.66,
+      "blended_hr_per_pa": 0.05059,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2937,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5497,
+          "deviation": 0.5497
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4881,
+          "deviation": 0.4881
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "CJ Abrams",
+        "Daylen Lile"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "CJ Abrams",
+      "batter_id": 682928,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 4,
+      "pitcher": "Mike Burrows",
+      "pitcher_id": 681347,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 344,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2102,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2878,
+      "ev_pct": 32.38,
+      "edge_pct": 7.75,
+      "ev_pct_p3": 24.17,
+      "blended_hr_per_pa": 0.04147,
+      "breakout_score": 0.0756,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4258,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5497,
+          "deviation": 0.5497
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2197,
+          "deviation": 0.2197
+        },
+        {
+          "name": "temperature",
+          "value": 1.1056,
+          "deviation": 0.1056
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "James Wood",
+        "Daylen Lile"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 3,
+      "pitcher": "Griffin Jax",
+      "pitcher_id": 643377,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822958,
+      "game_datetime": "2026-07-06T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 620,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1402,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.215,
+      "ev_pct": 54.84,
+      "edge_pct": 7.49,
+      "ev_pct_p3": 44.57,
+      "blended_hr_per_pa": 0.04602,
+      "breakout_score": 0.0781,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0726,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3536,
+          "deviation": 0.3536
+        },
+        {
+          "name": "park",
+          "value": 1.0781,
+          "deviation": 0.0781
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0781,
+          "deviation": 0.0781
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 13,
+      "batter": "Christian Walker",
+      "batter_id": 572233,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 4,
+      "pitcher": "Miles Mikolas",
+      "pitcher_id": 571945,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 310,
+      "dk_odds": 328,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2268,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2948,
+      "ev_pct": 26.16,
+      "edge_pct": 6.79,
+      "ev_pct_p3": 35.61,
+      "blended_hr_per_pa": 0.05167,
+      "breakout_score": -0.0801,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6213,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.5199,
+          "deviation": 0.5199
+        },
+        {
+          "name": "temperature",
+          "value": 1.1056,
+          "deviation": 0.1056
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Cam Smith",
+        "Brice Matthews"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
+      "batter": "Cam Smith",
+      "batter_id": 701358,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 6,
+      "pitcher": "Miles Mikolas",
+      "pitcher_id": 571945,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 528,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1522,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2069,
+      "ev_pct": 29.91,
+      "edge_pct": 5.46,
+      "ev_pct_p3": 14.22,
+      "blended_hr_per_pa": 0.02983,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2489,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8774,
+          "deviation": 0.1226
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Christian Walker",
+        "Brice Matthews"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Brice Matthews",
+      "batter_id": 694728,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 9,
+      "pitcher": "Miles Mikolas",
+      "pitcher_id": 571945,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 620,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1379,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1894,
+      "ev_pct": 36.4,
+      "edge_pct": 5.15,
+      "ev_pct_p3": 58.37,
+      "blended_hr_per_pa": 0.04063,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5694,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1951,
+          "deviation": 0.1951
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Christian Walker",
+        "Cam Smith"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
+      "batter": "Daylen Lile",
+      "batter_id": 695734,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 6,
+      "pitcher": "Mike Burrows",
+      "pitcher_id": 681347,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 591,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1454,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1934,
+      "ev_pct": 33.61,
+      "edge_pct": 4.8,
+      "ev_pct_p3": 29.23,
+      "blended_hr_per_pa": 0.02965,
+      "breakout_score": 0.0368,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.234,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5497,
+          "deviation": 0.5497
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8721,
+          "deviation": 0.1279
+        },
+        {
+          "name": "temperature",
+          "value": 1.1056,
+          "deviation": 0.1056
+        }
+      ],
+      "tier_rank": 10,
+      "stacked": true,
+      "stacked_with": [
+        "James Wood",
+        "CJ Abrams"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 5,
+      "batter": "Jasson Dom\u00ednguez",
+      "batter_id": 691176,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 5,
+      "pitcher": "Griffin Jax",
+      "pitcher_id": 643377,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822958,
+      "game_datetime": "2026-07-06T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 710,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1253,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1718,
+      "ev_pct": 39.13,
+      "edge_pct": 4.65,
+      "ev_pct_p3": 44.04,
+      "blended_hr_per_pa": 0.03828,
+      "breakout_score": -0.0367,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3103,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.293,
+          "deviation": 0.293
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1261,
+          "deviation": 0.1261
+        },
+        {
+          "name": "park",
+          "value": 0.9202,
+          "deviation": 0.0798
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 11,
+      "batter": "Yandy D\u00edaz",
+      "batter_id": 650490,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 1,
+      "pitcher": "Cam Schlittler",
+      "pitcher_id": 693645,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822958,
+      "game_datetime": "2026-07-06T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 660,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1304,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1685,
+      "ev_pct": 28.05,
+      "edge_pct": 3.81,
+      "ev_pct_p3": 16.49,
+      "blended_hr_per_pa": 0.03339,
+      "breakout_score": 0.1067,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7549,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.1067,
+          "deviation": 0.1067
+        },
+        {
+          "name": "park",
+          "value": 1.0781,
+          "deviation": 0.0781
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9821,
+          "deviation": 0.0179
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 12,
+      "batter": "Dominic Smith",
+      "batter_id": 642086,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 6,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824900,
+      "game_datetime": "2026-07-06T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 660,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1276,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1684,
+      "ev_pct": 27.98,
+      "edge_pct": 4.08,
+      "ev_pct_p3": 20.89,
+      "blended_hr_per_pa": 0.02665,
+      "breakout_score": 0.0629,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5357,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3923,
+          "deviation": 0.3923
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7838,
+          "deviation": 0.2162
+        },
+        {
+          "name": "temperature",
+          "value": 1.096,
+          "deviation": 0.096
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 1,
+      "daily_rank": 14,
+      "batter": "Ben Rice",
+      "batter_id": 700250,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 2,
+      "pitcher": "Griffin Jax",
+      "pitcher_id": 643377,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822958,
+      "game_datetime": "2026-07-06T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 327,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2243,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2819,
+      "ev_pct": 20.36,
+      "edge_pct": 5.75,
+      "ev_pct_p3": 25.34,
+      "blended_hr_per_pa": 0.06246,
+      "breakout_score": -0.0454,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.52,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8371,
+          "deviation": 0.8371
+        },
+        {
+          "name": "pitcher",
+          "value": 1.293,
+          "deviation": 0.293
+        },
+        {
+          "name": "park",
+          "value": 0.9202,
+          "deviation": 0.0798
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 15,
+      "batter": "Ozzie Albies",
+      "batter_id": 645277,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 2,
+      "pitcher": "Freddy Peralta",
+      "pitcher_id": 642547,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824900,
+      "game_datetime": "2026-07-06T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 517,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1562,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1949,
+      "ev_pct": 20.25,
+      "edge_pct": 3.87,
+      "ev_pct_p3": 31.39,
+      "blended_hr_per_pa": 0.03258,
+      "breakout_score": -0.0924,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1635,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3923,
+          "deviation": 0.3923
+        },
+        {
+          "name": "temperature",
+          "value": 1.096,
+          "deviation": 0.096
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9076,
+          "deviation": 0.0924
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 16,
+      "batter": "Isaac Paredes",
+      "batter_id": 670623,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 3,
+      "pitcher": "Miles Mikolas",
+      "pitcher_id": 571945,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 424,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.182,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2278,
+      "ev_pct": 19.36,
+      "edge_pct": 4.58,
+      "ev_pct_p3": 21.69,
+      "blended_hr_per_pa": 0.03552,
+      "breakout_score": -0.0212,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2983,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "temperature",
+          "value": 1.1056,
+          "deviation": 0.1056
+        },
+        {
+          "name": "park",
+          "value": 0.9276,
+          "deviation": 0.0724
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 17,
       "batter": "Edmundo Sosa",
       "batter_id": 624641,
       "batter_hand": "R",
@@ -74,7 +1035,7 @@
           "deviation": 0.0576
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -85,7 +1046,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 2,
+      "daily_rank": 18,
+      "batter": "Jose Altuve",
+      "batter_id": 514888,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 1,
+      "pitcher": "Miles Mikolas",
+      "pitcher_id": 571945,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 521,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1557,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1904,
+      "ev_pct": 18.24,
+      "edge_pct": 3.47,
+      "ev_pct_p3": 28.87,
+      "blended_hr_per_pa": 0.03005,
+      "breakout_score": -0.0899,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1742,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8838,
+          "deviation": 0.1162
+        },
+        {
+          "name": "temperature",
+          "value": 1.1056,
+          "deviation": 0.1056
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 19,
       "batter": "Bryce Harper",
       "batter_id": 547180,
       "batter_hand": "L",
@@ -131,7 +1149,7 @@
           "deviation": 0.1366
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -142,7 +1160,121 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 3,
+      "daily_rank": 20,
+      "batter": "Jacob Young",
+      "batter_id": 696285,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 7,
+      "pitcher": "Mike Burrows",
+      "pitcher_id": 681347,
+      "pitcher_hand": "R",
+      "park": "WSH",
+      "game_pk": 822712,
+      "game_datetime": "2026-07-06T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1100,
+      "dk_odds": 870,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0867,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0948,
+      "ev_pct": 13.8,
+      "edge_pct": 0.81,
+      "ev_pct_p3": -0.57,
+      "blended_hr_per_pa": 0.02171,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.12,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6385,
+          "deviation": 0.3615
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.1056,
+          "deviation": 0.1056
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
+      "batter": "Junior Caminero",
+      "batter_id": 691406,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 3,
+      "pitcher": "Cam Schlittler",
+      "pitcher_id": 693645,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822958,
+      "game_datetime": "2026-07-06T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 310,
+      "dk_odds": 329,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2266,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.265,
+      "ev_pct": 13.67,
+      "edge_pct": 3.84,
+      "ev_pct_p3": 18.5,
+      "blended_hr_per_pa": 0.06658,
+      "breakout_score": -0.046,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2085,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9583,
+          "deviation": 0.9583
+        },
+        {
+          "name": "park",
+          "value": 1.0781,
+          "deviation": 0.0781
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.954,
+          "deviation": 0.046
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
       "batter": "Brandon Marsh",
       "batter_id": 669016,
       "batter_hand": "L",
@@ -188,7 +1320,7 @@
           "deviation": 0.0973
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
