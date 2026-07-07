@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-07T18:35:04.358494+00:00",
+  "generated_at": "2026-07-07T20:59:13.460513+00:00",
   "as_of_date": "2026-07-07",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03371908594254832,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,68 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 1,
+      "daily_rank": 11,
+      "batter": "Alec Bohm",
+      "batter_id": 664761,
+      "batter_hand": "R",
+      "team": "PHI",
+      "lineup_spot": 4,
+      "pitcher": "Andrew Abbott",
+      "pitcher_id": 671096,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824495,
+      "game_datetime": "2026-07-07T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 471,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1696,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2554,
+      "ev_pct": 45.83,
+      "edge_pct": 8.59,
+      "ev_pct_p3": 51.82,
+      "blended_hr_per_pa": 0.03398,
+      "breakout_score": -0.0443,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.6791,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.1159,
+          "deviation": 0.1159
+        },
+        {
+          "name": "temperature",
+          "value": 1.1056,
+          "deviation": 0.1056
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "Edmundo Sosa"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 12,
       "batter": "Jackson Chourio",
       "batter_id": 694192,
       "batter_hand": "R",
@@ -59,7 +120,7 @@
           "deviation": 0.1056
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 10,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -72,7 +133,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 14,
       "batter": "Jordan Walker",
       "batter_id": 691023,
       "batter_hand": "R",
@@ -118,7 +179,7 @@
           "deviation": 0.1056
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 12,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -130,6 +191,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-07-07.json"
 }
