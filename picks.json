@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-07T20:59:13.460513+00:00",
+  "generated_at": "2026-07-07T22:11:31.275748+00:00",
   "as_of_date": "2026-07-07",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03371908594254832,
+  "league_hr_per_pa": 0.028859527121001392,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 14,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -59,7 +59,7 @@
           "deviation": 0.1056
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "stacked": true,
       "stacked_with": [
         "Edmundo Sosa"
@@ -74,7 +74,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 16,
       "batter": "Jackson Chourio",
       "batter_id": 694192,
       "batter_hand": "R",
@@ -120,7 +120,7 @@
           "deviation": 0.1056
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 14,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -133,7 +133,66 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 14,
+      "daily_rank": 28,
+      "batter": "Max Kepler",
+      "batter_id": 596146,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 5,
+      "pitcher": "Germ\u00e1n M\u00e1rquez",
+      "pitcher_id": 608566,
+      "pitcher_hand": "R",
+      "park": "SD",
+      "game_pk": 823280,
+      "game_datetime": "2026-07-08T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 508,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1615,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2105,
+      "ev_pct": 28.01,
+      "edge_pct": 4.91,
+      "ev_pct_p3": 28.01,
+      "blended_hr_per_pa": 0.04034,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": null,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.3979,
+          "deviation": 0.3979
+        },
+        {
+          "name": "park",
+          "value": 0.8731,
+          "deviation": 0.1269
+        }
+      ],
+      "tier_rank": 17,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 18,
       "batter": "Jordan Walker",
       "batter_id": 691023,
       "batter_hand": "R",
@@ -179,7 +238,7 @@
           "deviation": 0.1056
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 18,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -191,6 +250,6 @@
       }
     }
   ],
-  "skipped_count": 13,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-07-07.json"
 }

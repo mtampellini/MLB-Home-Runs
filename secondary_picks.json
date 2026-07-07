@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-07T20:59:13.461073+00:00",
+  "generated_at": "2026-07-07T22:11:31.276192+00:00",
   "as_of_date": "2026-07-07",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03371908594254832,
+  "league_hr_per_pa": 0.028859527121001392,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 8,
+      "daily_rank": 10,
       "batter": "Brandon Nimmo",
       "batter_id": 607043,
       "batter_hand": "L",
@@ -66,8 +66,65 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 15,
+      "batter": "Brayan Rocchio",
+      "batter_id": 677587,
+      "batter_hand": "L",
+      "team": "CLE",
+      "lineup_spot": 6,
+      "pitcher": "Taj Bradley",
+      "pitcher_id": 671737,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823687,
+      "game_datetime": "2026-07-07T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 830,
+      "dk_odds": 950,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0943,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1383,
+      "ev_pct": 45.2,
+      "edge_pct": 4.4,
+      "ev_pct_p3": 45.83,
+      "blended_hr_per_pa": 0.02051,
+      "breakout_score": -0.0046,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5615,
+          "deviation": 0.5615
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7108,
+          "deviation": 0.2892
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 13,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-07-07.json"
 }
