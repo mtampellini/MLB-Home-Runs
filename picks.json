@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-08T21:10:24.625306+00:00",
+  "generated_at": "2026-07-08T22:17:32.934270+00:00",
   "as_of_date": "2026-07-08",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03312838087558378,
+  "league_hr_per_pa": 0.031310283424840483,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 10,
       "batter": "Tyler Soderstrom",
       "batter_id": 691016,
       "batter_hand": "L",
@@ -59,7 +59,7 @@
           "deviation": 0.0768
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 9,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -72,7 +72,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 11,
       "batter": "CJ Abrams",
       "batter_id": 682928,
       "batter_hand": "L",
@@ -118,7 +118,7 @@
           "deviation": 0.0725
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 11,
       "stacked": true,
       "stacked_with": [
         "James Wood"
@@ -130,8 +130,67 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 19,
+      "batter": "David Fry",
+      "batter_id": 681807,
+      "batter_hand": "R",
+      "team": "CLE",
+      "lineup_spot": 1,
+      "pitcher": "Connor Prielipp",
+      "pitcher_id": 687570,
+      "pitcher_hand": "L",
+      "park": "MIN",
+      "game_pk": 823684,
+      "game_datetime": "2026-07-08T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 595,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.145,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1903,
+      "ev_pct": 32.27,
+      "edge_pct": 4.54,
+      "ev_pct_p3": 26.72,
+      "blended_hr_per_pa": 0.04351,
+      "breakout_score": 0.0476,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1385,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3896,
+          "deviation": 0.3896
+        },
+        {
+          "name": "pitcher",
+          "value": 0.9306,
+          "deviation": 0.0694
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0476,
+          "deviation": 0.0476
+        }
+      ],
+      "tier_rank": 20,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 11,
+  "skipped_count": 12,
   "skipped_reference": "data/processed/skipped_batters_2026-07-08.json"
 }
