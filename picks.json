@@ -1,185 +1,124 @@
 {
-  "generated_at": "2026-07-09T01:13:41.297055+00:00",
-  "as_of_date": "2026-07-08",
+  "generated_at": "2026-07-09T16:41:56.246998+00:00",
+  "as_of_date": "2026-07-09",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.0282075629782718,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
-  "total_games_today": 15,
-  "games_pregame": 2,
-  "games_excluded_live_or_complete": 13,
+  "total_games_today": 13,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 10,
-      "batter": "Tyler Soderstrom",
-      "batter_id": 691016,
+      "daily_rank": 2,
+      "batter": "Jared Young",
+      "batter_id": 676724,
       "batter_hand": "L",
-      "team": "OAK",
-      "lineup_spot": 4,
-      "pitcher": "Troy Melton",
-      "pitcher_id": 675512,
+      "team": "NYM",
+      "lineup_spot": 6,
+      "pitcher": "Michael Wacha",
+      "pitcher_id": 608379,
       "pitcher_hand": "R",
-      "park": "DET",
-      "game_pk": 824253,
-      "game_datetime": "2026-07-08T22:40:00+00:00",
+      "park": "NYM",
+      "game_pk": 823606,
+      "game_datetime": "2026-07-09T17:10:00+00:00",
       "line": 0.5,
-      "fd_odds": 400,
-      "dk_odds": 408,
+      "fd_odds": 480,
+      "dk_odds": 483,
       "best_book": "draftkings",
-      "market_prob_devig": 0.1885,
+      "market_prob_devig": 0.1634,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.2908,
-      "ev_pct": 47.71,
-      "edge_pct": 10.23,
-      "ev_pct_p3": 39.3,
-      "blended_hr_per_pa": 0.04606,
-      "breakout_score": 0.0692,
+      "model_prob": 0.248,
+      "ev_pct": 44.59,
+      "edge_pct": 8.46,
+      "ev_pct_p3": 27.45,
+      "blended_hr_per_pa": 0.04915,
+      "breakout_score": 0.15,
       "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": -0.5106,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6559,
       "unstable_recent": true,
       "top_3_features": [
         {
-          "name": "pitcher",
-          "value": 1.5049,
-          "deviation": 0.5049
+          "name": "batter_skill",
+          "value": 1.7425,
+          "deviation": 0.7425
         },
         {
-          "name": "batter_skill",
-          "value": 1.3905,
-          "deviation": 0.3905
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
         },
         {
           "name": "temperature",
-          "value": 1.0768,
-          "deviation": 0.0768
+          "value": 1.0864,
+          "deviation": 0.0864
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 2,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_triple_v2": true,
-        "passes_quad": true,
-        "passes_anchor": true
+        "passes_quad": false,
+        "passes_anchor": false
       }
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
-      "batter": "CJ Abrams",
-      "batter_id": 682928,
+      "daily_rank": 8,
+      "batter": "Brayan Rocchio",
+      "batter_id": 677587,
       "batter_hand": "L",
-      "team": "WSH",
-      "lineup_spot": 4,
-      "pitcher": "Spencer Arrighetti",
-      "pitcher_id": 681293,
+      "team": "CLE",
+      "lineup_spot": 2,
+      "pitcher": "Bailey Ober",
+      "pitcher_id": 641927,
       "pitcher_hand": "R",
-      "park": "WSH",
-      "game_pk": 822710,
-      "game_datetime": "2026-07-08T22:45:00+00:00",
+      "park": "MIN",
+      "game_pk": 823683,
+      "game_datetime": "2026-07-09T17:40:00+00:00",
       "line": 0.5,
-      "fd_odds": 400,
-      "dk_odds": 409,
+      "fd_odds": 700,
+      "dk_odds": 740,
       "best_book": "draftkings",
-      "market_prob_devig": 0.1883,
+      "market_prob_devig": 0.1135,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.2836,
-      "ev_pct": 44.37,
-      "edge_pct": 9.53,
-      "ev_pct_p3": 35.75,
-      "blended_hr_per_pa": 0.0426,
-      "breakout_score": 0.0725,
+      "model_prob": 0.1518,
+      "ev_pct": 27.5,
+      "edge_pct": 3.83,
+      "ev_pct_p3": 28.22,
+      "blended_hr_per_pa": 0.02226,
+      "breakout_score": -0.006,
       "low_confidence": false,
       "pitcher_factor_shrunk": true,
-      "trend_signal": -0.2719,
-      "unstable_recent": false,
+      "trend_signal": -0.6467,
+      "unstable_recent": true,
       "top_3_features": [
         {
           "name": "pitcher",
-          "value": 1.491,
-          "deviation": 0.491
+          "value": 1.6,
+          "deviation": 0.6
         },
         {
           "name": "batter_skill",
-          "value": 1.2858,
-          "deviation": 0.2858
+          "value": 0.7893,
+          "deviation": 0.2107
         },
         {
-          "name": "breakout_signal",
-          "value": 1.0725,
-          "deviation": 0.0725
+          "name": "wind",
+          "value": 0.9593,
+          "deviation": 0.0407
         }
       ],
-      "tier_rank": 11,
-      "stacked": true,
-      "stacked_with": [
-        "James Wood"
-      ],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_triple_v2": true,
-        "passes_quad": true,
-        "passes_anchor": true
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 19,
-      "batter": "David Fry",
-      "batter_id": 681807,
-      "batter_hand": "R",
-      "team": "CLE",
-      "lineup_spot": 1,
-      "pitcher": "Connor Prielipp",
-      "pitcher_id": 687570,
-      "pitcher_hand": "L",
-      "park": "MIN",
-      "game_pk": 823684,
-      "game_datetime": "2026-07-08T23:40:00+00:00",
-      "line": 0.5,
-      "fd_odds": 520,
-      "dk_odds": 595,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.145,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1903,
-      "ev_pct": 32.27,
-      "edge_pct": 4.54,
-      "ev_pct_p3": 26.72,
-      "blended_hr_per_pa": 0.04351,
-      "breakout_score": 0.0476,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": false,
-      "trend_signal": 0.1385,
-      "unstable_recent": false,
-      "top_3_features": [
-        {
-          "name": "batter_skill",
-          "value": 1.3896,
-          "deviation": 0.3896
-        },
-        {
-          "name": "pitcher",
-          "value": 0.9306,
-          "deviation": 0.0694
-        },
-        {
-          "name": "breakout_signal",
-          "value": 1.0476,
-          "deviation": 0.0476
-        }
-      ],
-      "tier_rank": 20,
+      "tier_rank": 6,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -191,6 +130,6 @@
       }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-07-08.json"
+  "skipped_count": 11,
+  "skipped_reference": "data/processed/skipped_batters_2026-07-09.json"
 }
