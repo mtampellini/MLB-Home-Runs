@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-09T18:24:22.314321+00:00",
+  "generated_at": "2026-07-09T22:19:44.078602+00:00",
   "as_of_date": "2026-07-09",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.032572988479156066,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 19,
       "batter": "Randal Grichuk",
       "batter_id": 545341,
       "batter_hand": "R",
@@ -58,7 +58,7 @@
           "deviation": 0.0679
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +69,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 12,
+      "daily_rank": 20,
       "batter": "Kyle Manzardo",
       "batter_id": 700932,
       "batter_hand": "L",
@@ -115,7 +115,7 @@
           "deviation": 0.0407
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +126,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 24,
+      "batter": "Noelvi Marte",
+      "batter_id": 682622,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Jes\u00fas Luzardo",
+      "pitcher_id": 666200,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824494,
+      "game_datetime": "2026-07-09T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 690,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1252,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1442,
+      "ev_pct": 13.91,
+      "edge_pct": 1.9,
+      "ev_pct_p3": 32.66,
+      "blended_hr_per_pa": 0.05109,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5685,
+          "deviation": 0.5685
+        },
+        {
+          "name": "pitcher",
+          "value": 0.6899,
+          "deviation": 0.3101
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 26,
       "batter": "Royce Lewis",
       "batter_id": 668904,
       "batter_hand": "R",
@@ -172,7 +229,7 @@
           "deviation": 0.0407
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -182,6 +239,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 17,
   "skipped_reference": "data/processed/skipped_batters_2026-07-09.json"
 }

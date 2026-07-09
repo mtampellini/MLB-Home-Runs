@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-09T18:24:22.313698+00:00",
+  "generated_at": "2026-07-09T22:19:44.077782+00:00",
   "as_of_date": "2026-07-09",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.032572988479156066,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,68 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 4,
+      "batter": "Brandon Marsh",
+      "batter_id": 669016,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 4,
+      "pitcher": "Brady Singer",
+      "pitcher_id": 663903,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824494,
+      "game_datetime": "2026-07-09T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 393,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1933,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2878,
+      "ev_pct": 41.87,
+      "edge_pct": 9.45,
+      "ev_pct_p3": 39.5,
+      "blended_hr_per_pa": 0.03589,
+      "breakout_score": 0.0195,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.7165,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        },
+        {
+          "name": "park",
+          "value": 1.1073,
+          "deviation": 0.1073
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Bryce Harper"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
       "batter": "Jared Young",
       "batter_id": 676724,
       "batter_hand": "L",
@@ -59,7 +120,7 @@
           "deviation": 0.0864
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -72,7 +133,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 14,
       "batter": "Brayan Rocchio",
       "batter_id": 677587,
       "batter_hand": "L",
@@ -118,7 +179,7 @@
           "deviation": 0.0407
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 11,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -130,6 +191,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 17,
   "skipped_reference": "data/processed/skipped_batters_2026-07-09.json"
 }

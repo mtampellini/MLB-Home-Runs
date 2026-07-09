@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-09T18:24:22.314117+00:00",
+  "generated_at": "2026-07-09T22:19:44.078283+00:00",
   "as_of_date": "2026-07-09",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.032572988479156066,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,64 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 7,
+      "daily_rank": 11,
+      "batter": "TJ Rumfield",
+      "batter_id": 681198,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 5,
+      "pitcher": "Carson Whisenhunt",
+      "pitcher_id": 687931,
+      "pitcher_hand": "L",
+      "park": "SF",
+      "game_pk": 823201,
+      "game_datetime": "2026-07-10T01:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1060,
+      "dk_odds": 900,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0866,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1106,
+      "ev_pct": 28.28,
+      "edge_pct": 2.4,
+      "ev_pct_p3": 28.2,
+      "blended_hr_per_pa": 0.03549,
+      "breakout_score": 0.0007,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.634,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 0.7712,
+          "deviation": 0.2288
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0895,
+          "deviation": 0.0895
+        },
+        {
+          "name": "wind",
+          "value": 1.0883,
+          "deviation": 0.0883
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 12,
       "batter": "Luke Keaschall",
       "batter_id": 807712,
       "batter_hand": "R",
@@ -58,7 +115,64 @@
           "deviation": 0.0407
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 13,
+      "batter": "J.P. Crawford",
+      "batter_id": 641487,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 1,
+      "pitcher": "Janson Junk",
+      "pitcher_id": 676083,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823846,
+      "game_datetime": "2026-07-09T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 980,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0896,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1186,
+      "ev_pct": 28.04,
+      "edge_pct": 2.9,
+      "ev_pct_p3": 28.35,
+      "blended_hr_per_pa": 0.02776,
+      "breakout_score": -0.0025,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.8522,
+          "deviation": 0.1478
+        },
+        {
+          "name": "park",
+          "value": 0.9769,
+          "deviation": 0.0231
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9975,
+          "deviation": 0.0025
+        }
+      ],
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -68,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 17,
   "skipped_reference": "data/processed/skipped_batters_2026-07-09.json"
 }
