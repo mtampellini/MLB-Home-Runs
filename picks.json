@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-07-10T20:16:01.865215+00:00",
+  "generated_at": "2026-07-10T22:48:52.841122+00:00",
   "as_of_date": "2026-07-10",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.030651630969499737,
+  "league_hr_per_pa": 0.0318553013430519,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 14,
+      "daily_rank": 21,
       "batter": "Sal Stewart",
       "batter_id": 701398,
       "batter_hand": "R",
@@ -59,7 +59,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 9,
       "stacked": true,
       "stacked_with": [
         "Elly De La Cruz",
@@ -74,8 +74,69 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 17,
+      "batter": "Ildemaro Vargas",
+      "batter_id": 545121,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 6,
+      "pitcher": "Kyle Hurt",
+      "pitcher_id": 669165,
+      "pitcher_hand": "R",
+      "park": "LAD",
+      "game_pk": 823927,
+      "game_datetime": "2026-07-11T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 800,
+      "dk_odds": 880,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0991,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1432,
+      "ev_pct": 40.35,
+      "edge_pct": 4.41,
+      "ev_pct_p3": 38.75,
+      "blended_hr_per_pa": 0.0268,
+      "breakout_score": 0.0122,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4933,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1765,
+          "deviation": 0.1765
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8412,
+          "deviation": 0.1588
+        },
+        {
+          "name": "wind",
+          "value": 1.0776,
+          "deviation": 0.0776
+        }
+      ],
+      "tier_rank": 20,
+      "stacked": true,
+      "stacked_with": [
+        "Gabriel Moreno"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 14,
+  "skipped_count": 18,
   "skipped_reference": "data/processed/skipped_batters_2026-07-10.json"
 }
