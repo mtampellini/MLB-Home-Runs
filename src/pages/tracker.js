@@ -150,6 +150,10 @@ function pickPassesFilter(pick, filterView, tier) {
   const fs = pick.filter_status
   const p = { ...pick, tier: pick.tier || tier }
   if (filterView === 'triple') return fs?.passes_triple ?? picksTriple(p)
+  // v2 (P3 drop-only) shipped 2026-07-01; archives before then have no
+  // passes_triple_v2 key (nor ev_pct_p3), where v2 degrades to triple by
+  // design — mirror the backend fail-safe so pre-7/01 days line up.
+  if (filterView === 'v2') return fs?.passes_triple_v2 ?? fs?.passes_triple ?? picksTriple(p)
   if (filterView === 'anchor') return fs?.passes_anchor ?? picksAnchor(p)
   return true
 }
@@ -762,12 +766,14 @@ export default function Tracker({ archives, tracker, generatedAt }) {
   }, [])
   // View filter scopes the top metrics by post-build empirical filter.
   // baseline = every settled pick (back-compat).
-  // triple   = only picks that pass the production filter (passes_triple).
+  // v2       = the PRODUCTION filter since 2026-07-01 (passes_triple_v2, P3
+  //            drop-only) — the only picks actually published on the site.
+  // triple   = the previous production filter (passes_triple, retired 7/01).
   // anchor   = the over-prediction-audit overlay (passes_anchor, 2026-06-09);
   //            replaced quad in this UI — quad is still tagged in archives for
   //            the pre-registered H2 eval on 2026-06-18.
   // See backend/docs/filter_experiment.md.
-  const [filterView, setFilterView] = useState('baseline')
+  const [filterView, setFilterView] = useState('v2')
   // Default to "post-rebuild" if any post-rebuild archive exists (current
   // model is the relevant one to show); otherwise default to "all" so the
   // page isn't empty when only pre-rebuild data exists yet.
@@ -1091,9 +1097,10 @@ export default function Tracker({ archives, tracker, generatedAt }) {
           </div>
           <FilterRow label="View"  value={filterView} onChange={setFilterView}
             options={[
-              ['baseline', 'Baseline'],
+              ['v2',       'V2 (live)'],
               ['triple',   'Triple'],
               ['anchor',   'Anchor'],
+              ['baseline', 'Baseline'],
             ]} />
           {spansRebuild && (
             <FilterRow label="Model" value={modelFilter} onChange={setModelFilter}
