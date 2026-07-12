@@ -29,7 +29,9 @@ from pathlib import Path
 from typing import Iterable, Optional
 
 from src.odds.ev import american_to_decimal
-from src.pipeline.filters import annotate_filter_status, passes_anchor, passes_quad, passes_triple
+from src.pipeline.filters import (
+    annotate_filter_status, passes_anchor, passes_quad, passes_triple, passes_triple_v2,
+)
 from src.pipeline.slate import normalize_name
 
 logger = logging.getLogger(__name__)
@@ -310,6 +312,9 @@ def _load_all_tiers_rows(
                 # Stamp the filter flags onto the row itself so downstream
                 # filtering doesn't need a secondary lookup.
                 r["passes_triple"] = bool(fs.get("passes_triple", passes_triple(pick)))
+                # v2 shipped 2026-07-01; the fallback's own fail-safe makes it
+                # behave like triple on older picks (no ev_pct_p3).
+                r["passes_triple_v2"] = bool(fs.get("passes_triple_v2", passes_triple_v2(pick)))
                 r["passes_quad"] = bool(fs.get("passes_quad", passes_quad(pick)))
                 # Anchor shipped 2026-06-09: archives before then carry a
                 # filter_status without the key, so fall back to computing it.
@@ -351,6 +356,7 @@ def build_tracker(
 
     by_filter: dict[str, dict] = {}
     for filter_name, flag in (
+        ("v2", "passes_triple_v2"),
         ("triple", "passes_triple"),
         ("quad", "passes_quad"),
         ("anchor", "passes_anchor"),
