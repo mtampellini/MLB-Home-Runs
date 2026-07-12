@@ -637,7 +637,7 @@ function CalibrationView({ archives, tierFilter, filterView = 'baseline', bets =
     () => buildCalibration(archives, tierFilter, filterView, bets, betsOnly),
     [archives, tierFilter, filterView, bets, betsOnly],
   )
-  const tierLabel = tierFilter.length === 3 ? 'all tiers' : tierFilter.join(' + ')
+  const tierLabel = tierFilter.length === ALL_TIERS.length ? 'all tiers' : tierFilter.join(' + ')
   if (cal.total < CALIBRATION_MIN_PICKS) {
     return (
       <div style={{
@@ -746,7 +746,9 @@ function FilterRow({ label, options, value, onChange }) {
 }
 
 // ─── page component ────────────────────────────────────────────────────
-const ALL_TIERS = ['primary', 'secondary', 'shadow']
+// Secondary (rank-11+/price-capped overflow, tracked-not-bet) was removed from
+// the UI 2026-07-12; its picks stay in archives + tracker.json for evals.
+const ALL_TIERS = ['primary', 'shadow']
 
 export default function Tracker({ archives, tracker, generatedAt }) {
   const refreshed = fmtRefreshed(generatedAt)
@@ -764,16 +766,13 @@ export default function Tracker({ archives, tracker, generatedAt }) {
       return ALL_TIERS.filter(x => prev.includes(x) || x === t)
     })
   }, [])
-  // View filter scopes the top metrics by post-build empirical filter.
-  // baseline = every settled pick (back-compat).
-  // v2       = the PRODUCTION filter since 2026-07-01 (passes_triple_v2, P3
-  //            drop-only) — the only picks actually published on the site.
-  // triple   = the previous production filter (passes_triple, retired 7/01).
-  // anchor   = the over-prediction-audit overlay (passes_anchor, 2026-06-09);
-  //            replaced quad in this UI — quad is still tagged in archives for
-  //            the pre-registered H2 eval on 2026-06-18.
+  // The tracker shows ONLY the production filter (passes_triple_v2, live since
+  // 2026-07-01) — the picks actually published on the site. Research views
+  // (baseline/triple/anchor) were removed from the UI 2026-07-12; the flags are
+  // still tagged in archives + tracker.json by_filter for offline evals.
+  // Pre-7/01 picks degrade v2 -> triple (the production filter at the time).
   // See backend/docs/filter_experiment.md.
-  const [filterView, setFilterView] = useState('v2')
+  const filterView = 'v2'
   // Default to "post-rebuild" if any post-rebuild archive exists (current
   // model is the relevant one to show); otherwise default to "all" so the
   // page isn't empty when only pre-rebuild data exists yet.
@@ -857,16 +856,13 @@ export default function Tracker({ archives, tracker, generatedAt }) {
   const [betFilter, setBetFilter] = useState('all')
   const betsOnly = betFilter === 'bets'
 
-  // Two related conditions:
-  //   hasPreRebuild — any pre-rebuild archive is in the dataset; drives the
-  //     banner so users see the context whenever old-model data could be on
-  //     the page.
-  //   spansRebuild — the dataset has BOTH pre and post; drives the Model
-  //     filter row (there's nothing to filter between if only one side exists).
-  const { hasPreRebuild, spansRebuild } = useMemo(() => {
+  // spansRebuild — the dataset has BOTH pre- and post-rebuild archives; drives
+  // the Model filter row (there's nothing to filter between if only one side
+  // exists).
+  const spansRebuild = useMemo(() => {
     const hasPre = archives.some(a => a.date < MODEL_REBUILD_DATE)
     const hasPost = archives.some(a => a.date >= MODEL_REBUILD_DATE)
-    return { hasPreRebuild: hasPre, spansRebuild: hasPre && hasPost }
+    return hasPre && hasPost
   }, [archives])
 
   // Filter + sort the archive list.
@@ -994,33 +990,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
           </div>
         )}
 
-        {/* Model-rebuild banner — shows whenever pre-rebuild data is in the
-            dataset (so users get context while the old picks are still visible).
-            Hides once pre-rebuild data ages out. */}
-        {hasPreRebuild && (
-          <div style={{
-            border: `1px solid ${T.border}`, borderRadius: 6,
-            padding: '16px 20px', marginBottom: 28,
-            fontSize: 13, color: T.textMedium, lineHeight: 1.6,
-            background: T.bgSubtle,
-          }}>
-            <strong style={{ color: T.text, fontWeight: 600 }}>Model updated {MODEL_REBUILD_DATE}.</strong>{' '}
-            v7-weather-cal2-0.3.0 shipped on this date:{' '}
-            <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>park factors</code> refreshed
-            to 2022-2025 and regressed (plus a code-space fix that had left three parks unadjusted),{' '}
-            game <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>weather</code> switched
-            to the MLB feed with re-fit temperature/wind coefficients, and the{' '}
-            <code style={{ background: T.bg, padding: '0 4px', borderRadius: 3 }}>P3</code> drop-only filter.
-            Earlier picks reflect older models
-            {spansRebuild ? (
-              <> and shouldn't be aggregated with current numbers — use the{' '}
-              <strong style={{ color: T.text }}>Model</strong> filter below to scope the view.</>
-            ) : (
-              <>. Tomorrow's settled picks will be the first under the new model.</>
-            )}
-          </div>
-        )}
-
         {/* Bets-only banner — makes clear the metrics below are the user's own record. */}
         {betsOnly && (
           <div style={{
@@ -1086,7 +1055,7 @@ export default function Tracker({ archives, tracker, generatedAt }) {
               fontSize: 11, color: T.textLight, minWidth: 50,
               textTransform: 'uppercase', letterSpacing: 0.6,
             }}>Tier</span>
-            {[['primary', 'Primary'], ['secondary', 'Secondary'], ['shadow', 'Shadow']].map(([k, lbl]) => (
+            {[['primary', 'Primary'], ['shadow', 'Shadow']].map(([k, lbl]) => (
               <FilterButton key={k} active={tierFilter.includes(k)} onClick={() => toggleTier(k)}>
                 {lbl}
               </FilterButton>
@@ -1095,13 +1064,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
               All
             </FilterButton>
           </div>
-          <FilterRow label="View"  value={filterView} onChange={setFilterView}
-            options={[
-              ['v2',       'V2 (live)'],
-              ['triple',   'Triple'],
-              ['anchor',   'Anchor'],
-              ['baseline', 'Baseline'],
-            ]} />
           {spansRebuild && (
             <FilterRow label="Model" value={modelFilter} onChange={setModelFilter}
               options={[
