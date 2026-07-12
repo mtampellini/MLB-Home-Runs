@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-07-12T15:15:42.224355+00:00",
+  "generated_at": "2026-07-12T16:20:14.184534+00:00",
   "as_of_date": "2026-07-12",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.029718149298321474,
+  "league_hr_per_pa": 0.035814071628143256,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 14,
+      "daily_rank": 28,
       "batter": "Jasson Dom\u00ednguez",
       "batter_id": 691176,
       "batter_hand": "L",
@@ -58,7 +58,64 @@
           "deviation": 0.0384
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 30,
+      "batter": "Alec Bohm",
+      "batter_id": 664761,
+      "batter_hand": "R",
+      "team": "PHI",
+      "lineup_spot": 4,
+      "pitcher": "Tarik Skubal",
+      "pitcher_id": 669373,
+      "pitcher_hand": "L",
+      "park": "DET",
+      "game_pk": 824250,
+      "game_datetime": "2026-07-12T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 790,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1002,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1291,
+      "ev_pct": 25.22,
+      "edge_pct": 2.89,
+      "ev_pct_p3": 29.32,
+      "blended_hr_per_pa": 0.03257,
+      "breakout_score": -0.0335,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.6504,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.9095,
+          "deviation": 0.0905
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0666,
+          "deviation": 0.0666
+        },
+        {
+          "name": "wind",
+          "value": 0.9525,
+          "deviation": 0.0475
+        }
+      ],
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -68,6 +125,6 @@
       }
     }
   ],
-  "skipped_count": 16,
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-07-12.json"
 }
