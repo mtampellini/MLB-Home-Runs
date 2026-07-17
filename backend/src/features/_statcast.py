@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import logging
 import os
+import time
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -357,12 +358,39 @@ def _fetch_player_pitches(
     return df
 
 
+# Savant intermittently serves an HTML error page instead of CSV, which
+# surfaces as a ParserError deep inside pybaseball and would otherwise kill
+# the whole run over one player. Retry with backoff; if it never clears,
+# return an empty frame (→ NaN metrics → the skip-never-impute rule drops
+# the player). Empty results are not cached, so the next run retries fresh.
+_FETCH_BACKOFF_SECONDS = (5, 15, 45)
+
+
 def _pybaseball_fetch(kind: str, player_id: int, start: date, end: date) -> pd.DataFrame:
     """Thin wrapper around pybaseball. Imported lazily so tests don't need it installed."""
     from pybaseball import statcast_batter, statcast_pitcher  # type: ignore
+    import requests
 
     fn = statcast_batter if kind == "batter" else statcast_pitcher
-    df = fn(start.isoformat(), end.isoformat(), player_id)
+    df = None
+    for attempt in range(len(_FETCH_BACKOFF_SECONDS) + 1):
+        try:
+            df = fn(start.isoformat(), end.isoformat(), player_id)
+            break
+        except (pd.errors.ParserError, pd.errors.EmptyDataError,
+                requests.exceptions.RequestException) as exc:
+            if attempt < len(_FETCH_BACKOFF_SECONDS):
+                delay = _FETCH_BACKOFF_SECONDS[attempt]
+                logger.warning(
+                    "Savant fetch failed for %s id=%s (%s); retrying in %ds",
+                    kind, player_id, type(exc).__name__, delay)
+                time.sleep(delay)
+            else:
+                logger.warning(
+                    "Savant fetch failed for %s id=%s after %d attempts (%s); "
+                    "skipping player this run",
+                    kind, player_id, attempt + 1, type(exc).__name__)
+                return pd.DataFrame()
     if df is None or df.empty:
         return pd.DataFrame()
     df = df.copy()
