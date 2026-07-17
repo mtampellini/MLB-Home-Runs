@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-07-17T22:23:14.203496+00:00",
+  "generated_at": "2026-07-17T23:42:09.600301+00:00",
   "as_of_date": "2026-07-17",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.031571972834189166,
+  "league_hr_per_pa": 0.03376491495303376,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 2,
+  "games_pregame": 8,
+  "games_excluded_live_or_complete": 7,
   "picks": [
     {
       "tier": "primary",
@@ -78,7 +78,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 10,
+      "daily_rank": 11,
       "batter": "Mickey Moniak",
       "batter_id": 666160,
       "batter_hand": "L",
@@ -140,7 +140,66 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 15,
+      "daily_rank": 9,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 4,
+      "pitcher": "Merrill Kelly",
+      "pitcher_id": 518876,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825060,
+      "game_datetime": "2026-07-18T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 400,
+      "dk_odds": 399,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1902,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2928,
+      "ev_pct": 46.41,
+      "edge_pct": 10.26,
+      "ev_pct_p3": 29.67,
+      "blended_hr_per_pa": 0.04609,
+      "breakout_score": 0.1479,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0693,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4516,
+          "deviation": 0.4516
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.3651,
+          "deviation": 0.3651
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1479,
+          "deviation": 0.1479
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 17,
       "batter": "Trent Grisham",
       "batter_id": 663757,
       "batter_hand": "L",
@@ -186,7 +245,7 @@
           "deviation": 0.096
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Paul Goldschmidt",
@@ -195,6 +254,65 @@
         "Ryan McMahon",
         "Austin Wells"
       ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 13,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 3,
+      "pitcher": "Reid Detmers",
+      "pitcher_id": 672282,
+      "pitcher_hand": "L",
+      "park": "LAA",
+      "game_pk": 824009,
+      "game_datetime": "2026-07-18T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 415,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1786,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2554,
+      "ev_pct": 40.46,
+      "edge_pct": 7.68,
+      "ev_pct_p3": 32.07,
+      "blended_hr_per_pa": 0.05006,
+      "breakout_score": 0.0714,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.345,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4825,
+          "deviation": 0.4825
+        },
+        {
+          "name": "park",
+          "value": 1.1269,
+          "deviation": 0.1269
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0714,
+          "deviation": 0.0714
+        }
+      ],
+      "tier_rank": 13,
+      "stacked": false,
+      "stacked_with": [],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -251,7 +369,7 @@
           "deviation": 0.1344
         }
       ],
-      "tier_rank": 13,
+      "tier_rank": 15,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -264,7 +382,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 12,
       "batter": "Ryan McMahon",
       "batter_id": 641857,
       "batter_hand": "L",
@@ -310,7 +428,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 17,
       "stacked": true,
       "stacked_with": [
         "Paul Goldschmidt",
@@ -328,6 +446,6 @@
       }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 10,
   "skipped_reference": "data/processed/skipped_batters_2026-07-17.json"
 }
