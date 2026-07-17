@@ -1,15 +1,130 @@
 {
-  "generated_at": "2026-07-17T20:25:57.275820+00:00",
+  "generated_at": "2026-07-17T22:23:14.204096+00:00",
   "as_of_date": "2026-07-17",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.035880065236482246,
+  "league_hr_per_pa": 0.031571972834189166,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 14,
-  "games_excluded_live_or_complete": 1,
-  "picks": [],
-  "skipped_count": 9,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 2,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 12,
+      "batter": "Miguel Andujar",
+      "batter_id": 609280,
+      "batter_hand": "R",
+      "team": "SD",
+      "lineup_spot": 8,
+      "pitcher": "Seth Lugo",
+      "pitcher_id": 607625,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824090,
+      "game_datetime": "2026-07-18T00:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 700,
+      "dk_odds": 800,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1098,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1547,
+      "ev_pct": 39.22,
+      "edge_pct": 4.49,
+      "ev_pct_p3": 42.42,
+      "blended_hr_per_pa": 0.02549,
+      "breakout_score": -0.0239,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2955,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8073,
+          "deviation": 0.1927
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 18,
+      "batter": "Xander Bogaerts",
+      "batter_id": 593428,
+      "batter_hand": "R",
+      "team": "SD",
+      "lineup_spot": 3,
+      "pitcher": "Seth Lugo",
+      "pitcher_id": 607625,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824090,
+      "game_datetime": "2026-07-18T00:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 680,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.126,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1709,
+      "ev_pct": 33.27,
+      "edge_pct": 4.49,
+      "ev_pct_p3": 39.97,
+      "blended_hr_per_pa": 0.02463,
+      "breakout_score": -0.0515,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3119,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.78,
+          "deviation": 0.22
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-07-17.json"
 }

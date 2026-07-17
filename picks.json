@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-07-17T20:25:57.275301+00:00",
+  "generated_at": "2026-07-17T22:23:14.203496+00:00",
   "as_of_date": "2026-07-17",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.035880065236482246,
+  "league_hr_per_pa": 0.031571972834189166,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 14,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 8,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -79,6 +79,68 @@
     {
       "tier": "primary",
       "daily_rank": 10,
+      "batter": "Mickey Moniak",
+      "batter_id": 666160,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 2,
+      "pitcher": "Brady Singer",
+      "pitcher_id": 663903,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824332,
+      "game_datetime": "2026-07-18T00:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 285,
+      "dk_odds": 280,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2536,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 45.36,
+      "edge_pct": 12.4,
+      "ev_pct_p3": 43.87,
+      "blended_hr_per_pa": 0.05855,
+      "breakout_score": 0.0126,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2605,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8546,
+          "deviation": 0.8546
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "temperature",
+          "value": 1.1824,
+          "deviation": 0.1824
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "TJ Rumfield",
+        "Jake McCarthy"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 15,
       "batter": "Trent Grisham",
       "batter_id": 663757,
       "batter_hand": "L",
@@ -124,7 +186,7 @@
           "deviation": 0.096
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 9,
       "stacked": true,
       "stacked_with": [
         "Paul Goldschmidt",
@@ -143,7 +205,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 7,
       "batter": "Henry Davis",
       "batter_id": 680779,
       "batter_hand": "R",
@@ -189,7 +251,7 @@
           "deviation": 0.1344
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 13,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -202,7 +264,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 11,
       "batter": "Ryan McMahon",
       "batter_id": 641857,
       "batter_hand": "L",
@@ -248,7 +310,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 15,
       "stacked": true,
       "stacked_with": [
         "Paul Goldschmidt",
@@ -266,6 +328,6 @@
       }
     }
   ],
-  "skipped_count": 9,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-07-17.json"
 }
