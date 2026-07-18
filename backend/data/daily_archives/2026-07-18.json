@@ -1,29 +1,152 @@
 {
   "date": "2026-07-18",
-  "generated_at": "2026-07-18T14:53:52.205215+00:00",
+  "generated_at": "2026-07-18T16:03:08.713762+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03158437540286193,
   "funnel": {
     "total_slate_games": 16,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 16,
-    "total_predictions": 0,
+    "total_predictions": 30,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "skipped_career_pa_filter": 6,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 30,
+    "matched_alt_market": 30,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
+    "single_sided_devig": 30,
+    "above_25_ev_pre_cap": 2,
+    "eligible_below_900_price_cap": 2,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 0,
+    "primary_count": 2,
     "secondary_count": 0,
     "shadow_count": 0
   },
-  "primary_picks": [],
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Henry Davis",
+      "batter_id": 680779,
+      "batter_hand": "R",
+      "team": "PIT",
+      "lineup_spot": 9,
+      "pitcher": "Gavin Williams",
+      "pitcher_id": 668909,
+      "pitcher_hand": "R",
+      "park": "CLE",
+      "game_pk": 824414,
+      "game_datetime": "2026-07-18T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 770,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1185,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2204,
+      "ev_pct": 91.79,
+      "edge_pct": 10.19,
+      "ev_pct_p3": 88.57,
+      "blended_hr_per_pa": 0.04058,
+      "breakout_score": 0.0187,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3162,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5657,
+          "deviation": 0.5657
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2847,
+          "deviation": 0.2847
+        },
+        {
+          "name": "park",
+          "value": 0.8244,
+          "deviation": 0.1756
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Ryan O'Hearn"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Ryan O'Hearn",
+      "batter_id": 656811,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 5,
+      "pitcher": "Gavin Williams",
+      "pitcher_id": 668909,
+      "pitcher_hand": "R",
+      "park": "CLE",
+      "game_pk": 824414,
+      "game_datetime": "2026-07-18T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 720,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1292,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1776,
+      "ev_pct": 45.62,
+      "edge_pct": 4.84,
+      "ev_pct_p3": 40.82,
+      "blended_hr_per_pa": 0.04232,
+      "breakout_score": 0.0368,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.5672,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.34,
+          "deviation": 0.34
+        },
+        {
+          "name": "temperature",
+          "value": 1.144,
+          "deviation": 0.144
+        },
+        {
+          "name": "pitcher",
+          "value": 0.884,
+          "deviation": 0.116
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Henry Davis"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
   "secondary_picks": [],
   "shadow_picks": [],
   "settlement": null

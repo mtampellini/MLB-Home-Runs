@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-18T14:53:52.204671+00:00",
+  "generated_at": "2026-07-18T16:03:08.713111+00:00",
   "as_of_date": "2026-07-18",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03158437540286193,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,69 @@
   "total_games_today": 16,
   "games_pregame": 16,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Ryan O'Hearn",
+      "batter_id": 656811,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 5,
+      "pitcher": "Gavin Williams",
+      "pitcher_id": 668909,
+      "pitcher_hand": "R",
+      "park": "CLE",
+      "game_pk": 824414,
+      "game_datetime": "2026-07-18T17:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 720,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1292,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1776,
+      "ev_pct": 45.62,
+      "edge_pct": 4.84,
+      "ev_pct_p3": 40.82,
+      "blended_hr_per_pa": 0.04232,
+      "breakout_score": 0.0368,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.5672,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.34,
+          "deviation": 0.34
+        },
+        {
+          "name": "temperature",
+          "value": 1.144,
+          "deviation": 0.144
+        },
+        {
+          "name": "pitcher",
+          "value": 0.884,
+          "deviation": 0.116
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Henry Davis"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-07-18.json"
 }
