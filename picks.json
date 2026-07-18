@@ -1,19 +1,199 @@
 {
-  "generated_at": "2026-07-18T17:12:38.815946+00:00",
+  "generated_at": "2026-07-18T18:29:33.517092+00:00",
   "as_of_date": "2026-07-18",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.033221833662764176,
+  "league_hr_per_pa": 0.031777486818358756,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 16,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 3,
+      "daily_rank": 10,
+      "batter": "Mickey Moniak",
+      "batter_id": 666160,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 2,
+      "pitcher": "Rhett Lowder",
+      "pitcher_id": 695076,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824331,
+      "game_datetime": "2026-07-18T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 255,
+      "dk_odds": 271,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2673,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 40.08,
+      "edge_pct": 11.02,
+      "ev_pct_p3": 38.64,
+      "blended_hr_per_pa": 0.05807,
+      "breakout_score": 0.0126,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3098,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8275,
+          "deviation": 0.8275
+        },
+        {
+          "name": "pitcher",
+          "value": 1.5581,
+          "deviation": 0.5581
+        },
+        {
+          "name": "temperature",
+          "value": 1.144,
+          "deviation": 0.144
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "TJ Rumfield",
+        "Jake McCarthy"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 15,
+      "batter": "Wilyer Abreu",
+      "batter_id": 677800,
+      "batter_hand": "L",
+      "team": "BOS",
+      "lineup_spot": 3,
+      "pitcher": "Ian Seymour",
+      "pitcher_id": 693855,
+      "pitcher_hand": "L",
+      "park": "BOS",
+      "game_pk": 824738,
+      "game_datetime": "2026-07-18T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 432,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1756,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2481,
+      "ev_pct": 36.47,
+      "edge_pct": 7.25,
+      "ev_pct_p3": 40.1,
+      "blended_hr_per_pa": 0.03663,
+      "breakout_score": -0.029,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5637,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5866,
+          "deviation": 0.5866
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1526,
+          "deviation": 0.1526
+        },
+        {
+          "name": "wind",
+          "value": 1.1358,
+          "deviation": 0.1358
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "Ty France",
+      "batter_id": 664034,
+      "batter_hand": "R",
+      "team": "SD",
+      "lineup_spot": 6,
+      "pitcher": "Randy Dobnak",
+      "pitcher_id": 677976,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824088,
+      "game_datetime": "2026-07-18T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 630,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1301,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1904,
+      "ev_pct": 38.96,
+      "edge_pct": 6.02,
+      "ev_pct_p3": 27.78,
+      "blended_hr_per_pa": 0.04142,
+      "breakout_score": 0.0948,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.11,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3036,
+          "deviation": 0.3036
+        },
+        {
+          "name": "temperature",
+          "value": 1.1536,
+          "deviation": 0.1536
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0948,
+          "deviation": 0.0948
+        }
+      ],
+      "tier_rank": 13,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
       "batter": "Ryan O'Hearn",
       "batter_id": 656811,
       "batter_hand": "L",
@@ -59,7 +239,7 @@
           "deviation": 0.116
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 15,
       "stacked": true,
       "stacked_with": [
         "Henry Davis"
@@ -73,6 +253,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-07-18.json"
 }

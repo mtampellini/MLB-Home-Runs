@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-07-18T17:12:38.816375+00:00",
+  "generated_at": "2026-07-18T18:29:33.517803+00:00",
   "as_of_date": "2026-07-18",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.033221833662764176,
+  "league_hr_per_pa": 0.031777486818358756,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 16,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 9,
+      "daily_rank": 22,
+      "batter": "Wyatt Langford",
+      "batter_id": 694671,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 2,
+      "pitcher": "Owen Murphy",
+      "pitcher_id": 702566,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824899,
+      "game_datetime": "2026-07-18T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 426,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1872,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2267,
+      "ev_pct": 19.22,
+      "edge_pct": 3.94,
+      "ev_pct_p3": 37.86,
+      "blended_hr_per_pa": 0.05354,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1481,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6847,
+          "deviation": 0.6847
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.144,
+          "deviation": 0.144
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 23,
       "batter": "Kody Clemens",
       "batter_id": 665019,
       "batter_hand": "L",
@@ -58,7 +115,64 @@
           "deviation": 0.0545
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
+      "batter": "Kyle Higashioka",
+      "batter_id": 543309,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 9,
+      "pitcher": "Owen Murphy",
+      "pitcher_id": 702566,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824899,
+      "game_datetime": "2026-07-18T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 680,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1288,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1514,
+      "ev_pct": 18.11,
+      "edge_pct": 2.27,
+      "ev_pct_p3": 12.89,
+      "blended_hr_per_pa": 0.03483,
+      "breakout_score": 0.0492,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.7185,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.144,
+          "deviation": 0.144
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0962,
+          "deviation": 0.0962
+        },
+        {
+          "name": "wind",
+          "value": 1.0543,
+          "deviation": 0.0543
+        }
+      ],
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -68,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-07-18.json"
 }
