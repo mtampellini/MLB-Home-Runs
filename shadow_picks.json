@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-07-18T16:03:08.713625+00:00",
+  "generated_at": "2026-07-18T17:12:38.816375+00:00",
   "as_of_date": "2026-07-18",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03158437540286193,
+  "league_hr_per_pa": 0.033221833662764176,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 16,
-  "games_pregame": 16,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 6,
+  "games_pregame": 15,
+  "games_excluded_live_or_complete": 1,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 9,
+      "batter": "Kody Clemens",
+      "batter_id": 665019,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 6,
+      "pitcher": "Matthew Boyd",
+      "pitcher_id": 571510,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824657,
+      "game_datetime": "2026-07-18T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 550,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1497,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1819,
+      "ev_pct": 18.25,
+      "edge_pct": 3.22,
+      "ev_pct_p3": 24.53,
+      "blended_hr_per_pa": 0.04657,
+      "breakout_score": -0.0545,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1855,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4018,
+          "deviation": 0.4018
+        },
+        {
+          "name": "temperature",
+          "value": 1.1152,
+          "deviation": 0.1152
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9455,
+          "deviation": 0.0545
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-07-18.json"
 }
