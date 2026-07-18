@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-07-18T20:26:28.691319+00:00",
+  "generated_at": "2026-07-18T21:36:39.933351+00:00",
   "as_of_date": "2026-07-18",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030235816016810645,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 16,
-  "games_pregame": 6,
-  "games_excluded_live_or_complete": 10,
+  "games_pregame": 4,
+  "games_excluded_live_or_complete": 12,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 27,
+      "daily_rank": 28,
+      "batter": "Ryan O'Hearn",
+      "batter_id": 656811,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 5,
+      "pitcher": "Logan Allen",
+      "pitcher_id": 671106,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824412,
+      "game_datetime": "2026-07-18T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 578,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.142,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1773,
+      "ev_pct": 20.22,
+      "edge_pct": 3.53,
+      "ev_pct_p3": 16.26,
+      "blended_hr_per_pa": 0.04232,
+      "breakout_score": 0.0368,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5672,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3998,
+          "deviation": 0.3998
+        },
+        {
+          "name": "temperature",
+          "value": 1.1056,
+          "deviation": 0.1056
+        },
+        {
+          "name": "park",
+          "value": 0.936,
+          "deviation": 0.064
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 30,
       "batter": "Wyatt Langford",
       "batter_id": 694671,
       "batter_hand": "R",
@@ -58,7 +115,7 @@
           "deviation": 0.144
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +126,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 28,
+      "daily_rank": 31,
       "batter": "Kody Clemens",
       "batter_id": 665019,
       "batter_hand": "L",
@@ -115,7 +172,7 @@
           "deviation": 0.0545
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +183,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 29,
+      "daily_rank": 32,
       "batter": "Kyle Higashioka",
       "batter_id": 543309,
       "batter_hand": "R",
@@ -172,7 +229,7 @@
           "deviation": 0.0543
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -182,6 +239,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-07-18.json"
 }
