@@ -1,27 +1,27 @@
 {
   "date": "2026-07-19",
-  "generated_at": "2026-07-19T20:51:32.971123+00:00",
+  "generated_at": "2026-07-19T21:56:25.293543+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03945578231292517,
   "funnel": {
     "total_slate_games": 16,
     "games_excluded_live_or_complete": 15,
     "games_pregame": 1,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
+    "total_predictions": 17,
+    "skipped_low_data": 1,
     "skipped_career_pa_filter": 0,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 17,
+    "matched_alt_market": 17,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
+    "single_sided_devig": 17,
     "above_25_ev_pre_cap": 0,
     "eligible_below_900_price_cap": 0,
     "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 23,
     "secondary_count": 7,
-    "shadow_count": 15
+    "shadow_count": 16
   },
   "primary_picks": [
     {
@@ -2637,6 +2637,63 @@
     {
       "tier": "shadow",
       "daily_rank": 45,
+      "batter": "Paul Goldschmidt",
+      "batter_id": 502671,
+      "batter_hand": "R",
+      "team": "NYY",
+      "lineup_spot": 3,
+      "pitcher": "Will Klein",
+      "pitcher_id": 694361,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823521,
+      "game_datetime": "2026-07-19T23:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 485,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1676,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1904,
+      "ev_pct": 11.4,
+      "edge_pct": 2.29,
+      "ev_pct_p3": 4.18,
+      "blended_hr_per_pa": 0.04538,
+      "breakout_score": 0.0752,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0588,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7792,
+          "deviation": 0.2208
+        },
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1502,
+          "deviation": 0.1502
+        }
+      ],
+      "tier_rank": 15,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 46,
       "batter": "Liam Hicks",
       "batter_id": 689414,
       "batter_hand": "L",
@@ -2682,7 +2739,7 @@
           "deviation": 0.0398
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 16,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
