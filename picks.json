@@ -1,19 +1,78 @@
 {
-  "generated_at": "2026-07-20T21:32:06.278687+00:00",
+  "generated_at": "2026-07-20T22:34:37.796119+00:00",
   "as_of_date": "2026-07-20",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03209467930394664,
+  "league_hr_per_pa": 0.034311545872239516,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 19,
+      "daily_rank": 25,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 5,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824654,
+      "game_datetime": "2026-07-21T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 280,
+      "dk_odds": 267,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2598,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3576,
+      "ev_pct": 35.88,
+      "edge_pct": 9.78,
+      "ev_pct_p3": 29.06,
+      "blended_hr_per_pa": 0.04878,
+      "breakout_score": 0.063,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3239,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4215,
+          "deviation": 0.4215
+        },
+        {
+          "name": "wind",
+          "value": 1.1086,
+          "deviation": 0.1086
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 20,
       "batter": "Jake Burger",
       "batter_id": 669394,
       "batter_hand": "R",
@@ -59,7 +118,7 @@
           "deviation": 0.0542
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 11,
       "stacked": true,
       "stacked_with": [
         "Wyatt Langford"
@@ -74,7 +133,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 13,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -120,7 +179,7 @@
           "deviation": 0.064
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 15,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -133,7 +192,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 14,
+      "daily_rank": 15,
       "batter": "Bo Bichette",
       "batter_id": 666182,
       "batter_hand": "R",
@@ -179,7 +238,7 @@
           "deviation": 0.0763
         }
       ],
-      "tier_rank": 17,
+      "tier_rank": 19,
       "stacked": true,
       "stacked_with": [
         "Francisco Alvarez"
@@ -194,7 +253,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 16,
+      "daily_rank": 17,
       "batter": "TJ Rumfield",
       "batter_id": 681198,
       "batter_hand": "L",
@@ -240,7 +299,7 @@
           "deviation": 0.1133
         }
       ],
-      "tier_rank": 20,
+      "tier_rank": 22,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -252,6 +311,6 @@
       }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-07-20.json"
 }
