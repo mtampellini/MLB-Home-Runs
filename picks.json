@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-20T20:16:31.535585+00:00",
+  "generated_at": "2026-07-20T21:32:06.278687+00:00",
   "as_of_date": "2026-07-20",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03345986772590302,
+  "league_hr_per_pa": 0.03209467930394664,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 19,
       "batter": "Jake Burger",
       "batter_id": 669394,
       "batter_hand": "R",
@@ -59,7 +59,7 @@
           "deviation": 0.0542
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Wyatt Langford"
@@ -74,7 +74,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 12,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -120,7 +120,7 @@
           "deviation": 0.064
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 14,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -130,8 +130,128 @@
         "passes_quad": false,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 14,
+      "batter": "Bo Bichette",
+      "batter_id": 666182,
+      "batter_hand": "R",
+      "team": "NYM",
+      "lineup_spot": 3,
+      "pitcher": "Jacob Misiorowski",
+      "pitcher_id": 694819,
+      "pitcher_hand": "R",
+      "park": "MIL",
+      "game_pk": 823762,
+      "game_datetime": "2026-07-20T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 740,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1101,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1708,
+      "ev_pct": 45.17,
+      "edge_pct": 6.07,
+      "ev_pct_p3": 51.84,
+      "blended_hr_per_pa": 0.0254,
+      "breakout_score": -0.0473,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1299,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7914,
+          "deviation": 0.2086
+        },
+        {
+          "name": "park",
+          "value": 1.0763,
+          "deviation": 0.0763
+        }
+      ],
+      "tier_rank": 17,
+      "stacked": true,
+      "stacked_with": [
+        "Francisco Alvarez"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 16,
+      "batter": "TJ Rumfield",
+      "batter_id": 681198,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 5,
+      "pitcher": "Andrew Alvarez",
+      "pitcher_id": 674841,
+      "pitcher_hand": "L",
+      "park": "COL",
+      "game_pk": 824328,
+      "game_datetime": "2026-07-21T00:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 860,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0964,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.149,
+      "ev_pct": 44.52,
+      "edge_pct": 5.26,
+      "ev_pct_p3": 45.58,
+      "blended_hr_per_pa": 0.03544,
+      "breakout_score": -0.0078,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5178,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.22,
+          "deviation": 0.22
+        },
+        {
+          "name": "pitcher",
+          "value": 0.7891,
+          "deviation": 0.2109
+        },
+        {
+          "name": "park",
+          "value": 1.1133,
+          "deviation": 0.1133
+        }
+      ],
+      "tier_rank": 20,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 10,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-07-20.json"
 }
