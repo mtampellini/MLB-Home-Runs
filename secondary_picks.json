@@ -1,15 +1,130 @@
 {
-  "generated_at": "2026-07-20T18:04:49.401455+00:00",
+  "generated_at": "2026-07-20T20:16:31.536051+00:00",
   "as_of_date": "2026-07-20",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03345986772590302,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 13,
+      "batter": "Miguel Rojas",
+      "batter_id": 500743,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 6,
+      "pitcher": "Cristopher S\u00e1nchez",
+      "pitcher_id": 650911,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823436,
+      "game_datetime": "2026-07-20T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1000,
+      "dk_odds": 1040,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0831,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1168,
+      "ev_pct": 33.1,
+      "edge_pct": 3.37,
+      "ev_pct_p3": 31.5,
+      "blended_hr_per_pa": 0.02434,
+      "breakout_score": 0.0128,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.5469,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7274,
+          "deviation": 0.2726
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0973,
+          "deviation": 0.0973
+        },
+        {
+          "name": "temperature",
+          "value": 1.0768,
+          "deviation": 0.0768
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 16,
+      "batter": "Andy Pages",
+      "batter_id": 681624,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 2,
+      "pitcher": "Cristopher S\u00e1nchez",
+      "pitcher_id": 650911,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823436,
+      "game_datetime": "2026-07-20T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 543,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1505,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1958,
+      "ev_pct": 25.89,
+      "edge_pct": 4.53,
+      "ev_pct_p3": 27.65,
+      "blended_hr_per_pa": 0.03871,
+      "breakout_score": -0.015,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2883,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1568,
+          "deviation": 0.1568
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0973,
+          "deviation": 0.0973
+        },
+        {
+          "name": "temperature",
+          "value": 1.0768,
+          "deviation": 0.0768
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 10,
   "skipped_reference": "data/processed/skipped_batters_2026-07-20.json"
 }
