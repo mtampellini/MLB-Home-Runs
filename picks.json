@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-21T18:53:05.871970+00:00",
+  "generated_at": "2026-07-21T20:31:16.913299+00:00",
   "as_of_date": "2026-07-21",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03360159783821888,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,69 @@
   "total_games_today": 15,
   "games_pregame": 14,
   "games_excluded_live_or_complete": 1,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Bryce Harper",
+      "batter_id": 547180,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 3,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823437,
+      "game_datetime": "2026-07-21T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 418,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1886,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2772,
+      "ev_pct": 43.6,
+      "edge_pct": 8.86,
+      "ev_pct_p3": 41.09,
+      "blended_hr_per_pa": 0.04736,
+      "breakout_score": 0.0203,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3967,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4096,
+          "deviation": 0.4096
+        },
+        {
+          "name": "park",
+          "value": 1.2565,
+          "deviation": 0.2565
+        },
+        {
+          "name": "temperature",
+          "value": 1.0768,
+          "deviation": 0.0768
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Brandon Marsh"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-07-21.json"
 }
