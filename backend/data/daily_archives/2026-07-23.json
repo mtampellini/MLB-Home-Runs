@@ -1,32 +1,32 @@
 {
   "date": "2026-07-23",
-  "generated_at": "2026-07-23T15:58:44.491226+00:00",
+  "generated_at": "2026-07-23T17:27:46.639947+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03267429760665973,
+  "league_hr_per_pa": 0.027151639344262294,
   "funnel": {
     "total_slate_games": 5,
-    "games_excluded_live_or_complete": 1,
-    "games_pregame": 4,
-    "total_predictions": 17,
+    "games_excluded_live_or_complete": 2,
+    "games_pregame": 3,
+    "total_predictions": 16,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 1,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 17,
-    "matched_alt_market": 17,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 17,
-    "above_25_ev_pre_cap": 3,
+    "single_sided_devig": 16,
+    "above_25_ev_pre_cap": 2,
     "eligible_below_900_price_cap": 2,
-    "above_price_cap_pushed_to_secondary": 1,
-    "primary_count": 2,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 4,
     "secondary_count": 1,
-    "shadow_count": 1
+    "shadow_count": 3
   },
   "primary_picks": [
     {
       "tier": "primary",
-      "daily_rank": 1,
+      "daily_rank": 2,
       "batter": "Byron Buxton",
       "batter_id": 621439,
       "batter_hand": "R",
@@ -87,7 +87,68 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 3,
+      "daily_rank": 1,
+      "batter": "Yandy D\u00edaz",
+      "batter_id": 650490,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 1,
+      "pitcher": "Shane Bieber",
+      "pitcher_id": 669456,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822785,
+      "game_datetime": "2026-07-23T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 568,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1477,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2526,
+      "ev_pct": 68.73,
+      "edge_pct": 10.49,
+      "ev_pct_p3": 60.66,
+      "blended_hr_per_pa": 0.03315,
+      "breakout_score": 0.0565,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3325,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5791,
+          "deviation": 0.5791
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2208,
+          "deviation": 0.2208
+        },
+        {
+          "name": "park",
+          "value": 1.109,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Jonny DeLuca"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
       "batter": "Ryan Jeffers",
       "batter_id": 680777,
       "batter_hand": "R",
@@ -133,10 +194,71 @@
           "deviation": 0.1756
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
         "Byron Buxton"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "Jonny DeLuca",
+      "batter_id": 676356,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 5,
+      "pitcher": "Shane Bieber",
+      "pitcher_id": 669456,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822785,
+      "game_datetime": "2026-07-23T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 770,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1082,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1475,
+      "ev_pct": 28.3,
+      "edge_pct": 3.93,
+      "ev_pct_p3": 12.5,
+      "blended_hr_per_pa": 0.01852,
+      "breakout_score": 0.1493,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4444,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5791,
+          "deviation": 0.5791
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.682,
+          "deviation": 0.318
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1493,
+          "deviation": 0.1493
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Yandy D\u00edaz"
       ],
       "filter_status": {
         "passes_baseline": true,
@@ -150,7 +272,7 @@
   "secondary_picks": [
     {
       "tier": "secondary",
-      "daily_rank": 2,
+      "daily_rank": 3,
       "batter": "Ryan Kreidler",
       "batter_id": 668952,
       "batter_hand": "R",
@@ -209,7 +331,121 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 4,
+      "daily_rank": 6,
+      "batter": "Junior Caminero",
+      "batter_id": 691406,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 3,
+      "pitcher": "Shane Bieber",
+      "pitcher_id": 669456,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822785,
+      "game_datetime": "2026-07-23T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 235,
+      "dk_odds": 229,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2922,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.371,
+      "ev_pct": 24.28,
+      "edge_pct": 7.88,
+      "ev_pct_p3": 24.28,
+      "blended_hr_per_pa": 0.06455,
+      "breakout_score": -0.0617,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5782,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.3775,
+          "deviation": 1.3775
+        },
+        {
+          "name": "pitcher",
+          "value": 1.5791,
+          "deviation": 0.5791
+        },
+        {
+          "name": "park",
+          "value": 1.109,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
+      "batter": "Ben Williamson",
+      "batter_id": 810938,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 7,
+      "pitcher": "Shane Bieber",
+      "pitcher_id": 669456,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822785,
+      "game_datetime": "2026-07-23T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1100,
+      "dk_odds": 1100,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0775,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1008,
+      "ev_pct": 20.93,
+      "edge_pct": 2.33,
+      "ev_pct_p3": 11.98,
+      "blended_hr_per_pa": 0.01416,
+      "breakout_score": 0.0831,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0256,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5791,
+          "deviation": 0.5791
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5217,
+          "deviation": 0.4783
+        },
+        {
+          "name": "park",
+          "value": 1.109,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
       "batter": "Royce Lewis",
       "batter_id": 668904,
       "batter_hand": "R",
@@ -255,7 +491,7 @@
           "deviation": 0.1294
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
