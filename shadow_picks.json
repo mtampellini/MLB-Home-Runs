@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-23T17:27:46.639654+00:00",
+  "generated_at": "2026-07-23T18:51:07.707302+00:00",
   "as_of_date": "2026-07-23",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.027151639344262294,
+  "league_hr_per_pa": 0.028941355674028942,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 7,
       "batter": "Junior Caminero",
       "batter_id": 691406,
       "batter_hand": "R",
@@ -69,7 +69,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 7,
+      "daily_rank": 8,
+      "batter": "Gabriel Moreno",
+      "batter_id": 672515,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 4,
+      "pitcher": "Michael McGreevy",
+      "pitcher_id": 700241,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823042,
+      "game_datetime": "2026-07-23T21:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 950,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0908,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1178,
+      "ev_pct": 23.73,
+      "edge_pct": 2.71,
+      "ev_pct_p3": 12.03,
+      "blended_hr_per_pa": 0.0312,
+      "breakout_score": 0.1096,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5895,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.1096,
+          "deviation": 0.1096
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8964,
+          "deviation": 0.1036
+        },
+        {
+          "name": "park",
+          "value": 0.9046,
+          "deviation": 0.0954
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 10,
       "batter": "Ben Williamson",
       "batter_id": 810938,
       "batter_hand": "R",
@@ -115,7 +172,7 @@
           "deviation": 0.109
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -125,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 2,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-07-23.json"
 }
