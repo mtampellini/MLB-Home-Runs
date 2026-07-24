@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-24T20:45:25.570526+00:00",
+  "generated_at": "2026-07-24T21:50:09.410324+00:00",
   "as_of_date": "2026-07-24",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03261661807580175,
+  "league_hr_per_pa": 0.03487139967247856,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 9,
+      "daily_rank": 12,
       "batter": "Miguel Rojas",
       "batter_id": 500743,
       "batter_hand": "R",
@@ -69,7 +69,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 10,
+      "daily_rank": 13,
       "batter": "Luis Garc\u00eda Jr.",
       "batter_id": 671277,
       "batter_hand": "L",
@@ -126,7 +126,64 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 14,
+      "daily_rank": 17,
+      "batter": "Ryan O'Hearn",
+      "batter_id": 656811,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 5,
+      "pitcher": "Matthew Boyd",
+      "pitcher_id": 571510,
+      "pitcher_hand": "L",
+      "park": "PIT",
+      "game_pk": 823352,
+      "game_datetime": "2026-07-24T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 930,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0916,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1372,
+      "ev_pct": 41.36,
+      "edge_pct": 4.56,
+      "ev_pct_p3": 39.05,
+      "blended_hr_per_pa": 0.04021,
+      "breakout_score": 0.0176,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.6404,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1532,
+          "deviation": 0.1532
+        },
+        {
+          "name": "pitcher",
+          "value": 0.9214,
+          "deviation": 0.0786
+        },
+        {
+          "name": "park",
+          "value": 0.9243,
+          "deviation": 0.0757
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 20,
       "batter": "Bo Bichette",
       "batter_id": 666182,
       "batter_hand": "R",
@@ -172,7 +229,7 @@
           "deviation": 0.0611
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -183,7 +240,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 15,
+      "daily_rank": 21,
       "batter": "Colt Keith",
       "batter_id": 690993,
       "batter_hand": "L",
@@ -229,7 +286,7 @@
           "deviation": 0.0877
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -240,7 +297,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 17,
+      "daily_rank": 25,
       "batter": "Joe Mack",
       "batter_id": 691788,
       "batter_hand": "L",
@@ -286,7 +343,7 @@
           "deviation": 0.0762
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -297,7 +354,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 20,
+      "daily_rank": 30,
       "batter": "Alec Bohm",
       "batter_id": 664761,
       "batter_hand": "R",
@@ -343,7 +400,7 @@
           "deviation": 0.0543
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -353,6 +410,6 @@
       }
     }
   ],
-  "skipped_count": 15,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-07-24.json"
 }

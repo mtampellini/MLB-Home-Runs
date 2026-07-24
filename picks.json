@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-24T20:45:25.570076+00:00",
+  "generated_at": "2026-07-24T21:50:09.409798+00:00",
   "as_of_date": "2026-07-24",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03261661807580175,
+  "league_hr_per_pa": 0.03487139967247856,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 13,
+      "daily_rank": 19,
       "batter": "Juan Soto",
       "batter_id": 665742,
       "batter_hand": "L",
@@ -77,7 +77,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 18,
       "batter": "Jake Bauers",
       "batter_id": 641343,
       "batter_hand": "L",
@@ -136,7 +136,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 14,
       "batter": "Andy Pages",
       "batter_id": 681624,
       "batter_hand": "R",
@@ -182,7 +182,7 @@
           "deviation": 0.0611
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 11,
       "stacked": true,
       "stacked_with": [
         "Mookie Betts",
@@ -195,8 +195,67 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
+      "batter": "Elias D\u00edaz",
+      "batter_id": 553869,
+      "batter_hand": "R",
+      "team": "TEX",
+      "lineup_spot": 8,
+      "pitcher": "Bryce Miller",
+      "pitcher_id": 682243,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822872,
+      "game_datetime": "2026-07-25T00:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 900,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0944,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1496,
+      "ev_pct": 49.59,
+      "edge_pct": 5.51,
+      "ev_pct_p3": 31.07,
+      "blended_hr_per_pa": 0.03544,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6304,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.0542,
+          "deviation": 0.0542
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0163,
+          "deviation": 0.0163
+        }
+      ],
+      "tier_rank": 18,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 15,
+  "skipped_count": 13,
   "skipped_reference": "data/processed/skipped_batters_2026-07-24.json"
 }
