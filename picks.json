@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-24T17:10:31.048490+00:00",
+  "generated_at": "2026-07-24T18:53:29.955378+00:00",
   "as_of_date": "2026-07-24",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03190075321222862,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,67 @@
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Jake Bauers",
+      "batter_id": 641343,
+      "batter_hand": "L",
+      "team": "MIL",
+      "lineup_spot": 7,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "MIL",
+      "game_pk": 823759,
+      "game_datetime": "2026-07-24T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 322,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2257,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3342,
+      "ev_pct": 41.02,
+      "edge_pct": 10.85,
+      "ev_pct_p3": 28.48,
+      "blended_hr_per_pa": 0.05692,
+      "breakout_score": 0.1141,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0386,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7843,
+          "deviation": 0.7843
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1141,
+          "deviation": 0.1141
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-07-24.json"
 }

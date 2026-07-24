@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-07-24T17:10:31.048896+00:00",
+  "generated_at": "2026-07-24T18:53:29.955730+00:00",
   "as_of_date": "2026-07-24",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03190075321222862,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 2,
+      "batter": "Brice Turang",
+      "batter_id": 668930,
+      "batter_hand": "L",
+      "team": "MIL",
+      "lineup_spot": 3,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "MIL",
+      "game_pk": 823759,
+      "game_datetime": "2026-07-24T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 493,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1593,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2056,
+      "ev_pct": 23.34,
+      "edge_pct": 4.63,
+      "ev_pct_p3": 23.05,
+      "blended_hr_per_pa": 0.03255,
+      "breakout_score": 0.0026,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2971,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.976,
+          "deviation": 0.024
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0202,
+          "deviation": 0.0202
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-07-24.json"
 }
