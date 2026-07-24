@@ -1,19 +1,83 @@
 {
-  "generated_at": "2026-07-24T18:53:29.955378+00:00",
+  "generated_at": "2026-07-24T20:45:25.570076+00:00",
   "as_of_date": "2026-07-24",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03190075321222862,
+  "league_hr_per_pa": 0.03261661807580175,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 1,
+      "daily_rank": 13,
+      "batter": "Juan Soto",
+      "batter_id": 665742,
+      "batter_hand": "L",
+      "team": "NYM",
+      "lineup_spot": 2,
+      "pitcher": "Roki Sasaki",
+      "pitcher_id": 808963,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823601,
+      "game_datetime": "2026-07-24T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 300,
+      "dk_odds": 303,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2366,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3491,
+      "ev_pct": 40.71,
+      "edge_pct": 11.25,
+      "ev_pct_p3": 52.16,
+      "blended_hr_per_pa": 0.05791,
+      "breakout_score": -0.1002,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0605,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7753,
+          "deviation": 0.7753
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8998,
+          "deviation": 0.1002
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Jared Young",
+        "Francisco Alvarez",
+        "Marcus Semien",
+        "A.J. Ewing"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 12,
       "batter": "Jake Bauers",
       "batter_id": 641343,
       "batter_hand": "L",
@@ -59,7 +123,7 @@
           "deviation": 0.1141
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 7,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -69,8 +133,70 @@
         "passes_quad": true,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "Andy Pages",
+      "batter_id": 681624,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 2,
+      "pitcher": "Sean Manaea",
+      "pitcher_id": 640455,
+      "pitcher_hand": "L",
+      "park": "NYM",
+      "game_pk": 823601,
+      "game_datetime": "2026-07-24T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 457,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1716,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2559,
+      "ev_pct": 42.52,
+      "edge_pct": 8.42,
+      "ev_pct_p3": 45.5,
+      "blended_hr_per_pa": 0.03777,
+      "breakout_score": -0.023,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2202,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5628,
+          "deviation": 0.5628
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1579,
+          "deviation": 0.1579
+        },
+        {
+          "name": "wind",
+          "value": 1.0611,
+          "deviation": 0.0611
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Mookie Betts",
+        "Teoscar Hern\u00e1ndez"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 2,
+  "skipped_count": 15,
   "skipped_reference": "data/processed/skipped_batters_2026-07-24.json"
 }
