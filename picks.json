@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-08-01T18:42:21.203838+00:00",
+  "generated_at": "2026-08-01T20:00:26.493242+00:00",
   "as_of_date": "2026-08-01",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.029339329692686583,
+  "league_hr_per_pa": 0.03328072462773622,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 13,
+  "games_excluded_live_or_complete": 2,
   "picks": [
     {
       "tier": "primary",
@@ -75,7 +75,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 8,
       "batter": "Colson Montgomery",
       "batter_id": 695657,
       "batter_hand": "L",
@@ -137,7 +137,68 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 5,
+      "batter": "Christian Encarnacion-Strand",
+      "batter_id": 687952,
+      "batter_hand": "R",
+      "team": "BAL",
+      "lineup_spot": 6,
+      "pitcher": "Cristopher S\u00e1nchez",
+      "pitcher_id": 650911,
+      "pitcher_hand": "L",
+      "park": "BAL",
+      "game_pk": 824808,
+      "game_datetime": "2026-08-01T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 588,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1433,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2119,
+      "ev_pct": 45.8,
+      "edge_pct": 6.87,
+      "ev_pct_p3": 43.39,
+      "blended_hr_per_pa": 0.04981,
+      "breakout_score": 0.0184,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1964,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4966,
+          "deviation": 0.4966
+        },
+        {
+          "name": "temperature",
+          "value": 1.0864,
+          "deviation": 0.0864
+        },
+        {
+          "name": "wind",
+          "value": 1.0747,
+          "deviation": 0.0747
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Coby Mayo"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
       "batter": "Luis Ur\u00edas",
       "batter_id": 649966,
       "batter_hand": "R",
@@ -183,7 +244,7 @@
           "deviation": 0.0561
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -196,7 +257,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 10,
       "batter": "Griffin Conine",
       "batter_id": 665052,
       "batter_hand": "L",
@@ -242,7 +303,7 @@
           "deviation": 0.0768
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -255,7 +316,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 9,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -301,7 +362,7 @@
           "deviation": 0.1004
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "stacked": true,
       "stacked_with": [
         "Dominic Canzone",
@@ -317,7 +378,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 13,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -363,7 +424,7 @@
           "deviation": 0.0813
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 11,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -375,6 +436,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-01.json"
 }
