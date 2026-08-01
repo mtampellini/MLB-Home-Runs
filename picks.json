@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-01T16:18:54.444944+00:00",
+  "generated_at": "2026-08-01T17:29:11.900235+00:00",
   "as_of_date": "2026-08-01",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.029437804338202745,
+  "league_hr_per_pa": 0.031982073742106334,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -14,6 +14,130 @@
     {
       "tier": "primary",
       "daily_rank": 1,
+      "batter": "Munetaka Murakami",
+      "batter_id": 808959,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 2,
+      "pitcher": "Drew Rasmussen",
+      "pitcher_id": 656876,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822944,
+      "game_datetime": "2026-08-01T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 384,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1992,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3037,
+      "ev_pct": 46.99,
+      "edge_pct": 10.45,
+      "ev_pct_p3": 46.99,
+      "blended_hr_per_pa": 0.06409,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0858,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.0038,
+          "deviation": 1.0038
+        },
+        {
+          "name": "temperature",
+          "value": 1.096,
+          "deviation": 0.096
+        },
+        {
+          "name": "wind",
+          "value": 1.0951,
+          "deviation": 0.0951
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Colson Montgomery",
+        "Andrew Benintendi"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Colson Montgomery",
+      "batter_id": 695657,
+      "batter_hand": "L",
+      "team": "CHW",
+      "lineup_spot": 4,
+      "pitcher": "Drew Rasmussen",
+      "pitcher_id": 656876,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822944,
+      "game_datetime": "2026-08-01T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 433,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1805,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2663,
+      "ev_pct": 41.93,
+      "edge_pct": 8.58,
+      "ev_pct_p3": 44.75,
+      "blended_hr_per_pa": 0.05891,
+      "breakout_score": -0.022,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4983,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8419,
+          "deviation": 0.8419
+        },
+        {
+          "name": "temperature",
+          "value": 1.096,
+          "deviation": 0.096
+        },
+        {
+          "name": "wind",
+          "value": 1.0951,
+          "deviation": 0.0951
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Munetaka Murakami",
+        "Andrew Benintendi"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
       "batter": "Luis Ur\u00edas",
       "batter_id": 649966,
       "batter_hand": "R",
@@ -59,7 +183,7 @@
           "deviation": 0.0561
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
