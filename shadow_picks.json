@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-02T15:17:05.843550+00:00",
+  "generated_at": "2026-08-02T16:28:09.609139+00:00",
   "as_of_date": "2026-08-02",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.0329677838133306,
+  "league_hr_per_pa": 0.03365227791671197,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 20,
       "batter": "Kyle Manzardo",
       "batter_id": 700932,
       "batter_hand": "L",
@@ -58,7 +58,7 @@
           "deviation": 0.064
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +69,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 21,
       "batter": "CJ Abrams",
       "batter_id": 682928,
       "batter_hand": "L",
@@ -115,7 +115,7 @@
           "deviation": 0.079
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +126,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 26,
+      "batter": "Alex Bregman",
+      "batter_id": 608324,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 4,
+      "pitcher": "Gerrit Cole",
+      "pitcher_id": 543037,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824648,
+      "game_datetime": "2026-08-02T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1100,
+      "dk_odds": 1060,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0788,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0976,
+      "ev_pct": 17.13,
+      "edge_pct": 1.88,
+      "ev_pct_p3": 20.38,
+      "blended_hr_per_pa": 0.03056,
+      "breakout_score": -0.028,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5557,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "wind",
+          "value": 0.8506,
+          "deviation": 0.1494
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.908,
+          "deviation": 0.092
+        },
+        {
+          "name": "pitcher",
+          "value": 0.937,
+          "deviation": 0.063
+        }
+      ],
+      "tier_rank": 9,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 27,
       "batter": "Brayan Rocchio",
       "batter_id": 677587,
       "batter_hand": "L",
@@ -172,7 +229,7 @@
           "deviation": 0.064
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -183,7 +240,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 28,
       "batter": "Jos\u00e9 Ram\u00edrez",
       "batter_id": 608070,
       "batter_hand": "L",
@@ -229,7 +286,7 @@
           "deviation": 0.0579
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -237,8 +294,122 @@
         "passes_quad": false,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 29,
+      "batter": "Griffin Conine",
+      "batter_id": 665052,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 5,
+      "pitcher": "Robert Stock",
+      "pitcher_id": 476594,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823592,
+      "game_datetime": "2026-08-02T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 430,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.181,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2152,
+      "ev_pct": 14.07,
+      "edge_pct": 3.43,
+      "ev_pct_p3": 12.96,
+      "blended_hr_per_pa": 0.05197,
+      "breakout_score": 0.0108,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.7185,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5442,
+          "deviation": 0.5442
+        },
+        {
+          "name": "temperature",
+          "value": 1.0672,
+          "deviation": 0.0672
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0108,
+          "deviation": 0.0108
+        }
+      ],
+      "tier_rank": 12,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 31,
+      "batter": "Seiya Suzuki",
+      "batter_id": 673548,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 2,
+      "pitcher": "Gerrit Cole",
+      "pitcher_id": 543037,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824648,
+      "game_datetime": "2026-08-02T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 760,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1191,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1315,
+      "ev_pct": 13.11,
+      "edge_pct": 1.24,
+      "ev_pct_p3": 31.81,
+      "blended_hr_per_pa": 0.04567,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.5574,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3571,
+          "deviation": 0.3571
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "wind",
+          "value": 0.8506,
+          "deviation": 0.1494
+        }
+      ],
+      "tier_rank": 14,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 10,
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-08-02.json"
 }
