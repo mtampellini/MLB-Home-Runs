@@ -1097,29 +1097,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
         <div style={{ marginTop: 36 }}>
           <CalibrationView archives={filteredArchives} tierFilter={tierFilter} filterView={filterView} bets={bets} betsOnly={betsOnly} />
         </div>
-
-        {/* Footer */}
-        <div style={{
-          marginTop: 40, paddingTop: 20, borderTop: `1px solid ${T.border}`,
-          fontSize: 11, color: T.textLight, lineHeight: 1.7,
-        }}>
-          All metrics assume a flat 1u stake on every pick of the selected tier(s).
-          Tier buttons multi-select — e.g. Primary + Shadow together.
-          "stacked" picks share a starting pitcher with another primary pick that
-          day — outcomes correlated. View filter scopes the top metrics:{' '}
-          <strong style={{ color: T.textMedium }}>Baseline</strong> includes every settled pick,{' '}
-          <strong style={{ color: T.textMedium }}>Triple</strong> is the production filter
-          (stacked-EV shade + EV ceiling + pitcher-factor band),{' '}
-          <strong style={{ color: T.textMedium }}>Anchor</strong> is the experimental
-          over-prediction-audit overlay (model/market ratio window 1.15–1.6 + blended-rate cap +
-          breakout cap + pitcher-factor band) tracked since 2026-06-09 — exploratory, not
-          pre-registered, and not what the front page shows.
-          {' '}The <strong style={{ color: T.textMedium }}>Bet</strong> checkbox marks which
-          players you actually bet on; flags are saved in this browser (localStorage) and
-          persist across reloads — they're personal and not part of the model's record.
-          Set <strong style={{ color: T.textMedium }}>Bets → My bets</strong> to scope the whole
-          page (metrics, day blocks, calibration) to just those flagged picks for your actual ROI.
-        </div>
       </div>
     </>
   )
