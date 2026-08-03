@@ -25,8 +25,6 @@ const T = {
 const FONT = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif'
 const TABULAR = { fontVariantNumeric: 'tabular-nums' }
 
-const CALIBRATION_MIN_PICKS = 100   // calibration view shows numbers below this; visualizes above
-
 // Current-model boundary. Picks dated >= this were produced by the current model
 // (v7-weather-cal2-0.3.0, shipped 2026-07-01: park factors refreshed to 2022-2025
 // + regressed + a code-space fix, MLB-weather source with re-fit temp/wind
@@ -638,21 +636,6 @@ function CalibrationView({ archives, tierFilter, filterView = 'baseline', bets =
     [archives, tierFilter, filterView, bets, betsOnly],
   )
   const tierLabel = tierFilter.length === ALL_TIERS.length ? 'all tiers' : tierFilter.join(' + ')
-  if (cal.total < CALIBRATION_MIN_PICKS) {
-    return (
-      <div style={{
-        border: `1px solid ${T.border}`, borderRadius: 6,
-        padding: '24px 26px', color: T.textMedium, fontSize: 13, lineHeight: 1.6,
-      }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: T.text, marginBottom: 10 }}>Calibration</div>
-        Need {CALIBRATION_MIN_PICKS}+ settled picks ({tierLabel}) for meaningful
-        calibration. Currently <strong style={{ color: T.text, fontWeight: 600 }}>{cal.total}</strong>.
-        <div style={{ fontSize: 12, color: T.textLight, marginTop: 10 }}>
-          The chart will appear here once we cross the threshold.
-        </div>
-      </div>
-    )
-  }
   const maxN = Math.max(...cal.buckets.map(b => b.n || 0), 1)
   return (
     <div style={{
