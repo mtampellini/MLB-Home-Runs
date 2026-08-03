@@ -1,16 +1,76 @@
 {
-  "generated_at": "2026-08-03T21:36:53.189026+00:00",
+  "generated_at": "2026-08-03T22:43:55.237964+00:00",
   "as_of_date": "2026-08-03",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.035002035002035005,
+  "league_hr_per_pa": 0.0328569821086981,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 8,
-  "games_pregame": 8,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 2,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 2,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Henry Davis",
+      "batter_id": 680779,
+      "batter_hand": "R",
+      "team": "PIT",
+      "lineup_spot": 9,
+      "pitcher": "Brandon Sproat",
+      "pitcher_id": 687075,
+      "pitcher_hand": "R",
+      "park": "MIL",
+      "game_pk": 823757,
+      "game_datetime": "2026-08-03T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 580,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1418,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2126,
+      "ev_pct": 44.53,
+      "edge_pct": 7.07,
+      "ev_pct_p3": 41.47,
+      "blended_hr_per_pa": 0.03666,
+      "breakout_score": 0.0237,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.7604,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5901,
+          "deviation": 0.5901
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1156,
+          "deviation": 0.1156
+        },
+        {
+          "name": "park",
+          "value": 1.0763,
+          "deviation": 0.0763
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-08-03.json"
 }
