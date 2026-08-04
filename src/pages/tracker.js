@@ -635,7 +635,7 @@ function CalibrationView({ archives, tierFilter, filterView = 'baseline', bets =
     () => buildCalibration(archives, tierFilter, filterView, bets, betsOnly),
     [archives, tierFilter, filterView, bets, betsOnly],
   )
-  const tierLabel = tierFilter.length === ALL_TIERS.length ? 'all tiers' : tierFilter.join(' + ')
+  const tierLabel = tierFilter.join(' + ')
   const maxN = Math.max(...cal.buckets.map(b => b.n || 0), 1)
   return (
     <div style={{
@@ -730,25 +730,12 @@ function FilterRow({ label, options, value, onChange }) {
 
 // ─── page component ────────────────────────────────────────────────────
 // Secondary (rank-11+/price-capped overflow, tracked-not-bet) was removed from
-// the UI 2026-07-12; its picks stay in archives + tracker.json for evals.
-const ALL_TIERS = ['primary', 'shadow']
+// the UI 2026-07-12; shadow followed 2026-08-04. Both tiers' picks stay in
+// archives + tracker.json for evals.
 
 export default function Tracker({ archives, tracker, generatedAt }) {
   const refreshed = fmtRefreshed(generatedAt)
-  // Tier is multi-select: an array of selected tier names. Clicking a tier
-  // toggles it (the last selected tier can't be toggled off); "All" selects
-  // all three at once.
-  const [tierFilter, setTierFilter] = useState(['primary'])
-  const toggleTier = useCallback((t) => {
-    setTierFilter(prev => {
-      if (t === 'all') return [...ALL_TIERS]
-      if (prev.includes(t)) {
-        return prev.length === 1 ? prev : prev.filter(x => x !== t)
-      }
-      // Preserve canonical order so labels read "primary + shadow", never reversed.
-      return ALL_TIERS.filter(x => prev.includes(x) || x === t)
-    })
-  }, [])
+  const tierFilter = ['primary']
   // The tracker shows ONLY the production filter (passes_triple_v2, live since
   // 2026-07-01) — the picks actually published on the site. Research views
   // (baseline/triple/anchor) were removed from the UI 2026-07-12; the flags are
@@ -1032,21 +1019,6 @@ export default function Tracker({ archives, tracker, generatedAt }) {
               ['all',  'All picks'],
               ['bets', totalBets > 0 ? `My bets (${totalBets})` : 'My bets'],
             ]} />
-          {/* Tier is multi-select: each button toggles membership. */}
-          <div style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
-            <span style={{
-              fontSize: 11, color: T.textLight, minWidth: 50,
-              textTransform: 'uppercase', letterSpacing: 0.6,
-            }}>Tier</span>
-            {[['primary', 'Primary'], ['shadow', 'Shadow']].map(([k, lbl]) => (
-              <FilterButton key={k} active={tierFilter.includes(k)} onClick={() => toggleTier(k)}>
-                {lbl}
-              </FilterButton>
-            ))}
-            <FilterButton active={tierFilter.length === ALL_TIERS.length} onClick={() => toggleTier('all')}>
-              All
-            </FilterButton>
-          </div>
           {spansRebuild && (
             <FilterRow label="Model" value={modelFilter} onChange={setModelFilter}
               options={[
