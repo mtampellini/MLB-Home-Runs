@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-07T22:20:20.730041+00:00",
+  "generated_at": "2026-08-07T23:12:08.728582+00:00",
   "as_of_date": "2026-08-07",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.035107803854226294,
+  "league_hr_per_pa": 0.03388613954894035,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 14,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 12,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 16,
       "batter": "Kyle Schwarber",
       "batter_id": 656941,
       "batter_hand": "L",
@@ -59,7 +59,7 @@
           "deviation": 0.144
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "stacked": true,
       "stacked_with": [
         "Bryce Harper",
@@ -75,7 +75,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 22,
+      "daily_rank": 28,
       "batter": "Wilyer Abreu",
       "batter_id": 677800,
       "batter_hand": "L",
@@ -121,7 +121,7 @@
           "deviation": 0.1344
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 12,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -131,8 +131,69 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 13,
+      "batter": "Tim Tawa",
+      "batter_id": 694374,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 8,
+      "pitcher": "Roki Sasaki",
+      "pitcher_id": 808963,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825051,
+      "game_datetime": "2026-08-08T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 760,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1045,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1499,
+      "ev_pct": 45.37,
+      "edge_pct": 4.54,
+      "ev_pct_p3": 69.27,
+      "blended_hr_per_pa": 0.03132,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 4.125,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9243,
+          "deviation": 0.0757
+        }
+      ],
+      "tier_rank": 20,
+      "stacked": true,
+      "stacked_with": [
+        "Nolan Arenado"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-08-07.json"
 }
