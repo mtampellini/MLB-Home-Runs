@@ -1,32 +1,32 @@
 {
   "date": "2026-08-08",
-  "generated_at": "2026-08-08T17:06:40.157591+00:00",
+  "generated_at": "2026-08-08T17:54:42.108825+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03173311635475997,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "total_predictions": 33,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 31,
+    "matched_alt_market": 31,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 2,
-    "secondary_count": 0,
-    "shadow_count": 1
+    "single_sided_devig": 31,
+    "above_25_ev_pre_cap": 2,
+    "eligible_below_900_price_cap": 1,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 3,
+    "secondary_count": 1,
+    "shadow_count": 3
   },
   "primary_picks": [
     {
       "tier": "primary",
-      "daily_rank": 1,
+      "daily_rank": 2,
       "batter": "Matt Olson",
       "batter_id": 621566,
       "batter_hand": "L",
@@ -87,7 +87,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 3,
       "batter": "Drake Baldwin",
       "batter_id": 686948,
       "batter_hand": "L",
@@ -145,13 +145,130 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
+      "batter": "Mois\u00e9s Ballesteros",
+      "batter_id": 694208,
+      "batter_hand": "L",
+      "team": "LAA",
+      "lineup_spot": 6,
+      "pitcher": "Sandy Alcantara",
+      "pitcher_id": 645261,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823834,
+      "game_datetime": "2026-08-08T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 830,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1116,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1358,
+      "ev_pct": 26.31,
+      "edge_pct": 2.42,
+      "ev_pct_p3": 11.25,
+      "blended_hr_per_pa": 0.03888,
+      "breakout_score": 0.1431,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0485,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2252,
+          "deviation": 0.2252
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8254,
+          "deviation": 0.1746
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1431,
+          "deviation": 0.1431
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
     }
   ],
-  "secondary_picks": [],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 1,
+      "batter": "Denzer Guzman",
+      "batter_id": 694203,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 7,
+      "pitcher": "Sandy Alcantara",
+      "pitcher_id": 645261,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823834,
+      "game_datetime": "2026-08-08T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 1280,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0778,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.12,
+      "ev_pct": 65.53,
+      "edge_pct": 4.21,
+      "ev_pct_p3": 46.3,
+      "blended_hr_per_pa": 0.0409,
+      "breakout_score": 0.1379,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6723,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.289,
+          "deviation": 0.289
+        },
+        {
+          "name": "park",
+          "value": 0.8195,
+          "deviation": 0.1805
+        },
+        {
+          "name": "pitcher",
+          "value": 0.845,
+          "deviation": 0.155
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 3,
+      "daily_rank": 5,
       "batter": "Michael Harris II",
       "batter_id": 671739,
       "batter_hand": "L",
@@ -202,6 +319,120 @@
         "passes_baseline": true,
         "passes_triple": true,
         "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Tyler Heineman",
+      "batter_id": 623168,
+      "batter_hand": "L",
+      "team": "LAA",
+      "lineup_spot": 9,
+      "pitcher": "Sandy Alcantara",
+      "pitcher_id": 645261,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823834,
+      "game_datetime": "2026-08-08T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1400,
+      "dk_odds": 2000,
+      "best_book": "underdog",
+      "market_prob_devig": 0.0446,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0368,
+      "ev_pct": 14.75,
+      "edge_pct": -0.78,
+      "ev_pct_p3": 23.43,
+      "blended_hr_per_pa": 0.01385,
+      "breakout_score": -0.0713,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.4363,
+          "deviation": 0.5637
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8254,
+          "deviation": 0.1746
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9287,
+          "deviation": 0.0713
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
+      "batter": "Tyler Soderstrom",
+      "batter_id": 691016,
+      "batter_hand": "L",
+      "team": "OAK",
+      "lineup_spot": 4,
+      "pitcher": "Jake Bennett",
+      "pitcher_id": 687562,
+      "pitcher_hand": "L",
+      "park": "BOS",
+      "game_pk": 824726,
+      "game_datetime": "2026-08-08T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 720,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1291,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1383,
+      "ev_pct": 13.43,
+      "edge_pct": 0.92,
+      "ev_pct_p3": 10.2,
+      "blended_hr_per_pa": 0.04716,
+      "breakout_score": 0.0311,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3762,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4861,
+          "deviation": 0.4861
+        },
+        {
+          "name": "pitcher",
+          "value": 0.62,
+          "deviation": 0.38
+        },
+        {
+          "name": "temperature",
+          "value": 1.1344,
+          "deviation": 0.1344
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
         "passes_quad": true,
         "passes_anchor": false
       }
