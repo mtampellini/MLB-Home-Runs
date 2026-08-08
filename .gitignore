@@ -37,6 +37,11 @@ backend/data/processed/*
 # Committing it makes the factor rebuild reproducible WITHOUT a multi-hour
 # Statcast re-pull (append a new season's counts, re-run the build).
 !backend/data/processed/park_factor_counts.parquet
+# AND: full_slate_outcomes.json — the (batter_id, game_pk) -> HR label store
+# that src/results/full_slate_outcomes.py builds for the full-slate log. Labels
+# only (~145KB, no feature copies); rebuilding it means re-reading hundreds of
+# box scores, and it is the unbiased frame the picks archive cannot provide.
+!backend/data/processed/full_slate_outcomes.json
 
 # DO commit backend/data/odds/ — those snapshots ARE our dataset.
 # (No ignore for backend/data/odds.)
