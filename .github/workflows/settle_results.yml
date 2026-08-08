@@ -57,6 +57,21 @@ jobs:
         working-directory: backend
         run: python -m src.results.tracker
 
+      - name: Backfill full-slate outcomes
+        working-directory: backend
+        # Labels the UNBIASED frame (every batter projected, not just the picks
+        # that cleared the EV gate) for calibration work. Resumable and
+        # idempotent: games already read are never re-fetched, so the initial
+        # ~620-game backlog drains over a few fires and steady state is ~15
+        # games per run. Capped per run to stay polite to the Stats API.
+        #
+        # continue-on-error: a degraded backfill (API flaking, games not final
+        # yet) must never block settling picks or updating the tracker. Any
+        # progress it did make is saved and committed below; the next fire
+        # picks up where it stopped.
+        continue-on-error: true
+        run: python -m src.results.full_slate_outcomes --max-games 250
+
       - name: CLV report (fair-prob closing-line value by cohort)
         working-directory: backend
         # Read-only over local snapshots + archives (no API credits). Rebuilds

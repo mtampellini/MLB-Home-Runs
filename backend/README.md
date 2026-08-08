@@ -57,7 +57,7 @@ HR-Picks-V7/
 │   ├── odds/       fetch · log · ev
 │   ├── pipeline/   refresh_data · run_daily
 │   ├── backtest/   as_of_context · walk_forward (dormant) · metrics
-│   └── results/    settle · tracker
+│   └── results/    settle · tracker · full_slate_outcomes
 ├── web/            # consumes picks.json — Vercel front-end stays
 ├── .github/workflows/  daily_picks.yml · settle_results.yml
 └── picks.json      # today's picks, served to web
@@ -89,7 +89,42 @@ These gates govern when the model can move from paper to real money. **All must 
   as-of the game date via `AsOfContext`. Tests enforce this.
 - **No synthetic odds.** See the constraint section above.
 - **Commit `data/odds/`. Do NOT commit `data/raw/` or `data/processed/`** — those
-  are regeneratable caches.
+  are regeneratable caches (a few named exceptions are unignored explicitly in
+  `.gitignore`; `full_slate_outcomes.json` is one — see below).
+- **Never calibrate on picks alone.** Picks only exist where the model disagreed
+  with the market by enough to clear the EV gate, so they are a selected sample
+  (the 2026-06-11 P1 backtest measured zero incremental signal in `model_prob`
+  conditional on that selection). Use the labeled full-slate frame instead.
+
+---
+
+## Full-slate outcome labels
+
+`run_daily` logs every non-skipped prediction — picks *and* passes — to
+`data/full_slate/YYYY-MM-DD.json`, but deliberately stores no outcomes.
+`src/results/full_slate_outcomes.py` supplies them:
+
+```bash
+python -m src.results.full_slate_outcomes --report-only    # coverage, no fetching
+python -m src.results.full_slate_outcomes --offline-only   # archives only, no API
+python -m src.results.full_slate_outcomes                  # + box scores
+```
+
+Labels land in `data/processed/full_slate_outcomes.json`, keyed by
+`batter_id|game_pk` — labels only, never a copy of the features, so the
+full-slate log stays the single source of truth for model inputs. Two sources:
+committed archive settlements (free, offline, but only the ~17% of rows that
+were also picks) and MLB box scores gated on an authoritative `Final` status.
+
+Resumable and idempotent — processed games are never re-fetched, and an
+existing label is never overwritten, so settled history cannot be rewritten.
+The settle workflow runs it on every fire with `--max-games`, draining the
+initial backlog over a few runs. A batter who never took a plate appearance
+gets no label at all rather than a zero.
+
+Consume it with `build_labeled_dataset()`. Pass `model_version=` whenever the
+consumer reads `model_prob` or `components`: those are not comparable across
+the 2026-07-01 rebuild.
 
 ---
 

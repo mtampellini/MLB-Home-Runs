@@ -1,0 +1,418 @@
+"""Outcome backfill onto the full-slate log."""
+
+import json
+from pathlib import Path
+
+import pytest
+
+from src.results.full_slate_outcomes import (
+    LabelStore,
+    backfill,
+    build_labeled_dataset,
+    coverage,
+    harvest_archive_labels,
+    load_store,
+    save_store,
+)
+
+
+# ---------------------------------------------------------------------------
+# Fixtures
+# ---------------------------------------------------------------------------
+
+def _slate_file(dirpath: Path, day: str, rows: list[dict],
+                model_version: str = "v7-weather-cal2-0.3.0") -> None:
+    dirpath.mkdir(parents=True, exist_ok=True)
+    (dirpath / f"{day}.json").write_text(json.dumps({
+        "date": day,
+        "generated_at": f"{day}T12:00:00-04:00",
+        "model_version": model_version,
+        "rows": rows,
+    }))
+
+
+def _row(batter_id: int, game_pk: int, *, matched_odds: bool = True,
+         model_prob: float = 0.20) -> dict:
+    return {
+        "batter_id": batter_id,
+        "batter": f"Batter {batter_id}",
+        "game_pk": game_pk,
+        "model_prob": model_prob,
+        "matched_odds": matched_odds,
+    }
+
+
+def _archive_file(dirpath: Path, day: str, results: list[dict],
+                  tier: str = "primary") -> None:
+    dirpath.mkdir(parents=True, exist_ok=True)
+    (dirpath / f"{day}.json").write_text(json.dumps({
+        "date": day,
+        f"{tier}_picks": [],
+        "settlement": {f"{tier}_results": results},
+    }))
+
+
+def _result(batter_id: int, game_pk: int, outcome: str, actual_hr: int) -> dict:
+    return {
+        "batter_id": batter_id,
+        "game_pk": game_pk,
+        "outcome": outcome,
+        "actual_hr": actual_hr,
+    }
+
+
+def _box(entries: dict[int, int | None]) -> dict:
+    """entries: {batter_id: hr_count or None for 'on roster, did not bat'}."""
+    players = {}
+    for bid, hr in entries.items():
+        players[f"ID_{bid}"] = {
+            "person": {"id": bid, "fullName": f"Batter {bid}"},
+            "stats": {"batting": {"homeRuns": hr, "atBats": 4}} if hr is not None else {},
+        }
+    return {"teams": {"home": {"players": players}, "away": {"players": {}}}}
+
+
+class FakeClient:
+    """Stands in for MlbStatsClient: canned schedule + boxscores, call-counted."""
+
+    def __init__(self, statuses: dict[int, str], boxes: dict[int, dict]):
+        self._statuses = statuses
+        self._boxes = boxes
+        self.boxscore_calls: list[int] = []
+
+    def schedule_for_date(self, d):
+        return {"dates": [{"games": [
+            {"gamePk": gpk, "status": {"abstractGameState": state}}
+            for gpk, state in self._statuses.items()
+        ]}]}
+
+    def _get(self, path: str, params=None):
+        gpk = int(path.split("/")[2])
+        self.boxscore_calls.append(gpk)
+        if gpk not in self._boxes:
+            raise RuntimeError(f"no canned boxscore for {gpk}")
+        return self._boxes[gpk]
+
+
+# ---------------------------------------------------------------------------
+# Store round-trip
+# ---------------------------------------------------------------------------
+
+def test_store_roundtrip(tmp_path):
+    store = LabelStore()
+    store.put(101, 900, 1, source="boxscore")
+    store.put(102, 900, 0, source="archive")
+    store.games_processed.add(900)
+
+    path = tmp_path / "store.json"
+    save_store(store, path)
+    loaded = load_store(path)
+
+    assert loaded.get(101, 900) == 1
+    assert loaded.get(102, 900) == 0
+    assert loaded.games_processed == {900}
+    assert loaded.sources["101|900"] == "boxscore"
+
+
+def test_load_store_missing_file_is_empty(tmp_path):
+    store = load_store(tmp_path / "nope.json")
+    assert store.labels == {}
+    assert store.games_processed == set()
+
+
+def test_existing_label_is_never_overwritten():
+    """Archive labels are settled history; a boxscore re-read must not rewrite them."""
+    store = LabelStore()
+    store.put(101, 900, 1, source="archive")
+    store.put(101, 900, 0, source="boxscore")
+    assert store.get(101, 900) == 1
+    assert store.sources["101|900"] == "archive"
+
+
+# ---------------------------------------------------------------------------
+# Source 1: archives
+# ---------------------------------------------------------------------------
+
+def test_harvest_archive_labels(tmp_path):
+    _archive_file(tmp_path, "2026-07-01", [
+        _result(101, 900, "W", 1),
+        _result(102, 900, "L", 0),
+    ])
+    store = LabelStore()
+    added = harvest_archive_labels(store, tmp_path)
+
+    assert added == 2
+    assert store.get(101, 900) == 1
+    assert store.get(102, 900) == 0
+
+
+def test_harvest_skips_voids(tmp_path):
+    """A VOID is 'no usable label', not 'did not homer'."""
+    _archive_file(tmp_path, "2026-07-01", [
+        _result(101, 900, "VOID", 0),
+        _result(102, 900, "W", 2),
+    ])
+    store = LabelStore()
+    added = harvest_archive_labels(store, tmp_path)
+
+    assert added == 1
+    assert store.get(101, 900) is None
+    assert store.get(102, 900) == 2
+
+
+def test_harvest_is_idempotent(tmp_path):
+    _archive_file(tmp_path, "2026-07-01", [_result(101, 900, "W", 1)])
+    store = LabelStore()
+    assert harvest_archive_labels(store, tmp_path) == 1
+    assert harvest_archive_labels(store, tmp_path) == 0
+    assert len(store.labels) == 1
+
+
+def test_harvest_tolerates_unreadable_archive(tmp_path):
+    (tmp_path / "2026-07-01.json").write_text("{ not json")
+    _archive_file(tmp_path, "2026-07-02", [_result(101, 900, "W", 1)])
+    store = LabelStore()
+    assert harvest_archive_labels(store, tmp_path) == 1
+
+
+# ---------------------------------------------------------------------------
+# Source 2: boxscores
+# ---------------------------------------------------------------------------
+
+def test_fetch_boxscore_labels(tmp_path, monkeypatch):
+    slate, archives, store_path = tmp_path / "fs", tmp_path / "ar", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900), _row(102, 900), _row(103, 901)])
+
+    client = FakeClient(
+        statuses={900: "Final", 901: "Final"},
+        boxes={900: _box({101: 1, 102: 0}), 901: _box({103: 3})},
+    )
+    result = backfill(full_slate_dir=slate, archives_dir=archives,
+                      store_path=store_path, client=client)
+
+    assert result["added_from_boxscore"] == 3
+    assert result["games_fetched"] == 2
+    store = load_store(store_path)
+    assert store.get(101, 900) == 1
+    assert store.get(102, 900) == 0
+    assert store.get(103, 901) == 3
+
+
+def test_did_not_bat_gets_no_label(tmp_path):
+    """A scratched batter must be dropped, never scored as a zero."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900), _row(102, 900)])
+
+    client = FakeClient(statuses={900: "Final"},
+                        boxes={900: _box({101: 0, 102: None})})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=client)
+
+    store = load_store(store_path)
+    assert store.get(101, 900) == 0
+    assert store.get(102, 900) is None
+    # The game is still marked done so we never re-fetch chasing the missing one.
+    assert 900 in store.games_processed
+
+
+def test_non_final_games_are_skipped_and_retried(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+
+    live = FakeClient(statuses={900: "Live"}, boxes={900: _box({101: 1})})
+    result = backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+                      store_path=store_path, client=live)
+    assert result["games_skipped_not_final"] == 1
+    assert result["added_from_boxscore"] == 0
+    assert live.boxscore_calls == []          # no wasted fetch
+    assert load_store(store_path).games_processed == set()
+
+    final = FakeClient(statuses={900: "Final"}, boxes={900: _box({101: 1})})
+    result = backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+                      store_path=store_path, client=final)
+    assert result["added_from_boxscore"] == 1
+
+
+def test_dead_schedule_api_is_not_reported_as_games_in_progress(tmp_path):
+    """A failed schedule call must not look like 'every game is still Live'.
+
+    settle._fetch_game_statuses swallows request errors and returns {}, so
+    without an explicit check a total outage counts every game as not-final
+    and exits clean — a silent no-op backfill.
+    """
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900), _row(102, 901)])
+
+    dead = FakeClient(statuses={}, boxes={})       # schedule returns nothing
+    result = backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+                      store_path=store_path, client=dead)
+
+    assert result["schedule_failures"] == 1
+    assert result["games_skipped_not_final"] == 0
+    assert dead.boxscore_calls == []
+    assert load_store(store_path).games_processed == set()
+
+
+def test_boxscore_failures_are_counted(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+
+    client = FakeClient(statuses={900: "Final"}, boxes={})   # _get raises
+    result = backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+                      store_path=store_path, client=client)
+
+    assert result["boxscore_failures"] == 1
+    assert result["games_fetched"] == 0
+
+
+def test_processed_games_are_not_refetched(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+
+    c1 = FakeClient(statuses={900: "Final"}, boxes={900: _box({101: 1})})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c1)
+    assert c1.boxscore_calls == [900]
+
+    c2 = FakeClient(statuses={900: "Final"}, boxes={900: _box({101: 1})})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c2)
+    assert c2.boxscore_calls == []
+
+
+def test_boxscore_failure_keeps_offline_progress(tmp_path):
+    """One dead game must not sink the run or lose archive labels."""
+    slate, archives, store_path = tmp_path / "fs", tmp_path / "ar", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900), _row(102, 901)])
+    _archive_file(archives, "2026-07-01", [_result(101, 900, "W", 1)])
+
+    client = FakeClient(statuses={900: "Final", 901: "Final"},
+                        boxes={900: _box({101: 1})})     # 901 raises
+    result = backfill(full_slate_dir=slate, archives_dir=archives,
+                      store_path=store_path, client=client)
+
+    assert result["added_from_archive"] == 1
+    store = load_store(store_path)
+    assert store.get(101, 900) == 1
+    assert 901 not in store.games_processed          # retried next run
+
+
+def test_max_games_limits_fetching(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900), _row(102, 901), _row(103, 902)])
+
+    client = FakeClient(
+        statuses={900: "Final", 901: "Final", 902: "Final"},
+        boxes={g: _box({100 + i: 0}) for i, g in enumerate((900, 901, 902), start=1)},
+    )
+    result = backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+                      store_path=store_path, client=client, max_games=2)
+    assert result["games_fetched"] == 2
+
+
+def test_offline_only_makes_no_calls(tmp_path):
+    slate, archives, store_path = tmp_path / "fs", tmp_path / "ar", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+    _archive_file(archives, "2026-07-01", [_result(101, 900, "W", 1)])
+
+    client = FakeClient(statuses={900: "Final"}, boxes={900: _box({101: 1})})
+    result = backfill(full_slate_dir=slate, archives_dir=archives,
+                      store_path=store_path, client=client, offline_only=True)
+
+    assert result["added_from_archive"] == 1
+    assert result["games_fetched"] == 0
+    assert client.boxscore_calls == []
+
+
+# ---------------------------------------------------------------------------
+# The join
+# ---------------------------------------------------------------------------
+
+def test_build_labeled_dataset(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900), _row(102, 900), _row(103, 900)])
+
+    store = LabelStore()
+    store.put(101, 900, 2, source="boxscore")
+    store.put(102, 900, 0, source="boxscore")
+    save_store(store, store_path)
+
+    ds = build_labeled_dataset(full_slate_dir=slate, store_path=store_path)
+
+    assert len(ds) == 2                        # 103 unlabeled -> dropped
+    by_id = {r["batter_id"]: r for r in ds}
+    assert by_id[101]["label"] == 1 and by_id[101]["actual_hr"] == 2
+    assert by_id[102]["label"] == 0
+    assert by_id[101]["slate_date"] == "2026-07-01"
+
+
+def test_require_odds_filter(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01",
+                [_row(101, 900, matched_odds=True), _row(102, 900, matched_odds=False)])
+
+    store = LabelStore()
+    store.put(101, 900, 1, source="boxscore")
+    store.put(102, 900, 1, source="boxscore")
+    save_store(store, store_path)
+
+    assert len(build_labeled_dataset(full_slate_dir=slate, store_path=store_path)) == 2
+    assert len(build_labeled_dataset(full_slate_dir=slate, store_path=store_path,
+                                     require_odds=True)) == 1
+
+
+def test_model_version_filter(tmp_path):
+    """model_prob is not comparable across the 2026-07-01 rebuild."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-06-20", [_row(101, 900)], model_version="v7-baseline-0.2.0")
+    _slate_file(slate, "2026-07-05", [_row(102, 901)], model_version="v7-weather-cal2-0.3.0")
+
+    store = LabelStore()
+    store.put(101, 900, 1, source="boxscore")
+    store.put(102, 901, 0, source="boxscore")
+    save_store(store, store_path)
+
+    ds = build_labeled_dataset(full_slate_dir=slate, store_path=store_path,
+                               model_version="v7-weather-cal2-0.3.0")
+    assert [r["batter_id"] for r in ds] == [102]
+
+
+def test_rows_without_game_pk_are_skipped(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    row = _row(101, 900)
+    row["game_pk"] = None
+    _slate_file(slate, "2026-07-01", [row])
+
+    save_store(LabelStore(), store_path)
+    assert build_labeled_dataset(full_slate_dir=slate, store_path=store_path) == []
+    cov = coverage(load_store(store_path), slate)
+    assert cov.rows_no_game_pk == 1
+    assert cov.rows_unlabeled == 0
+
+
+# ---------------------------------------------------------------------------
+# Coverage
+# ---------------------------------------------------------------------------
+
+def test_coverage_counts(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [
+        _row(101, 900, matched_odds=True),
+        _row(102, 900, matched_odds=True),
+        _row(103, 900, matched_odds=False),
+    ])
+
+    store = LabelStore()
+    store.put(101, 900, 1, source="boxscore")
+    store.put(102, 900, 0, source="archive")
+    save_store(store, store_path)
+
+    cov = coverage(load_store(store_path), slate)
+    assert cov.rows_total == 3
+    assert cov.rows_labeled == 2
+    assert cov.rows_unlabeled == 1
+    assert cov.hr_rate == pytest.approx(0.5)
+    assert cov.labeled_by_source == {"boxscore": 1, "archive": 1}
+    assert cov.rows_with_odds == 2
+    assert cov.rows_with_odds_labeled == 2
+    assert cov.date_min == "2026-07-01"
