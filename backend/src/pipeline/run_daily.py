@@ -694,10 +694,23 @@ def _to_snapshot_dict(fetch: FetchResult, cutoff_date: _date) -> dict:
             return [_coerce(x) for x in o]
         return o
 
+    # Per-book quote counts. Requesting a book does not mean the API carries
+    # it: a newly added operator can return nothing while still costing credits
+    # for its region. This makes that visible in the next snapshot instead of
+    # after a month of silently paying for an empty feed.
+    quotes_by_book: dict[str, int] = {}
+    for _q in fetch.quotes or []:
+        _b = getattr(_q, "book", None) or (_q.get("book") if isinstance(_q, dict) else None)
+        if _b:
+            quotes_by_book[_b] = quotes_by_book.get(_b, 0) + 1
+    for _b in fetch.books:
+        quotes_by_book.setdefault(_b, 0)
+
     return {
         "fetched_at": fetch.fetched_at,
         "as_of_date": cutoff_date.isoformat(),
         "books_filtered": list(fetch.books),
+        "quotes_by_book": quotes_by_book,
         "markets": fetch.markets,
         "requests_remaining": fetch.requests_remaining,
         "requests_used": fetch.requests_used,

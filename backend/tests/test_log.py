@@ -91,3 +91,36 @@ def test_list_snapshots_filters_by_date_range(tmp_odds_dir):
     files = list_snapshots(start=date(2026, 5, 5), end=date(2026, 5, 7))
     assert len(files) == 1
     assert "2026-05-06" in files[0].stem
+
+
+# ---------------------------------------------------------------------------
+# Book configuration
+# ---------------------------------------------------------------------------
+
+def test_book_and_region_config_is_env_overridable(monkeypatch):
+    """Whether an operator is carried, and under which region, is only knowable
+    from live responses — so it must be retunable without a deploy."""
+    import importlib
+    from src.odds import fetch as f
+    monkeypatch.setenv("ODDS_BOOKS", "fanduel,pinnacle")
+    monkeypatch.setenv("ODDS_REGIONS", "us,eu")
+    monkeypatch.setenv("ODDS_MARKETS", "batter_home_runs")
+    importlib.reload(f)
+    try:
+        assert f.DEFAULT_BOOKS == ("fanduel", "pinnacle")
+        assert f.DEFAULT_REGIONS == "us,eu"
+        assert f.MARKETS_REQUEST == "batter_home_runs"
+    finally:
+        monkeypatch.delenv("ODDS_BOOKS"); monkeypatch.delenv("ODDS_REGIONS")
+        monkeypatch.delenv("ODDS_MARKETS"); importlib.reload(f)
+
+
+def test_defaults_include_underdog_and_drop_the_dead_main_market():
+    import importlib
+    from src.odds import fetch as f
+    importlib.reload(f)
+    assert "underdog" in f.DEFAULT_BOOKS
+    # batter_home_runs returned nothing in 65,066 quotes; requesting it spent
+    # ~half the credit budget on an empty market.
+    assert f.MARKETS_REQUEST == f.MARKET_ALT
+    assert "us_dfs" in f.DEFAULT_REGIONS

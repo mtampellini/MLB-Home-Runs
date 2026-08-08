@@ -44,10 +44,28 @@ SPORT_KEY = "baseball_mlb"
 #     used as the bet price.
 MARKET_MAIN = "batter_home_runs"
 MARKET_ALT = "batter_home_runs_alternate"
-MARKETS_REQUEST = f"{MARKET_MAIN},{MARKET_ALT}"
 
-DEFAULT_BOOKS = ("fanduel", "draftkings")
-DEFAULT_REGIONS = "us"
+# The Odds API bills markets x regions per event call. Every knob below is
+# env-overridable so books, regions and markets can be retuned from workflow
+# config without a deploy — which matters because whether a given operator is
+# carried, and under which region, is only knowable by observing live responses.
+#
+# MARKET_MAIN is NOT requested by default: it returned data 0 times in 65,066
+# quotes (see docs and src/odds/ev.py), and every settled pick de-vigged
+# single-sided. Requesting it was spending ~half the credit budget on nothing.
+# Set ODDS_MARKETS to re-enable if the API ever starts carrying it.
+MARKETS_REQUEST = os.environ.get("ODDS_MARKETS", MARKET_ALT)
+
+# Underdog is a DFS/pick'em operator, so it is not carried in the plain "us"
+# region alongside the traditional sportsbooks — hence the second region. That
+# doubles per-event cost, which is exactly what dropping MARKET_MAIN pays for:
+# 1 market x 2 regions costs the same as the old 2 markets x 1 region.
+DEFAULT_BOOKS = tuple(
+    b.strip() for b in
+    os.environ.get("ODDS_BOOKS", "fanduel,draftkings,underdog").split(",")
+    if b.strip()
+)
+DEFAULT_REGIONS = os.environ.get("ODDS_REGIONS", "us,us_dfs")
 TARGET_POINT = 0.5      # the alt-market line we bet
 TARGET_OVER = "Over"
 TARGET_UNDER = "Under"
