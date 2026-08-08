@@ -455,7 +455,12 @@ def fetch_boxscore_labels(
                 out.boxscore_failures += 1
                 continue
 
-            for bid in sorted(need_by_game.get(gpk, ())):
+            # Label EVERY batter in the box score, not just the ones the model
+            # projected. Capturing rosters was pointless without this: the odds
+            # archive prices players the pipeline skips for insufficient PA, and
+            # resolving their names to ids only helps if those ids carry labels.
+            roster_ids = set(roster_from_boxscore(box).values())
+            for bid in sorted(set(need_by_game.get(gpk, ())) | roster_ids):
                 line = batting_line_for_batter(box, bid)
                 if line is not None:
                     store.put_line(bid, gpk, line)

@@ -692,3 +692,28 @@ def test_empty_roster_still_stops_the_refetch_loop(tmp_path):
              store_path=store_path, client=c2)
     assert c2.boxscore_calls == []
     assert load_store(store_path).rosters["900"] == {}
+
+
+def test_every_batter_in_the_boxscore_is_labeled(tmp_path):
+    """Rosters are useless unless non-projected batters also get labels — the
+    odds archive prices players the pipeline skips for insufficient PA."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])     # only 101 projected
+
+    box = {"teams": {"home": {"players": {
+        "ID_101": {"person": {"id": 101, "fullName": "Aaron Judge"},
+                   "stats": {"batting": {"hits": 1, "homeRuns": 1, "atBats": 4,
+                                         "doubles": 0, "triples": 0}}},
+        "ID_777": {"person": {"id": 777, "fullName": "Bench Guy"},
+                   "stats": {"batting": {"hits": 2, "homeRuns": 1, "atBats": 3,
+                                         "doubles": 1, "triples": 0}}},
+    }}, "away": {"players": {}}}}
+
+    client = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=client)
+
+    store = load_store(store_path)
+    assert store.get(101, 900) == 1
+    assert store.get(777, 900) == 1                 # never projected, labeled
+    assert store.get_line(777, 900)["tb"] == 2 + 4
