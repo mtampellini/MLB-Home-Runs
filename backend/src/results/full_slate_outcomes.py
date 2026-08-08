@@ -88,6 +88,14 @@ class LabelStore:
     games_processed: set[int] = field(default_factory=set)
     lines: dict[str, dict] = field(default_factory=dict)
     games_lined: set[int] = field(default_factory=set)
+    pitching_lines: dict[str, dict] = field(default_factory=dict)
+    games_pitcher_lined: set[int] = field(default_factory=set)
+
+    def put_pitching_line(self, pitcher_id: int, game_pk: int, line: dict) -> None:
+        self.pitching_lines[_key(pitcher_id, game_pk)] = line
+
+    def get_pitching_line(self, pitcher_id: int, game_pk: int) -> Optional[dict]:
+        return self.pitching_lines.get(_key(pitcher_id, game_pk))
 
     def put_line(self, batter_id: int, game_pk: int, line: dict) -> None:
         self.lines[_key(batter_id, game_pk)] = line
@@ -123,6 +131,8 @@ def load_store(path: Path = STORE_PATH) -> LabelStore:
         games_processed={int(g) for g in (raw.get("games_processed") or [])},
         lines={k: dict(v) for k, v in (raw.get("lines") or {}).items()},
         games_lined={int(g) for g in (raw.get("games_lined") or [])},
+        pitching_lines={k: dict(v) for k, v in (raw.get("pitching_lines") or {}).items()},
+        games_pitcher_lined={int(g) for g in (raw.get("games_pitcher_lined") or [])},
     )
 
 
@@ -140,6 +150,9 @@ def save_store(store: LabelStore, path: Path = STORE_PATH) -> None:
         "labels_by_source": by_source,
         "games_processed": sorted(store.games_processed),
         "games_lined": sorted(store.games_lined),
+        "n_pitching_lines": len(store.pitching_lines),
+        "games_pitcher_lined": sorted(store.games_pitcher_lined),
+        "pitching_lines": store.pitching_lines,
         "lines": store.lines,
         "sources": store.sources,
         "labels": store.labels,
@@ -261,6 +274,44 @@ def batting_line_for_batter(boxscore: dict, batter_id: int) -> Optional[dict]:
     return None
 
 
+def pitching_line_for_pitcher(boxscore: dict, pitcher_id: int) -> Optional[dict]:
+    """Pitching line for one pitcher, or None if he did not pitch.
+
+    `inningsPitched` is a STRING in thirds ("5.2" = 5 and 2/3), so it is parsed
+    into outs rather than read as a float — 5.2 as a float would be 5.2 innings,
+    a silent ~13% error on every start.
+    """
+    teams = boxscore.get("teams", {}) or {}
+    for side in ("home", "away"):
+        players = (teams.get(side, {}) or {}).get("players", {}) or {}
+        for _, player in players.items():
+            if int(player.get("person", {}).get("id", -1)) != pitcher_id:
+                continue
+            pit = (player.get("stats", {}) or {}).get("pitching", {}) or {}
+            if not pit:
+                return None
+            def n(key: str) -> int:
+                return int(pit.get(key, 0) or 0)
+            ip_raw = str(pit.get("inningsPitched", "0") or "0")
+            try:
+                whole, _, frac = ip_raw.partition(".")
+                outs = int(whole or 0) * 3 + int(frac or 0)
+            except ValueError:
+                outs = 0
+            return {
+                "outs": outs,
+                "ip": round(outs / 3.0, 3),
+                "bf": n("battersFaced"),
+                "h": n("hits"),
+                "r": n("runs"),
+                "er": n("earnedRuns"),
+                "hr": n("homeRuns"),
+                "k": n("strikeOuts"),
+                "bb": n("baseOnBalls"),
+            }
+    return None
+
+
 def _settle_helpers():
     """Import settle.py's parsers lazily.
 
@@ -310,11 +361,15 @@ def fetch_boxscore_labels(
     per_date = games_by_date(full_slate_dir)
     # Batters we actually need a label for, grouped by game.
     need_by_game: dict[int, set[int]] = {}
+    pitchers_by_game: dict[int, set[int]] = {}
     for _day, row in iter_full_slate_rows(full_slate_dir):
         gpk, bid = row.get("game_pk"), row.get("batter_id")
         if gpk is None or bid is None:
             continue
         need_by_game.setdefault(int(gpk), set()).add(int(bid))
+        pid = row.get("pitcher_id")
+        if pid is not None:
+            pitchers_by_game.setdefault(int(gpk), set()).add(int(pid))
 
     out = BoxscorePass()
 
@@ -323,7 +378,9 @@ def fetch_boxscore_labels(
         # read before batting lines were captured. The second case is what lets
         # the richer pass backfill games already labeled for HR.
         pending = [g for g in sorted(per_date[day])
-                   if g not in store.games_processed or g not in store.games_lined]
+                   if g not in store.games_processed
+                   or g not in store.games_lined
+                   or g not in store.games_pitcher_lined]
         if not pending:
             continue
         if max_games is not None and out.games_fetched >= max_games:
@@ -371,8 +428,14 @@ def fetch_boxscore_labels(
                 store.put(bid, gpk, hr, source="boxscore")
                 out.labels_added += 1
 
+            for pid in sorted(pitchers_by_game.get(gpk, ())):
+                pline = pitching_line_for_pitcher(box, pid)
+                if pline is not None:
+                    store.put_pitching_line(pid, gpk, pline)
+
             store.games_processed.add(gpk)
             store.games_lined.add(gpk)
+            store.games_pitcher_lined.add(gpk)
             out.games_fetched += 1
             if out.games_fetched % FLUSH_EVERY_GAMES == 0:
                 save_store(store, store_path)
@@ -576,6 +639,7 @@ def backfill(
         "games_processed_total": len(store.games_processed),
         "games_lined_total": len(store.games_lined),
         "batting_lines": len(store.lines),
+        "pitching_lines": len(store.pitching_lines),
         "boxscore_failures": box.boxscore_failures,
         "schedule_failures": box.schedule_failures,
         "network_error": network_error,

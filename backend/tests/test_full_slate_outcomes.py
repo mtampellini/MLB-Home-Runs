@@ -527,3 +527,85 @@ def test_total_bases_absent_is_none_not_zero(tmp_path):
     ds = build_labeled_dataset(full_slate_dir=slate, store_path=store_path)
     assert ds[0]["total_bases"] is None
     assert ds[0]["label"] == 1
+
+
+# ---------------------------------------------------------------------------
+# Pitching lines
+# ---------------------------------------------------------------------------
+
+def _box_pitch(pitcher_id: int, **stats) -> dict:
+    return {"teams": {"home": {"players": {f"ID_{pitcher_id}": {
+        "person": {"id": pitcher_id, "fullName": "P"},
+        "stats": {"pitching": stats},
+    }}}, "away": {"players": {}}}}
+
+
+def test_innings_pitched_parsed_as_thirds_not_decimal():
+    """'5.2' means 5 and 2/3 innings, not 5.2 — reading it as a float is a
+    silent ~13% error on every start."""
+    from src.results.full_slate_outcomes import pitching_line_for_pitcher
+    line = pitching_line_for_pitcher(
+        _box_pitch(500, inningsPitched="5.2", battersFaced=24, homeRuns=1,
+                   strikeOuts=7, earnedRuns=2, hits=5, baseOnBalls=1), 500)
+    assert line["outs"] == 17                    # 5*3 + 2
+    assert line["ip"] == pytest.approx(5.667, abs=0.001)
+    assert line["hr"] == 1 and line["k"] == 7
+
+
+def test_whole_innings_parse():
+    from src.results.full_slate_outcomes import pitching_line_for_pitcher
+    line = pitching_line_for_pitcher(_box_pitch(500, inningsPitched="6.0"), 500)
+    assert line["outs"] == 18
+
+
+def test_pitching_line_none_when_did_not_pitch():
+    from src.results.full_slate_outcomes import pitching_line_for_pitcher
+    box = {"teams": {"home": {"players": {"ID_500": {
+        "person": {"id": 500}, "stats": {}}}}, "away": {"players": {}}}}
+    assert pitching_line_for_pitcher(box, 500) is None
+
+
+def test_backfill_captures_the_starting_pitcher(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    row = _row(101, 900)
+    row["pitcher_id"] = 500
+    _slate_file(slate, "2026-07-01", [row])
+
+    box = {"teams": {"home": {"players": {
+        "ID_101": {"person": {"id": 101},
+                   "stats": {"batting": {"hits": 1, "homeRuns": 1, "atBats": 4,
+                                         "doubles": 0, "triples": 0}}},
+        "ID_500": {"person": {"id": 500},
+                   "stats": {"pitching": {"inningsPitched": "6.1",
+                                          "homeRuns": 2, "strikeOuts": 8,
+                                          "battersFaced": 25}}},
+    }}, "away": {"players": {}}}}
+
+    client = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=client)
+
+    store = load_store(store_path)
+    assert store.get_line(101, 900)["tb"] == 4
+    pl = store.get_pitching_line(500, 900)
+    assert pl["outs"] == 19 and pl["hr"] == 2 and pl["k"] == 8
+    assert 900 in store.games_pitcher_lined
+
+
+def test_pitcher_lined_games_are_not_refetched(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    row = _row(101, 900); row["pitcher_id"] = 500
+    _slate_file(slate, "2026-07-01", [row])
+    box = {"teams": {"home": {"players": {
+        "ID_101": {"person": {"id": 101}, "stats": {"batting": {"hits": 0, "homeRuns": 0,
+                                                                "atBats": 3, "doubles": 0,
+                                                                "triples": 0}}},
+        "ID_500": {"person": {"id": 500}, "stats": {"pitching": {"inningsPitched": "5.0"}}},
+    }}, "away": {"players": {}}}}
+    c1 = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c1)
+    c2 = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c2)
+    assert c2.boxscore_calls == []
