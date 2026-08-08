@@ -57,6 +57,7 @@ HR-Picks-V7/
 │   ├── odds/       fetch · log · ev
 │   ├── pipeline/   refresh_data · run_daily
 │   ├── backtest/   as_of_context · walk_forward (dormant) · metrics
+│   │                clv_recover · early_entry_clv
 │   └── results/    settle · tracker · full_slate_outcomes
 ├── web/            # consumes picks.json — Vercel front-end stays
 ├── .github/workflows/  daily_picks.yml · settle_results.yml
@@ -125,6 +126,40 @@ gets no label at all rather than a zero.
 Consume it with `build_labeled_dataset()`. Pass `model_version=` whenever the
 consumer reads `model_prob` or `components`: those are not comparable across
 the 2026-07-01 rebuild.
+
+---
+
+## Entry timing and CLV
+
+The model can't run until lineups are confirmed, so entry sits a median ~52 min
+before first pitch — but the books post these lines the night before. Over a
+line's full life the price moves ~64 cents and moves at all ~86% of the time;
+over our window it moves 1.6 cents and is static 95% of the time. **Effectively
+all price discovery happens before we arrive**, so recovered CLV is measured
+across a frozen window and cannot detect edge in either direction. Treat a
+near-zero CLV number as "no measurement", not "no edge".
+
+`src/backtest/early_entry_clv.py` tests whether entering earlier would have
+helped, using only stored snapshots:
+
+```bash
+python -m src.backtest.early_entry_clv                 # all archived dates
+python -m src.backtest.early_entry_clv 2026-07-01      # explicit start
+```
+
+As of 2026-08-08 the answer is no: aggregate early-entry CLV on 226 primary
+production picks is +0.17pp, CI [-0.05, +0.38]. A +0.64pp result post-rebuild
+did **not** replicate pre-rebuild, and the filter's rejects moved the same way
+in both eras — the split tracks the calendar, not the filter. Month to month the
+sign flips (May +0.04, Jun -0.33, Jul +0.42, Aug -0.46) at near-identical ~19h
+lead times, so it isn't a lead-time artifact. The line moves a lot before we
+bet, just not reliably toward our picks. Re-run as the sample grows.
+
+Two joins in that module are easy to get wrong and are covered by tests: the
+MLB and Odds APIs disagree on first pitch by ~1 minute (an exact join silently
+drops ~90% of picks), and `passes_triple_v2` only exists on picks from
+2026-07-01 (reading stored `filter_status` discards the 927 earlier ones as
+rejected when they were never evaluated).
 
 ---
 
