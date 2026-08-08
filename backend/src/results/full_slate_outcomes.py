@@ -391,6 +391,7 @@ def build_labeled_dataset(
     store_path: Path = STORE_PATH,
     require_odds: bool = False,
     model_version: Optional[str] = None,
+    complete_games_only: bool = False,
 ) -> list[dict]:
     """Join labels onto full-slate rows. One dict per labeled prediction.
 
@@ -403,6 +404,14 @@ def build_labeled_dataset(
     to a single model generation, which matters whenever a downstream consumer
     reads `model_prob` or `components`: those are not comparable across the
     2026-07-01 rebuild.
+
+    `complete_games_only` is REQUIRED for any unbiased analysis while the
+    box-score backfill is still draining. Until a game's box score has been
+    read, the only labels it has are its picks — so the mixed frame is part
+    unbiased (fully-read games) and part picks-only, which quietly reintroduces
+    exactly the selection bias the full-slate log exists to avoid. Restricting
+    to games in `games_processed` keeps only games where EVERY batter is
+    labeled.
     """
     if store is None:
         store = load_store(store_path)
@@ -410,6 +419,8 @@ def build_labeled_dataset(
     for day, row in iter_full_slate_rows(full_slate_dir):
         gpk, bid = row.get("game_pk"), row.get("batter_id")
         if gpk is None or bid is None:
+            continue
+        if complete_games_only and int(gpk) not in store.games_processed:
             continue
         if require_odds and not row.get("matched_odds"):
             continue

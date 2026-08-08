@@ -358,21 +358,23 @@ def main() -> int:
     p.add_argument("--model-version", default=None,
                    help="Restrict to one model generation; model_prob is not "
                         "comparable across the 2026-07-01 rebuild.")
+    p.add_argument("--allow-partial", action="store_true",
+                   help="Include games whose box score has not been read. Their "
+                        "only labels are picks, so this reintroduces selection "
+                        "bias. Off by default, and for good reason.")
     args = p.parse_args()
 
     rows = build_labeled_dataset(require_odds=args.require_odds,
-                                 model_version=args.model_version)
+                                 model_version=args.model_version,
+                                 complete_games_only=not args.allow_partial)
     if not rows:
         print("no labeled rows — run src.results.full_slate_outcomes first")
         return 1
 
-    sources = {r.get("label_source") for r in rows}
-    if sources == {"archive"}:
+    if args.allow_partial:
         print("!" * 72)
-        print("WARNING: every label came from archive settlements, i.e. PICKS ONLY.")
-        print("That is the selected sample this module exists to avoid. Results")
-        print("below describe the biased frame. Drain the box-score backfill")
-        print("(python -m src.results.full_slate_outcomes) before trusting them.")
+        print("WARNING: --allow-partial includes games labeled from PICKS ONLY.")
+        print("That is the selected sample this module exists to avoid.")
         print("!" * 72)
         print()
 

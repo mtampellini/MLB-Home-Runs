@@ -416,3 +416,30 @@ def test_coverage_counts(tmp_path):
     assert cov.rows_with_odds == 2
     assert cov.rows_with_odds_labeled == 2
     assert cov.date_min == "2026-07-01"
+
+
+def test_complete_games_only_excludes_partially_labeled_games(tmp_path):
+    """A game whose box score hasn't been read has only its PICKS labeled.
+
+    Mixing those rows into an 'unbiased' frame quietly restores the selection
+    bias the full-slate log exists to remove.
+    """
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900), _row(102, 900),
+                                      _row(103, 901), _row(104, 901)])
+
+    store = LabelStore()
+    # Game 900 fully read from its box score.
+    store.put(101, 900, 1, source="boxscore")
+    store.put(102, 900, 0, source="boxscore")
+    store.games_processed.add(900)
+    # Game 901: only the pick got a label from the archive.
+    store.put(103, 901, 1, source="archive")
+    save_store(store, store_path)
+
+    mixed = build_labeled_dataset(full_slate_dir=slate, store_path=store_path)
+    clean = build_labeled_dataset(full_slate_dir=slate, store_path=store_path,
+                                  complete_games_only=True)
+
+    assert {r["batter_id"] for r in mixed} == {101, 102, 103}
+    assert {r["batter_id"] for r in clean} == {101, 102}
