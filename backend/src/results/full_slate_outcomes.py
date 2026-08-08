@@ -37,6 +37,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import unicodedata
 from dataclasses import dataclass, field
 from datetime import date as _date
 from datetime import datetime
@@ -90,6 +91,12 @@ class LabelStore:
     games_lined: set[int] = field(default_factory=set)
     pitching_lines: dict[str, dict] = field(default_factory=dict)
     games_pitcher_lined: set[int] = field(default_factory=set)
+    # game_pk -> {normalized batter name: batter_id} for EVERY batter in the
+    # box score, not just the ones we projected. The odds archive keys on
+    # batter NAME, so without this only players our own pipeline already knew
+    # about can be joined to outcomes — and large book disagreements cluster
+    # precisely on the players it skips.
+    rosters: dict[str, dict] = field(default_factory=dict)
 
     def put_pitching_line(self, pitcher_id: int, game_pk: int, line: dict) -> None:
         self.pitching_lines[_key(pitcher_id, game_pk)] = line
@@ -133,6 +140,7 @@ def load_store(path: Path = STORE_PATH) -> LabelStore:
         games_lined={int(g) for g in (raw.get("games_lined") or [])},
         pitching_lines={k: dict(v) for k, v in (raw.get("pitching_lines") or {}).items()},
         games_pitcher_lined={int(g) for g in (raw.get("games_pitcher_lined") or [])},
+        rosters={k: dict(v) for k, v in (raw.get("rosters") or {}).items()},
     )
 
 
@@ -151,6 +159,8 @@ def save_store(store: LabelStore, path: Path = STORE_PATH) -> None:
         "games_processed": sorted(store.games_processed),
         "games_lined": sorted(store.games_lined),
         "n_pitching_lines": len(store.pitching_lines),
+        "n_rosters": len(store.rosters),
+        "rosters": store.rosters,
         "games_pitcher_lined": sorted(store.games_pitcher_lined),
         "pitching_lines": store.pitching_lines,
         "lines": store.lines,
@@ -274,6 +284,34 @@ def batting_line_for_batter(boxscore: dict, batter_id: int) -> Optional[dict]:
     return None
 
 
+def normalize_name(name: str) -> str:
+    """Fold a player name for matching across data sources.
+
+    The Odds API and MLB Stats disagree on accents, punctuation and suffixes
+    ("Jose Ramirez" / "Jose Ramirez", "Ronald Acuna Jr." / "Ronald Acuna Jr").
+    Matching raw strings silently drops those players.
+    """
+    s = unicodedata.normalize("NFKD", name or "").encode("ascii", "ignore").decode()
+    s = s.lower().replace(".", "").replace(",", "").replace("'", "")
+    parts = [p for p in s.split() if p not in ("jr", "sr", "ii", "iii", "iv")]
+    return " ".join(parts)
+
+
+def roster_from_boxscore(boxscore: dict) -> dict:
+    """{normalized name: batter_id} for every player with a batting entry."""
+    out: dict = {}
+    teams = boxscore.get("teams", {}) or {}
+    for side in ("home", "away"):
+        players = (teams.get(side, {}) or {}).get("players", {}) or {}
+        for _, player in players.items():
+            person = player.get("person", {}) or {}
+            pid, name = person.get("id"), person.get("fullName")
+            if pid is None or not name:
+                continue
+            out[normalize_name(name)] = int(pid)
+    return out
+
+
 def pitching_line_for_pitcher(boxscore: dict, pitcher_id: int) -> Optional[dict]:
     """Pitching line for one pitcher, or None if he did not pitch.
 
@@ -380,7 +418,8 @@ def fetch_boxscore_labels(
         pending = [g for g in sorted(per_date[day])
                    if g not in store.games_processed
                    or g not in store.games_lined
-                   or g not in store.games_pitcher_lined]
+                   or g not in store.games_pitcher_lined
+                   or str(g) not in store.rosters]
         if not pending:
             continue
         if max_games is not None and out.games_fetched >= max_games:
@@ -427,6 +466,11 @@ def fetch_boxscore_labels(
                     continue          # did not bat — no label, drop downstream
                 store.put(bid, gpk, hr, source="boxscore")
                 out.labels_added += 1
+
+            # Stored unconditionally, even when empty. The retry guard must mean
+            # "we read this game", not "we got names from it" — otherwise a box
+            # score without usable names re-fetches on every run, forever.
+            store.rosters[str(gpk)] = roster_from_boxscore(box)
 
             for pid in sorted(pitchers_by_game.get(gpk, ())):
                 pline = pitching_line_for_pitcher(box, pid)

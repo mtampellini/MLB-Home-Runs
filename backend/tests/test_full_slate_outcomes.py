@@ -609,3 +609,86 @@ def test_pitcher_lined_games_are_not_refetched(tmp_path):
     backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
              store_path=store_path, client=c2)
     assert c2.boxscore_calls == []
+
+
+# ---------------------------------------------------------------------------
+# Rosters (joining the odds archive, which keys on NAME)
+# ---------------------------------------------------------------------------
+
+def test_normalize_name_folds_accents_punctuation_and_suffixes():
+    from src.results.full_slate_outcomes import normalize_name
+    assert normalize_name("Ronald Acuña Jr.") == normalize_name("Ronald Acuna Jr")
+    assert normalize_name("José Ramírez") == normalize_name("Jose Ramirez")
+    assert normalize_name("Michael Harris II") == "michael harris"
+    assert normalize_name("  Aaron   Judge ") == "aaron judge"
+
+
+def test_roster_captures_every_batter_not_just_projected(tmp_path):
+    """Odds rows key on name, so the join needs the WHOLE roster — the big book
+    disagreements cluster on players the pipeline never projects."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])     # only 101 projected
+
+    box = {"teams": {"home": {"players": {
+        "ID_101": {"person": {"id": 101, "fullName": "Aaron Judge"},
+                   "stats": {"batting": {"hits": 1, "homeRuns": 1, "atBats": 4,
+                                         "doubles": 0, "triples": 0}}},
+        "ID_777": {"person": {"id": 777, "fullName": "José Ramírez"},
+                   "stats": {"batting": {"hits": 2, "homeRuns": 0, "atBats": 4,
+                                         "doubles": 1, "triples": 0}}},
+    }}, "away": {"players": {}}}}
+
+    client = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=client)
+
+    roster = load_store(store_path).rosters["900"]
+    assert roster["aaron judge"] == 101
+    assert roster["jose ramirez"] == 777          # never projected, still mapped
+
+
+def test_roster_absence_triggers_one_refetch(tmp_path):
+    """Games read before rosters existed must be re-read exactly once."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+    old = LabelStore()
+    old.put(101, 900, 1, source="boxscore")
+    old.games_processed.add(900)
+    old.games_lined.add(900)
+    old.games_pitcher_lined.add(900)
+    save_store(old, store_path)
+
+    box = {"teams": {"home": {"players": {"ID_101": {
+        "person": {"id": 101, "fullName": "Aaron Judge"},
+        "stats": {"batting": {"hits": 1, "homeRuns": 1, "atBats": 4,
+                              "doubles": 0, "triples": 0}}}}},
+        "away": {"players": {}}}}
+    c1 = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c1)
+    assert c1.boxscore_calls == [900]
+    assert "900" in load_store(store_path).rosters
+
+    c2 = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c2)
+    assert c2.boxscore_calls == []
+
+
+def test_empty_roster_still_stops_the_refetch_loop(tmp_path):
+    """A box score with no usable names must not re-fetch forever."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+    box = {"teams": {"home": {"players": {"ID_101": {
+        "person": {"id": 101},                       # no fullName
+        "stats": {"batting": {"hits": 0, "homeRuns": 0, "atBats": 3,
+                              "doubles": 0, "triples": 0}}}}},
+        "away": {"players": {}}}}
+    c1 = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c1)
+    c2 = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c2)
+    assert c2.boxscore_calls == []
+    assert load_store(store_path).rosters["900"] == {}
