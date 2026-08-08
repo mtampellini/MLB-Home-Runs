@@ -69,17 +69,31 @@ def _key(batter_id: int, game_pk: int) -> str:
 
 @dataclass
 class LabelStore:
-    """Persistent (batter_id, game_pk) -> HR count map.
+    """Persistent (batter_id, game_pk) -> outcome map.
 
     `labels` holds only batters who actually took a plate appearance. A key
     absent from `labels` whose game IS in `games_processed` means the batter
     was on the projected slate but never batted (scratched, defensive sub,
     pinch-hit that never came) — no label exists and the row must be dropped
     from training rather than scored as a zero.
+
+    `lines` carries the FULL batting line (hits, 2B, 3B, HR, total bases) for
+    markets other than home runs. It is kept separate from `labels` rather than
+    replacing it so the HR labels already settled by settle.py stay byte-for-byte
+    intact — and so `games_lined` can lag `games_processed` while the richer
+    pass catches up on games that were read before lines were captured.
     """
     labels: dict[str, int] = field(default_factory=dict)
     sources: dict[str, str] = field(default_factory=dict)
     games_processed: set[int] = field(default_factory=set)
+    lines: dict[str, dict] = field(default_factory=dict)
+    games_lined: set[int] = field(default_factory=set)
+
+    def put_line(self, batter_id: int, game_pk: int, line: dict) -> None:
+        self.lines[_key(batter_id, game_pk)] = line
+
+    def get_line(self, batter_id: int, game_pk: int) -> Optional[dict]:
+        return self.lines.get(_key(batter_id, game_pk))
 
     def has(self, batter_id: int, game_pk: int) -> bool:
         return _key(batter_id, game_pk) in self.labels
@@ -107,6 +121,8 @@ def load_store(path: Path = STORE_PATH) -> LabelStore:
         labels={k: int(v) for k, v in (raw.get("labels") or {}).items()},
         sources=dict(raw.get("sources") or {}),
         games_processed={int(g) for g in (raw.get("games_processed") or [])},
+        lines={k: dict(v) for k, v in (raw.get("lines") or {}).items()},
+        games_lined={int(g) for g in (raw.get("games_lined") or [])},
     )
 
 
@@ -119,8 +135,12 @@ def save_store(store: LabelStore, path: Path = STORE_PATH) -> None:
         "generated_at": datetime.now().astimezone().isoformat(),
         "n_labels": len(store.labels),
         "n_games_processed": len(store.games_processed),
+        "n_lines": len(store.lines),
+        "n_games_lined": len(store.games_lined),
         "labels_by_source": by_source,
         "games_processed": sorted(store.games_processed),
+        "games_lined": sorted(store.games_lined),
+        "lines": store.lines,
         "sources": store.sources,
         "labels": store.labels,
     }
@@ -204,6 +224,43 @@ def harvest_archive_labels(
 # Source 2: boxscores (network)
 # ---------------------------------------------------------------------------
 
+def batting_line_for_batter(boxscore: dict, batter_id: int) -> Optional[dict]:
+    """Full batting line for one batter, or None if he never batted.
+
+    Total bases is computed from components rather than read from the API's
+    `totalBases`, which is not present on every boxscore. Singles are derived
+    (hits - 2B - 3B - HR) because the API reports hits as the inclusive total.
+    """
+    teams = boxscore.get("teams", {}) or {}
+    for side in ("home", "away"):
+        players = (teams.get(side, {}) or {}).get("players", {}) or {}
+        for _, player in players.items():
+            if int(player.get("person", {}).get("id", -1)) != batter_id:
+                continue
+            bat = (player.get("stats", {}) or {}).get("batting", {}) or {}
+            if not bat:
+                return None                       # on the roster, did not bat
+            def n(key: str) -> int:
+                return int(bat.get(key, 0) or 0)
+            hits, dbl, tpl, hr = n("hits"), n("doubles"), n("triples"), n("homeRuns")
+            singles = max(0, hits - dbl - tpl - hr)
+            return {
+                "ab": n("atBats"),
+                "pa": n("plateAppearances"),
+                "h": hits,
+                "1b": singles,
+                "2b": dbl,
+                "3b": tpl,
+                "hr": hr,
+                "bb": n("baseOnBalls"),
+                "k": n("strikeOuts"),
+                "rbi": n("rbi"),
+                "r": n("runs"),
+                "tb": singles + 2 * dbl + 3 * tpl + 4 * hr,
+            }
+    return None
+
+
 def _settle_helpers():
     """Import settle.py's parsers lazily.
 
@@ -262,7 +319,11 @@ def fetch_boxscore_labels(
     out = BoxscorePass()
 
     for day in sorted(per_date):
-        pending = [g for g in sorted(per_date[day]) if g not in store.games_processed]
+        # A game needs a read if it has never been read at all, OR if it was
+        # read before batting lines were captured. The second case is what lets
+        # the richer pass backfill games already labeled for HR.
+        pending = [g for g in sorted(per_date[day])
+                   if g not in store.games_processed or g not in store.games_lined]
         if not pending:
             continue
         if max_games is not None and out.games_fetched >= max_games:
@@ -299,6 +360,9 @@ def fetch_boxscore_labels(
                 continue
 
             for bid in sorted(need_by_game.get(gpk, ())):
+                line = batting_line_for_batter(box, bid)
+                if line is not None:
+                    store.put_line(bid, gpk, line)
                 if store.has(bid, gpk):
                     continue
                 hr = hr_count_for_batter(box, bid)
@@ -308,6 +372,7 @@ def fetch_boxscore_labels(
                 out.labels_added += 1
 
             store.games_processed.add(gpk)
+            store.games_lined.add(gpk)
             out.games_fetched += 1
             if out.games_fetched % FLUSH_EVERY_GAMES == 0:
                 save_store(store, store_path)
@@ -432,6 +497,18 @@ def build_labeled_dataset(
         rec["actual_hr"] = int(hr)
         rec["label"] = 1 if hr >= 1 else 0
         rec["label_source"] = store.sources.get(_key(int(bid), int(gpk)), "?")
+        # Full batting line when the richer pass has reached this game. Absent
+        # for games read before lines were captured; consumers must treat
+        # `total_bases is None` as "not yet known", never as zero.
+        line = store.get_line(int(bid), int(gpk))
+        if line:
+            rec["batting_line"] = line
+            rec["total_bases"] = line.get("tb")
+            rec["actual_hits"] = line.get("h")
+        else:
+            rec["batting_line"] = None
+            rec["total_bases"] = None
+            rec["actual_hits"] = None
         out.append(rec)
 
     if model_version is not None:
@@ -497,6 +574,8 @@ def backfill(
         "games_fetched": box.games_fetched,
         "games_skipped_not_final": box.games_skipped_not_final,
         "games_processed_total": len(store.games_processed),
+        "games_lined_total": len(store.games_lined),
+        "batting_lines": len(store.lines),
         "boxscore_failures": box.boxscore_failures,
         "schedule_failures": box.schedule_failures,
         "network_error": network_error,

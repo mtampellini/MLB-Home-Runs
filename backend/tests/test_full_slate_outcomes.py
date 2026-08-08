@@ -443,3 +443,87 @@ def test_complete_games_only_excludes_partially_labeled_games(tmp_path):
 
     assert {r["batter_id"] for r in mixed} == {101, 102, 103}
     assert {r["batter_id"] for r in clean} == {101, 102}
+
+
+# ---------------------------------------------------------------------------
+# Batting lines (markets beyond home runs)
+# ---------------------------------------------------------------------------
+
+def _box_line(batter_id: int, **stats) -> dict:
+    return {"teams": {"home": {"players": {f"ID_{batter_id}": {
+        "person": {"id": batter_id, "fullName": "X"},
+        "stats": {"batting": stats},
+    }}}, "away": {"players": {}}}}
+
+
+def test_total_bases_computed_from_components():
+    """`hits` is inclusive, so singles must be derived, and totalBases is not
+    present on every boxscore — compute it rather than trust it."""
+    from src.results.full_slate_outcomes import batting_line_for_batter
+    box = _box_line(101, atBats=5, hits=3, doubles=1, triples=0, homeRuns=1)
+    line = batting_line_for_batter(box, 101)
+    assert line["1b"] == 1                       # 3 hits - 1 double - 1 HR
+    assert line["tb"] == 1 + 2 + 4               # 1B + 2B + HR
+    assert line["hr"] == 1
+
+
+def test_batting_line_none_when_batter_did_not_play():
+    from src.results.full_slate_outcomes import batting_line_for_batter
+    box = {"teams": {"home": {"players": {"ID_101": {
+        "person": {"id": 101}, "stats": {}}}}, "away": {"players": {}}}}
+    assert batting_line_for_batter(box, 101) is None
+    assert batting_line_for_batter(box, 999) is None
+
+
+def test_line_capture_reprocesses_already_labeled_games(tmp_path):
+    """A game read before lines existed must be re-read once, without
+    disturbing the HR label already settled for it."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+
+    # Simulate the old schema: labeled and marked processed, but no line.
+    old = LabelStore()
+    old.put(101, 900, 1, source="archive")
+    old.games_processed.add(900)
+    save_store(old, store_path)
+
+    client = FakeClient(statuses={900: "Final"},
+                        boxes={900: _box_line(101, atBats=4, hits=2,
+                                              doubles=1, triples=0, homeRuns=1)})
+    result = backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+                      store_path=store_path, client=client)
+
+    assert client.boxscore_calls == [900]        # re-read for the line
+    store = load_store(store_path)
+    assert store.get(101, 900) == 1              # settled label untouched
+    assert store.sources["101|900"] == "archive"
+    # hits=2 = one double + one HR, so no singles: TB = 2 + 4.
+    assert store.get_line(101, 900)["tb"] == 2 + 4
+    assert 900 in store.games_lined
+
+
+def test_lined_games_are_not_refetched(tmp_path):
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+    box = _box_line(101, atBats=4, hits=1, doubles=0, triples=0, homeRuns=1)
+
+    c1 = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c1)
+    c2 = FakeClient(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=c2)
+    assert c2.boxscore_calls == []
+
+
+def test_total_bases_absent_is_none_not_zero(tmp_path):
+    """A game whose line hasn't been captured must not read as 0 total bases."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+    store = LabelStore()
+    store.put(101, 900, 1, source="archive")
+    save_store(store, store_path)
+
+    ds = build_labeled_dataset(full_slate_dir=slate, store_path=store_path)
+    assert ds[0]["total_bases"] is None
+    assert ds[0]["label"] == 1
