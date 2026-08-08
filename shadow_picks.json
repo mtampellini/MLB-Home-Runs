@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-08-08T18:38:13.904486+00:00",
+  "generated_at": "2026-08-08T19:21:25.186527+00:00",
   "as_of_date": "2026-08-08",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.032520325203252036,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 7,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 3,
+      "pitcher": "Landen Roupp",
+      "pitcher_id": 694738,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823188,
+      "game_datetime": "2026-08-08T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 780,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1151,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1418,
+      "ev_pct": 24.82,
+      "edge_pct": 2.67,
+      "ev_pct_p3": 19.4,
+      "blended_hr_per_pa": 0.05414,
+      "breakout_score": 0.0482,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0192,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6647,
+          "deviation": 0.6647
+        },
+        {
+          "name": "pitcher",
+          "value": 0.6777,
+          "deviation": 0.3223
+        },
+        {
+          "name": "park",
+          "value": 0.8772,
+          "deviation": 0.1228
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 10,
       "batter": "Tyler Heineman",
       "batter_id": 623168,
       "batter_hand": "L",
@@ -58,7 +115,7 @@
           "deviation": 0.0713
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +126,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 7,
+      "daily_rank": 11,
       "batter": "Tyler Soderstrom",
       "batter_id": 691016,
       "batter_hand": "L",
@@ -115,7 +172,7 @@
           "deviation": 0.1344
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -125,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-08-08.json"
 }
