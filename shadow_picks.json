@@ -1,15 +1,130 @@
 {
-  "generated_at": "2026-08-10T19:25:25.014654+00:00",
+  "generated_at": "2026-08-10T20:02:54.870898+00:00",
   "as_of_date": "2026-08-10",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030290281867900715,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 10,
   "games_pregame": 10,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Jarren Duran",
+      "batter_id": 680776,
+      "batter_hand": "L",
+      "team": "BOS",
+      "lineup_spot": 7,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 505,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1624,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1982,
+      "ev_pct": 19.91,
+      "edge_pct": 3.58,
+      "ev_pct_p3": 17.2,
+      "blended_hr_per_pa": 0.03114,
+      "breakout_score": 0.0252,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5382,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.0782,
+          "deviation": 0.0782
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0279,
+          "deviation": 0.0279
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Wilyer Abreu",
+      "batter_id": 677800,
+      "batter_hand": "L",
+      "team": "BOS",
+      "lineup_spot": 3,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 290,
+      "dk_odds": 309,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.248,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2879,
+      "ev_pct": 17.76,
+      "edge_pct": 4.0,
+      "ev_pct_p3": 17.31,
+      "blended_hr_per_pa": 0.04287,
+      "breakout_score": 0.0044,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.4218,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4152,
+          "deviation": 0.4152
+        },
+        {
+          "name": "park",
+          "value": 1.0782,
+          "deviation": 0.0782
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-10.json"
 }

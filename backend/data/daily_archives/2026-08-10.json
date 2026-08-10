@@ -1,30 +1,390 @@
 {
   "date": "2026-08-10",
-  "generated_at": "2026-08-10T19:25:25.014784+00:00",
+  "generated_at": "2026-08-10T20:02:54.871076+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030290281867900715,
   "funnel": {
     "total_slate_games": 10,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 10,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
+    "total_predictions": 17,
+    "skipped_low_data": 1,
     "skipped_career_pa_filter": 0,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 17,
+    "matched_alt_market": 17,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 0,
-    "secondary_count": 0,
-    "shadow_count": 0
+    "single_sided_devig": 17,
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 3,
+    "secondary_count": 1,
+    "shadow_count": 2
   },
-  "primary_picks": [],
-  "secondary_picks": [],
-  "shadow_picks": [],
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Willson Contreras",
+      "batter_id": 575929,
+      "batter_hand": "R",
+      "team": "BOS",
+      "lineup_spot": 4,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 379,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2194,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3378,
+      "ev_pct": 61.81,
+      "edge_pct": 11.84,
+      "ev_pct_p3": 57.11,
+      "blended_hr_per_pa": 0.04976,
+      "breakout_score": 0.0353,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0294,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6428,
+          "deviation": 0.6428
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.109,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Ceddanne Rafaela",
+        "Caleb Durbin"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Ceddanne Rafaela",
+      "batter_id": 678882,
+      "batter_hand": "R",
+      "team": "BOS",
+      "lineup_spot": 2,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 650,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1323,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1959,
+      "ev_pct": 46.9,
+      "edge_pct": 6.36,
+      "ev_pct_p3": 70.31,
+      "blended_hr_per_pa": 0.03135,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4118,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.109,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Willson Contreras",
+        "Caleb Durbin"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Caleb Durbin",
+      "batter_id": 702332,
+      "batter_hand": "R",
+      "team": "BOS",
+      "lineup_spot": 6,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 800,
+      "dk_odds": 900,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1028,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1402,
+      "ev_pct": 40.23,
+      "edge_pct": 3.74,
+      "ev_pct_p3": 55.74,
+      "blended_hr_per_pa": 0.02335,
+      "breakout_score": -0.1055,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0204,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.771,
+          "deviation": 0.229
+        },
+        {
+          "name": "park",
+          "value": 1.109,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Willson Contreras",
+        "Ceddanne Rafaela"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 4,
+      "batter": "Josh Smith",
+      "batter_id": 669701,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 8,
+      "pitcher": "Sonny Gray",
+      "pitcher_id": 543243,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 920,
+      "best_book": "underdog",
+      "market_prob_devig": 0.0825,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0813,
+      "ev_pct": 25.3,
+      "edge_pct": -0.12,
+      "ev_pct_p3": 15.28,
+      "blended_hr_per_pa": 0.02459,
+      "breakout_score": 0.0897,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.23,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7842,
+          "deviation": 0.2158
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.812,
+          "deviation": 0.188
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0897,
+          "deviation": 0.0897
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Jarren Duran",
+      "batter_id": 680776,
+      "batter_hand": "L",
+      "team": "BOS",
+      "lineup_spot": 7,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 505,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1624,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1982,
+      "ev_pct": 19.91,
+      "edge_pct": 3.58,
+      "ev_pct_p3": 17.2,
+      "blended_hr_per_pa": 0.03114,
+      "breakout_score": 0.0252,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5382,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.0782,
+          "deviation": 0.0782
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0279,
+          "deviation": 0.0279
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Wilyer Abreu",
+      "batter_id": 677800,
+      "batter_hand": "L",
+      "team": "BOS",
+      "lineup_spot": 3,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 290,
+      "dk_odds": 309,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.248,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2879,
+      "ev_pct": 17.76,
+      "edge_pct": 4.0,
+      "ev_pct_p3": 17.31,
+      "blended_hr_per_pa": 0.04287,
+      "breakout_score": 0.0044,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.4218,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4152,
+          "deviation": 0.4152
+        },
+        {
+          "name": "park",
+          "value": 1.0782,
+          "deviation": 0.0782
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
   "settlement": null
 }

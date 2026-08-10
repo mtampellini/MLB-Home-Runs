@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-10T19:25:25.014322+00:00",
+  "generated_at": "2026-08-10T20:02:54.870443+00:00",
   "as_of_date": "2026-08-10",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.030290281867900715,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,132 @@
   "total_games_today": 10,
   "games_pregame": 10,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Ceddanne Rafaela",
+      "batter_id": 678882,
+      "batter_hand": "R",
+      "team": "BOS",
+      "lineup_spot": 2,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 650,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1323,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1959,
+      "ev_pct": 46.9,
+      "edge_pct": 6.36,
+      "ev_pct_p3": 70.31,
+      "blended_hr_per_pa": 0.03135,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4118,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.109,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Willson Contreras",
+        "Caleb Durbin"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Caleb Durbin",
+      "batter_id": 702332,
+      "batter_hand": "R",
+      "team": "BOS",
+      "lineup_spot": 6,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822780,
+      "game_datetime": "2026-08-10T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 800,
+      "dk_odds": 900,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1028,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1402,
+      "ev_pct": 40.23,
+      "edge_pct": 3.74,
+      "ev_pct_p3": 55.74,
+      "blended_hr_per_pa": 0.02335,
+      "breakout_score": -0.1055,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0204,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.771,
+          "deviation": 0.229
+        },
+        {
+          "name": "park",
+          "value": 1.109,
+          "deviation": 0.109
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Willson Contreras",
+        "Ceddanne Rafaela"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-10.json"
 }
