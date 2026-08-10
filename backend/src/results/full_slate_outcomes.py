@@ -97,6 +97,11 @@ class LabelStore:
     # about can be joined to outcomes — and large book disagreements cluster
     # precisely on the players it skips.
     rosters: dict[str, dict] = field(default_factory=dict)
+    # (player_id, game_pk) -> {"pitches": n, "pa": n}. Holds BOTH sides: for a
+    # batter these are pitches SEEN, for a pitcher pitches THROWN. Sourced from
+    # play-by-play, because the box score carries no per-batter pitch count.
+    pa_pitches: dict[str, dict] = field(default_factory=dict)
+    games_pbp: set[int] = field(default_factory=set)
 
     def put_pitching_line(self, pitcher_id: int, game_pk: int, line: dict) -> None:
         self.pitching_lines[_key(pitcher_id, game_pk)] = line
@@ -141,6 +146,8 @@ def load_store(path: Path = STORE_PATH) -> LabelStore:
         pitching_lines={k: dict(v) for k, v in (raw.get("pitching_lines") or {}).items()},
         games_pitcher_lined={int(g) for g in (raw.get("games_pitcher_lined") or [])},
         rosters={k: dict(v) for k, v in (raw.get("rosters") or {}).items()},
+        pa_pitches={k: dict(v) for k, v in (raw.get("pa_pitches") or {}).items()},
+        games_pbp={int(g) for g in (raw.get("games_pbp") or [])},
     )
 
 
@@ -160,6 +167,10 @@ def save_store(store: LabelStore, path: Path = STORE_PATH) -> None:
         "games_lined": sorted(store.games_lined),
         "n_pitching_lines": len(store.pitching_lines),
         "n_rosters": len(store.rosters),
+        "n_pa_pitches": len(store.pa_pitches),
+        "n_games_pbp": len(store.games_pbp),
+        "games_pbp": sorted(store.games_pbp),
+        "pa_pitches": store.pa_pitches,
         "rosters": store.rosters,
         "games_pitcher_lined": sorted(store.games_pitcher_lined),
         "pitching_lines": store.pitching_lines,
@@ -282,6 +293,34 @@ def batting_line_for_batter(boxscore: dict, batter_id: int) -> Optional[dict]:
                 "tb": singles + 2 * dbl + 3 * tpl + 4 * hr,
             }
     return None
+
+
+def pitch_counts_from_pbp(pbp: dict) -> dict:
+    """{player_id: {"pitches": n, "pa": n}} for every batter AND pitcher.
+
+    The box score has no per-batter pitch count, so pitches-per-PA has to come
+    from play-by-play. Only plays that actually ENDED a plate appearance are
+    counted, so a runner-advance or pickoff play cannot inflate the PA
+    denominator; and only events flagged isPitch count as pitches, excluding
+    pickoff throws and mound visits.
+    """
+    out: dict = {}
+    for play in pbp.get("allPlays") or []:
+        result = play.get("result") or {}
+        matchup = play.get("matchup") or {}
+        # A play without a completed at-bat is not a plate appearance.
+        if not result.get("eventType"):
+            continue
+        events = play.get("playEvents") or []
+        n_pitches = sum(1 for e in events if e.get("isPitch"))
+        for side in ("batter", "pitcher"):
+            pid = (matchup.get(side) or {}).get("id")
+            if pid is None:
+                continue
+            rec = out.setdefault(int(pid), {"pitches": 0, "pa": 0})
+            rec["pitches"] += n_pitches
+            rec["pa"] += 1
+    return out
 
 
 def normalize_name(name: str) -> str:
@@ -419,7 +458,8 @@ def fetch_boxscore_labels(
                    if g not in store.games_processed
                    or g not in store.games_lined
                    or g not in store.games_pitcher_lined
-                   or str(g) not in store.rosters]
+                   or str(g) not in store.rosters
+                   or g not in store.games_pbp]
         if not pending:
             continue
         if max_games is not None and out.games_fetched >= max_games:
@@ -481,6 +521,20 @@ def fetch_boxscore_labels(
                 pline = pitching_line_for_pitcher(box, pid)
                 if pline is not None:
                     store.put_pitching_line(pid, gpk, pline)
+
+            # Play-by-play is a second call per game, but it is the only source
+            # of per-batter pitch counts. Failure here must not undo the
+            # box-score work already recorded for this game.
+            if gpk not in store.games_pbp:
+                try:
+                    pbp = client._get(f"/game/{gpk}/playByPlay")
+                except Exception as e:  # noqa: BLE001
+                    logger.warning("playByPlay fetch failed for game_pk=%s: %s: %s",
+                                   gpk, type(e).__name__, e)
+                else:
+                    for pid, rec in pitch_counts_from_pbp(pbp).items():
+                        store.pa_pitches[_key(pid, gpk)] = rec
+                    store.games_pbp.add(gpk)
 
             store.games_processed.add(gpk)
             store.games_lined.add(gpk)
@@ -689,6 +743,7 @@ def backfill(
         "games_lined_total": len(store.games_lined),
         "batting_lines": len(store.lines),
         "pitching_lines": len(store.pitching_lines),
+        "pa_pitch_records": len(store.pa_pitches),
         "boxscore_failures": box.boxscore_failures,
         "schedule_failures": box.schedule_failures,
         "network_error": network_error,

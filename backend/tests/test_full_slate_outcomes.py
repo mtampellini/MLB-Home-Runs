@@ -73,12 +73,19 @@ def _box(entries: dict[int, int | None]) -> dict:
 
 
 class FakeClient:
-    """Stands in for MlbStatsClient: canned schedule + boxscores, call-counted."""
+    """Stands in for MlbStatsClient: canned schedule, boxscores and play-by-play.
 
-    def __init__(self, statuses: dict[int, str], boxes: dict[int, dict]):
+    The two game endpoints are counted separately — a play-by-play fetch is not
+    a box-score fetch, and conflating them hides whether a game was re-read.
+    """
+
+    def __init__(self, statuses: dict[int, str], boxes: dict[int, dict],
+                 plays: dict[int, dict] | None = None):
         self._statuses = statuses
         self._boxes = boxes
+        self._plays = plays or {}
         self.boxscore_calls: list[int] = []
+        self.pbp_calls: list[int] = []
 
     def schedule_for_date(self, d):
         return {"dates": [{"games": [
@@ -88,6 +95,9 @@ class FakeClient:
 
     def _get(self, path: str, params=None):
         gpk = int(path.split("/")[2])
+        if path.endswith("playByPlay"):
+            self.pbp_calls.append(gpk)
+            return self._plays.get(gpk, {"allPlays": []})
         self.boxscore_calls.append(gpk)
         if gpk not in self._boxes:
             raise RuntimeError(f"no canned boxscore for {gpk}")
@@ -717,3 +727,65 @@ def test_every_batter_in_the_boxscore_is_labeled(tmp_path):
     assert store.get(101, 900) == 1
     assert store.get(777, 900) == 1                 # never projected, labeled
     assert store.get_line(777, 900)["tb"] == 2 + 4
+
+
+# ---------------------------------------------------------------------------
+# Pitches per plate appearance (play-by-play)
+# ---------------------------------------------------------------------------
+
+def _play(batter, pitcher, n_pitches, event="Strikeout", extra_nonpitch=0):
+    events = [{"isPitch": True} for _ in range(n_pitches)]
+    events += [{"isPitch": False} for _ in range(extra_nonpitch)]
+    return {"result": {"eventType": event},
+            "matchup": {"batter": {"id": batter}, "pitcher": {"id": pitcher}},
+            "playEvents": events}
+
+
+def test_pitch_counts_split_batter_and_pitcher():
+    from src.results.full_slate_outcomes import pitch_counts_from_pbp
+    pbp = {"allPlays": [_play(101, 500, 5), _play(102, 500, 3), _play(101, 500, 4)]}
+    out = pitch_counts_from_pbp(pbp)
+    assert out[101] == {"pitches": 9, "pa": 2}       # batter: pitches SEEN
+    assert out[102] == {"pitches": 3, "pa": 1}
+    assert out[500] == {"pitches": 12, "pa": 3}      # pitcher: pitches THROWN
+
+
+def test_non_pitch_events_are_excluded():
+    """Pickoff throws and mound visits are playEvents but not pitches."""
+    from src.results.full_slate_outcomes import pitch_counts_from_pbp
+    out = pitch_counts_from_pbp({"allPlays": [_play(101, 500, 4, extra_nonpitch=3)]})
+    assert out[101]["pitches"] == 4
+
+
+def test_plays_without_a_completed_at_bat_do_not_count_as_a_pa():
+    """A caught stealing between batters must not inflate the PA denominator."""
+    from src.results.full_slate_outcomes import pitch_counts_from_pbp
+    runner = {"result": {}, "matchup": {"batter": {"id": 101}, "pitcher": {"id": 500}},
+              "playEvents": [{"isPitch": True}]}
+    out = pitch_counts_from_pbp({"allPlays": [_play(101, 500, 6), runner]})
+    assert out[101] == {"pitches": 6, "pa": 1}
+
+
+def test_pbp_failure_does_not_lose_boxscore_work(tmp_path):
+    """A dead play-by-play call must not undo labels already recorded."""
+    slate, store_path = tmp_path / "fs", tmp_path / "s.json"
+    _slate_file(slate, "2026-07-01", [_row(101, 900)])
+
+    class NoPbp(FakeClient):
+        def _get(self, path, params=None):
+            if "playByPlay" in path:
+                raise RuntimeError("pbp down")
+            return super()._get(path, params)
+
+    box = {"teams": {"home": {"players": {"ID_101": {
+        "person": {"id": 101, "fullName": "Aaron Judge"},
+        "stats": {"batting": {"hits": 1, "homeRuns": 1, "atBats": 4,
+                              "doubles": 0, "triples": 0}}}}},
+        "away": {"players": {}}}}
+    client = NoPbp(statuses={900: "Final"}, boxes={900: box})
+    backfill(full_slate_dir=slate, archives_dir=tmp_path / "ar",
+             store_path=store_path, client=client)
+
+    store = load_store(store_path)
+    assert store.get(101, 900) == 1              # box-score work survived
+    assert 900 not in store.games_pbp            # retried next run
