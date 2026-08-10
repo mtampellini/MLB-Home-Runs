@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-10T21:10:54.538789+00:00",
+  "generated_at": "2026-08-10T22:04:33.723887+00:00",
   "as_of_date": "2026-08-10",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.0328777244181751,
+  "league_hr_per_pa": 0.03177124702144559,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,64 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 18,
+      "batter": "Nolan Arenado",
+      "batter_id": 571448,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 6,
+      "pitcher": "Gabriel Hughes",
+      "pitcher_id": 687312,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825048,
+      "game_datetime": "2026-08-11T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 680,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1268,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1572,
+      "ev_pct": 22.65,
+      "edge_pct": 3.05,
+      "ev_pct_p3": 11.34,
+      "blended_hr_per_pa": 0.03748,
+      "breakout_score": 0.1084,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3864,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1796,
+          "deviation": 0.1796
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1084,
+          "deviation": 0.1084
+        },
+        {
+          "name": "park",
+          "value": 1.0079,
+          "deviation": 0.0079
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 20,
       "batter": "Jarren Duran",
       "batter_id": 680776,
       "batter_hand": "L",
@@ -58,7 +115,7 @@
           "deviation": 0.0279
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +126,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 22,
       "batter": "Wilyer Abreu",
       "batter_id": 677800,
       "batter_hand": "L",
@@ -115,7 +172,64 @@
           "deviation": 0.0782
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
+      "batter": "Gabriel Moreno",
+      "batter_id": 672515,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 3,
+      "pitcher": "Gabriel Hughes",
+      "pitcher_id": 687312,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825048,
+      "game_datetime": "2026-08-11T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 800,
+      "dk_odds": 810,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1047,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1253,
+      "ev_pct": 13.99,
+      "edge_pct": 2.06,
+      "ev_pct_p3": 10.77,
+      "blended_hr_per_pa": 0.02884,
+      "breakout_score": 0.0306,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.1968,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.9078,
+          "deviation": 0.0922
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0306,
+          "deviation": 0.0306
+        },
+        {
+          "name": "park",
+          "value": 1.0079,
+          "deviation": 0.0079
+        }
+      ],
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -125,6 +239,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 0,
   "skipped_reference": "data/processed/skipped_batters_2026-08-10.json"
 }
