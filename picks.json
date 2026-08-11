@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-11T22:26:18.202675+00:00",
+  "generated_at": "2026-08-11T23:38:16.475278+00:00",
   "as_of_date": "2026-08-11",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.031343581553204235,
+  "league_hr_per_pa": 0.03395689304595364,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 12,
-  "games_excluded_live_or_complete": 3,
+  "games_pregame": 7,
+  "games_excluded_live_or_complete": 8,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 10,
+      "daily_rank": 20,
       "batter": "Matt Olson",
       "batter_id": 621566,
       "batter_hand": "L",
@@ -59,7 +59,7 @@
           "deviation": 0.0851
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 6,
       "stacked": true,
       "stacked_with": [
         "Drake Baldwin",
@@ -75,7 +75,69 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 25,
+      "batter": "Joc Pederson",
+      "batter_id": 592626,
+      "batter_hand": "L",
+      "team": "TEX",
+      "lineup_spot": 1,
+      "pitcher": "Ryan Johnson",
+      "pitcher_id": 696270,
+      "pitcher_hand": "R",
+      "park": "LAA",
+      "game_pk": 823997,
+      "game_datetime": "2026-08-12T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 285,
+      "dk_odds": 282,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.279,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3617,
+      "ev_pct": 39.26,
+      "edge_pct": 8.27,
+      "ev_pct_p3": 47.74,
+      "blended_hr_per_pa": 0.05256,
+      "breakout_score": -0.0691,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0354,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5477,
+          "deviation": 0.5477
+        },
+        {
+          "name": "pitcher",
+          "value": 1.5476,
+          "deviation": 0.5476
+        },
+        {
+          "name": "park",
+          "value": 1.0776,
+          "deviation": 0.0776
+        }
+      ],
+      "tier_rank": 11,
+      "stacked": true,
+      "stacked_with": [
+        "Austin Wynns",
+        "Ezequiel Duran"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 17,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -121,7 +183,7 @@
           "deviation": 0.0378
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 14,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -134,7 +196,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 21,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -180,7 +242,7 @@
           "deviation": 0.096
         }
       ],
-      "tier_rank": 16,
+      "tier_rank": 26,
       "stacked": true,
       "stacked_with": [
         "Colt Emerson",
@@ -196,6 +258,6 @@
       }
     }
   ],
-  "skipped_count": 2,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-08-11.json"
 }
