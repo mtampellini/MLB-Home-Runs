@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-11T20:28:18.074959+00:00",
+  "generated_at": "2026-08-11T21:33:14.481796+00:00",
   "as_of_date": "2026-08-11",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03732744340143567,
+  "league_hr_per_pa": 0.032799721593875064,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 15,
+      "daily_rank": 19,
       "batter": "Colt Keith",
       "batter_id": 690993,
       "batter_hand": "L",
@@ -66,8 +66,65 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 23,
+      "batter": "Ozzie Albies",
+      "batter_id": 645277,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 5,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824886,
+      "game_datetime": "2026-08-11T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 600,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1334,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1583,
+      "ev_pct": 15.53,
+      "edge_pct": 2.48,
+      "ev_pct_p3": 25.65,
+      "blended_hr_per_pa": 0.03368,
+      "breakout_score": -0.0862,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3467,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.1152,
+          "deviation": 0.1152
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9138,
+          "deviation": 0.0862
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0851,
+          "deviation": 0.0851
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-08-11.json"
 }

@@ -1,27 +1,27 @@
 {
   "date": "2026-08-11",
-  "generated_at": "2026-08-11T20:28:18.075141+00:00",
+  "generated_at": "2026-08-11T21:33:14.482036+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03732744340143567,
+  "league_hr_per_pa": 0.032799721593875064,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 33,
-    "skipped_low_data": 3,
-    "skipped_career_pa_filter": 0,
+    "total_predictions": 34,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
     "matched_in_odds_market": 33,
     "matched_alt_market": 33,
     "matched_main_market": 0,
     "two_way_devig": 0,
     "single_sided_devig": 33,
-    "above_25_ev_pre_cap": 2,
-    "eligible_below_900_price_cap": 2,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 12,
-    "secondary_count": 2,
-    "shadow_count": 5
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 15,
+    "secondary_count": 3,
+    "shadow_count": 7
   },
   "primary_picks": [
     {
@@ -87,6 +87,68 @@
     },
     {
       "tier": "primary",
+      "daily_rank": 8,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824886,
+      "game_datetime": "2026-08-11T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 344,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2163,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3138,
+      "ev_pct": 44.36,
+      "edge_pct": 9.75,
+      "ev_pct_p3": 45.46,
+      "blended_hr_per_pa": 0.06339,
+      "breakout_score": -0.0088,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.5253,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9326,
+          "deviation": 0.9326
+        },
+        {
+          "name": "temperature",
+          "value": 1.1152,
+          "deviation": 0.1152
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0851,
+          "deviation": 0.0851
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Drake Baldwin",
+        "Michael Harris II"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
       "daily_rank": 1,
       "batter": "Colt Emerson",
       "batter_id": 806068,
@@ -133,12 +195,74 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
         "Dominic Canzone",
         "Weston Wilson",
         "Cole Young"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "Drake Baldwin",
+      "batter_id": 686948,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 1,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824886,
+      "game_datetime": "2026-08-11T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 442,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1845,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2687,
+      "ev_pct": 53.18,
+      "edge_pct": 8.42,
+      "ev_pct_p3": 35.28,
+      "blended_hr_per_pa": 0.04381,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2973,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3356,
+          "deviation": 0.3356
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.1152,
+          "deviation": 0.1152
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Matt Olson",
+        "Michael Harris II"
       ],
       "filter_status": {
         "passes_baseline": true,
@@ -196,7 +320,7 @@
           "deviation": 0.0377
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "stacked": true,
       "stacked_with": [
         "CJ Abrams"
@@ -211,7 +335,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 6,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -257,7 +381,7 @@
           "deviation": 0.0378
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -270,7 +394,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 11,
       "batter": "Randal Grichuk",
       "batter_id": 545341,
       "batter_hand": "R",
@@ -316,7 +440,7 @@
           "deviation": 0.1103
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "stacked": true,
       "stacked_with": [
         "Miguel Vargas"
@@ -331,7 +455,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 12,
       "batter": "Dominic Canzone",
       "batter_id": 686527,
       "batter_hand": "L",
@@ -377,7 +501,7 @@
           "deviation": 0.1658
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "Colt Emerson",
@@ -394,7 +518,69 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 18,
+      "batter": "Michael Harris II",
+      "batter_id": 671739,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 4,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824886,
+      "game_datetime": "2026-08-11T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 430,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1781,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2307,
+      "ev_pct": 26.89,
+      "edge_pct": 5.26,
+      "ev_pct_p3": 11.76,
+      "blended_hr_per_pa": 0.03941,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5333,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2015,
+          "deviation": 0.2015
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.1152,
+          "deviation": 0.1152
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Matt Olson",
+        "Drake Baldwin"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 15,
       "batter": "Miguel Vargas",
       "batter_id": 678246,
       "batter_hand": "R",
@@ -440,7 +626,7 @@
           "deviation": 0.1378
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Randal Grichuk"
@@ -455,7 +641,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 14,
       "batter": "Esmerlyn Valdez",
       "batter_id": 699013,
       "batter_hand": "R",
@@ -501,7 +687,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 11,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -514,7 +700,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 10,
       "batter": "Weston Wilson",
       "batter_id": 642215,
       "batter_hand": "R",
@@ -560,7 +746,7 @@
           "deviation": 0.1173
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 12,
       "stacked": true,
       "stacked_with": [
         "Colt Emerson",
@@ -577,7 +763,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 13,
+      "daily_rank": 16,
       "batter": "Luis Garc\u00eda Jr.",
       "batter_id": 671277,
       "batter_hand": "L",
@@ -623,7 +809,7 @@
           "deviation": 0.1365
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 13,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -636,7 +822,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 9,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -682,7 +868,7 @@
           "deviation": 0.096
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 14,
       "stacked": true,
       "stacked_with": [
         "Colt Emerson",
@@ -699,7 +885,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 14,
+      "daily_rank": 17,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -745,7 +931,7 @@
           "deviation": 0.0846
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 15,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -760,7 +946,64 @@
   "secondary_picks": [
     {
       "tier": "secondary",
-      "daily_rank": 5,
+      "daily_rank": 4,
+      "batter": "Everson Pereira",
+      "batter_id": 677592,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 8,
+      "pitcher": "Cristopher S\u00e1nchez",
+      "pitcher_id": 650911,
+      "pitcher_hand": "L",
+      "park": "STL",
+      "game_pk": 823019,
+      "game_datetime": "2026-08-11T23:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 1100,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0877,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1287,
+      "ev_pct": 54.39,
+      "edge_pct": 4.09,
+      "ev_pct_p3": 53.72,
+      "blended_hr_per_pa": 0.04194,
+      "breakout_score": 0.0046,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 2.0476,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2785,
+          "deviation": 0.2785
+        },
+        {
+          "name": "pitcher",
+          "value": 0.7472,
+          "deviation": 0.2528
+        },
+        {
+          "name": "temperature",
+          "value": 1.2016,
+          "deviation": 0.2016
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 7,
       "batter": "Jacob Young",
       "batter_id": 696285,
       "batter_hand": "R",
@@ -806,7 +1049,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -817,7 +1060,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 10,
+      "daily_rank": 13,
       "batter": "Esteury Ruiz",
       "batter_id": 665923,
       "batter_hand": "R",
@@ -863,7 +1106,7 @@
           "deviation": 0.1805
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -876,7 +1119,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 15,
+      "daily_rank": 19,
       "batter": "Colt Keith",
       "batter_id": 690993,
       "batter_hand": "L",
@@ -933,7 +1176,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 16,
+      "daily_rank": 20,
       "batter": "Ryan Jeffers",
       "batter_id": 680777,
       "batter_hand": "R",
@@ -990,7 +1233,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 21,
       "batter": "Andr\u00e9s Chaparro",
       "batter_id": 665953,
       "batter_hand": "R",
@@ -1047,7 +1290,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 22,
       "batter": "Julio Rodr\u00edguez",
       "batter_id": 677594,
       "batter_hand": "R",
@@ -1104,7 +1347,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 23,
+      "batter": "Ozzie Albies",
+      "batter_id": 645277,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 5,
+      "pitcher": "Nolan McLean",
+      "pitcher_id": 690997,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824886,
+      "game_datetime": "2026-08-11T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 600,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1334,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1583,
+      "ev_pct": 15.53,
+      "edge_pct": 2.48,
+      "ev_pct_p3": 25.65,
+      "blended_hr_per_pa": 0.03368,
+      "breakout_score": -0.0862,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3467,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.1152,
+          "deviation": 0.1152
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9138,
+          "deviation": 0.0862
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0851,
+          "deviation": 0.0851
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
       "batter": "Brady House",
       "batter_id": 691781,
       "batter_hand": "R",
@@ -1150,10 +1450,67 @@
           "deviation": 0.1152
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 25,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 3,
+      "pitcher": "Cristopher S\u00e1nchez",
+      "pitcher_id": 650911,
+      "pitcher_hand": "L",
+      "park": "STL",
+      "game_pk": 823019,
+      "game_datetime": "2026-08-11T23:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 580,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1448,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1661,
+      "ev_pct": 12.97,
+      "edge_pct": 2.14,
+      "ev_pct_p3": -0.88,
+      "blended_hr_per_pa": 0.04056,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2972,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7472,
+          "deviation": 0.2528
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2365,
+          "deviation": 0.2365
+        },
+        {
+          "name": "temperature",
+          "value": 1.2016,
+          "deviation": 0.2016
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
         "passes_triple_v2": false,
         "passes_quad": false,
         "passes_anchor": false
