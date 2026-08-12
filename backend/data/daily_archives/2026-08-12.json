@@ -1,30 +1,436 @@
 {
   "date": "2026-08-12",
-  "generated_at": "2026-08-12T14:57:55.572667+00:00",
+  "generated_at": "2026-08-12T16:10:18.794592+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03139217470427662,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "total_predictions": 33,
+    "skipped_low_data": 2,
+    "skipped_career_pa_filter": 1,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 33,
+    "matched_alt_market": 33,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 0,
-    "secondary_count": 0,
-    "shadow_count": 0
+    "single_sided_devig": 33,
+    "above_25_ev_pre_cap": 3,
+    "eligible_below_900_price_cap": 2,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 2,
+    "secondary_count": 1,
+    "shadow_count": 4
   },
-  "primary_picks": [],
-  "secondary_picks": [],
-  "shadow_picks": [],
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Christian Encarnacion-Strand",
+      "batter_id": 687952,
+      "batter_hand": "R",
+      "team": "BAL",
+      "lineup_spot": 6,
+      "pitcher": "Zebby Matthews",
+      "pitcher_id": 805673,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823672,
+      "game_datetime": "2026-08-12T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 400,
+      "dk_odds": 431,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1905,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.26,
+      "ev_pct": 38.05,
+      "edge_pct": 6.95,
+      "ev_pct_p3": 35.83,
+      "blended_hr_per_pa": 0.04757,
+      "breakout_score": 0.0184,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0217,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5152,
+          "deviation": 0.5152
+        },
+        {
+          "name": "pitcher",
+          "value": 1.475,
+          "deviation": 0.475
+        },
+        {
+          "name": "temperature",
+          "value": 1.0768,
+          "deviation": 0.0768
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Jordan Walker",
+      "batter_id": 691023,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 4,
+      "pitcher": "Zack Wheeler",
+      "pitcher_id": 554430,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823017,
+      "game_datetime": "2026-08-12T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 544,
+      "best_book": "underdog",
+      "market_prob_devig": 0.1453,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.181,
+      "ev_pct": 32.29,
+      "edge_pct": 3.57,
+      "ev_pct_p3": 16.42,
+      "blended_hr_per_pa": 0.04036,
+      "breakout_score": 0.1474,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2795,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2858,
+          "deviation": 0.2858
+        },
+        {
+          "name": "temperature",
+          "value": 1.192,
+          "deviation": 0.192
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1474,
+          "deviation": 0.1474
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 1,
+      "batter": "Nathan Church",
+      "batter_id": 701675,
+      "batter_hand": "L",
+      "team": "STL",
+      "lineup_spot": 5,
+      "pitcher": "Zack Wheeler",
+      "pitcher_id": 554430,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823017,
+      "game_datetime": "2026-08-12T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 1040,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0968,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1302,
+      "ev_pct": 48.39,
+      "edge_pct": 3.33,
+      "ev_pct_p3": 29.92,
+      "blended_hr_per_pa": 0.02181,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5366,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6947,
+          "deviation": 0.3053
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2706,
+          "deviation": 0.2706
+        },
+        {
+          "name": "temperature",
+          "value": 1.192,
+          "deviation": 0.192
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 4,
+      "batter": "Jackson Holliday",
+      "batter_id": 702616,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 3,
+      "pitcher": "Zebby Matthews",
+      "pitcher_id": 805673,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823672,
+      "game_datetime": "2026-08-12T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 730,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1264,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.148,
+      "ev_pct": 22.81,
+      "edge_pct": 2.15,
+      "ev_pct_p3": 9.95,
+      "blended_hr_per_pa": 0.02593,
+      "breakout_score": 0.1246,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6606,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.1746,
+          "deviation": 0.1746
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.826,
+          "deviation": 0.174
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1246,
+          "deviation": 0.1246
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "JJ Wetherholt",
+      "batter_id": 802139,
+      "batter_hand": "L",
+      "team": "STL",
+      "lineup_spot": 1,
+      "pitcher": "Zack Wheeler",
+      "pitcher_id": 554430,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823017,
+      "game_datetime": "2026-08-12T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 620,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1377,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1686,
+      "ev_pct": 21.39,
+      "edge_pct": 3.09,
+      "ev_pct_p3": 6.54,
+      "blended_hr_per_pa": 0.02628,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0492,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2706,
+          "deviation": 0.2706
+        },
+        {
+          "name": "temperature",
+          "value": 1.192,
+          "deviation": 0.192
+        },
+        {
+          "name": "park",
+          "value": 0.8261,
+          "deviation": 0.1739
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Brandon Marsh",
+      "batter_id": 669016,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 6,
+      "pitcher": "Kyle Leahy",
+      "pitcher_id": 681517,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823017,
+      "game_datetime": "2026-08-12T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 920,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1056,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1149,
+      "ev_pct": 17.23,
+      "edge_pct": 0.94,
+      "ev_pct_p3": 10.78,
+      "blended_hr_per_pa": 0.03085,
+      "breakout_score": 0.061,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5334,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "temperature",
+          "value": 1.192,
+          "deviation": 0.192
+        },
+        {
+          "name": "park",
+          "value": 0.8261,
+          "deviation": 0.1739
+        },
+        {
+          "name": "pitcher",
+          "value": 0.8962,
+          "deviation": 0.1038
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
+      "batter": "Alec Burleson",
+      "batter_id": 676475,
+      "batter_hand": "L",
+      "team": "STL",
+      "lineup_spot": 3,
+      "pitcher": "Zack Wheeler",
+      "pitcher_id": 554430,
+      "pitcher_hand": "R",
+      "park": "STL",
+      "game_pk": 823017,
+      "game_datetime": "2026-08-12T18:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 444,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1791,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2079,
+      "ev_pct": 13.11,
+      "edge_pct": 2.88,
+      "ev_pct_p3": 1.26,
+      "blended_hr_per_pa": 0.03512,
+      "breakout_score": 0.1283,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0042,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2706,
+          "deviation": 0.2706
+        },
+        {
+          "name": "temperature",
+          "value": 1.192,
+          "deviation": 0.192
+        },
+        {
+          "name": "park",
+          "value": 0.8261,
+          "deviation": 0.1739
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
   "settlement": null
 }
