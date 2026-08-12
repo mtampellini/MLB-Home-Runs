@@ -1,27 +1,27 @@
 {
   "date": "2026-08-12",
-  "generated_at": "2026-08-12T17:24:58.877503+00:00",
+  "generated_at": "2026-08-12T18:15:28.506630+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03425107719272621,
+  "league_hr_per_pa": 0.033816425120772944,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 0,
-    "games_pregame": 15,
-    "total_predictions": 48,
-    "skipped_low_data": 1,
-    "skipped_career_pa_filter": 5,
+    "games_excluded_live_or_complete": 2,
+    "games_pregame": 13,
+    "total_predictions": 18,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 0,
     "skipped_other": 0,
-    "matched_in_odds_market": 46,
-    "matched_alt_market": 46,
+    "matched_in_odds_market": 17,
+    "matched_alt_market": 17,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 46,
-    "above_25_ev_pre_cap": 12,
-    "eligible_below_900_price_cap": 9,
-    "above_price_cap_pushed_to_secondary": 3,
+    "single_sided_devig": 17,
+    "above_25_ev_pre_cap": 0,
+    "eligible_below_900_price_cap": 0,
+    "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 11,
     "secondary_count": 4,
-    "shadow_count": 11
+    "shadow_count": 12
   },
   "primary_picks": [
     {
@@ -1556,6 +1556,63 @@
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 27,
+      "batter": "Gary S\u00e1nchez",
+      "batter_id": 596142,
+      "batter_hand": "R",
+      "team": "MIL",
+      "lineup_spot": 6,
+      "pitcher": "Robbie Ray",
+      "pitcher_id": 592662,
+      "pitcher_hand": "L",
+      "park": "SD",
+      "game_pk": 823263,
+      "game_datetime": "2026-08-12T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 496,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1698,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1858,
+      "ev_pct": 10.71,
+      "edge_pct": 1.59,
+      "ev_pct_p3": 5.78,
+      "blended_hr_per_pa": 0.04587,
+      "breakout_score": 0.0505,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2418,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3564,
+          "deviation": 0.3564
+        },
+        {
+          "name": "wind",
+          "value": 1.0611,
+          "deviation": 0.0611
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0505,
+          "deviation": 0.0505
+        }
+      ],
+      "tier_rank": 12,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
         "passes_triple_v2": false,
         "passes_quad": false,
         "passes_anchor": false
