@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-12T18:15:28.506198+00:00",
+  "generated_at": "2026-08-12T19:39:26.895530+00:00",
   "as_of_date": "2026-08-12",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.033816425120772944,
+  "league_hr_per_pa": 0.032430625208960215,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 2,
+  "games_pregame": 10,
+  "games_excluded_live_or_complete": 5,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 25,
       "batter": "Richie Palacios",
       "batter_id": 680700,
       "batter_hand": "L",
@@ -69,7 +69,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 28,
       "batter": "Tim Tawa",
       "batter_id": 694374,
       "batter_hand": "R",
@@ -126,7 +126,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 23,
+      "daily_rank": 30,
       "batter": "Brandon Marsh",
       "batter_id": 669016,
       "batter_hand": "L",
@@ -183,7 +183,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 24,
+      "daily_rank": 31,
       "batter": "Jonathan Aranda",
       "batter_id": 666018,
       "batter_hand": "L",
@@ -240,7 +240,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 25,
+      "daily_rank": 32,
       "batter": "Willy Adames",
       "batter_id": 642715,
       "batter_hand": "R",
@@ -294,8 +294,65 @@
         "passes_quad": false,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 34,
+      "batter": "Jes\u00fas S\u00e1nchez",
+      "batter_id": 660821,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 8,
+      "pitcher": "Ranger Suarez",
+      "pitcher_id": 624133,
+      "pitcher_hand": "L",
+      "park": "TOR",
+      "game_pk": 822779,
+      "game_datetime": "2026-08-12T23:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 740,
+      "best_book": "underdog",
+      "market_prob_devig": 0.0979,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0898,
+      "ev_pct": 13.46,
+      "edge_pct": -0.81,
+      "ev_pct_p3": 14.98,
+      "blended_hr_per_pa": 0.02968,
+      "breakout_score": -0.0137,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.7411,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7918,
+          "deviation": 0.2082
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.9153,
+          "deviation": 0.0847
+        },
+        {
+          "name": "park",
+          "value": 1.0782,
+          "deviation": 0.0782
+        }
+      ],
+      "tier_rank": 12,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-08-12.json"
 }
