@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-13T16:13:57.886854+00:00",
+  "generated_at": "2026-08-13T17:19:57.543464+00:00",
   "as_of_date": "2026-08-13",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03241855239929385,
+  "league_hr_per_pa": 0.029291154071470416,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 9,
-  "games_pregame": 9,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 3,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 8,
+      "daily_rank": 11,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -69,7 +69,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 9,
+      "daily_rank": 12,
+      "batter": "Wilyer Abreu",
+      "batter_id": 677800,
+      "batter_hand": "L",
+      "team": "BOS",
+      "lineup_spot": 3,
+      "pitcher": "Max Scherzer",
+      "pitcher_id": 453286,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822776,
+      "game_datetime": "2026-08-13T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 310,
+      "dk_odds": 302,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2471,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2987,
+      "ev_pct": 22.45,
+      "edge_pct": 5.16,
+      "ev_pct_p3": 20.69,
+      "blended_hr_per_pa": 0.04365,
+      "breakout_score": 0.0169,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.2222,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5208,
+          "deviation": 0.5208
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4901,
+          "deviation": 0.4901
+        },
+        {
+          "name": "park",
+          "value": 1.0782,
+          "deviation": 0.0782
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 14,
       "batter": "Jos\u00e9 Caballero",
       "batter_id": 676609,
       "batter_hand": "R",
@@ -115,7 +172,7 @@
           "deviation": 0.1407
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -125,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 10,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-13.json"
 }
