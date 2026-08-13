@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-13T22:06:37.572928+00:00",
+  "generated_at": "2026-08-13T23:09:12.870772+00:00",
   "as_of_date": "2026-08-13",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03487445197289757,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 9,
-  "games_pregame": 3,
-  "games_excluded_live_or_complete": 6,
+  "games_pregame": 2,
+  "games_excluded_live_or_complete": 7,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 24,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -69,7 +69,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 25,
+      "batter": "Enrique Hern\u00e1ndez",
+      "batter_id": 571771,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 8,
+      "pitcher": "Shane Drohan",
+      "pitcher_id": 675660,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823915,
+      "game_datetime": "2026-08-14T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 630,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1417,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1688,
+      "ev_pct": 23.2,
+      "edge_pct": 2.71,
+      "ev_pct_p3": 18.3,
+      "blended_hr_per_pa": 0.03411,
+      "breakout_score": 0.0444,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2264,
+          "deviation": 0.2264
+        },
+        {
+          "name": "temperature",
+          "value": 1.096,
+          "deviation": 0.096
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0444,
+          "deviation": 0.0444
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 26,
       "batter": "Wilyer Abreu",
       "batter_id": 677800,
       "batter_hand": "L",
@@ -115,7 +172,7 @@
           "deviation": 0.0782
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +183,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 28,
       "batter": "Josh Bell",
       "batter_id": 605137,
       "batter_hand": "L",
@@ -172,7 +229,7 @@
           "deviation": 0.0516
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -183,7 +240,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 29,
       "batter": "Jos\u00e9 Caballero",
       "batter_id": 676609,
       "batter_hand": "R",
@@ -229,7 +286,7 @@
           "deviation": 0.1407
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -237,8 +294,65 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 30,
+      "batter": "Teoscar Hern\u00e1ndez",
+      "batter_id": 606192,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 5,
+      "pitcher": "Shane Drohan",
+      "pitcher_id": 675660,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823915,
+      "game_datetime": "2026-08-14T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 409,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2059,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2273,
+      "ev_pct": 15.7,
+      "edge_pct": 2.14,
+      "ev_pct_p3": 17.65,
+      "blended_hr_per_pa": 0.04434,
+      "breakout_score": -0.0183,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5674,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2715,
+          "deviation": 0.2715
+        },
+        {
+          "name": "park",
+          "value": 1.2264,
+          "deviation": 0.2264
+        },
+        {
+          "name": "temperature",
+          "value": 1.096,
+          "deviation": 0.096
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-13.json"
 }
