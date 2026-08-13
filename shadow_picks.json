@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-13T19:32:37.945964+00:00",
+  "generated_at": "2026-08-13T20:21:02.066716+00:00",
   "as_of_date": "2026-08-13",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.035758323057953144,
+  "league_hr_per_pa": 0.035260482846251585,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 9,
-  "games_pregame": 4,
-  "games_excluded_live_or_complete": 5,
+  "games_pregame": 3,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 18,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -69,7 +69,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 12,
+      "daily_rank": 19,
       "batter": "Wilyer Abreu",
       "batter_id": 677800,
       "batter_hand": "L",
@@ -126,7 +126,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 21,
+      "batter": "Josh Bell",
+      "batter_id": 605137,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 4,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 438,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1842,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2236,
+      "ev_pct": 20.76,
+      "edge_pct": 3.95,
+      "ev_pct_p3": 26.67,
+      "blended_hr_per_pa": 0.03405,
+      "breakout_score": -0.0516,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1954,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9484,
+          "deviation": 0.0516
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
       "batter": "Jos\u00e9 Caballero",
       "batter_id": 676609,
       "batter_hand": "R",
@@ -172,7 +229,7 @@
           "deviation": 0.1407
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -182,6 +239,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-13.json"
 }

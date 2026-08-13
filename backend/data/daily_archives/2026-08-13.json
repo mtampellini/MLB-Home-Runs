@@ -1,32 +1,162 @@
 {
   "date": "2026-08-13",
-  "generated_at": "2026-08-13T19:32:37.946258+00:00",
+  "generated_at": "2026-08-13T20:21:02.066956+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.035758323057953144,
+  "league_hr_per_pa": 0.035260482846251585,
   "funnel": {
     "total_slate_games": 9,
-    "games_excluded_live_or_complete": 5,
-    "games_pregame": 4,
-    "total_predictions": 15,
-    "skipped_low_data": 2,
-    "skipped_career_pa_filter": 1,
+    "games_excluded_live_or_complete": 6,
+    "games_pregame": 3,
+    "total_predictions": 17,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 0,
     "skipped_other": 0,
-    "matched_in_odds_market": 15,
-    "matched_alt_market": 15,
+    "matched_in_odds_market": 17,
+    "matched_alt_market": 17,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 15,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 6,
-    "secondary_count": 3,
-    "shadow_count": 6
+    "single_sided_devig": 17,
+    "above_25_ev_pre_cap": 7,
+    "eligible_below_900_price_cap": 6,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 12,
+    "secondary_count": 4,
+    "shadow_count": 7
   },
   "primary_picks": [
     {
       "tier": "primary",
       "daily_rank": 3,
+      "batter": "Ryan Jeffers",
+      "batter_id": 680777,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 3,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 558,
+      "best_book": "underdog",
+      "market_prob_devig": 0.1426,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2652,
+      "ev_pct": 80.63,
+      "edge_pct": 12.26,
+      "ev_pct_p3": 59.45,
+      "blended_hr_per_pa": 0.03417,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.7375,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Byron Buxton",
+        "Kody Clemens",
+        "Brooks Lee",
+        "Royce Lewis",
+        "Trevor Larnach"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
+      "batter": "Byron Buxton",
+      "batter_id": 621439,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 2,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 285,
+      "dk_odds": 297,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2597,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 49.89,
+      "edge_pct": 11.79,
+      "ev_pct_p3": 47.7,
+      "blended_hr_per_pa": 0.07112,
+      "breakout_score": 0.018,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.7456,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.0169,
+          "deviation": 1.0169
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Ryan Jeffers",
+        "Kody Clemens",
+        "Brooks Lee",
+        "Royce Lewis",
+        "Trevor Larnach"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
       "batter": "Griffin Conine",
       "batter_id": 665052,
       "batter_hand": "L",
@@ -72,7 +202,7 @@
           "deviation": 0.0574
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "stacked": true,
       "stacked_with": [
         "Owen Caissie"
@@ -87,7 +217,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 8,
       "batter": "Luis Garc\u00eda Jr.",
       "batter_id": 671277,
       "batter_hand": "L",
@@ -133,7 +263,7 @@
           "deviation": 0.1339
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -146,7 +276,267 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 9,
+      "batter": "Kody Clemens",
+      "batter_id": 665019,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 6,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 400,
+      "dk_odds": 426,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.197,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2749,
+      "ev_pct": 44.58,
+      "edge_pct": 7.79,
+      "ev_pct_p3": 51.47,
+      "blended_hr_per_pa": 0.04598,
+      "breakout_score": -0.0515,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4203,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.304,
+          "deviation": 0.304
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "Ryan Jeffers",
+        "Byron Buxton",
+        "Brooks Lee",
+        "Royce Lewis",
+        "Trevor Larnach"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "Brooks Lee",
+      "batter_id": 686797,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 8,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 680,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1223,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1999,
+      "ev_pct": 69.89,
+      "edge_pct": 7.76,
+      "ev_pct_p3": 77.03,
+      "blended_hr_per_pa": 0.03455,
+      "breakout_score": -0.0439,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2717,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9561,
+          "deviation": 0.0439
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Ryan Jeffers",
+        "Byron Buxton",
+        "Kody Clemens",
+        "Royce Lewis",
+        "Trevor Larnach"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 14,
+      "batter": "Royce Lewis",
+      "batter_id": 668904,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 5,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": 435,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1795,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2505,
+      "ev_pct": 34.03,
+      "edge_pct": 7.1,
+      "ev_pct_p3": 19.63,
+      "blended_hr_per_pa": 0.03397,
+      "breakout_score": 0.1347,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.224,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1347,
+          "deviation": 0.1347
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Ryan Jeffers",
+        "Byron Buxton",
+        "Kody Clemens",
+        "Brooks Lee",
+        "Trevor Larnach"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
+      "batter": "Trevor Larnach",
+      "batter_id": 663616,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 1,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 591,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.143,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2058,
+      "ev_pct": 42.22,
+      "edge_pct": 6.28,
+      "ev_pct_p3": 44.2,
+      "blended_hr_per_pa": 0.02802,
+      "breakout_score": -0.015,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0704,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7947,
+          "deviation": 0.2053
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Ryan Jeffers",
+        "Byron Buxton",
+        "Kody Clemens",
+        "Brooks Lee",
+        "Royce Lewis"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 15,
       "batter": "Willson Contreras",
       "batter_id": 575929,
       "batter_hand": "R",
@@ -192,7 +582,7 @@
           "deviation": 0.109
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 9,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -205,7 +595,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 12,
       "batter": "Owen Caissie",
       "batter_id": 683357,
       "batter_hand": "L",
@@ -251,7 +641,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Griffin Conine"
@@ -266,7 +656,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 16,
       "batter": "Randal Grichuk",
       "batter_id": 545341,
       "batter_hand": "R",
@@ -312,7 +702,7 @@
           "deviation": 0.1103
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 11,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -325,7 +715,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 7,
+      "daily_rank": 13,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -371,7 +761,7 @@
           "deviation": 0.0391
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 12,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -500,7 +890,64 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 5,
+      "daily_rank": 4,
+      "batter": "Luke Keaschall",
+      "batter_id": 807712,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 7,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1000,
+      "dk_odds": 910,
+      "best_book": "underdog",
+      "market_prob_devig": 0.0811,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1224,
+      "ev_pct": 70.46,
+      "edge_pct": 4.12,
+      "ev_pct_p3": 69.78,
+      "blended_hr_per_pa": 0.01904,
+      "breakout_score": 0.0042,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3486,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5399,
+          "deviation": 0.4601
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 11,
       "batter": "Chase Meidroth",
       "batter_id": 805367,
       "batter_hand": "R",
@@ -546,7 +993,7 @@
           "deviation": 0.1228
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -559,7 +1006,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 10,
+      "daily_rank": 17,
       "batter": "Esteury Ruiz",
       "batter_id": 665923,
       "batter_hand": "R",
@@ -616,7 +1063,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 18,
       "batter": "Ben Rice",
       "batter_id": 700250,
       "batter_hand": "L",
@@ -673,7 +1120,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 12,
+      "daily_rank": 19,
       "batter": "Wilyer Abreu",
       "batter_id": 677800,
       "batter_hand": "L",
@@ -730,7 +1177,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 20,
       "batter": "Ceddanne Rafaela",
       "batter_id": 678882,
       "batter_hand": "R",
@@ -787,7 +1234,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 21,
+      "batter": "Josh Bell",
+      "batter_id": 605137,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 4,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823669,
+      "game_datetime": "2026-08-13T23:30:00+00:00",
+      "line": 0.5,
+      "fd_odds": 440,
+      "dk_odds": 438,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1842,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2236,
+      "ev_pct": 20.76,
+      "edge_pct": 3.95,
+      "ev_pct_p3": 26.67,
+      "blended_hr_per_pa": 0.03405,
+      "breakout_score": -0.0516,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1954,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9484,
+          "deviation": 0.0516
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
       "batter": "Jos\u00e9 Caballero",
       "batter_id": 676609,
       "batter_hand": "R",
@@ -833,7 +1337,7 @@
           "deviation": 0.1407
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -844,7 +1348,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 15,
+      "daily_rank": 23,
       "batter": "Esmerlyn Valdez",
       "batter_id": 699013,
       "batter_hand": "R",
@@ -890,7 +1394,7 @@
           "deviation": 0.1805
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
