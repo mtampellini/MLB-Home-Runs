@@ -1,32 +1,93 @@
 {
   "date": "2026-08-14",
-  "generated_at": "2026-08-14T18:55:18.091654+00:00",
+  "generated_at": "2026-08-14T20:01:23.856939+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03369111508646393,
   "funnel": {
     "total_slate_games": 14,
     "games_excluded_live_or_complete": 1,
     "games_pregame": 13,
-    "total_predictions": 0,
+    "total_predictions": 64,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "skipped_career_pa_filter": 8,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 64,
+    "matched_alt_market": 64,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
+    "single_sided_devig": 64,
+    "above_25_ev_pre_cap": 2,
+    "eligible_below_900_price_cap": 2,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 2,
+    "primary_count": 4,
     "secondary_count": 0,
-    "shadow_count": 0
+    "shadow_count": 3
   },
   "primary_picks": [
     {
       "tier": "primary",
       "daily_rank": 1,
+      "batter": "Griffin Conine",
+      "batter_id": 665052,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 4,
+      "pitcher": "Chase Burns",
+      "pitcher_id": 695505,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824479,
+      "game_datetime": "2026-08-14T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 434,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1923,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2821,
+      "ev_pct": 60.8,
+      "edge_pct": 8.98,
+      "ev_pct_p3": 53.09,
+      "blended_hr_per_pa": 0.05525,
+      "breakout_score": 0.0574,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.0765,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.64,
+          "deviation": 0.64
+        },
+        {
+          "name": "park",
+          "value": 1.1073,
+          "deviation": 0.1073
+        },
+        {
+          "name": "temperature",
+          "value": 1.0864,
+          "deviation": 0.0864
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Owen Caissie"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
       "batter": "Pete Crow-Armstrong",
       "batter_id": 691718,
       "batter_hand": "L",
@@ -72,7 +133,7 @@
           "deviation": 0.0873
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "stacked": true,
       "stacked_with": [
         "Tyrone Taylor"
@@ -88,6 +149,67 @@
     {
       "tier": "primary",
       "daily_rank": 2,
+      "batter": "Owen Caissie",
+      "batter_id": 683357,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 7,
+      "pitcher": "Chase Burns",
+      "pitcher_id": 695505,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824479,
+      "game_datetime": "2026-08-14T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 548,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1563,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2253,
+      "ev_pct": 48.68,
+      "edge_pct": 6.9,
+      "ev_pct_p3": 30.86,
+      "blended_hr_per_pa": 0.04339,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6303,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2878,
+          "deviation": 0.2878
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1073,
+          "deviation": 0.1073
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Griffin Conine"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
       "batter": "Tyrone Taylor",
       "batter_id": 621438,
       "batter_hand": "R",
@@ -133,7 +255,7 @@
           "deviation": 0.0873
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "stacked": true,
       "stacked_with": [
         "Pete Crow-Armstrong"
@@ -148,6 +270,178 @@
     }
   ],
   "secondary_picks": [],
-  "shadow_picks": [],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
+      "batter": "Chase Meidroth",
+      "batter_id": 805367,
+      "batter_hand": "R",
+      "team": "CHW",
+      "lineup_spot": 7,
+      "pitcher": "Jackson Jobe",
+      "pitcher_id": 695549,
+      "pitcher_hand": "R",
+      "park": "DET",
+      "game_pk": 824237,
+      "game_datetime": "2026-08-14T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1180,
+      "best_book": "underdog",
+      "market_prob_devig": 0.0702,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0885,
+      "ev_pct": 23.83,
+      "edge_pct": 1.83,
+      "ev_pct_p3": 10.7,
+      "blended_hr_per_pa": 0.02191,
+      "breakout_score": 0.1228,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.545,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6504,
+          "deviation": 0.3496
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1228,
+          "deviation": 0.1228
+        },
+        {
+          "name": "wind",
+          "value": 0.9389,
+          "deviation": 0.0611
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 6,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 9,
+      "pitcher": "Sandy Alcantara",
+      "pitcher_id": 645261,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824479,
+      "game_datetime": "2026-08-14T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 640,
+      "best_book": "underdog",
+      "market_prob_devig": 0.1221,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1342,
+      "ev_pct": 15.84,
+      "edge_pct": 1.21,
+      "ev_pct_p3": 1.4,
+      "blended_hr_per_pa": 0.03661,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3214,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.7472,
+          "deviation": 0.2528
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "park",
+          "value": 1.1159,
+          "deviation": 0.1159
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
+      "batter": "Miguel Vargas",
+      "batter_id": 678246,
+      "batter_hand": "R",
+      "team": "CHW",
+      "lineup_spot": 3,
+      "pitcher": "Jackson Jobe",
+      "pitcher_id": 695549,
+      "pitcher_hand": "R",
+      "park": "DET",
+      "game_pk": 824237,
+      "game_datetime": "2026-08-14T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 479,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1731,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1933,
+      "ev_pct": 11.9,
+      "edge_pct": 2.02,
+      "ev_pct_p3": -1.66,
+      "blended_hr_per_pa": 0.0434,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4213,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2881,
+          "deviation": 0.2881
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "wind",
+          "value": 0.9389,
+          "deviation": 0.0611
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
   "settlement": null
 }
