@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-14T22:59:16.619415+00:00",
+  "generated_at": "2026-08-14T23:35:58.318235+00:00",
   "as_of_date": "2026-08-14",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.034268579995716426,
+  "league_hr_per_pa": 0.03461720849359819,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 15,
       "batter": "Pete Crow-Armstrong",
       "batter_id": 691718,
       "batter_hand": "L",
@@ -59,7 +59,7 @@
           "deviation": 0.0873
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Tyrone Taylor"
@@ -71,8 +71,67 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 16,
+      "batter": "Tyler Soderstrom",
+      "batter_id": 691016,
+      "batter_hand": "L",
+      "team": "OAK",
+      "lineup_spot": 3,
+      "pitcher": "Kumar Rocker",
+      "pitcher_id": 677958,
+      "pitcher_hand": "R",
+      "park": "OAK",
+      "game_pk": 824968,
+      "game_datetime": "2026-08-15T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 399,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2179,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.278,
+      "ev_pct": 38.71,
+      "edge_pct": 6.01,
+      "ev_pct_p3": 34.1,
+      "blended_hr_per_pa": 0.04742,
+      "breakout_score": 0.0392,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2918,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3697,
+          "deviation": 0.3697
+        },
+        {
+          "name": "park",
+          "value": 1.1522,
+          "deviation": 0.1522
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0929,
+          "deviation": 0.0929
+        }
+      ],
+      "tier_rank": 15,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 10,
   "skipped_reference": "data/processed/skipped_batters_2026-08-14.json"
 }
