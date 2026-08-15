@@ -1,27 +1,27 @@
 {
   "date": "2026-08-15",
-  "generated_at": "2026-08-15T17:27:16.159065+00:00",
+  "generated_at": "2026-08-15T17:57:34.206512+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03696474319873124,
+  "league_hr_per_pa": 0.033079458906445376,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 1,
-    "games_pregame": 14,
-    "total_predictions": 27,
+    "games_excluded_live_or_complete": 2,
+    "games_pregame": 13,
+    "total_predictions": 30,
     "skipped_low_data": 2,
-    "skipped_career_pa_filter": 7,
+    "skipped_career_pa_filter": 4,
     "skipped_other": 0,
-    "matched_in_odds_market": 27,
-    "matched_alt_market": 27,
+    "matched_in_odds_market": 30,
+    "matched_alt_market": 30,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 27,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 2,
-    "secondary_count": 0,
-    "shadow_count": 4
+    "single_sided_devig": 30,
+    "above_25_ev_pre_cap": 2,
+    "eligible_below_900_price_cap": 1,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 3,
+    "secondary_count": 1,
+    "shadow_count": 6
   },
   "primary_picks": [
     {
@@ -141,13 +141,130 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Jared Young",
+      "batter_id": 676724,
+      "batter_hand": "L",
+      "team": "NYM",
+      "lineup_spot": 5,
+      "pitcher": "Brad Lord",
+      "pitcher_id": 695418,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823588,
+      "game_datetime": "2026-08-15T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 560,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1514,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2137,
+      "ev_pct": 49.62,
+      "edge_pct": 6.23,
+      "ev_pct_p3": 31.97,
+      "blended_hr_per_pa": 0.04247,
+      "breakout_score": 0.1468,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.564,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2839,
+          "deviation": 0.2839
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1468,
+          "deviation": 0.1468
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1039,
+          "deviation": 0.1039
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
     }
   ],
-  "secondary_picks": [],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 4,
+      "batter": "Jacob Young",
+      "batter_id": 696285,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 6,
+      "pitcher": "Sean Manaea",
+      "pitcher_id": 640455,
+      "pitcher_hand": "L",
+      "park": "NYM",
+      "game_pk": 823588,
+      "game_datetime": "2026-08-15T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1060,
+      "dk_odds": 1160,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0784,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1059,
+      "ev_pct": 33.37,
+      "edge_pct": 2.74,
+      "ev_pct_p3": 16.61,
+      "blended_hr_per_pa": 0.02176,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1436,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6578,
+          "deviation": 0.3422
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.0864,
+          "deviation": 0.0864
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 3,
+      "daily_rank": 5,
       "batter": "Jung Hoo Lee",
       "batter_id": 808982,
       "batter_hand": "L",
@@ -204,7 +321,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 4,
+      "daily_rank": 6,
+      "batter": "CJ Abrams",
+      "batter_id": 682928,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 4,
+      "pitcher": "Sean Manaea",
+      "pitcher_id": 640455,
+      "pitcher_hand": "L",
+      "park": "NYM",
+      "game_pk": 823588,
+      "game_datetime": "2026-08-15T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": 439,
+      "best_book": "underdog",
+      "market_prob_devig": 0.1708,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2014,
+      "ev_pct": 22.05,
+      "edge_pct": 3.06,
+      "ev_pct_p3": 16.09,
+      "blended_hr_per_pa": 0.04881,
+      "breakout_score": 0.056,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.3333,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4754,
+          "deviation": 0.4754
+        },
+        {
+          "name": "temperature",
+          "value": 1.0864,
+          "deviation": 0.0864
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.056,
+          "deviation": 0.056
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
       "batter": "Miguel Amaya",
       "batter_id": 665804,
       "batter_hand": "R",
@@ -250,7 +424,7 @@
           "deviation": 0.0475
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -261,7 +435,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 8,
       "batter": "Ian Happ",
       "batter_id": 664023,
       "batter_hand": "L",
@@ -307,7 +481,7 @@
           "deviation": 0.0679
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -318,7 +492,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 9,
+      "batter": "Josh Smith",
+      "batter_id": 669701,
+      "batter_hand": "L",
+      "team": "TOR",
+      "lineup_spot": 8,
+      "pitcher": "Cam Schlittler",
+      "pitcher_id": 693645,
+      "pitcher_hand": "R",
+      "park": "TOR",
+      "game_pk": 822775,
+      "game_datetime": "2026-08-15T19:07:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1000,
+      "dk_odds": 1140,
+      "best_book": "underdog",
+      "market_prob_devig": 0.0698,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0639,
+      "ev_pct": 15.6,
+      "edge_pct": -0.58,
+      "ev_pct_p3": 6.3,
+      "blended_hr_per_pa": 0.02429,
+      "breakout_score": 0.0897,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1182,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.6262,
+          "deviation": 0.3738
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7343,
+          "deviation": 0.2657
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0897,
+          "deviation": 0.0897
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 10,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
@@ -364,7 +595,7 @@
           "deviation": 0.0679
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
