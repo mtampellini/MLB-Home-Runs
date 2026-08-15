@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-08-15T21:24:09.718951+00:00",
+  "generated_at": "2026-08-15T21:56:42.633643+00:00",
   "as_of_date": "2026-08-15",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03017241379310345,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 10,
-  "games_excluded_live_or_complete": 5,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 17,
+      "daily_rank": 12,
+      "batter": "Tyler Tolbert",
+      "batter_id": 686475,
+      "batter_hand": "R",
+      "team": "KC",
+      "lineup_spot": 9,
+      "pitcher": "Reid Detmers",
+      "pitcher_id": 672282,
+      "pitcher_hand": "L",
+      "park": "LAA",
+      "game_pk": 823990,
+      "game_datetime": "2026-08-16T01:38:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1280,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0695,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1012,
+      "ev_pct": 39.59,
+      "edge_pct": 3.17,
+      "ev_pct_p3": 42.7,
+      "blended_hr_per_pa": 0.02301,
+      "breakout_score": -0.0227,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3542,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7625,
+          "deviation": 0.2375
+        },
+        {
+          "name": "park",
+          "value": 1.1269,
+          "deviation": 0.1269
+        },
+        {
+          "name": "wind",
+          "value": 1.0776,
+          "deviation": 0.0776
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 21,
       "batter": "Bryson Stott",
       "batter_id": 681082,
       "batter_hand": "L",
@@ -58,7 +115,7 @@
           "deviation": 0.0407
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -68,6 +125,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-15.json"
 }
