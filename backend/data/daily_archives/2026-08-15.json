@@ -1,27 +1,27 @@
 {
   "date": "2026-08-15",
-  "generated_at": "2026-08-15T17:57:34.206512+00:00",
+  "generated_at": "2026-08-15T18:33:15.172729+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.033079458906445376,
+  "league_hr_per_pa": 0.031412603584505684,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 2,
     "games_pregame": 13,
-    "total_predictions": 30,
-    "skipped_low_data": 2,
-    "skipped_career_pa_filter": 4,
+    "total_predictions": 17,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 0,
     "skipped_other": 0,
-    "matched_in_odds_market": 30,
-    "matched_alt_market": 30,
+    "matched_in_odds_market": 17,
+    "matched_alt_market": 17,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 30,
+    "single_sided_devig": 17,
     "above_25_ev_pre_cap": 2,
     "eligible_below_900_price_cap": 1,
     "above_price_cap_pushed_to_secondary": 1,
-    "primary_count": 3,
-    "secondary_count": 1,
-    "shadow_count": 6
+    "primary_count": 4,
+    "secondary_count": 2,
+    "shadow_count": 7
   },
   "primary_picks": [
     {
@@ -85,7 +85,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 3,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -144,7 +144,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 3,
+      "daily_rank": 4,
       "batter": "Jared Young",
       "batter_id": 676724,
       "batter_hand": "L",
@@ -200,12 +200,128 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Yandy D\u00edaz",
+      "batter_id": 650490,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 1,
+      "pitcher": "Kyle Bradish",
+      "pitcher_id": 680694,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822941,
+      "game_datetime": "2026-08-15T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 650,
+      "best_book": "underdog",
+      "market_prob_devig": 0.1162,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1444,
+      "ev_pct": 25.34,
+      "edge_pct": 2.82,
+      "ev_pct_p3": 20.11,
+      "blended_hr_per_pa": 0.03333,
+      "breakout_score": 0.0463,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2251,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.8867,
+          "deviation": 0.1133
+        },
+        {
+          "name": "park",
+          "value": 1.0781,
+          "deviation": 0.0781
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0609,
+          "deviation": 0.0609
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
   "secondary_picks": [
     {
       "tier": "secondary",
-      "daily_rank": 4,
+      "daily_rank": 2,
+      "batter": "Jackson Holliday",
+      "batter_id": 702616,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 3,
+      "pitcher": "Ian Seymour",
+      "pitcher_id": 693855,
+      "pitcher_hand": "L",
+      "park": "TB",
+      "game_pk": 822941,
+      "game_datetime": "2026-08-15T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 850,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.106,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.156,
+      "ev_pct": 59.12,
+      "edge_pct": 5.0,
+      "ev_pct_p3": 42.51,
+      "blended_hr_per_pa": 0.02523,
+      "breakout_score": 0.1246,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6989,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4481,
+          "deviation": 0.4481
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8033,
+          "deviation": 0.1967
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1246,
+          "deviation": 0.1246
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 5,
       "batter": "Jacob Young",
       "batter_id": 696285,
       "batter_hand": "R",
@@ -251,7 +367,7 @@
           "deviation": 0.0864
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -264,7 +380,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 7,
       "batter": "Jung Hoo Lee",
       "batter_id": 808982,
       "batter_hand": "L",
@@ -321,7 +437,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 6,
+      "daily_rank": 8,
+      "batter": "Gunnar Henderson",
+      "batter_id": 683002,
+      "batter_hand": "L",
+      "team": "BAL",
+      "lineup_spot": 5,
+      "pitcher": "Ian Seymour",
+      "pitcher_id": 693855,
+      "pitcher_hand": "L",
+      "park": "TB",
+      "game_pk": 822941,
+      "game_datetime": "2026-08-15T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 553,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1502,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1841,
+      "ev_pct": 23.32,
+      "edge_pct": 3.39,
+      "ev_pct_p3": 23.75,
+      "blended_hr_per_pa": 0.03561,
+      "breakout_score": -0.0037,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1893,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4481,
+          "deviation": 0.4481
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1337,
+          "deviation": 0.1337
+        },
+        {
+          "name": "park",
+          "value": 0.9202,
+          "deviation": 0.0798
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 9,
       "batter": "CJ Abrams",
       "batter_id": 682928,
       "batter_hand": "L",
@@ -367,7 +540,7 @@
           "deviation": 0.056
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -378,7 +551,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 7,
+      "daily_rank": 10,
       "batter": "Miguel Amaya",
       "batter_id": 665804,
       "batter_hand": "R",
@@ -424,7 +597,7 @@
           "deviation": 0.0475
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -435,7 +608,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 8,
+      "daily_rank": 11,
       "batter": "Ian Happ",
       "batter_id": 664023,
       "batter_hand": "L",
@@ -481,7 +654,7 @@
           "deviation": 0.0679
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -492,7 +665,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 9,
+      "daily_rank": 12,
       "batter": "Josh Smith",
       "batter_id": 669701,
       "batter_hand": "L",
@@ -538,7 +711,7 @@
           "deviation": 0.0897
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -549,7 +722,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 10,
+      "daily_rank": 13,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
@@ -595,7 +768,7 @@
           "deviation": 0.0679
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
