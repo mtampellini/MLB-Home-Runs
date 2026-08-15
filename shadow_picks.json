@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-15T16:58:59.367151+00:00",
+  "generated_at": "2026-08-15T17:27:16.158798+00:00",
   "as_of_date": "2026-08-15",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03948312993539124,
+  "league_hr_per_pa": 0.03696474319873124,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -13,6 +13,63 @@
     {
       "tier": "shadow",
       "daily_rank": 3,
+      "batter": "Jung Hoo Lee",
+      "batter_id": 808982,
+      "batter_hand": "L",
+      "team": "SF",
+      "lineup_spot": 4,
+      "pitcher": "Michael Lorenzen",
+      "pitcher_id": 547179,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823184,
+      "game_datetime": "2026-08-15T20:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 1020,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0823,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1084,
+      "ev_pct": 23.62,
+      "edge_pct": 2.61,
+      "ev_pct_p3": 30.57,
+      "blended_hr_per_pa": 0.02009,
+      "breakout_score": -0.0557,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3676,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5435,
+          "deviation": 0.4565
+        },
+        {
+          "name": "park",
+          "value": 0.7712,
+          "deviation": 0.2288
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 4,
       "batter": "Miguel Amaya",
       "batter_id": 665804,
       "batter_hand": "R",
@@ -58,7 +115,7 @@
           "deviation": 0.0475
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -68,6 +125,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-08-15.json"
 }
