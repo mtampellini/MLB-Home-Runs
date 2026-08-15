@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-15T19:01:00.461052+00:00",
+  "generated_at": "2026-08-15T19:43:02.010367+00:00",
   "as_of_date": "2026-08-15",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03682771194165907,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -127,6 +127,63 @@
     {
       "tier": "shadow",
       "daily_rank": 10,
+      "batter": "Dominic Canzone",
+      "batter_id": 686527,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 3,
+      "pitcher": "Hayden Wesneski",
+      "pitcher_id": 669713,
+      "pitcher_hand": "R",
+      "park": "HOU",
+      "game_pk": 824157,
+      "game_datetime": "2026-08-15T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 423,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1881,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2317,
+      "ev_pct": 21.16,
+      "edge_pct": 4.35,
+      "ev_pct_p3": 11.51,
+      "blended_hr_per_pa": 0.04969,
+      "breakout_score": 0.096,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4672,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3493,
+          "deviation": 0.3493
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.096,
+          "deviation": 0.096
+        },
+        {
+          "name": "park",
+          "value": 1.0674,
+          "deviation": 0.0674
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
       "batter": "Miguel Amaya",
       "batter_id": 665804,
       "batter_hand": "R",
@@ -172,7 +229,64 @@
           "deviation": 0.0475
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 12,
+      "batter": "Cole Young",
+      "batter_id": 702284,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 6,
+      "pitcher": "Hayden Wesneski",
+      "pitcher_id": 669713,
+      "pitcher_hand": "R",
+      "park": "HOU",
+      "game_pk": 824157,
+      "game_datetime": "2026-08-15T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 800,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1139,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1313,
+      "ev_pct": 18.17,
+      "edge_pct": 1.74,
+      "ev_pct_p3": 21.32,
+      "blended_hr_per_pa": 0.0333,
+      "breakout_score": -0.0274,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2822,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.9043,
+          "deviation": 0.0957
+        },
+        {
+          "name": "park",
+          "value": 1.0674,
+          "deviation": 0.0674
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9726,
+          "deviation": 0.0274
+        }
+      ],
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -182,6 +296,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-15.json"
 }
