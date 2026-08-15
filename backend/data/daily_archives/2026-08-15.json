@@ -1,32 +1,91 @@
 {
   "date": "2026-08-15",
-  "generated_at": "2026-08-15T15:24:49.414648+00:00",
+  "generated_at": "2026-08-15T15:57:03.342241+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03316600932233776,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 0,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "total_predictions": 15,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 15,
+    "matched_alt_market": 15,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
+    "single_sided_devig": 15,
+    "above_25_ev_pre_cap": 1,
+    "eligible_below_900_price_cap": 1,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 1,
+    "primary_count": 2,
     "secondary_count": 0,
-    "shadow_count": 1
+    "shadow_count": 3
   },
   "primary_picks": [
     {
       "tier": "primary",
       "daily_rank": 1,
+      "batter": "Everson Pereira",
+      "batter_id": 677592,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 8,
+      "pitcher": "Matthew Boyd",
+      "pitcher_id": 571510,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824644,
+      "game_datetime": "2026-08-15T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 750,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1256,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2084,
+      "ev_pct": 77.12,
+      "edge_pct": 8.28,
+      "ev_pct_p3": 76.38,
+      "blended_hr_per_pa": 0.04565,
+      "breakout_score": 0.0046,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 2.4286,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3764,
+          "deviation": 0.3764
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1817,
+          "deviation": 0.1817
+        },
+        {
+          "name": "wind",
+          "value": 1.0679,
+          "deviation": 0.0679
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -72,7 +131,7 @@
           "deviation": 0.0679
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -88,7 +147,121 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 2,
+      "daily_rank": 3,
+      "batter": "Miguel Amaya",
+      "batter_id": 665804,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 9,
+      "pitcher": "Michael McGreevy",
+      "pitcher_id": 700241,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824644,
+      "game_datetime": "2026-08-15T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 790,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1128,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1353,
+      "ev_pct": 20.4,
+      "edge_pct": 2.25,
+      "ev_pct_p3": 16.71,
+      "blended_hr_per_pa": 0.03545,
+      "breakout_score": 0.0334,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0261,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.0689,
+          "deviation": 0.0689
+        },
+        {
+          "name": "wind",
+          "value": 1.0679,
+          "deviation": 0.0679
+        },
+        {
+          "name": "park",
+          "value": 1.0475,
+          "deviation": 0.0475
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 4,
+      "batter": "Ian Happ",
+      "batter_id": 664023,
+      "batter_hand": "L",
+      "team": "CHC",
+      "lineup_spot": 5,
+      "pitcher": "Michael McGreevy",
+      "pitcher_id": 700241,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824644,
+      "game_datetime": "2026-08-15T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 476,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1673,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1938,
+      "ev_pct": 16.31,
+      "edge_pct": 2.66,
+      "ev_pct_p3": 5.39,
+      "blended_hr_per_pa": 0.03964,
+      "breakout_score": 0.1126,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5131,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1952,
+          "deviation": 0.1952
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1126,
+          "deviation": 0.1126
+        },
+        {
+          "name": "wind",
+          "value": 1.0679,
+          "deviation": 0.0679
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 5,
       "batter": "Spencer Torkelson",
       "batter_id": 679529,
       "batter_hand": "R",
@@ -134,7 +307,7 @@
           "deviation": 0.0679
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,

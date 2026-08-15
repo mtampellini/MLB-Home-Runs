@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-08-15T15:24:49.414516+00:00",
+  "generated_at": "2026-08-15T15:57:03.342057+00:00",
   "as_of_date": "2026-08-15",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03316600932233776,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 3,
+      "batter": "Miguel Amaya",
+      "batter_id": 665804,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 9,
+      "pitcher": "Michael McGreevy",
+      "pitcher_id": 700241,
+      "pitcher_hand": "R",
+      "park": "CHC",
+      "game_pk": 824644,
+      "game_datetime": "2026-08-15T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 790,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1128,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1353,
+      "ev_pct": 20.4,
+      "edge_pct": 2.25,
+      "ev_pct_p3": 16.71,
+      "blended_hr_per_pa": 0.03545,
+      "breakout_score": 0.0334,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0261,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.0689,
+          "deviation": 0.0689
+        },
+        {
+          "name": "wind",
+          "value": 1.0679,
+          "deviation": 0.0679
+        },
+        {
+          "name": "park",
+          "value": 1.0475,
+          "deviation": 0.0475
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-08-15.json"
 }
