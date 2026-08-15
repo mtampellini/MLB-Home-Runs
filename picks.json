@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-15T19:58:30.773066+00:00",
+  "generated_at": "2026-08-15T20:33:13.610266+00:00",
   "as_of_date": "2026-08-15",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03034134007585335,
+  "league_hr_per_pa": 0.03226017966035014,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,126 @@
   "total_games_today": 15,
   "games_pregame": 10,
   "games_excluded_live_or_complete": 5,
-  "picks": [],
-  "skipped_count": 3,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 7,
+      "batter": "Ty France",
+      "batter_id": 664034,
+      "batter_hand": "R",
+      "team": "SD",
+      "lineup_spot": 4,
+      "pitcher": "Joey Cantillo",
+      "pitcher_id": 676282,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824400,
+      "game_datetime": "2026-08-15T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 680,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1267,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1863,
+      "ev_pct": 45.31,
+      "edge_pct": 5.96,
+      "ev_pct_p3": 28.79,
+      "blended_hr_per_pa": 0.04225,
+      "breakout_score": 0.1391,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1619,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3097,
+          "deviation": 0.3097
+        },
+        {
+          "name": "park",
+          "value": 0.8244,
+          "deviation": 0.1756
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1391,
+          "deviation": 0.1391
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "Noelvi Marte",
+      "batter_id": 682622,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Ryan Gusto",
+      "pitcher_id": 687473,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824480,
+      "game_datetime": "2026-08-15T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 690,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1368,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1661,
+      "ev_pct": 31.24,
+      "edge_pct": 2.93,
+      "ev_pct_p3": 52.6,
+      "blended_hr_per_pa": 0.04054,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6796,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2567,
+          "deviation": 0.2567
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-08-15.json"
 }
