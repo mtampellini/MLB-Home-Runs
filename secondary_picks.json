@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-16T15:34:10.384153+00:00",
+  "generated_at": "2026-08-16T15:58:33.233603+00:00",
   "as_of_date": "2026-08-16",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.031099308127751763,
+  "league_hr_per_pa": 0.035418359057676686,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 9,
+      "daily_rank": 12,
       "batter": "Chase Meidroth",
       "batter_id": 805367,
       "batter_hand": "R",
@@ -58,7 +58,7 @@
           "deviation": 0.0387
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -66,8 +66,65 @@
         "passes_quad": true,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 13,
+      "batter": "Brooks Lee",
+      "batter_id": 686797,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 6,
+      "pitcher": "Andrew Painter",
+      "pitcher_id": 691725,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823670,
+      "game_datetime": "2026-08-16T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1000,
+      "dk_odds": 1000,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1008,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1356,
+      "ev_pct": 49.12,
+      "edge_pct": 3.47,
+      "ev_pct_p3": 55.57,
+      "blended_hr_per_pa": 0.03411,
+      "breakout_score": -0.0439,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3184,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "wind",
+          "value": 1.0679,
+          "deviation": 0.0679
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9561,
+          "deviation": 0.0439
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.963,
+          "deviation": 0.037
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-16.json"
 }
