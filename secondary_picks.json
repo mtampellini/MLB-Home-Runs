@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-16T15:58:33.233603+00:00",
+  "generated_at": "2026-08-16T16:28:17.496558+00:00",
   "as_of_date": "2026-08-16",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.035418359057676686,
+  "league_hr_per_pa": 0.028329906328535527,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 12,
+      "daily_rank": 13,
       "batter": "Chase Meidroth",
       "batter_id": 805367,
       "batter_hand": "R",
@@ -69,7 +69,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 13,
+      "daily_rank": 14,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "L",
@@ -123,8 +123,65 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 28,
+      "batter": "Caleb Durbin",
+      "batter_id": 702332,
+      "batter_hand": "R",
+      "team": "BOS",
+      "lineup_spot": 5,
+      "pitcher": "Lake Bachar",
+      "pitcher_id": 669199,
+      "pitcher_hand": "R",
+      "park": "PIT",
+      "game_pk": 823344,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 930,
+      "best_book": "underdog",
+      "market_prob_devig": 0.0872,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1083,
+      "ev_pct": 28.5,
+      "edge_pct": 2.11,
+      "ev_pct_p3": 42.63,
+      "blended_hr_per_pa": 0.02407,
+      "breakout_score": -0.1036,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.314,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5386,
+          "deviation": 0.5386
+        },
+        {
+          "name": "park",
+          "value": 0.7124,
+          "deviation": 0.2876
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8495,
+          "deviation": 0.1505
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 1,
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-08-16.json"
 }
