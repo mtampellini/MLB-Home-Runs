@@ -1,32 +1,400 @@
 {
   "date": "2026-08-16",
-  "generated_at": "2026-08-16T15:08:59.220997+00:00",
+  "generated_at": "2026-08-16T15:34:10.384743+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03358732705033086,
+  "league_hr_per_pa": 0.031099308127751763,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 64,
-    "skipped_low_data": 2,
-    "skipped_career_pa_filter": 6,
+    "total_predictions": 51,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 64,
-    "matched_alt_market": 64,
+    "matched_in_odds_market": 51,
+    "matched_alt_market": 51,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 64,
-    "above_25_ev_pre_cap": 6,
-    "eligible_below_900_price_cap": 5,
-    "above_price_cap_pushed_to_secondary": 1,
-    "primary_count": 5,
-    "secondary_count": 1,
-    "shadow_count": 5
+    "single_sided_devig": 51,
+    "above_25_ev_pre_cap": 14,
+    "eligible_below_900_price_cap": 11,
+    "above_price_cap_pushed_to_secondary": 3,
+    "primary_count": 15,
+    "secondary_count": 5,
+    "shadow_count": 11
   },
   "primary_picks": [
     {
       "tier": "primary",
+      "daily_rank": 5,
+      "batter": "Heriberto Hern\u00e1ndez",
+      "batter_id": 681715,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 2,
+      "pitcher": "Nick Lodolo",
+      "pitcher_id": 666157,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 285,
+      "dk_odds": 329,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2494,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3776,
+      "ev_pct": 61.98,
+      "edge_pct": 12.82,
+      "ev_pct_p3": 59.06,
+      "blended_hr_per_pa": 0.05001,
+      "breakout_score": 0.0222,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1719,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6081,
+          "deviation": 0.6081
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Esteury Ruiz",
+        "Otto Lopez"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Jared Young",
+      "batter_id": 676724,
+      "batter_hand": "L",
+      "team": "NYM",
+      "lineup_spot": 5,
+      "pitcher": "Jake Irvin",
+      "pitcher_id": 663623,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823590,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 495,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1731,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2838,
+      "ev_pct": 68.87,
+      "edge_pct": 11.07,
+      "ev_pct_p3": 49.59,
+      "blended_hr_per_pa": 0.04199,
+      "breakout_score": 0.1468,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5786,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.3659,
+          "deviation": 0.3659
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.3501,
+          "deviation": 0.3501
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1468,
+          "deviation": 0.1468
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Esteury Ruiz",
+      "batter_id": 665923,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 7,
+      "pitcher": "Nick Lodolo",
+      "pitcher_id": 666157,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 700,
+      "dk_odds": 670,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1267,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2367,
+      "ev_pct": 89.38,
+      "edge_pct": 11.01,
+      "ev_pct_p3": 66.8,
+      "blended_hr_per_pa": 0.02731,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.1913,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": true,
+      "stacked_with": [
+        "Heriberto Hern\u00e1ndez",
+        "Otto Lopez"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
       "daily_rank": 2,
+      "batter": "Matt McLain",
+      "batter_id": 680574,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 6,
+      "pitcher": "Eury P\u00e9rez",
+      "pitcher_id": 691587,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 650,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1503,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2385,
+      "ev_pct": 78.86,
+      "edge_pct": 8.82,
+      "ev_pct_p3": 57.57,
+      "blended_hr_per_pa": 0.03807,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.4453,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2241,
+          "deviation": 0.2241
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1293,
+          "deviation": 0.1293
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "Jose Trevino"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Nolan Arenado",
+      "batter_id": 571448,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 6,
+      "pitcher": "Bryce Elder",
+      "pitcher_id": 693821,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824880,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 480,
+      "dk_odds": 526,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1623,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2456,
+      "ev_pct": 53.73,
+      "edge_pct": 8.32,
+      "ev_pct_p3": 38.16,
+      "blended_hr_per_pa": 0.04129,
+      "breakout_score": 0.1255,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0826,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3278,
+          "deviation": 0.3278
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1778,
+          "deviation": 0.1778
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": true,
+      "stacked_with": [
+        "James McCann",
+        "Gabriel Moreno"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 7,
+      "batter": "James McCann",
+      "batter_id": 543510,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 8,
+      "pitcher": "Bryce Elder",
+      "pitcher_id": 693821,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824880,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 620,
+      "best_book": "underdog",
+      "market_prob_devig": 0.1303,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2059,
+      "ev_pct": 51.95,
+      "edge_pct": 7.56,
+      "ev_pct_p3": 33.56,
+      "blended_hr_per_pa": 0.03589,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2333,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.1778,
+          "deviation": 0.1778
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1541,
+          "deviation": 0.1541
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Nolan Arenado",
+        "Gabriel Moreno"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
       "batter": "Gavin Sheets",
       "batter_id": 657757,
       "batter_hand": "L",
@@ -72,7 +440,7 @@
           "deviation": 0.1256
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 7,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -85,7 +453,130 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 5,
+      "daily_rank": 4,
+      "batter": "Jose Trevino",
+      "batter_id": 624431,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 7,
+      "pitcher": "Eury P\u00e9rez",
+      "pitcher_id": 691587,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 840,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1051,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1686,
+      "ev_pct": 63.54,
+      "edge_pct": 6.35,
+      "ev_pct_p3": 86.81,
+      "blended_hr_per_pa": 0.03549,
+      "breakout_score": -0.1336,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.2794,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1411,
+          "deviation": 0.1411
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8664,
+          "deviation": 0.1336
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1293,
+          "deviation": 0.1293
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Matt McLain"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "Otto Lopez",
+      "batter_id": 672640,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 1,
+      "pitcher": "Nick Lodolo",
+      "pitcher_id": 666157,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 670,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1389,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1946,
+      "ev_pct": 49.88,
+      "edge_pct": 5.57,
+      "ev_pct_p3": 39.92,
+      "blended_hr_per_pa": 0.02002,
+      "breakout_score": 0.0776,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.7066,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6437,
+          "deviation": 0.3563
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Heriberto Hern\u00e1ndez",
+        "Esteury Ruiz"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 16,
       "batter": "Kazuma Okamoto",
       "batter_id": 672960,
       "batter_hand": "R",
@@ -131,7 +622,7 @@
           "deviation": 0.109
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 10,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -144,7 +635,128 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 3,
+      "daily_rank": 19,
+      "batter": "Drake Baldwin",
+      "batter_id": 686948,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 1,
+      "pitcher": "Michael Soroka",
+      "pitcher_id": 647336,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824880,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 417,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2018,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2466,
+      "ev_pct": 27.5,
+      "edge_pct": 4.48,
+      "ev_pct_p3": 12.44,
+      "blended_hr_per_pa": 0.04261,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4517,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3701,
+          "deviation": 0.3701
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 11,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "Gabriel Moreno",
+      "batter_id": 672515,
+      "batter_hand": "R",
+      "team": "ARI",
+      "lineup_spot": 3,
+      "pitcher": "Bryce Elder",
+      "pitcher_id": 693821,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824880,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 720,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1257,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.17,
+      "ev_pct": 39.39,
+      "edge_pct": 4.43,
+      "ev_pct_p3": 35.71,
+      "blended_hr_per_pa": 0.02753,
+      "breakout_score": 0.0292,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1675,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.1778,
+          "deviation": 0.1778
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8851,
+          "deviation": 0.1149
+        }
+      ],
+      "tier_rank": 12,
+      "stacked": true,
+      "stacked_with": [
+        "Nolan Arenado",
+        "James McCann"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 13,
       "batter": "Jackson Holliday",
       "batter_id": 702616,
       "batter_hand": "L",
@@ -190,7 +802,7 @@
           "deviation": 0.1246
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 13,
       "stacked": true,
       "stacked_with": [
         "Christian Encarnacion-Strand",
@@ -206,7 +818,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 4,
+      "daily_rank": 14,
       "batter": "Christian Encarnacion-Strand",
       "batter_id": 687952,
       "batter_hand": "R",
@@ -252,7 +864,7 @@
           "deviation": 0.0777
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 14,
       "stacked": true,
       "stacked_with": [
         "Jackson Holliday",
@@ -268,7 +880,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 6,
+      "daily_rank": 17,
       "batter": "Colton Cowser",
       "batter_id": 681297,
       "batter_hand": "L",
@@ -314,7 +926,7 @@
           "deviation": 0.0759
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 15,
       "stacked": true,
       "stacked_with": [
         "Jackson Holliday",
@@ -332,7 +944,7 @@
   "secondary_picks": [
     {
       "tier": "secondary",
-      "daily_rank": 1,
+      "daily_rank": 9,
       "batter": "Chase Meidroth",
       "batter_id": 805367,
       "batter_hand": "R",
@@ -386,12 +998,297 @@
         "passes_quad": true,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 12,
+      "batter": "Jorge Barrosa",
+      "batter_id": 678489,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 9,
+      "pitcher": "Bryce Elder",
+      "pitcher_id": 693821,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824880,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 880,
+      "best_book": "underdog",
+      "market_prob_devig": 0.089,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1141,
+      "ev_pct": 39.34,
+      "edge_pct": 2.51,
+      "ev_pct_p3": 21.85,
+      "blended_hr_per_pa": 0.01745,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.561,
+          "deviation": 0.439
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2445,
+          "deviation": 0.2445
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 15,
+      "batter": "Bo Bichette",
+      "batter_id": 666182,
+      "batter_hand": "R",
+      "team": "NYM",
+      "lineup_spot": 3,
+      "pitcher": "Jake Irvin",
+      "pitcher_id": 663623,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823590,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 630,
+      "best_book": "underdog",
+      "market_prob_devig": 0.1221,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1446,
+      "ev_pct": 34.07,
+      "edge_pct": 2.26,
+      "ev_pct_p3": 39.23,
+      "blended_hr_per_pa": 0.0244,
+      "breakout_score": -0.0394,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6254,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2689,
+          "deviation": 0.2689
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7846,
+          "deviation": 0.2154
+        },
+        {
+          "name": "wind",
+          "value": 1.0883,
+          "deviation": 0.0883
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 18,
+      "batter": "Xavier Edwards",
+      "batter_id": 669364,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 4,
+      "pitcher": "Nick Lodolo",
+      "pitcher_id": 666157,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1060,
+      "dk_odds": 1180,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0775,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1002,
+      "ev_pct": 28.28,
+      "edge_pct": 2.27,
+      "ev_pct_p3": 12.13,
+      "blended_hr_per_pa": 0.0099,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.3183,
+          "deviation": 0.6817
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 20,
+      "batter": "Geraldo Perdomo",
+      "batter_id": 672695,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 1,
+      "pitcher": "Bryce Elder",
+      "pitcher_id": 693821,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824880,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 870,
+      "dk_odds": 930,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1054,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1227,
+      "ev_pct": 26.36,
+      "edge_pct": 1.73,
+      "ev_pct_p3": 36.46,
+      "blended_hr_per_pa": 0.01844,
+      "breakout_score": -0.0779,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0652,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.593,
+          "deviation": 0.407
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2445,
+          "deviation": 0.2445
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
     }
   ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 7,
+      "daily_rank": 21,
+      "batter": "Max Kepler",
+      "batter_id": 596146,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 5,
+      "pitcher": "Bryce Elder",
+      "pitcher_id": 693821,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824880,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 480,
+      "dk_odds": 557,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1663,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1897,
+      "ev_pct": 24.61,
+      "edge_pct": 2.34,
+      "ev_pct_p3": 14.84,
+      "blended_hr_per_pa": 0.0271,
+      "breakout_score": 0.0923,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6318,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.2445,
+          "deviation": 0.2445
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8714,
+          "deviation": 0.1286
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
       "batter": "Coby Mayo",
       "batter_id": 691723,
       "batter_hand": "R",
@@ -437,7 +1334,7 @@
           "deviation": 0.0781
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -448,7 +1345,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 8,
+      "daily_rank": 23,
+      "batter": "Sal Stewart",
+      "batter_id": 701398,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 2,
+      "pitcher": "Eury P\u00e9rez",
+      "pitcher_id": 691587,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 340,
+      "dk_odds": 370,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2279,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2595,
+      "ev_pct": 21.96,
+      "edge_pct": 3.16,
+      "ev_pct_p3": 40.64,
+      "blended_hr_per_pa": 0.05051,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3089,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6243,
+          "deviation": 0.6243
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1293,
+          "deviation": 0.1293
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
       "batter": "Alejandro Kirk",
       "batter_id": 672386,
       "batter_hand": "R",
@@ -494,7 +1448,7 @@
           "deviation": 0.109
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -505,7 +1459,121 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 9,
+      "daily_rank": 25,
+      "batter": "Eugenio Su\u00e1rez",
+      "batter_id": 553993,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 4,
+      "pitcher": "Eury P\u00e9rez",
+      "pitcher_id": 691587,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 353,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.228,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2613,
+      "ev_pct": 18.35,
+      "edge_pct": 3.33,
+      "ev_pct_p3": 36.49,
+      "blended_hr_per_pa": 0.05319,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.2624,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7103,
+          "deviation": 0.7103
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1293,
+          "deviation": 0.1293
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 26,
+      "batter": "Javier Sanoja",
+      "batter_id": 691594,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 5,
+      "pitcher": "Nick Lodolo",
+      "pitcher_id": 666157,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 920,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1024,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1123,
+      "ev_pct": 14.52,
+      "edge_pct": 0.99,
+      "ev_pct_p3": 11.73,
+      "blended_hr_per_pa": 0.01279,
+      "breakout_score": 0.0261,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.7792,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.4111,
+          "deviation": 0.5889
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 27,
       "batter": "Jackson Merrill",
       "batter_id": 701538,
       "batter_hand": "L",
@@ -551,7 +1619,7 @@
           "deviation": 0.0986
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -562,7 +1630,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 10,
+      "daily_rank": 28,
+      "batter": "Matt Olson",
+      "batter_id": 621566,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 3,
+      "pitcher": "Michael Soroka",
+      "pitcher_id": 647336,
+      "pitcher_hand": "R",
+      "park": "ATL",
+      "game_pk": 824880,
+      "game_datetime": "2026-08-16T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 285,
+      "dk_odds": 281,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2677,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.294,
+      "ev_pct": 13.2,
+      "edge_pct": 2.63,
+      "ev_pct_p3": 14.66,
+      "blended_hr_per_pa": 0.06337,
+      "breakout_score": -0.0146,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.5672,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.0376,
+          "deviation": 1.0376
+        },
+        {
+          "name": "temperature",
+          "value": 1.1728,
+          "deviation": 0.1728
+        },
+        {
+          "name": "pitcher",
+          "value": 0.9191,
+          "deviation": 0.0809
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 29,
       "batter": "Ernie Clement",
       "batter_id": 676391,
       "batter_hand": "R",
@@ -608,7 +1733,7 @@
           "deviation": 0.109
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -619,7 +1744,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 30,
       "batter": "George Springer",
       "batter_id": 543807,
       "batter_hand": "R",
@@ -665,7 +1790,64 @@
           "deviation": 0.1319
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 10,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 31,
+      "batter": "Ke'Bryan Hayes",
+      "batter_id": 663647,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 9,
+      "pitcher": "Eury P\u00e9rez",
+      "pitcher_id": 691587,
+      "pitcher_hand": "R",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 800,
+      "dk_odds": 900,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1054,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1109,
+      "ev_pct": 10.91,
+      "edge_pct": 0.55,
+      "ev_pct_p3": -3.02,
+      "blended_hr_per_pa": 0.01858,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.2381,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.5973,
+          "deviation": 0.4027
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1293,
+          "deviation": 0.1293
+        }
+      ],
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,

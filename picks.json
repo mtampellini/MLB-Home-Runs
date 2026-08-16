@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-16T15:08:59.220215+00:00",
+  "generated_at": "2026-08-16T15:34:10.383745+00:00",
   "as_of_date": "2026-08-16",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03358732705033086,
+  "league_hr_per_pa": 0.031099308127751763,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -13,7 +13,7 @@
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 10,
       "batter": "Gavin Sheets",
       "batter_id": 657757,
       "batter_hand": "L",
@@ -59,7 +59,7 @@
           "deviation": 0.1256
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 7,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -69,8 +69,70 @@
         "passes_quad": false,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "Otto Lopez",
+      "batter_id": 672640,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 1,
+      "pitcher": "Nick Lodolo",
+      "pitcher_id": 666157,
+      "pitcher_hand": "L",
+      "park": "CIN",
+      "game_pk": 824477,
+      "game_datetime": "2026-08-16T17:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 670,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1389,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1946,
+      "ev_pct": 49.88,
+      "edge_pct": 5.57,
+      "ev_pct_p3": 39.92,
+      "blended_hr_per_pa": 0.02002,
+      "breakout_score": 0.0776,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.7066,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6437,
+          "deviation": 0.3563
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Heriberto Hern\u00e1ndez",
+        "Esteury Ruiz"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 8,
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-08-16.json"
 }
