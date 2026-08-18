@@ -37,6 +37,13 @@ jobs:
       ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
       ODDS_API_KEY_2: ${{ secrets.ODDS_API_KEY_2 }}
       ODDS_API_KEY_3: ${{ secrets.ODDS_API_KEY_3 }}
+      # Reverted to the single "us" region on 2026-08-18. Adding Underdog
+      # required the us_dfs region, and The Odds API bills markets x regions —
+      # against a quota already running at ~97% utilisation that exhausted the
+      # budget the same day (500/500 used, every event 401 OUT_OF_USAGE_CREDITS,
+      # zero picks). Restore "us,us_dfs" only alongside a larger quota or a
+      # lower capture cadence.
+      ODDS_REGIONS: us
 
     steps:
       - name: Checkout repo
