@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-08-21T23:01:07.363382+00:00",
+  "generated_at": "2026-08-21T23:35:59.806798+00:00",
   "as_of_date": "2026-08-21",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03311124570967091,
+  "league_hr_per_pa": 0.03301607541327019,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 10,
-  "games_excluded_live_or_complete": 5,
+  "games_pregame": 9,
+  "games_excluded_live_or_complete": 6,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 21,
+      "batter": "Randy Arozarena",
+      "batter_id": 668227,
+      "batter_hand": "R",
+      "team": "SEA",
+      "lineup_spot": 2,
+      "pitcher": "Matthew Boyd",
+      "pitcher_id": 571510,
+      "pitcher_hand": "L",
+      "park": "SEA",
+      "game_pk": 823101,
+      "game_datetime": "2026-08-22T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 435,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1721,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2175,
+      "ev_pct": 23.96,
+      "edge_pct": 4.54,
+      "ev_pct_p3": 37.49,
+      "blended_hr_per_pa": 0.03569,
+      "breakout_score": -0.1086,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2301,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8914,
+          "deviation": 0.1086
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0809,
+          "deviation": 0.0809
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
       "batter": "Jos\u00e9 Ram\u00edrez",
       "batter_id": 608070,
       "batter_hand": "L",
@@ -58,7 +115,7 @@
           "deviation": 0.1133
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +126,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 25,
+      "daily_rank": 27,
       "batter": "Everson Pereira",
       "batter_id": 677592,
       "batter_hand": "R",
@@ -115,7 +172,7 @@
           "deviation": 0.0576
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +183,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 32,
+      "daily_rank": 34,
       "batter": "Luke Keaschall",
       "batter_id": 807712,
       "batter_hand": "R",
@@ -172,7 +229,7 @@
           "deviation": 0.0297
         }
       ],
-      "tier_rank": 14,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -183,7 +240,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 33,
+      "daily_rank": 35,
       "batter": "Austin Hays",
       "batter_id": 669720,
       "batter_hand": "R",
@@ -229,7 +286,7 @@
           "deviation": 0.0744
         }
       ],
-      "tier_rank": 15,
+      "tier_rank": 16,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -239,6 +296,6 @@
       }
     }
   ],
-  "skipped_count": 5,
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-08-21.json"
 }
