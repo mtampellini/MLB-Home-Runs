@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-21T21:10:01.382866+00:00",
+  "generated_at": "2026-08-21T21:45:31.816360+00:00",
   "as_of_date": "2026-08-21",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03257506063393828,
+  "league_hr_per_pa": 0.03252519205826599,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,64 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 21,
+      "batter": "Jos\u00e9 Ram\u00edrez",
+      "batter_id": 608070,
+      "batter_hand": "L",
+      "team": "CLE",
+      "lineup_spot": 3,
+      "pitcher": "Tanner Gordon",
+      "pitcher_id": 685299,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824317,
+      "game_datetime": "2026-08-22T00:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 390,
+      "dk_odds": 394,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1931,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2383,
+      "ev_pct": 17.71,
+      "edge_pct": 4.52,
+      "ev_pct_p3": 18.53,
+      "blended_hr_per_pa": 0.03145,
+      "breakout_score": -0.0078,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "temperature",
+          "value": 1.1824,
+          "deviation": 0.1824
+        },
+        {
+          "name": "park",
+          "value": 1.1133,
+          "deviation": 0.1133
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
       "batter": "Everson Pereira",
       "batter_id": 677592,
       "batter_hand": "R",
@@ -58,7 +115,7 @@
           "deviation": 0.0576
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
