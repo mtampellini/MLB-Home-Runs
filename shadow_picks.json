@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-21T21:45:31.816360+00:00",
+  "generated_at": "2026-08-21T22:01:07.090215+00:00",
   "as_of_date": "2026-08-21",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03252519205826599,
+  "league_hr_per_pa": 0.03308389129578574,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 22,
       "batter": "Jos\u00e9 Ram\u00edrez",
       "batter_id": 608070,
       "batter_hand": "L",
@@ -69,7 +69,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 24,
+      "daily_rank": 25,
       "batter": "Everson Pereira",
       "batter_id": 677592,
       "batter_hand": "R",
@@ -123,8 +123,122 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 32,
+      "batter": "Luke Keaschall",
+      "batter_id": 807712,
+      "batter_hand": "R",
+      "team": "MIN",
+      "lineup_spot": 1,
+      "pitcher": "Randy V\u00e1squez",
+      "pitcher_id": 681190,
+      "pitcher_hand": "R",
+      "park": "SD",
+      "game_pk": 823262,
+      "game_datetime": "2026-08-22T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 1060,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0906,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0964,
+      "ev_pct": 11.77,
+      "edge_pct": 0.57,
+      "ev_pct_p3": 12.08,
+      "blended_hr_per_pa": 0.01986,
+      "breakout_score": -0.0028,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4133,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6002,
+          "deviation": 0.3998
+        },
+        {
+          "name": "wind",
+          "value": 1.0407,
+          "deviation": 0.0407
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0297,
+          "deviation": 0.0297
+        }
+      ],
+      "tier_rank": 14,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 33,
+      "batter": "Austin Hays",
+      "batter_id": 669720,
+      "batter_hand": "R",
+      "team": "SD",
+      "lineup_spot": 7,
+      "pitcher": "Connor Prielipp",
+      "pitcher_id": 687570,
+      "pitcher_hand": "L",
+      "park": "SD",
+      "game_pk": 823262,
+      "game_datetime": "2026-08-22T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 710,
+      "dk_odds": 670,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1191,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.136,
+      "ev_pct": 10.13,
+      "edge_pct": 1.69,
+      "ev_pct_p3": 28.34,
+      "blended_hr_per_pa": 0.03769,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.4231,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1393,
+          "deviation": 0.1393
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0744,
+          "deviation": 0.0744
+        }
+      ],
+      "tier_rank": 15,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
     }
   ],
-  "skipped_count": 11,
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-08-21.json"
 }
