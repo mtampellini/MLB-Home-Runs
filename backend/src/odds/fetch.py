@@ -56,13 +56,12 @@ MARKET_ALT = "batter_home_runs_alternate"
 # Set ODDS_MARKETS to re-enable if the API ever starts carrying it.
 MARKETS_REQUEST = os.environ.get("ODDS_MARKETS", MARKET_ALT)
 
-# Underdog is a DFS/pick'em operator, so it is not carried in the plain "us"
-# region alongside the traditional sportsbooks — hence the second region. That
-# doubles per-event cost, which is exactly what dropping MARKET_MAIN pays for:
-# 1 market x 2 regions costs the same as the old 2 markets x 1 region.
+# Underdog was removed 2026-08-20. It is a DFS/pick'em operator that only
+# appears in the us_dfs region, and The Odds API bills markets x regions, so
+# carrying it doubled per-event cost and exhausted the quota on 8/18.
 DEFAULT_BOOKS = tuple(
     b.strip() for b in
-    os.environ.get("ODDS_BOOKS", "fanduel,draftkings,underdog").split(",")
+    os.environ.get("ODDS_BOOKS", "fanduel,draftkings").split(",")
     if b.strip()
 )
 # "us" only since 2026-08-18: The Odds API bills markets x regions, and the

@@ -115,14 +115,16 @@ def test_book_and_region_config_is_env_overridable(monkeypatch):
         monkeypatch.delenv("ODDS_MARKETS"); importlib.reload(f)
 
 
-def test_defaults_include_underdog_and_drop_the_dead_main_market(monkeypatch):
+def test_defaults_exclude_underdog_and_drop_the_dead_main_market(monkeypatch):
     import importlib
     from src.odds import fetch as f
     # Test the built-in defaults, not whatever the CI env happens to pin.
     monkeypatch.delenv("ODDS_REGIONS", raising=False)
+    monkeypatch.delenv("ODDS_BOOKS", raising=False)
     importlib.reload(f)
     try:
-        assert "underdog" in f.DEFAULT_BOOKS
+        # Underdog removed 2026-08-20: it lives only in the billed us_dfs region.
+        assert f.DEFAULT_BOOKS == ("fanduel", "draftkings")
         # batter_home_runs returned nothing in 65,066 quotes; requesting it spent
         # ~half the credit budget on an empty market.
         assert f.MARKETS_REQUEST == f.MARKET_ALT
