@@ -65,7 +65,10 @@ DEFAULT_BOOKS = tuple(
     os.environ.get("ODDS_BOOKS", "fanduel,draftkings,underdog").split(",")
     if b.strip()
 )
-DEFAULT_REGIONS = os.environ.get("ODDS_REGIONS", "us,us_dfs")
+# "us" only since 2026-08-18: The Odds API bills markets x regions, and the
+# us_dfs region (Underdog) doubled per-event cost and exhausted the quota.
+# Restore "us,us_dfs" only with a larger quota or lower capture cadence.
+DEFAULT_REGIONS = os.environ.get("ODDS_REGIONS", "us")
 TARGET_POINT = 0.5      # the alt-market line we bet
 TARGET_OVER = "Over"
 TARGET_UNDER = "Under"

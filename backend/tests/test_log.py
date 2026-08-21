@@ -115,12 +115,20 @@ def test_book_and_region_config_is_env_overridable(monkeypatch):
         monkeypatch.delenv("ODDS_MARKETS"); importlib.reload(f)
 
 
-def test_defaults_include_underdog_and_drop_the_dead_main_market():
+def test_defaults_include_underdog_and_drop_the_dead_main_market(monkeypatch):
     import importlib
     from src.odds import fetch as f
+    # Test the built-in defaults, not whatever the CI env happens to pin.
+    monkeypatch.delenv("ODDS_REGIONS", raising=False)
     importlib.reload(f)
-    assert "underdog" in f.DEFAULT_BOOKS
-    # batter_home_runs returned nothing in 65,066 quotes; requesting it spent
-    # ~half the credit budget on an empty market.
-    assert f.MARKETS_REQUEST == f.MARKET_ALT
-    assert "us_dfs" in f.DEFAULT_REGIONS
+    try:
+        assert "underdog" in f.DEFAULT_BOOKS
+        # batter_home_runs returned nothing in 65,066 quotes; requesting it spent
+        # ~half the credit budget on an empty market.
+        assert f.MARKETS_REQUEST == f.MARKET_ALT
+        # 2026-08-18: us_dfs doubled the per-event credit cost and exhausted the
+        # quota the same day. Single region until there is budget headroom.
+        assert f.DEFAULT_REGIONS == "us"
+        assert "us_dfs" not in f.DEFAULT_REGIONS
+    finally:
+        importlib.reload(f)
