@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-08-21T18:37:30.535885+00:00",
+  "generated_at": "2026-08-21T19:20:02.373273+00:00",
   "as_of_date": "2026-08-21",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03729328383395208,
+  "league_hr_per_pa": 0.03548277038553395,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 1,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 2,
+      "batter": "Everson Pereira",
+      "batter_id": 677592,
+      "batter_hand": "R",
+      "team": "STL",
+      "lineup_spot": 7,
+      "pitcher": "Jes\u00fas Luzardo",
+      "pitcher_id": 666200,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823420,
+      "game_datetime": "2026-08-21T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 790,
+      "dk_odds": 940,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.097,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.112,
+      "ev_pct": 16.49,
+      "edge_pct": 1.51,
+      "ev_pct_p3": 15.98,
+      "blended_hr_per_pa": 0.0437,
+      "breakout_score": 0.0046,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.1099,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.6644,
+          "deviation": 0.3356
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2316,
+          "deviation": 0.2316
+        },
+        {
+          "name": "temperature",
+          "value": 1.0576,
+          "deviation": 0.0576
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-08-21.json"
 }
