@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-22T19:02:06.225494+00:00",
+  "generated_at": "2026-08-22T19:46:30.937230+00:00",
   "as_of_date": "2026-08-22",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.033752037587496404,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
@@ -12,7 +12,64 @@
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 7,
+      "daily_rank": 10,
+      "batter": "Kyle Schwarber",
+      "batter_id": 656941,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 1,
+      "pitcher": "Quinn Mathews",
+      "pitcher_id": 687273,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823422,
+      "game_datetime": "2026-08-22T22:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 300,
+      "dk_odds": 285,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2447,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3098,
+      "ev_pct": 23.91,
+      "edge_pct": 6.51,
+      "ev_pct_p3": 31.85,
+      "blended_hr_per_pa": 0.06908,
+      "breakout_score": -0.0701,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3792,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.0468,
+          "deviation": 1.0468
+        },
+        {
+          "name": "park",
+          "value": 1.2565,
+          "deviation": 0.2565
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9299,
+          "deviation": 0.0701
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
       "batter": "Kazuma Okamoto",
       "batter_id": 672960,
       "batter_hand": "R",
@@ -58,7 +115,7 @@
           "deviation": 0.0968
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +126,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 11,
+      "daily_rank": 12,
+      "batter": "Bryce Harper",
+      "batter_id": 547180,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 3,
+      "pitcher": "Quinn Mathews",
+      "pitcher_id": 687273,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823422,
+      "game_datetime": "2026-08-22T22:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 474,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1661,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2091,
+      "ev_pct": 20.03,
+      "edge_pct": 4.3,
+      "ev_pct_p3": 23.33,
+      "blended_hr_per_pa": 0.04438,
+      "breakout_score": -0.0293,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2052,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3148,
+          "deviation": 0.3148
+        },
+        {
+          "name": "park",
+          "value": 1.2565,
+          "deviation": 0.2565
+        },
+        {
+          "name": "wind",
+          "value": 0.9593,
+          "deviation": 0.0407
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 16,
       "batter": "George Springer",
       "batter_id": 543807,
       "batter_hand": "R",
@@ -115,7 +229,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -125,6 +239,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-08-22.json"
 }
