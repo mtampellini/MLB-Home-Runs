@@ -1,27 +1,27 @@
 {
   "date": "2026-08-22",
-  "generated_at": "2026-08-22T21:32:10.878087+00:00",
+  "generated_at": "2026-08-22T21:59:56.089039+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.0333541363289647,
+  "league_hr_per_pa": 0.0326563122262047,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 3,
-    "games_pregame": 12,
-    "total_predictions": 46,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 8,
+    "games_excluded_live_or_complete": 4,
+    "games_pregame": 11,
+    "total_predictions": 32,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 3,
     "skipped_other": 0,
-    "matched_in_odds_market": 46,
-    "matched_alt_market": 46,
+    "matched_in_odds_market": 32,
+    "matched_alt_market": 32,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 46,
-    "above_25_ev_pre_cap": 13,
-    "eligible_below_900_price_cap": 12,
-    "above_price_cap_pushed_to_secondary": 1,
+    "single_sided_devig": 32,
+    "above_25_ev_pre_cap": 0,
+    "eligible_below_900_price_cap": 0,
+    "above_price_cap_pushed_to_secondary": 0,
     "primary_count": 29,
     "secondary_count": 11,
-    "shadow_count": 21
+    "shadow_count": 22
   },
   "primary_picks": [
     {
@@ -3576,6 +3576,63 @@
     {
       "tier": "shadow",
       "daily_rank": 61,
+      "batter": "Ildemaro Vargas",
+      "batter_id": 545121,
+      "batter_hand": "L",
+      "team": "ARI",
+      "lineup_spot": 7,
+      "pitcher": "Rhett Lowder",
+      "pitcher_id": 695076,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825044,
+      "game_datetime": "2026-08-23T00:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1100,
+      "dk_odds": 1160,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0757,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.0879,
+      "ev_pct": 10.74,
+      "edge_pct": 1.22,
+      "ev_pct_p3": 12.51,
+      "blended_hr_per_pa": 0.02522,
+      "breakout_score": -0.0163,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3636,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7724,
+          "deviation": 0.2276
+        },
+        {
+          "name": "park",
+          "value": 0.7748,
+          "deviation": 0.2252
+        },
+        {
+          "name": "pitcher",
+          "value": 1.2126,
+          "deviation": 0.2126
+        }
+      ],
+      "tier_rank": 21,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 62,
       "batter": "Mois\u00e9s Ballesteros",
       "batter_id": 694208,
       "batter_hand": "L",
@@ -3621,7 +3678,7 @@
           "deviation": 0.0129
         }
       ],
-      "tier_rank": 21,
+      "tier_rank": 22,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
