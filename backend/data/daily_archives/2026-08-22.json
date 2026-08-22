@@ -1,30 +1,205 @@
 {
   "date": "2026-08-22",
-  "generated_at": "2026-08-22T15:54:48.652743+00:00",
+  "generated_at": "2026-08-22T16:28:07.993472+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.036132315521628496,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 0,
+    "total_predictions": 16,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "skipped_career_pa_filter": 2,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 16,
+    "matched_alt_market": 16,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
+    "single_sided_devig": 16,
+    "above_25_ev_pre_cap": 1,
+    "eligible_below_900_price_cap": 1,
     "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 0,
+    "primary_count": 1,
     "secondary_count": 0,
-    "shadow_count": 0
+    "shadow_count": 2
   },
-  "primary_picks": [],
+  "primary_picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 1,
+      "batter": "Jake Bauers",
+      "batter_id": 641343,
+      "batter_hand": "L",
+      "team": "MIL",
+      "lineup_spot": 4,
+      "pitcher": "Mart\u00edn P\u00e9rez",
+      "pitcher_id": 527048,
+      "pitcher_hand": "L",
+      "park": "MIL",
+      "game_pk": 823743,
+      "game_datetime": "2026-08-22T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 536,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1539,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2012,
+      "ev_pct": 27.97,
+      "edge_pct": 4.74,
+      "ev_pct_p3": 12.51,
+      "blended_hr_per_pa": 0.05431,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0731,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.503,
+          "deviation": 0.503
+        },
+        {
+          "name": "pitcher",
+          "value": 0.74,
+          "deviation": 0.26
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
   "secondary_picks": [],
-  "shadow_picks": [],
+  "shadow_picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 2,
+      "batter": "Drake Baldwin",
+      "batter_id": 686948,
+      "batter_hand": "L",
+      "team": "ATL",
+      "lineup_spot": 1,
+      "pitcher": "Logan Henderson",
+      "pitcher_id": 701656,
+      "pitcher_hand": "R",
+      "park": "MIL",
+      "game_pk": 823743,
+      "game_datetime": "2026-08-22T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 363,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2157,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.258,
+      "ev_pct": 19.47,
+      "edge_pct": 4.24,
+      "ev_pct_p3": 5.44,
+      "blended_hr_per_pa": 0.04243,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.5051,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1743,
+          "deviation": 0.1743
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1688,
+          "deviation": 0.1688
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 3,
+      "batter": "Mauricio Dub\u00f3n",
+      "batter_id": 643289,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 6,
+      "pitcher": "Logan Henderson",
+      "pitcher_id": 701656,
+      "pitcher_hand": "R",
+      "park": "MIL",
+      "game_pk": 823743,
+      "game_datetime": "2026-08-22T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 1000,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0888,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1049,
+      "ev_pct": 15.43,
+      "edge_pct": 1.62,
+      "ev_pct_p3": 4.13,
+      "blended_hr_per_pa": 0.02001,
+      "breakout_score": 0.1131,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.4729,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.5539,
+          "deviation": 0.4461
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1131,
+          "deviation": 0.1131
+        },
+        {
+          "name": "wind",
+          "value": 1.097,
+          "deviation": 0.097
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
   "settlement": null
 }
