@@ -1,32 +1,154 @@
 {
   "date": "2026-08-22",
-  "generated_at": "2026-08-22T16:28:07.993472+00:00",
+  "generated_at": "2026-08-22T17:02:50.734719+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.036132315521628496,
+  "league_hr_per_pa": 0.032002639392939625,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 0,
     "games_pregame": 15,
-    "total_predictions": 16,
-    "skipped_low_data": 0,
-    "skipped_career_pa_filter": 2,
+    "total_predictions": 29,
+    "skipped_low_data": 1,
+    "skipped_career_pa_filter": 6,
     "skipped_other": 0,
-    "matched_in_odds_market": 16,
-    "matched_alt_market": 16,
+    "matched_in_odds_market": 29,
+    "matched_alt_market": 29,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 16,
-    "above_25_ev_pre_cap": 1,
-    "eligible_below_900_price_cap": 1,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 1,
-    "secondary_count": 0,
-    "shadow_count": 2
+    "single_sided_devig": 29,
+    "above_25_ev_pre_cap": 5,
+    "eligible_below_900_price_cap": 4,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 5,
+    "secondary_count": 1,
+    "shadow_count": 5
   },
   "primary_picks": [
     {
       "tier": "primary",
-      "daily_rank": 1,
+      "daily_rank": 3,
+      "batter": "Griffin Conine",
+      "batter_id": 665052,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 2,
+      "pitcher": "Jake Irvin",
+      "pitcher_id": 663623,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823831,
+      "game_datetime": "2026-08-22T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 400,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1961,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2834,
+      "ev_pct": 41.7,
+      "edge_pct": 8.73,
+      "ev_pct_p3": 25.25,
+      "blended_hr_per_pa": 0.05412,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1111,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6911,
+          "deviation": 0.6911
+        },
+        {
+          "name": "pitcher",
+          "value": 1.174,
+          "deviation": 0.174
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Heriberto Hern\u00e1ndez"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Heriberto Hern\u00e1ndez",
+      "batter_id": 681715,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 6,
+      "pitcher": "Jake Irvin",
+      "pitcher_id": 663623,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823831,
+      "game_datetime": "2026-08-22T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 490,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1571,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2301,
+      "ev_pct": 42.68,
+      "edge_pct": 7.3,
+      "ev_pct_p3": 35.21,
+      "blended_hr_per_pa": 0.0498,
+      "breakout_score": 0.0611,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2846,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.5562,
+          "deviation": 0.5562
+        },
+        {
+          "name": "pitcher",
+          "value": 1.4615,
+          "deviation": 0.4615
+        },
+        {
+          "name": "park",
+          "value": 0.8195,
+          "deviation": 0.1805
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Griffin Conine"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
       "batter": "Jake Bauers",
       "batter_id": 641343,
       "batter_hand": "L",
@@ -72,7 +194,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -82,13 +204,246 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 4,
+      "batter": "Spencer Jones",
+      "batter_id": 682987,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 5,
+      "pitcher": "Dylan Cease",
+      "pitcher_id": 656302,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823509,
+      "game_datetime": "2026-08-22T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 680,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.126,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1726,
+      "ev_pct": 34.65,
+      "edge_pct": 4.67,
+      "ev_pct_p3": 26.84,
+      "blended_hr_per_pa": 0.063,
+      "breakout_score": 0.0663,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.2,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9686,
+          "deviation": 0.9686
+        },
+        {
+          "name": "pitcher",
+          "value": 0.5981,
+          "deviation": 0.4019
+        },
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "Alejandro Kirk",
+      "batter_id": 672386,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 3,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823509,
+      "game_datetime": "2026-08-22T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 810,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1058,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1474,
+      "ev_pct": 34.18,
+      "edge_pct": 4.16,
+      "ev_pct_p3": 56.17,
+      "blended_hr_per_pa": 0.0351,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3108,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0969,
+          "deviation": 0.0969
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "secondary_picks": [],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 1,
+      "batter": "Esteury Ruiz",
+      "batter_id": 665923,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 9,
+      "pitcher": "Jake Irvin",
+      "pitcher_id": 663623,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823831,
+      "game_datetime": "2026-08-22T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1020,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0796,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.123,
+      "ev_pct": 50.05,
+      "edge_pct": 4.34,
+      "ev_pct_p3": 31.28,
+      "blended_hr_per_pa": 0.02599,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1667,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4615,
+          "deviation": 0.4615
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8122,
+          "deviation": 0.1878
+        },
+        {
+          "name": "park",
+          "value": 0.8195,
+          "deviation": 0.1805
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    }
+  ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 2,
+      "daily_rank": 7,
+      "batter": "Kazuma Okamoto",
+      "batter_id": 672960,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 5,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823509,
+      "game_datetime": "2026-08-22T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 468,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.17,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2144,
+      "ev_pct": 21.79,
+      "edge_pct": 4.44,
+      "ev_pct_p3": 21.79,
+      "blended_hr_per_pa": 0.0468,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5016,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4622,
+          "deviation": 0.4622
+        },
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0968,
+          "deviation": 0.0968
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 8,
       "batter": "Drake Baldwin",
       "batter_id": 686948,
       "batter_hand": "L",
@@ -134,7 +489,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -145,7 +500,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 3,
+      "daily_rank": 9,
       "batter": "Mauricio Dub\u00f3n",
       "batter_id": 643289,
       "batter_hand": "R",
@@ -191,13 +546,127 @@
           "deviation": 0.097
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_triple_v2": false,
         "passes_quad": true,
         "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 10,
+      "batter": "Owen Caissie",
+      "batter_id": 683357,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 3,
+      "pitcher": "Jake Irvin",
+      "pitcher_id": 663623,
+      "pitcher_hand": "R",
+      "park": "MIA",
+      "game_pk": 823831,
+      "game_datetime": "2026-08-22T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 416,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1834,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2201,
+      "ev_pct": 14.47,
+      "edge_pct": 3.67,
+      "ev_pct_p3": 0.76,
+      "blended_hr_per_pa": 0.04166,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5165,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.3016,
+          "deviation": 0.3016
+        },
+        {
+          "name": "pitcher",
+          "value": 1.174,
+          "deviation": 0.174
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
+      "batter": "George Springer",
+      "batter_id": 543807,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 4,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823509,
+      "game_datetime": "2026-08-22T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 650,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1312,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1513,
+      "ev_pct": 13.48,
+      "edge_pct": 2.01,
+      "ev_pct_p3": 32.06,
+      "blended_hr_per_pa": 0.03691,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6714,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1533,
+          "deviation": 0.1533
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
       }
     }
   ],

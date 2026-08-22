@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-22T16:28:07.991801+00:00",
+  "generated_at": "2026-08-22T17:02:50.734037+00:00",
   "as_of_date": "2026-08-22",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.036132315521628496,
+  "league_hr_per_pa": 0.032002639392939625,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,126 @@
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 2,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 4,
+      "batter": "Spencer Jones",
+      "batter_id": 682987,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 5,
+      "pitcher": "Dylan Cease",
+      "pitcher_id": 656302,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823509,
+      "game_datetime": "2026-08-22T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 680,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.126,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1726,
+      "ev_pct": 34.65,
+      "edge_pct": 4.67,
+      "ev_pct_p3": 26.84,
+      "blended_hr_per_pa": 0.063,
+      "breakout_score": 0.0663,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.2,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.9686,
+          "deviation": 0.9686
+        },
+        {
+          "name": "pitcher",
+          "value": 0.5981,
+          "deviation": 0.4019
+        },
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "Alejandro Kirk",
+      "batter_id": 672386,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 3,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823509,
+      "game_datetime": "2026-08-22T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 810,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1058,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1474,
+      "ev_pct": 34.18,
+      "edge_pct": 4.16,
+      "ev_pct_p3": 56.17,
+      "blended_hr_per_pa": 0.0351,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3108,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0969,
+          "deviation": 0.0969
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-08-22.json"
 }

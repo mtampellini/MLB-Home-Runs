@@ -1,15 +1,130 @@
 {
-  "generated_at": "2026-08-22T16:28:07.993367+00:00",
+  "generated_at": "2026-08-22T17:02:50.734463+00:00",
   "as_of_date": "2026-08-22",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.036132315521628496,
+  "league_hr_per_pa": 0.032002639392939625,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 2,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 7,
+      "batter": "Kazuma Okamoto",
+      "batter_id": 672960,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 5,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823509,
+      "game_datetime": "2026-08-22T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 450,
+      "dk_odds": 468,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.17,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2144,
+      "ev_pct": 21.79,
+      "edge_pct": 4.44,
+      "ev_pct_p3": 21.79,
+      "blended_hr_per_pa": 0.0468,
+      "breakout_score": 0.0,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5016,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4622,
+          "deviation": 0.4622
+        },
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0968,
+          "deviation": 0.0968
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 11,
+      "batter": "George Springer",
+      "batter_id": 543807,
+      "batter_hand": "R",
+      "team": "TOR",
+      "lineup_spot": 4,
+      "pitcher": "Ryan Weathers",
+      "pitcher_id": 677960,
+      "pitcher_hand": "L",
+      "park": "NYY",
+      "game_pk": 823509,
+      "game_datetime": "2026-08-22T17:35:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 650,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1312,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1513,
+      "ev_pct": 13.48,
+      "edge_pct": 2.01,
+      "ev_pct_p3": 32.06,
+      "blended_hr_per_pa": 0.03691,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6714,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1533,
+          "deviation": 0.1533
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-08-22.json"
 }
