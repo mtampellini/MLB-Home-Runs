@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-22T20:59:39.115821+00:00",
+  "generated_at": "2026-08-22T21:32:10.877067+00:00",
   "as_of_date": "2026-08-22",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03197509903791738,
+  "league_hr_per_pa": 0.0333541363289647,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,64 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 23,
+      "daily_rank": 32,
+      "batter": "Evan Carter",
+      "batter_id": 694497,
+      "batter_hand": "L",
+      "team": "TEX",
+      "lineup_spot": 6,
+      "pitcher": "Ryan Johnson",
+      "pitcher_id": 696270,
+      "pitcher_hand": "R",
+      "park": "TEX",
+      "game_pk": 822858,
+      "game_datetime": "2026-08-22T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 770,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1143,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1502,
+      "ev_pct": 30.69,
+      "edge_pct": 3.59,
+      "ev_pct_p3": 27.03,
+      "blended_hr_per_pa": 0.02387,
+      "breakout_score": 0.0307,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4881,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7158,
+          "deviation": 0.2842
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0307,
+          "deviation": 0.0307
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 33,
       "batter": "Yandy D\u00edaz",
       "batter_id": 650490,
       "batter_hand": "R",
@@ -58,7 +115,7 @@
           "deviation": 0.0475
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +126,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 25,
+      "daily_rank": 36,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -115,7 +172,7 @@
           "deviation": 0.0563
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -126,7 +183,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 27,
+      "daily_rank": 39,
       "batter": "Gleyber Torres",
       "batter_id": 650402,
       "batter_hand": "R",
@@ -172,7 +229,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -182,6 +239,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 8,
   "skipped_reference": "data/processed/skipped_batters_2026-08-22.json"
 }
