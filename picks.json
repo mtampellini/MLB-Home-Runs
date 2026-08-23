@@ -1,19 +1,80 @@
 {
-  "generated_at": "2026-08-23T18:02:21.405259+00:00",
+  "generated_at": "2026-08-23T18:34:01.375975+00:00",
   "as_of_date": "2026-08-23",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.035397612232074285,
+  "league_hr_per_pa": 0.03277613897082924,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 8,
-  "games_excluded_live_or_complete": 7,
+  "games_pregame": 7,
+  "games_excluded_live_or_complete": 8,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 13,
+      "daily_rank": 19,
+      "batter": "Seiya Suzuki",
+      "batter_id": 673548,
+      "batter_hand": "R",
+      "team": "CHC",
+      "lineup_spot": 2,
+      "pitcher": "Bryce Miller",
+      "pitcher_id": 682243,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823099,
+      "game_datetime": "2026-08-23T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 448,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.17,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2435,
+      "ev_pct": 38.77,
+      "edge_pct": 7.35,
+      "ev_pct_p3": 60.25,
+      "blended_hr_per_pa": 0.04618,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.25,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.4579,
+          "deviation": 0.4579
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4089,
+          "deviation": 0.4089
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 14,
+      "stacked": true,
+      "stacked_with": [
+        "Alex Bregman"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 16,
       "batter": "Brayan Rocchio",
       "batter_id": 677587,
       "batter_hand": "L",
@@ -59,7 +120,7 @@
           "deviation": 0.1632
         }
       ],
-      "tier_rank": 16,
+      "tier_rank": 19,
       "stacked": true,
       "stacked_with": [
         "Angel Mart\u00ednez",
@@ -76,7 +137,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 26,
+      "daily_rank": 31,
       "batter": "Salvador Perez",
       "batter_id": 521692,
       "batter_hand": "R",
@@ -122,7 +183,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 17,
+      "tier_rank": 20,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -134,6 +195,6 @@
       }
     }
   ],
-  "skipped_count": 6,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-23.json"
 }
