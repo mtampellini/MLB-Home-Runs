@@ -1,19 +1,82 @@
 {
-  "generated_at": "2026-08-23T17:02:34.767570+00:00",
+  "generated_at": "2026-08-23T17:29:18.190028+00:00",
   "as_of_date": "2026-08-23",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.034636189146745766,
+  "league_hr_per_pa": 0.03178434922550795,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
+  "games_pregame": 11,
+  "games_excluded_live_or_complete": 4,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 7,
+      "batter": "Brayan Rocchio",
+      "batter_id": 677587,
+      "batter_hand": "L",
+      "team": "CLE",
+      "lineup_spot": 9,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "COL",
+      "game_pk": 824315,
+      "game_datetime": "2026-08-23T19:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 800,
+      "dk_odds": 840,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1011,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1512,
+      "ev_pct": 42.16,
+      "edge_pct": 5.01,
+      "ev_pct_p3": 40.93,
+      "blended_hr_per_pa": 0.02204,
+      "breakout_score": 0.0093,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.2522,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.6934,
+          "deviation": 0.3066
+        },
+        {
+          "name": "temperature",
+          "value": 1.1632,
+          "deviation": 0.1632
+        }
+      ],
+      "tier_rank": 9,
+      "stacked": true,
+      "stacked_with": [
+        "Angel Mart\u00ednez",
+        "Nathaniel Lowe",
+        "Travis Bazzana"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 14,
       "batter": "Salvador Perez",
       "batter_id": 521692,
       "batter_hand": "R",
@@ -59,7 +122,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 10,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -71,6 +134,6 @@
       }
     }
   ],
-  "skipped_count": 3,
+  "skipped_count": 1,
   "skipped_reference": "data/processed/skipped_batters_2026-08-23.json"
 }
