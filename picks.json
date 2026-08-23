@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-23T15:03:43.176737+00:00",
+  "generated_at": "2026-08-23T15:39:36.065120+00:00",
   "as_of_date": "2026-08-23",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03507419541337445,
+  "league_hr_per_pa": 0.030217380132586465,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,67 @@
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 6,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 7,
+      "batter": "Salvador Perez",
+      "batter_id": 521692,
+      "batter_hand": "R",
+      "team": "KC",
+      "lineup_spot": 4,
+      "pitcher": "Jacob Waguespack",
+      "pitcher_id": 621097,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824071,
+      "game_datetime": "2026-08-23T18:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 529,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1521,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1993,
+      "ev_pct": 25.36,
+      "edge_pct": 4.72,
+      "ev_pct_p3": 45.33,
+      "blended_hr_per_pa": 0.03875,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0625,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2825,
+          "deviation": 0.2825
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 10,
   "skipped_reference": "data/processed/skipped_batters_2026-08-23.json"
 }
