@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-02T20:16:22.383806+00:00",
+  "generated_at": "2026-09-02T22:56:31.294886+00:00",
   "as_of_date": "2026-09-02",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.02906201055745693,
+  "league_hr_per_pa": 0.034057150940727116,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 9,
-  "games_excluded_live_or_complete": 6,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 9,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 21,
       "batter": "Wilyer Abreu",
       "batter_id": 677800,
       "batter_hand": "L",
@@ -69,7 +69,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 22,
       "batter": "Cole Young",
       "batter_id": 702284,
       "batter_hand": "L",
@@ -126,7 +126,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 20,
+      "daily_rank": 23,
       "batter": "Luis Torrens",
       "batter_id": 620443,
       "batter_hand": "R",
@@ -183,7 +183,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 26,
       "batter": "Alejandro Kirk",
       "batter_id": 672386,
       "batter_hand": "R",
@@ -229,7 +229,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -240,7 +240,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 23,
+      "daily_rank": 27,
+      "batter": "Brooks Lee",
+      "batter_id": 686797,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 2,
+      "pitcher": "Drew Anderson",
+      "pitcher_id": 623454,
+      "pitcher_hand": "R",
+      "park": "MIN",
+      "game_pk": 823660,
+      "game_datetime": "2026-09-02T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 680,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1218,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1517,
+      "ev_pct": 18.33,
+      "edge_pct": 2.99,
+      "ev_pct_p3": 25.38,
+      "blended_hr_per_pa": 0.03844,
+      "breakout_score": -0.06,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3903,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1286,
+          "deviation": 0.1286
+        },
+        {
+          "name": "temperature",
+          "value": 1.1248,
+          "deviation": 0.1248
+        },
+        {
+          "name": "pitcher",
+          "value": 0.9116,
+          "deviation": 0.0884
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 28,
       "batter": "Trea Turner",
       "batter_id": 607208,
       "batter_hand": "R",
@@ -286,7 +343,7 @@
           "deviation": 0.0264
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -297,7 +354,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 27,
+      "daily_rank": 34,
       "batter": "Jarren Duran",
       "batter_id": 680776,
       "batter_hand": "L",
@@ -343,7 +400,7 @@
           "deviation": 0.0741
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 15,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -354,7 +411,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 32,
+      "daily_rank": 39,
       "batter": "Drew Gilbert",
       "batter_id": 687551,
       "batter_hand": "L",
@@ -400,7 +457,7 @@
           "deviation": 0.0757
         }
       ],
-      "tier_rank": 16,
+      "tier_rank": 20,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -411,7 +468,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 33,
+      "daily_rank": 40,
       "batter": "Liam Hicks",
       "batter_id": 689414,
       "batter_hand": "L",
@@ -457,7 +514,7 @@
           "deviation": 0.0474
         }
       ],
-      "tier_rank": 17,
+      "tier_rank": 21,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -467,6 +524,6 @@
       }
     }
   ],
-  "skipped_count": 7,
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-09-02.json"
 }
