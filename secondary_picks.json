@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-09-02T22:56:31.294748+00:00",
+  "generated_at": "2026-09-03T01:02:23.107221+00:00",
   "as_of_date": "2026-09-02",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.034057150940727116,
+  "league_hr_per_pa": 0.033696033696033696,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 6,
-  "games_excluded_live_or_complete": 9,
-  "picks": [],
-  "skipped_count": 9,
+  "games_pregame": 2,
+  "games_excluded_live_or_complete": 13,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 15,
+      "batter": "Miguel Rojas",
+      "batter_id": 500743,
+      "batter_hand": "R",
+      "team": "LAD",
+      "lineup_spot": 5,
+      "pitcher": "Brycen Mautz",
+      "pitcher_id": 802408,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823906,
+      "game_datetime": "2026-09-03T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 1000,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0936,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1213,
+      "ev_pct": 33.44,
+      "edge_pct": 2.77,
+      "ev_pct_p3": 29.41,
+      "blended_hr_per_pa": 0.02095,
+      "breakout_score": 0.0328,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6218,
+          "deviation": 0.3782
+        },
+        {
+          "name": "park",
+          "value": 1.2264,
+          "deviation": 0.2264
+        },
+        {
+          "name": "temperature",
+          "value": 1.0768,
+          "deviation": 0.0768
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 2,
   "skipped_reference": "data/processed/skipped_batters_2026-09-02.json"
 }
