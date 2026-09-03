@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-03T20:10:34.703233+00:00",
+  "generated_at": "2026-09-03T22:53:03.172103+00:00",
   "as_of_date": "2026-09-03",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.028706252457727094,
+  "league_hr_per_pa": 0.03161580082752767,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -12,7 +12,7 @@
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 3,
+      "daily_rank": 7,
       "batter": "Caleb Durbin",
       "batter_id": 702332,
       "batter_hand": "R",
@@ -58,7 +58,121 @@
           "deviation": 0.1344
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 8,
+      "batter": "Javier Sanoja",
+      "batter_id": 691594,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 5,
+      "pitcher": "Michael Wacha",
+      "pitcher_id": 608379,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824069,
+      "game_datetime": "2026-09-03T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 920,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0921,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1354,
+      "ev_pct": 38.11,
+      "edge_pct": 4.33,
+      "ev_pct_p3": 33.59,
+      "blended_hr_per_pa": 0.01707,
+      "breakout_score": 0.0358,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.2723,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.54,
+          "deviation": 0.46
+        },
+        {
+          "name": "temperature",
+          "value": 1.22,
+          "deviation": 0.22
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 9,
+      "batter": "J.P. Crawford",
+      "batter_id": 641487,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 8,
+      "pitcher": "Jack Perkins",
+      "pitcher_id": 678022,
+      "pitcher_hand": "R",
+      "park": "SEA",
+      "game_pk": 823095,
+      "game_datetime": "2026-09-04T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1040,
+      "dk_odds": 940,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0855,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1204,
+      "ev_pct": 37.22,
+      "edge_pct": 3.49,
+      "ev_pct_p3": 50.4,
+      "blended_hr_per_pa": 0.02357,
+      "breakout_score": -0.0919,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7454,
+          "deviation": 0.2546
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9081,
+          "deviation": 0.0919
+        }
+      ],
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -68,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 0,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-09-03.json"
 }
