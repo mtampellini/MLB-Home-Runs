@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-04T19:56:19.266604+00:00",
+  "generated_at": "2026-09-04T22:34:20.924932+00:00",
   "as_of_date": "2026-09-04",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03363583381899925,
+  "league_hr_per_pa": 0.03319640279782392,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
@@ -10,7 +10,128 @@
   "total_games_today": 16,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 1,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "Jac Caglianone",
+      "batter_id": 695506,
+      "batter_hand": "L",
+      "team": "KC",
+      "lineup_spot": 3,
+      "pitcher": "Jameson Taillon",
+      "pitcher_id": 592791,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824067,
+      "game_datetime": "2026-09-05T00:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 350,
+      "dk_odds": 364,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2079,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3123,
+      "ev_pct": 44.91,
+      "edge_pct": 10.44,
+      "ev_pct_p3": 31.07,
+      "blended_hr_per_pa": 0.04316,
+      "breakout_score": 0.1226,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1505,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.3001,
+          "deviation": 0.3001
+        },
+        {
+          "name": "temperature",
+          "value": 1.2112,
+          "deviation": 0.2112
+        }
+      ],
+      "tier_rank": 5,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
+      "batter": "Heriberto Hern\u00e1ndez",
+      "batter_id": 681715,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 1,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "L",
+      "park": "MIA",
+      "game_pk": 823824,
+      "game_datetime": "2026-09-04T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 360,
+      "dk_odds": 387,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2008,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2961,
+      "ev_pct": 44.2,
+      "edge_pct": 9.53,
+      "ev_pct_p3": 40.03,
+      "blended_hr_per_pa": 0.05419,
+      "breakout_score": 0.0343,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3552,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6324,
+          "deviation": 0.6324
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.8195,
+          "deviation": 0.1805
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Griffin Conine"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 20,
   "skipped_reference": "data/processed/skipped_batters_2026-09-04.json"
 }
