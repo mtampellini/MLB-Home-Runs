@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-09-05T21:05:04.453506+00:00",
+  "generated_at": "2026-09-05T22:51:06.040763+00:00",
   "as_of_date": "2026-09-05",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03295406168969387,
+  "league_hr_per_pa": 0.03158488437676255,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 13,
-  "games_excluded_live_or_complete": 2,
+  "games_pregame": 7,
+  "games_excluded_live_or_complete": 8,
   "picks": [
     {
       "tier": "secondary",
-      "daily_rank": 20,
+      "daily_rank": 23,
+      "batter": "J.P. Crawford",
+      "batter_id": 641487,
+      "batter_hand": "L",
+      "team": "SEA",
+      "lineup_spot": 6,
+      "pitcher": "Jeffrey Springs",
+      "pitcher_id": 605488,
+      "pitcher_hand": "L",
+      "park": "SEA",
+      "game_pk": 823094,
+      "game_datetime": "2026-09-06T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 980,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0861,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1314,
+      "ev_pct": 41.96,
+      "edge_pct": 4.53,
+      "ev_pct_p3": 55.5,
+      "blended_hr_per_pa": 0.02316,
+      "breakout_score": -0.0919,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -1.0,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7332,
+          "deviation": 0.2668
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9081,
+          "deviation": 0.0919
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 31,
       "batter": "Luke Keaschall",
       "batter_id": 807712,
       "batter_hand": "R",
@@ -58,7 +115,7 @@
           "deviation": 0.0325
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +126,7 @@
     },
     {
       "tier": "secondary",
-      "daily_rank": 21,
+      "daily_rank": 32,
       "batter": "Brooks Lee",
       "batter_id": 686797,
       "batter_hand": "R",
@@ -115,7 +172,7 @@
           "deviation": 0.0367
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -125,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 12,
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-09-05.json"
 }
