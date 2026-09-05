@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-04T22:34:20.924932+00:00",
+  "generated_at": "2026-09-05T00:17:05.724784+00:00",
   "as_of_date": "2026-09-04",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03319640279782392,
+  "league_hr_per_pa": 0.034213279182819516,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 16,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 1,
+  "games_pregame": 4,
+  "games_excluded_live_or_complete": 12,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 11,
       "batter": "Jac Caglianone",
       "batter_id": 695506,
       "batter_hand": "L",
@@ -59,7 +59,7 @@
           "deviation": 0.2112
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -72,7 +72,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 10,
+      "daily_rank": 12,
       "batter": "Heriberto Hern\u00e1ndez",
       "batter_id": 681715,
       "batter_hand": "R",
@@ -118,7 +118,7 @@
           "deviation": 0.1805
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "stacked": true,
       "stacked_with": [
         "Griffin Conine"
@@ -130,8 +130,67 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 20,
+      "batter": "Max Muncy",
+      "batter_id": 571970,
+      "batter_hand": "L",
+      "team": "LAD",
+      "lineup_spot": 5,
+      "pitcher": "Jackson Kent",
+      "pitcher_id": 800600,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823905,
+      "game_datetime": "2026-09-05T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 400,
+      "dk_odds": 390,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2034,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2569,
+      "ev_pct": 28.46,
+      "edge_pct": 5.36,
+      "ev_pct_p3": 26.4,
+      "blended_hr_per_pa": 0.0544,
+      "breakout_score": 0.0183,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.0175,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.59,
+          "deviation": 0.59
+        },
+        {
+          "name": "park",
+          "value": 1.1765,
+          "deviation": 0.1765
+        },
+        {
+          "name": "wind",
+          "value": 1.0679,
+          "deviation": 0.0679
+        }
+      ],
+      "tier_rank": 14,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
     }
   ],
-  "skipped_count": 20,
+  "skipped_count": 6,
   "skipped_reference": "data/processed/skipped_batters_2026-09-04.json"
 }
