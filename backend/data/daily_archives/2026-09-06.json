@@ -1,27 +1,27 @@
 {
   "date": "2026-09-06",
-  "generated_at": "2026-09-06T22:55:43.971195+00:00",
+  "generated_at": "2026-09-07T00:46:57.899296+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03577512776831346,
   "funnel": {
     "total_slate_games": 15,
     "games_excluded_live_or_complete": 14,
     "games_pregame": 1,
-    "total_predictions": 0,
+    "total_predictions": 17,
     "skipped_low_data": 0,
-    "skipped_career_pa_filter": 0,
+    "skipped_career_pa_filter": 1,
     "skipped_other": 0,
-    "matched_in_odds_market": 0,
-    "matched_alt_market": 0,
+    "matched_in_odds_market": 17,
+    "matched_alt_market": 17,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 0,
-    "above_25_ev_pre_cap": 0,
-    "eligible_below_900_price_cap": 0,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 12,
-    "secondary_count": 1,
-    "shadow_count": 6
+    "single_sided_devig": 17,
+    "above_25_ev_pre_cap": 4,
+    "eligible_below_900_price_cap": 3,
+    "above_price_cap_pushed_to_secondary": 1,
+    "primary_count": 15,
+    "secondary_count": 2,
+    "shadow_count": 8
   },
   "primary_picks": [
     {
@@ -205,6 +205,68 @@
     },
     {
       "tier": "primary",
+      "daily_rank": 13,
+      "batter": "James Wood",
+      "batter_id": 695578,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 1,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823903,
+      "game_datetime": "2026-09-07T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 367,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2028,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2888,
+      "ev_pct": 35.75,
+      "edge_pct": 8.61,
+      "ev_pct_p3": 24.65,
+      "blended_hr_per_pa": 0.05164,
+      "breakout_score": 0.1021,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.1005,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.4435,
+          "deviation": 0.4435
+        },
+        {
+          "name": "park",
+          "value": 1.1765,
+          "deviation": 0.1765
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1021,
+          "deviation": 0.1021
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": true,
+      "stacked_with": [
+        "CJ Abrams",
+        "Daylen Lile"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
       "daily_rank": 7,
       "batter": "Luis Garc\u00eda Jr.",
       "batter_id": 671277,
@@ -251,7 +313,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "stacked": true,
       "stacked_with": [
         "Spencer Jones"
@@ -312,7 +374,7 @@
           "deviation": 0.1789
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -321,6 +383,68 @@
         "passes_triple_v2": false,
         "passes_quad": false,
         "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 8,
+      "batter": "CJ Abrams",
+      "batter_id": 682928,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 4,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823903,
+      "game_datetime": "2026-09-07T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 520,
+      "dk_odds": 499,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1559,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2322,
+      "ev_pct": 43.94,
+      "edge_pct": 7.62,
+      "ev_pct_p3": 35.32,
+      "blended_hr_per_pa": 0.04435,
+      "breakout_score": 0.0707,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6618,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2397,
+          "deviation": 0.2397
+        },
+        {
+          "name": "park",
+          "value": 1.1765,
+          "deviation": 0.1765
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0707,
+          "deviation": 0.0707
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "James Wood",
+        "Daylen Lile"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
       }
     },
     {
@@ -371,7 +495,7 @@
           "deviation": 0.1273
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 8,
       "stacked": true,
       "stacked_with": [
         "Angel Mart\u00ednez"
@@ -386,7 +510,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 12,
+      "daily_rank": 14,
       "batter": "Brandon Nimmo",
       "batter_id": 607043,
       "batter_hand": "L",
@@ -432,7 +556,7 @@
           "deviation": 0.0996
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 9,
       "stacked": true,
       "stacked_with": [
         "Ezequiel Duran"
@@ -493,7 +617,7 @@
           "deviation": 0.1563
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 10,
       "stacked": true,
       "stacked_with": [
         "Gunnar Henderson"
@@ -508,7 +632,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 8,
+      "daily_rank": 9,
       "batter": "Ezequiel Duran",
       "batter_id": 677649,
       "batter_hand": "R",
@@ -554,7 +678,7 @@
           "deviation": 0.0542
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 11,
       "stacked": true,
       "stacked_with": [
         "Brandon Nimmo"
@@ -569,7 +693,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 11,
+      "daily_rank": 12,
       "batter": "Angel Mart\u00ednez",
       "batter_id": 682657,
       "batter_hand": "L",
@@ -615,7 +739,7 @@
           "deviation": 0.1273
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 12,
       "stacked": true,
       "stacked_with": [
         "Nathaniel Lowe"
@@ -630,7 +754,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 9,
+      "daily_rank": 10,
       "batter": "Gunnar Henderson",
       "batter_id": 683002,
       "batter_hand": "L",
@@ -676,7 +800,7 @@
           "deviation": 0.0669
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 13,
       "stacked": true,
       "stacked_with": [
         "Colton Cowser"
@@ -691,7 +815,7 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 10,
+      "daily_rank": 11,
       "batter": "Ryan Vilade",
       "batter_id": 668723,
       "batter_hand": "R",
@@ -737,7 +861,7 @@
           "deviation": 0.0542
         }
       ],
-      "tier_rank": 12,
+      "tier_rank": 14,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -747,12 +871,74 @@
         "passes_quad": true,
         "passes_anchor": true
       }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 16,
+      "batter": "Daylen Lile",
+      "batter_id": 695734,
+      "batter_hand": "L",
+      "team": "WSH",
+      "lineup_spot": 6,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823903,
+      "game_datetime": "2026-09-07T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 620,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.131,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1729,
+      "ev_pct": 26.2,
+      "edge_pct": 4.18,
+      "ev_pct_p3": 19.78,
+      "blended_hr_per_pa": 0.03492,
+      "breakout_score": 0.0575,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.6665,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1765,
+          "deviation": 0.1765
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0575,
+          "deviation": 0.0575
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0367,
+          "deviation": 0.0367
+        }
+      ],
+      "tier_rank": 15,
+      "stacked": true,
+      "stacked_with": [
+        "James Wood",
+        "CJ Abrams"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
     }
   ],
   "secondary_picks": [
     {
       "tier": "secondary",
-      "daily_rank": 13,
+      "daily_rank": 15,
       "batter": "Elias D\u00edaz",
       "batter_id": 553869,
       "batter_hand": "R",
@@ -806,12 +992,69 @@
         "passes_quad": false,
         "passes_anchor": false
       }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 17,
+      "batter": "Jacob Young",
+      "batter_id": 696285,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 8,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823903,
+      "game_datetime": "2026-09-07T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 900,
+      "dk_odds": 1020,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.088,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1123,
+      "ev_pct": 25.82,
+      "edge_pct": 2.43,
+      "ev_pct_p3": 10.02,
+      "blended_hr_per_pa": 0.01949,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1674,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.5449,
+          "deviation": 0.4551
+        },
+        {
+          "name": "park",
+          "value": 1.2264,
+          "deviation": 0.2264
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
     }
   ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 18,
       "batter": "Adley Rutschman",
       "batter_id": 668939,
       "batter_hand": "L",
@@ -868,7 +1111,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 15,
+      "daily_rank": 19,
       "batter": "Josh Smith",
       "batter_id": 669701,
       "batter_hand": "L",
@@ -925,7 +1168,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 16,
+      "daily_rank": 20,
       "batter": "Corey Seager",
       "batter_id": 608369,
       "batter_hand": "L",
@@ -982,7 +1225,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 21,
       "batter": "Justin Foscue",
       "batter_id": 679822,
       "batter_hand": "R",
@@ -1039,7 +1282,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 22,
       "batter": "Alex Bregman",
       "batter_id": 608324,
       "batter_hand": "R",
@@ -1096,7 +1339,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 23,
       "batter": "Wyatt Langford",
       "batter_id": 694671,
       "batter_hand": "R",
@@ -1149,6 +1392,120 @@
         "passes_triple_v2": true,
         "passes_quad": false,
         "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
+      "batter": "Brady House",
+      "batter_id": 691781,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 5,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823903,
+      "game_datetime": "2026-09-07T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 480,
+      "dk_odds": 517,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1589,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1808,
+      "ev_pct": 11.56,
+      "edge_pct": 2.19,
+      "ev_pct_p3": -2.05,
+      "blended_hr_per_pa": 0.02852,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5214,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2264,
+          "deviation": 0.2264
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7973,
+          "deviation": 0.2027
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 25,
+      "batter": "Andr\u00e9s Chaparro",
+      "batter_id": 665953,
+      "batter_hand": "R",
+      "team": "WSH",
+      "lineup_spot": 3,
+      "pitcher": "Justin Wrobleski",
+      "pitcher_id": 680736,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823903,
+      "game_datetime": "2026-09-07T02:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 392,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1976,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2245,
+      "ev_pct": 10.47,
+      "edge_pct": 2.69,
+      "ev_pct_p3": -2.73,
+      "blended_hr_per_pa": 0.03454,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0521,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2264,
+          "deviation": 0.2264
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.1205,
+          "deviation": 0.1205
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
       }
     }
   ],
