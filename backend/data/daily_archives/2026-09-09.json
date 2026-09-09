@@ -1,32 +1,271 @@
 {
   "date": "2026-09-09",
-  "generated_at": "2026-09-09T17:45:57.829975+00:00",
+  "generated_at": "2026-09-09T20:12:31.017913+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.028946409041195772,
+  "league_hr_per_pa": 0.033588561275857694,
   "funnel": {
     "total_slate_games": 15,
-    "games_excluded_live_or_complete": 0,
-    "games_pregame": 15,
-    "total_predictions": 37,
-    "skipped_low_data": 3,
-    "skipped_career_pa_filter": 14,
+    "games_excluded_live_or_complete": 5,
+    "games_pregame": 10,
+    "total_predictions": 68,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 4,
     "skipped_other": 0,
-    "matched_in_odds_market": 36,
-    "matched_alt_market": 36,
+    "matched_in_odds_market": 66,
+    "matched_alt_market": 66,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 36,
-    "above_25_ev_pre_cap": 2,
-    "eligible_below_900_price_cap": 2,
-    "above_price_cap_pushed_to_secondary": 0,
-    "primary_count": 2,
-    "secondary_count": 0,
-    "shadow_count": 3
+    "single_sided_devig": 66,
+    "above_25_ev_pre_cap": 9,
+    "eligible_below_900_price_cap": 7,
+    "above_price_cap_pushed_to_secondary": 2,
+    "primary_count": 9,
+    "secondary_count": 2,
+    "shadow_count": 14
   },
   "primary_picks": [
     {
       "tier": "primary",
       "daily_rank": 1,
+      "batter": "Luis Garc\u00eda Jr.",
+      "batter_id": 671277,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 4,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 370,
+      "dk_odds": 321,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2139,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3643,
+      "ev_pct": 71.23,
+      "edge_pct": 15.04,
+      "ev_pct_p3": 52.16,
+      "blended_hr_per_pa": 0.04964,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0616,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4779,
+          "deviation": 0.4779
+        },
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Hunter Goodman",
+      "batter_id": 696100,
+      "batter_hand": "R",
+      "team": "COL",
+      "lineup_spot": 4,
+      "pitcher": "Will Warren",
+      "pitcher_id": 701542,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 310,
+      "dk_odds": 270,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2469,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3585,
+      "ev_pct": 47.0,
+      "edge_pct": 11.16,
+      "ev_pct_p3": 35.57,
+      "blended_hr_per_pa": 0.06775,
+      "breakout_score": 0.1006,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3841,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.017,
+          "deviation": 1.017
+        },
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.1006,
+          "deviation": 0.1006
+        }
+      ],
+      "tier_rank": 2,
+      "stacked": true,
+      "stacked_with": [
+        "Jake McCarthy",
+        "TJ Rumfield"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 2,
+      "batter": "Mickey Gasper",
+      "batter_id": 681508,
+      "batter_hand": "L",
+      "team": "BOS",
+      "lineup_spot": 2,
+      "pitcher": "Ryan Johnson",
+      "pitcher_id": 696270,
+      "pitcher_hand": "R",
+      "park": "BOS",
+      "game_pk": 824713,
+      "game_datetime": "2026-09-09T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 540,
+      "dk_odds": 553,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.147,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2375,
+      "ev_pct": 55.08,
+      "edge_pct": 9.05,
+      "ev_pct_p3": 36.67,
+      "blended_hr_per_pa": 0.0401,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 2.5,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.1939,
+          "deviation": 0.1939
+        },
+        {
+          "name": "pitcher",
+          "value": 1.183,
+          "deviation": 0.183
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 3,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 5,
+      "batter": "Bryce Harper",
+      "batter_id": 547180,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 3,
+      "pitcher": "Hunter Brown",
+      "pitcher_id": 686613,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823416,
+      "game_datetime": "2026-09-09T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 490,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1638,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2351,
+      "ev_pct": 38.73,
+      "edge_pct": 7.13,
+      "ev_pct_p3": 39.4,
+      "blended_hr_per_pa": 0.04304,
+      "breakout_score": -0.0054,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3617,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2813,
+          "deviation": 0.2813
+        },
+        {
+          "name": "park",
+          "value": 1.2565,
+          "deviation": 0.2565
+        },
+        {
+          "name": "wind",
+          "value": 1.1261,
+          "deviation": 0.1261
+        }
+      ],
+      "tier_rank": 4,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -72,7 +311,7 @@
           "deviation": 0.0576
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 5,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -85,7 +324,69 @@
     },
     {
       "tier": "primary",
-      "daily_rank": 2,
+      "daily_rank": 8,
+      "batter": "Jake McCarthy",
+      "batter_id": 664983,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 1,
+      "pitcher": "Will Warren",
+      "pitcher_id": 701542,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 810,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0985,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1374,
+      "ev_pct": 34.63,
+      "edge_pct": 3.88,
+      "ev_pct_p3": 28.28,
+      "blended_hr_per_pa": 0.02473,
+      "breakout_score": 0.0525,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1848,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.7364,
+          "deviation": 0.2636
+        },
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        },
+        {
+          "name": "temperature",
+          "value": 1.0768,
+          "deviation": 0.0768
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Hunter Goodman",
+        "TJ Rumfield"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 10,
       "batter": "Donovan Walton",
       "batter_id": 622268,
       "batter_hand": "L",
@@ -131,7 +432,128 @@
           "deviation": 0.144
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 7,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 9,
+      "batter": "TJ Rumfield",
+      "batter_id": 681198,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 3,
+      "pitcher": "Will Warren",
+      "pitcher_id": 701542,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 730,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1066,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1408,
+      "ev_pct": 29.57,
+      "edge_pct": 3.43,
+      "ev_pct_p3": 37.45,
+      "blended_hr_per_pa": 0.02973,
+      "breakout_score": -0.0608,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.6345,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8852,
+          "deviation": 0.1148
+        },
+        {
+          "name": "temperature",
+          "value": 1.0768,
+          "deviation": 0.0768
+        }
+      ],
+      "tier_rank": 8,
+      "stacked": true,
+      "stacked_with": [
+        "Hunter Goodman",
+        "Jake McCarthy"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 11,
+      "batter": "Denzer Guzman",
+      "batter_id": 694203,
+      "batter_hand": "R",
+      "team": "LAA",
+      "lineup_spot": 8,
+      "pitcher": "Jake Bennett",
+      "pitcher_id": 687562,
+      "pitcher_hand": "L",
+      "park": "BOS",
+      "game_pk": 824713,
+      "game_datetime": "2026-09-09T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 820,
+      "dk_odds": 730,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1066,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1389,
+      "ev_pct": 27.77,
+      "edge_pct": 3.23,
+      "ev_pct_p3": 24.04,
+      "blended_hr_per_pa": 0.03456,
+      "breakout_score": 0.0318,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0585,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "wind",
+          "value": 1.1358,
+          "deviation": 0.1358
+        },
+        {
+          "name": "park",
+          "value": 0.921,
+          "deviation": 0.079
+        },
+        {
+          "name": "pitcher",
+          "value": 1.0419,
+          "deviation": 0.0419
+        }
+      ],
+      "tier_rank": 9,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -143,11 +565,582 @@
       }
     }
   ],
-  "secondary_picks": [],
+  "secondary_picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 4,
+      "batter": "Nick Loftin",
+      "batter_id": 679845,
+      "batter_hand": "R",
+      "team": "KC",
+      "lineup_spot": 6,
+      "pitcher": "Zac Gallen",
+      "pitcher_id": 668678,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824064,
+      "game_datetime": "2026-09-09T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1120,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0762,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1163,
+      "ev_pct": 41.85,
+      "edge_pct": 4.0,
+      "ev_pct_p3": 30.46,
+      "blended_hr_per_pa": 0.01887,
+      "breakout_score": 0.0914,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1471,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5617,
+          "deviation": 0.4383
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0914,
+          "deviation": 0.0914
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 7,
+      "batter": "Kyle Karros",
+      "batter_id": 691720,
+      "batter_hand": "R",
+      "team": "COL",
+      "lineup_spot": 6,
+      "pitcher": "Will Warren",
+      "pitcher_id": 701542,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 830,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0956,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1328,
+      "ev_pct": 35.45,
+      "edge_pct": 3.72,
+      "ev_pct_p3": 18.6,
+      "blended_hr_per_pa": 0.02313,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.254,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6886,
+          "deviation": 0.3114
+        },
+        {
+          "name": "park",
+          "value": 1.1552,
+          "deviation": 0.1552
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 3,
+      "daily_rank": 12,
+      "batter": "Ben Rice",
+      "batter_id": 700250,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 1,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 225,
+      "dk_odds": 219,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.3013,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3841,
+      "ev_pct": 24.83,
+      "edge_pct": 8.28,
+      "ev_pct_p3": 24.83,
+      "blended_hr_per_pa": 0.05881,
+      "breakout_score": -0.1165,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4425,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.751,
+          "deviation": 0.751
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 13,
+      "batter": "Brandon Marsh",
+      "batter_id": 669016,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 6,
+      "pitcher": "Hunter Brown",
+      "pitcher_id": 686613,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823416,
+      "game_datetime": "2026-09-09T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 700,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.126,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1552,
+      "ev_pct": 24.14,
+      "edge_pct": 2.92,
+      "ev_pct_p3": 21.78,
+      "blended_hr_per_pa": 0.02929,
+      "breakout_score": 0.0207,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1034,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.2565,
+          "deviation": 0.2565
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8721,
+          "deviation": 0.1279
+        },
+        {
+          "name": "wind",
+          "value": 1.1261,
+          "deviation": 0.1261
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 14,
+      "batter": "John Rave",
+      "batter_id": 670231,
+      "batter_hand": "L",
+      "team": "KC",
+      "lineup_spot": 7,
+      "pitcher": "Zac Gallen",
+      "pitcher_id": 668678,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824064,
+      "game_datetime": "2026-09-09T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 880,
+      "dk_odds": 930,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0926,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1188,
+      "ev_pct": 22.37,
+      "edge_pct": 2.62,
+      "ev_pct_p3": 7.05,
+      "blended_hr_per_pa": 0.02917,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.5814,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 0.8241,
+          "deviation": 0.1759
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "pitcher",
+          "value": 1.14,
+          "deviation": 0.14
+        }
+      ],
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": false,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 15,
+      "batter": "Austin Wells",
+      "batter_id": 669224,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 8,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 437,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.169,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.205,
+      "ev_pct": 20.97,
+      "edge_pct": 3.61,
+      "ev_pct_p3": 32.61,
+      "blended_hr_per_pa": 0.0331,
+      "breakout_score": -0.0956,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4154,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9044,
+          "deviation": 0.0956
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 16,
+      "batter": "Jeremy Pe\u00f1a",
+      "batter_id": 665161,
+      "batter_hand": "R",
+      "team": "HOU",
+      "lineup_spot": 1,
+      "pitcher": "Cristopher S\u00e1nchez",
+      "pitcher_id": 650911,
+      "pitcher_hand": "L",
+      "park": "PHI",
+      "game_pk": 823416,
+      "game_datetime": "2026-09-09T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 700,
+      "dk_odds": 850,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1071,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1265,
+      "ev_pct": 20.19,
+      "edge_pct": 1.94,
+      "ev_pct_p3": 28.29,
+      "blended_hr_per_pa": 0.04034,
+      "breakout_score": -0.0666,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.9241,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.6225,
+          "deviation": 0.3775
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.201,
+          "deviation": 0.201
+        },
+        {
+          "name": "wind",
+          "value": 1.1261,
+          "deviation": 0.1261
+        }
+      ],
+      "tier_rank": 5,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 17,
+      "batter": "Kyle Schwarber",
+      "batter_id": 656941,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 1,
+      "pitcher": "Hunter Brown",
+      "pitcher_id": 686613,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823416,
+      "game_datetime": "2026-09-09T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 255,
+      "dk_odds": 253,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.274,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3382,
+      "ev_pct": 20.08,
+      "edge_pct": 6.42,
+      "ev_pct_p3": 33.19,
+      "blended_hr_per_pa": 0.07039,
+      "breakout_score": -0.1167,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1426,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.0956,
+          "deviation": 1.0956
+        },
+        {
+          "name": "park",
+          "value": 1.2565,
+          "deviation": 0.2565
+        },
+        {
+          "name": "wind",
+          "value": 1.1261,
+          "deviation": 0.1261
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 18,
+      "batter": "Brett Sullivan",
+      "batter_id": 664954,
+      "batter_hand": "L",
+      "team": "COL",
+      "lineup_spot": 7,
+      "pitcher": "Will Warren",
+      "pitcher_id": 701542,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 680,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1218,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1509,
+      "ev_pct": 17.7,
+      "edge_pct": 2.91,
+      "ev_pct_p3": 3.15,
+      "blended_hr_per_pa": 0.02941,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3781,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.8756,
+          "deviation": 0.1244
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 19,
+      "batter": "Spencer Jones",
+      "batter_id": 682987,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 5,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 225,
+      "dk_odds": 227,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2975,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3576,
+      "ev_pct": 16.93,
+      "edge_pct": 6.0,
+      "ev_pct_p3": 3.84,
+      "blended_hr_per_pa": 0.05843,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3344,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.7396,
+          "deviation": 0.7396
+        },
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        }
+      ],
+      "tier_rank": 8,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 20,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -193,7 +1186,7 @@
           "deviation": 0.0606
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -204,7 +1197,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 4,
+      "daily_rank": 21,
+      "batter": "Cody Bellinger",
+      "batter_id": 641355,
+      "batter_hand": "L",
+      "team": "NYY",
+      "lineup_spot": 2,
+      "pitcher": "Tomoyuki Sugano",
+      "pitcher_id": 608372,
+      "pitcher_hand": "R",
+      "park": "NYY",
+      "game_pk": 823497,
+      "game_datetime": "2026-09-09T23:05:00+00:00",
+      "line": 0.5,
+      "fd_odds": 470,
+      "dk_odds": 436,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.172,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1994,
+      "ev_pct": 13.64,
+      "edge_pct": 2.74,
+      "ev_pct_p3": 23.06,
+      "blended_hr_per_pa": 0.02619,
+      "breakout_score": -0.0837,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3833,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7798,
+          "deviation": 0.2202
+        },
+        {
+          "name": "park",
+          "value": 1.1658,
+          "deviation": 0.1658
+        }
+      ],
+      "tier_rank": 10,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
       "batter": "Carlos Cortes",
       "batter_id": 666126,
       "batter_hand": "L",
@@ -250,7 +1300,7 @@
           "deviation": 0.1186
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -261,7 +1311,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 5,
+      "daily_rank": 23,
       "batter": "Nolan Gorman",
       "batter_id": 669357,
       "batter_hand": "L",
@@ -307,13 +1357,127 @@
           "deviation": 0.2149
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
         "passes_triple_v2": false,
         "passes_quad": false,
         "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
+      "batter": "Salvador Perez",
+      "batter_id": 521692,
+      "batter_hand": "R",
+      "team": "KC",
+      "lineup_spot": 4,
+      "pitcher": "Zac Gallen",
+      "pitcher_id": 668678,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824064,
+      "game_datetime": "2026-09-09T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 490,
+      "dk_odds": 486,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1616,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1893,
+      "ev_pct": 11.71,
+      "edge_pct": 2.78,
+      "ev_pct_p3": 29.61,
+      "blended_hr_per_pa": 0.03793,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.255,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1292,
+          "deviation": 0.1292
+        }
+      ],
+      "tier_rank": 13,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 25,
+      "batter": "Bryson Stott",
+      "batter_id": 681082,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 5,
+      "pitcher": "Hunter Brown",
+      "pitcher_id": 686613,
+      "pitcher_hand": "R",
+      "park": "PHI",
+      "game_pk": 823416,
+      "game_datetime": "2026-09-09T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 750,
+      "dk_odds": 800,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1064,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1235,
+      "ev_pct": 11.17,
+      "edge_pct": 1.72,
+      "ev_pct_p3": 5.89,
+      "blended_hr_per_pa": 0.02127,
+      "breakout_score": 0.0524,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.3746,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.6332,
+          "deviation": 0.3668
+        },
+        {
+          "name": "park",
+          "value": 1.2565,
+          "deviation": 0.2565
+        },
+        {
+          "name": "wind",
+          "value": 1.1261,
+          "deviation": 0.1261
+        }
+      ],
+      "tier_rank": 14,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": true,
+        "passes_anchor": true
       }
     }
   ],

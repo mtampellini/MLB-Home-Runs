@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-09-09T17:45:57.829693+00:00",
+  "generated_at": "2026-09-09T20:12:31.017225+00:00",
   "as_of_date": "2026-09-09",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.028946409041195772,
+  "league_hr_per_pa": 0.033588561275857694,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 17,
+  "games_pregame": 10,
+  "games_excluded_live_or_complete": 5,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 4,
+      "batter": "Nick Loftin",
+      "batter_id": 679845,
+      "batter_hand": "R",
+      "team": "KC",
+      "lineup_spot": 6,
+      "pitcher": "Zac Gallen",
+      "pitcher_id": 668678,
+      "pitcher_hand": "R",
+      "park": "KC",
+      "game_pk": 824064,
+      "game_datetime": "2026-09-09T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1120,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0762,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1163,
+      "ev_pct": 41.85,
+      "edge_pct": 4.0,
+      "ev_pct_p3": 30.46,
+      "blended_hr_per_pa": 0.01887,
+      "breakout_score": 0.0914,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.1471,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.5617,
+          "deviation": 0.4383
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0914,
+          "deviation": 0.0914
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-09-09.json"
 }
