@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-09-11T00:34:07.144648+00:00",
-  "as_of_date": "2026-09-10",
+  "generated_at": "2026-09-11T17:39:36.375307+00:00",
+  "as_of_date": "2026-09-11",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03012933568489124,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
-  "total_games_today": 5,
-  "games_pregame": 0,
-  "games_excluded_live_or_complete": 5,
-  "picks": [],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-09-10.json"
+  "total_games_today": 15,
+  "games_pregame": 15,
+  "games_excluded_live_or_complete": 0,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 3,
+      "batter": "Oneil Cruz",
+      "batter_id": 665833,
+      "batter_hand": "L",
+      "team": "PIT",
+      "lineup_spot": 2,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824631,
+      "game_datetime": "2026-09-11T18:20:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 326,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.2246,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2808,
+      "ev_pct": 19.64,
+      "edge_pct": 5.62,
+      "ev_pct_p3": 24.47,
+      "blended_hr_per_pa": 0.04739,
+      "breakout_score": -0.0443,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.0435,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.573,
+          "deviation": 0.573
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9557,
+          "deviation": 0.0443
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 1,
+  "skipped_reference": "data/processed/skipped_batters_2026-09-11.json"
 }
