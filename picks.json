@@ -1,135 +1,80 @@
 {
-  "generated_at": "2026-09-13T01:10:53.287934+00:00",
-  "as_of_date": "2026-09-12",
+  "generated_at": "2026-09-13T17:36:56.670227+00:00",
+  "as_of_date": "2026-09-13",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03268925357331922,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 15,
-  "games_pregame": 1,
-  "games_excluded_live_or_complete": 14,
+  "games_pregame": 10,
+  "games_excluded_live_or_complete": 5,
   "picks": [
     {
       "tier": "primary",
-      "daily_rank": 23,
-      "batter": "Joc Pederson",
-      "batter_id": 592626,
-      "batter_hand": "L",
-      "team": "TEX",
-      "lineup_spot": 1,
-      "pitcher": "Brandon Pfaadt",
-      "pitcher_id": 694297,
-      "pitcher_hand": "R",
-      "park": "ARI",
-      "game_pk": 825035,
-      "game_datetime": "2026-09-13T00:10:00+00:00",
+      "daily_rank": 13,
+      "batter": "Sal Stewart",
+      "batter_id": 701398,
+      "batter_hand": "R",
+      "team": "CIN",
+      "lineup_spot": 3,
+      "pitcher": "Robert Gasser",
+      "pitcher_id": 688107,
+      "pitcher_hand": "L",
+      "park": "MIL",
+      "game_pk": 823734,
+      "game_datetime": "2026-09-13T18:10:00+00:00",
       "line": 0.5,
-      "fd_odds": 410,
-      "dk_odds": 403,
+      "fd_odds": 430,
+      "dk_odds": 419,
       "best_book": "fanduel",
-      "market_prob_devig": 0.1876,
+      "market_prob_devig": 0.1811,
       "devig_method": "single_sided",
       "devig_inputs": {},
-      "model_prob": 0.2473,
-      "ev_pct": 26.15,
-      "edge_pct": 5.98,
-      "ev_pct_p3": 31.89,
-      "blended_hr_per_pa": 0.05462,
-      "breakout_score": -0.0489,
+      "model_prob": 0.2823,
+      "ev_pct": 49.64,
+      "edge_pct": 10.12,
+      "ev_pct_p3": 72.23,
+      "blended_hr_per_pa": 0.04962,
+      "breakout_score": -0.15,
       "low_confidence": false,
       "pitcher_factor_shrunk": false,
-      "trend_signal": -0.0964,
+      "trend_signal": -0.32,
       "unstable_recent": false,
       "top_3_features": [
         {
-          "name": "batter_skill",
-          "value": 1.6348,
-          "deviation": 0.6348
-        },
-        {
           "name": "pitcher",
-          "value": 1.4883,
-          "deviation": 0.4883
+          "value": 1.6,
+          "deviation": 0.6
         },
-        {
-          "name": "park",
-          "value": 0.7748,
-          "deviation": 0.2252
-        }
-      ],
-      "tier_rank": 12,
-      "stacked": false,
-      "stacked_with": [],
-      "filter_status": {
-        "passes_baseline": true,
-        "passes_triple": true,
-        "passes_triple_v2": true,
-        "passes_quad": false,
-        "passes_anchor": true
-      }
-    },
-    {
-      "tier": "primary",
-      "daily_rank": 24,
-      "batter": "Brooks Lee",
-      "batter_id": 686797,
-      "batter_hand": "L",
-      "team": "MIN",
-      "lineup_spot": 2,
-      "pitcher": "Daniel Espino",
-      "pitcher_id": 682982,
-      "pitcher_hand": "R",
-      "park": "MIN",
-      "game_pk": 823657,
-      "game_datetime": "2026-09-12T20:10:00+00:00",
-      "line": 0.5,
-      "fd_odds": 630,
-      "dk_odds": 660,
-      "best_book": "draftkings",
-      "market_prob_devig": 0.1276,
-      "devig_method": "single_sided",
-      "devig_inputs": {},
-      "model_prob": 0.1658,
-      "ev_pct": 26.01,
-      "edge_pct": 3.82,
-      "ev_pct_p3": 33.39,
-      "blended_hr_per_pa": 0.03801,
-      "breakout_score": -0.0595,
-      "low_confidence": false,
-      "pitcher_factor_shrunk": true,
-      "trend_signal": 1.0241,
-      "unstable_recent": true,
-      "top_3_features": [
         {
           "name": "batter_skill",
-          "value": 1.2143,
-          "deviation": 0.2143
-        },
-        {
-          "name": "wind",
-          "value": 1.0951,
-          "deviation": 0.0951
+          "value": 1.5178,
+          "deviation": 0.5178
         },
         {
           "name": "breakout_signal",
-          "value": 0.9405,
-          "deviation": 0.0595
+          "value": 0.85,
+          "deviation": 0.15
         }
       ],
-      "tier_rank": 17,
-      "stacked": false,
-      "stacked_with": [],
+      "tier_rank": 7,
+      "stacked": true,
+      "stacked_with": [
+        "Elly De La Cruz",
+        "Eugenio Su\u00e1rez",
+        "Tyler Stephenson"
+      ],
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
         "passes_triple_v2": true,
-        "passes_quad": false,
+        "passes_quad": true,
         "passes_anchor": true
       }
     }
   ],
-  "skipped_count": 0,
-  "skipped_reference": "data/processed/skipped_batters_2026-09-12.json"
+  "skipped_count": 10,
+  "skipped_reference": "data/processed/skipped_batters_2026-09-13.json"
 }
