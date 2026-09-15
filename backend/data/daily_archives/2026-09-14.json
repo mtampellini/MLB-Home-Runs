@@ -1,27 +1,27 @@
 {
   "date": "2026-09-14",
-  "generated_at": "2026-09-14T22:53:10.458545+00:00",
+  "generated_at": "2026-09-15T00:56:07.833924+00:00",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03371789920834138,
+  "league_hr_per_pa": 0.028802740152576677,
   "funnel": {
     "total_slate_games": 10,
-    "games_excluded_live_or_complete": 2,
-    "games_pregame": 8,
-    "total_predictions": 109,
-    "skipped_low_data": 4,
-    "skipped_career_pa_filter": 13,
+    "games_excluded_live_or_complete": 8,
+    "games_pregame": 2,
+    "total_predictions": 18,
+    "skipped_low_data": 0,
+    "skipped_career_pa_filter": 0,
     "skipped_other": 0,
-    "matched_in_odds_market": 109,
-    "matched_alt_market": 109,
+    "matched_in_odds_market": 18,
+    "matched_alt_market": 18,
     "matched_main_market": 0,
     "two_way_devig": 0,
-    "single_sided_devig": 109,
-    "above_25_ev_pre_cap": 10,
-    "eligible_below_900_price_cap": 5,
-    "above_price_cap_pushed_to_secondary": 5,
-    "primary_count": 7,
+    "single_sided_devig": 18,
+    "above_25_ev_pre_cap": 1,
+    "eligible_below_900_price_cap": 1,
+    "above_price_cap_pushed_to_secondary": 0,
+    "primary_count": 8,
     "secondary_count": 6,
-    "shadow_count": 11
+    "shadow_count": 12
   },
   "primary_picks": [
     {
@@ -388,6 +388,65 @@
     },
     {
       "tier": "primary",
+      "daily_rank": 14,
+      "batter": "Heriberto Hern\u00e1ndez",
+      "batter_id": 681715,
+      "batter_hand": "R",
+      "team": "MIA",
+      "lineup_spot": 2,
+      "pitcher": "Corbin Burnes",
+      "pitcher_id": 669203,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825034,
+      "game_datetime": "2026-09-15T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 481,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1609,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2176,
+      "ev_pct": 30.58,
+      "edge_pct": 5.67,
+      "ev_pct_p3": 29.07,
+      "blended_hr_per_pa": 0.05199,
+      "breakout_score": 0.0129,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.4576,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.8051,
+          "deviation": 0.8051
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.0129,
+          "deviation": 0.0129
+        },
+        {
+          "name": "park",
+          "value": 1.0079,
+          "deviation": 0.0079
+        }
+      ],
+      "tier_rank": 7,
+      "stacked": false,
+      "stacked_with": [],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
       "daily_rank": 11,
       "batter": "JJ Bleday",
       "batter_id": 668709,
@@ -434,7 +493,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "stacked": false,
       "stacked_with": [],
       "filter_status": {
@@ -793,7 +852,7 @@
   "shadow_picks": [
     {
       "tier": "shadow",
-      "daily_rank": 14,
+      "daily_rank": 15,
       "batter": "Zach Neto",
       "batter_id": 687263,
       "batter_hand": "R",
@@ -850,7 +909,64 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 15,
+      "daily_rank": 16,
+      "batter": "Griffin Conine",
+      "batter_id": 665052,
+      "batter_hand": "L",
+      "team": "MIA",
+      "lineup_spot": 4,
+      "pitcher": "Corbin Burnes",
+      "pitcher_id": 669203,
+      "pitcher_hand": "R",
+      "park": "ARI",
+      "game_pk": 825034,
+      "game_datetime": "2026-09-15T01:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 560,
+      "dk_odds": 640,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1362,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1659,
+      "ev_pct": 22.76,
+      "edge_pct": 2.97,
+      "ev_pct_p3": 7.7,
+      "blended_hr_per_pa": 0.04636,
+      "breakout_score": 0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3249,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6095,
+          "deviation": 0.6095
+        },
+        {
+          "name": "park",
+          "value": 0.7748,
+          "deviation": 0.2252
+        },
+        {
+          "name": "breakout_signal",
+          "value": 1.15,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": false,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 17,
       "batter": "Jose Siri",
       "batter_id": 642350,
       "batter_hand": "R",
@@ -896,7 +1012,7 @@
           "deviation": 0.1157
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -907,7 +1023,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 16,
+      "daily_rank": 18,
       "batter": "Will Smith",
       "batter_id": 669257,
       "batter_hand": "R",
@@ -953,7 +1069,7 @@
           "deviation": 0.1159
         }
       ],
-      "tier_rank": 3,
+      "tier_rank": 4,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -964,7 +1080,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 17,
+      "daily_rank": 19,
       "batter": "Mike Trout",
       "batter_id": 545361,
       "batter_hand": "R",
@@ -1010,7 +1126,7 @@
           "deviation": 0.0873
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 5,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -1021,7 +1137,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 18,
+      "daily_rank": 20,
       "batter": "Kevin McGonigle",
       "batter_id": 805808,
       "batter_hand": "L",
@@ -1067,7 +1183,7 @@
           "deviation": 0.0672
         }
       ],
-      "tier_rank": 5,
+      "tier_rank": 6,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1078,7 +1194,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 19,
+      "daily_rank": 21,
       "batter": "Pedro Ram\u00edrez",
       "batter_id": 699393,
       "batter_hand": "L",
@@ -1124,7 +1240,7 @@
           "deviation": 0.0288
         }
       ],
-      "tier_rank": 6,
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1135,7 +1251,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 20,
+      "daily_rank": 22,
       "batter": "Francisco Alvarez",
       "batter_id": 682626,
       "batter_hand": "R",
@@ -1181,7 +1297,7 @@
           "deviation": 0.15
         }
       ],
-      "tier_rank": 7,
+      "tier_rank": 8,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": false,
@@ -1192,7 +1308,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 21,
+      "daily_rank": 23,
       "batter": "Jackson Merrill",
       "batter_id": 701538,
       "batter_hand": "L",
@@ -1238,7 +1354,7 @@
           "deviation": 0.1133
         }
       ],
-      "tier_rank": 8,
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1249,7 +1365,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 22,
+      "daily_rank": 24,
       "batter": "Teoscar Hern\u00e1ndez",
       "batter_id": 606192,
       "batter_hand": "R",
@@ -1295,7 +1411,7 @@
           "deviation": 0.0781
         }
       ],
-      "tier_rank": 9,
+      "tier_rank": 10,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1306,7 +1422,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 23,
+      "daily_rank": 25,
       "batter": "Enrique Hern\u00e1ndez",
       "batter_id": 571771,
       "batter_hand": "R",
@@ -1352,7 +1468,7 @@
           "deviation": 0.0916
         }
       ],
-      "tier_rank": 10,
+      "tier_rank": 11,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -1363,7 +1479,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 24,
+      "daily_rank": 26,
       "batter": "Ty France",
       "batter_id": 664034,
       "batter_hand": "R",
@@ -1409,7 +1525,7 @@
           "deviation": 0.096
         }
       ],
-      "tier_rank": 11,
+      "tier_rank": 12,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
