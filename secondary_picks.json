@@ -1,15 +1,130 @@
 {
-  "generated_at": "2026-09-16T18:03:40.892318+00:00",
+  "generated_at": "2026-09-16T21:30:32.698870+00:00",
   "as_of_date": "2026-09-16",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.030593377038157673,
+  "league_hr_per_pa": 0.033903090589231806,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 12,
-  "games_excluded_live_or_complete": 3,
-  "picks": [],
-  "skipped_count": 4,
+  "games_pregame": 11,
+  "games_excluded_live_or_complete": 4,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 25,
+      "batter": "Sean Murphy",
+      "batter_id": 669221,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 8,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824626,
+      "game_datetime": "2026-09-16T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 650,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1284,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.171,
+      "ev_pct": 28.23,
+      "edge_pct": 4.26,
+      "ev_pct_p3": 49.08,
+      "blended_hr_per_pa": 0.04035,
+      "breakout_score": -0.15,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": null,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5433,
+          "deviation": 0.5433
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1902,
+          "deviation": 0.1902
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.85,
+          "deviation": 0.15
+        }
+      ],
+      "tier_rank": 13,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "secondary",
+      "daily_rank": 26,
+      "batter": "Ronald Acu\u00f1a Jr.",
+      "batter_id": 660670,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 1,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824626,
+      "game_datetime": "2026-09-16T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 430,
+      "dk_odds": 434,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1786,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2359,
+      "ev_pct": 25.96,
+      "edge_pct": 5.73,
+      "ev_pct_p3": 34.57,
+      "blended_hr_per_pa": 0.04246,
+      "breakout_score": -0.0713,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2804,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5433,
+          "deviation": 0.5433
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.2523,
+          "deviation": 0.2523
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9287,
+          "deviation": 0.0713
+        }
+      ],
+      "tier_rank": 14,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-09-16.json"
 }

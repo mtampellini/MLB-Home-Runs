@@ -1,18 +1,75 @@
 {
-  "generated_at": "2026-09-16T18:03:40.892443+00:00",
+  "generated_at": "2026-09-16T21:30:32.699126+00:00",
   "as_of_date": "2026-09-16",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.030593377038157673,
+  "league_hr_per_pa": 0.033903090589231806,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 12,
-  "games_excluded_live_or_complete": 3,
+  "games_pregame": 11,
+  "games_excluded_live_or_complete": 4,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 4,
+      "daily_rank": 27,
+      "batter": "Kyle Schwarber",
+      "batter_id": 656941,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 1,
+      "pitcher": "Jared Simpson",
+      "pitcher_id": 688692,
+      "pitcher_hand": "L",
+      "park": "WSH",
+      "game_pk": 822680,
+      "game_datetime": "2026-09-16T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 320,
+      "dk_odds": 285,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2391,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2937,
+      "ev_pct": 23.36,
+      "edge_pct": 5.47,
+      "ev_pct_p3": 35.57,
+      "blended_hr_per_pa": 0.07052,
+      "breakout_score": -0.1038,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.3451,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.08,
+          "deviation": 1.08
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8962,
+          "deviation": 0.1038
+        },
+        {
+          "name": "temperature",
+          "value": 1.0864,
+          "deviation": 0.0864
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 29,
       "batter": "Dillon Dingler",
       "batter_id": 693307,
       "batter_hand": "R",
@@ -58,7 +115,178 @@
           "deviation": 0.0204
         }
       ],
-      "tier_rank": 1,
+      "tier_rank": 3,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 30,
+      "batter": "Ryan Vilade",
+      "batter_id": 668723,
+      "batter_hand": "R",
+      "team": "TB",
+      "lineup_spot": 2,
+      "pitcher": "Brady Basso",
+      "pitcher_id": 669620,
+      "pitcher_hand": "L",
+      "park": "TB",
+      "game_pk": 822926,
+      "game_datetime": "2026-09-16T22:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 680,
+      "dk_odds": 710,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1183,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1462,
+      "ev_pct": 18.44,
+      "edge_pct": 2.79,
+      "ev_pct_p3": 20.86,
+      "blended_hr_per_pa": 0.03679,
+      "breakout_score": -0.0213,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 1.375,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 0.8892,
+          "deviation": 0.1108
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.0852,
+          "deviation": 0.0852
+        },
+        {
+          "name": "park",
+          "value": 1.0781,
+          "deviation": 0.0781
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 33,
+      "batter": "Bryce Harper",
+      "batter_id": 547180,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 3,
+      "pitcher": "Jared Simpson",
+      "pitcher_id": 688692,
+      "pitcher_hand": "L",
+      "park": "WSH",
+      "game_pk": 822680,
+      "game_datetime": "2026-09-16T22:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 500,
+      "dk_odds": 422,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1702,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1947,
+      "ev_pct": 16.83,
+      "edge_pct": 2.45,
+      "ev_pct_p3": 20.04,
+      "blended_hr_per_pa": 0.04294,
+      "breakout_score": -0.0291,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.095,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.2664,
+          "deviation": 0.2664
+        },
+        {
+          "name": "temperature",
+          "value": 1.0864,
+          "deviation": 0.0864
+        },
+        {
+          "name": "wind",
+          "value": 1.0679,
+          "deviation": 0.0679
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": false
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 35,
+      "batter": "Austin Riley",
+      "batter_id": 663586,
+      "batter_hand": "R",
+      "team": "ATL",
+      "lineup_spot": 7,
+      "pitcher": "Shota Imanaga",
+      "pitcher_id": 684007,
+      "pitcher_hand": "L",
+      "park": "CHC",
+      "game_pk": 824626,
+      "game_datetime": "2026-09-16T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 600,
+      "dk_odds": 610,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1348,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.159,
+      "ev_pct": 12.89,
+      "edge_pct": 2.42,
+      "ev_pct_p3": 24.97,
+      "blended_hr_per_pa": 0.03362,
+      "breakout_score": -0.1032,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.362,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5433,
+          "deviation": 0.5433
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8968,
+          "deviation": 0.1032
+        },
+        {
+          "name": "temperature",
+          "value": 0.9424,
+          "deviation": 0.0576
+        }
+      ],
+      "tier_rank": 9,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -68,6 +296,6 @@
       }
     }
   ],
-  "skipped_count": 4,
+  "skipped_count": 7,
   "skipped_reference": "data/processed/skipped_batters_2026-09-16.json"
 }
