@@ -1,16 +1,141 @@
 {
-  "generated_at": "2026-09-17T18:01:21.514764+00:00",
+  "generated_at": "2026-09-17T21:24:35.898730+00:00",
   "as_of_date": "2026-09-17",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.029800257731958765,
+  "league_hr_per_pa": 0.03258817309870856,
   "tier": "primary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "ev_threshold_pct": 25.0,
   "total_games_today": 9,
-  "games_pregame": 6,
-  "games_excluded_live_or_complete": 3,
-  "picks": [],
-  "skipped_count": 2,
+  "games_pregame": 5,
+  "games_excluded_live_or_complete": 4,
+  "picks": [
+    {
+      "tier": "primary",
+      "daily_rank": 3,
+      "batter": "Dillon Dingler",
+      "batter_id": 693307,
+      "batter_hand": "R",
+      "team": "DET",
+      "lineup_spot": 3,
+      "pitcher": "Erick Fedde",
+      "pitcher_id": 607200,
+      "pitcher_hand": "R",
+      "park": "CHW",
+      "game_pk": 824548,
+      "game_datetime": "2026-09-17T23:40:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 427,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1815,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2827,
+      "ev_pct": 48.96,
+      "edge_pct": 10.12,
+      "ev_pct_p3": 49.84,
+      "blended_hr_per_pa": 0.04597,
+      "breakout_score": -0.0067,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.4861,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4107,
+          "deviation": 0.4107
+        },
+        {
+          "name": "park",
+          "value": 0.9675,
+          "deviation": 0.0325
+        }
+      ],
+      "tier_rank": 1,
+      "stacked": true,
+      "stacked_with": [
+        "Spencer Torkelson"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "primary",
+      "daily_rank": 6,
+      "batter": "Bo Bichette",
+      "batter_id": 666182,
+      "batter_hand": "R",
+      "team": "NYM",
+      "lineup_spot": 3,
+      "pitcher": "Aaron Nola",
+      "pitcher_id": 605400,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823573,
+      "game_datetime": "2026-09-17T23:15:00+00:00",
+      "line": 0.5,
+      "fd_odds": 630,
+      "dk_odds": 660,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.1276,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1789,
+      "ev_pct": 35.99,
+      "edge_pct": 5.14,
+      "ev_pct_p3": 42.78,
+      "blended_hr_per_pa": 0.02586,
+      "breakout_score": -0.0514,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.293,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7935,
+          "deviation": 0.2065
+        },
+        {
+          "name": "wind",
+          "value": 1.0747,
+          "deviation": 0.0747
+        }
+      ],
+      "tier_rank": 6,
+      "stacked": true,
+      "stacked_with": [
+        "Francisco Alvarez",
+        "Francisco Lindor",
+        "Jared Young"
+      ],
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 4,
   "skipped_reference": "data/processed/skipped_batters_2026-09-17.json"
 }
