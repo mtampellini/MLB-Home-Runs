@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-09-18T17:33:33.134982+00:00",
+  "generated_at": "2026-09-18T20:15:23.517173+00:00",
   "as_of_date": "2026-09-18",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.032,
+  "league_hr_per_pa": 0.03023089740537967,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
   "games_pregame": 15,
   "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 0,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 9,
+      "batter": "Brayan Rocchio",
+      "batter_id": 677587,
+      "batter_hand": "L",
+      "team": "CLE",
+      "lineup_spot": 9,
+      "pitcher": "Mason Barnett",
+      "pitcher_id": 686930,
+      "pitcher_hand": "R",
+      "park": "CLE",
+      "game_pk": 824383,
+      "game_datetime": "2026-09-18T23:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 980,
+      "dk_odds": 1040,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0838,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1088,
+      "ev_pct": 23.98,
+      "edge_pct": 2.49,
+      "ev_pct_p3": 23.0,
+      "blended_hr_per_pa": 0.02371,
+      "breakout_score": 0.0082,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.6131,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5852,
+          "deviation": 0.5852
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7843,
+          "deviation": 0.2157
+        },
+        {
+          "name": "wind",
+          "value": 0.9321,
+          "deviation": 0.0679
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 3,
   "skipped_reference": "data/processed/skipped_batters_2026-09-18.json"
 }
