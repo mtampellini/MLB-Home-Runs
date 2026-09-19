@@ -1,15 +1,73 @@
 {
-  "generated_at": "2026-09-19T00:43:51.998828+00:00",
-  "as_of_date": "2026-09-18",
+  "generated_at": "2026-09-19T17:07:44.567767+00:00",
+  "as_of_date": "2026-09-19",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03153554713617116,
+  "league_hr_per_pa": 0.03278949462793474,
   "tier": "secondary",
   "ev_threshold_pct_min": 25.0,
   "ev_threshold_pct_max": null,
   "total_games_today": 15,
-  "games_pregame": 4,
-  "games_excluded_live_or_complete": 11,
-  "picks": [],
-  "skipped_count": 6,
-  "skipped_reference": "data/processed/skipped_batters_2026-09-18.json"
+  "games_pregame": 15,
+  "games_excluded_live_or_complete": 0,
+  "picks": [
+    {
+      "tier": "secondary",
+      "daily_rank": 2,
+      "batter": "Liam Hicks",
+      "batter_id": 689414,
+      "batter_hand": "L",
+      "team": "TB",
+      "lineup_spot": 4,
+      "pitcher": "Brayan Bello",
+      "pitcher_id": 678394,
+      "pitcher_hand": "R",
+      "park": "TB",
+      "game_pk": 822921,
+      "game_datetime": "2026-09-19T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1200,
+      "dk_odds": 1220,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.071,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1021,
+      "ev_pct": 34.83,
+      "edge_pct": 3.11,
+      "ev_pct_p3": 39.16,
+      "blended_hr_per_pa": 0.0301,
+      "breakout_score": -0.0324,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.0054,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 0.918,
+          "deviation": 0.082
+        },
+        {
+          "name": "park",
+          "value": 0.9202,
+          "deviation": 0.0798
+        },
+        {
+          "name": "pitcher",
+          "value": 0.9233,
+          "deviation": 0.0767
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 4,
+  "skipped_reference": "data/processed/skipped_batters_2026-09-19.json"
 }
