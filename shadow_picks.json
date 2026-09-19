@@ -1,15 +1,301 @@
 {
-  "generated_at": "2026-09-19T17:07:44.567874+00:00",
+  "generated_at": "2026-09-19T19:33:51.910584+00:00",
   "as_of_date": "2026-09-19",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03278949462793474,
+  "league_hr_per_pa": 0.030770376992996572,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 15,
-  "games_excluded_live_or_complete": 0,
-  "picks": [],
-  "skipped_count": 4,
+  "games_pregame": 14,
+  "games_excluded_live_or_complete": 1,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 21,
+      "batter": "Brayan Rocchio",
+      "batter_id": 677587,
+      "batter_hand": "R",
+      "team": "CLE",
+      "lineup_spot": 9,
+      "pitcher": "Jacob Lopez",
+      "pitcher_id": 682052,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824380,
+      "game_datetime": "2026-09-19T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 1120,
+      "dk_odds": 1040,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.0789,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1015,
+      "ev_pct": 23.83,
+      "edge_pct": 2.26,
+      "ev_pct_p3": 27.52,
+      "blended_hr_per_pa": 0.02357,
+      "breakout_score": -0.03,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.6101,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7662,
+          "deviation": 0.2338
+        },
+        {
+          "name": "park",
+          "value": 0.8244,
+          "deviation": 0.1756
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 22,
+      "batter": "Bryce Harper",
+      "batter_id": 547180,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 3,
+      "pitcher": "Christian Scott",
+      "pitcher_id": 681035,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823571,
+      "game_datetime": "2026-09-19T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 420,
+      "dk_odds": 448,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.178,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2239,
+      "ev_pct": 22.67,
+      "edge_pct": 4.58,
+      "ev_pct_p3": 27.59,
+      "blended_hr_per_pa": 0.04215,
+      "breakout_score": -0.0426,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.0432,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.499,
+          "deviation": 0.499
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.3698,
+          "deviation": 0.3698
+        },
+        {
+          "name": "wind",
+          "value": 0.9525,
+          "deviation": 0.0475
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 24,
+      "batter": "Lawrence Butler",
+      "batter_id": 671732,
+      "batter_hand": "L",
+      "team": "OAK",
+      "lineup_spot": 4,
+      "pitcher": "Tanner Bibee",
+      "pitcher_id": 676440,
+      "pitcher_hand": "R",
+      "park": "CLE",
+      "game_pk": 824380,
+      "game_datetime": "2026-09-19T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 570,
+      "dk_odds": 555,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1434,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1811,
+      "ev_pct": 21.35,
+      "edge_pct": 3.77,
+      "ev_pct_p3": 31.02,
+      "blended_hr_per_pa": 0.03432,
+      "breakout_score": -0.0798,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 0.3515,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.5814,
+          "deviation": 0.5814
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.1155,
+          "deviation": 0.1155
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.9202,
+          "deviation": 0.0798
+        }
+      ],
+      "tier_rank": 4,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": false,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 26,
+      "batter": "Austin Hedges",
+      "batter_id": 595978,
+      "batter_hand": "R",
+      "team": "CLE",
+      "lineup_spot": 8,
+      "pitcher": "Jacob Lopez",
+      "pitcher_id": 682052,
+      "pitcher_hand": "L",
+      "park": "CLE",
+      "game_pk": 824380,
+      "game_datetime": "2026-09-19T22:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 920,
+      "dk_odds": 970,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.089,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1089,
+      "ev_pct": 16.57,
+      "edge_pct": 1.99,
+      "ev_pct_p3": 18.07,
+      "blended_hr_per_pa": 0.02428,
+      "breakout_score": -0.0132,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.1852,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 0.7891,
+          "deviation": 0.2109
+        },
+        {
+          "name": "park",
+          "value": 0.8244,
+          "deviation": 0.1756
+        }
+      ],
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 27,
+      "batter": "Kyle Schwarber",
+      "batter_id": 656941,
+      "batter_hand": "L",
+      "team": "PHI",
+      "lineup_spot": 1,
+      "pitcher": "Christian Scott",
+      "pitcher_id": 681035,
+      "pitcher_hand": "R",
+      "park": "NYM",
+      "game_pk": 823571,
+      "game_datetime": "2026-09-19T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 240,
+      "dk_odds": 231,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2892,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.3329,
+      "ev_pct": 13.19,
+      "edge_pct": 4.37,
+      "ev_pct_p3": 26.32,
+      "blended_hr_per_pa": 0.06924,
+      "breakout_score": -0.1228,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": -0.2832,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 2.2503,
+          "deviation": 1.2503
+        },
+        {
+          "name": "pitcher",
+          "value": 1.499,
+          "deviation": 0.499
+        },
+        {
+          "name": "breakout_signal",
+          "value": 0.8772,
+          "deviation": 0.1228
+        }
+      ],
+      "tier_rank": 7,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": false
+      }
+    }
+  ],
+  "skipped_count": 5,
   "skipped_reference": "data/processed/skipped_batters_2026-09-19.json"
 }
