@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-20T17:38:39.673311+00:00",
+  "generated_at": "2026-09-20T19:44:05.179535+00:00",
   "as_of_date": "2026-09-20",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.034019975031210986,
+  "league_hr_per_pa": 0.032398429740339595,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 15,
-  "games_pregame": 11,
-  "games_excluded_live_or_complete": 4,
+  "games_pregame": 6,
+  "games_excluded_live_or_complete": 9,
   "picks": [
     {
       "tier": "shadow",
-      "daily_rank": 13,
+      "daily_rank": 27,
       "batter": "Josh Smith",
       "batter_id": 669701,
       "batter_hand": "L",
@@ -58,7 +58,7 @@
           "deviation": 0.0618
         }
       ],
-      "tier_rank": 2,
+      "tier_rank": 3,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -69,7 +69,7 @@
     },
     {
       "tier": "shadow",
-      "daily_rank": 15,
+      "daily_rank": 30,
       "batter": "Jake McCarthy",
       "batter_id": 664983,
       "batter_hand": "L",
@@ -115,7 +115,64 @@
           "deviation": 0.0611
         }
       ],
-      "tier_rank": 4,
+      "tier_rank": 6,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 31,
+      "batter": "Max Muncy",
+      "batter_id": 571970,
+      "batter_hand": "L",
+      "team": "LAD",
+      "lineup_spot": 6,
+      "pitcher": "Matt Wilkinson",
+      "pitcher_id": 683363,
+      "pitcher_hand": "L",
+      "park": "LAD",
+      "game_pk": 823896,
+      "game_datetime": "2026-09-20T20:10:00+00:00",
+      "line": 0.5,
+      "fd_odds": 350,
+      "dk_odds": 345,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.2123,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.2601,
+      "ev_pct": 17.06,
+      "edge_pct": 4.78,
+      "ev_pct_p3": 14.48,
+      "blended_hr_per_pa": 0.05425,
+      "breakout_score": 0.0254,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": -0.2905,
+      "unstable_recent": false,
+      "top_3_features": [
+        {
+          "name": "batter_skill",
+          "value": 1.6745,
+          "deviation": 0.6745
+        },
+        {
+          "name": "park",
+          "value": 1.1765,
+          "deviation": 0.1765
+        },
+        {
+          "name": "wind",
+          "value": 1.0776,
+          "deviation": 0.0776
+        }
+      ],
+      "tier_rank": 7,
       "filter_status": {
         "passes_baseline": true,
         "passes_triple": true,
@@ -125,6 +182,6 @@
       }
     }
   ],
-  "skipped_count": 13,
+  "skipped_count": 15,
   "skipped_reference": "data/processed/skipped_batters_2026-09-20.json"
 }
