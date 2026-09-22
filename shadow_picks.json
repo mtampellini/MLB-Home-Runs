@@ -1,15 +1,130 @@
 {
-  "generated_at": "2026-09-21T22:40:43.281891+00:00",
+  "generated_at": "2026-09-22T01:11:37.470349+00:00",
   "as_of_date": "2026-09-21",
   "model_version": "v7-weather-cal2-0.3.0",
-  "league_hr_per_pa": 0.03629247464863903,
+  "league_hr_per_pa": 0.02567274976801732,
   "tier": "shadow",
   "ev_threshold_pct_min": 10.0,
   "ev_threshold_pct_max": 25.0,
   "total_games_today": 3,
-  "games_pregame": 2,
-  "games_excluded_live_or_complete": 1,
-  "picks": [],
-  "skipped_count": 4,
+  "games_pregame": 1,
+  "games_excluded_live_or_complete": 2,
+  "picks": [
+    {
+      "tier": "shadow",
+      "daily_rank": 1,
+      "batter": "Drew Gilbert",
+      "batter_id": 687551,
+      "batter_hand": "L",
+      "team": "SF",
+      "lineup_spot": 1,
+      "pitcher": "Zebby Matthews",
+      "pitcher_id": 805673,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823169,
+      "game_datetime": "2026-09-22T01:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 830,
+      "dk_odds": 940,
+      "best_book": "draftkings",
+      "market_prob_devig": 0.0947,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1194,
+      "ev_pct": 24.14,
+      "edge_pct": 2.47,
+      "ev_pct_p3": 22.45,
+      "blended_hr_per_pa": 0.02515,
+      "breakout_score": 0.0144,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": false,
+      "trend_signal": 1.5426,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "park",
+          "value": 0.7712,
+          "deviation": 0.2288
+        },
+        {
+          "name": "temperature",
+          "value": 0.8656,
+          "deviation": 0.1344
+        }
+      ],
+      "tier_rank": 1,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    },
+    {
+      "tier": "shadow",
+      "daily_rank": 2,
+      "batter": "Brooks Lee",
+      "batter_id": 686797,
+      "batter_hand": "L",
+      "team": "MIN",
+      "lineup_spot": 3,
+      "pitcher": "Blade Tidwell",
+      "pitcher_id": 694918,
+      "pitcher_hand": "R",
+      "park": "SF",
+      "game_pk": 823169,
+      "game_datetime": "2026-09-22T01:45:00+00:00",
+      "line": 0.5,
+      "fd_odds": 700,
+      "dk_odds": 620,
+      "best_book": "fanduel",
+      "market_prob_devig": 0.1241,
+      "devig_method": "single_sided",
+      "devig_inputs": {},
+      "model_prob": 0.1484,
+      "ev_pct": 18.72,
+      "edge_pct": 2.43,
+      "ev_pct_p3": 27.24,
+      "blended_hr_per_pa": 0.03614,
+      "breakout_score": -0.0714,
+      "low_confidence": false,
+      "pitcher_factor_shrunk": true,
+      "trend_signal": 0.9403,
+      "unstable_recent": true,
+      "top_3_features": [
+        {
+          "name": "pitcher",
+          "value": 1.6,
+          "deviation": 0.6
+        },
+        {
+          "name": "batter_skill",
+          "value": 1.4078,
+          "deviation": 0.4078
+        },
+        {
+          "name": "park",
+          "value": 0.7712,
+          "deviation": 0.2288
+        }
+      ],
+      "tier_rank": 2,
+      "filter_status": {
+        "passes_baseline": true,
+        "passes_triple": true,
+        "passes_triple_v2": true,
+        "passes_quad": true,
+        "passes_anchor": true
+      }
+    }
+  ],
+  "skipped_count": 9,
   "skipped_reference": "data/processed/skipped_batters_2026-09-21.json"
 }
